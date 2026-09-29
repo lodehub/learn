@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tap counter</title>
+  <link rel="stylesheet" href="../../../assets/style.css">
+  <style>
+    .count { font-size: 96px; font-weight: 700; text-align: center; margin: 24px 0; color: var(--accent); }
+    .actions { display: flex; gap: 16px; justify-content: center; }
+    .actions button { min-width: 140px; min-height: 72px; border: 0; border-radius: var(--radius);
+      background: var(--accent); color: #fff; font: inherit; font-size: 24px; font-weight: 700; cursor: pointer; }
+    .actions button.plain { background: var(--surface); color: var(--text); border: 1px solid var(--line); }
+  </style>
+</head>
+<body class="c-orange">
+  <main class="page">
+    <div class="bar"><a class="back" href="../../#maths" aria-label="Back to Maths">&#8592;</a><h1>Tap counter</h1></div>
+    <p class="muted">Placeholder tool for testing navigation and saved progress.</p>
+    <div class="count" id="n">0</div>
+    <div class="actions">
+      <button type="button" id="add">+1</button>
+      <button type="button" class="plain" id="reset">Reset</button>
+    </div>
+  </main>
+  <script>
+    // Progress key: <slug>:<subject>:<tool>:
+    var KEY = 'ember:maths:tap-counter:count';
+    var n = 0;
+    try { n = parseInt(localStorage.getItem(KEY), 10) || 0; } catch (e) {}
+    function show() { document.getElementById('n').textContent = n; try { localStorage.setItem(KEY, n); } catch (e) {} }
+    document.getElementById('add').onclick = function () { n++; show(); };
+    document.getElementById('reset').onclick = function () { n = 0; show(); };
+    show();
+  </script>
+</body>
+</html>

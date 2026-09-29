@@ -1,0 +1,21 @@
+{
+  "subjects": [
+    {
+      "slug": "english",
+      "label": "English"
+    },
+    {
+      "slug": "maths",
+      "label": "Maths"
+    }
+  ],
+  "items": [
+    {
+      "title": "Tap counter",
+      "path": "maths/tap-counter/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "children": [
+    { "slug": "ember", "label": "Ember", "colour": "orange", "icon": "flame" },
+    { "slug": "ninja", "label": "Ninja", "colour": "purple", "icon": "swords" },
+    { "slug": "bingo", "label": "Bingo", "colour": "blue",   "icon": "paw" }
+  ]
+}
