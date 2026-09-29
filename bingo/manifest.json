@@ -41,6 +41,14 @@
       "year": 2026,
       "status": "current",
       "topic": "Times tables"
+    },
+    {
+      "title": "Climb the threes",
+      "path": "maths/climb-the-threes/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Times tables"
     }
   ]
 }
