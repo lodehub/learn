@@ -29,6 +29,13 @@
       "year": 2026,
       "status": "current",
       "topic": "Algebra"
+    },
+    {
+      "title": "Lungs and gas exchange",
+      "path": "science/lungs-gas-exchange/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
     }
   ]
 }
