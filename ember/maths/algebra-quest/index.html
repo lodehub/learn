@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Algebra Quest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF5F2; --grid:#D3E5DE; --ink:#16233B; --ink2:#4A5A73;
+  --teal:#12A38A; --tealsoft:#C9F0E6; --coral:#FF5A7A; --coralsoft:#FFD9E0;
+  --sun:#FFC53D; --violet:#6C4CF1; --violetsoft:#DDD5FF; --white:#fff;
+  --display:'Bricolage Grotesque',ui-rounded,system-ui,sans-serif;
+  --body:'Atkinson Hyperlegible',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --math:'STIX Two Text','Times New Roman',Georgia,serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;min-height:100vh;
+}
+#app{max-width:640px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top,0px)) 16px calc(60px + env(safe-area-inset-bottom,0px))}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
+.sr{position:absolute;left:-9999px}
+.m{font-family:var(--math);font-weight:500;font-size:1.12em;white-space:nowrap}
+.m i{font-style:italic}
+
+/* stickers */
+.card,.btn,.chip,.node,.key,.opt,.ghost{border:2px solid var(--ink);border-radius:14px}
+.card{background:var(--white);box-shadow:4px 4px 0 var(--ink);padding:18px}
+.btn{background:var(--teal);color:#fff;font-family:var(--display);font-weight:800;font-size:1.05rem;padding:11px 20px;box-shadow:3px 3px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.btn.alt{background:var(--sun);color:var(--ink)}
+.btn.plain{background:var(--white);color:var(--ink)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.ghost{background:transparent;border-color:transparent;padding:6px 10px;color:var(--ink2);font-weight:700}
+.ghost:hover{border-color:var(--ink2)}
+.ghost.small{font-size:.9rem}
+.chip{background:var(--white);padding:3px 11px;font-weight:700;font-size:.95rem}
+
+/* home */
+.hero h1{font-family:var(--display);font-weight:800;font-size:2.4rem;line-height:1.05;margin:6px 0 4px;letter-spacing:-.02em}
+.hero p{margin:0 0 14px;color:var(--ink2)}
+.rank{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.rank .name{font-family:var(--display);font-weight:800;font-size:1.15rem;background:var(--sun);border:2px solid var(--ink);border-radius:999px;padding:2px 14px}
+.xpbar{height:16px;border:2px solid var(--ink);border-radius:999px;background:var(--white);overflow:hidden}
+.xpbar>div{height:100%;background:var(--coral);width:0;transition:width .6s}
+.xptxt{font-size:.9rem;color:var(--ink2);margin:4px 0 18px}
+
+.path{list-style:none;margin:0;padding:0;position:relative}
+.path::before{content:"";position:absolute;left:23px;top:22px;bottom:22px;width:4px;background:repeating-linear-gradient(var(--ink) 0 8px,transparent 8px 14px)}
+.path li{position:relative;padding-left:64px;margin-bottom:14px}
+.pin{position:absolute;left:0;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:2px solid var(--ink);background:var(--white);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.2rem}
+.pin.done{background:var(--teal);color:#fff}
+.pin.boss{background:var(--violet);color:#fff}
+.pin.lock{background:var(--grid);color:var(--ink2)}
+.node{display:block;width:100%;text-align:left;background:var(--white);padding:12px 14px;box-shadow:3px 3px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+.node:hover:not([disabled]){transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.node[disabled]{background:transparent;border-style:dashed;box-shadow:none;color:var(--ink2);cursor:not-allowed}
+.node.boss{background:var(--violetsoft)}
+.node .t{font-family:var(--display);font-weight:800;font-size:1.1rem;display:flex;justify-content:space-between;gap:8px}
+.node .ex{color:var(--ink2);font-size:.95rem}
+.stars{letter-spacing:2px;color:#D3D9E2;font-size:1.1rem;white-space:nowrap}
+.stars b{color:var(--sun);font-weight:400;-webkit-text-stroke:1px var(--ink)}
+.tools{margin-top:26px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;font-size:.9rem}
+
+/* play */
+.bar{display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:10px}
+.bar .lvl{font-family:var(--display);font-weight:800;flex:1;text-align:center;font-size:1.05rem}
+.chips{display:flex;gap:6px}
+.dots{display:flex;gap:6px;margin-bottom:14px}
+.dot{flex:1;height:10px;border-radius:99px;border:2px solid var(--ink);background:var(--white)}
+.dot.first{background:var(--teal)} .dot.second{background:var(--sun)} .dot.miss{background:var(--coral)}
+.dot.now{background:var(--violetsoft)}
+.qnum{color:var(--ink2);font-size:.9rem;margin-bottom:6px}
+.prompt{font-size:1.25rem;line-height:1.7;margin-bottom:14px}
+.prompt .m{font-size:1.45em;background:var(--tealsoft);border-radius:8px;padding:1px 8px}
+.ans{display:flex;gap:10px}
+.ans input{flex:1;min-width:0;font:600 1.5rem var(--math);border:2px solid var(--ink);border-radius:12px;padding:8px 12px;background:#fff;color:var(--ink)}
+.pad{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 6px}
+.key{background:var(--paper);min-width:44px;height:42px;padding:0 10px;font:600 1.15rem var(--math);box-shadow:2px 2px 0 var(--ink)}
+.key:active{transform:translate(2px,2px);box-shadow:none}
+.opts{display:grid;gap:10px}
+.opt{background:#fff;text-align:left;padding:12px 14px;box-shadow:3px 3px 0 var(--ink)}
+.opt:hover:not([disabled]){background:var(--tealsoft)}
+.opt.right{background:var(--tealsoft)} .opt.wrong{background:var(--coralsoft)}
+.hint{font-size:.85rem;color:var(--ink2);margin:6px 0 0}
+
+.fb{margin-top:16px;border:2px solid var(--ink);border-radius:12px;padding:14px}
+.fb.good{background:var(--tealsoft)} .fb.bad{background:var(--coralsoft)} .fb.try{background:#FFF3CC}
+.fb strong{font-family:var(--display);font-size:1.15rem}
+.fb .steps{margin:8px 0;padding-left:22px}
+.fb .steps li{margin-bottom:5px}
+.fb .why{margin:8px 0 12px;font-style:italic}
+.fb details{margin:6px 0}
+.fb summary{cursor:pointer;font-weight:700}
+.fb .theans{margin:6px 0}
+.xpfloat{position:fixed;left:50%;top:38%;transform:translateX(-50%);font:800 2rem var(--display);color:var(--coral);-webkit-text-stroke:1.5px var(--ink);pointer-events:none;animation:up 1s ease-out forwards}
+@keyframes up{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-70px)}}
+
+/* results */
+.res{text-align:center}
+.res h2{font-family:var(--display);font-weight:800;font-size:2rem;margin:4px 0}
+.bigstars{font-size:3.4rem;letter-spacing:6px;color:#D3D9E2;line-height:1.1}
+.bigstars b{color:var(--sun);font-weight:400;-webkit-text-stroke:2px var(--ink)}
+.statrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.rankup{background:var(--sun);border:2px solid var(--ink);border-radius:12px;padding:8px 12px;font-family:var(--display);font-weight:800;margin:10px 0}
+.btnrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.review{text-align:left;margin-top:22px}
+.review h3{font-family:var(--display);margin:0 0 8px}
+.review .card{margin-bottom:12px;padding:14px}
+.confetti{position:fixed;top:-12px;width:10px;height:14px;border:1.5px solid var(--ink);animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg)}}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.xpfloat{animation:none;opacity:0}.xpbar>div{transition:none}}
+@media (max-width:420px){.hero h1{font-size:2rem}.prompt{font-size:1.1rem}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<noscript>This game needs JavaScript switched on.</noscript>
+<script>
+/* ---------- helpers ---------- */
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[R(0,a.length-1)];
+const nz=(a,b)=>{let v=0;while(v===0)v=R(a,b);return v;};
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]];}return a;};
+const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+const N=n=>(n<0?'−':'')+Math.abs(n);
+const P=n=>n<0?'('+N(n)+')':String(n);
+const cx=(c,v='x')=>c===1?v:c===-1?'−'+v:N(c)+v;
+const sumStr=cs=>cs.map((c,i)=>i===0?N(c):(c<0?'− '+N(-c):'+ '+c)).join(' ');
+function poly(terms){
+  let s='';
+  terms.filter(t=>t[0]!==0).forEach((t,i)=>{
+    const c=t[0],v=t[1],a=Math.abs(c);
+    const body=v===''?String(a):(a===1?v:a+v);
+    s+= i===0 ? (c<0?'−':'')+body : (c<0?' − ':' + ')+body;
+  });
+  return s||'0';
+}
+const mh=s=>s.replace(/[xy]/g,'<i>$&</i>');
+const rich=s=>s.replace(/\{\{(.+?)\}\}/g,(_,m)=>'<span class="m">'+mh(m)+'</span>');
+
+/* ---------- tiny polynomial engine (checks answers by algebra, not by string match) ---------- */
+const padd=(a,b,s=1)=>{const r={...a};for(const k in b)r[k]=(r[k]||0)+s*b[k];return r;};
+function pmul(a,b){const r={};for(const k in a)for(const l in b){const[i,j]=k.split(',').map(Number),[m,n]=l.split(',').map(Number);const kk=(i+m)+','+(j+n);r[kk]=(r[kk]||0)+a[k]*b[l];}return r;}
+function ppow(a,n){let r={'0,0':1};for(let i=0;i<n;i++)r=pmul(r,a);return r;}
+function clean(a){const r={};for(const k in a)if(Math.abs(a[k])>1e-9)r[k]=a[k];return r;}
+function peq(a,b){a=clean(a);b=clean(b);for(const k of new Set([...Object.keys(a),...Object.keys(b)]))if(Math.abs((a[k]||0)-(b[k]||0))>1e-9)return false;return true;}
+const isNum=t=>/^[\d.]/.test(t), isVar=t=>/^[xy]$/.test(t);
+function tokenize(str){
+  const s=str.toLowerCase().replace(/\s+/g,'').replace(/[−–—]/g,'-').replace(/[×·]/g,'*').replace(/÷/g,'/').replace(/²/g,'^2').replace(/³/g,'^3');
+  const toks=s.match(/\d+\.?\d*|\.\d+|[xy]|[-+*\/^()]/g)||[];
+  if(toks.join('')!==s)return null;
+  const out=[];
+  for(const t of toks){
+    const p=out[out.length-1];
+    if(p!==undefined&&(isNum(p)||isVar(p)||p===')')&&(isVar(t)||t==='('||isNum(t)))out.push('*');
+    out.push(t);
+  }
+  return out;
+}
+function parse(str){
+  const toks=tokenize(str);if(!toks||!toks.length)return null;
+  let i=0;const peek=()=>toks[i],next=()=>toks[i++];
+  function expr(){let v=term();while(peek()==='+'||peek()==='-'){const o=next();v=padd(v,term(),o==='+'?1:-1);}return v;}
+  function term(){let v=unary();while(peek()==='*'||peek()==='/'){const o=next();const r=unary();
+    if(o==='*')v=pmul(v,r);else{const c=clean(r),ks=Object.keys(c);if(ks.length!==1||ks[0]!=='0,0')throw 0;v=pmul(v,{'0,0':1/c['0,0']});}}return v;}
+  function unary(){if(peek()==='-'){next();return pmul(unary(),{'0,0':-1});}if(peek()==='+'){next();return unary();}return pw();}
+  function pw(){let b=atom();if(peek()==='^'){next();const e=next();if(!e||!/^\d+$/.test(e)||+e>6)throw 0;b=ppow(b,+e);}return b;}
+  function atom(){const t=next();if(t===undefined)throw 0;if(t==='('){const v=expr();if(next()!==')')throw 0;return v;}
+    if(t==='x')return{'1,0':1};if(t==='y')return{'0,1':1};if(isNum(t)){const n=parseFloat(t);if(isNaN(n))throw 0;return{'0,0':n};}throw 0;}
+  try{const v=expr();return i!==toks.length?null:clean(v);}catch(e){return null;}
+}
+function termCount(str){const t=tokenize(str);if(!t)return 0;let c=1;
+  for(let i=1;i<t.length;i++)if((t[i]==='+'||t[i]==='-')&&(isNum(t[i-1])||isVar(t[i-1])||t[i-1]===')'))c++;return c;}
+
+function check(q,raw){
+  if(q.type==='num'){
+    const p=parse(raw.trim().replace(/^[a-z]\s*=\s*/i,''));
+    if(!p)return{ok:false,msg:"I couldn't read that — type a number, like 4 or −3."};
+    if(Object.keys(p).some(k=>k!=='0,0'))return{ok:false,msg:'The answer should be a number, not an expression with letters.'};
+    return{ok:peq(p,q.ans)};
+  }
+  const p=parse(raw);
+  if(!p)return{ok:false,msg:"I couldn't read that. Use x, +, −, brackets, and ^ or the x² key for powers."};
+  if(!peq(p,q.ans))return{ok:false};
+  const t=tokenize(raw);
+  if(q.mode==='factor'){
+    const s=t.join('').replace(/\*/g,'');
+    if(!s.includes('('))return{ok:false,msg:"That's equal to the original, but it isn't factorised — the answer needs brackets."};
+    const good=q.prefix?(s.startsWith(q.prefix+'(')||s.endsWith(')'+q.prefix)):(s.startsWith('(')&&((s.split('(').length-1>=2)||/\)\^2/.test(s)));
+    if(!good)return{ok:false,msg:'Nearly — factorise fully. Take out the biggest common factor, or use two brackets.'};
+    return{ok:true};
+  }
+  if(t.includes('('))return{ok:false,msg:'Right value, but you still have brackets — expand fully.'};
+  if(termCount(raw)!==(Object.keys(q.ans).length||1))return{ok:false,msg:'Right value, but not fully simplified — collect the like terms.'};
+  return{ok:true};
+}
+
+/* ---------- question generators ---------- */
+function Q(o){if(o.type!=='mc')o.ans=parse(o.ansStr);return o;}
+function mcQ(prompt,right,wrongs,steps,why){
+  const opts=[right,...wrongs],idx=shuffle(opts.map((_,i)=>i));
+  return{type:'mc',prompt,options:idx.map(i=>opts[i]),correct:idx.indexOf(0),ansStr:right,steps,why};
+}
+
+function gCollect(){
+  const pat=pick([['x','x','x'],['x','y','x','y'],['x','','x',''],['x²','x','x²','x'],['x','y','','x'],['x²','x','','x²']]);
+  let cs,groups;
+  for(let t=0;t<60;t++){
+    cs=pat.map(()=>nz(-7,9));cs[0]=Math.abs(cs[0]);groups=[];
+    pat.forEach((v,i)=>{let g=groups.find(g=>g.v===v);if(!g){g={v,cs:[]};groups.push(g);}g.cs.push(cs[i]);});
+    if(groups.every(g=>g.cs.reduce((a,b)=>a+b,0)!==0))break;
+  }
+  const sums=groups.map(g=>g.cs.reduce((a,b)=>a+b,0));
+  const steps=groups.map((g,i)=>g.cs.length===1
+    ? `{{${g.v===''?N(g.cs[0]):cx(g.cs[0],g.v)}}} has no partner to combine with, so it stays as it is.`
+    : g.v===''?`Numbers: {{${sumStr(g.cs)} = ${N(sums[i])}}}`
+    : `{{${g.v}}} terms: {{${sumStr(g.cs)} = ${N(sums[i])}}}, so {{${cx(sums[i],g.v)}}}`);
+  return Q({type:'expr',mode:'simplify',
+    prompt:`Simplify {{${poly(pat.map((v,i)=>[cs[i],v]))}}}`,
+    ansStr:poly(groups.map((g,i)=>[sums[i],g.v])),steps,
+    hint:'Which terms have exactly the same letter and power? Only those can be combined.',
+    why:'Like terms have the same letter to the same power. {{x}} and {{x²}} are different things, so they cannot be merged.'});
+}
+
+function gSub(){
+  const t=R(1,4);
+  if(t===1){
+    const a=R(2,7),b=nz(-9,9),x=R(-4,7),ans=a*x+b;
+    return Q({type:'num',prompt:`Work out {{${poly([[a,'x'],[b,'']])}}} when {{x = ${N(x)}}}`,ansStr:N(ans),
+      steps:[`Replace {{x}} with {{${P(x)}}}: {{${a} × ${P(x)} ${b<0?'−':'+'} ${Math.abs(b)}}}`,`{{${N(a*x)} ${b<0?'−':'+'} ${Math.abs(b)} = ${N(ans)}}}`],
+      hint:'Swap the letter for its number, using brackets if the number is negative.',
+      why:'{{3x}} means 3 × x, so once x has a value you multiply, then add or subtract.'});
+  }
+  if(t===2){
+    const x=-R(2,5),b=nz(-6,6),ans=x*x+b*x;
+    return Q({type:'num',prompt:`Work out {{${poly([[1,'x²'],[b,'x']])}}} when {{x = ${N(x)}}}`,ansStr:N(ans),
+      steps:[`Square first: {{${P(x)}² = ${x*x}}}`,`Then {{${b} × ${P(x)} = ${N(b*x)}}}`,`{{${x*x} ${b*x<0?'−':'+'} ${Math.abs(b*x)} = ${N(ans)}}}`],
+      hint:'Put the negative number in brackets before squaring it.',
+      why:'A negative number squared is positive: {{(−3)² = 9}}, not {{−9}}.'});
+  }
+  if(t===3){
+    const a=R(2,5),x=R(2,6),ans=a*x*x;
+    return Q({type:'num',prompt:`Work out {{${a}x²}} when {{x = ${x}}}`,ansStr:N(ans),
+      steps:[`Powers come before multiplying: {{${x}² = ${x*x}}}`,`Then multiply: {{${a} × ${x*x} = ${ans}}}`],
+      hint:'BIDMAS: do the power before the multiplication.',
+      why:`{{${a}x²}} means ${a} × (x²). Only the {{x}} is squared, so it is not {{(${a}x)²}}.`});
+  }
+  const p=R(2,6),q=nz(-5,5),x=R(1,6),y=nz(-5,5),ans=p*x+q*y;
+  return Q({type:'num',prompt:`Work out {{${poly([[p,'x'],[q,'y']])}}} when {{x = ${x}}} and {{y = ${N(y)}}}`,ansStr:N(ans),
+    steps:[`Replace each letter: {{${p} × ${P(x)} + ${P(q)} × ${P(y)}}}`,`{{${N(p*x)} + ${P(q*y)} = ${N(ans)}}}`],
+    hint:'Replace both letters, keep negatives in brackets, then work left to right.',
+    why:'Multiplying two negatives gives a positive, and a positive times a negative gives a negative.'});
+}
+
+function gExpand(){
+  const t=R(1,5);
+  if(t===1){
+    const k=R(2,9),b=nz(-9,9);
+    return Q({type:'expr',mode:'simplify',prompt:`Expand {{${k}(${poly([[1,'x'],[b,'']])})}}`,ansStr:poly([[k,'x'],[k*b,'']]),
+      steps:[`Multiply every term inside the bracket by {{${k}}}`,`{{${k} × x = ${k}x}}`,`{{${k} × ${P(b)} = ${N(k*b)}}}`],
+      hint:'The number outside multiplies both terms inside — not just the first.',
+      why:'The bracket is one package, so everything inside gets multiplied.'});
+  }
+  if(t===2){
+    const b=nz(-9,9);
+    return Q({type:'expr',mode:'simplify',prompt:`Expand {{x(${poly([[1,'x'],[b,'']])})}}`,ansStr:poly([[1,'x²'],[b,'x']]),
+      steps:[`{{x × x = x²}}`,`{{x × ${P(b)} = ${cx(b)}}}`],
+      hint:'What is x times x?',why:'{{x × x}} is {{x²}}, not {{2x}}. Multiplying letters raises the power.'});
+  }
+  if(t===3){
+    const k=R(2,7),b=nz(-8,8);
+    return Q({type:'expr',mode:'simplify',prompt:`Expand {{−${k}(${poly([[1,'x'],[b,'']])})}}`,ansStr:poly([[-k,'x'],[-k*b,'']]),
+      steps:[`Multiply each term by {{−${k}}}`,`{{−${k} × x = −${k}x}}`,`{{−${k} × ${P(b)} = ${N(-k*b)}}}`],
+      hint:'A negative outside the bracket changes the sign of each term inside.',
+      why:'A minus in front of a bracket flips the sign of every term inside it.'});
+  }
+  if(t===4){
+    const k=R(2,5),a=R(2,4),b=nz(-7,7);
+    return Q({type:'expr',mode:'simplify',prompt:`Expand {{${k}(${poly([[a,'x'],[b,'']])})}}`,ansStr:poly([[k*a,'x'],[k*b,'']]),
+      steps:[`{{${k} × ${a}x = ${k*a}x}}`,`{{${k} × ${P(b)} = ${N(k*b)}}}`],
+      hint:'Multiply the number by the coefficient of x, then by the number term.',
+      why:'Multiply numbers with numbers: {{3 × 2x}} is {{6x}}, and the letter comes along for the ride.'});
+  }
+  const k=R(2,4),m=R(2,4),b=nz(-6,6),c=nz(-6,6);
+  return Q({type:'expr',mode:'simplify',prompt:`Expand and simplify {{${k}(${poly([[1,'x'],[b,'']])}) + ${m}(${poly([[1,'x'],[c,'']])})}}`,
+    ansStr:poly([[k+m,'x'],[k*b+m*c,'']]),
+    steps:[`First bracket: {{${poly([[k,'x'],[k*b,'']])}}}`,`Second bracket: {{${poly([[m,'x'],[m*c,'']])}}}`,`Now collect like terms: {{x}} terms {{${sumStr([k,m])} = ${k+m}}}, numbers {{${sumStr([k*b,m*c])} = ${N(k*b+m*c)}}}`],
+    hint:'Expand each bracket separately first, then collect like terms.',
+    why:'Expanding turns two packages into loose terms, and then the like terms can finally be combined.'});
+}
+
+function gEq(){
+  const t=R(1,5);
+  if(t===1){
+    const s=R(-4,9),a=R(2,9),b=nz(-12,12),c=a*s+b;
+    return Q({type:'num',prompt:`Solve {{${poly([[a,'x'],[b,'']])} = ${N(c)}}}`,ansStr:N(s),
+      steps:[`${b<0?'Add':'Subtract'} ${Math.abs(b)} ${b<0?'to':'from'} both sides: {{${cx(a)} = ${N(c-b)}}}`,`Divide both sides by ${a}: {{x = ${N(s)}}}`,`Check: {{${a} × ${P(s)} ${b<0?'−':'+'} ${Math.abs(b)} = ${N(c)}}} ✓`],
+      hint:'Undo the added or subtracted number first, then undo the multiplication.',
+      why:'Whatever you do to one side you must do to the other. That keeps the equation balanced.'});
+  }
+  if(t===2){
+    const a=R(2,6),k=R(-3,8),b=nz(-8,8),s=a*k,c=k+b;
+    return Q({type:'num',prompt:`Solve {{x ÷ ${a} ${b<0?'−':'+'} ${Math.abs(b)} = ${N(c)}}}`,ansStr:N(s),
+      steps:[`${b<0?'Add':'Subtract'} ${Math.abs(b)} ${b<0?'to':'from'} both sides: {{x ÷ ${a} = ${N(c-b)}}}`,`Multiply both sides by ${a}: {{x = ${N(s)}}}`],
+      hint:'The opposite of dividing by a number is multiplying by it.',
+      why:'Each operation has an opposite, and you undo them in reverse order.'});
+  }
+  if(t===3){
+    const a=R(10,30),b=R(2,6),s=R(1,8),c=a-b*s;
+    return Q({type:'num',prompt:`Solve {{${a} − ${b}x = ${N(c)}}}`,ansStr:N(s),
+      steps:[`Subtract ${a} from both sides: {{−${b}x = ${N(c-a)}}}`,`Divide both sides by {{−${b}}}: {{x = ${N(s)}}}`,`Check: {{${a} − ${b} × ${s} = ${N(c)}}} ✓`],
+      hint:'The x term is negative here. Move the number first, then divide by the negative.',
+      why:'A negative divided by a negative is positive, so a negative x-term can still give a positive answer.'});
+  }
+  if(t===4){
+    const a=R(2,5),b=R(2,9),c=a*R(2,6)+b;
+    return mcQ(`Ava starts solving {{${poly([[a,'x'],[b,'']])} = ${c}}} and writes {{${cx(a)} = ${c+b}}}. What went wrong?`,
+      `She added ${b} to both sides. She should have subtracted it.`,
+      [`She should have divided by ${a} before doing anything else.`,`Nothing. Her line is correct.`],
+      [`To undo “+ ${b}” you subtract ${b} from both sides: {{${cx(a)} = ${c-b}}}.`],
+      'Undo an addition with a subtraction. Doing the same operation again moves you further away.');
+  }
+  const a=R(2,5),k=R(2,6),b=R(2,9),c=a*k;
+  return mcQ(`Ben solves {{${poly([[a,'x'],[-b,'']])} = ${c}}} and writes {{x − ${b} = ${k}}}. What went wrong?`,
+    `He divided only the ${a}x by ${a}. He must divide every term on both sides.`,
+    [`He should have subtracted ${b} first, and that is the only problem.`,`Nothing. His line is correct.`],
+    [`Dividing the whole equation by ${a} gives {{x − ${b}/${a} = ${k}}}, which is messy. It is cleaner to add ${b} first: {{${cx(a)} = ${c+b}}}, then divide.`],
+    'When you divide, everything on both sides is divided, not just the term next to the number.');
+}
+
+function gEq2(){
+  const t=R(1,3);
+  if(t===1){
+    const c=R(1,4),a=c+R(1,5),s=R(-3,9),b=nz(-10,10),d=(a-c)*s+b;
+    return Q({type:'num',prompt:`Solve {{${poly([[a,'x'],[b,'']])} = ${poly([[c,'x'],[d,'']])}}}`,ansStr:N(s),
+      steps:[`Subtract {{${cx(c)}}} from both sides so the {{x}}s are on one side: {{${poly([[a-c,'x'],[b,'']])} = ${N(d)}}}`,
+        `${b<0?'Add':'Subtract'} ${Math.abs(b)} ${b<0?'to':'from'} both sides: {{${cx(a-c)} = ${N(d-b)}}}`,`Divide by ${a-c}: {{x = ${N(s)}}}`],
+      hint:'Move the smaller x-term across first, so you avoid negative x terms.',
+      why:'Collect the letters on one side and the numbers on the other. Then it is an equation you already know how to solve.'});
+  }
+  if(t===2){
+    const k=R(2,6),b=nz(-6,6),s=R(-2,8),c=k*(s+b);
+    return Q({type:'num',prompt:`Solve {{${k}(${poly([[1,'x'],[b,'']])}) = ${N(c)}}}`,ansStr:N(s),
+      steps:[`Expand the bracket: {{${poly([[k,'x'],[k*b,'']])} = ${N(c)}}}`,`${k*b<0?'Add':'Subtract'} ${Math.abs(k*b)} ${k*b<0?'to':'from'} both sides: {{${cx(k)} = ${N(c-k*b)}}}`,`Divide by ${k}: {{x = ${N(s)}}}`],
+      hint:'Expand the bracket first (or divide both sides by the number outside).',
+      why:'Expanding first puts the equation into a form you already know how to solve.'});
+  }
+  const a=R(2,4),c=a+R(1,4),b=nz(-6,6),s=R(-2,8),d=a*(s+b)-c*s;
+  const steps=[`Expand the bracket: {{${poly([[a,'x'],[a*b,'']])} = ${poly([[c,'x'],[d,'']])}}}`,
+    `Subtract {{${cx(a)}}} from both sides: {{${N(a*b)} = ${poly([[c-a,'x'],[d,'']])}}}`];
+  if(d!==0)steps.push(`${d<0?'Add':'Subtract'} ${Math.abs(d)} ${d<0?'to':'from'} both sides: {{${N(a*b-d)} = ${cx(c-a)}}}`);
+  steps.push(`Divide by ${c-a}: {{x = ${N(s)}}}`);
+  return Q({type:'num',prompt:`Solve {{${a}(${poly([[1,'x'],[b,'']])}) = ${poly([[c,'x'],[d,'']])}}}`,ansStr:N(s),steps,
+    hint:'Expand first, then move the smaller x-term across.',
+    why:'A longer problem is just short steps chained together: expand, collect, undo, divide.'});
+}
+
+function foil(p,a,q,b){
+  const A=p*q,B=p*b+a*q,C=a*b;
+  return{ans:poly([[A,'x²'],[B,'x'],[C,'']]),
+    steps:[`Multiply every term in the first bracket by every term in the second (four products).`,
+      `{{${cx(p)} × ${cx(q)} = ${cx(A,'x²')}}}, {{${cx(p)} × ${P(b)} = ${cx(p*b)}}}, {{${P(a)} × ${cx(q)} = ${cx(a*q)}}}, {{${P(a)} × ${P(b)} = ${N(C)}}}`,
+      `Collect the {{x}} terms: {{${sumStr([p*b,a*q])} = ${N(B)}}}${B===0?', so they cancel':''}`]};
+}
+function gDouble(){
+  const t=R(1,4);
+  const br=(p,a)=>`(${poly([[p,'x'],[a,'']])})`;
+  if(t===1){const a=nz(-8,8),b=nz(-8,8),f=foil(1,a,1,b);
+    return Q({type:'expr',mode:'simplify',prompt:`Expand and simplify {{${br(1,a)}${br(1,b)}}}`,ansStr:f.ans,steps:f.steps,
+      hint:'Four products: first, outer, inner, last. Then collect the x terms.',
+      why:'Every term in one bracket meets every term in the other. Miss one and the answer is wrong.'});}
+  if(t===2){const p=R(2,3),a=nz(-6,6),b=nz(-6,6),f=foil(p,a,1,b);
+    return Q({type:'expr',mode:'simplify',prompt:`Expand and simplify {{${br(p,a)}${br(1,b)}}}`,ansStr:f.ans,steps:f.steps,
+      hint:'Four products. The first one will be an x² term with a number in front.',
+      why:'Same method, bigger numbers. The x² coefficient is the product of the two x-coefficients.'});}
+  if(t===3){const a=nz(-7,7),f=foil(1,a,1,a);
+    return Q({type:'expr',mode:'simplify',prompt:`Expand and simplify {{${br(1,a)}²}}`,ansStr:f.ans,
+      steps:[`Write it out twice: {{${br(1,a)}${br(1,a)}}}. It is not {{x² ${a<0?'−':'+'} ${a*a}}}.`,...f.steps],
+      hint:'Squaring a bracket means writing it twice, then expanding.',
+      why:'The middle term is the one people forget. {{(x+3)² = x² + 6x + 9}}, not {{x² + 9}}.'});}
+  const a=R(2,9),f=foil(1,a,1,-a);
+  return Q({type:'expr',mode:'simplify',prompt:`Expand and simplify {{${br(1,a)}${br(1,-a)}}}`,ansStr:f.ans,steps:f.steps,
+    hint:'Do the four products. Watch what happens to the x terms.',
+    why:'The two middle terms cancel, which leaves a difference of two squares.'});
+}
+
+function gFactor(){
+  const t=R(1,4);
+  if(t===1){
+    let g,p,q;do{g=R(2,7);p=R(1,5);q=nz(-7,7);}while(gcd(p,Math.abs(q))!==1);
+    const ans=`${g}(${poly([[p,'x'],[q,'']])})`;
+    return Q({type:'expr',mode:'factor',prefix:String(g),prompt:`Factorise fully {{${poly([[g*p,'x'],[g*q,'']])}}}`,ansStr:ans,
+      steps:[`The highest common factor of {{${g*p}}} and {{${Math.abs(g*q)}}} is {{${g}}}.`,`Divide each term by ${g}: {{${cx(g*p)} ÷ ${g} = ${cx(p)}}}, {{${N(g*q)} ÷ ${g} = ${N(q)}}}`,`Write the common factor outside the bracket: {{${ans}}}`],
+      hint:'What is the biggest number that divides into both terms?',
+      why:'Factorising is expanding backwards. Multiply your answer out and you should get the original.'});
+  }
+  if(t===2){
+    const k=R(1,4),m=nz(-8,8),pre=(k===1?'':k)+'x',ans=`${pre}(${poly([[1,'x'],[m,'']])})`;
+    return Q({type:'expr',mode:'factor',prefix:pre,prompt:`Factorise fully {{${poly([[k,'x²'],[k*m,'x']])}}}`,ansStr:ans,
+      steps:[`Both terms contain {{x}}${k>1?` and are multiples of ${k}`:''}, so the common factor is {{${pre}}}.`,`{{${cx(k,'x²')} ÷ ${pre} = x}}, {{${cx(k*m)} ÷ ${pre} = ${N(m)}}}`,`Answer: {{${ans}}}`],
+      hint:'Look for a letter and a number that go into both terms.',
+      why:'Take out the highest common factor, including the letter, or the job is only half done.'});
+  }
+  const a=nz(-8,8),b=nz(-8,8),f=foil(1,a,1,b),ans=`(${poly([[1,'x'],[a,'']])})(${poly([[1,'x'],[b,'']])})`;
+  return Q({type:'expr',mode:'factor',prefix:'',prompt:`Factorise {{${f.ans}}}`,ansStr:ans,
+    steps:[`Find two numbers that multiply to {{${N(a*b)}}} and add to {{${N(a+b)}}}.`,`They are {{${N(a)}}} and {{${N(b)}}}.`,`So the answer is {{${ans}}}. Check by expanding.`],
+    hint:'Which two numbers multiply to make the last number and add to make the middle number?',
+    why:'Expanding two brackets creates the middle term by adding two products, so factorising reverses that.'});
+}
+
+/* ---------- game data ---------- */
+const GENS=[gCollect,gSub,gExpand,gEq,gEq2,gDouble,gFactor];
+const LEVELS=[
+  {id:1,name:'Collect like terms',ex:'3x + 5x − 2x',gen:gCollect,n:8},
+  {id:2,name:'Substitution',ex:'3x + 5 when x = 4',gen:gSub,n:8},
+  {id:3,name:'Expanding brackets',ex:'3(x + 4)',gen:gExpand,n:8},
+  {id:4,name:'Solving equations',ex:'3x + 5 = 20',gen:gEq,n:8},
+  {id:5,name:'Unknowns on both sides',ex:'5x − 3 = 2x + 12',gen:gEq2,n:8},
+  {id:6,name:'Double brackets',ex:'(x + 3)(x + 5)',gen:gDouble,n:8},
+  {id:7,name:'Factorising',ex:'x² + 7x + 12',gen:gFactor,n:8},
+  {id:8,name:'Boss round',ex:'Everything, mixed together',gen:null,n:10,boss:true}
+];
+const RANKS=[[0,'Variable'],[100,'Term Collector'],[250,'Bracket Breaker'],[450,'Equation Solver'],[700,'Factor Finder'],[1000,'Algebra Legend']];
+function rank(xp){let idx=0;RANKS.forEach((r,i)=>{if(xp>=r[0])idx=i;});const nx=RANKS[idx+1];return{idx,name:RANKS[idx][1],base:RANKS[idx][0],next:nx?nx[0]:null,nextName:nx?nx[1]:null};}
+
+/* ---------- save ---------- */
+const KEY='ember:maths:algebra-quest:save';
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.stars)return s;}catch(e){}return{xp:0,stars:{},best:0,all:false};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+let S=load(),run=null;
+const app=document.getElementById('app');
+const starsHTML=n=>'<span class="stars" aria-label="'+n+' of 3 stars">'+[1,2,3].map(i=>i<=n?'<b>★</b>':'★').join('')+'</span>';
+const unlocked=id=>S.all||id===1||(id<8?(S.stars[id-1]||0)>=1:LEVELS.slice(0,7).every(l=>(S.stars[l.id]||0)>=1));
+
+/* ---------- home ---------- */
+function home(){
+  run=null;const r=rank(S.xp);
+  const pct=r.next?Math.round((S.xp-r.base)/(r.next-r.base)*100):100;
+  app.innerHTML=`
+  <section class="hero">
+    <h1>Algebra Quest</h1>
+    <p>Work up the path. Every wrong answer comes with the method, so mistakes are how you level up.</p>
+    <div class="rank"><span class="name">${r.name}</span><span class="chip">${S.xp} XP</span><span class="chip">Best streak ${S.best||0}</span></div>
+    <div class="xpbar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><div style="width:${pct}%"></div></div>
+    <div class="xptxt">${r.next?`${r.next-S.xp} XP to ${r.nextName}`:'Top rank reached'}</div>
+  </section>
+  <ol class="path">${LEVELS.map(L=>{
+    const ok=unlocked(L.id),st=S.stars[L.id]||0;
+    return `<li><span class="pin ${!ok?'lock':L.boss?'boss':st?'done':''}">${!ok?'🔒':L.boss?'★':L.id}</span>
+      <button class="node ${L.boss?'boss':''}" data-act="start" data-id="${L.id}" ${ok?'':'disabled'}>
+        <span class="t"><span>${L.name}</span>${starsHTML(st)}</span>
+        <span class="ex">${rich('{{'+L.ex+'}}')}</span></button></li>`;}).join('')}</ol>
+  <div class="tools">
+    <button class="ghost small" data-act="unlock">${S.all?'Lock levels again':'Unlock all levels'}</button>
+    <button class="ghost small" data-act="reset">Reset progress</button>
+  </div>`;
+  window.scrollTo(0,0);
+}
+
+/* ---------- play ---------- */
+function start(id){
+  const L=LEVELS.find(l=>l.id===id);let qs=[];
+  if(L.boss){qs=shuffle([...GENS]).concat([pick(GENS),pick(GENS),pick(GENS)]).map(g=>g());}
+  else{const seen=new Set();for(let i=0;i<L.n;i++){let q;for(let t=0;t<15;t++){q=L.gen();if(!seen.has(q.prompt))break;}seen.add(q.prompt);qs.push(q);}}
+  run={L,qs,i:0,att:0,first:0,ok:0,xp:0,streak:0,bestStreak:0,res:[],missed:[],locked:false,rankBefore:rank(S.xp).idx};
+  renderQ();
+}
+function keysFor(q){
+  const all=[['x','x'],['y','y'],['x²','^2'],['(','('],[')',')'],['+','+'],['−','-'],['÷','/'],['⌫','back']];
+  const needY=/y/.test(q.prompt+q.ansStr);
+  if(q.type==='num')return all.filter(k=>['−','÷','⌫'].includes(k[0]));
+  return all.filter(k=>k[0]!=='y'||needY);
+}
+function renderQ(){
+  const q=run.qs[run.i],last=run.i===run.qs.length-1;run.att=0;run.locked=false;
+  app.innerHTML=`
+  <div class="bar"><button class="ghost small" data-act="home">← Map</button><div class="lvl">${run.L.name}</div>
+    <div class="chips"><span class="chip" id="chipS">🔥 ${run.streak}</span><span class="chip" id="chipX">${run.xp} XP</span></div></div>
+  <div class="dots">${run.qs.map((_,i)=>`<span class="dot ${run.res[i]||(i===run.i?'now':'')}"></span>`).join('')}</div>
+  <section class="card">
+    <div class="qnum">Question ${run.i+1} of ${run.qs.length}</div>
+    <div class="prompt">${rich(q.prompt)}</div>
+    ${q.type==='mc'
+      ?`<div class="opts">${q.options.map((o,i)=>`<button class="opt" data-act="opt" data-i="${i}">${rich(o)}</button>`).join('')}</div>`
+      :`<div class="ans"><label class="sr" for="inp">Your answer</label>
+          <input id="inp" type="text" inputmode="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="${q.type==='num'?'x = ?':'Type your answer'}">
+          <button class="btn" data-act="check" id="chk">Check</button></div>
+        <div class="pad">${keysFor(q).map(k=>`<button class="key" type="button" data-act="key" data-k="${k[1]}" aria-label="${k[0]}">${k[0]}</button>`).join('')}</div>
+        <p class="hint">Powers: type x^2 or use the x² key. Brackets and × are fine.</p>
+        <button class="ghost small" data-act="skip">I'm stuck — show me the method</button>`}
+    <div id="fb" aria-live="polite"></div>
+  </section>`;
+  const inp=document.getElementById('inp');if(inp)inp.focus({preventScroll:true});
+}
+function pop(txt){const d=document.createElement('div');d.className='xpfloat';d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),1000);}
+function setChips(){const a=document.getElementById('chipS'),b=document.getElementById('chipX');if(a)a.textContent='🔥 '+run.streak;if(b)b.textContent=run.xp+' XP';}
+function lock(){run.locked=true;document.querySelectorAll('#app input,#app .key,#app .opt,#chk,[data-act=skip]').forEach(e=>e.disabled=true);}
+function showFb(kind,q,extra){
+  const last=run.i===run.qs.length-1,good=kind==='first'||kind==='second';
+  const steps=`<ol class="steps">${q.steps.map(s=>`<li>${rich(s)}</li>`).join('')}</ol>`;
+  const head=kind==='first'?`Correct! ${extra}`:kind==='second'?`Got it on the second go. ${extra}`:kind==='mcwrong'?'Not this time':'Here is the method';
+  const ans=good?'':`<div class="theans">The answer: ${rich(q.type==='mc'?q.options[q.correct]:'{{'+q.ansStr+'}}')}</div>`;
+  document.getElementById('fb').innerHTML=`<div class="fb ${good?'good':'bad'}"><strong>${head}</strong>${ans}
+    ${good?`<details><summary>See the method</summary>${steps}</details>`:steps}
+    <p class="why">${rich(q.why)}</p>
+    <button class="btn" data-act="next" id="nextBtn">${last?'See results':'Next question'}</button></div>`;
+  const nb=document.getElementById('nextBtn');nb.scrollIntoView({block:'nearest',behavior:'smooth'});nb.focus({preventScroll:true});
+}
+function award(kind,q){
+  let xp=0;
+  if(kind==='first'){run.streak++;run.bestStreak=Math.max(run.bestStreak,run.streak);xp=10+Math.min(run.streak,5)*2;run.first++;run.ok++;}
+  else if(kind==='second'){xp=5;run.ok++;}
+  else{run.streak=0;run.missed.push(q);}
+  run.xp+=xp;run.res[run.i]=kind==='mcwrong'||kind==='miss'?'miss':kind;
+  setChips();if(xp)pop('+'+xp+' XP');
+  lock();showFb(kind,q,xp?`+${xp} XP`:'');
+}
+function doCheck(){
+  if(!run||run.locked)return;const q=run.qs[run.i],inp=document.getElementById('inp');if(!inp||!inp.value.trim())return;
+  const r=check(q,inp.value);
+  if(r.ok)return award(run.att===0?'first':'second',q);
+  if(run.att===0){
+    run.att=1;run.streak=0;setChips();
+    document.getElementById('fb').innerHTML=`<div class="fb try"><strong>${r.msg?'Almost':'Not quite'}</strong> One more go.<p>${r.msg||''}</p><p><b>Hint:</b> ${rich(q.hint)}</p></div>`;
+    inp.select();
+  }else award('miss',q);
+}
+function next(){
+  if(run.i<run.qs.length-1){run.i++;renderQ();}else finish();
+}
+
+/* ---------- results ---------- */
+function confetti(){
+  const c=['#FFC53D','#FF5A7A','#12A38A','#6C4CF1'];
+  for(let i=0;i<40;i++){const d=document.createElement('span');d.className='confetti';d.style.left=R(0,100)+'vw';d.style.background=pick(c);d.style.animationDuration=(1.6+Math.random()*1.6)+'s';d.style.animationDelay=(Math.random()*.4)+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),3800);}
+}
+function finish(){
+  const{L}=run,n=run.qs.length;
+  const stars=run.first/n>=.85?3:run.ok/n>=.7?2:run.ok/n>=.5?1:0;
+  const prev=S.stars[L.id]||0;if(stars>prev)S.stars[L.id]=stars;
+  S.xp+=run.xp;S.best=Math.max(S.best||0,run.bestStreak);save();
+  const rk=rank(S.xp),up=rk.idx>run.rankBefore,nextL=LEVELS.find(l=>l.id===L.id+1);
+  const msg=stars===3?'Brilliant. That is mastery.':stars===2?'Strong work. Aim for 3 stars next time.':stars===1?'Level cleared. Read the methods below, then try for more stars.':'Not cleared yet. Read the methods below, then go again — the questions change every time.';
+  app.innerHTML=`
+  <section class="card res">
+    <div class="bigstars" aria-label="${stars} of 3 stars">${[1,2,3].map(i=>i<=stars?'<b>★</b>':'★').join('')}</div>
+    <h2>${L.name}</h2><p>${msg}</p>
+    ${up?`<div class="rankup">Rank up: ${rk.name}!</div>`:''}
+    <div class="statrow"><span class="chip">${run.ok}/${n} correct</span><span class="chip">${run.first}/${n} first try</span><span class="chip">+${run.xp} XP</span><span class="chip">Streak ${run.bestStreak}</span></div>
+    <div class="btnrow">
+      <button class="btn alt" data-act="start" data-id="${L.id}">Play again</button>
+      ${stars>0&&nextL&&unlocked(nextL.id)?`<button class="btn" data-act="start" data-id="${nextL.id}">Next: ${nextL.name}</button>`:''}
+      <button class="btn plain" data-act="home">Map</button>
+    </div>
+  </section>
+  ${run.missed.length?`<section class="review"><h3>Review the ones you missed</h3>${run.missed.map(q=>`
+    <div class="card"><div class="prompt" style="margin-bottom:6px">${rich(q.prompt)}</div>
+    <div class="theans">The answer: ${rich(q.type==='mc'?q.options[q.correct]:'{{'+q.ansStr+'}}')}</div>
+    <ol class="steps">${q.steps.map(s=>`<li>${rich(s)}</li>`).join('')}</ol><p class="why">${rich(q.why)}</p></div>`).join('')}</section>`:''}`;
+  window.scrollTo(0,0);if(stars===3)confetti();
+}
+
+/* ---------- events ---------- */
+app.addEventListener('mousedown',e=>{if(e.target.closest('.key'))e.preventDefault();});
+app.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b||b.disabled)return;
+  switch(b.dataset.act){
+    case'start':start(+b.dataset.id);break;
+    case'home':home();break;
+    case'check':doCheck();break;
+    case'next':next();break;
+    case'skip':if(run&&!run.locked){run.streak=0;award('miss',run.qs[run.i]);}break;
+    case'opt':{if(run.locked)break;const q=run.qs[run.i],i=+b.dataset.i;
+      document.querySelectorAll('.opt').forEach((o,j)=>{if(j===q.correct)o.classList.add('right');else if(j===i)o.classList.add('wrong');});
+      award(i===q.correct?'first':'mcwrong',q);break;}
+    case'key':{const inp=document.getElementById('inp');if(!inp||run.locked)break;
+      const s=inp.selectionStart,en=inp.selectionEnd,k=b.dataset.k;
+      if(k==='back'){if(s===en&&s>0){inp.value=inp.value.slice(0,s-1)+inp.value.slice(en);inp.setSelectionRange(s-1,s-1);}else{inp.value=inp.value.slice(0,s)+inp.value.slice(en);inp.setSelectionRange(s,s);}}
+      else{inp.value=inp.value.slice(0,s)+k+inp.value.slice(en);inp.setSelectionRange(s+k.length,s+k.length);}
+      inp.focus({preventScroll:true});break;}
+    case'unlock':S.all=!S.all;save();home();break;
+    case'reset':if(b.dataset.sure){S={xp:0,stars:{},best:0,all:false};save();home();}else{b.dataset.sure='1';b.textContent='Tap again to confirm reset';}break;
+  }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter'||!run)return;
+  if(run.locked){const nb=document.getElementById('nextBtn');if(nb&&document.activeElement!==nb){e.preventDefault();next();}}
+  else if(e.target&&e.target.id==='inp'){e.preventDefault();doCheck();}
+});
+home();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

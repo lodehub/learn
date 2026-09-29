@@ -15,11 +15,20 @@
   ],
   "items": [
     {
-      "title": "Tap counter",
-      "path": "maths/tap-counter/",
+      "title": "Algebra Quest",
+      "path": "maths/algebra-quest/",
       "type": "html",
       "year": 2026,
-      "status": "current"
+      "status": "current",
+      "topic": "Algebra"
+    },
+    {
+      "title": "Sign Squad: brackets and signs",
+      "path": "maths/sign-squad/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Algebra"
     }
   ]
 }
