@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Answer it the way the question asks</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --paper: #F2F6FB;
+  --card: #FFFFFF;
+  --ink: #1D2740;
+  --muted: #56617D;
+  --line: #D5DEEC;
+  --blue: #3C6BFF;   --blue-bg: #E3EBFF;
+  --purple: #7A4DE0; --purple-bg: #EBE3FC;
+  --pink: #E63F78;   --pink-bg: #FDE2EC;
+  --green: #1F9D63;  --green-bg: #DDF5E9;
+  --hi: #FFE45C;
+  --bad: #C8352F;    --bad-bg: #FCE4E2;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #131A2C; --card: #1C2540; --ink: #EAF0FF; --muted: #A5B0CC; --line: #33405F;
+    --blue: #7F9DFF; --blue-bg: #22305E;
+    --purple: #B39BFF; --purple-bg: #342A5E;
+    --pink: #FF8AB0; --pink-bg: #4B2537;
+    --green: #56D69A; --green-bg: #1C4034;
+    --hi: #7A6A10;
+    --bad: #FF8F88; --bad-bg: #4A2624;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #131A2C; --card: #1C2540; --ink: #EAF0FF; --muted: #A5B0CC; --line: #33405F;
+  --blue: #7F9DFF; --blue-bg: #22305E;
+  --purple: #B39BFF; --purple-bg: #342A5E;
+  --pink: #FF8AB0; --pink-bg: #4B2537;
+  --green: #56D69A; --green-bg: #1C4034;
+  --hi: #7A6A10;
+  --bad: #FF8F88; --bad-bg: #4A2624;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Lexend", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 20px 16px 60px; }
+h1 { font-size: clamp(1.7rem, 5.5vw, 2.4rem); line-height: 1.15; margin: 8px 0 8px; font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.35rem; margin: 0 0 6px; line-height: 1.25; }
+h3 { font-size: 1.05rem; margin: 0 0 4px; }
+p { margin: 0 0 12px; }
+.lead { color: var(--muted); font-size: 1.02rem; max-width: 60ch; }
+mark, .hi { background: var(--hi); color: inherit; padding: 0 3px; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* the three-colour marker: point, quote, explain */
+.pqe { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+.pqe span { padding: 6px 12px; border-radius: 999px; font-weight: 600; font-size: 0.95rem; }
+.pqe .p { background: var(--blue-bg); color: var(--blue); }
+.pqe .q { background: var(--hi); color: #1D2740; }
+.pqe .e { background: var(--green-bg); color: var(--green); }
+
+nav { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 10px; margin: 14px -16px 6px; padding-left: 16px; padding-right: 16px; scrollbar-width: none; position: sticky; top: env(safe-area-inset-top, 0px); background: var(--paper); z-index: 5; }
+nav::-webkit-scrollbar { display: none; }
+nav button {
+  flex: 0 0 auto; font: inherit; font-weight: 600; font-size: 0.95rem;
+  padding: 9px 15px; border-radius: 12px; border: 2px solid var(--line);
+  background: var(--card); color: var(--ink); cursor: pointer;
+}
+nav button[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+section[hidden] { display: none; }
+.card { background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 16px; margin: 14px 0; }
+
+button.btn {
+  font: inherit; font-weight: 600; border: 0; border-radius: 12px; padding: 11px 18px;
+  background: var(--blue); color: #fff; cursor: pointer; min-height: 46px;
+}
+button.btn.ghost { background: transparent; color: var(--ink); border: 2px solid var(--line); }
+button.btn:disabled { opacity: .45; cursor: not-allowed; }
+button:focus-visible, textarea:focus-visible, label:focus-within { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+/* type cards */
+.kind { border-left: 10px solid var(--c); }
+.kind h3 { color: var(--c); font-size: 1.15rem; }
+.kind dl { margin: 8px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 0.97rem; }
+.kind dt { font-weight: 600; }
+.kind dd { margin: 0; }
+.kind.a { --c: var(--blue); } .kind.b { --c: var(--purple); } .kind.c { --c: var(--pink); } .kind.d { --c: var(--green); }
+.chip { display: inline-block; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 0 8px; margin: 2px 2px 2px 0; font-size: 0.92rem; }
+
+/* spot the type */
+.stem { font-size: 1.12rem; line-height: 1.9; }
+.stem .w { cursor: pointer; border-radius: 4px; padding: 1px 2px; }
+.stem .w.on { background: var(--hi); }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+@media (max-width: 520px) { .opts { grid-template-columns: 1fr; } }
+.opts button { text-align: left; font: inherit; font-weight: 600; padding: 12px 14px; border-radius: 12px; border: 2px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; border-left-width: 10px; }
+.opts button.a { border-left-color: var(--blue); } .opts button.b { border-left-color: var(--purple); }
+.opts button.c { border-left-color: var(--pink); } .opts button.d { border-left-color: var(--green); }
+.opts button small { display: block; font-weight: 400; color: var(--muted); font-size: 0.85rem; }
+.opts button[disabled] { cursor: default; }
+.opts button.right { background: var(--green-bg); border-color: var(--green); }
+.opts button.wrong { background: var(--bad-bg); border-color: var(--bad); }
+.fb { margin-top: 14px; padding: 14px; border-radius: 12px; background: var(--paper); border: 2px dashed var(--line); }
+.fb strong.ok { color: var(--green); } .fb strong.no { color: var(--bad); }
+.score { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.95rem; margin-bottom: 6px; }
+.bar { height: 10px; background: var(--line); border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
+.bar i { display: block; height: 100%; background: var(--green); width: 0; transition: width .3s; }
+@media (prefers-reduced-motion: reduce) { .bar i { transition: none; } }
+
+/* builder */
+.extract { border-left: 5px solid var(--ink); padding: 4px 0 4px 14px; font-family: Georgia, "Times New Roman", serif; font-size: 1.05rem; color: var(--ink); margin: 10px 0; }
+.step { margin-top: 18px; }
+.step > h3 { display: flex; align-items: center; gap: 8px; }
+.step .tag { font-size: 0.85rem; padding: 2px 10px; border-radius: 99px; font-weight: 700; }
+.tag.p { background: var(--blue-bg); color: var(--blue); }
+.tag.q { background: var(--hi); color: #1D2740; }
+.tag.e { background: var(--green-bg); color: var(--green); }
+.choices { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.choices button { text-align: left; font: inherit; padding: 10px 14px; border-radius: 12px; border: 2px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+.choices button.right { background: var(--green-bg); border-color: var(--green); }
+.choices button.wrong { background: var(--bad-bg); border-color: var(--bad); }
+.built { background: var(--card); border: 2px solid var(--green); border-radius: 16px; padding: 16px; margin-top: 18px; font-size: 1.05rem; }
+.built .p { background: var(--blue-bg); border-radius: 4px; padding: 0 3px; }
+.built .q { background: var(--hi); border-radius: 4px; padding: 0 3px; color: #1D2740; }
+.built .e { background: var(--green-bg); border-radius: 4px; padding: 0 3px; }
+textarea { width: 100%; min-height: 150px; font: inherit; font-size: 1rem; padding: 12px; border-radius: 12px; border: 2px solid var(--line); background: var(--card); color: var(--ink); resize: vertical; }
+.checks label { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; cursor: pointer; }
+.checks input { width: 22px; height: 22px; margin-top: 3px; accent-color: var(--green); flex: 0 0 auto; }
+.starters { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.starters button { font: inherit; font-size: 0.9rem; padding: 6px 12px; border-radius: 99px; border: 2px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+
+/* weak to strong */
+.pair { display: grid; gap: 10px; margin-top: 10px; }
+.ans { padding: 12px 14px; border-radius: 12px; font-size: 0.98rem; }
+.ans.weak { background: var(--bad-bg); }
+.ans.strong { background: var(--green-bg); }
+.ans b.lab { display: block; font-size: 0.85rem; margin-bottom: 2px; }
+.missing { margin-top: 10px; padding: 12px 14px; background: var(--paper); border: 2px dashed var(--line); border-radius: 12px; }
+.missing ul { margin: 6px 0 0; padding-left: 20px; }
+
+.overflow { overflow-x: auto; max-width: 100%; }
+footer { color: var(--muted); font-size: 0.85rem; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Answer it the way the question asks</h1>
+    <p class="lead">You already know the answers. This is about giving each question the <em>kind</em> of answer it wants. Every good answer has three parts:</p>
+    <div class="pqe" aria-label="Point, Quote, Explain">
+      <span class="p">Point: what I think</span>
+      <span class="q">Quote: a few words as proof</span>
+      <span class="e">Explain: what that tells us</span>
+    </div>
+  </header>
+
+  <nav role="tablist" aria-label="Sections">
+    <button role="tab" aria-selected="true" data-tab="kinds">1. The four kinds</button>
+    <button role="tab" aria-selected="false" data-tab="spot">2. Spot the kind</button>
+    <button role="tab" aria-selected="false" data-tab="build">3. Build an answer</button>
+    <button role="tab" aria-selected="false" data-tab="compare">4. Weak or strong?</button>
+    <button role="tab" aria-selected="false" data-tab="own">5. Own words</button>
+  </nav>
+
+  <!-- 1. KINDS -->
+  <section id="kinds">
+    <h2>Four kinds of question</h2>
+    <p class="lead">Before you write, decide which kind it is. Then you know what the marker wants.</p>
+
+    <div class="card kind a">
+      <h3>A. Find it and reword it</h3>
+      <dl>
+        <dt>Clue words</dt><dd><span class="chip">in your own words</span><span class="chip">what is meant by</span><span class="chip">how does he…</span><span class="chip">what happens</span></dd>
+        <dt>Do this</dt><dd>Find the part of the text. Say the idea in different words. Don't copy.</dd>
+        <dt>Marks</dt><dd>2 marks = 2 separate points.</dd>
+        <dt>Trap</dt><dd>Copying the passage and just swapping one word.</dd>
+      </dl>
+    </div>
+
+    <div class="card kind b">
+      <h3>B. Read between the lines</h3>
+      <dl>
+        <dt>Clue words</dt><dd><span class="chip">suggests</span><span class="chip">how do we know</span><span class="chip">surprising</span><span class="chip">what do you think</span></dd>
+        <dt>Do this</dt><dd>The answer is not written down. Take a clue from the text and work out what it tells us.</dd>
+        <dt>Shape</dt><dd>The text says… (quote) → so this shows…</dd>
+        <dt>Trap</dt><dd>Retelling the story instead of saying what it shows.</dd>
+      </dl>
+    </div>
+
+    <div class="card kind c">
+      <h3>C. Word detective</h3>
+      <dl>
+        <dt>Clue words</dt><dd><span class="chip">choice of words</span><span class="chip">how does the writer…</span><span class="chip">what does the word suggest</span><span class="chip">language</span></dd>
+        <dt>Do this</dt><dd>Pick a word or phrase. Say what it makes you <b>picture</b> or <b>feel</b>. Link that to the character or mood.</dd>
+        <dt>Trap</dt><dd>Quoting a word but not saying <em>why</em> it is a good word.</dd>
+      </dl>
+    </div>
+
+    <div class="card kind d">
+      <h3>D. Your view</h3>
+      <dl>
+        <dt>Clue words</dt><dd><span class="chip">do you think</span><span class="chip">do you agree</span><span class="chip">give reasons</span></dd>
+        <dt>Do this</dt><dd>Say yes or no (or a bit of both). Then give reasons, each with proof from the text.</dd>
+        <dt>Trap</dt><dd>An opinion with no evidence.</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h3>Two habits that win marks</h3>
+      <p><b>1. Look at the marks.</b> A 1-mark question needs one point. An 8-mark question needs several developed points with quotes.</p>
+      <p style="margin:0"><b>2. Finish with "so what?"</b> After every quote, add: <em>"This makes us picture…"</em> or <em>"This suggests that…"</em></p>
+    </div>
+  </section>
+
+  <!-- 2. SPOT -->
+  <section id="spot" hidden>
+    <h2>Spot the kind</h2>
+    <p class="lead">Tap the clue word that tells you what to do (it turns yellow). Then choose the kind of question.</p>
+    <div class="score"><span id="spotCount"></span><span id="spotScore"></span></div>
+    <div class="bar"><i id="spotBar"></i></div>
+    <div class="card" id="spotCard"></div>
+  </section>
+
+  <!-- 3. BUILD -->
+  <section id="build" hidden>
+    <h2>Build an answer, one part at a time</h2>
+    <p class="lead">Question: <b>How does the writer's choice of words suggest Ursula's feelings as she approaches the school?</b></p>
+    <div class="extract">The school squatted low within its railed, asphalt yard… The whole place seemed to have a threatening expression… The place was silent, deserted, like an empty prison waiting the return of tramping feet.</div>
+
+    <div class="step">
+      <h3><span class="tag q">Quote</span> Pick a short quote to work with</h3>
+      <div class="choices" id="bQuote"></div>
+    </div>
+    <div class="step" id="bPicStep" hidden>
+      <h3><span class="tag e">Explain</span> What does it make you picture?</h3>
+      <div class="choices" id="bPic"></div>
+    </div>
+    <div class="step" id="bFeelStep" hidden>
+      <h3><span class="tag p">Point</span> So how does Ursula feel?</h3>
+      <div class="choices" id="bFeel"></div>
+    </div>
+    <div class="built" id="bBuilt" hidden></div>
+    <p style="margin-top:14px"><button class="btn ghost" id="bReset" hidden>Try a different quote</button></p>
+
+    <hr style="border:0;border-top:2px dashed var(--line);margin:30px 0">
+
+    <h2>Now write your own</h2>
+    <p class="lead">Question: <b>How does the writer make the discovery of the violin exciting?</b> Use a short quote.</p>
+    <div class="extract">His heart leapt with a violent pulsation as he read the characters…<br>At this point a feverish anxiety to re-open this cupboard door took possession of him…</div>
+    <div class="starters" aria-label="Sentence starters">
+      <button data-s="The writer uses the phrase “">The writer uses the phrase “</button>
+      <button data-s="This makes us picture ">This makes us picture</button>
+      <button data-s="This suggests that John feels ">This suggests…</button>
+      <button data-s="The word “">The word “</button>
+      <button data-s="This builds excitement because ">This builds excitement because</button>
+    </div>
+    <textarea id="ownText" aria-label="Your answer" placeholder="Tap a starter to begin, or write your own…"></textarea>
+    <div class="card checks">
+      <h3>Check yourself</h3>
+      <label><input type="checkbox"> I used a short quote in speech marks.</label>
+      <label><input type="checkbox"> I said what the word or phrase makes us picture or feel.</label>
+      <label><input type="checkbox"> I linked it back to the question (excitement).</label>
+      <label><input type="checkbox"> I made at least two separate points.</label>
+    </div>
+    <button class="btn" id="showModel">Show a model answer</button>
+    <div class="built" id="model" hidden>
+      <span class="p">The writer shows John's body reacting.</span>
+      <span class="q">“His heart leapt with a violent pulsation”</span>
+      <span class="e">The word “violent” makes his heartbeat sound powerful and almost out of control, so we feel his excitement too.</span>
+      Also, the phrase
+      <span class="q">“a feverish anxiety”</span>
+      <span class="e">suggests he is so eager, like someone with a fever, that he can think of nothing else. This builds tension for the reader.</span>
+    </div>
+  </section>
+
+  <!-- 4. COMPARE -->
+  <section id="compare" hidden>
+    <h2>Weak or strong?</h2>
+    <p class="lead">Read the two answers. Then tap the button to see exactly what the strong one does better.</p>
+    <div id="cmpList"></div>
+  </section>
+
+  <!-- 5. OWN WORDS -->
+  <section id="own" hidden>
+    <h2>Say it in your own words</h2>
+    <p class="lead">Three answers for each phrase. One copies, one gets the meaning wrong, one is right. Which is which?</p>
+    <div class="score"><span id="ownCount"></span><span id="ownScore"></span></div>
+    <div class="bar"><i id="ownBar"></i></div>
+    <div class="card" id="ownCard"></div>
+    <p class="lead" style="font-size:0.95rem"><b>Trick:</b> cover the passage, say the idea out loud as if telling a friend, then write it down.</p>
+  </section>
+
+  <footer>Built for 11+ English practice. Questions are modelled on published 11+ sample papers.</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  /* ---------- Tabs ---------- */
+  var tabs = $$("nav button");
+  function show(id) {
+    tabs.forEach(function (b) { b.setAttribute("aria-selected", b.dataset.tab === id ? "true" : "false"); });
+    $$("section").forEach(function (s) { s.hidden = s.id !== id; });
+    window.scrollTo({ top: 0 });
+  }
+  tabs.forEach(function (b) { b.addEventListener("click", function () { show(b.dataset.tab); }); });
+
+  /* ---------- 2. Spot the kind ---------- */
+  var TYPES = {
+    a: { name: "A. Find it and reword it", sub: "own words, what is meant" },
+    b: { name: "B. Read between the lines", sub: "suggests, how do we know" },
+    c: { name: "C. Word detective", sub: "choice of words, language" },
+    d: { name: "D. Your view", sub: "do you think, give reasons" }
+  };
+  var QS = [
+    { q: "In your own words, explain how John gets the cupboard to open.", t: "a", clue: "own", tip: "Find the steps in the text and reword them. If it is 2 marks, give 2 separate steps. Don't copy." },
+    { q: "How does the writer's choice of words suggest Ursula's feelings as she approaches the school?", t: "c", clue: "words", tip: "Pick a word or phrase, say what it makes you picture, then link it to her feelings." },
+    { q: "Do you find it surprising that Ursula likes the man? Give reasons for your answer.", t: "b", clue: "surprising", tip: "The text never says why she likes him. Use clues (he is cross, but his eyes are 'rather beautiful') to work it out." },
+    { q: "Explain what is meant by 'His excitement had now reached an overmastering pitch'.", t: "a", clue: "meant", tip: "This is a reword question. Say it simply, in different words: he was so excited he could hardly control himself." },
+    { q: "What do you think the writer means when he describes Miss Harby as 'neutral-tinted'?", t: "c", clue: "means", tip: "Think about the word 'tinted' and 'neutral'. What does it make you picture? Then say what it tells us about her." },
+    { q: "Do you think Miss Harby would be a good teacher? Give reasons, using details from the passage.", t: "d", clue: "think", tip: "Give your view, then back each reason with a detail from the passage. Good and bad points both count." },
+    { q: "Using the whole passage, explain how the writer uses language to make the discovery exciting. Use short quotations.", t: "c", clue: "language", tip: "This is a big one (8 marks). Pick several words or phrases, and for each say what it makes us feel." },
+    { q: "Ursula's heart sank. What does this suggest about how she feels about the other teachers?", t: "b", clue: "suggest", tip: "'Suggest' means the answer is hidden. Explain what 'sank' shows about her feelings." },
+    { q: "Some people say learning a musical instrument is good for you. Do you agree?", t: "d", clue: "agree", tip: "Say your view, then support it with examples or reasons. A balanced view can work well." },
+    { q: "What type of activity might be printed on the sheets the man is copying?", t: "b", clue: "might", tip: "Not stated, so use clues. He teaches a big class: what sort of task suits that? Explain your idea." }
+  ];
+  var sOrder, sIdx, sScore, sAnswered;
+  function spotStart() { sOrder = shuffle(QS); sIdx = 0; sScore = 0; spotRender(); }
+  function spotRender() {
+    var card = $("#spotCard");
+    $("#spotBar").style.width = (sIdx / sOrder.length * 100) + "%";
+    $("#spotCount").textContent = sIdx < sOrder.length ? "Question " + (sIdx + 1) + " of " + sOrder.length : "Finished";
+    $("#spotScore").textContent = "Score: " + sScore;
+    if (sIdx >= sOrder.length) {
+      var msg = sScore >= 9 ? "Brilliant. You can read a question and know what it wants." : sScore >= 6 ? "Good work. Look again at the ones you missed." : "Have another go after re-reading tab 1.";
+      card.innerHTML = "<h2>" + sScore + " out of " + sOrder.length + "</h2><p>" + msg + "</p><button class='btn' id='spotAgain'>Play again</button>";
+      $("#spotAgain").onclick = spotStart;
+      return;
+    }
+    sAnswered = false;
+    var item = sOrder[sIdx];
+    var words = item.q.split(" ").map(function (w) { return "<span class='w' role='button' tabindex='0'>" + esc(w) + "</span>"; }).join(" ");
+    var opts = ["a", "b", "c", "d"].map(function (k) {
+      return "<button class='" + k + "' data-k='" + k + "'>" + TYPES[k].name + "<small>" + TYPES[k].sub + "</small></button>";
+    }).join("");
+    card.innerHTML = "<div class='stem'>" + words + "</div><div class='opts'>" + opts + "</div><div id='spotFb'></div>";
+    $$(".w", card).forEach(function (w) {
+      function tog() { if (!sAnswered) w.classList.toggle("on"); }
+      w.addEventListener("click", tog);
+      w.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tog(); } });
+    });
+    $$(".opts button", card).forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (sAnswered) return; sAnswered = true;
+        var ok = b.dataset.k === item.t;
+        if (ok) sScore++;
+        $$(".opts button", card).forEach(function (x) {
+          x.disabled = true;
+          if (x.dataset.k === item.t) x.classList.add("right");
+        });
+        if (!ok) b.classList.add("wrong");
+        $("#spotScore").textContent = "Score: " + sScore;
+        $("#spotFb").innerHTML = "<div class='fb'><strong class='" + (ok ? "ok" : "no") + "'>" + (ok ? "Yes!" : "Not quite.") + "</strong> This is <b>" + TYPES[item.t].name + "</b>. " + esc(item.tip) + "<p style='margin:12px 0 0'><button class='btn' id='spotNext'>" + (sIdx + 1 < sOrder.length ? "Next question" : "See my score") + "</button></p></div>";
+        $("#spotNext").onclick = function () { sIdx++; spotRender(); };
+        $("#spotNext").focus();
+      });
+    });
+  }
+
+  /* ---------- 3. Build an answer ---------- */
+  var BUILD = [
+    { quote: "squatted low",
+      pic: ["the school as a heavy animal crouching down, ready to pounce", "the school as a small, cosy cottage", "the school as a tall, grand palace"],
+      feel: ["frightened and small, as if the building is looming over her", "excited and eager to begin", "bored and sleepy"] },
+    { quote: "an empty prison",
+      pic: ["a cold place where people are locked in and shut away", "a busy, noisy playground", "a quiet, restful library"],
+      feel: ["trapped and dreading being shut in all day", "relaxed and at home", "curious and playful"] },
+    { quote: "a threatening expression",
+      pic: ["the building as a face glaring angrily at her", "the building smiling to welcome her", "a sleepy giant"],
+      feel: ["unwelcome and nervous, as if she is being watched", "proud and important", "calm and safe"] }
+  ];
+  var cur = null, pickedPic = null;
+  function choiceList(el, options, correct, onRight) {
+    el.innerHTML = "";
+    shuffle(options.map(function (t, i) { return { t: t, ok: i === correct }; })).forEach(function (o) {
+      var b = document.createElement("button");
+      b.textContent = o.t;
+      b.addEventListener("click", function () {
+        if (o.ok) {
+          $$("button", el).forEach(function (x) { x.disabled = true; });
+          b.classList.add("right");
+          onRight(o.t);
+        } else { b.classList.add("wrong"); b.disabled = true; }
+      });
+      el.appendChild(b);
+    });
+  }
+  function buildStart() {
+    cur = null; pickedPic = null;
+    ["bPicStep", "bFeelStep", "bBuilt", "bReset"].forEach(function (id) { $("#" + id).hidden = true; });
+    var el = $("#bQuote"); el.innerHTML = "";
+    BUILD.forEach(function (d) {
+      var b = document.createElement("button");
+      b.textContent = "“" + d.quote + "”";
+      b.addEventListener("click", function () {
+        cur = d;
+        $$("button", el).forEach(function (x) { x.disabled = true; });
+        b.classList.add("right");
+        $("#bPicStep").hidden = false;
+        choiceList($("#bPic"), d.pic, 0, function (t) {
+          pickedPic = t;
+          $("#bFeelStep").hidden = false;
+          choiceList($("#bFeel"), d.feel, 0, function (f) {
+            $("#bBuilt").hidden = false; $("#bReset").hidden = false;
+            $("#bBuilt").innerHTML = "<b>Your answer:</b><br><br><span class='q'>The writer uses the phrase “" + esc(d.quote) + "”,</span> <span class='e'>which makes us picture " + esc(pickedPic) + ".</span> <span class='p'>This suggests that Ursula feels " + esc(f) + ".</span><br><br><small>Notice the order: quote, then what it makes you picture, then the feeling. That last step is the one that wins the marks.</small>";
+          });
+        });
+      });
+      el.appendChild(b);
+    });
+  }
+  $("#bReset").addEventListener("click", buildStart);
+  $$(".starters button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var t = $("#ownText");
+      t.value += (t.value && !/\s$/.test(t.value) ? " " : "") + b.dataset.s;
+      t.focus();
+    });
+  });
+  $("#showModel").addEventListener("click", function () {
+    var m = $("#model"); m.hidden = !m.hidden;
+    this.textContent = m.hidden ? "Show a model answer" : "Hide the model answer";
+  });
+
+  /* ---------- 4. Weak or strong ---------- */
+  var CMP = [
+    { title: "Word detective", qtext: "How does the writer's choice of words suggest Ursula's feelings as she approaches the school?",
+      weak: "The school is described as squatting low and grimy, so Ursula feels scared.",
+      strong: "The writer says the school “squatted”, like a crouching animal, which makes it seem ugly and threatening rather than welcoming. This suggests Ursula feels intimidated as she approaches. Comparing it to “an empty prison” also hints that she feels she will be trapped.",
+      miss: ["It names a feeling but never says <b>which word</b> creates it.", "There is no quote in speech marks.", "There is no “this makes us picture…” step, so the marker can't see how the word works."] },
+    { title: "Read between the lines", qtext: "Do you find it surprising that Ursula likes the man? Give reasons.",
+      weak: "Yes, because he is cross and rude to her.",
+      strong: "It is surprising, because the man is cross and treats Ursula “as if she did not count”, which would normally put someone off. However, his eyes are “sharp as points of steel, rather beautiful”, and Ursula finds his sharpness both frightening and exciting. This suggests she is drawn to him because he is different from anyone she has met.",
+      miss: ["It gives one reason. The strong answer gives <b>both sides</b>: why it is surprising, and why she likes him anyway.", "It uses short quotes as proof.", "It ends with what this <b>shows</b> about Ursula, not just what happened."] },
+    { title: "Own words", qtext: "In your own words, explain: ‘His instrument was not adequate to such a purpose’.",
+      weak: "His instrument was not adequate for this purpose.",
+      strong: "The penknife wasn't good enough for the job.",
+      miss: ["The weak answer only changed one small word. It is still the writer's sentence.", "The strong answer uses <b>completely different words</b> and still keeps the meaning.", "It also works out what ‘instrument’ and ‘purpose’ mean in the story: the penknife and forcing the door open."] }
+  ];
+  (function () {
+    var host = $("#cmpList");
+    CMP.forEach(function (c, i) {
+      var d = document.createElement("div"); d.className = "card";
+      d.innerHTML = "<h3>" + c.title + "</h3><p style='color:var(--muted);margin:0'><i>" + esc(c.qtext) + "</i></p>" +
+        "<div class='pair'><div class='ans weak'><b class='lab'>Weak answer</b>" + c.weak + "</div>" +
+        "<div class='ans strong'><b class='lab'>Strong answer</b>" + c.strong + "</div></div>" +
+        "<p style='margin:12px 0 0'><button class='btn ghost' data-i='" + i + "'>What's missing from the weak one?</button></p><div class='missing' hidden><ul>" +
+        c.miss.map(function (m) { return "<li>" + m + "</li>"; }).join("") + "</ul></div>";
+      host.appendChild(d);
+      var btn = $("button", d), box = $(".missing", d);
+      btn.addEventListener("click", function () { box.hidden = !box.hidden; btn.textContent = box.hidden ? "What's missing from the weak one?" : "Hide"; });
+    });
+  })();
+
+  /* ---------- 5. Own words ---------- */
+  var OW = [
+    { phrase: "But his instrument was not adequate to such a purpose.",
+      good: "The penknife wasn't good enough for that job.", copy: "But his instrument was not adequate for such a purpose.", wrong: "He did not have any instrument with him.",
+      why: "Right: 'instrument' = the penknife, 'not adequate' = not good enough. The copied one only changes a word or two." },
+    { phrase: "His excitement had now reached an overmastering pitch.",
+      good: "He was so excited that he could hardly control himself.", copy: "His excitement had reached an overmastering level.", wrong: "He was starting to feel bored.",
+      why: "'Overmastering' means so strong it takes over. 'Pitch' means level or peak." },
+    { phrase: "The building was domineering.",
+      good: "The building seemed bossy and controlling, as if it ruled over everyone.", copy: "The building was domineering and threatening.", wrong: "The building was old and falling to pieces.",
+      why: "'Domineering' comes from 'dominus' (lord). The building acts like a boss who wants to rule over you." },
+    { phrase: "The violin was veiled with thick dust as with a mantle.",
+      good: "The violin was covered in thick dust, like it was wearing a cloak.", copy: "The violin was veiled with thick dust like a mantle.", wrong: "The violin was hidden inside a velvet case.",
+      why: "'Veiled' = covered, and a 'mantle' is a cloak. The dust hides the violin like a cloak would." }
+  ];
+  var oOrder, oIdx, oScore, oDone;
+  function ownStart() { oOrder = shuffle(OW); oIdx = 0; oScore = 0; ownRender(); }
+  function ownRender() {
+    var card = $("#ownCard");
+    $("#ownBar").style.width = (oIdx / oOrder.length * 100) + "%";
+    $("#ownCount").textContent = oIdx < oOrder.length ? "Phrase " + (oIdx + 1) + " of " + oOrder.length : "Finished";
+    $("#ownScore").textContent = "Score: " + oScore;
+    if (oIdx >= oOrder.length) {
+      card.innerHTML = "<h2>" + oScore + " out of " + oOrder.length + "</h2><p>Remember: same meaning, different words. If you can say it out loud like you would to a friend, you are close.</p><button class='btn' id='ownAgain'>Play again</button>";
+      $("#ownAgain").onclick = ownStart; return;
+    }
+    oDone = false;
+    var it = oOrder[oIdx];
+    card.innerHTML = "<p>Which is the best answer to <b>“in your own words, what does this mean?”</b></p><div class='extract'>" + esc(it.phrase) + "</div><div class='choices' id='oChoices'></div><div id='oFb'></div>";
+    var opts = shuffle([{ t: it.good, k: "good" }, { t: it.copy, k: "copy" }, { t: it.wrong, k: "wrong" }]);
+    var ch = $("#oChoices");
+    opts.forEach(function (o) {
+      var b = document.createElement("button"); b.textContent = o.t;
+      b.addEventListener("click", function () {
+        if (oDone) return; oDone = true;
+        var ok = o.k === "good"; if (ok) oScore++;
+        $$("button", ch).forEach(function (x, i) { x.disabled = true; if (opts[i].k === "good") x.classList.add("right"); });
+        if (!ok) b.classList.add("wrong");
+        var label = ok ? "Yes!" : o.k === "copy" ? "That one copies the passage." : "That one changes the meaning.";
+        $("#ownScore").textContent = "Score: " + oScore;
+        $("#oFb").innerHTML = "<div class='fb'><strong class='" + (ok ? "ok" : "no") + "'>" + label + "</strong> " + esc(it.why) + "<p style='margin:12px 0 0'><button class='btn' id='oNext'>" + (oIdx + 1 < oOrder.length ? "Next phrase" : "See my score") + "</button></p></div>";
+        $("#oNext").onclick = function () { oIdx++; ownRender(); };
+        $("#oNext").focus();
+      });
+      ch.appendChild(b);
+    });
+  }
+
+  spotStart(); buildStart(); ownStart();
+})();
+</script>
+<script src="../../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>
