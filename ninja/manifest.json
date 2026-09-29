@@ -1,21 +1,11 @@
 {
   "subjects": [
-    {
-      "slug": "english",
-      "label": "English"
-    },
-    {
-      "slug": "maths",
-      "label": "Maths"
-    }
+    { "slug": "english", "label": "English" },
+    { "slug": "maths", "label": "Maths" }
   ],
   "items": [
-    {
-      "title": "Tap counter",
-      "path": "maths/tap-counter/",
-      "type": "html",
-      "year": 2026,
-      "status": "current"
-    }
+    { "title": "Football stats: mean, median and mode", "path": "maths/football-stats/", "type": "html", "year": 2026, "status": "current", "topic": "Statistics" },
+    { "title": "Football stats quiz", "path": "maths/football-stats-quiz/", "type": "html", "year": 2026, "status": "current", "topic": "Statistics" },
+    { "title": "Shape Up: area formulas", "path": "maths/area-formulas/", "type": "html", "year": 2026, "status": "current", "topic": "Area and shape" }
   ]
 }

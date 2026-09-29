@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Riverside Cup: Stats Quiz</title>
+<style>
+:root {
+  --green: #2d7a3e;
+  --green-dark: #1f5a2c;
+  --green-light: #e8f5ea;
+  --blue: #1a5fb4;
+  --blue-light: #e6f0fb;
+  --red: #c0392b;
+  --red-light: #fbe9e7;
+  --amber: #b8860b;
+  --amber-light: #fff8e1;
+  --correct: #4caf50;
+  --correct-light: #e8f5e9;
+  --wrong: #e53935;
+  --wrong-light: #ffebee;
+  --text-dark: #1a1a1a;
+  --text-muted: #5a5a5a;
+  --border: #d8d8d8;
+  --card-bg: #ffffff;
+  --page-bg: #f4f6f4;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --green-light: #16321c;
+    --blue-light: #122840;
+    --red-light: #3a1e1a;
+    --amber-light: #3a2f0e;
+    --correct-light: #1b5e20;
+    --wrong-light: #b71c1c;
+    --text-dark: #f0f0f0;
+    --text-muted: #b0b0b0;
+    --border: #3a3a3a;
+    --card-bg: #1e1e1e;
+    --page-bg: #121212;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--page-bg);
+  color: var(--text-dark);
+  padding: 1.5rem 1rem 3rem;
+  padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+  line-height: 1.5;
+}
+.wrap { max-width: 700px; margin: 0 auto; }
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: var(--green-dark);
+}
+.subtitle { color: var(--text-muted); font-size: 14px; margin: 0 0 1.5rem; }
+
+.start-screen, .quiz-screen, .results-screen {
+  display: none;
+}
+.start-screen.active, .quiz-screen.active, .results-screen.active {
+  display: block;
+}
+
+.section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+}
+.btn-primary {
+  background: var(--green);
+  color: white;
+}
+.btn-primary:hover { background: var(--green-dark); }
+.btn-answer {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-dark);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-answer:hover:not(.disabled) { border-color: var(--green); background: var(--green-light); }
+.btn-answer.selected { border-color: var(--blue); background: var(--blue-light); }
+.btn-answer.correct { border-color: var(--correct); background: var(--correct-light); }
+.btn-answer.wrong { border-color: var(--wrong); background: var(--wrong-light); }
+.btn-answer.disabled { cursor: not-allowed; opacity: 0.6; }
+
+.progress-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--green);
+  transition: width 0.3s;
+}
+
+.question-card {
+  margin-bottom: 1.5rem;
+}
+.q-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--text-dark);
+}
+.q-context {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+  padding: 0.75rem;
+  background: var(--page-bg);
+  border-radius: 8px;
+  font-family: monospace;
+}
+
+.feedback {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  display: none;
+  font-size: 13px;
+}
+.feedback.show { display: block; }
+.feedback.correct {
+  background: var(--correct-light);
+  color: var(--green-dark);
+  border-left: 4px solid var(--correct);
+}
+.feedback.wrong {
+  background: var(--wrong-light);
+  color: var(--red);
+  border-left: 4px solid var(--wrong);
+}
+
+.score-display {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--green);
+  margin: 1rem 0;
+}
+.score-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.btn-next {
+  margin-top: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medal {
+  font-size: 64px;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.tips {
+  background: var(--amber-light);
+  border-left: 4px solid var(--amber);
+  padding: 0.75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  margin-top: 1rem;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- START SCREEN -->
+  <div class="start-screen active">
+    <div class="section">
+      <h1>⚽ The Riverside Cup: Stats Challenge</h1>
+      <p class="subtitle">Test your understanding of mean, median, and mode using real football data.</p>
+      <p style="font-size: 14px; margin-bottom: 1.5rem;">You'll get 8 questions. Each correct answer earns you points. Think carefully about skew, outliers, and what each statistic really tells you.</p>
+      <button class="btn btn-primary" onclick="startQuiz()" style="width: 100%; padding: 1rem; font-size: 16px;">Start Quiz</button>
+    </div>
+    <div class="tips">
+      <b>Tip:</b> Remember — mean uses every value, median ignores outliers, and mode shows what's most common. When a player scores way more (or way less), the mean moves but the median might not.
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div class="quiz-screen">
+    <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+    <p style="font-size: 12px; color: var(--text-muted); margin: 0 0 1rem;">Question <span id="qNum">1</span> of <span id="qTotal">8</span></p>
+    <div class="section">
+      <div class="question-card">
+        <p class="q-title" id="qTitle"></p>
+        <div class="q-context" id="qContext"></div>
+        <div id="answerContainer"></div>
+        <div class="feedback" id="feedback"></div>
+      </div>
+      <button class="btn btn-primary btn-next" id="nextBtn" onclick="nextQuestion()" style="display:none;">Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div class="results-screen">
+    <div class="section">
+      <h2 style="text-align:center; margin-top:0;">Quiz Complete! 🏆</h2>
+      <div class="medal" id="medalEmoji"></div>
+      <div class="score-display" id="finalScore">0/8</div>
+      <p class="score-label" id="scoreMsg"></p>
+      <button class="btn btn-primary" onclick="resetQuiz()" style="width:100%; margin-top:1.5rem; padding:0.75rem;">Try Again</button>
+    </div>
+    <div class="section">
+      <h3 style="margin-top:0;">Summary</h3>
+      <div id="resultsSummary"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const questions = [
+  {
+    title: "Liverpool's season: goals per player",
+    context: "Salah: 20, Van Dijk: 2, Nunez: 15, Gomez: 1, Mac Allister: 3, Jones: 0, Robertson: 1\n\nWhat's the mean?",
+    answers: [
+      { text: "5.4", correct: false },
+      { text: "6.0", correct: true },
+      { text: "5.7", correct: false },
+      { text: "8.3", correct: false }
+    ],
+    explanation: "Total: 20+15+2+3+1+0+1 = 42 goals. 7 players. 42 ÷ 7 = 6.0. The average Liverpool player scored 6 goals, but that's misleading—Salah and Nunez are huge outliers pulling the mean up."
+  },
+  {
+    title: "Same team: what's the median?",
+    context: "Sorted: 0, 1, 1, 2, 3, 15, 20\n\nWhat's the median?",
+    answers: [
+      { text: "1", correct: false },
+      { text: "2", correct: true },
+      { text: "3", correct: false },
+      { text: "1.5", correct: false }
+    ],
+    explanation: "With 7 values, the median is the 4th value when sorted. The sorted list: 0, 1, 1, 2, 3, 15, 20. Position 4 is 2. That's the typical player's goal tally."
+  },
+  {
+    title: "Why does Liverpool look better by mean than median?",
+    context: "Mean: 6, Median: 2\n\nWhat's causing this gap?",
+    answers: [
+      { text: "The team's perfectly balanced", correct: false },
+      { text: "A few high scorers (Salah, Nunez) are pulling the mean up", correct: true },
+      { text: "The median is wrong", correct: false },
+      { text: "No one scored low", correct: false }
+    ],
+    explanation: "Salah (20) and Nunez (15) are massive outliers. They pull the mean way up to 6, but the median (2) stays grounded because it only cares about the middle player, not the extreme values."
+  },
+  {
+    title: "Everton's season: 6 players",
+    context: "Goals: 3, 4, 5, 6, 7, 8\n\nWhat's the mean?",
+    answers: [
+      { text: "5", correct: false },
+      { text: "5.5", correct: true },
+      { text: "6", correct: false },
+      { text: "5.3", correct: false }
+    ],
+    explanation: "Total: 3+4+5+6+7+8 = 33. Players: 6. Mean = 33 ÷ 6 = 5.5. Everton's goals are evenly spread."
+  },
+  {
+    title: "Everton: median and mean are the same-ish. Why?",
+    context: "Mean: 5.5, Median: 5.5\n\nWhat does this tell you?",
+    answers: [
+      { text: "One player is a superstar", correct: false },
+      { text: "There's a major outlier", correct: false },
+      { text: "The data is balanced and symmetric", correct: true },
+      { text: "No one scored", correct: false }
+    ],
+    explanation: "When mean and median are very close, there's no skew. The data is evenly distributed. No one player is dragging things up or down."
+  },
+  {
+    title: "Mode challenge: Liverpool squad",
+    context: "Goals: 20, 15, 3, 2, 1, 1, 0\n\nWhat's the mode?",
+    answers: [
+      { text: "1", correct: true },
+      { text: "20", correct: false },
+      { text: "No mode", correct: false },
+      { text: "2", correct: false }
+    ],
+    explanation: "The mode is the value that appears most often. Here, 1 appears twice (Robertson and another). All other scores appear once. So mode = 1."
+  },
+  {
+    title: "Comparing the two teams:",
+    context: "Liverpool mean: 6\nEverton mean: 5.5\n\nWhich team should you say is 'better' based on mean alone?",
+    answers: [
+      { text: "Liverpool", correct: false },
+      { text: "Everton", correct: false },
+      { text: "Mean alone is misleading; you need to look at both mean AND median", correct: true },
+      { text: "They're identical", correct: false }
+    ],
+    explanation: "Liverpool's mean (6) looks better than Everton's (5.5), but Liverpool's mean is artificially high because of Salah and Nunez. The median tells the real story: Liverpool's typical player scored 2, Everton's scored 5.5. Median is more honest when there are outliers."
+  },
+  {
+    title: "Which statistic best answers 'what did a typical player score'?",
+    context: "When there are outliers (superstar scorers or zero scorers):",
+    answers: [
+      { text: "Mean", correct: false },
+      { text: "Median", correct: true },
+      { text: "Mode", correct: false },
+      { text: "All three are equally useful", correct: false }
+    ],
+    explanation: "The median. It's robust to outliers—it only looks at position, not the actual values. A superstar scoring 20 doesn't move the median if 3+ others are scoring 1–3."
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = [];
+
+function startQuiz() {
+  currentQ = 0;
+  score = 0;
+  answered = [];
+  document.querySelector('.start-screen').classList.remove('active');
+  document.querySelector('.quiz-screen').classList.add('active');
+  document.getElementById('qTotal').textContent = questions.length;
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('qNum').textContent = currentQ + 1;
+  document.getElementById('qTitle').textContent = q.title;
+  document.getElementById('qContext').textContent = q.context;
+
+  const container = document.getElementById('answerContainer');
+  container.innerHTML = '';
+  q.answers.forEach((ans, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-answer';
+    btn.textContent = ans.text;
+    btn.onclick = () => selectAnswer(i);
+    container.appendChild(btn);
+  });
+
+  document.getElementById('feedback').classList.remove('show', 'correct', 'wrong');
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('progFill').style.width = ((currentQ) / questions.length * 100) + '%';
+}
+
+function selectAnswer(idx) {
+  const q = questions[currentQ];
+  const btns = document.querySelectorAll('.btn-answer');
+  btns.forEach(b => b.classList.add('disabled'));
+
+  const correct = q.answers[idx].correct;
+  const fb = document.getElementById('feedback');
+  fb.classList.add('show', correct ? 'correct' : 'wrong');
+  fb.innerHTML = '<b>' + (correct ? '✓ Correct!' : '✗ Wrong.') + '</b> ' + q.explanation;
+
+  btns[idx].classList.add(correct ? 'correct' : 'wrong');
+  q.answers.forEach((ans, i) => {
+    if (ans.correct && i !== idx) btns[i].classList.add('correct');
+  });
+
+  if (correct) score++;
+  answered.push({ q: q.title, correct });
+  document.getElementById('nextBtn').style.display = 'block';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ < questions.length) {
+    showQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  document.querySelector('.quiz-screen').classList.remove('active');
+  document.querySelector('.results-screen').classList.add('active');
+  
+  const pct = Math.round((score / questions.length) * 100);
+  document.getElementById('finalScore').textContent = score + '/' + questions.length;
+  
+  let medal = '🥉';
+  let msg = 'Good effort! Keep exploring these concepts.';
+  if (pct >= 87) {
+    medal = '🥇';
+    msg = 'Brilliant! You really understand mean, median, and mode. You\'re ready for the Premier League of stats!';
+  } else if (pct >= 62) {
+    medal = '🥈';
+    msg = 'Great work! You\'ve got the key ideas. A bit more practice and you\'ll be a stats expert.';
+  }
+  document.getElementById('medalEmoji').textContent = medal;
+  document.getElementById('scoreMsg').textContent = msg + ' (' + pct + '%)';
+
+  let summary = '';
+  answered.forEach((a, i) => {
+    summary += '<p style="font-size:13px; margin:0.5rem 0;"><b>' + (a.correct ? '✓' : '✗') + ' Q' + (i+1) + ':</b> ' + a.q + '</p>';
+  });
+  document.getElementById('resultsSummary').innerHTML = summary;
+}
+
+function resetQuiz() {
+  document.querySelector('.results-screen').classList.remove('active');
+  document.querySelector('.start-screen').classList.add('active');
+}
+
+showQuestion();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

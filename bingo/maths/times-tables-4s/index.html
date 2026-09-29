@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Times Table Blast Off: 4s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0B1026;
+    --bg-panel: #161B33;
+    --bg-card: #1E2444;
+    --cyan: #A78BFA;
+    --gold: #FFD166;
+    --coral: #EF476F;
+    --green: #06D6A0;
+    --ink: #F4F4F9;
+    --ink-soft: #A8AEC9;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: var(--bg-deep);
+    color: var(--ink);
+    font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-height: 100%;
+    background:
+      radial-gradient(1.5px 1.5px at 20% 15%, #ffffff88 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 70% 25%, #ffffff66 50%, transparent 51%),
+      radial-gradient(2px 2px at 85% 60%, #ffffff77 50%, transparent 51%),
+      radial-gradient(1px 1px at 40% 70%, #ffffff55 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 10% 85%, #ffffff66 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 55% 45%, #ffffff44 50%, transparent 51%),
+      radial-gradient(1px 1px at 90% 10%, #ffffff55 50%, transparent 51%),
+      linear-gradient(180deg, #0B1026 0%, #131A3A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 14px;
+  }
+
+  .stage {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  h1.title {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0 0 4px;
+    color: var(--ink);
+    letter-spacing: 0.2px;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin: 0 0 18px;
+  }
+
+  /* ---------- Mastery badges ---------- */
+  .badges {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge-ring {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: conic-gradient(var(--gold) calc(var(--pct, 0) * 1%), var(--bg-card) 0);
+    transition: background 0.4s ease;
+    position: relative;
+  }
+  .badge-ring::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: var(--bg-panel);
+  }
+  .badge-face {
+    position: relative;
+    z-index: 1;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .badge.mastered .badge-face { color: var(--gold); }
+  .badge.mastered .badge-ring { box-shadow: 0 0 14px 1px #FFD16688; }
+  .badge-label {
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+
+  /* ---------- Fuel bar ---------- */
+  .fuel-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .fuel-icon { font-size: 1.3rem; line-height: 1; }
+  .fuel-track {
+    flex: 1;
+    height: 14px;
+    border-radius: 8px;
+    background: var(--bg-card);
+    overflow: hidden;
+    border: 1px solid #2A3160;
+  }
+  .fuel-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--coral), var(--gold));
+    transition: width 0.35s ease;
+  }
+  .streak-pill {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--bg-deep);
+    background: var(--cyan);
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* ---------- Question card ---------- */
+  .card {
+    background: var(--bg-panel);
+    border-radius: 20px;
+    padding: 28px 20px 24px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    border: 1px solid #262C52;
+  }
+
+  .question {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 2.6rem;
+    margin: 0 0 22px;
+    letter-spacing: 1px;
+    min-height: 3.2rem;
+  }
+  .question.target { color: var(--gold); }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .opt {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 16px 8px;
+    border-radius: 14px;
+    border: none;
+    background: var(--bg-card);
+    color: var(--ink);
+    cursor: pointer;
+    transition: transform 0.12s ease, background 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .opt:active { transform: scale(0.96); }
+  .opt:disabled { cursor: default; }
+  .opt.correct { background: var(--green); color: #06331f; }
+  .opt.wrong { background: var(--coral); color: #390012; }
+  .opt.dim { opacity: 0.35; }
+
+  .feedback {
+    min-height: 2.6em;
+    margin-top: 16px;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .feedback strong { color: var(--gold); }
+
+  .next-btn {
+    display: none;
+    margin: 14px auto 0;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    background: var(--cyan);
+    color: #1E1240;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 28px;
+    cursor: pointer;
+  }
+
+  /* ---------- Start / celebration overlays ---------- */
+  .overlay {
+    background: var(--bg-panel);
+    border-radius: 20px;
+    padding: 36px 24px;
+    text-align: center;
+    border: 1px solid #262C52;
+  }
+  .rocket-big { font-size: 3.4rem; display: block; margin-bottom: 10px; }
+  .overlay h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+  }
+  .overlay p {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin: 0 0 22px;
+    line-height: 1.5;
+  }
+  .primary-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    background: linear-gradient(90deg, var(--coral), var(--gold));
+    color: #2B0A17;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 30px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .ghost-btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid #34396a;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .tricks {
+    text-align: left;
+    margin: 0 0 22px;
+    padding: 0;
+    list-style: none;
+  }
+  .tricks li {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    padding: 8px 0;
+    border-top: 1px solid #262C52;
+  }
+  .tricks li:first-child { border-top: none; }
+  .tricks b { color: var(--ink); }
+
+  .hidden { display: none !important; }
+
+  @keyframes pop {
+    0% { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .card, .overlay { animation: pop 0.25s ease; }
+
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+  .shake { animation: shake 0.3s ease; }
+
+  .confetti-wrap {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+  }
+  .confetti {
+    position: absolute;
+    top: -10px;
+    font-size: 1.3rem;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0.9; }
+  }
+
+  footer.note {
+    text-align: center;
+    color: #5C6390;
+    font-size: 0.72rem;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <h1 class="title">🚀 Times Table Blast Off: 4s</h1>
+  <p class="subtitle">Mission: master 4&nbsp;×&nbsp;6, 4&nbsp;×&nbsp;7 and 4&nbsp;×&nbsp;8</p>
+
+  <!-- START SCREEN -->
+  <div id="startScreen" class="overlay">
+    <span class="rocket-big">🚀</span>
+    <h2>Ready for launch?</h2>
+    <p>Answer questions to fuel the rocket. Get 3 in a row on each tricky fact to earn its badge. Remember: for the 4s, just double and double again!</p>
+    <ul class="tricks">
+      <li><b>4 × 6 = 24</b> — double, double: 6, 12, 24 (hours in a day)</li>
+      <li><b>4 × 7 = 28</b> — double, double: 7, 14, 28 (4 weeks = 28 days)</li>
+      <li><b>4 × 8 = 32</b> — double, double: 8, 16, 32 (4 spiders have 32 legs)</li>
+    </ul>
+    <button class="primary-btn" id="startBtn">Start Mission</button>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="gameScreen" class="hidden">
+    <div class="badges">
+      <div class="badge" id="badge6"><div class="badge-ring" style="--pct:0"><span class="badge-face">×6</span></div><span class="badge-label">4×6</span></div>
+      <div class="badge" id="badge7"><div class="badge-ring" style="--pct:0"><span class="badge-face">×7</span></div><span class="badge-label">4×7</span></div>
+      <div class="badge" id="badge8"><div class="badge-ring" style="--pct:0"><span class="badge-face">×8</span></div><span class="badge-label">4×8</span></div>
+    </div>
+
+    <div class="fuel-row">
+      <span class="fuel-icon">🔥</span>
+      <div class="fuel-track"><div class="fuel-fill" id="fuelFill"></div></div>
+      <span class="streak-pill" id="streakPill">streak 0</span>
+    </div>
+
+    <div class="card">
+      <div class="question" id="question">4 × 6</div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+      <button class="next-btn" id="nextBtn">Next question →</button>
+    </div>
+
+    <footer class="note" id="statsLine">Stars collected: 0 · Best streak: 0</footer>
+  </div>
+
+  <!-- MISSION COMPLETE OVERLAY -->
+  <div id="winScreen" class="overlay hidden">
+    <span class="rocket-big">🎉🚀</span>
+    <h2>Mission Complete!</h2>
+    <p>All three badges earned — 4×6, 4×7 and 4×8 are locked in. Keep flying to stay sharp.</p>
+    <button class="primary-btn" id="playAgainBtn">Fly Another Mission</button>
+    <button class="ghost-btn" id="keepPracticingBtn">Keep Practising</button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var TARGETS = [6,7,8]; // the tricky facts, keyed by second factor
+  var MASTERY_NEEDED = 3;
+
+  var state = {
+    fuel: 0,
+    streak: 0,
+    bestStreak: 0,
+    stars: 0,
+    mastery: {6:0, 7:0, 8:0},
+    masteredDone: {6:false, 7:false, 8:false},
+    lastFact: null,
+    locked: false
+  };
+
+  function loadBest(){
+    try {
+      var raw = localStorage.getItem('bingo:maths:times-tables-4s:best');
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && typeof parsed.bestStreak === 'number') state.bestStreak = parsed.bestStreak;
+        if (parsed && typeof parsed.stars === 'number') state.stars = parsed.stars;
+      }
+    } catch(e) { /* storage unavailable, continue without it */ }
+  }
+  function saveBest(){
+    try {
+      localStorage.setItem('bingo:maths:times-tables-4s:best', JSON.stringify({bestStreak: state.bestStreak, stars: state.stars}));
+    } catch(e) { /* ignore */ }
+  }
+
+  var TRICKS = {
+    6: "Double, double: 6 → 12 → <strong>24</strong> (hours in a day).",
+    7: "Double, double: 7 → 14 → <strong>28</strong> (4 weeks = 28 days).",
+    8: "Double, double: 8 → 16 → <strong>32</strong> (4 spiders have 32 legs)."
+  };
+
+  var startScreen = document.getElementById('startScreen');
+  var gameScreen = document.getElementById('gameScreen');
+  var winScreen = document.getElementById('winScreen');
+  var questionEl = document.getElementById('question');
+  var optionsEl = document.getElementById('options');
+  var feedbackEl = document.getElementById('feedback');
+  var nextBtn = document.getElementById('nextBtn');
+  var fuelFill = document.getElementById('fuelFill');
+  var streakPill = document.getElementById('streakPill');
+  var statsLine = document.getElementById('statsLine');
+  var cardEl = document.querySelector('.card');
+
+  function buildPool(){
+    var pool = [];
+    for (var b = 1; b <= 10; b++) pool.push(b);
+    // weight the tricky facts so they appear roughly 3x more often
+    TARGETS.forEach(function(t){ pool.push(t, t); });
+    return pool;
+  }
+  var pool = buildPool();
+
+  function pickFactor(){
+    var choice;
+    var attempts = 0;
+    do {
+      choice = pool[Math.floor(Math.random() * pool.length)];
+      attempts++;
+    } while (choice === state.lastFact && attempts < 8);
+    state.lastFact = choice;
+    return choice;
+  }
+
+  function makeOptions(correct){
+    var opts = new Set([correct]);
+    var candidates = [correct - 4, correct + 4, correct - 8, correct + 8, correct - 12, correct + 12];
+    candidates.sort(function(){ return Math.random() - 0.5; });
+    for (var i = 0; i < candidates.length && opts.size < 4; i++) {
+      if (candidates[i] > 0 && candidates[i] % 4 === 0) opts.add(candidates[i]);
+    }
+    while (opts.size < 4) {
+      var rand = correct + (Math.floor(Math.random()*7) - 3) * 4;
+      if (rand > 0 && rand !== correct) opts.add(rand);
+    }
+    return Array.from(opts).sort(function(){ return Math.random() - 0.5; });
+  }
+
+  var currentFactor, currentAnswer;
+
+  function renderBadges(){
+    TARGETS.forEach(function(t){
+      var el = document.getElementById('badge' + t);
+      var pct = Math.min(100, Math.round((state.mastery[t] / MASTERY_NEEDED) * 100));
+      el.querySelector('.badge-ring').style.setProperty('--pct', pct);
+      el.classList.toggle('mastered', state.masteredDone[t]);
+    });
+  }
+
+  function renderStats(){
+    fuelFill.style.width = state.fuel + '%';
+    streakPill.textContent = 'streak ' + state.streak;
+    statsLine.textContent = 'Stars collected: ' + state.stars + ' · Best streak: ' + state.bestStreak;
+  }
+
+  function newQuestion(){
+    state.locked = false;
+    feedbackEl.innerHTML = '';
+    nextBtn.style.display = 'none';
+    currentFactor = pickFactor();
+    currentAnswer = 4 * currentFactor;
+    var isTarget = TARGETS.indexOf(currentFactor) !== -1;
+    questionEl.textContent = '4 × ' + currentFactor;
+    questionEl.classList.toggle('target', isTarget);
+
+    var opts = makeOptions(currentAnswer);
+    optionsEl.innerHTML = '';
+    opts.forEach(function(val){
+      var btn = document.createElement('button');
+      btn.className = 'opt';
+      btn.textContent = val;
+      btn.addEventListener('click', function(){ handleAnswer(val, btn); });
+      optionsEl.appendChild(btn);
+    });
+  }
+
+  function launchConfetti(){
+    var wrap = document.createElement('div');
+    wrap.className = 'confetti-wrap';
+    document.body.appendChild(wrap);
+    var emojis = ['⭐','✨','🌟','🚀'];
+    for (var i = 0; i < 18; i++) {
+      var span = document.createElement('span');
+      span.className = 'confetti';
+      span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      span.style.left = Math.random()*100 + 'vw';
+      span.style.animationDuration = (1.6 + Math.random()*1.2) + 's';
+      span.style.fontSize = (1 + Math.random()*0.8) + 'rem';
+      wrap.appendChild(span);
+    }
+    setTimeout(function(){ wrap.remove(); }, 3000);
+  }
+
+  function checkWin(){
+    return TARGETS.every(function(t){ return state.masteredDone[t]; });
+  }
+
+  function handleAnswer(val, btn){
+    if (state.locked) return;
+    state.locked = true;
+    var correct = (val === currentAnswer);
+    var isTarget = TARGETS.indexOf(currentFactor) !== -1;
+
+    Array.prototype.forEach.call(optionsEl.children, function(b){
+      b.disabled = true;
+      if (parseInt(b.textContent, 10) === currentAnswer) b.classList.add('correct');
+    });
+
+    if (correct) {
+      state.stars++;
+      state.streak++;
+      if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+      state.fuel += 20;
+      if (state.fuel >= 100) {
+        state.fuel = 0;
+        launchConfetti();
+      }
+      if (isTarget && !state.masteredDone[currentFactor]) {
+        state.mastery[currentFactor]++;
+        if (state.mastery[currentFactor] >= MASTERY_NEEDED) {
+          state.masteredDone[currentFactor] = true;
+        }
+      }
+      var praise = ['Nice one!','You\u2019ve got it!','Blast off!','Superstar!','Brilliant!','Great flying!'];
+      feedbackEl.innerHTML = praise[Math.floor(Math.random()*praise.length)];
+    } else {
+      btn.classList.add('wrong');
+      cardEl.classList.add('shake');
+      setTimeout(function(){ cardEl.classList.remove('shake'); }, 320);
+      state.streak = 0;
+      if (isTarget) {
+        state.mastery[currentFactor] = Math.max(0, state.mastery[currentFactor] - 1);
+        feedbackEl.innerHTML = 'So close — 4 × ' + currentFactor + ' = ' + currentAnswer + '. ' + TRICKS[currentFactor];
+      } else {
+        feedbackEl.innerHTML = 'Not quite — 4 × ' + currentFactor + ' = ' + currentAnswer + '. Try the next one!';
+      }
+    }
+
+    renderBadges();
+    renderStats();
+    saveBest();
+    nextBtn.style.display = 'inline-block';
+
+    if (checkWin()) {
+      setTimeout(function(){
+        gameScreen.classList.add('hidden');
+        winScreen.classList.remove('hidden');
+        launchConfetti();
+      }, 500);
+    }
+  }
+
+  nextBtn.addEventListener('click', newQuestion);
+
+  document.getElementById('startBtn').addEventListener('click', function(){
+    startScreen.classList.add('hidden');
+    gameScreen.classList.remove('hidden');
+    renderBadges();
+    renderStats();
+    newQuestion();
+  });
+
+  document.getElementById('playAgainBtn').addEventListener('click', function(){
+    TARGETS.forEach(function(t){ state.mastery[t] = 0; state.masteredDone[t] = false; });
+    state.fuel = 0;
+    state.streak = 0;
+    winScreen.classList.add('hidden');
+    gameScreen.classList.remove('hidden');
+    renderBadges();
+    renderStats();
+    newQuestion();
+  });
+
+  document.getElementById('keepPracticingBtn').addEventListener('click', function(){
+    winScreen.classList.add('hidden');
+    gameScreen.classList.remove('hidden');
+    renderBadges();
+    renderStats();
+    newQuestion();
+  });
+
+  loadBest();
+  renderStats();
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

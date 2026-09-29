@@ -168,6 +168,16 @@ h1 {
 .row .title { flex: 1; }
 .row .year { font-size: 15px; font-weight: 500; color: var(--muted); }
 
+.topic {
+  margin: 28px 0 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.toggle + .topic { margin-top: 4px; }
+
 /* Current / Past years toggle */
 .toggle {
   display: inline-flex;

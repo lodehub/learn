@@ -130,13 +130,20 @@
         if (!list.length) {
           html += '<p class="empty">' + (showArchived ? 'Nothing from past years here.' : 'Nothing here yet.') + '</p>';
         } else {
-          html += '<ul class="list">' + list.map(function (it) {
-            var isPdf = it.type === 'pdf';
-            return '<li><a class="row" href="' + esc(it.path) + '"' + (isPdf ? ' target="_blank" rel="noopener"' : '') + '>' +
-              '<span class="badge">' + (isPdf ? 'PDF' : 'Play') + '</span>' +
-              '<span class="title">' + esc(it.title) + '</span>' +
-              (it.year ? '<span class="year">' + esc(it.year) + '</span>' : '') + '</a></li>';
-          }).join('') + '</ul>';
+          // Optional "topic" groups items under headings, in manifest order; items without one go last.
+          var groups = [];
+          list.forEach(function (it) {
+            var t = it.topic || '';
+            var g = groups.filter(function (x) { return x.topic === t; })[0];
+            if (!g) groups.push(g = { topic: t, items: [] });
+            g.items.push(it);
+          });
+          groups.sort(function (a, b) { return (a.topic === '') - (b.topic === ''); });
+          var headed = groups.some(function (g) { return g.topic; });
+          html += groups.map(function (g) {
+            return (headed ? '<h2 class="topic">' + esc(g.topic || 'Other') + '</h2>' : '') +
+              '<ul class="list">' + g.items.map(rowHTML).join('') + '</ul>';
+          }).join('');
         }
         el.innerHTML = html;
         bindToggle();
@@ -149,6 +156,14 @@
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js', { scope: './' }).catch(function () {});
     }
+  }
+
+  function rowHTML(it) {
+    var isPdf = it.type === 'pdf';
+    return '<li><a class="row" href="' + esc(it.path) + '"' + (isPdf ? ' target="_blank" rel="noopener"' : '') + '>' +
+      '<span class="badge">' + (isPdf ? 'PDF' : 'Play') + '</span>' +
+      '<span class="title">' + esc(it.title) + '</span>' +
+      (it.year ? '<span class="year">' + esc(it.year) + '</span>' : '') + '</a></li>';
   }
 
   // Subject folder = first segment of the item's path, e.g. "maths/counting/" -> "maths".

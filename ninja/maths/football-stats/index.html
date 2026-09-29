@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Football stats: mean, median and mode</title>
+<style>
+:root {
+  --green: #2d7a3e;
+  --green-dark: #1f5a2c;
+  --green-light: #e8f5ea;
+  --blue: #1a5fb4;
+  --blue-light: #e6f0fb;
+  --red: #c0392b;
+  --red-light: #fbe9e7;
+  --amber: #b8860b;
+  --amber-light: #fff8e1;
+  --text-dark: #1a1a1a;
+  --text-muted: #5a5a5a;
+  --border: #d8d8d8;
+  --card-bg: #ffffff;
+  --page-bg: #f4f6f4;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --green-light: #16321c;
+    --blue-light: #122840;
+    --red-light: #3a1e1a;
+    --amber-light: #3a2f0e;
+    --text-dark: #f0f0f0;
+    --text-muted: #b0b0b0;
+    --border: #3a3a3a;
+    --card-bg: #1e1e1e;
+    --page-bg: #121212;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--page-bg);
+  color: var(--text-dark);
+  padding: 1.5rem 1rem 3rem;
+  padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+  line-height: 1.5;
+}
+.wrap { max-width: 780px; margin: 0 auto; }
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: var(--green-dark);
+}
+.subtitle { color: var(--text-muted); font-size: 14px; margin: 0 0 1.5rem; }
+.section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.section h2 {
+  font-size: 16px;
+  margin: 0 0 0.75rem;
+  color: var(--text-dark);
+}
+.team-picker {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+.team-btn {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--card-bg);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-dark);
+}
+.team-btn.active-red { border-color: var(--red); background: var(--red-light); }
+.team-btn.active-blue { border-color: var(--blue); background: var(--blue-light); }
+
+.player-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 40px;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.player-row:last-child { border-bottom: none; }
+.player-name {
+  color: var(--text-dark);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 3px 5px;
+  background: transparent;
+  font-size: 13px;
+  font-family: inherit;
+  width: 100%;
+}
+.player-name:hover, .player-name:focus {
+  border-color: var(--border);
+  background: var(--page-bg);
+  outline: none;
+}
+.player-row input[type=range] { width: 100%; }
+.player-val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 1rem;
+}
+.stat-card {
+  border-radius: 10px;
+  padding: 0.8rem;
+  text-align: center;
+}
+.stat-card.mean { background: var(--blue-light); }
+.stat-card.median { background: var(--green-light); }
+.stat-card.mode { background: var(--amber-light); }
+.stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); margin: 0 0 4px; }
+.stat-value { font-size: 22px; font-weight: 700; margin: 0; }
+.stat-card.mean .stat-value { color: var(--blue); }
+.stat-card.median .stat-value { color: var(--green); }
+.stat-card.mode .stat-value { color: var(--amber); }
+
+.pitch {
+  position: relative;
+  background: repeating-linear-gradient(90deg, #3a8f4c, #3a8f4c 40px, #367f47 40px, #367f47 80px);
+  border-radius: 10px;
+  height: 90px;
+  margin: 1rem 0;
+  overflow: visible;
+  border: 2px solid #2d7a3e;
+}
+.dot {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid white;
+}
+.dot.red-dot { background: var(--red); }
+.dot.blue-dot { background: var(--blue); }
+.marker {
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  width: 2px;
+}
+.marker-label {
+  position: absolute;
+  top: -22px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  font-size: 13px;
+  margin-top: 0.75rem;
+}
+.compare-cell {
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: var(--page-bg);
+}
+.compare-cell .lbl { font-size: 11px; color: var(--text-muted); }
+.compare-cell .val { font-weight: 700; font-size: 16px; }
+
+.insight-box {
+  background: var(--green-light);
+  border-left: 4px solid var(--green);
+  border-radius: 0 10px 10px 0;
+  padding: 0.85rem 1rem;
+  margin-top: 1rem;
+  font-size: 13px;
+}
+.insight-box b { color: var(--green-dark); }
+
+.preset-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+.preset-btn {
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--page-bg);
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-dark);
+}
+.preset-btn:hover { background: var(--border); }
+
+.legend { display: flex; gap: 16px; font-size: 12px; color: var(--text-muted); margin-top: 0.5rem; flex-wrap: wrap; }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Goals, mean, median and mode</h1>
+  <p class="subtitle" style="margin-bottom:0.15rem;"><b>The Riverside Cup</b> — Matchday Stats Centre</p>
+  <p class="subtitle">Two football teams. Same number of games, different scoring patterns. Drag the sliders to change how many goals each player scored this season.</p>
+
+  <div class="section">
+    <h2>Pick a scenario</h2>
+    <div class="preset-row">
+      <button class="preset-btn" onclick="loadPreset('balanced')">Evenly matched</button>
+      <button class="preset-btn" onclick="loadPreset('striker')">One star striker</button>
+      <button class="preset-btn" onclick="loadPreset('teamwork')">Shared scoring</button>
+      <button class="preset-btn" onclick="loadPreset('flop')">One bad game</button>
+    </div>
+
+    <div class="team-picker">
+      <button class="team-btn active-red" id="tabRed" onclick="switchTeam('red')">Liverpool</button>
+      <button class="team-btn" id="tabBlue" onclick="switchTeam('blue')">Everton</button>
+    </div>
+
+    <div id="playerList"></div>
+  </div>
+
+  <div class="section">
+    <h2 id="teamHeading">Liverpool — goals by player</h2>
+    <div class="pitch" id="pitch"></div>
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--blue)"></span>Mean</span>
+      <span><span class="swatch" style="background:var(--green)"></span>Median</span>
+      <span><span class="swatch" style="background:var(--amber)"></span>Mode</span>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card mean"><p class="stat-label">Mean</p><p class="stat-value" id="meanVal">0</p></div>
+      <div class="stat-card median"><p class="stat-label">Median</p><p class="stat-value" id="medianVal">0</p></div>
+      <div class="stat-card mode"><p class="stat-label">Mode</p><p class="stat-value" id="modeVal">0</p></div>
+    </div>
+    <div class="insight-box" id="teamInsight"></div>
+  </div>
+
+  <div class="section">
+    <h2>Liverpool vs Everton</h2>
+    <p style="font-size:13px; color:var(--text-muted); margin:0 0 0.5rem;">Same total games. Who's the better team? It depends which number you look at.</p>
+    <div class="compare-row">
+      <div class="compare-cell"><div class="lbl">Mean</div><div class="val" id="cmpMeanRed">-</div><div class="lbl">Liverpool</div></div>
+      <div class="compare-cell"><div class="lbl">vs</div><div class="val">—</div></div>
+      <div class="compare-cell"><div class="lbl">Mean</div><div class="val" id="cmpMeanBlue">-</div><div class="lbl">Everton</div></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell"><div class="lbl">Median</div><div class="val" id="cmpMedianRed">-</div><div class="lbl">Liverpool</div></div>
+      <div class="compare-cell"><div class="lbl">vs</div><div class="val">—</div></div>
+      <div class="compare-cell"><div class="lbl">Median</div><div class="val" id="cmpMedianBlue">-</div><div class="lbl">Everton</div></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell"><div class="lbl">Mode</div><div class="val" id="cmpModeRed">-</div><div class="lbl">Liverpool</div></div>
+      <div class="compare-cell"><div class="lbl">vs</div><div class="val">—</div></div>
+      <div class="compare-cell"><div class="lbl">Mode</div><div class="val" id="cmpModeBlue">-</div><div class="lbl">Everton</div></div>
+    </div>
+    <div class="insight-box" id="compareInsight"></div>
+  </div>
+
+  <div class="section">
+    <h2>What each one tells you</h2>
+    <p style="font-size:13px;"><b>Mean</b> — total goals divided by number of players. Good for "how many goals does the team score, on average". But one superstar scoring loads of goals can make the mean look better than what most players actually did.</p>
+    <p style="font-size:13px;"><b>Median</b> — line up every player's goals from lowest to highest and pick the middle one. This shows what a <i>typical</i> player scored. If one player scores a huge number of goals (or one scores zero), the median barely moves — it only cares about the middle player, not the extreme ones.</p>
+    <p style="font-size:13px;"><b>Mode</b> — the goal count that shows up most often. Useful for spotting the "normal" performance across the squad, or if lots of players are stuck on the same low number.</p>
+    <p style="font-size:13px; margin-bottom:0;"><b>Skew:</b> when one or two players score way more (or way less) than everyone else, the mean gets pulled toward them, but the median stays close to the "normal" players. That gap between mean and median is exactly how you spot a skewed team — one where the numbers are lopsided because of a few standout (or struggling) performances.</p>
+  </div>
+</div>
+
+<script>
+const liverpoolNames = ["J. Okafor","T. Bridges","M. Sandoval","D. Whitfield","K. Osei","R. Lindqvist","A. Marchetti"];
+const evertonNames = ["S. Doyle","C. Novak","L. Fontaine","H. Iwata","B. Kowalski","P. Delacroix","G. Ashworth"];
+
+const presets = {
+  balanced:  { red: [5,6,6,7,7,8,9],  blue: [6,6,7,7,7,8,8] },
+  striker:   { red: [1,2,2,3,3,4,22], blue: [4,5,5,6,6,7,8] },
+  teamwork:  { red: [6,6,6,6,7,7,7],  blue: [3,4,5,6,7,8,9] },
+  flop:      { red: [7,8,8,9,9,10,0], blue: [7,7,8,8,8,9,9] }
+};
+
+let teams = JSON.parse(JSON.stringify(presets.striker));
+let currentTeam = 'red';
+
+function round1(n) { return Math.round(n * 10) / 10; }
+
+function computeStats(arr) {
+  const sorted = [...arr].sort((a,b) => a-b);
+  const mean = arr.reduce((a,b)=>a+b,0) / arr.length;
+  const mid = Math.floor(sorted.length/2);
+  const median = sorted.length % 2 === 0 ? (sorted[mid-1]+sorted[mid])/2 : sorted[mid];
+  const freq = {};
+  let maxF = 0;
+  for (const v of arr) { freq[v] = (freq[v]||0)+1; maxF = Math.max(maxF, freq[v]); }
+  const modes = Object.keys(freq).filter(k => freq[k]===maxF).map(Number);
+  return { mean, median, modes, maxF, sorted };
+}
+
+function renderPlayerList() {
+  const list = document.getElementById('playerList');
+  list.innerHTML = '';
+  const arr = teams[currentTeam];
+  const names = currentTeam === 'red' ? liverpoolNames : evertonNames;
+  arr.forEach((val, i) => {
+    const row = document.createElement('div');
+    row.className = 'player-row';
+    row.innerHTML = `
+      <input type="text" class="player-name" value="${names[i]}" oninput="updateName(${i}, this.value)" aria-label="Player name">
+      <input type="range" min="0" max="25" step="1" value="${val}" oninput="updateGoal(${i}, this.value)">
+      <span class="player-val" id="pval-${i}">${val}</span>
+    `;
+    list.appendChild(row);
+  });
+}
+
+function updateName(idx, val) {
+  const names = currentTeam === 'red' ? liverpoolNames : evertonNames;
+  names[idx] = val;
+}
+
+function updateGoal(idx, val) {
+  teams[currentTeam][idx] = parseInt(val, 10);
+  document.getElementById('pval-'+idx).textContent = val;
+  renderAll();
+}
+
+function switchTeam(team) {
+  currentTeam = team;
+  document.getElementById('tabRed').className = 'team-btn' + (team==='red' ? ' active-red' : '');
+  document.getElementById('tabBlue').className = 'team-btn' + (team==='blue' ? ' active-blue' : '');
+  document.getElementById('teamHeading').textContent = (team==='red' ? 'Liverpool' : 'Everton') + ' — goals by player';
+  renderPlayerList();
+  renderAll();
+}
+
+function loadPreset(name) {
+  teams = JSON.parse(JSON.stringify(presets[name]));
+  renderPlayerList();
+  renderAll();
+}
+
+function drawPitch(arr, stats) {
+  const pitch = document.getElementById('pitch');
+  pitch.innerHTML = '';
+  const maxGoal = 25;
+  const color = currentTeam === 'red' ? 'red-dot' : 'blue-dot';
+
+  arr.forEach(val => {
+    const dot = document.createElement('div');
+    dot.className = 'dot ' + color;
+    dot.style.left = (val / maxGoal * 100) + '%';
+    pitch.appendChild(dot);
+  });
+
+  const markers = [
+    { val: stats.mean, color: 'var(--blue)', label: 'Mean' },
+    { val: stats.median, color: 'var(--green)', label: 'Med' }
+  ];
+  markers.forEach(m => {
+    const line = document.createElement('div');
+    line.className = 'marker';
+    line.style.left = (m.val / maxGoal * 100) + '%';
+    line.style.background = m.color;
+    const label = document.createElement('div');
+    label.className = 'marker-label';
+    label.style.left = (m.val / maxGoal * 100) + '%';
+    label.style.color = m.color;
+    label.textContent = m.label;
+    pitch.appendChild(line);
+    pitch.appendChild(label);
+  });
+}
+
+function renderAll() {
+  const arr = teams[currentTeam];
+  const stats = computeStats(arr);
+
+  document.getElementById('meanVal').textContent = round1(stats.mean);
+  document.getElementById('medianVal').textContent = round1(stats.median);
+  document.getElementById('modeVal').textContent = stats.modes.length === arr.length
+    ? 'none'
+    : stats.modes.join(', ');
+
+  drawPitch(arr, stats);
+
+  const gap = Math.abs(stats.mean - stats.median);
+  let teamMsg = '';
+  if (gap >= 2) {
+    const puller = stats.mean > stats.median ? 'one or more high scorers is pulling the mean up' : 'one or more low scores is pulling the mean down';
+    teamMsg = `<b>Skewed squad:</b> mean (${round1(stats.mean)}) and median (${round1(stats.median)}) are quite different — ${puller}. The median (${round1(stats.median)}) is a better guide to what a typical player actually scored.`;
+  } else {
+    teamMsg = `<b>Balanced squad:</b> mean (${round1(stats.mean)}) and median (${round1(stats.median)}) are close, so goals are spread fairly evenly across the team.`;
+  }
+  if (stats.modes.length < arr.length && stats.maxF > 1) {
+    teamMsg += ` The mode is ${stats.modes.join(', ')} — that's the goal count that shows up most often in the squad.`;
+  } else {
+    teamMsg += ` No player shares the same goal count as another, so there's no mode.`;
+  }
+  document.getElementById('teamInsight').innerHTML = teamMsg;
+
+  const redStats = computeStats(teams.red);
+  const blueStats = computeStats(teams.blue);
+  document.getElementById('cmpMeanRed').textContent = round1(redStats.mean);
+  document.getElementById('cmpMeanBlue').textContent = round1(blueStats.mean);
+  document.getElementById('cmpMedianRed').textContent = round1(redStats.median);
+  document.getElementById('cmpMedianBlue').textContent = round1(blueStats.median);
+  document.getElementById('cmpModeRed').textContent = redStats.modes.length === teams.red.length ? 'none' : redStats.modes.join(', ');
+  document.getElementById('cmpModeBlue').textContent = blueStats.modes.length === teams.blue.length ? 'none' : blueStats.modes.join(', ');
+
+  let cmpMsg = '';
+  const meanWinner = redStats.mean > blueStats.mean ? 'Liverpool' : (blueStats.mean > redStats.mean ? 'Everton' : 'Both teams tie');
+  const medianWinner = redStats.median > blueStats.median ? 'Liverpool' : (blueStats.median > redStats.median ? 'Everton' : 'Both teams tie');
+
+  if (meanWinner !== medianWinner) {
+    cmpMsg = `<b>The teams disagree depending on the stat!</b> By mean, ${meanWinner} looks stronger. But by median, ${medianWinner} looks stronger. This usually means one team has a standout player (or a bad performance) skewing their mean, while the median shows what most players are really doing.`;
+  } else {
+    cmpMsg = `<b>${meanWinner} comes out ahead</b> on both mean and median, so it's a fairly clear result — their squad is genuinely scoring more, not just being carried by one player.`;
+  }
+  document.getElementById('compareInsight').innerHTML = cmpMsg;
+}
+
+renderPlayerList();
+renderAll();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>
