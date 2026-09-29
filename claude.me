@@ -1,0 +1,19 @@
+# Learn hub: conventions
+
+Static site on GitHub Pages (no build step, no framework). Served from repo root on main.
+
+## Structure
+- `/index.html`: child picker, reads `/children.json`
+- `/assets/`: shared style.css and ui.js used by every page
+- `/<child-slug>/index.html`: subject picker, reads that child's `manifest.json`
+- `/<child-slug>/<subject>/…`: tools (HTML folders) and PDFs
+
+## Rules
+- ALL links relative (must work at joelchin.github.io/learn/ and at a custom domain).
+- Never use full names or personal data anywhere: slugs/nicknames only.
+- Each tool stores its own progress in localStorage under a key prefixed `<child>:<subject>:<tool>:`. No shared save file.
+- Adding material = put files in the subject folder + add one entry to that child's manifest.json. Do not hand-edit picker HTML.
+- manifest entry: { title, path, type: "html"|"pdf", year, status: "current"|"archived" }
+- Archived items appear only behind a "Past years" toggle. Deleting old material means removing the folder and its manifest entry.
+- Mobile-first, big tap targets, works on iPad Safari. Include a web manifest + service worker per child folder so each can be installed as a PWA (scoped to that folder).
+- Before pushing: open each page locally, check no broken links, then commit with a clear message.
