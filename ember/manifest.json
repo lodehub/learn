@@ -11,6 +11,10 @@
     {
       "slug": "science",
       "label": "Science"
+    },
+    {
+      "slug": "history",
+      "label": "History"
     }
   ],
   "items": [
@@ -69,6 +73,13 @@
       "year": 2026,
       "status": "current",
       "topic": "B4 Organisms"
+    },
+    {
+      "title": "Rome: the 14-day revision road",
+      "path": "history/rome.html",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
     }
   ]
 }
