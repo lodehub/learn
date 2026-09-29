@@ -35,7 +35,32 @@
       "path": "science/lungs-gas-exchange/",
       "type": "html",
       "year": 2026,
-      "status": "current"
+      "status": "current",
+      "topic": "B4 Organisms"
+    },
+    {
+      "title": "Breathing: how air moves in and out",
+      "path": "science/breathing/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "B4 Organisms"
+    },
+    {
+      "title": "Drugs, alcohol and smoking",
+      "path": "science/drugs-alcohol-smoking/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "B4 Organisms"
+    },
+    {
+      "title": "Nutrients, food tests and diet",
+      "path": "science/nutrients-food-tests/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "B4 Organisms"
     }
   ]
 }
