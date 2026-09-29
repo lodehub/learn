@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Placeholder Tool</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<main class="page">
+  <div class="page-header">
+    <a class="home-link" href="../../index.html#maths">← Maths</a>
+    <h1 class="page-title">Placeholder Tool</h1>
+  </div>
+  <p>This is a stand-in tool so navigation can be tested end to end.</p>
+  <p>Clicks so far: <strong id="count">0</strong></p>
+  <button type="button" id="click-btn" class="tile" style="display:inline-block; min-height:auto; padding:0.75rem 1.5rem;">
+    Click me
+  </button>
+</main>
+<script src="../../../assets/ui.js"></script>
+<script>
+  var KEY = 'ember:maths:placeholder:clicks';
+  var countEl = document.getElementById('count');
+  var count = parseInt(localStorage.getItem(KEY), 10) || 0;
+  countEl.textContent = count;
+
+  document.getElementById('click-btn').addEventListener('click', function () {
+    count += 1;
+    localStorage.setItem(KEY, count);
+    countEl.textContent = count;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* Shared styles for the Learn hub. Calm, tablet-first, big tap targets. */
+
+:root {
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --text: #2f2b26;
+  --muted: #7a736a;
+  --accent: #e8735c;
+  --accent-soft: #fbe2dc;
+  --border: #ece6dc;
+  --radius: 20px;
+  --gap: 1.25rem;
+  --shadow: 0 6px 18px rgba(47, 43, 38, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1a17;
+    --surface: #2a2723;
+    --text: #f3efe8;
+    --muted: #b0a89c;
+    --accent: #f19080;
+    --accent-soft: #4a332e;
+    --border: #3a352f;
+    --shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-header .page-title {
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.home-link,
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.home-link:active,
+.back-btn:active {
+  transform: scale(0.97);
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle input {
+  width: 1.3rem;
+  height: 1.3rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--gap);
+}
+
+.tile-grid-large {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 160px;
+  padding: 1.5rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.tile:active {
+  transform: scale(0.97);
+}
+
+.tile-child {
+  min-height: 220px;
+  font-size: 1.35rem;
+  border-color: var(--tile-color, var(--border));
+}
+
+.tile-emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.tile-subject {
+  min-height: 140px;
+  background: var(--accent-soft);
+  border-color: transparent;
+  font-size: 1.2rem;
+}
+
+.tile-tool {
+  align-items: flex-start;
+  text-align: left;
+  min-height: 100px;
+  justify-content: center;
+}
+
+.tile-archived {
+  opacity: 0.7;
+}
+
+.tile-label {
+  display: block;
+}
+
+.tile-meta {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.empty-msg {
+  color: var(--muted);
+  font-size: 1.05rem;
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.error {
+  color: var(--accent);
+  font-size: 1.05rem;
+  text-align: center;
+  padding: 2rem;
+}

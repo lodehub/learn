@@ -1,0 +1,24 @@
+{
+  "child": "Ember",
+  "subjects": [
+    {
+      "slug": "maths",
+      "title": "Maths",
+      "tools": [
+        {
+          "title": "Placeholder Tool",
+          "path": "maths/placeholder/index.html",
+          "type": "html",
+          "year": 2026,
+          "status": "current"
+        }
+      ]
+    },
+    { "slug": "chemistry", "title": "Chemistry", "tools": [] },
+    { "slug": "biology", "title": "Biology", "tools": [] },
+    { "slug": "physics", "title": "Physics", "tools": [] },
+    { "slug": "english", "title": "English", "tools": [] },
+    { "slug": "history", "title": "History", "tools": [] },
+    { "slug": "geography", "title": "Geography", "tools": [] }
+  ]
+}

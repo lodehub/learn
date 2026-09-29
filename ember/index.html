@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Learn</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="manifest" href="./app.webmanifest">
+<meta name="theme-color" content="#e8735c">
+</head>
+<body>
+<main class="page page-subjects">
+  <div class="page-header">
+    <a class="home-link" href="../index.html">← All kids</a>
+    <button type="button" id="back-btn" class="back-btn" hidden>← Subjects</button>
+    <h1 id="page-heading" class="page-title">Choose a subject</h1>
+    <label class="toggle" id="archive-toggle" hidden>
+      <input type="checkbox" id="archive-checkbox">
+      <span>Show past years</span>
+    </label>
+  </div>
+  <p id="empty-msg" class="empty-msg" hidden></p>
+  <div id="content-grid" class="tile-grid"></div>
+</main>
+<script src="../assets/ui.js"></script>
+<script>
+  Learn.renderSubjectPicker({
+    manifestPath: './manifest.json',
+    heading: document.getElementById('page-heading'),
+    backBtn: document.getElementById('back-btn'),
+    toggleWrap: document.getElementById('archive-toggle'),
+    toggleInput: document.getElementById('archive-checkbox'),
+    grid: document.getElementById('content-grid'),
+    emptyMsg: document.getElementById('empty-msg')
+  });
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js').catch(function (err) {
+      console.error(err);
+    });
+  }
+</script>
+</body>
+</html>
