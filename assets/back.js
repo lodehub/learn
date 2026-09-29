@@ -27,5 +27,9 @@
     'font:600 24px/1 system-ui,-apple-system,sans-serif', 'text-decoration:none',
     '-webkit-tap-highlight-color:transparent'
   ].join(';');
+  a.className = 'learn-back';
+  var css = document.createElement('style');
+  css.textContent = '@media print{.learn-back{display:none!important}}';
+  document.head.appendChild(css);
   document.body.appendChild(a);
 })();

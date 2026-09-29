@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3×6, 3×7, 3×8 – Say it, then flip it</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1B2559;
+  --paper:#F4F6FF;
+  --white:#FFFFFF;
+  --sun:#FFC83D;
+  --teal:#0B7F70;
+  --berry:#C2306B;
+  --line:#D3D9F0;
+  --muted:#4A5480;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font:400 18px/1.55 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+h1,h2,h3,.num,.btn,.tab{font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:20px 18px 64px}
+header h1{font-size:clamp(34px,8vw,52px);line-height:1.05;margin:8px 0 6px;font-weight:800}
+header p{margin:0;color:var(--muted);max-width:52ch}
+
+.tabs{display:flex;gap:4px;overflow-x:auto;margin:22px -18px 0;padding:0 18px;border-bottom:2px solid var(--line)}
+.tab{
+  appearance:none;background:none;border:0;border-bottom:4px solid transparent;margin-bottom:-2px;
+  padding:10px 14px 8px;font-size:19px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;
+}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--sun)}
+.tab:hover{color:var(--ink)}
+:focus-visible{outline:3px solid var(--berry);outline-offset:3px;border-radius:6px}
+
+.panel{padding-top:22px}
+.panel[hidden]{display:none}
+h2{font-size:30px;line-height:1.15;margin:0 0 8px;font-weight:800}
+h3{font-size:24px;line-height:1.2;margin:0 0 6px;font-weight:800}
+p{margin:0 0 12px;max-width:62ch}
+.muted{color:var(--muted)}
+
+/* buttons */
+.btn{
+  appearance:none;border:3px solid var(--ink);background:var(--ink);color:#fff;border-radius:16px;
+  min-height:54px;padding:8px 22px;font-size:21px;font-weight:600;cursor:pointer;
+}
+.btn:hover{filter:brightness(1.12)}
+.btn.ok{background:var(--teal);border-color:var(--teal)}
+.btn.ghost{background:var(--white);color:var(--ink)}
+.btn.small{min-height:42px;font-size:17px;padding:4px 16px;border-radius:12px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* flip card */
+.status{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:16px;margin-bottom:10px}
+.scene{perspective:1400px}
+.card{
+  position:relative;min-height:clamp(300px,64vw,370px);transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.3,.7,.2,1);
+}
+.card.flipped{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;
+}
+.front{background:var(--ink);color:#fff}
+.back{background:var(--sun);color:var(--ink);transform:rotateY(180deg)}
+.sum{font-size:clamp(64px,19vw,120px);font-weight:800;line-height:1}
+.q{font-family:"Baloo 2",sans-serif;font-size:clamp(28px,7vw,44px);opacity:.75;margin-top:6px}
+.ans{font-size:clamp(64px,19vw,112px);font-weight:800;line-height:1}
+.eq{font-family:"Baloo 2",sans-serif;font-size:22px;font-weight:600;margin:4px 0 10px}
+.dots{display:grid;gap:7px}
+.dots .r{display:flex;gap:7px;justify-content:center}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--ink);display:block}
+.dots .r:nth-child(2) i{background:var(--berry)}
+.dots .r:nth-child(3) i{background:var(--teal)}
+.same{font-size:16px;margin-top:10px}
+.prompt{font-size:20px;margin:16px 0 12px;font-weight:700}
+.hint{
+  margin-top:14px;padding:12px 16px;background:var(--white);border-left:6px solid var(--sun);border-radius:8px;
+}
+.hint[hidden]{display:none}
+.done{background:var(--white);border-radius:28px;padding:28px 22px;border:3px solid var(--line)}
+.done .big{font-family:"Baloo 2",sans-serif;font-size:clamp(40px,10vw,64px);font-weight:800;line-height:1.05;margin-bottom:10px}
+
+/* routes */
+.fact{background:var(--white);border:3px solid var(--line);border-radius:24px;padding:20px 20px 16px;margin-bottom:18px}
+.fact header h3{font-size:32px}
+.routes{display:grid;gap:14px;margin-top:8px}
+.route h4{margin:0 0 4px;font-size:18px}
+.route p{margin:0 0 6px}
+.line{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:6px 0 0}
+.line li{display:flex;flex-direction:column;align-items:center;min-width:52px;padding:6px 8px;border-radius:12px;background:var(--paper);border:2px solid var(--line)}
+.line li .jv{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:24px;line-height:1.1}
+.line li .jn{font-size:13px;color:var(--muted)}
+.line li.last{background:var(--sun);border-color:var(--sun)}
+.line li.last .jn{color:var(--ink)}
+label.hook{display:block;font-weight:700;margin:6px 0 4px}
+.hook-in{
+  width:100%;font:inherit;padding:10px 12px;border:3px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);
+}
+.hook-in:focus{border-color:var(--ink)}
+
+/* routine */
+.steps{list-style:none;counter-reset:s;padding:0;margin:14px 0 22px;display:grid;gap:12px}
+.steps li{counter-increment:s;background:var(--white);border:3px solid var(--line);border-radius:20px;padding:14px 16px 12px 66px;position:relative}
+.steps li::before{
+  content:counter(s);position:absolute;left:14px;top:12px;width:38px;height:38px;border-radius:50%;
+  background:var(--sun);display:grid;place-items:center;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:22px;
+}
+.steps b{font-family:"Baloo 2",sans-serif;font-size:20px;display:block}
+.steps span.t{color:var(--muted);font-size:15px}
+.rules{padding-left:1.2em;max-width:62ch}
+.rules li{margin-bottom:6px}
+
+/* tracker */
+.scroll{overflow-x:auto;padding-bottom:6px}
+table.tr{border-collapse:separate;border-spacing:4px;min-width:100%}
+table.tr th{font-weight:400;font-size:13px;color:var(--muted);text-align:center;padding:0 0 2px}
+table.tr th.rowh{font-family:"Baloo 2",sans-serif;font-size:22px;font-weight:800;color:var(--ink);text-align:left;padding-right:10px;white-space:nowrap}
+table.tr th.today{color:var(--ink);font-weight:700}
+.cell{
+  appearance:none;width:34px;height:40px;border:2px solid var(--line);border-radius:10px;background:var(--white);
+  font-family:"Baloo 2",sans-serif;font-size:20px;font-weight:800;color:#fff;cursor:pointer;padding:0;
+}
+.cell[data-s="ok"]{background:var(--teal);border-color:var(--teal)}
+.cell[data-s="help"]{background:var(--sun);border-color:var(--sun);color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:15px;color:var(--muted);margin:10px 0 14px}
+.legend b{display:inline-block;min-width:24px;text-align:center;border-radius:6px;padding:0 6px;font-family:"Baloo 2",sans-serif}
+.legend .k1{background:var(--teal);color:#fff}
+.legend .k2{background:var(--sun);color:var(--ink)}
+
+/* print cards */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.pcard{display:grid;grid-template-columns:1fr 1fr;border:2px dashed var(--ink);border-radius:8px;min-height:110px;background:var(--white);break-inside:avoid}
+.pcard div{display:grid;place-items:center;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:38px}
+.pcard .pb{border-left:2px dotted var(--muted);background:var(--sun)}
+
+@media (max-width:520px){
+  body{font-size:17px}
+  .pgrid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .card{transition:none}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .tabs,.no-print,header p{display:none!important}
+  .wrap{padding:0;max-width:none}
+  .panel{padding-top:8px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cell{width:26px;height:32px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Say it, then flip it</h1>
+    <p>Five minutes a day on 3 × 6, 3 × 7 and 3 × 8. The answer comes out of their head first. The card only checks it.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="t-play" aria-controls="panel-play" aria-selected="true" data-tab="play">Play</button>
+    <button class="tab" role="tab" id="t-routes" aria-controls="panel-routes" aria-selected="false" data-tab="routes">Work it out</button>
+    <button class="tab" role="tab" id="t-daily" aria-controls="panel-daily" aria-selected="false" data-tab="daily">Daily 5</button>
+    <button class="tab" role="tab" id="t-tracker" aria-controls="panel-tracker" aria-selected="false" data-tab="tracker">Tracker</button>
+    <button class="tab" role="tab" id="t-print" aria-controls="panel-print" aria-selected="false" data-tab="print">Print cards</button>
+  </nav>
+
+  <!-- PLAY -->
+  <section class="panel" id="panel-play" role="tabpanel" aria-labelledby="t-play">
+    <div class="status" aria-live="polite"><span id="left"></span><span id="note"></span></div>
+    <div class="scene" id="scene"></div>
+    <div id="controls"></div>
+    <div class="hint" id="hint" hidden></div>
+  </section>
+
+  <!-- ROUTES -->
+  <section class="panel" id="panel-routes" role="tabpanel" aria-labelledby="t-routes" hidden>
+    <h2>Work it out</h2>
+    <p>If the answer won't come, they use a route instead of guessing. Each route ends in the same place, and they'll drop the steps once the answer arrives by itself. Try a route in the game with the “Stuck?” button.</p>
+    <div id="facts"></div>
+  </section>
+
+  <!-- DAILY 5 -->
+  <section class="panel" id="panel-daily" role="tabpanel" aria-labelledby="t-daily" hidden>
+    <h2>Daily 5</h2>
+    <p>Short and often beats long and once. Two tiny goes a day works better than a big session.</p>
+    <ol class="steps">
+      <li><b>Yesterday's tricky ones first</b><span class="t">30 seconds. The game does this for you when you've logged the day before.</span></li>
+      <li><b>Count in threes together</b><span class="t">30 seconds. 3, 6, 9, 12, 15, 18, 21, 24. One finger up per jump.</span></li>
+      <li><b>Play a round</b><span class="t">3 minutes. They say the answer out loud, then flip. Misses go back in the pile until they have them.</span></li>
+      <li><b>One surprise question later</b><span class="t">30 seconds, hours after the game: in the car, at teeth-brushing, waiting for the kettle. “What's 3 × 7?” Getting it cold is the real test.</span></li>
+      <li><b>Tick the tracker</b><span class="t">The game does it automatically when a round finishes. Tap a box to change it.</span></li>
+    </ol>
+    <h3>Ground rules</h3>
+    <ul class="rules">
+      <li>A wrong answer isn't a problem. Say the right one calmly, let them say it back, and move on.</li>
+      <li>Guessing is fine. A wrong guess before the flip still helps the memory.</li>
+      <li>Stop while they still like it. Five happy minutes beat fifteen grumpy ones.</li>
+      <li>Only these three facts for now. The ones they know can wait.</li>
+    </ul>
+  </section>
+
+  <!-- TRACKER -->
+  <section class="panel" id="panel-tracker" role="tabpanel" aria-labelledby="t-tracker" hidden>
+    <h2>Tracker</h2>
+    <p id="trsum"></p>
+    <div class="legend">
+      <span><b class="k1">✓</b> said it before flipping</span>
+      <span><b class="k2">½</b> needed a second go or a hint</span>
+    </div>
+    <div class="scroll" id="trwrap"></div>
+    <div class="row no-print" style="margin-top:14px">
+      <button class="btn small ghost" id="print2">Print this page</button>
+      <button class="btn small ghost" id="clear">Clear all ticks</button>
+    </div>
+  </section>
+
+  <!-- PRINT -->
+  <section class="panel" id="panel-print" role="tabpanel" aria-labelledby="t-print" hidden>
+    <h2>Cut-out cards</h2>
+    <p class="no-print">Print, cut round each dashed line, then fold each card down the middle so the sum is on the front and the answer on the back. Use them away from the screen: in the car, at the table, in a coat pocket.</p>
+    <div class="row no-print"><button class="btn small" id="print1">Print these cards</button></div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- data ---------- */
+  var FACTS=[{id:"36",n:6},{id:"37",n:7},{id:"38",n:8}];
+  var HOOK_IDEAS={
+    "36":"Six, twelve, eighteen: three sixes make eighteen.",
+    "37":"Three sevens are twenty-one: blackjack, you've won!",
+    "38":"A day has 24 hours: three lots of eight (sleep, school, play)."
+  };
+  var CARDS=[];
+  FACTS.forEach(function(f){
+    CARDS.push({id:"3x"+f.n,x:3,y:f.n,fact:f.id,rev:false});
+    CARDS.push({id:f.n+"x3",x:f.n,y:3,fact:f.id,rev:true});
+  });
+  function cardById(id){return CARDS.filter(function(c){return c.id===id})[0]}
+  function factByN(n){return FACTS.filter(function(f){return f.n===n})[0]}
+
+  /* ---------- storage (falls back to memory if blocked) ---------- */
+  var mem={};
+  function load(key,fb){
+    try{var v=window.localStorage.getItem(key);if(v!==null)return JSON.parse(v)}catch(e){}
+    return mem.hasOwnProperty(key)?mem[key]:fb;
+  }
+  function save(key,val){
+    mem[key]=val;
+    try{window.localStorage.setItem(key,JSON.stringify(val))}catch(e){}
+  }
+  var log=load("bingo:maths:threes-flip-pack:log",{});
+  var hooks=load("bingo:maths:threes-flip-pack:hooks",{});
+
+  /* ---------- dates ---------- */
+  function iso(d){
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  }
+  function lastDays(n){
+    var out=[],t=new Date();t.setHours(12,0,0,0);
+    for(var i=n-1;i>=0;i--){var d=new Date(t);d.setDate(t.getDate()-i);out.push(d)}
+    return out;
+  }
+  var DAY=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+  /* ---------- helpers ---------- */
+  function $(id){return document.getElementById(id)}
+  function shuffle(a){
+    for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}
+    return a;
+  }
+  function helpFromLastLoggedDay(){
+    var today=iso(new Date());
+    var keys=Object.keys(log).filter(function(k){return k<today}).sort();
+    if(!keys.length)return [];
+    var last=log[keys[keys.length-1]];
+    return Object.keys(last).filter(function(f){return last[f]==="help"});
+  }
+  function dotsHTML(n){
+    var row="";for(var i=0;i<n;i++)row+="<i></i>";
+    return '<div class="dots" aria-hidden="true"><div class="r">'+row+'</div><div class="r">'+row+'</div><div class="r">'+row+'</div></div>';
+  }
+  function otherN(card){return card.x===3?card.y:card.x}
+
+  /* ---------- play ---------- */
+  var play=null;
+
+  function startRound(){
+    var pri=helpFromLastLoggedDay();
+    var ids=shuffle(CARDS.map(function(c){return c.id}));
+    var first=ids.filter(function(id){return pri.indexOf(cardById(id).fact)>-1});
+    var rest=ids.filter(function(id){return pri.indexOf(cardById(id).fact)===-1});
+    play={pile:first.concat(rest),missed:{},total:ids.length,flipped:false,done:false,pri:pri.length>0};
+    renderPlay();
+  }
+
+  function renderPlay(){
+    var scene=$("scene"),controls=$("controls"),hint=$("hint");
+    hint.hidden=true;hint.innerHTML="";
+    if(play.done){renderDone();return}
+    var c=cardById(play.pile[0]);
+    var n=otherN(c);
+    $("left").textContent=play.pile.length+(play.pile.length===1?" card left":" cards left");
+    $("note").textContent=play.pri?"Starting with the ones that needed help last time":"";
+    scene.innerHTML=
+      '<div class="card" id="card">'+
+        '<div class="face front" id="front"><div class="sum num">'+c.x+' × '+c.y+'</div><div class="q">= ?</div></div>'+
+        '<div class="face back" id="back" aria-hidden="true">'+
+          '<div class="ans num">'+(c.x*c.y)+'</div>'+
+          '<div class="eq">'+c.x+' × '+c.y+' = '+(c.x*c.y)+'</div>'+
+          dotsHTML(n)+
+          (c.rev?'<div class="same">Same as 3 × '+n+'. Three rows of '+n+'.</div>':'<div class="same">Three rows of '+n+'.</div>')+
+        '</div>'+
+      '</div>';
+    play.flipped=false;
+    renderControls();
+  }
+
+  function renderControls(){
+    var controls=$("controls");
+    if(!play.flipped){
+      controls.innerHTML=
+        '<p class="prompt">Say the answer out loud. Then flip.</p>'+
+        '<div class="row">'+
+          '<button class="btn" id="flip">Flip the card</button>'+
+          '<button class="btn ghost" id="stuck">Stuck? Work it out</button>'+
+        '</div>';
+    }else{
+      controls.innerHTML=
+        '<p class="prompt">Did you say it before you flipped?</p>'+
+        '<div class="row">'+
+          '<button class="btn ok" id="knew">Yes, I knew it</button>'+
+          '<button class="btn ghost" id="notyet">Not yet</button>'+
+        '</div>';
+    }
+  }
+
+  function flip(){
+    var card=$("card");
+    if(!card||play.flipped)return;
+    card.classList.add("flipped");
+    $("front").setAttribute("aria-hidden","true");
+    $("back").removeAttribute("aria-hidden");
+    play.flipped=true;
+    $("hint").hidden=true;
+    renderControls();
+    var b=$("knew");if(b)b.focus();
+  }
+
+  function showHint(){
+    var c=cardById(play.pile[0]);var n=otherN(c);
+    var h=$("hint");
+    h.innerHTML='<b>Work it out:</b> double '+n+' is '+(2*n)+'. Then add one more '+n+'. What do you get?<br>'+
+      '<span class="muted">Or count in threes on your fingers, one finger per jump.</span>';
+    h.hidden=false;
+  }
+
+  function answered(knew){
+    var id=play.pile.shift();
+    if(!knew){
+      play.missed[id]=true;
+      var pos=Math.min(2,play.pile.length);
+      play.pile.splice(pos,0,id);
+    }
+    if(play.pile.length===0){finishRound();return}
+    renderPlay();
+    var f=$("flip");if(f)f.focus();
+  }
+
+  function finishRound(){
+    var today=iso(new Date());
+    var day=log[today]||{};
+    FACTS.forEach(function(f){
+      var missed=CARDS.some(function(c){return c.fact===f.id&&play.missed[c.id]});
+      var s=missed?"help":"ok";
+      if(day[f.id]!=="ok")day[f.id]=s;
+    });
+    log[today]=day;
+    save("bingo:maths:threes-flip-pack:log",log);
+    play.done=true;
+    renderPlay();
+  }
+
+  function renderDone(){
+    var missedIds=Object.keys(play.missed);
+    var missedFacts=[];
+    FACTS.forEach(function(f){
+      if(CARDS.some(function(c){return c.fact===f.id&&play.missed[c.id]}))missedFacts.push("3 × "+f.n);
+    });
+    var right=play.total-missedIds.length;
+    $("left").textContent="Round finished";
+    $("note").textContent="";
+    $("controls").innerHTML="";
+    $("scene").innerHTML=
+      '<div class="done">'+
+        '<div class="big">'+(missedIds.length===0?"All six first time.":right+" of "+play.total+" first time.")+'</div>'+
+        '<p>'+(missedFacts.length
+          ?'Worth another look tomorrow: <b>'+missedFacts.join(", ")+'</b>. They will come first next round.'
+          :'Every card was right before the flip.')+
+        ' Today is ticked in the tracker.</p>'+
+        '<div class="row">'+
+          '<button class="btn" id="again">Play again</button>'+
+          '<button class="btn ghost" id="totracker">See tracker</button>'+
+        '</div>'+
+      '</div>';
+  }
+
+  /* ---------- routes ---------- */
+  function renderFacts(){
+    var html="";
+    FACTS.forEach(function(f){
+      var n=f.n,p=3*n;
+      var chips="";
+      for(var i=1;i<=n;i++){
+        chips+='<li'+(i===n?' class="last"':'')+'><span class="jv">'+(3*i)+'</span><span class="jn">jump '+i+'</span></li>';
+      }
+      var friend=n===6?"3 × 5 is 15. Add one more 3 and you get "+p+"."
+               :n===7?"3 × 6 is 18. Add one more 3 and you get "+p+"."
+               :"4 × 6 is also "+p+", and you know your 4s. So 3 × 8 has the same answer.";
+      html+=
+        '<article class="fact">'+
+          '<header><h3 class="num">3 × '+n+' = '+p+'</h3><p class="muted">Also '+n+' × 3 = '+p+'.</p></header>'+
+          '<div class="routes">'+
+            '<div class="route"><h4>Route 1: count in threes</h4>'+
+              '<p>One finger per jump. Stop when your fingers reach '+n+'.</p>'+
+              '<ul class="line">'+chips+'</ul></div>'+
+            '<div class="route"><h4>Route 2: double and add one more</h4>'+
+              '<p>Double '+n+' is '+(2*n)+'. Add one more '+n+' and you get '+p+'.</p></div>'+
+            '<div class="route"><h4>Route 3: use a friend</h4><p>'+friend+'</p></div>'+
+            '<div class="route"><label class="hook" for="hook-'+f.id+'">Their own hook for '+p+'</label>'+
+              '<p class="muted">Idea to start from: “'+HOOK_IDEAS[f.id]+'” Their own silly version will stick better than ours.</p>'+
+              '<input class="hook-in" id="hook-'+f.id+'" data-fact="'+f.id+'" type="text" maxlength="140" placeholder="Type their rhyme, picture or story here" value="'+
+              String(hooks[f.id]||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")+'"></div>'+
+          '</div>'+
+        '</article>';
+    });
+    $("facts").innerHTML=html;
+  }
+
+  /* ---------- tracker ---------- */
+  function renderTracker(){
+    var days=lastDays(14),today=iso(new Date());
+    var html='<table class="tr"><thead><tr><th></th>';
+    days.forEach(function(d){
+      var t=iso(d)===today;
+      html+='<th'+(t?' class="today"':'')+'>'+DAY[d.getDay()]+'<br>'+d.getDate()+'</th>';
+    });
+    html+='</tr></thead><tbody>';
+    FACTS.forEach(function(f){
+      html+='<tr><th class="rowh" scope="row">3 × '+f.n+'</th>';
+      days.forEach(function(d){
+        var k=iso(d);var s=(log[k]&&log[k][f.id])||"";
+        var label="3 × "+f.n+" on "+DAY[d.getDay()]+" "+d.getDate()+": "+(s==="ok"?"said it before flipping":s==="help"?"needed a second go":"not done");
+        html+='<td><button class="cell" data-date="'+k+'" data-fact="'+f.id+'" data-s="'+s+'" aria-label="'+label+'">'+(s==="ok"?"✓":s==="help"?"½":"")+'</button></td>';
+      });
+      html+='</tr>';
+    });
+    html+='</tbody></table>';
+    $("trwrap").innerHTML=html;
+    var n=days.filter(function(d){var e=log[iso(d)];return e&&Object.keys(e).some(function(k){return e[k]})}).length;
+    $("trsum").textContent="Practised on "+n+" of the last 14 days. Tap any box to change it.";
+  }
+
+  function cycleCell(date,fact){
+    var e=log[date]||{};
+    var cur=e[fact]||"";
+    var next=cur===""?"ok":cur==="ok"?"help":"";
+    if(next)e[fact]=next;else delete e[fact];
+    if(Object.keys(e).length)log[date]=e;else delete log[date];
+    save("bingo:maths:threes-flip-pack:log",log);
+    renderTracker();
+  }
+
+  /* ---------- print cards ---------- */
+  function renderPrint(){
+    var html="";
+    CARDS.forEach(function(c){
+      html+='<div class="pcard"><div class="pf">'+c.x+' × '+c.y+'</div><div class="pb">'+(c.x*c.y)+'</div></div>';
+    });
+    $("pgrid").innerHTML=html;
+  }
+
+  /* ---------- tabs ---------- */
+  function showTab(name){
+    ["play","routes","daily","tracker","print"].forEach(function(t){
+      var on=t===name;
+      $("panel-"+t).hidden=!on;
+      $("t-"+t).setAttribute("aria-selected",on?"true":"false");
+    });
+    if(name==="tracker")renderTracker();
+  }
+
+  /* ---------- events ---------- */
+  document.addEventListener("click",function(e){
+    var t=e.target;
+    if(!t||!t.closest)return;
+    var tab=t.closest("[data-tab]");
+    if(tab){showTab(tab.getAttribute("data-tab"));return}
+    var cell=t.closest(".cell");
+    if(cell){cycleCell(cell.getAttribute("data-date"),cell.getAttribute("data-fact"));return}
+    var id=t.id||(t.closest("button")&&t.closest("button").id);
+    if(id==="flip")flip();
+    else if(id==="stuck")showHint();
+    else if(id==="knew")answered(true);
+    else if(id==="notyet")answered(false);
+    else if(id==="again")startRound();
+    else if(id==="totracker")showTab("tracker");
+    else if(id==="print1"||id==="print2")window.print();
+    else if(id==="clear"){
+      if(window.confirm("Clear every tick in the tracker?")){log={};save("bingo:maths:threes-flip-pack:log",log);renderTracker()}
+    }
+  });
+  document.addEventListener("input",function(e){
+    var t=e.target;
+    if(t&&t.classList&&t.classList.contains("hook-in")){
+      hooks[t.getAttribute("data-fact")]=t.value;
+      save("bingo:maths:threes-flip-pack:hooks",hooks);
+    }
+  });
+
+  /* ---------- go ---------- */
+  renderFacts();
+  renderPrint();
+  startRound();
+})();
+</script>
+<script src="../../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>

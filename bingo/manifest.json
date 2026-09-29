@@ -33,6 +33,14 @@
       "year": 2026,
       "status": "current",
       "topic": "Times tables"
+    },
+    {
+      "title": "Say it, then flip it: 3×6, 3×7, 3×8",
+      "path": "maths/threes-flip-pack/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Times tables"
     }
   ]
 }
