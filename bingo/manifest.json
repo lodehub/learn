@@ -43,8 +43,8 @@
       "topic": "Times tables"
     },
     {
-      "title": "Climb the threes",
-      "path": "maths/climb-the-threes/",
+      "title": "Climb the threes: the whole table",
+      "path": "maths/climb-the-threes-full/",
       "type": "html",
       "year": 2026,
       "status": "current",
