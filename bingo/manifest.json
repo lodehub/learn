@@ -49,6 +49,14 @@
       "year": 2026,
       "status": "current",
       "topic": "Times tables"
+    },
+    {
+      "title": "Climb the fours: the whole table",
+      "path": "maths/climb-the-fours-full/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Times tables"
     }
   ]
 }
