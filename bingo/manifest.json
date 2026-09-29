@@ -1,10 +1,38 @@
 {
   "subjects": [
-    { "slug": "english", "label": "English" },
-    { "slug": "maths", "label": "Maths" }
+    {
+      "slug": "english",
+      "label": "English"
+    },
+    {
+      "slug": "maths",
+      "label": "Maths"
+    }
   ],
   "items": [
-    { "title": "Times Table Blast Off: 3s", "path": "maths/times-tables-3s/", "type": "html", "year": 2026, "status": "current", "topic": "Times tables" },
-    { "title": "Times Table Blast Off: 4s", "path": "maths/times-tables-4s/", "type": "html", "year": 2026, "status": "current", "topic": "Times tables" }
+    {
+      "title": "Times Table Blast Off: 3s",
+      "path": "maths/times-tables-3s/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Times tables"
+    },
+    {
+      "title": "Times Table Blast Off: 4s",
+      "path": "maths/times-tables-4s/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Times tables"
+    },
+    {
+      "title": "Match & Blast: 3s & 4s",
+      "path": "maths/match-and-blast/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Times tables"
+    }
   ]
 }
