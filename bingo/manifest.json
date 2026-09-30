@@ -57,6 +57,14 @@
       "year": 2026,
       "status": "current",
       "topic": "Times tables"
+    },
+    {
+      "title": "Threes Bakery",
+      "path": "maths/threes-bakery/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Times tables"
     }
   ]
 }
