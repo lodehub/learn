@@ -438,7 +438,7 @@ function soWhat(host){
   function draw(){
     if(i>=order.length){
       host.innerHTML=`<div class="card"><h3>Round complete</h3><p>You picked the grounded inference first time on <b>${right} of ${order.length}</b>.</p><p class="muted small">The real test is whether you can write the sentence yourself before seeing the options. Try the round again, covering the options and saying your inference out loud first.</p><button class="btn" id="again">Go again</button></div>`;
-      $('#again').onclick=()=>soWhat(host);return;
+      host.querySelector('#again').onclick=()=>soWhat(host);return;
     }
     const q=order[i];
     const opts=shuffle([['good',q.good],['repeat',q.repeat],['drift',q.drift]]);
@@ -446,17 +446,17 @@ function soWhat(host){
      <div class="card soft"><b>Fact:</b> ${q.fact}</div>
      <p>Say your own “So what?” out loud. Then choose the best explanation.</p>
      <div id="opts">${opts.map(([k,t])=>`<button class="opt" data-k="${k}">${t}</button>`).join('')}</div><div class="fb"></div>`;
-    $('#opts').onclick=e=>{
+    host.querySelector('#opts').onclick=e=>{
       const b=e.target.closest('.opt'); if(!b||b.disabled) return;
       if(b.dataset.k==='good') right++;
-      $$('#opts .opt').forEach(o=>{
+      host.querySelectorAll('#opts .opt').forEach(o=>{
         o.disabled=true;
         const k=o.dataset.k;
         o.classList.add(k==='good'?'good':'bad');
         o.insertAdjacentHTML('beforeend',`<span class="tag">${k==='good'?'Grounded inference: it follows from the fact and says what it reveals':k==='repeat'?'Just repeats the fact (describing, not explaining)':'Drifts: '+q.driftWhy}</span>`);
       });
-      $('.fb').innerHTML=`<button class="btn" id="nx">${i+1<order.length?'Next fact':'Finish'}</button>`;
-      $('#nx').onclick=()=>{i++;draw();};
+      host.querySelector('.fb').innerHTML=`<button class="btn" id="nx">${i+1<order.length?'Next fact':'Finish'}</button>`;
+      host.querySelector('#nx').onclick=()=>{i++;draw();};
     };
   }
   draw();
@@ -465,17 +465,17 @@ function soWhat(host){
 function says(host){
   const order=shuffle(SAYS); let i=0;
   function draw(){
-    if(i>=order.length){host.innerHTML=`<div class="card"><h3>All eight done</h3><p>The habit: before you write any sentence, ask “Could I add a name, date, number or place?”</p><button class="btn" id="again">Go again</button></div>`;$('#again').onclick=()=>says(host);return;}
+    if(i>=order.length){host.innerHTML=`<div class="card"><h3>All eight done</h3><p>The habit: before you write any sentence, ask “Could I add a name, date, number or place?”</p><button class="btn" id="again">Go again</button></div>`;host.querySelector('#again').onclick=()=>says(host);return;}
     const [v,m]=order[i];
     host.innerHTML=`<div class="progress"><i style="width:${i/order.length*100}%"></i></div>
      <div class="card soft"><b>Vague sentence:</b> ${v}</div>
      <p>Rewrite it with a real name, date, number or place. Use your memory, then check the Learn page if you’re stuck.</p>
      <textarea id="ans" rows="3" aria-label="Your rewrite"></textarea>
      <div class="row"><button class="btn" id="rev">Show model</button></div><div class="fb"></div>`;
-    $('#rev').onclick=()=>{
-      $('.fb').innerHTML=`<div class="card"><b>Model:</b> ${m}<p class="small muted">Did yours have at least one name, date, number or place? Different correct details are fine.</p></div><button class="btn" id="nx">${i+1<order.length?'Next':'Finish'}</button>`;
-      $('#rev').disabled=true;
-      $('#nx').onclick=()=>{i++;draw();};
+    host.querySelector('#rev').onclick=()=>{
+      host.querySelector('.fb').innerHTML=`<div class="card"><b>Model:</b> ${m}<p class="small muted">Did yours have at least one name, date, number or place? Different correct details are fine.</p></div><button class="btn" id="nx">${i+1<order.length?'Next':'Finish'}</button>`;
+      host.querySelector('#rev').disabled=true;
+      host.querySelector('#nx').onclick=()=>{i++;draw();};
     };
   }
   draw();
@@ -567,20 +567,20 @@ function startRound(){
     if(i>=set.length){
       S.best=Math.max(S.best||0,score);save();
       host.innerHTML=`<div class="card"><h3>${score} out of 10</h3>${miss.length?`<p>Missed:</p><ul class="tight">${miss.map(q=>`<li>${q[1]} <b>${q[2]}</b></li>`).join('')}</ul><p class="muted small">These come back first next round.</p>`:'<p class="ok">Perfect round.</p>'}<div class="row"><button class="btn" id="again">Another round</button></div></div>`;
-      $('#again').onclick=startRound;return;
+      host.querySelector('#again').onclick=startRound;return;
     }
     const q=set[i], opts=shuffle([q[2],...q[3]]);
     host.innerHTML=`<div class="progress"><i style="width:${i/10*100}%"></i></div><div class="card"><b>${i+1}. ${q[1]}</b></div>
      <div id="opts">${opts.map(o=>`<button class="opt" data-v="${esc(o)}">${o}</button>`).join('')}</div><div class="fb"></div>`;
-    $('#opts').onclick=e=>{
+    host.querySelector('#opts').onclick=e=>{
       const b=e.target.closest('.opt');if(!b||b.disabled)return;
       const ok=b.dataset.v===q[2];
-      $$('#opts .opt').forEach(o=>{o.disabled=true;if(o.dataset.v===q[2])o.classList.add('good');});
+      host.querySelectorAll('#opts .opt').forEach(o=>{o.disabled=true;if(o.dataset.v===q[2])o.classList.add('good');});
       if(!ok)b.classList.add('bad');
       if(ok)score++;else miss.push(q);
       S.seen[q[0]]=ok;save();
-      $('.fb').innerHTML=`<p class="${ok?'ok':'no'}">${ok?'Correct.':'The answer is '+q[2]+'.'}</p><button class="btn" id="nx">${i+1<set.length?'Next':'See score'}</button>`;
-      $('#nx').onclick=()=>{i++;draw();};
+      host.querySelector('.fb').innerHTML=`<p class="${ok?'ok':'no'}">${ok?'Correct.':'The answer is '+q[2]+'.'}</p><button class="btn" id="nx">${i+1<set.length?'Next':'See score'}</button>`;
+      host.querySelector('#nx').onclick=()=>{i++;draw();};
     };
   }
   draw();
