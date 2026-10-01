@@ -19,6 +19,14 @@
   ],
   "items": [
     {
+      "title": "English Language Week 1: say what words do",
+      "path": "english/week1-language/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Language analysis"
+    },
+    {
       "title": "Algebra Quest",
       "path": "maths/algebra-quest/",
       "type": "html",
