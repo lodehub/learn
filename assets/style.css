@@ -168,6 +168,27 @@ h1 {
 .row .title { flex: 1; }
 .row .year { font-size: 15px; font-weight: 500; color: var(--muted); }
 
+/* Practise / Print sections inside a subject */
+.section { margin: 8px 0 28px; }
+.section h2 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.section h2 span { font-size: 16px; font-weight: 500; color: var(--muted); margin-left: 6px; }
+.section .topic:first-of-type { margin-top: 0; }
+
+/* A tool with its own worksheet: play row plus a print button */
+.pair { display: flex; gap: 10px; }
+.pair .row:first-child { flex: 1; min-width: 0; }
+.row.print { flex: none; justify-content: center; width: 72px; padding: 0; color: var(--accent); }
+.row.print .icon { width: 30px; height: 30px; }
+
+/* "All printables" link under the subject tiles */
+.row.shelf { margin-top: var(--gap); }
+
+.note { margin: -8px 0 20px; color: var(--muted); font-size: 16px; }
+
 .topic {
   margin: 28px 0 12px;
   font-size: 15px;
@@ -176,9 +197,7 @@ h1 {
   text-transform: uppercase;
   color: var(--muted);
 }
-.toggle + .topic { margin-top: 4px; }
-
-/* Current / Past years toggle */
+/* Current / Archive toggle */
 .toggle {
   display: inline-flex;
   padding: 4px;

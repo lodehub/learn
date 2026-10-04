@@ -24,7 +24,9 @@
       "type": "html",
       "year": 2026,
       "status": "current",
-      "topic": "Language analysis"
+      "topic": "Language analysis",
+      "print": "english/week1-language/week1-writing-sheet.pdf",
+      "printTitle": "Week 1 writing sheet"
     },
     {
       "title": "Algebra Quest",
