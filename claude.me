@@ -14,7 +14,8 @@ Owner account: ceejay77 (anonymous by design).
 - `/index.html`: "Who's learning?" child picker, reads `/children.json`
 - `/assets/`: shared style.css and ui.js used by every page
 - `/<slug>/index.html`: subject picker, reads that child's `manifest.json`
-- `/<slug>/<subject>/…`: tools (HTML folders) and PDFs
+- `/<slug>/<subject>/<tool>/`: HTML tools to practise on screen
+- `/<slug>/<subject>/pdfs/`: that subject's PDF shelf (printables). A worksheet that belongs to one tool can stay in the tool's folder instead.
 
 ## Privacy rules (important)
 - Never use real names, initials, schools, dates of birth or any personal data anywhere: slugs and labels only.
@@ -25,9 +26,12 @@ Owner account: ceejay77 (anonymous by design).
 - ALL links relative, so the site works at ceejay77.github.io/learn/ and later at a custom domain.
 - Each tool stores its own progress in localStorage under a key prefixed `<slug>:<subject>:<tool>:`. No shared save file.
 - Adding material = put files in the subject folder + add one entry to that child's manifest.json. Never hand-edit picker HTML.
-- manifest entry: { title, path, type: "html"|"pdf", year, status: "current"|"archived", topic? }. Optional `topic` groups items under a heading within the subject (e.g. "Times tables"); leave it out while a subject is small.
+- manifest entry: { title, path, type: "html"|"pdf", year, status: "current"|"archived", topic?, term?, print?, printTitle? }. Optional `topic` groups items under a heading within the subject (e.g. "Times tables"); leave it out while a subject is small.
+- Each subject page shows two sections: **Practise** (type "html") and **Print** (type "pdf", plus any `print` worksheet attached to an HTML tool). Each child page also has an "All printables" shelf listing every PDF by subject.
+- A standalone PDF = file in `<subject>/pdfs/` + an entry with type "pdf". A PDF that goes with one HTML tool = add `"print": "<path to pdf>"` (and optionally `"printTitle"`) to that tool's entry, so it gets a print button and appears on the Print shelf.
 - Every HTML tool includes `<script src="../../../assets/back.js"></script>` before `</body>` so it has a back button when installed as an app.
-- Archived items appear only behind a "Past years" toggle. Deleting old material = remove the folder and its manifest entry.
+- Archiving finished work = set `"status": "archived"` (optionally add `"term": "Autumn"`). Never move or rename the files: the URL, saved progress and printouts keep working. Archived items appear behind the "Archive" toggle, styled exactly like current work, grouped by year (newest first) then topic.
+- Deleting old material = remove the folder and its manifest entry.
 - Renaming a child's slug means renaming the folder and updating every link: do it in one commit.
 - Mobile-first, big tap targets, works on iPad Safari. Add a web manifest and service worker per child folder so each can be installed as a PWA (scoped to that folder).
 - Before pushing: open each page locally, check for broken links, then commit with a clear message.

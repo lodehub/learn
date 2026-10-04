@@ -10,7 +10,8 @@
     paw: '<circle cx="5.5" cy="10" r="2"/><circle cx="9" cy="5.5" r="2"/><circle cx="15" cy="5.5" r="2"/><circle cx="18.5" cy="10" r="2"/>' +
          '<path d="M12 11c-3 0-6 4.5-6 7a3 3 0 0 0 3 3c1.2 0 2-.6 3-.6s1.8.6 3 .6a3 3 0 0 0 3-3c0-2.5-3-7-6-7z"/>',
     book: '<path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/>',
-    file: '<path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/>'
+    file: '<path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/>',
+    print: '<path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/>'
   };
 
   function icon(name) {
@@ -80,7 +81,8 @@
       function draw() {
         var subjectSlug = decodeURIComponent(location.hash.slice(1));
         var subject = subjects.filter(function (s) { return s.slug === subjectSlug; })[0];
-        if (subject) drawSubject(subject); else drawSubjects();
+        if (subjectSlug === PRINTABLES) drawPrintables();
+        else if (subject) drawSubject(subject); else drawSubjects();
         window.scrollTo(0, 0);
       }
 
@@ -91,7 +93,8 @@
       function toggleHTML() {
         return '<div class="toggle" role="group" aria-label="Which material">' +
           '<button type="button" data-archived="0" aria-pressed="' + !showArchived + '">Current</button>' +
-          '<button type="button" data-archived="1" aria-pressed="' + showArchived + '">Past years</button></div>';
+          '<button type="button" data-archived="1" aria-pressed="' + showArchived + '">Archive</button></div>' +
+          (showArchived ? '<p class="note">Finished work, kept to look back on. Everything still opens and prints.</p>' : '');
       }
 
       function bindToggle() {
@@ -103,50 +106,92 @@
         });
       }
 
+      function bar(title, back, label) {
+        return '<div class="bar"><a class="back" href="' + back + '" aria-label="' + label + '">&#8592;</a>' +
+          '<h1>' + esc(title) + '</h1></div>';
+      }
+
+      function counts(list) {
+        var p = list.filter(isPractise).length, q = printsOf(list).length, out = [];
+        if (p) out.push(p + ' to practise');
+        if (q) out.push(q + ' to print');
+        return out.join(' · ') || 'Empty';
+      }
+
       function drawSubjects() {
-        var html = '<div class="bar"><a class="back" href="../" aria-label="Back to everyone">&#8592;</a>' +
-          '<h1>' + esc(child.label) + '</h1></div>' + toggleHTML();
+        var html = bar(child.label, '../', 'Back to everyone') + toggleHTML();
         var shown = subjects.filter(function (s) {
-          // In "Past years", only subjects that have archived material.
+          // In the archive, only subjects that have archived material.
           return !showArchived || items.some(function (it) { return subjectOf(it) === s.slug && visible(it); });
         });
         if (!shown.length) {
-          html += '<p class="empty">' + (showArchived ? 'Nothing from past years yet.' : 'No subjects yet.') + '</p>';
+          html += '<p class="empty">' + (showArchived ? 'Nothing archived yet.' : 'No subjects yet.') + '</p>';
         } else {
           html += '<ul class="grid">' + shown.map(function (s) {
-            var n = items.filter(function (it) { return subjectOf(it) === s.slug && visible(it); }).length;
+            var list = items.filter(function (it) { return subjectOf(it) === s.slug && visible(it); });
             return '<li><a class="tile" href="#' + encodeURIComponent(s.slug) + '">' + icon(s.icon || 'book') +
-              '<span>' + esc(s.label) + '</span><span class="sub">' + n + (n === 1 ? ' item' : ' items') + '</span></a></li>';
+              '<span>' + esc(s.label) + '</span><span class="sub">' + counts(list) + '</span></a></li>';
           }).join('') + '</ul>';
+        }
+        var allPrints = printsOf(items.filter(visible));
+        if (allPrints.length) {
+          html += '<a class="row shelf" href="#' + PRINTABLES + '"><span class="badge">PDF</span>' +
+            '<span class="title">All printables</span><span class="year">' + allPrints.length + '</span></a>';
         }
         el.innerHTML = html;
         bindToggle();
       }
 
+      // One subject: "Practise" (HTML tools) then "Print" (PDFs, including worksheets attached to a tool).
       function drawSubject(s) {
         var list = items.filter(function (it) { return subjectOf(it) === s.slug && visible(it); });
-        var html = '<div class="bar"><a class="back" href="#" aria-label="Back to subjects">&#8592;</a>' +
-          '<h1>' + esc(s.label) + '</h1></div>' + toggleHTML();
-        if (!list.length) {
-          html += '<p class="empty">' + (showArchived ? 'Nothing from past years here.' : 'Nothing here yet.') + '</p>';
+        var html = bar(s.label, '#', 'Back to subjects') + toggleHTML();
+        var practise = list.filter(isPractise), prints = printsOf(list);
+        if (!practise.length && !prints.length) {
+          html += '<p class="empty">' + (showArchived ? 'Nothing archived here yet.' : 'Nothing here yet.') + '</p>';
         } else {
-          // Optional "topic" groups items under headings, in manifest order; items without one go last.
-          var groups = [];
-          list.forEach(function (it) {
-            var t = it.topic || '';
-            var g = groups.filter(function (x) { return x.topic === t; })[0];
-            if (!g) groups.push(g = { topic: t, items: [] });
-            g.items.push(it);
-          });
-          groups.sort(function (a, b) { return (a.topic === '') - (b.topic === ''); });
-          var headed = groups.some(function (g) { return g.topic; });
-          html += groups.map(function (g) {
-            return (headed ? '<h2 class="topic">' + esc(g.topic || 'Other') + '</h2>' : '') +
-              '<ul class="list">' + g.items.map(rowHTML).join('') + '</ul>';
-          }).join('');
+          if (practise.length) html += section('Practise', 'On screen', practise, practiseRowHTML);
+          if (prints.length) html += section('Print', 'Worksheets to print out', prints, printRowHTML);
         }
         el.innerHTML = html;
         bindToggle();
+      }
+
+      // This child's whole PDF shelf, grouped by subject.
+      function drawPrintables() {
+        var html = bar('Printables', '#', 'Back to subjects') + toggleHTML();
+        var blocks = subjects.map(function (s) {
+          var prints = printsOf(items.filter(function (it) { return subjectOf(it) === s.slug && visible(it); }));
+          return prints.length ? section(s.label, '', prints, printRowHTML) : '';
+        }).join('');
+        html += blocks || '<p class="empty">' + (showArchived ? 'No archived printables.' : 'No printables yet.') + '</p>';
+        el.innerHTML = html;
+        bindToggle();
+      }
+
+      function section(title, hint, list, row) {
+        return '<section class="section"><h2>' + esc(title) + (hint ? ' <span>' + esc(hint) + '</span>' : '') + '</h2>' +
+          groupsHTML(list, row) + '</section>';
+      }
+
+      // Current: optional "topic" headings. Archive: year headings (newest first), with the topic alongside.
+      function groupsHTML(list, row) {
+        var groups = [];
+        list.forEach(function (it) {
+          var key = (showArchived ? (it.year || '') + '|' : '') + (it.topic || '');
+          var g = groups.filter(function (x) { return x.key === key; })[0];
+          if (!g) groups.push(g = { key: key, year: it.year || 0, topic: it.topic || '', items: [] });
+          g.items.push(it);
+        });
+        groups.sort(function (a, b) {
+          return (showArchived ? b.year - a.year : 0) || ((a.topic === '') - (b.topic === ''));
+        });
+        var headed = groups.some(function (g) { return g.topic; }) || (showArchived && groups.length > 1);
+        return groups.map(function (g) {
+          var label = showArchived ? [g.year || '', g.topic].filter(Boolean).join(' · ') : (g.topic || 'Other');
+          return (headed ? '<h3 class="topic">' + esc(label || 'Other') + '</h3>' : '') +
+            '<ul class="list">' + g.items.map(row).join('') + '</ul>';
+        }).join('');
       }
 
       window.addEventListener('hashchange', draw);
@@ -158,12 +203,36 @@
     }
   }
 
-  function rowHTML(it) {
-    var isPdf = it.type === 'pdf';
-    return '<li><a class="row" href="' + esc(it.path) + '"' + (isPdf ? ' target="_blank" rel="noopener"' : '') + '>' +
-      '<span class="badge">' + (isPdf ? 'PDF' : 'Play') + '</span>' +
-      '<span class="title">' + esc(it.title) + '</span>' +
-      (it.year ? '<span class="year">' + esc(it.year) + '</span>' : '') + '</a></li>';
+  var PRINTABLES = 'printables';
+
+  function isPractise(it) { return it.type !== 'pdf'; }
+
+  // Every PDF in a list: standalone PDF items, plus the "print" worksheet attached to an HTML tool.
+  function printsOf(list) {
+    var out = [];
+    list.forEach(function (it) {
+      if (it.type === 'pdf') out.push(it);
+      else if (it.print) out.push({ title: it.printTitle || it.title, path: it.print, year: it.year, term: it.term, topic: it.topic });
+    });
+    return out;
+  }
+
+  function metaHTML(it) {
+    var m = [it.term, it.year].filter(Boolean).join(' ');
+    return m ? '<span class="year">' + esc(m) + '</span>' : '';
+  }
+
+  function practiseRowHTML(it) {
+    var row = '<a class="row" href="' + esc(it.path) + '"><span class="badge">Play</span>' +
+      '<span class="title">' + esc(it.title) + '</span>' + metaHTML(it) + '</a>';
+    if (!it.print) return '<li>' + row + '</li>';
+    return '<li class="pair">' + row + '<a class="row print" href="' + esc(it.print) + '" target="_blank" rel="noopener" ' +
+      'aria-label="Print the worksheet for ' + esc(it.title) + '">' + icon('print') + '</a></li>';
+  }
+
+  function printRowHTML(it) {
+    return '<li><a class="row" href="' + esc(it.path) + '" target="_blank" rel="noopener"><span class="badge">PDF</span>' +
+      '<span class="title">' + esc(it.title) + '</span>' + metaHTML(it) + '</a></li>';
   }
 
   // Subject folder = first segment of the item's path, e.g. "maths/counting/" -> "maths".
