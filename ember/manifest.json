@@ -15,6 +15,10 @@
     {
       "slug": "history",
       "label": "History"
+    },
+    {
+      "slug": "geography",
+      "label": "Geography"
     }
   ],
   "items": [
@@ -53,6 +57,16 @@
       "topic": "Algebra"
     },
     {
+      "title": "Maths Week 1: solving equations, with working and a check",
+      "path": "maths/week1-equations/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Algebra",
+      "print": "maths/week1-equations/week1-written.pdf",
+      "printTitle": "Week 1 written equations"
+    },
+    {
       "title": "Lungs and gas exchange",
       "path": "science/lungs-gas-exchange/",
       "type": "html",
@@ -85,6 +99,16 @@
       "topic": "B4 Organisms"
     },
     {
+      "title": "Science Week 1: gas exchange and the Because Chain",
+      "path": "science/week1-gas-exchange/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "B4 Organisms",
+      "print": "science/week1-gas-exchange/week1-written.pdf",
+      "printTitle": "Week 1 written chain and 6-mark answer"
+    },
+    {
       "title": "Rome: the 14-day revision road",
       "path": "history/rome.html",
       "type": "html",
@@ -95,6 +119,13 @@
       "title": "Roman life and equality: 4-day consolidation",
       "path": "history/rome-life-equality.html",
       "type": "html",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "Geography Week 1: megacities and case-study evidence",
+      "path": "geography/pdfs/megacities-week1-written.pdf",
+      "type": "pdf",
       "year": 2026,
       "status": "current"
     }
