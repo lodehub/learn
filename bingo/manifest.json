@@ -65,6 +65,14 @@
       "year": 2026,
       "status": "current",
       "topic": "Times tables"
+    },
+    {
+      "title": "Grammar and Writing Pack",
+      "path": "english/grammar-writing-pack/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Grammar and writing"
     }
   ]
 }
