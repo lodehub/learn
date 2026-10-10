@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>History writing task 2: Roman childhood</title>
+<style>
+:root{--ink:#1e2430;--muted:#586070;--bg:#f5f6f8;--panel:#fff;--line:#d9dce3;--accent:#6a1b4d;--accent-soft:#f1e4ec;--ok:#25664a;--ok-soft:#e1f1e9;--bad:#a4470b;--bad-soft:#fbeadb}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eaf0;--muted:#a2a9b8;--bg:#14171e;--panel:#1d212b;--line:#333949;--accent:#d58ab6;--accent-soft:#35212d;--ok:#7fd1a8;--ok-soft:#1b3328;--bad:#f0a56a;--bad-soft:#3a2a1b}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:740px;margin:0 auto;padding:20px 16px 90px}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;line-height:1.25;margin:0 0 .4em}
+h1{font-size:1.8rem;color:var(--accent)}h2{font-size:1.4rem}h3{font-size:1.1rem}
+p{margin:.4em 0 .8em}.sub{color:var(--muted);margin-top:0}.hint{color:var(--muted);font-size:.93rem}
+.steps{display:flex;gap:6px;margin:18px 0 22px;flex-wrap:wrap}
+.pill{font-size:.85rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--panel)}
+.pill.on{background:var(--accent);color:#fff;border-color:var(--accent)}.pill.done{border-color:var(--ok);color:var(--ok)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+.lead{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0 12px}
+.q{font-weight:600;margin:10px 0 6px;display:block}
+button{font:inherit;cursor:pointer}
+.primary{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:11px 20px;font-weight:600}
+.primary[disabled]{opacity:.45;cursor:default}
+.ghost{background:transparent;border:1.5px solid var(--accent);color:var(--accent);border-radius:8px;padding:9px 16px;font-weight:600}
+textarea,input[type=text],select{width:100%;font:inherit;padding:10px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+textarea{min-height:110px;resize:vertical;line-height:1.55}
+.stack{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+label.chk{display:flex;gap:10px;align-items:flex-start;margin:6px 0}
+label.chk input{margin-top:6px;width:18px;height:18px}
+.row{display:grid;grid-template-columns:1fr 190px;gap:8px;margin:8px 0}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+.bank li{margin:4px 0}
+.tag{font-size:.8rem;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-left:6px}
+.tag.chk2{border-color:var(--bad);color:var(--bad)}
+details{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:10px 16px;margin:12px 0}
+summary{cursor:pointer;font-weight:600}
+.timer{position:sticky;top:0;background:var(--bg);padding:6px 0;color:var(--muted);font-size:.9rem;z-index:2}
+.sent{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.sent .txt{flex:1}
+.lab{display:flex;gap:4px;flex-shrink:0}
+.lab button{padding:3px 9px;border-radius:6px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);font-size:.85rem}
+.lab button.on.C{background:var(--accent);color:#fff;border-color:var(--accent)}
+.lab button.on.F{background:var(--bad-soft);border-color:var(--bad)}
+.lab button.on.S{background:var(--ok-soft);border-color:var(--ok)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.97rem;background:var(--accent-soft);border:1px solid var(--accent)}
+pre.summary{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font:.85rem/1.5 ui-monospace,Menlo,monospace;max-height:420px;overflow:auto}
+.scoreline{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line)}
+button:focus-visible,textarea:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>History writing task 2</h1>
+<p class="sub" id="sub"></p>
+<div class="steps" id="steps" aria-label="Progress"></div>
+<div id="stage"></div>
+</div>
+<script>
+/* =====================  CONTENT (edit this block for a new question)  ===================== */
+const CONTENT = {
+  storageKey:"ember:history:writing-task-2:result",
+  question:"How far did a Roman child's life depend on the family they were born into?",
+  scope:["Education","Work","Home","Marriage and the future","The father's legal power"],
+  reference:[
+   {h:"Hierarchy",b:["Roman society was strictly layered: Patricians (wealthy, land-owning elite families) at the top, then Plebeians (ordinary free citizens: craftsmen, traders, farmers), then Freedmen (former slaves who had been freed), and Slaves at the bottom, legally considered property with almost no rights.","Status decided nearly everything: what job you could do, whether you could vote or hold office, who you could marry."]},
+   {h:"Houses",b:["Wealthy Romans lived in a domus: a spacious single-family house built around an open central courtyard (atrium), often with mosaic floors, painted walls, and a private garden.","Poorer Romans (the majority, especially in the city of Rome) lived in insulae: multi-storey apartment blocks, cramped, often poorly built, with fire a constant danger. Higher floors were cheaper and worse.","Country estates belonging to the rich were called villas."]},
+   {h:"Childhood",b:["Wealthy boys were educated (often by a private tutor, a paedagogus, frequently an educated Greek slave), learning reading, writing, rhetoric and maths, preparing for public and political life.","Wealthy girls were educated at home in more limited subjects, focused on preparing for marriage and running a household; many were married by their early teens.","Poor children usually had no formal schooling. They worked from a young age, helping with a family trade, farming, or domestic labour.","Roman fathers held enormous legal power over their children (patria potestas): technically total authority, even over adult children, throughout the father's life."]}
+  ],
+  sources:["Reference page","My class notes","My memory (not sure)"],
+  checks:[
+   "My first sentence <strong>answers the question</strong>.",
+   "I said what I'm covering (my chosen themes) so the reader knows my plan.",
+   "After <strong>every fact</strong> I wrote what it <strong>tells us</strong> (a So What).",
+   "Every fact comes from my reference page or notes. Any from memory, I checked or flagged.",
+   "If I used one person or one case as an example, I said it was <strong>one case</strong> (&ldquo;this was rare, which suggests&hellip;&rdquo;).",
+   "I used Roman words (domus, insulae, patria potestas, paedagogus) accurately.",
+   "Each paragraph is about <strong>one thing</strong>.",
+   "My last paragraph <strong>gives a judgement</strong> (how far?) and says why."
+  ],
+  starters:["This suggests that","This shows that","This reveals","This means that","This meant that","which suggests","which shows","which means","This indicates","Underlying this"]
+};
+/* ================================================================================== */
+const $=s=>document.querySelector(s);
+const names=["Plan","Evidence bank","Write","Check your own","Send"];
+const st={i:0,t0:null,writeStart:null,writeSecs:0,refOpens:0,claim:"",themes:[],bank:[],free:false,open:"",paras:{},judge:"",freeText:"",labels:[],checks:[]};
+const mins=s=>s==null?"?":(s<60?s+"s":Math.floor(s/60)+"m "+(s%60)+"s");
+$("#sub").textContent=CONTENT.question;
+function pills(){$("#steps").innerHTML=names.map((n,k)=>{const c=(st.i-1===k)?"on":(st.i-1>k?"done":"");return `<span class="pill ${c}">${k+1}. ${n}</span>`;}).join("");}
+function el(html,cls){const d=document.createElement("div");if(cls)d.className=cls;d.innerHTML=html;return d;}
+function stage(){const s=$("#stage");s.innerHTML="";return s;}
+function go(n){st.i=n;pills();window.scrollTo({top:0});[intro,s1,s2,s3,s4,s5][n]();}
+function nextBtn(label,fn,dis){const w=el(`<button class="primary" id="nb" ${dis?"disabled":""}>${label}</button>`,"stack");w.querySelector("button").onclick=fn;return w;}
+function esc(t){return t.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function refPanel(){
+  const d=document.createElement("details");d.innerHTML=`<summary>Reference page (only if you're stuck)</summary>`+CONTENT.reference.map(r=>`<h3 style="margin-top:10px">${r.h}</h3><ul>${r.b.map(x=>`<li>${x}</li>`).join("")}</ul>`).join("");
+  d.addEventListener("toggle",()=>{if(d.open)st.refOpens++;});return d;
+}
+
+function intro(){
+  const s=stage();
+  s.appendChild(el(`<h2>Your writing task</h2><div class="lead"><strong>${CONTENT.question}</strong></div>
+   <p>About <strong>30 to 35 minutes</strong>. You will plan first, then write, then check your own writing. At the end you send your writing to get feedback.</p>
+   <p><strong>Three things to try this time:</strong></p>
+   <ul><li>Start with your <strong>answer</strong>, not the facts.</li><li>Choose <strong>three</strong> themes and go deeper on each, rather than covering everything.</li><li>After every fact, write the <strong>So What</strong>: what it tells us about the question.</li></ul>
+   <p class="hint">Your facts must come from your reference page or your notes. If you use something from memory, mark it so it can be checked.</p>
+   <div class="stack"><button class="primary" id="go">Start planning</button></div>`,"card"));
+  $("#go").onclick=()=>{st.t0=Date.now();go(1);};
+}
+
+function s1(){
+  const s=stage();
+  s.appendChild(el(`<h2>1. Plan (5 min)</h2><div class="lead"><strong>${CONTENT.question}</strong></div>`));
+  const c=el(`<label class="q" for="claim">My answer in one sentence:</label>
+   <textarea id="claim" style="min-height:70px" placeholder="For example: how far did it depend, and on what?">${esc(st.claim)}</textarea>
+   <p class="q">What counts as a child's &ldquo;life&rdquo; here? Choose <strong>three</strong> themes to cover (you can choose two to four):</p>
+   ${CONTENT.scope.map((t,i)=>`<label class="chk"><input type="checkbox" class="th" value="${t}" ${st.themes.includes(t)?"checked":""}><span>${t}</span></label>`).join("")}
+   <label class="chk" style="margin-top:12px"><input type="checkbox" id="free" ${st.free?"checked":""}><span class="hint">Free-writing mode: one big box instead of a box per paragraph</span></label>`,"card");
+  s.appendChild(c);
+  const nb=nextBtn("Next: evidence bank",()=>{go(2);},true);s.appendChild(nb);
+  const upd=()=>{st.claim=$("#claim").value.trim();st.themes=[...document.querySelectorAll(".th:checked")].map(x=>x.value);st.free=$("#free").checked;
+    const n=st.themes.length;nb.querySelector("button").disabled=!(st.claim.length>=15&&n>=2&&n<=4);};
+  c.addEventListener("input",upd);c.addEventListener("change",upd);upd();
+}
+
+function s2(){
+  const s=stage();
+  s.appendChild(el(`<h2>2. Evidence bank (8 min)</h2>
+   <p class="sub">You may open the reference page now. List <strong>at least one fact for each theme</strong> you chose, and at least <strong>${Math.max(3,st.themes.length)}</strong> facts in all. Then it goes away while you write.</p>`));
+  s.appendChild(refPanel());
+  if(!st.bank.length)st.bank=Array.from({length:Math.max(5,st.themes.length+1)},()=>({fact:"",src:CONTENT.sources[0],theme:""}));
+  const c=el(`<p class="hint">Write the fact itself, not a So What. A name, a Roman word or a detail makes it a real fact.</p><div id="rows"></div><div class="stack"><button class="ghost" id="addRow">Add another fact</button></div>`,"card");
+  s.appendChild(c);
+  const rows=c.querySelector("#rows");
+  function draw(){
+    rows.innerHTML="";
+    st.bank.forEach((b,i)=>{
+      const r=el(`<div class="row"><input type="text" placeholder="Fact ${i+1}" value="${esc(b.fact).replace(/"/g,'&quot;')}"><select aria-label="Source of fact ${i+1}">${CONTENT.sources.map(x=>`<option ${x===b.src?"selected":""}>${x}</option>`).join("")}</select></div>
+        <div style="margin:-2px 0 8px"><select style="width:auto" aria-label="Theme of fact ${i+1}"><option value="">Which theme?</option>${st.themes.map(t=>`<option ${t===b.theme?"selected":""}>${t}</option>`).join("")}</select></div>`);
+      r.querySelector("input").oninput=e=>{b.fact=e.target.value;check();};
+      r.querySelectorAll("select")[0].onchange=e=>{b.src=e.target.value;};
+      r.querySelectorAll("select")[1].onchange=e=>{b.theme=e.target.value;check();};
+      rows.appendChild(r);
+    });
+  }
+  draw();
+  c.querySelector("#addRow").onclick=()=>{st.bank.push({fact:"",src:CONTENT.sources[0],theme:""});draw();};
+  const nb=nextBtn("Next: write (the reference page goes away)",()=>go(3),true);s.appendChild(nb);
+  function check(){
+    const f=st.bank.filter(b=>b.fact.trim().length>=10);
+    const covered=st.themes.every(t=>f.some(b=>b.theme===t));
+    nb.querySelector("button").disabled=!(f.length>=Math.max(3,st.themes.length)&&covered);
+  }
+  check();
+}
+
+function s3(){
+  const s=stage();
+  if(!st.writeStart)st.writeStart=Date.now();
+  const timer=el(`<span id="tm">Writing time: 0:00</span> &nbsp;|&nbsp; <span id="wc">0 words</span>`,"timer");s.appendChild(timer);
+  s.appendChild(el(`<h2>3. Write (20 min)</h2><div class="lead"><strong>${CONTENT.question}</strong></div>`));
+  const bank=st.bank.filter(b=>b.fact.trim().length>=10);
+  s.appendChild(el(`<h3>My evidence bank</h3><ul class="bank">${bank.map(b=>`<li>${esc(b.fact)}<span class="tag ${b.src.startsWith("My memory")?"chk2":""}">${b.theme||"no theme"}</span>${b.src.startsWith("My memory")?`<span class="tag chk2">check</span>`:""}</li>`).join("")}</ul>
+   <p class="hint"><strong>Remember:</strong> after every fact, ask <em>&ldquo;So what does that tell us about the question?&rdquo;</em> and write the answer. Answer first. One paragraph per theme.</p>`,"card"));
+  s.appendChild(refPanel());
+  const c=el("","card");s.appendChild(c);
+  if(st.free){
+    c.innerHTML=`<label class="q" for="ft">My answer:</label><textarea id="ft" style="min-height:360px" placeholder="Start with your answer. Use paragraph breaks (press Enter twice) for each theme.">${esc(st.freeText)}</textarea>`;
+  }else{
+    c.innerHTML=`<label class="q" for="op">Opening: my answer, and the themes I'll cover</label><textarea id="op" placeholder="Start with your answer">${esc(st.open||st.claim)}</textarea>`+
+      st.themes.map((t,i)=>`<label class="q" for="p${i}">Paragraph ${i+1}: ${t}</label><textarea id="p${i}" style="min-height:130px" placeholder="One claim, then fact, then So What, for ${t.toLowerCase()}">${esc(st.paras[t]||"")}</textarea>`).join("")+
+      `<label class="q" for="jd">Final paragraph: how far, and why?</label><textarea id="jd" placeholder="Give your judgement and say why">${esc(st.judge)}</textarea>`;
+  }
+  const nb=nextBtn("Done writing: check my own work",()=>{st.writeSecs=Math.round((Date.now()-st.writeStart)/1000);go(4);},true);s.appendChild(nb);
+  const collect=()=>{
+    if(st.free)st.freeText=$("#ft").value;
+    else{st.open=$("#op").value;st.themes.forEach((t,i)=>{st.paras[t]=$("#p"+i).value;});st.judge=$("#jd").value;}
+    const w=fullText().split(/\s+/).filter(Boolean).length;$("#wc").textContent=w+" words";
+    nb.querySelector("button").disabled=w<80;
+  };
+  c.addEventListener("input",collect);collect();
+  if(window._tm)clearInterval(window._tm);
+  window._tm=setInterval(()=>{const t=$("#tm");if(!t){clearInterval(window._tm);return;}const sec=Math.round((Date.now()-st.writeStart)/1000);t.textContent="Writing time: "+Math.floor(sec/60)+":"+String(sec%60).padStart(2,"0");},1000);
+}
+function paras(){
+  if(st.free)return st.freeText.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
+  return [st.open,...st.themes.map(t=>st.paras[t]||""),st.judge].map(x=>x.trim()).filter(Boolean);
+}
+function fullText(){return paras().join("\n\n");}
+function sentences(t){return (t.match(/[^.!?]+[.!?]+["'\u201d)\]]*|[^.!?]+$/g)||[]).map(x=>x.trim()).filter(x=>x.length>3);}
+
+function s4(){
+  const s=stage();clearInterval(window._tm);
+  const all=paras().flatMap((p,pi)=>sentences(p).map(x=>({p:pi,t:x})));
+  if(st.labels.length!==all.length||all.some((a,i)=>st.labels[i]&&st.labels[i].t!==a.t))st.labels=all.map(a=>({t:a.t,p:a.p,l:""}));
+  s.appendChild(el(`<h2>4. Check your own writing (5 min)</h2>
+   <p class="sub">Label every sentence. <strong>Claim</strong> = answers the question or states a point. <strong>Fact</strong> = says what was true. <strong>So What</strong> = says what the fact <em>tells us</em>. Be honest. Your labels help you see your own writing.</p>`));
+  const list=el("","card");s.appendChild(list);
+  const sum=el("","fb");s.appendChild(sum);
+  function draw(){
+    list.innerHTML="";let lastP=-1;
+    st.labels.forEach((x,i)=>{
+      if(x.p!==lastP&&lastP!==-1)list.appendChild(el(`<hr style="border:0;border-top:2px dashed var(--line);margin:6px 0">`));lastP=x.p;
+      const r=el(`<span class="txt">${esc(x.t)}</span><span class="lab">${["C","F","S"].map(k=>`<button class="${x.l===k?"on ":""}${k}" data-k="${k}" aria-pressed="${x.l===k}">${{C:"Claim",F:"Fact",S:"So What"}[k]}</button>`).join("")}</span>`,"sent");
+      r.querySelectorAll("button").forEach(b=>b.onclick=()=>{x.l=b.dataset.k;draw();});
+      list.appendChild(r);
+    });
+    const n={C:0,F:0,S:0};st.labels.forEach(x=>{if(x.l)n[x.l]++;});
+    const unl=st.labels.filter(x=>!x.l).length;
+    let msg=`<strong>Claims ${n.C} &nbsp;|&nbsp; Facts ${n.F} &nbsp;|&nbsp; So Whats ${n.S}</strong>`;
+    if(unl)msg+=`<br>${unl} sentence${unl>1?"s":""} still to label.`;
+    else if(n.F>0&&n.S<n.F*0.6)msg+=`<br>You have more facts than So Whats. Choose two fact sentences that have no So What after them. Press <em>Edit my writing</em> and add one for each.`;
+    else if(n.F>0)msg+=`<br>That's a good balance: most facts are followed by what they tell us.`;
+    sum.innerHTML=msg;
+    chk.querySelector("button").disabled=unl>0;
+  }
+  const back=el(`<button class="ghost">Edit my writing</button>`,"stack");back.querySelector("button").onclick=()=>go(3);s.appendChild(back);
+  const cc=el(`<h3>My checklist</h3>${CONTENT.checks.map((t,i)=>`<label class="chk"><input type="checkbox" data-i="${i}" ${st.checks[i]?"checked":""}><span>${t}</span></label>`).join("")}`,"card");
+  cc.addEventListener("change",e=>{if(e.target.dataset.i!==undefined)st.checks[+e.target.dataset.i]=e.target.checked;});s.appendChild(cc);
+  var chk=nextBtn("Next: send my writing",()=>go(5),true);s.appendChild(chk);draw();
+}
+
+function metrics(){
+  const t=fullText(),low=t.toLowerCase();
+  const words=t.split(/\s+/).filter(Boolean).length;
+  const starters=CONTENT.starters.reduce((a,x)=>a+(low.split(x.toLowerCase()).length-1),0);
+  const nums=(t.match(/\b\d{1,4}\b/g)||[]).length;
+  const n={C:0,F:0,S:0};st.labels.forEach(x=>{if(x.l)n[x.l]++;});
+  return {words,paras:paras().length,sentences:st.labels.length,starters,nums,n};
+}
+function s5(){
+  const s=stage();const m=metrics();
+  const secs=Math.round((Date.now()-st.t0)/1000);
+  const out=[];
+  out.push("HISTORY WRITING TASK 2: "+CONTENT.question);
+  out.push("Date: "+new Date().toLocaleDateString("en-GB"));
+  out.push("Mode: "+(st.free?"free writing":"paragraph boxes (scaffolded)"));
+  out.push("");out.push("PLAN");out.push("My answer: "+st.claim);out.push("Themes: "+st.themes.join(", "));
+  out.push("");out.push("EVIDENCE BANK");
+  st.bank.filter(b=>b.fact.trim().length>=10).forEach((b,i)=>out.push((i+1)+". "+b.fact.trim()+"  ["+b.src+"; "+(b.theme||"no theme")+"]"));
+  out.push("");out.push("MY WRITING");out.push(fullText());
+  out.push("");out.push("MY OWN LABELS (C = claim, F = fact, S = so what)");
+  let lp=-1;st.labels.forEach(x=>{if(x.p!==lp){out.push("--- paragraph "+(x.p+1)+" ---");lp=x.p;}out.push("["+(x.l||"?")+"] "+x.t);});
+  out.push("");out.push("MY CHECKLIST: "+st.checks.filter(Boolean).length+" of "+CONTENT.checks.length+" ticked");
+  CONTENT.checks.forEach((c,i)=>out.push((st.checks[i]?"[x] ":"[ ] ")+c.replace(/<[^>]+>/g,"").replace(/&ldquo;|&rdquo;/g,'"').replace(/&hellip;/g,"...")));
+  out.push("");out.push("NUMBERS (rough, for comparison with the first essay)");
+  out.push("Words: "+m.words+"; paragraphs: "+m.paras+"; sentences: "+m.sentences);
+  out.push("Own labels: claims "+m.n.C+", facts "+m.n.F+", so whats "+m.n.S);
+  out.push("So-What starter phrases found: "+m.starters+"; numbers or dates used: "+m.nums);
+  out.push("Reference page opened while writing: "+st.refOpens+" time(s); writing time: "+mins(st.writeSecs)+"; total time: "+mins(secs));
+  const text=out.join("\n");
+  s.appendChild(el(`<h2>5. Send it for feedback</h2>
+   <div class="card"><div class="scoreline"><span>Words</span><strong>${m.words}</strong></div>
+   <div class="scoreline"><span>Paragraphs</span><strong>${m.paras}</strong></div>
+   <div class="scoreline"><span>Your labels: facts / So Whats</span><strong>${m.n.F} / ${m.n.S}</strong></div>
+   <div class="scoreline"><span>Writing time</span><strong>${mins(st.writeSecs)}</strong></div></div>
+   <div class="card"><h3>Copy this and paste it into the History chat</h3>
+   <p class="hint">Feedback will cover the same areas as last time: your answer first, So What after facts, facts checked against your notes, exceptions, and paragraphs.</p>
+   <pre class="summary" id="summary"></pre>
+   <div class="stack"><button class="primary" id="copyBtn">Copy everything</button><button class="ghost" id="dlBtn">Download as a text file</button><span class="hint" id="copied"></span></div></div>`));
+  $("#summary").textContent=text;
+  try{localStorage.setItem(CONTENT.storageKey,JSON.stringify({text,date:new Date().toISOString()}));}catch(e){}
+  $("#copyBtn").onclick=async()=>{try{await navigator.clipboard.writeText(text);$("#copied").textContent="Copied.";}catch(e){$("#copied").textContent="Select the text above and copy it.";}};
+  $("#dlBtn").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:"text/plain"}));a.download="history-writing-task-2.txt";a.click();};
+}
+go(0);
+</script>
+<script src="../../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>
