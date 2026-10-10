@@ -67,12 +67,12 @@ const CONTENT = {
    {h:"Houses",b:["Wealthy Romans lived in a domus: a spacious single-family house built around an open central courtyard (atrium), often with mosaic floors, painted walls, and a private garden.","Poorer Romans (the majority, especially in the city of Rome) lived in insulae: multi-storey apartment blocks, cramped, often poorly built, with fire a constant danger. Higher floors were cheaper and worse.","Country estates belonging to the rich were called villas."]},
    {h:"Childhood",b:["Wealthy boys were educated (often by a private tutor, a paedagogus, frequently an educated Greek slave), learning reading, writing, rhetoric and maths, preparing for public and political life.","Wealthy girls were educated at home in more limited subjects, focused on preparing for marriage and running a household; many were married by their early teens.","Poor children usually had no formal schooling. They worked from a young age, helping with a family trade, farming, or domestic labour.","Roman fathers held enormous legal power over their children (patria potestas): technically total authority, even over adult children, throughout the father's life."]}
   ],
-  sources:["Reference page","My class notes","My memory (not sure)"],
+  sources:["Reference page","My class notes","I remember it from class (not sure)"],
   checks:[
    "My first sentence <strong>answers the question</strong>.",
    "I said what I'm covering (my chosen themes) so the reader knows my plan.",
    "After <strong>every fact</strong> I wrote what it <strong>tells us</strong> (a So What).",
-   "Every fact comes from my reference page or notes. Any from memory, I checked or flagged.",
+   "Every fact comes from my reference page or notes. Anything I only remember from class, I marked &ldquo;not sure&rdquo;.",
    "If I used one person or one case as an example, I said it was <strong>one case</strong> (&ldquo;this was rare, which suggests&hellip;&rdquo;).",
    "I used Roman words (domus, insulae, patria potestas, paedagogus) accurately.",
    "Each paragraph is about <strong>one thing</strong>.",
@@ -103,7 +103,7 @@ function intro(){
    <p>About <strong>30 to 35 minutes</strong>. You will plan first, then write, then check your own writing. At the end you send your writing to get feedback.</p>
    <p><strong>Three things to try this time:</strong></p>
    <ul><li>Start with your <strong>answer</strong>, not the facts.</li><li>Choose <strong>three</strong> themes and go deeper on each, rather than covering everything.</li><li>After every fact, write the <strong>So What</strong>: what it tells us about the question.</li></ul>
-   <p class="hint">Your facts must come from your reference page or your notes. If you use something from memory, mark it so it can be checked.</p>
+   <p class="hint">Your facts must come from your reference page or your notes. If you remember something from class that isn't on your page or in your notes, mark it &ldquo;not sure&rdquo; so your teacher or a parent can check it.</p>
    <div class="stack"><button class="primary" id="go">Start planning</button></div>`,"card"));
   $("#go").onclick=()=>{st.t0=Date.now();go(1);};
 }
@@ -160,7 +160,7 @@ function s3(){
   const timer=el(`<span id="tm">Writing time: 0:00</span> &nbsp;|&nbsp; <span id="wc">0 words</span>`,"timer");s.appendChild(timer);
   s.appendChild(el(`<h2>3. Write (20 min)</h2><div class="lead"><strong>${CONTENT.question}</strong></div>`));
   const bank=st.bank.filter(b=>b.fact.trim().length>=10);
-  s.appendChild(el(`<h3>My evidence bank</h3><ul class="bank">${bank.map(b=>`<li>${esc(b.fact)}<span class="tag ${b.src.startsWith("My memory")?"chk2":""}">${b.theme||"no theme"}</span>${b.src.startsWith("My memory")?`<span class="tag chk2">check</span>`:""}</li>`).join("")}</ul>
+  s.appendChild(el(`<h3>My evidence bank</h3><ul class="bank">${bank.map(b=>`<li>${esc(b.fact)}<span class="tag ${b.src.startsWith("I remember")?"chk2":""}">${b.theme||"no theme"}</span>${b.src.startsWith("I remember")?`<span class="tag chk2">check</span>`:""}</li>`).join("")}</ul>
    <p class="hint"><strong>Remember:</strong> after every fact, ask <em>&ldquo;So what does that tell us about the question?&rdquo;</em> and write the answer. Answer first. One paragraph per theme.</p>`,"card"));
   s.appendChild(refPanel());
   const c=el("","card");s.appendChild(c);
