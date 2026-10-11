@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mean, median, mode and area</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --paper:#F1F6FA; --grid:#D9E5EF; --card:#FFFFFF; --ink:#12263A; --muted:#52677C; --line:#C3D3E1; --soft:#E8F0F7;
+  --mode:#7447D1; --median:#0B7A7C; --mean:#B85F00; --range:#2A67DB; --shape:#0B7A7C;
+  --on:#FFFFFF; --good:#17803F; --bad:#C03A3A;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1A26; --grid:#1B2D3E; --card:#152434; --ink:#E6EEF6; --muted:#9FB3C6; --line:#2C4258; --soft:#1C2F42;
+    --mode:#A18AEE; --median:#3DBABC; --mean:#EA9442; --range:#7AA3F4; --shape:#3DBABC;
+    --on:#0E1A26; --good:#4CC47F; --bad:#F28A8A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1A26; --grid:#1B2D3E; --card:#152434; --ink:#E6EEF6; --muted:#9FB3C6; --line:#2C4258; --soft:#1C2F42;
+  --mode:#A18AEE; --median:#3DBABC; --mean:#EA9442; --range:#7AA3F4; --shape:#3DBABC;
+  --on:#0E1A26; --good:#4CC47F; --bad:#F28A8A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 60px)}
+body{
+  margin:0; background-color:var(--paper); color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:'Lexend',system-ui,-apple-system,'Segoe UI',sans-serif; line-height:1.5; font-size:16px;
+}
+.wrap{max-width:800px;margin:0 auto;padding:20px 16px 72px}
+h1{font-size:clamp(1.8rem,6.5vw,2.7rem);line-height:1.08;margin:8px 0 6px;font-weight:700;letter-spacing:-.02em}
+.sub{margin:0 0 14px;color:var(--muted)}
+.tabs{display:flex;gap:6px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding:8px 0 0;border-bottom:2px solid var(--ink)}
+.tabs button{flex:1;font:inherit;font-weight:600;padding:10px 6px;border:2px solid var(--ink);border-bottom:0;border-radius:10px 10px 0 0;background:var(--card);color:var(--ink);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:3px solid var(--range);outline-offset:2px}
+section[hidden]{display:none}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:16px;margin:16px 0}
+.card h2{font-size:1.1rem;margin:0 0 10px;font-weight:600}
+.c-mode{--c:var(--mode)} .c-median{--c:var(--median)} .c-mean{--c:var(--mean)} .c-range{--c:var(--range)}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{display:inline-grid;place-items:center;min-width:46px;height:50px;padding:0 6px;border:2px solid var(--ink);border-radius:6px;font-weight:600;font-size:1.3rem;background:var(--card);color:var(--ink);transition:opacity .35s,background .35s,transform .35s}
+.tile.sm{min-width:36px;height:38px;font-size:1.05rem}
+.tile.hit{background:var(--c);border-color:var(--c);color:var(--on)}
+.tile.out{opacity:.25;text-decoration:line-through;transform:scale(.88)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.seg{display:inline-flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
+.seg button{font:inherit;font-weight:600;border:0;background:var(--card);color:var(--ink);padding:6px 14px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.lbl-inline{color:var(--muted);font-size:.9rem}
+.btn{font:inherit;font-weight:600;padding:10px 18px;border:2px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink)}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.45;cursor:default}
+.link{font:inherit;background:none;border:0;color:var(--range);text-decoration:underline;cursor:pointer;padding:6px 0}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:16px 0}
+.chips button{font:inherit;text-align:left;padding:10px 12px;border:2px solid var(--cc);border-radius:10px;background:var(--card);color:var(--ink);cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.chips b{font-size:1.05rem}
+.chips small{color:var(--muted);font-size:.78rem;line-height:1.25}
+.chips button[aria-pressed=true]{background:var(--cc);color:var(--on)}
+.chips button[aria-pressed=true] small{color:inherit;opacity:.92}
+.hook{font-family:'Caveat','Segoe Print','Bradley Hand',cursive;font-size:1.65rem;line-height:1.15;margin:0 0 12px;color:var(--c,var(--shape));font-weight:700}
+.result{margin:12px 0 0;padding:10px 12px;border-left:5px solid var(--c);background:var(--soft);border-radius:0 8px 8px 0}
+.tally{display:flex;align-items:center;gap:10px;margin:6px 0}
+.dots{display:flex;gap:5px;flex-wrap:wrap}
+.dots i{width:15px;height:15px;border-radius:50%;background:var(--muted);display:block;opacity:.55}
+.tally.top .dots i{background:var(--c);opacity:1}
+.cnt{color:var(--muted);font-weight:500}
+.tally.top .cnt{color:var(--ink);font-weight:700}
+.plot{position:relative;height:170px;display:flex;gap:8px;align-items:flex-end;border-bottom:2px solid var(--ink);padding:0 2px;margin-top:26px}
+.bar{flex:1;height:100%;display:flex;align-items:flex-end}
+.fill{width:100%;background:var(--c);border-radius:4px 4px 0 0;transition:height .8s cubic-bezier(.3,.7,.2,1)}
+.meanline{position:absolute;left:0;right:0;border-top:2.5px dashed var(--ink);opacity:0;transition:opacity .4s .5s;pointer-events:none}
+.meanline.on{opacity:1}
+.meanline span{position:absolute;right:0;top:-25px;background:var(--card);padding:0 6px;font-size:.8rem;font-weight:600}
+.vals{display:flex;gap:8px;padding:0 2px;margin-top:4px}
+.vals span{flex:1;text-align:center;font-weight:600}
+.numline{width:100%;height:auto;display:block}
+.numline text{fill:var(--ink);font-family:'Lexend',sans-serif}
+.turn{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.turn label{display:flex;flex-direction:column;gap:4px;font-weight:600}
+input[type=text]{font:inherit;padding:9px 10px;border:2px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);width:100%}
+input.ok{border-color:var(--good)} input.no{border-color:var(--bad)}
+.msg{font-size:.85rem;font-weight:400;min-height:1.3em;color:var(--muted)}
+.msg.ok{color:var(--good)} .msg.no{color:var(--bad)}
+.area-wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}
+@media (max-width:640px){.area-wrap{grid-template-columns:1fr}.turn{grid-template-columns:1fr}}
+.svgbox{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:8px}
+.svgbox svg{width:100%;height:auto;display:block}
+.shape{fill:color-mix(in srgb,var(--shape) 30%,transparent);stroke:var(--shape);stroke-width:2.5;stroke-linejoin:round}
+.gridl{stroke:var(--grid);stroke-width:1}
+.dash{stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4;fill:none}
+.ghost{fill:none;stroke:var(--mean);stroke-width:2.2;stroke-dasharray:5 4}
+.ghostl{stroke:var(--mean);stroke-width:2.6;stroke-dasharray:6 4}
+.hl{fill:color-mix(in srgb,var(--mean) 45%,transparent);stroke:var(--mean);stroke-width:2}
+.rt{fill:none;stroke:var(--ink);stroke-width:1.5}
+.dot{fill:var(--ink)}
+.lbl{font:600 12.5px 'Lexend',sans-serif;fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
+.slider{display:grid;grid-template-columns:1fr auto;gap:2px 8px;margin:0 0 12px;font-weight:500}
+.slider input{grid-column:1/-1;width:100%;accent-color:var(--shape)}
+.slider output{font-weight:700}
+.formula{border-left:5px solid var(--shape);padding:8px 12px;margin:14px 0;background:var(--soft);border-radius:0 8px 8px 0}
+.f1{color:var(--muted);font-size:.9rem}
+.f2{font-size:1.3rem;font-weight:700}
+.note-why{margin:8px 0;padding:10px 12px;border:2px dashed var(--mean);border-radius:10px}
+.trap{margin:10px 0 0}
+.checks{margin:0;padding-left:20px}
+.checks li{margin:6px 0}
+.qhead{display:flex;justify-content:space-between;font-weight:600;margin-bottom:6px}
+.progress{height:8px;background:var(--soft);border-radius:99px;overflow:hidden;margin-bottom:14px}
+.progress i{display:block;height:100%;background:var(--shape);transition:width .4s}
+.qtext{font-size:1.1rem;margin:0 0 12px}
+.qtext .tiles{margin-top:10px}
+.answer{display:flex;gap:10px;align-items:center;margin:14px 0 4px}
+.answer input{max-width:160px;font-size:1.2rem}
+.fb{margin:12px 0 0;padding:10px 12px;border-left:5px solid var(--line);background:var(--soft);border-radius:0 8px 8px 0}
+.fb.ok{border-color:var(--good)} .fb.no{border-color:var(--bad)}
+.fb strong{display:block}
+.big-score{font-size:2.4rem;font-weight:700;margin:0}
+.revisit{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Mean, median, mode and area</h1>
+    <p class="sub">Poke it, drag it, then test yourself.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" id="t-avg" aria-selected="true" aria-controls="p-avg" data-act="tab" data-tab="avg">Averages</button>
+    <button role="tab" id="t-area" aria-selected="false" aria-controls="p-area" data-act="tab" data-tab="area">Area</button>
+    <button role="tab" id="t-test" aria-selected="false" aria-controls="p-test" data-act="tab" data-tab="test">Test me</button>
+  </nav>
+
+  <main>
+    <section id="p-avg" role="tabpanel" aria-labelledby="t-avg">
+      <div class="card" id="numsCard"></div>
+      <div class="chips" id="concepts" role="group" aria-label="Choose an average"></div>
+      <div class="card" id="conceptPanel"></div>
+      <div class="card" id="turnCard"></div>
+      <div class="card">
+        <h2>Exam favourite: the missing number</h2>
+        <p style="margin:0">If the mean of 5 numbers is 6, the total must be <b>6 × 5 = 30</b>. Add up the numbers you know, then take that away from 30 to find the one that is missing.</p>
+      </div>
+    </section>
+
+    <section id="p-area" role="tabpanel" aria-labelledby="t-area" hidden>
+      <div class="chips" id="areaChips" role="group" aria-label="Choose a shape"></div>
+      <div class="area-wrap">
+        <div class="svgbox"><div id="areaSvg"></div></div>
+        <div>
+          <div id="areaControls"></div>
+          <div class="formula" id="areaFormula" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="card" id="areaNote"></div>
+      <div class="card">
+        <h2>Check these every time</h2>
+        <ul class="checks">
+          <li>Is the height straight up, square to the base?</li>
+          <li>Radius or diameter? Radius is half the diameter.</li>
+          <li>Are the units squared? Area is in cm², m², and so on.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="p-test" role="tabpanel" aria-labelledby="t-test" hidden>
+      <div id="quiz"></div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- helpers ---------- */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.prototype.slice.call(r.querySelectorAll(s));
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const pick=a=>a[rnd(0,a.length-1)];
+const fmt=x=>String(+Number(x).toFixed(2));
+const sum=a=>a.reduce((x,y)=>x+y,0);
+const sortAsc=a=>a.slice().sort((x,y)=>x-y);
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=rnd(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const andList=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+const safeGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const safeSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+
+function stats(a){
+  const s=sortAsc(a),n=a.length,f={};
+  a.forEach(v=>{f[v]=(f[v]||0)+1});
+  const mx=Math.max.apply(null,Object.keys(f).map(k=>f[k]));
+  const modes=Object.keys(f).filter(k=>f[k]===mx).map(Number).sort((x,y)=>x-y);
+  const med=n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;
+  return {s:s,n:n,f:f,mx:mx,modes:modes,med:med,total:sum(a),mean:sum(a)/n,min:s[0],max:s[n-1],range:s[n-1]-s[0]};
+}
+function genSet(n,o){
+  o=o||{};
+  for(let t=0;t<9000;t++){
+    const a=Array.from({length:n},()=>rnd(1,12));
+    if(o.intMean&&sum(a)%n) continue;
+    const st=stats(a);
+    if(o.uniqueMode&&(st.mx<2||st.modes.length>1)) continue;
+    if(st.range<5) continue;
+    return a;
+  }
+  return [3,7,4,7,9,2,7,5,6].slice(0,n);
+}
+const tilesHTML=(a,cls)=>a.map(v=>'<span class="tile '+(cls||'')+'">'+v+'</span>').join('');
+
+/* ---------- state ---------- */
+const S={
+  tab:'avg',concept:'mode',n:7,nums:[],medStep:0,shared:false,
+  area:{shape:'rect',why:false,pi:'3.14',
+    rect:{w:6,h:4},tri:{b:8,h:6,lean:3},par:{b:6,h:4,s:2},trap:{a:4,b:8,h:4},circ:{r:3}}
+};
+
+/* ---------- tabs ---------- */
+function showTab(t){
+  S.tab=t;
+  ['avg','area','test'].forEach(k=>{
+    $('#t-'+k).setAttribute('aria-selected',String(k===t));
+    $('#p-'+k).hidden=(k!==t);
+  });
+}
+
+/* ---------- averages ---------- */
+const CONCEPTS=[
+  {k:'mode',name:'Mode',sub:'the most often',col:'--mode'},
+  {k:'median',name:'Median',sub:'the middle one',col:'--median'},
+  {k:'mean',name:'Mean',sub:'the fair share',col:'--mean'},
+  {k:'range',name:'Range',sub:'biggest take smallest',col:'--range'}
+];
+
+function renderAvg(){
+  const st=stats(S.nums);
+  $('#p-avg').className='c-'+S.concept;
+  $('#numsCard').innerHTML=
+    '<h2>Here are the numbers</h2><div class="tiles">'+
+    S.nums.map(v=>'<span class="tile'+(S.concept==='mode'&&st.f[v]===st.mx?' hit':'')+'">'+v+'</span>').join('')+
+    '</div><div class="row"><span class="lbl-inline">How many numbers?</span><div class="seg" role="group" aria-label="How many numbers">'+
+    [5,6,7,8].map(n=>'<button data-act="count" data-n="'+n+'" aria-pressed="'+(n===S.n)+'">'+n+'</button>').join('')+
+    '</div><button class="btn alt" data-act="new">New numbers</button></div>';
+  $('#concepts').innerHTML=CONCEPTS.map(c=>
+    '<button data-act="concept" data-k="'+c.k+'" style="--cc:var('+c.col+')" aria-pressed="'+(c.k===S.concept)+'"><b>'+c.name+'</b><small>'+c.sub+'</small></button>').join('');
+  const panel=$('#conceptPanel');
+  panel.className='card c-'+S.concept;
+  panel.innerHTML=({mode:panelMode,median:panelMedian,mean:panelMean,range:panelRange})[S.concept](st);
+}
+
+function panelMode(st){
+  const vals=Object.keys(st.f).map(Number).sort((a,b)=>a-b);
+  const rows=vals.map(v=>'<div class="tally'+(st.f[v]===st.mx?' top':'')+'"><span class="tile sm">'+v+'</span><span class="dots">'+'<i></i>'.repeat(st.f[v])+'</span><span class="cnt">'+st.f[v]+(st.f[v]===1?' time':' times')+'</span></div>').join('');
+  return '<p class="hook">MOde = MOst. The number that turns up most often.</p>'+rows+
+    '<p class="result"><b>Mode = '+st.modes[0]+'</b>. It appears '+st.mx+' times, more than any other number.</p>';
+}
+
+function panelMedian(st){
+  const sd=S.medStep,maxStep=Math.floor((st.n-1)/2)+1,pairs=Math.max(0,sd-1);
+  const arr=sd===0?S.nums:st.s;
+  const tiles=arr.map((v,i)=>{
+    let c='';
+    if(sd>=2&&(i<pairs||i>=st.n-pairs)) c='out';
+    else if(sd===maxStep) c='hit';
+    return '<span class="tile '+c+'">'+v+'</span>';
+  }).join('');
+  let msg;
+  if(sd===0) msg='Step one: put the numbers in order, smallest to biggest.';
+  else if(sd<maxStep) msg=sd===1?'In order. Now cross off the smallest and the biggest, again and again.':'Crossed off '+pairs+(pairs>1?' pairs':' pair')+'. Keep going.';
+  else msg=st.n%2?'One number left in the middle. <b>Median = '+st.med+'</b>':
+    'Two numbers left in the middle. Go halfway between them: ('+st.s[st.n/2-1]+' + '+st.s[st.n/2]+') ÷ 2 = <b>'+fmt(st.med)+'</b>';
+  const label=sd===0?'Put them in order':(sd<maxStep?'Cross off the biggest and smallest':'Start again');
+  return '<p class="hook">Median = middle, like the stripe down the middle of a road.</p>'+
+    '<div class="tiles">'+tiles+'</div>'+
+    '<p class="result" aria-live="polite">'+msg+'</p>'+
+    '<div class="row"><button class="btn" data-act="med-next">'+label+'</button></div>';
+}
+
+function panelMean(st){
+  const top=Math.max(st.max,st.mean),sh=S.shared;
+  const bars=S.nums.map(v=>'<div class="bar"><div class="fill" style="height:'+((sh?st.mean:v)/top*100)+'%"></div></div>').join('');
+  const vals=S.nums.map(v=>'<span>'+v+'</span>').join('');
+  return '<p class="hook">Mean = fair share. Add everything up, then share it out equally.</p>'+
+    '<div class="plot">'+bars+'<div class="meanline'+(sh?' on':'')+'" style="bottom:'+(st.mean/top*100)+'%"><span>mean '+fmt(st.mean)+'</span></div></div>'+
+    '<div class="vals">'+vals+'</div>'+
+    '<p class="result" aria-live="polite">Add them up: '+S.nums.join(' + ')+' = <b>'+st.total+'</b><br>'+
+    (sh?'Share equally between '+st.n+': '+st.total+' ÷ '+st.n+' = <b>'+fmt(st.mean)+'</b>':'Press the button to share the total out equally between the bars.')+'</p>'+
+    '<div class="row"><button class="btn" data-act="mean-toggle">'+(sh?'Put the bars back':'Share it out equally')+'</button></div>';
+}
+
+function panelRange(st){
+  const x=v=>20+v*(320/13);
+  const seen={};
+  let dots='';
+  S.nums.forEach(v=>{
+    const c=seen[v]||0; seen[v]=c+1;
+    const end=(v===st.min||v===st.max);
+    dots+='<circle cx="'+x(v)+'" cy="'+(52-c*14)+'" r="6" fill="'+(end?'var(--range)':'var(--muted)')+'" opacity="'+(end?1:.6)+'"/>';
+  });
+  let ticks='';
+  for(let i=0;i<=13;i++) ticks+='<line x1="'+x(i)+'" y1="58" x2="'+x(i)+'" y2="66" stroke="var(--ink)" stroke-width="1.5"/><text x="'+x(i)+'" y="80" font-size="10" text-anchor="middle">'+i+'</text>';
+  const br='<path d="M'+x(st.min)+' 90 V98 H'+x(st.max)+' V90" fill="none" stroke="var(--range)" stroke-width="2.5"/>'+
+    '<text x="'+((x(st.min)+x(st.max))/2)+'" y="114" font-size="12" font-weight="600" text-anchor="middle">'+st.max+' − '+st.min+' = '+st.range+'</text>';
+  return '<p class="hook">Range = how far the numbers stretch. Biggest take away smallest.</p>'+
+    '<svg class="numline" viewBox="0 0 360 122" role="img" aria-label="Number line showing the numbers from '+st.min+' to '+st.max+'">'+
+    '<line x1="'+x(0)+'" y1="62" x2="'+x(13)+'" y2="62" stroke="var(--ink)" stroke-width="2"/>'+ticks+dots+br+'</svg>'+
+    '<p class="result">Range = '+st.max+' − '+st.min+' = <b>'+st.range+'</b></p>';
+}
+
+function renderTurn(){
+  $('#turnCard').innerHTML='<h2>Your turn: do all four for these numbers</h2><div class="turn">'+
+    [['mode','Mode'],['median','Median'],['mean','Mean'],['range','Range']].map(p=>
+      '<label>'+p[1]+'<input type="text" inputmode="decimal" autocomplete="off" id="in-'+p[0]+'"><span class="msg" id="mg-'+p[0]+'"></span></label>').join('')+
+    '</div><div class="row"><button class="btn" data-act="turn-check">Check my answers</button><button class="btn alt" data-act="turn-show">Show answers</button></div>'+
+    '<p class="msg" id="turnSummary" aria-live="polite"></p>';
+}
+const TURN_HINT={
+  mode:'Which number turns up most often?',
+  median:'Put them in order first. With two in the middle, go halfway.',
+  mean:'Add them all up, then divide by how many there are.',
+  range:'Biggest take away smallest.'
+};
+function turnAnswers(){const st=stats(S.nums);return {mode:st.modes[0],median:st.med,mean:st.mean,range:st.range}}
+function turnCheck(){
+  const ex=turnAnswers();let good=0,blank=0;
+  Object.keys(ex).forEach(k=>{
+    const i=$('#in-'+k),m=$('#mg-'+k),raw=i.value.trim().replace(',','.');
+    i.classList.remove('ok','no');m.className='msg';
+    if(raw===''){blank++;m.textContent='';return}
+    const v=parseFloat(raw);
+    if(!isNaN(v)&&Math.abs(v-ex[k])<0.011){good++;i.classList.add('ok');m.classList.add('ok');m.textContent='Yes!'}
+    else{i.classList.add('no');m.classList.add('no');m.textContent=TURN_HINT[k]}
+  });
+  $('#turnSummary').textContent=blank===4?'Type an answer in at least one box.':(good===4?'All four right. Try new numbers, or go to Test me.':good+' of '+(4-blank)+' right so far.');
+}
+function turnShow(){
+  const ex=turnAnswers();
+  Object.keys(ex).forEach(k=>{$('#in-'+k).value=fmt(ex[k]);$('#in-'+k).classList.remove('no','ok');$('#mg-'+k).textContent='';});
+  $('#turnSummary').textContent='Those are the answers. Press New numbers and try again without peeking.';
+}
+function newNums(){
+  S.nums=genSet(S.n,{uniqueMode:true,intMean:true});
+  S.medStep=0;S.shared=false;
+  renderAvg();renderTurn();
+}
+
+/* ---------- area ---------- */
+const U=24,VW=360,VH=280;
+const SHAPES={
+  rect:{name:'Rectangle',sub:'length × width',sliders:[['w','Length',1,12],['h','Width',1,9]]},
+  tri:{name:'Triangle',sub:'half a rectangle',sliders:[['b','Base',2,12],['h','Height',2,9],['lean','Top point slides',0,12]]},
+  par:{name:'Parallelogram',sub:'base × upright height',sliders:[['b','Base',2,8],['h','Upright height',2,8],['s','Lean',0,4]]},
+  trap:{name:'Trapezium',sub:'average side × height',sliders:[['a','Top side',2,8],['b','Bottom side',3,12],['h','Height',2,8]]},
+  circ:{name:'Circle',sub:'π × r × r',sliders:[['r','Radius',1,5]]}
+};
+const NOTES={
+  rect:{hook:'Count the squares: rows times columns.',why:'Each little square is 1 cm². The rectangle has length columns and width rows of them, so multiply.',trap:'Area is counted in squares, so write cm², not cm.'},
+  tri:{hook:'A triangle is half a rectangle.',why:'The dashed rectangle is base × height. The triangle fills exactly half of it, wherever the top point is.',trap:'The height goes straight up, square to the base. It is not the slanted side.'},
+  par:{hook:'Slide the corner across and it turns into a rectangle.',why:'Cut off the shaded triangle and slide it to the dashed spot. Now it is a rectangle with the same base and the same upright height.',trap:'Use the upright height, not the slanted side.'},
+  trap:{hook:'Average the parallel sides, then times the height.',why:'The dashed line is halfway up, and it is the average of the two parallel sides. Straighten the shape into a rectangle that wide and the area stays the same.',trap:'Only the two parallel sides go inside the brackets. The height is straight up.'},
+  circ:{hook:'π lots of r × r.',why:'The dashed square is r × r. A circle holds just over 3 of those squares: exactly π of them.',trap:'Radius is half the diameter. If you are given the diameter, halve it first.'}
+};
+
+function drawShape(type,p,o){
+  o=o||{};
+  const L=o.labels||{};
+  const lab=(k,d)=>L[k]!==undefined?L[k]:d+' cm';
+  let w,h;
+  if(type==='rect'){w=p.w;h=p.h}
+  else if(type==='tri'){w=p.b;h=p.h}
+  else if(type==='par'){w=p.b+p.s;h=p.h}
+  else if(type==='trap'){w=p.b;h=p.h}
+  else{w=h=2*p.r}
+  const ox=(VW-w*U)/2,oy=(VH-h*U)/2,bx=ox+w*U,by=oy+h*U;
+  const T=(x,y,s,a)=>'<text class="lbl" x="'+x+'" y="'+y+'" text-anchor="'+(a||'middle')+'">'+s+'</text>';
+  const rt=(x,y,dir)=>'<path class="rt" d="M'+x+' '+(y-8)+' h'+(dir*8)+' v8"/>';
+  let g='',s='';
+  if(o.grid){
+    for(let i=0;i<=w;i++) g+='<line class="gridl" x1="'+(ox+i*U)+'" y1="'+oy+'" x2="'+(ox+i*U)+'" y2="'+by+'"/>';
+    for(let j=0;j<=h;j++) g+='<line class="gridl" x1="'+ox+'" y1="'+(oy+j*U)+'" x2="'+bx+'" y2="'+(oy+j*U)+'"/>';
+  }
+  if(type==='rect'){
+    s='<rect class="shape" x="'+ox+'" y="'+oy+'" width="'+(w*U)+'" height="'+(h*U)+'"/>'+
+      T(ox+w*U/2,by+17,lab('w',p.w))+T(ox-6,oy+h*U/2+4,lab('h',p.h),'end');
+  }else if(type==='tri'){
+    const ax=ox+p.lean*U,dir=p.lean>=p.b?-1:1;
+    s='<polygon class="shape" points="'+ax+','+oy+' '+ox+','+by+' '+bx+','+by+'"/>'+
+      (o.why?'<rect class="ghost" x="'+ox+'" y="'+oy+'" width="'+(w*U)+'" height="'+(h*U)+'"/>':'')+
+      '<line class="dash" x1="'+ax+'" y1="'+oy+'" x2="'+ax+'" y2="'+by+'"/>'+rt(ax,by,dir)+
+      T(ox+w*U/2,by+17,lab('b',p.b))+T(ax+dir*6,oy+h*U/2+4,lab('h',p.h),dir>0?'start':'end');
+  }else if(type==='par'){
+    const b=p.b,sl=p.s,ax=ox+sl*U;
+    s='<polygon class="shape" points="'+ax+','+oy+' '+(ax+b*U)+','+oy+' '+(ox+b*U)+','+by+' '+ox+','+by+'"/>';
+    if(o.why){
+      s+='<polygon class="hl" points="'+ox+','+by+' '+ax+','+by+' '+ax+','+oy+'"/>'+
+         '<polygon class="ghost" points="'+(ox+b*U)+','+by+' '+(ox+(b+sl)*U)+','+by+' '+(ox+(b+sl)*U)+','+oy+'"/>';
+    }
+    s+='<line class="dash" x1="'+ax+'" y1="'+oy+'" x2="'+ax+'" y2="'+by+'"/>'+(sl>0?rt(ax,by,1):'')+
+      T(ox+b*U/2,by+17,lab('b',b))+T(ax+6,oy+h*U/2+4,lab('h',p.h),'start');
+    if(L.slant) s+=T(ox+sl*U/2-6,oy+h*U/2+4,L.slant,'end');
+  }else if(type==='trap'){
+    const a=p.a,b=p.b,d=(b-a)/2,ax=ox+d*U;
+    s='<polygon class="shape" points="'+ax+','+oy+' '+(ax+a*U)+','+oy+' '+bx+','+by+' '+ox+','+by+'"/>';
+    if(o.why){
+      const my=oy+h*U/2;
+      s+='<line class="ghostl" x1="'+(ox+d*U/2)+'" y1="'+my+'" x2="'+(bx-d*U/2)+'" y2="'+my+'"/>'+
+         T(ox+w*U/2,my-7,'average width = '+fmt((a+b)/2)+' cm');
+    }
+    s+='<line class="dash" x1="'+ax+'" y1="'+oy+'" x2="'+ax+'" y2="'+by+'"/>'+rt(ax,by,1)+
+      T(ax+a*U/2,oy-8,lab('a',a))+T(ox+w*U/2,by+17,lab('b',b))+T(ax+6,oy+h*U*0.8,lab('h',p.h),'start');
+  }else{
+    const r=p.r,cx=ox+r*U,cy=oy+r*U;
+    s='<circle class="shape" cx="'+cx+'" cy="'+cy+'" r="'+(r*U)+'"/>';
+    if(o.why) s+='<rect class="ghost" x="'+cx+'" y="'+(cy-r*U)+'" width="'+(r*U)+'" height="'+(r*U)+'"/>'+T(cx+r*U/2,cy-r*U/2+4,'r × r');
+    if(o.diam) s+='<line class="dash" x1="'+(cx-r*U)+'" y1="'+cy+'" x2="'+(cx+r*U)+'" y2="'+cy+'"/>'+T(cx,cy+17,'diameter = '+(2*r)+' cm');
+    else s+='<line class="dash" x1="'+cx+'" y1="'+cy+'" x2="'+(cx+r*U)+'" y2="'+cy+'"/><circle class="dot" cx="'+cx+'" cy="'+cy+'" r="3"/>'+T(cx+r*U/2,cy+17,'radius = '+r+' cm');
+  }
+  return '<svg viewBox="0 0 '+VW+' '+VH+'" role="img" aria-label="'+(o.aria||'A shape with its measurements')+'">'+g+s+'</svg>';
+}
+
+function areaInfo(type,p,pi){
+  switch(type){
+    case 'rect':return {f:'Area = length × width',calc:p.w+' × '+p.h,val:p.w*p.h};
+    case 'tri':return {f:'Area = ½ × base × height',calc:'½ × '+p.b+' × '+p.h,val:p.b*p.h/2};
+    case 'par':return {f:'Area = base × height',calc:p.b+' × '+p.h,val:p.b*p.h};
+    case 'trap':return {f:'Area = ½ × (a + b) × height',calc:'½ × ('+p.a+' + '+p.b+') × '+p.h,val:(p.a+p.b)*p.h/2};
+    default:{
+      const pv=pi==='22/7'?22/7:(pi==='pi'?Math.PI:3.14);
+      const pt=pi==='22/7'?'22/7':(pi==='pi'?'π':'3.14');
+      return {f:'Area = π × r × r',calc:pt+' × '+p.r+' × '+p.r,val:pv*p.r*p.r,approx:pi!=='3.14'};
+    }
+  }
+}
+
+function renderArea(){
+  const A=S.area,sh=A.shape,def=SHAPES[sh],p=A[sh];
+  $('#areaChips').innerHTML=Object.keys(SHAPES).map(k=>
+    '<button data-act="shape" data-shape="'+k+'" style="--cc:var(--shape)" aria-pressed="'+(k===sh)+'"><b>'+SHAPES[k].name+'</b><small>'+SHAPES[k].sub+'</small></button>').join('');
+  let ctl=def.sliders.map(s=>
+    '<label class="slider" for="sl-'+s[0]+'"><span>'+s[1]+'</span><output id="ou-'+s[0]+'"></output><input id="sl-'+s[0]+'" type="range" min="'+s[2]+'" max="'+s[3]+'" step="1" value="'+p[s[0]]+'" data-k="'+s[0]+'"></label>').join('');
+  if(sh==='circ'){
+    ctl+='<div class="row" style="margin:0 0 12px"><span class="lbl-inline">Use π as</span><div class="seg" role="group" aria-label="Value of pi">'+
+      [['3.14','3.14'],['22/7','22/7'],['pi','π button']].map(x=>'<button data-act="pi" data-pi="'+x[0]+'" aria-pressed="'+(A.pi===x[0])+'">'+x[1]+'</button>').join('')+'</div></div>';
+  }
+  ctl+='<button class="btn alt" data-act="why" aria-pressed="'+A.why+'">'+(A.why?'Hide the trick':'Show me why it works')+'</button>';
+  $('#areaControls').innerHTML=ctl;
+  updateArea();
+}
+
+function updateArea(){
+  const A=S.area,sh=A.shape,def=SHAPES[sh],p=A[sh];
+  if(sh==='tri'){const ln=$('#sl-lean');ln.max=p.b}
+  def.sliders.forEach(s=>{
+    const i=$('#sl-'+s[0]);
+    if(i){i.value=p[s[0]];$('#ou-'+s[0]).textContent=p[s[0]]+' cm'}
+  });
+  $('#areaSvg').innerHTML=drawShape(sh,p,{grid:true,why:A.why,aria:def.name+' on squared paper'});
+  const info=areaInfo(sh,p,A.pi);
+  $('#areaFormula').innerHTML='<div class="f1">'+info.f+'</div><div class="f2">'+info.calc+' '+(info.approx?'≈':'=')+' '+fmt(info.val)+' cm²</div>';
+  const n=NOTES[sh];
+  $('#areaNote').innerHTML='<p class="hook" style="color:var(--shape)">'+n.hook+'</p>'+
+    (A.why?'<div class="note-why">'+n.why+'</div>':'')+
+    '<p class="trap"><b>Watch out:</b> '+n.trap+'</p>';
+}
+
+function onSlide(e){
+  const t=e.target;
+  if(!t.matches('#areaControls input[type=range]')) return;
+  const A=S.area,sh=A.shape,p=A[sh],k=t.getAttribute('data-k');
+  p[k]=+t.value;
+  if(sh==='tri'&&p.lean>p.b) p.lean=p.b;
+  if(sh==='trap'){
+    if(k==='a'&&p.b<=p.a) p.b=p.a+1;
+    if(k==='b'&&p.a>=p.b) p.a=p.b-1;
+  }
+  updateArea();
+}
+
+/* ---------- quiz ---------- */
+const KIND={
+  mode:{tab:'avg',key:'mode',label:'Mode',hint:'MOde = MOst. Which number turns up most often?'},
+  median_odd:{tab:'avg',key:'median',label:'Median',hint:'Put them in order first. The median is the middle one.'},
+  median_even:{tab:'avg',key:'median',label:'Median',hint:'Put them in order. There are two in the middle, so go halfway between them.'},
+  mean:{tab:'avg',key:'mean',label:'Mean',hint:'Add them all up, then share equally: divide by how many numbers there are.'},
+  range:{tab:'avg',key:'range',label:'Range',hint:'Biggest take away smallest.'},
+  missing:{tab:'avg',key:'mean',label:'Mean',hint:'Total needed = mean × how many numbers. Then take away the ones you know.'},
+  rect:{tab:'area',key:'rect',label:'Rectangle area',hint:'Length × width.'},
+  rev_rect:{tab:'area',key:'rect',label:'Rectangle area',hint:'Work backwards: area ÷ the side you know.'},
+  tri:{tab:'area',key:'tri',label:'Triangle area',hint:'½ × base × height. The height goes straight up.'},
+  rev_tri:{tab:'area',key:'tri',label:'Triangle area',hint:'½ × base × height = area. Halve the base, then divide the area by it.'},
+  par:{tab:'area',key:'par',label:'Parallelogram area',hint:'Base × upright height. Ignore the slanted side.'},
+  trap:{tab:'area',key:'trap',label:'Trapezium area',hint:'½ × (a + b) × height.'},
+  circ:{tab:'area',key:'circ',label:'Circle area',hint:'π × r × r.'},
+  circ_d:{tab:'area',key:'circ',label:'Circle area',hint:'Radius is half the diameter. Halve it first, then π × r × r.'}
+};
+const AVG_KINDS=['mode','median_odd','median_even','mean','range','missing'];
+const AREA_KINDS=['rect','tri','par','trap','circ','circ_d','rev_rect','rev_tri'];
+
+function makeQ(kind){
+  const q={kind:kind,text:'',svg:'',ans:0,exp:'',unit:''};
+  let a,st,n;
+  switch(kind){
+    case 'mode':
+      a=genSet(rnd(7,9),{uniqueMode:true});st=stats(a);
+      q.text='Find the <b>mode</b> of these numbers:<div class="tiles">'+tilesHTML(a)+'</div>';
+      q.ans=st.modes[0];
+      q.exp='<b>'+st.modes[0]+'</b> appears '+st.mx+' times, more than any other number. Mode = most often.';
+      break;
+    case 'median_odd':
+      a=genSet(pick([5,7,9]));st=stats(a);
+      q.text='Find the <b>median</b> of these numbers:<div class="tiles">'+tilesHTML(a)+'</div>';
+      q.ans=st.med;
+      q.exp='In order: '+st.s.join(', ')+'. The middle number is <b>'+st.med+'</b>.';
+      break;
+    case 'median_even':
+      n=pick([6,8]);a=genSet(n);st=stats(a);
+      q.text='Find the <b>median</b> of these numbers:<div class="tiles">'+tilesHTML(a)+'</div>';
+      q.ans=st.med;
+      q.exp='In order: '+st.s.join(', ')+'. The two middle numbers are '+st.s[n/2-1]+' and '+st.s[n/2]+'. Halfway between them: ('+st.s[n/2-1]+' + '+st.s[n/2]+') ÷ 2 = <b>'+fmt(st.med)+'</b>.';
+      break;
+    case 'mean':
+      n=pick([4,5,6]);a=genSet(n,{intMean:true});st=stats(a);
+      q.text='Find the <b>mean</b> of these numbers:<div class="tiles">'+tilesHTML(a)+'</div>';
+      q.ans=st.mean;
+      q.exp='Add them up: '+a.join(' + ')+' = '+st.total+'. Share between '+n+': '+st.total+' ÷ '+n+' = <b>'+fmt(st.mean)+'</b>.';
+      break;
+    case 'range':
+      a=genSet(rnd(6,8));st=stats(a);
+      q.text='Find the <b>range</b> of these numbers:<div class="tiles">'+tilesHTML(a)+'</div>';
+      q.ans=st.range;
+      q.exp='Biggest is '+st.max+', smallest is '+st.min+'. '+st.max+' − '+st.min+' = <b>'+st.range+'</b>.';
+      break;
+    case 'missing':{
+      let known,m,fourth;
+      for(;;){
+        n=pick([4,5]);m=rnd(5,12);
+        known=Array.from({length:n-1},()=>rnd(2,14));
+        fourth=n*m-sum(known);
+        if(fourth>=1&&fourth<=20) break;
+      }
+      q.text='The mean of '+n+' numbers is <b>'+m+'</b>. '+(n===4?'Three':'Four')+' of the numbers are '+andList(known)+'. What is the missing number?';
+      q.ans=fourth;
+      q.exp='Total needed = '+m+' × '+n+' = '+(n*m)+'. The numbers you know add to '+sum(known)+'. Missing number = '+(n*m)+' − '+sum(known)+' = <b>'+fourth+'</b>.';
+      break;}
+    case 'rect':{
+      const w=rnd(3,12),h=rnd(2,9);
+      q.text='Find the area of this rectangle.';q.svg=drawShape('rect',{w:w,h:h},{aria:'Rectangle '+w+' cm by '+h+' cm'});
+      q.ans=w*h;q.unit='cm²';q.exp=w+' × '+h+' = <b>'+(w*h)+' cm²</b>.';
+      break;}
+    case 'tri':{
+      let b=rnd(3,12),h=rnd(2,9);
+      if((b*h)%2){if(b<12)b++;else b--}
+      q.text='Find the area of this triangle.';q.svg=drawShape('tri',{b:b,h:h,lean:rnd(0,b)},{aria:'Triangle with base '+b+' cm and height '+h+' cm'});
+      q.ans=b*h/2;q.unit='cm²';q.exp='½ × '+b+' × '+h+' = '+(b*h)+' ÷ 2 = <b>'+fmt(b*h/2)+' cm²</b>.';
+      break;}
+    case 'par':{
+      const t=pick([[3,4,5],[4,3,5]]),b=rnd(4,8),s=t[0],h=t[1],sl=t[2];
+      q.text='Find the area of this parallelogram.';
+      q.svg=drawShape('par',{b:b,h:h,s:s},{labels:{slant:sl+' cm'},aria:'Parallelogram with base '+b+' cm, upright height '+h+' cm and slanted side '+sl+' cm'});
+      q.ans=b*h;q.unit='cm²';
+      q.exp='Use the upright height ('+h+' cm), not the slanted side ('+sl+' cm). '+b+' × '+h+' = <b>'+(b*h)+' cm²</b>.';
+      break;}
+    case 'trap':{
+      const a=rnd(2,7),b=rnd(a+1,12);let h=rnd(2,8);
+      if((a+b)%2&&h%2)h++;
+      q.text='Find the area of this trapezium.';
+      q.svg=drawShape('trap',{a:a,b:b,h:h},{aria:'Trapezium with parallel sides '+a+' cm and '+b+' cm and height '+h+' cm'});
+      q.ans=(a+b)*h/2;q.unit='cm²';
+      q.exp='½ × ('+a+' + '+b+') × '+h+' = ½ × '+(a+b)+' × '+h+' = <b>'+fmt((a+b)*h/2)+' cm²</b>.';
+      break;}
+    case 'circ':{
+      const r=rnd(2,5);
+      q.text='Find the area of this circle. Use π = 3.14.';q.svg=drawShape('circ',{r:r},{aria:'Circle with radius '+r+' cm'});
+      q.ans=+(3.14*r*r).toFixed(2);q.unit='cm²';
+      q.exp='3.14 × '+r+' × '+r+' = <b>'+fmt(3.14*r*r)+' cm²</b>.';
+      break;}
+    case 'circ_d':{
+      const r=rnd(2,5);
+      q.text='Find the area of this circle. Use π = 3.14.';q.svg=drawShape('circ',{r:r},{diam:true,aria:'Circle with diameter '+(2*r)+' cm'});
+      q.ans=+(3.14*r*r).toFixed(2);q.unit='cm²';
+      q.exp='The radius is half the diameter: '+(2*r)+' ÷ 2 = '+r+'. Then 3.14 × '+r+' × '+r+' = <b>'+fmt(3.14*r*r)+' cm²</b>.';
+      break;}
+    case 'rev_rect':{
+      const w=rnd(2,9),l=rnd(3,12),A=w*l;
+      q.text='This rectangle has an area of <b>'+A+' cm²</b>. Find the missing length.';
+      q.svg=drawShape('rect',{w:l,h:w},{labels:{w:'?'},aria:'Rectangle with one side '+w+' cm and the other side missing'});
+      q.ans=l;q.unit='cm';q.exp='Area = length × width, so length = '+A+' ÷ '+w+' = <b>'+l+' cm</b>.';
+      break;}
+    case 'rev_tri':{
+      const b=2*rnd(2,6),h=rnd(2,9),A=b*h/2;
+      q.text='This triangle has an area of <b>'+A+' cm²</b>. Find its height.';
+      q.svg=drawShape('tri',{b:b,h:h,lean:rnd(0,b)},{labels:{h:'?'},aria:'Triangle with base '+b+' cm and height missing'});
+      q.ans=h;q.unit='cm';
+      q.exp='Area = ½ × base × height, so '+A+' = ½ × '+b+' × height = '+(b/2)+' × height. Height = '+A+' ÷ '+(b/2)+' = <b>'+h+' cm</b>.';
+      break;}
+  }
+  return q;
+}
+
+const Q={filter:'all',list:[],i:0,score:0,answered:false,missed:{}};
+const QN=10;
+
+function buildList(filter){
+  const pool=filter==='avg'?AVG_KINDS:(filter==='area'?AREA_KINDS:AVG_KINDS.concat(AREA_KINDS));
+  const out=[];let bag=[],last='';
+  while(out.length<QN){
+    if(!bag.length) bag=shuffle(pool.slice());
+    let k=bag.pop();
+    if(k===last&&bag.length){bag.unshift(k);k=bag.pop()}
+    out.push(makeQ(k));last=k;
+  }
+  return out;
+}
+
+function renderQStart(){
+  const best=safeGet('ninja:maths:mean-median-mode-area:best');
+  $('#quiz').innerHTML='<div class="card"><h2>Ten questions to lock it in</h2>'+
+    '<p style="margin:0 0 12px">Type your answer, press Check, and read the working. Wrong answers show you exactly where to look again.</p>'+
+    '<div class="seg" role="group" aria-label="What to practise">'+
+    [['all','Everything'],['avg','Averages'],['area','Area']].map(x=>'<button data-act="q-filter" data-f="'+x[0]+'" aria-pressed="'+(Q.filter===x[0])+'">'+x[1]+'</button>').join('')+'</div>'+
+    '<div class="row"><button class="btn" data-act="q-start">Start</button>'+(best?'<span class="lbl-inline">Best score: '+best+' out of '+QN+'</span>':'')+'</div></div>';
+}
+
+function renderQ(){
+  const q=Q.list[Q.i];
+  $('#quiz').innerHTML='<div class="card"><div class="qhead"><span>Question '+(Q.i+1)+' of '+QN+'</span><span>Score '+Q.score+'</span></div>'+
+    '<div class="progress"><i style="width:'+(Q.i/QN*100)+'%"></i></div>'+
+    '<p class="qtext">'+q.text+'</p>'+(q.svg?'<div class="svgbox">'+q.svg+'</div>':'')+
+    '<div class="answer"><input type="text" inputmode="decimal" autocomplete="off" id="qin" aria-label="Your answer"><span>'+q.unit+'</span><button class="btn" data-act="q-check">Check</button></div>'+
+    '<button class="link" data-act="q-hint">Need a hint?</button><p class="hook" id="qhint" hidden style="color:var(--shape)"></p>'+
+    '<div id="qfb" aria-live="polite"></div></div>';
+  Q.answered=false;
+  const i=$('#qin');if(i)i.focus({preventScroll:true});
+}
+
+function checkQ(){
+  if(Q.answered) return;
+  const q=Q.list[Q.i],i=$('#qin'),raw=i.value.trim().replace(',','.');
+  const v=parseFloat(raw);
+  if(raw===''||isNaN(v)){$('#qfb').innerHTML='<div class="fb">Type a number first.</div>';return}
+  Q.answered=true;
+  const ok=Math.abs(v-q.ans)<0.011;
+  i.disabled=true;i.classList.add(ok?'ok':'no');
+  $('[data-act="q-check"]').disabled=true;
+  if(ok)Q.score++;else{const lb=KIND[q.kind];Q.missed[q.kind]=(Q.missed[q.kind]||0)+1}
+  const last=Q.i===QN-1;
+  $('#qfb').innerHTML='<div class="fb '+(ok?'ok':'no')+'"><strong>'+(ok?'Yes, that is right.':'Not quite. The answer is '+fmt(q.ans)+(q.unit?' '+q.unit:'')+'.')+'</strong>'+q.exp+'</div>'+
+    '<div class="row"><button class="btn" data-act="q-next">'+(last?'See my score':'Next question')+'</button></div>';
+  $('[data-act="q-next"]').focus({preventScroll:true});
+}
+
+function finishQ(){
+  const best=+(safeGet('ninja:maths:mean-median-mode-area:best')||0);
+  if(Q.score>best) safeSet('ninja:maths:mean-median-mode-area:best',String(Q.score));
+  const groups={};
+  Object.keys(Q.missed).forEach(k=>{const info=KIND[k],id=info.tab+'|'+info.key;groups[id]=groups[id]||{info:info,n:0};groups[id].n+=Q.missed[k]});
+  const ids=Object.keys(groups);
+  const msg=Q.score>=9?'Brilliant. This is locked in.':(Q.score>=7?'Good going. A quick look at the ones below will tidy it up.':'Worth another look. Play with the pictures, then try again.');
+  $('#quiz').innerHTML='<div class="card"><h2>Finished</h2><p class="big-score">'+Q.score+' out of '+QN+'</p><p>'+msg+'</p>'+
+    (ids.length?'<h2>Look again at</h2><div class="revisit">'+ids.map(id=>'<button class="btn alt" data-act="goto" data-tab="'+groups[id].info.tab+'" data-key="'+groups[id].info.key+'">'+groups[id].info.label+'</button>').join('')+'</div>':'<p>No slips at all.</p>')+
+    '<div class="row"><button class="btn" data-act="q-start">Try ten more</button><button class="btn alt" data-act="q-home">Change topic</button></div></div>';
+}
+
+function startQ(){
+  Q.list=buildList(Q.filter);Q.i=0;Q.score=0;Q.missed={};
+  renderQ();
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',function(e){
+  const b=e.target.closest('[data-act]');
+  if(!b) return;
+  const act=b.getAttribute('data-act');
+  switch(act){
+    case 'tab':showTab(b.getAttribute('data-tab'));break;
+    case 'count':S.n=+b.getAttribute('data-n');newNums();break;
+    case 'new':newNums();break;
+    case 'concept':S.concept=b.getAttribute('data-k');S.medStep=0;S.shared=false;renderAvg();break;
+    case 'med-next':{
+      const st=stats(S.nums),maxStep=Math.floor((st.n-1)/2)+1;
+      S.medStep=S.medStep>=maxStep?0:S.medStep+1;renderAvg();break;}
+    case 'mean-toggle':S.shared=!S.shared;renderAvg();break;
+    case 'turn-check':turnCheck();break;
+    case 'turn-show':turnShow();break;
+    case 'shape':S.area.shape=b.getAttribute('data-shape');S.area.why=false;renderArea();break;
+    case 'why':S.area.why=!S.area.why;renderArea();break;
+    case 'pi':S.area.pi=b.getAttribute('data-pi');renderArea();break;
+    case 'q-filter':Q.filter=b.getAttribute('data-f');renderQStart();break;
+    case 'q-start':startQ();break;
+    case 'q-home':renderQStart();break;
+    case 'q-check':checkQ();break;
+    case 'q-hint':{
+      const h=$('#qhint');h.textContent=KIND[Q.list[Q.i].kind].hint;h.hidden=false;break;}
+    case 'q-next':
+      if(Q.i===QN-1){finishQ()}else{Q.i++;renderQ()}
+      break;
+    case 'goto':{
+      const t=b.getAttribute('data-tab'),k=b.getAttribute('data-key');
+      if(t==='avg'){S.concept=k;S.medStep=0;S.shared=false;renderAvg()}
+      else{S.area.shape=k;S.area.why=false;renderArea()}
+      showTab(t);window.scrollTo(0,0);break;}
+  }
+});
+document.addEventListener('input',onSlide);
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter') return;
+  if(e.target.id==='qin'){e.preventDefault();checkQ()}
+  else if(e.target.matches&&e.target.matches('#turnCard input')){e.preventDefault();turnCheck()}
+});
+
+/* ---------- start ---------- */
+newNums();
+renderArea();
+renderQStart();
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>
