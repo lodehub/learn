@@ -48,6 +48,13 @@
       "type": "html",
       "year": 2026,
       "status": "current"
+    },
+    {
+      "title": "Grammar Workshop: Year 5 and 6",
+      "path": "english/grammar-workshop/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
     }
   ]
 }
