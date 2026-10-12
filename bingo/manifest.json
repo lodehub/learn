@@ -73,6 +73,14 @@
       "year": 2026,
       "status": "current",
       "topic": "Grammar and writing"
+    },
+    {
+      "title": "English Quest: Grammar and Writing",
+      "path": "english/english-quest/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Grammar and writing"
     }
   ]
 }

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Year 3 English Quest: Grammar and Writing</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --bg: #e6f2f3; --card: #ffffff; --ink: #1d2b33; --muted: #4f656d;
+    --teal: #0f6b6b; --on-teal: #ffffff; --teal-soft: #dff0ee;
+    --sun: #ffd35c; --sun-soft: #fff3c4; --on-sun: #3b2c00;
+    --good: #1c7447; --good-bg: #d9f2e3; --bad: #a8352c; --bad-bg: #fbe2df; --line: #b3c9ce;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1d22; --card: #172a31; --ink: #e8f1f2; --muted: #9db5ba;
+      --teal: #5cc9c0; --on-teal: #0f1d22; --teal-soft: #1c3a40;
+      --sun: #ffd35c; --sun-soft: #3a3318; --on-sun: #3b2c00;
+      --good: #7fdca6; --good-bg: #173a28; --bad: #ff9a90; --bad-bg: #432220; --line: #36525a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1d22; --card: #172a31; --ink: #e8f1f2; --muted: #9db5ba;
+    --teal: #5cc9c0; --on-teal: #0f1d22; --teal-soft: #1c3a40;
+    --sun: #ffd35c; --sun-soft: #3a3318; --on-sun: #3b2c00;
+    --good: #7fdca6; --good-bg: #173a28; --bad: #ff9a90; --bad-bg: #432220; --line: #36525a;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); font-size: 18px; }
+  * , *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Trebuchet MS", Verdana, sans-serif; line-height: 1.55;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 1rem; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: .4rem 0 .3rem; color: var(--teal); }
+  h2 { font-size: 1.35rem; margin: 0 0 .5rem; }
+  h3 { font-size: 1.05rem; margin: 1rem 0 .3rem; color: var(--teal); }
+  p { margin: .4rem 0; }
+  .muted { color: var(--muted); }
+  .card { background: var(--card); border-radius: 14px; padding: 1.1rem 1.2rem; margin: .9rem 0; border: 2px solid var(--line); }
+  .tip { background: var(--sun-soft); border-left: 6px solid var(--sun); border-radius: 0 10px 10px 0; padding: .6rem .9rem; margin: .8rem 0; }
+  button { font: inherit; cursor: pointer; }
+  button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+  .btn {
+    background: var(--teal); color: var(--on-teal); border: 0; border-radius: 999px;
+    padding: .55rem 1.3rem; font-weight: 700; min-height: 44px;
+  }
+  .btn.ghost { background: transparent; color: var(--teal); border: 2px solid var(--teal); }
+  .btn[disabled] { opacity: .5; cursor: default; }
+  .row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: .6rem; flex-wrap: wrap; }
+  .trail { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .7rem; margin-top: .6rem; }
+  .stop {
+    text-align: left; background: var(--card); color: var(--ink); border: 2px solid var(--line);
+    border-radius: 12px; padding: .6rem .8rem; display: flex; gap: .7rem; align-items: center; min-height: 64px;
+  }
+  .stop:hover { border-color: var(--teal); }
+  .stop .n {
+    flex: none; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--teal-soft); color: var(--teal);
+    display: grid; place-items: center; font-weight: 700;
+  }
+  .stop.done .n { background: var(--teal); color: var(--on-teal); }
+  .stop small { display: block; color: var(--muted); }
+  .stars { color: #c98a00; letter-spacing: .1em; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .stars { color: var(--sun); } }
+  .bar { height: 10px; background: var(--teal-soft); border-radius: 999px; overflow: hidden; margin: .4rem 0 .9rem; }
+  .bar > div { height: 100%; background: var(--teal); transition: width .3s; }
+  .sentence { font-size: 1.25rem; margin: .6rem 0; line-height: 2.1; }
+  .tok { background: var(--card); color: var(--ink); border: 2px solid var(--line); border-radius: 8px; padding: .1rem .5rem; margin: 0 .1rem; }
+  .tok:hover { border-color: var(--teal); }
+  .opts { display: grid; gap: .55rem; margin: .8rem 0; }
+  .opt {
+    text-align: left; background: var(--card); color: var(--ink); border: 2px solid var(--line);
+    border-radius: 12px; padding: .65rem .9rem; min-height: 48px; font-size: 1.02rem;
+  }
+  .opt:hover:not([disabled]) { border-color: var(--teal); background: var(--teal-soft); }
+  .opt.right, .tok.right { background: var(--good-bg); border-color: var(--good); color: var(--ink); }
+  .opt.wrong, .tok.wrong { background: var(--bad-bg); border-color: var(--bad); color: var(--ink); }
+  .fb { border-radius: 12px; padding: .7rem .9rem; margin: .8rem 0; }
+  .fb.ok { background: var(--good-bg); border: 2px solid var(--good); }
+  .fb.no { background: var(--bad-bg); border: 2px solid var(--bad); }
+  .fb b { display: block; }
+  input[type=text], textarea {
+    width: 100%; font: inherit; color: var(--ink); background: var(--card);
+    border: 2px solid var(--line); border-radius: 10px; padding: .55rem .7rem;
+  }
+  textarea { resize: vertical; line-height: 1.6; }
+  .score { font-size: 2.4rem; font-weight: 700; color: var(--teal); }
+  .missed { background: var(--bad-bg); border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0; }
+  .tabs { display: flex; gap: .4rem; flex-wrap: wrap; margin: .6rem 0; }
+  .tab { background: transparent; color: var(--teal); border: 2px solid var(--teal); border-radius: 999px; padding: .35rem 1rem; font-weight: 700; min-height: 44px; }
+  .tab[aria-selected="true"] { background: var(--teal); color: var(--on-teal); }
+  .chips { display: flex; gap: .4rem; flex-wrap: wrap; margin: .4rem 0; }
+  .chip { background: var(--sun); color: var(--on-sun); border: 0; border-radius: 999px; padding: .25rem .9rem; font-weight: 700; }
+  .chip[aria-pressed="true"] { outline: 3px solid var(--teal); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .field label { display: block; font-weight: 700; margin-bottom: .2rem; }
+  .checks { list-style: none; padding: 0; margin: .4rem 0; }
+  .checks li { padding: .2rem 0; }
+  .checks .tick { display: inline-block; width: 1.5rem; font-weight: 700; }
+  .checks .y { color: var(--good); } .checks .n { color: var(--muted); }
+  .manual label { display: block; padding: .2rem 0; }
+  .step { margin: .6rem 0; }
+  .step small { color: var(--muted); display: block; }
+  .stat { font-size: .9rem; color: var(--muted); }
+  @media (max-width: 560px) { .grid2 { grid-template-columns: 1fr; } html { font-size: 17px; } }
+  @media (prefers-reduced-motion: reduce) { .bar > div { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- helpers ---------- */
+  function h(tag, attrs) {
+    var e = document.createElement(tag);
+    attrs = attrs || {};
+    for (var k in attrs) {
+      var v = attrs[k];
+      if (k === "class") e.className = v;
+      else if (k === "html") e.innerHTML = v;
+      else if (k.slice(0, 2) === "on") e.addEventListener(k.slice(2), v);
+      else if (v !== false && v != null) e.setAttribute(k, v === true ? "" : v);
+    }
+    for (var i = 2; i < arguments.length; i++) add(e, arguments[i]);
+    return e;
+  }
+  function add(e, c) {
+    if (c == null || c === false) return;
+    if (Array.isArray(c)) { c.forEach(function (x) { add(e, x); }); return; }
+    e.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
+  }
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function norm(s, cs) {
+    s = String(s).replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"')
+      .replace(/\s+/g, " ").trim().replace(/[.!?]+$/, "");
+    return cs ? s : s.toLowerCase();
+  }
+
+  /* ---------- storage (optional, never required) ---------- */
+  var KEY = "bingo:english:english-quest:v1";
+  var store = { results: {}, writing: {} };
+  try {
+    var raw = window.localStorage.getItem(KEY);
+    if (raw) store = JSON.parse(raw);
+  } catch (e) { /* storage unavailable */ }
+  store.results = store.results || {}; store.writing = store.writing || {};
+  function save() { try { window.localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} }
+
+  /* ---------- question bank ---------- */
+  function C(q, opts, a, why) { return { t: "choice", q: q, opts: opts, a: a, why: why }; }
+  function T(q, s, a, why) { return { t: "tap", q: q, s: s, a: a, why: why }; }
+  function Y(q, a, why, cs) { return { t: "type", q: q, a: a, why: why, cs: !!cs }; }
+
+  var SECTIONS = [
+    { id: "wordclasses", title: "Word classes",
+      tip: "A <b>noun</b> names a thing, person or place. A <b>verb</b> is an action or being word. An <b>adjective</b> describes a noun. An <b>adverb</b> tells you how, when or where something happens.",
+      qs: [
+        T("Tap the noun.", "The enormous dragon slept.", ["dragon"], "Dragon names a creature, so it is a noun. Enormous describes it, so it is an adjective."),
+        T("Tap the verb.", "Maya painted a picture of the sea.", ["painted"], "Painted is the action, so it is the verb."),
+        T("Tap the adjective.", "A freezing wind blew across the village.", ["freezing"], "Freezing describes the wind."),
+        T("Tap the adverb.", "The tortoise moved slowly.", ["slowly"], "Slowly tells you how the tortoise moved."),
+        C("Which word is a verb?", ["window", "wobble", "wooden", "warmly"], "wobble", "Wobble is something you can do. Window is a noun, wooden is an adjective and warmly is an adverb.")
+      ] },
+    { id: "nouns", title: "Nouns: common and proper",
+      tip: "<b>Proper nouns</b> name a particular person, place, day or month, so they start with a capital letter. <b>Common nouns</b> name everything else.",
+      qs: [
+        C("Which is a proper noun?", ["city", "Cambridge", "river", "teacher"], "Cambridge", "Cambridge is the name of one particular place."),
+        C("Which sentence has capital letters in the right places?", ["on tuesday, amir visited cambridge.", "On Tuesday, Amir visited Cambridge.", "On tuesday, Amir visited cambridge.", "on Tuesday, amir visited Cambridge."], "On Tuesday, Amir visited Cambridge.", "Sentences, days, names and places all start with a capital letter."),
+        Y("Type this sentence again with the right capital letters: we go swimming every friday.", ["We go swimming every Friday."], "The sentence starts with a capital letter and Friday is a day of the week.", true),
+        C("My friend lives in london. Which word needs a capital letter?", ["friend", "lives", "london", "in"], "london", "London is the name of a place, so it needs a capital letter.")
+      ] },
+    { id: "adjectives", title: "Adjectives",
+      tip: "Adjectives make a noun more interesting. Choose exact ones. <i>Big</i> is fine, but <i>towering</i> or <i>gigantic</i> paints a better picture.",
+      qs: [
+        C("Which is the strongest word for <i>big</i>?".replace(/<\/?i>/g, ""), ["nice", "gigantic", "good", "okay"], "gigantic", "Gigantic is a more exact and exciting word than big."),
+        C("Which adjective fits best? A ___ lion roared.", ["ferocious", "quickly", "jump", "lion"], "ferocious", "Ferocious describes the lion."),
+        T("Tap an adjective.", "The fluffy white rabbit hopped away.", ["fluffy", "white"], "Fluffy and white both describe the rabbit."),
+        C("Which sentence paints the best picture?", ["The house was old.", "The crumbling house leaned over the dark lane.", "The house was there.", "I saw a house."], "The crumbling house leaned over the dark lane.", "It has strong adjectives (crumbling, dark) and a strong verb (leaned).")
+      ] },
+    { id: "verbs", title: "Verbs and tenses",
+      tip: "<b>Present tense</b> is happening now (<i>I walk</i>). <b>Past tense</b> has already happened (<i>I walked</i>). Some verbs are irregular: <i>run, ran</i> and <i>go, went</i>. We use <b>has</b> or <b>have</b> plus a verb to show something that finished but still matters now: <i>She has finished her book.</i>",
+      qs: [
+        Y("Change to the past tense: I jump over the puddle.", ["I jumped over the puddle."], "Jump adds -ed to make jumped."),
+        Y("Change to the past tense: We eat our lunch outside.", ["We ate our lunch outside."], "Eat is irregular. The past tense is ate."),
+        C("What is the past tense of <catch>?".replace(/[<>]/g, ""), ["catched", "caught", "catches", "catching"], "caught", "Catch is irregular. The past tense is caught."),
+        C("She ___ finished her book.", ["has", "have"], "has", "Use has with he, she, it or one person."),
+        C("They ___ built a sandcastle.", ["has", "have"], "have", "Use have with they, we, you and I."),
+        C("Which sentence is correct?", ["We was very tired.", "We were very tired.", "We is very tired.", "We be very tired."], "We were very tired.", "Use were with we, you and they in the past tense.")
+      ] },
+    { id: "adverbs", title: "Adverbs",
+      tip: "Many adverbs end in <b>-ly</b> and tell you <i>how</i> a verb is done: <i>The tortoise moved slowly.</i> Others tell you <i>when</i> (<i>soon, later</i>) or <i>where</i> (<i>outside, nearby</i>).",
+      qs: [
+        C("The knight fought ___.", ["brave", "bravery", "bravely", "braver"], "bravely", "Bravely is the adverb. It tells you how he fought."),
+        C("___, the lights went out.", ["Sudden", "Suddenly", "Suddenness", "Suddens"], "Suddenly", "Suddenly is an adverb. It is followed by a comma at the start of a sentence."),
+        C("She whispered softly. Which word tells you HOW she whispered?", ["She", "whispered", "softly"], "softly", "Softly is the adverb."),
+        Y("Turn <careful> into an adverb by finishing the word: careful + ly.".replace(/[<>]/g, ""), ["carefully"], "Careful + ly = carefully (two l letters)."),
+        Y("Turn happy into an adverb. Be careful with the ending!", ["happily"], "When a word ends in y, change the y to i before adding -ly.")
+      ] },
+    { id: "conjunctions", title: "Conjunctions",
+      tip: "A conjunction joins two ideas. <b>and, but, or</b> join equal ideas. <b>because, so</b> give a reason or result. <b>when, before, after, while, until</b> show time. <b>although, if</b> show a contrast or a condition.",
+      qs: [
+        C("I wore my coat ___ it was freezing.", ["because", "although", "until", "before"], "because", "Because gives the reason for wearing a coat."),
+        C("Wash your hands ___ you eat.", ["because", "before", "although", "so"], "before", "Before shows which thing happens first."),
+        C("___ it was raining, we still played outside.", ["Because", "So", "Although", "Until"], "Although", "Although shows a contrast: rain would normally stop you."),
+        C("I was thirsty, ___ I drank some water.", ["so", "until", "although", "while"], "so", "So shows a result."),
+        C("We waited ___ the train arrived.", ["until", "so", "but", "although"], "until", "Until shows how long we waited.")
+      ] },
+    { id: "prepositions", title: "Prepositions",
+      tip: "A preposition tells you where something is or when it happens: <i>under, behind, beside, across, through, during, after, before.</i>",
+      qs: [
+        T("Tap the preposition.", "The fox hid behind the wall.", ["behind"], "Behind tells you where the fox hid."),
+        T("Tap the preposition.", "We walked through the dark forest.", ["through"], "Through tells you the path we took."),
+        C("The frog jumped ___ the pond.", ["into", "beautiful", "quickly", "and"], "into", "Into is a preposition of place."),
+        C("Which word tells you WHERE?", ["under", "because", "quickly", "happy"], "under", "Under is a preposition. It shows position.")
+      ] },
+    { id: "aan", title: "a or an?",
+      tip: "Use <b>an</b> before a word that starts with a vowel <i>sound</i> (a, e, i, o, u). Use <b>a</b> before a consonant sound.",
+      qs: [
+        C("___ umbrella", ["a", "an"], "an", "Umbrella starts with the vowel sound u."),
+        C("___ giant", ["a", "an"], "a", "Giant starts with a j sound, a consonant sound."),
+        C("___ elephant", ["a", "an"], "an", "Elephant starts with the vowel sound e."),
+        C("___ rocket", ["a", "an"], "a", "Rocket starts with r, a consonant."),
+        C("___ adventure", ["a", "an"], "an", "Adventure starts with the vowel sound a.")
+      ] },
+    { id: "speech", title: "Direct speech",
+      tip: "Put <b>speech marks</b> (inverted commas) around the exact words someone says. Punctuation goes <i>inside</i> the speech marks. A new speaker means a new line. <i>\u201CWhere are we going?\u201D asked Tom.</i>",
+      qs: [
+        C("Which is written correctly?", ["\u201CWatch out!\u201D shouted Sam.", "\u201CWatch out! shouted Sam.\u201D", "Watch out! \u201Cshouted Sam.\u201D", "\u201CWatch out,\u201D shouted Sam!"], "\u201CWatch out!\u201D shouted Sam.", "Only the spoken words go inside the speech marks, and the ! goes inside too."),
+        C("I love chocolate cake, said Priya. Which words go inside speech marks?", ["I love chocolate cake", "said Priya", "I love chocolate cake, said Priya", "Priya"], "I love chocolate cake", "Speech marks go around the words Priya actually says."),
+        C("Which is written correctly?", ["The teacher asked, \u201CWho has finished?\u201D", "The teacher asked, Who has finished?", "\u201CThe teacher asked, Who has finished?\u201D", "The teacher asked \u201CWho has finished\u201D?"], "The teacher asked, \u201CWho has finished?\u201D", "The question mark belongs inside the speech marks.")
+      ] },
+    { id: "apostrophes", title: "Apostrophes",
+      tip: "An apostrophe has two jobs. <b>Missing letters:</b> <i>don\u2019t</i> (do not), <i>can\u2019t</i> (cannot), <i>it\u2019s</i> (it is). <b>Belonging:</b> <i>the girl\u2019s coat</i> (one girl), <i>the boys\u2019 ball</i> (more than one boy).",
+      qs: [
+        Y("Write the short form of: did not", ["didn't"], "The apostrophe replaces the missing letter o."),
+        Y("Write the short form of: she is", ["she's"], "The apostrophe replaces the missing letter i."),
+        Y("Write the short form of: we have", ["we've"], "The apostrophe replaces the missing letters ha."),
+        C("The bone belonging to the dog is:", ["the dogs bone", "the dog\u2019s bone", "the dogs\u2019 bone", "the dog bone\u2019s"], "the dog\u2019s bone", "One dog owns the bone, so add \u2019s to dog."),
+        C("The toys belonging to the children are:", ["the childrens toys", "the children\u2019s toys", "the childrens\u2019 toys", "the children toys"], "the children\u2019s toys", "Children is already plural, so add \u2019s."),
+        C("___ raining outside.", ["Its", "It\u2019s"], "It\u2019s", "It\u2019s is short for it is.")
+      ] },
+    { id: "commas", title: "Commas in lists",
+      tip: "Use commas to separate items in a list. Put <b>and</b> before the last item, with no comma before it: <i>I packed a torch, a map, some water and a compass.</i>",
+      qs: [
+        C("Which is punctuated correctly?", ["We saw lions, tigers, zebras and monkeys.", "We saw lions tigers zebras and monkeys.", "We saw lions, tigers, zebras, and, monkeys.", "We, saw lions tigers, zebras and monkeys."], "We saw lions, tigers, zebras and monkeys.", "Commas separate the items. The word and replaces the last comma."),
+        C("You will need paper scissors glue and a pencil. How many commas does this list need?", ["1", "2", "3", "4"], "2", "One after paper, one after scissors. Then glue and a pencil are joined by and."),
+        C("Which sentence uses commas in a list correctly?", ["I like apples, pears, grapes and plums.", "I like, apples pears grapes and plums.", "I like apples pears, grapes, and plums.", "I like apples, pears grapes, and plums."], "I like apples, pears, grapes and plums.", "Items are separated by commas, with and before the last one.")
+      ] },
+    { id: "paragraphs", title: "Paragraphs and headings",
+      tip: "A <b>paragraph</b> is a group of sentences about one idea. Start a new paragraph when you change <b>time</b>, <b>place</b>, <b>topic</b> or <b>speaker</b>. A <b>heading</b> tells the reader what a section is about.",
+      qs: [
+        C("When should you start a new paragraph?", ["After every sentence", "When the time, place, topic or speaker changes", "At the end of each line", "Only at the very end"], "When the time, place, topic or speaker changes", "A paragraph groups sentences about one idea."),
+        C("Which is the best heading for a paragraph about how owls hunt at night?", ["How owls hunt", "My birthday", "Cooking pasta", "Football"], "How owls hunt", "A heading must tell you what the paragraph is about."),
+        C("We spent the morning at the beach. We built sandcastles. Which sentence should start a new paragraph?", ["That afternoon, we went to the funfair.", "We built a big moat.", "The sand was warm.", "We splashed in the sea."], "That afternoon, we went to the funfair.", "The time and the place change, so it is a good place for a new paragraph.")
+      ] }
+  ];
+
+  /* ---------- state ---------- */
+  var app = document.getElementById("app");
+  var sess = null;
+  var tab = "ladder";
+
+  function starsFor(c, t) { var p = c / t; return p === 1 ? 3 : p >= 0.7 ? 2 : 1; }
+  function starText(n) { return "\u2605".repeat(n) + "\u2606".repeat(3 - n); }
+  function mount() { app.innerHTML = ""; for (var i = 0; i < arguments.length; i++) add(app, arguments[i]); window.scrollTo(0, 0); }
+
+  /* ---------- home ---------- */
+  function home() {
+    sess = null;
+    var done = 0, totalStars = 0;
+    SECTIONS.forEach(function (s) { var r = store.results[s.id]; if (r) { done++; totalStars += starsFor(r.c, r.t); } });
+    var stops = SECTIONS.map(function (s, i) {
+      var r = store.results[s.id];
+      return h("button", { class: "stop" + (r ? " done" : ""), type: "button", onclick: function () { intro(i); } },
+        h("span", { class: "n" }, String(i + 1)),
+        h("span", null, s.title, h("small", null, r ? starText(starsFor(r.c, r.t)) + " " + r.c + " of " + r.t : s.qs.length + " questions")));
+    });
+    mount(
+      h("h1", null, "Year 3 English Quest"),
+      h("p", { class: "muted" }, "Grammar and writing. Each question is answered once. You get an explanation straight away, so you learn as you go. Then use the Writing Studio to put it all into practice."),
+      h("div", { class: "card" },
+        h("div", { class: "topbar" },
+          h("div", null, h("h2", null, "Grammar trail"),
+            h("span", { class: "stat" }, done + " of " + SECTIONS.length + " stops finished. Stars collected: " + totalStars + " of " + SECTIONS.length * 3)),
+          h("button", { class: "btn", type: "button", onclick: function () { var next = SECTIONS.findIndex(function (s) { return !store.results[s.id]; }); intro(next < 0 ? 0 : next); } }, done ? "Keep going" : "Start the quest")),
+        h("div", { class: "bar" }, h("div", { style: "width:" + Math.round(done / SECTIONS.length * 100) + "%" })),
+        h("div", { class: "trail" }, stops)),
+      h("div", { class: "card" },
+        h("h2", null, "Writing Studio"),
+        h("p", null, "Build better sentences, describe a setting and write a story. A checker gives friendly hints while you write. Your writing is saved on this device."),
+        h("button", { class: "btn", type: "button", onclick: function () { studio(); } }, "Open the Writing Studio")),
+      h("p", { class: "stat" }, h("button", { class: "btn ghost", type: "button", onclick: function () {
+        if (window.confirm("Clear all stars and saved writing on this device?")) { store = { results: {}, writing: {} }; save(); home(); }
+      } }, "Start again from scratch"))
+    );
+  }
+
+  /* ---------- section intro ---------- */
+  function intro(i) {
+    var s = SECTIONS[i];
+    mount(
+      h("button", { class: "btn ghost", type: "button", onclick: home }, "Back to the trail"),
+      h("h1", null, (i + 1) + ". " + s.title),
+      h("div", { class: "tip" }, h("b", null, "Remember: "), h("span", { html: s.tip })),
+      h("p", null, s.qs.length + " questions. You answer each one once and see the explanation straight away."),
+      h("button", { class: "btn", type: "button", onclick: function () { sess = { si: i, qi: 0, c: 0, missed: [], done: false }; question(); } }, "Begin")
+    );
+  }
+
+  /* ---------- question engine ---------- */
+  function question() {
+    var s = SECTIONS[sess.si], q = s.qs[sess.qi];
+    var body = h("div");
+    var fb = h("div", { "aria-live": "polite" });
+    var nextBtn = h("button", { class: "btn", type: "button", style: "display:none", onclick: nextQ }, sess.qi + 1 < s.qs.length ? "Next question" : "See my stars");
+    var shown = q.t === "tap" ? q.a[0] : q.t === "type" ? q.a[0] : q.a;
+
+    function finish(ok, picked) {
+      if (sess.done) return; sess.done = true;
+      if (ok) sess.c++; else sess.missed.push({ q: q.q + (q.s ? " " + q.s : ""), a: shown, why: q.why });
+      fb.className = "fb " + (ok ? "ok" : "no");
+      fb.innerHTML = "";
+      add(fb, h("b", null, ok ? "Correct! \u2605" : "Not quite. The answer is: " + shown), h("span", null, q.why));
+      nextBtn.style.display = "inline-block"; nextBtn.focus();
+    }
+
+    if (q.t === "choice") {
+      var opts = shuffle(q.opts);
+      var wrap = h("div", { class: "opts" });
+      opts.forEach(function (o) {
+        var b = h("button", { class: "opt", type: "button" }, o);
+        b.addEventListener("click", function () {
+          var ok = o === q.a;
+          Array.prototype.forEach.call(wrap.children, function (c) {
+            c.disabled = true;
+            if (c.textContent === q.a) c.classList.add("right");
+          });
+          if (!ok) b.classList.add("wrong");
+          finish(ok);
+        });
+        wrap.appendChild(b);
+      });
+      add(body, wrap);
+    } else if (q.t === "tap") {
+      var sent = h("div", { class: "sentence" });
+      q.s.split(" ").forEach(function (w) {
+        var clean = w.replace(/[.,!?;:"\u201C\u201D]/g, "").toLowerCase();
+        var b = h("button", { class: "tok", type: "button" }, w);
+        b.addEventListener("click", function () {
+          var ok = q.a.indexOf(clean) > -1;
+          Array.prototype.forEach.call(sent.querySelectorAll("button"), function (x) {
+            x.disabled = true;
+            var xc = x.textContent.replace(/[.,!?;:"\u201C\u201D]/g, "").toLowerCase();
+            if (q.a.indexOf(xc) > -1) x.classList.add("right");
+          });
+          if (!ok) b.classList.add("wrong");
+          finish(ok);
+        });
+        sent.appendChild(b); sent.appendChild(document.createTextNode(" "));
+      });
+      add(body, sent);
+    } else {
+      var inp = h("input", { type: "text", autocomplete: "off", autocapitalize: "off", spellcheck: "false", "aria-label": "Your answer" });
+      var go = h("button", { class: "btn", type: "button" }, "Check");
+      function check() {
+        if (sess.done || !inp.value.trim()) return;
+        var ok = q.a.some(function (a) { return norm(a, q.cs) === norm(inp.value, q.cs); });
+        inp.disabled = true; go.disabled = true; finish(ok);
+      }
+      go.addEventListener("click", check);
+      inp.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+      add(body, h("div", { class: "row" }, h("div", { style: "flex:1;min-width:200px" }, inp), go));
+      setTimeout(function () { inp.focus(); }, 0);
+    }
+
+    sess.done = false;
+    mount(
+      h("div", { class: "topbar" },
+        h("button", { class: "btn ghost", type: "button", onclick: function () { if (window.confirm("Leave this stop? Your answers here will not be saved.")) home(); } }, "Leave"),
+        h("span", { class: "stat" }, s.title + ": question " + (sess.qi + 1) + " of " + s.qs.length)),
+      h("div", { class: "bar" }, h("div", { style: "width:" + Math.round(sess.qi / s.qs.length * 100) + "%" })),
+      h("div", { class: "card" }, h("h2", null, q.q), body, fb, nextBtn)
+    );
+  }
+
+  function nextQ() {
+    var s = SECTIONS[sess.si];
+    sess.qi++; sess.done = false;
+    if (sess.qi < s.qs.length) { question(); return; }
+    store.results[s.id] = { c: sess.c, t: s.qs.length }; save();
+    summary();
+  }
+
+  function summary() {
+    var s = SECTIONS[sess.si], n = starsFor(sess.c, s.qs.length);
+    var msg = n === 3 ? "Perfect! You really know this." : n === 2 ? "Great work. You are nearly there." : "Well done for finishing. Read the notes below once and carry on.";
+    var nextI = sess.si + 1 < SECTIONS.length ? sess.si + 1 : -1;
+    mount(
+      h("div", { class: "card" },
+        h("h2", null, s.title + ": finished"),
+        h("div", { class: "score" }, sess.c + " out of " + s.qs.length),
+        h("div", { class: "stars", style: "font-size:2rem" }, starText(n)),
+        h("p", null, msg),
+        sess.missed.length ? h("h3", null, "Read these once, then move on") : null,
+        sess.missed.map(function (m) {
+          return h("div", { class: "missed" }, h("b", null, m.q), h("div", null, "Answer: " + m.a), h("div", { class: "muted" }, m.why));
+        })),
+      h("div", { class: "row" },
+        nextI >= 0 ? h("button", { class: "btn", type: "button", onclick: function () { intro(nextI); } }, "Next stop") : h("button", { class: "btn", type: "button", onclick: studio }, "Go to the Writing Studio"),
+        h("button", { class: "btn ghost", type: "button", onclick: home }, "Back to the trail"))
+    );
+  }
+
+  /* ---------- writing checker ---------- */
+  var CONJ = ["and", "but", "or", "because", "so", "when", "before", "after", "while", "until", "although", "if"];
+  var PREP = ["behind", "under", "over", "through", "across", "beside", "above", "below", "between", "inside", "outside", "into", "onto", "near", "along", "around", "beneath", "during", "towards", "beyond", "beneath", "against", "among"];
+  var LY_SKIP = ["family", "only", "early", "lonely", "silly", "belly", "jelly", "ugly", "bully", "fly", "reply", "supply", "apply", "rely", "july", "lovely", "friendly"];
+
+  function words(t) { return (t.toLowerCase().match(/[a-z\u2019']+/g) || []); }
+  function sentences(t) { return (t.match(/[^.!?]+[.!?]+["\u201D\u2019']?/g) || []).map(function (x) { return x.trim(); }); }
+  function adverbCount(t) { return words(t).filter(function (w) { return w.length > 3 && /ly$/.test(w) && LY_SKIP.indexOf(w) < 0; }).length; }
+  function distinctConj(t) { var w = words(t); return CONJ.filter(function (c) { return w.indexOf(c) > -1; }).length; }
+  function prepCount(t) { var w = words(t); return PREP.filter(function (p) { return w.indexOf(p) > -1; }).length; }
+
+  function analyse(t, kind) {
+    var trimmed = t.trim(), ss = sentences(trimmed), wc = words(t).length, out = [];
+    var startsCap = ss.length > 0 && ss.every(function (x) { var m = x.match(/[A-Za-z]/); return m && m[0] === m[0].toUpperCase(); });
+    var endsOk = /[.!?]["\u201D\u2019']?$/.test(trimmed);
+    var target = kind === "story" ? 80 : 40;
+    out.push({ ok: wc >= target, label: "Length: " + wc + " words (aim for " + target + " or more)" });
+    out.push({ ok: startsCap && endsOk && trimmed.length > 0, label: "Every sentence starts with a capital letter and ends with . ! or ?" });
+    out.push({ ok: adverbCount(t) >= (kind === "story" ? 2 : 1), label: "Adverbs: " + adverbCount(t) + " found (words like slowly or suddenly)" });
+    if (kind === "setting" || kind === "story") out.push({ ok: prepCount(t) >= 1, label: "Prepositions: " + prepCount(t) + " found (behind, under, across...)" });
+    if (kind === "story") {
+      out.push({ ok: distinctConj(t) >= 3, label: "Different conjunctions: " + distinctConj(t) + " (aim for 3)" });
+      var q = (t.match(/["\u201C\u201D]/g) || []).length;
+      out.push({ ok: q >= 2 && q % 2 === 0, label: "Speech marks used in pairs" });
+      out.push({ ok: /['\u2019]/.test(t), label: "An apostrophe used (don\u2019t, Tom\u2019s...)" });
+      var paras = t.split(/\n\s*\n/).filter(function (p) { return p.trim(); }).length;
+      out.push({ ok: paras >= 2, label: "Paragraphs: " + paras + " (leave a blank line between them)" });
+      var firsts = ss.map(function (x) { return (x.match(/[A-Za-z]+/) || [""])[0].toLowerCase(); });
+      var uniq = firsts.filter(function (x, i) { return firsts.indexOf(x) === i; }).length;
+      out.push({ ok: ss.length >= 3 && uniq >= Math.ceil(ss.length * 0.7), label: "Sentences start in different ways" });
+    }
+    return out;
+  }
+
+  /* ---------- writing studio ---------- */
+  function W(k) { return store.writing[k] || ""; }
+  function setW(k, v) { store.writing[k] = v; save(); }
+  function field(k, rows, ph, cb) {
+    var el = rows ? h("textarea", { rows: rows, placeholder: ph || "", "aria-label": ph || k }, W(k))
+                  : h("input", { type: "text", value: W(k), placeholder: ph || "", "aria-label": ph || k });
+    el.addEventListener("input", function () { setW(k, el.value); if (cb) cb(); });
+    return el;
+  }
+  function checksPanel(kind, getText, manual) {
+    var ul = h("ul", { class: "checks" });
+    function update() {
+      ul.innerHTML = "";
+      var t = getText();
+      analyse(t, kind).forEach(function (c) {
+        var on = t.trim() && c.ok;
+        add(ul, h("li", null, h("span", { class: "tick " + (on ? "y" : "n") }, on ? "\u2713" : "\u25CB"), c.label));
+      });
+    }
+    update();
+    var man = h("div", { class: "manual" }, h("b", null, "Only you can check these:"));
+    manual.forEach(function (m, i) {
+      var id = "m_" + kind + "_" + i;
+      var cb = h("input", { type: "checkbox", id: id });
+      cb.checked = W(id) === "1";
+      cb.addEventListener("change", function () { setW(id, cb.checked ? "1" : "0"); });
+      add(man, h("label", { for: id }, cb, " " + m));
+    });
+    return { el: h("div", { class: "card" }, h("h3", null, "Live checker"), ul, man), update: update };
+  }
+
+  function studio() {
+    var tabs = [["ladder", "Sentence ladder"], ["setting", "Describe a setting"], ["story", "Write a story"]];
+    var bar = h("div", { class: "tabs", role: "tablist" }, tabs.map(function (t) {
+      return h("button", { class: "tab", role: "tab", type: "button", "aria-selected": String(tab === t[0]), onclick: function () { tab = t[0]; studio(); } }, t[1]);
+    }));
+    var content = tab === "ladder" ? ladder() : tab === "setting" ? setting() : story();
+    mount(
+      h("div", { class: "topbar" }, h("button", { class: "btn ghost", type: "button", onclick: home }, "Back to the trail"), h("span", { class: "stat" }, "Saved on this device")),
+      h("h1", null, "Writing Studio"), bar, content
+    );
+  }
+
+  function ladder() {
+    var starts = ["The dog ran.", "The girl smiled.", "A bird sang."];
+    var cur = W("ladderStart") || starts[0];
+    var chips = h("div", { class: "chips" }, starts.map(function (s) {
+      return h("button", { class: "chip", type: "button", "aria-pressed": String(cur === s), onclick: function () { setW("ladderStart", s); studio(); } }, s);
+    }));
+    var steps = [
+      ["Add an adjective", "Describe the noun. Example: The muddy dog ran."],
+      ["Add an adverb", "Say how it happened. Example: The muddy dog ran quickly."],
+      ["Add where or when", "Use a preposition. Example: ...ran quickly across the field."],
+      ["Add a conjunction and a second idea", "Use because, while, although... Example: ...across the field because it saw a rabbit."]
+    ];
+    var testers = [
+      function (t, p) { return t.trim().length > p.trim().length; },
+      function (t) { return adverbCount(t) >= 1; },
+      function (t) { return prepCount(t) >= 1; },
+      function (t) { var w = words(t); return CONJ.filter(function (c) { return c !== "and" && w.indexOf(c) > -1; }).length >= 1 || w.indexOf("and") > -1; }
+    ];
+    var stat = [];
+    var box = h("div", { class: "card" }, h("h2", null, "Start with a plain sentence"), chips);
+    steps.forEach(function (st, i) {
+      var tag = h("small", null, "");
+      stat.push(tag);
+      var f = field("ladder" + i, 2, "Write your upgraded sentence", refresh);
+      add(box, h("div", { class: "step" }, h("label", null, h("b", null, (i + 1) + ". " + st[0])), h("small", null, st[1]), f, tag));
+    });
+    function refresh() {
+      steps.forEach(function (st, i) {
+        var t = W("ladder" + i), prev = i === 0 ? cur : W("ladder" + (i - 1));
+        stat[i].textContent = t.trim() ? (testers[i](t, prev) ? "\u2713 Nice, that step looks right." : "Not yet: try to " + st[0].toLowerCase() + ".") : "";
+      });
+    }
+    refresh();
+    return box;
+  }
+
+  function setting() {
+    var places = ["A stormy beach", "A dark cave", "A busy market", "A magical forest"];
+    var cur = W("place");
+    var chips = h("div", { class: "chips" }, places.map(function (p) {
+      return h("button", { class: "chip", type: "button", "aria-pressed": String(cur === p), onclick: function () { setW("place", p); studio(); } }, p);
+    }));
+    var senses = h("div", { class: "grid2" }, [["see", "I can see"], ["hear", "I can hear"], ["smell", "I can smell"], ["feel", "I can feel"]].map(function (s) {
+      return h("div", { class: "field" }, h("label", null, s[1]), field("sense_" + s[0], 0, "A few words"));
+    }));
+    var ta = field("settingText", 8, "Write your paragraph here (4 to 6 sentences)", function () { cp.update(); });
+    var cp = checksPanel("setting", function () { return W("settingText"); }, [
+      "I used at least two adjectives to describe things",
+      "I used more than one of the five senses",
+      "I read it aloud and it sounds right"
+    ]);
+    return h("div", null,
+      h("div", { class: "card" }, h("h2", null, "1. Pick a place"), chips, h("h3", null, "2. Fill in the senses chart"), senses),
+      h("div", { class: "card" }, h("h2", null, "3. Write one paragraph"),
+        h("div", { class: "tip" }, "Use at least two adjectives, one adverb and one preposition."), ta),
+      cp.el);
+  }
+
+  function story() {
+    var plan = h("div", { class: "grid2" }, [["chars", "Characters (who?)"], ["place", "Setting (where and when?)"], ["begin", "Beginning (what happens first?)"], ["problem", "Problem (what goes wrong?)"], ["solve", "Solution (how is it fixed?)"], ["end", "Ending (how does everyone feel?)"]].map(function (p) {
+      return h("div", { class: "field" }, h("label", null, p[1]), field("plan_" + p[0], 3, "Notes, not full sentences"));
+    }));
+    var ta = field("storyText", 14, "Write your story here. Leave a blank line to start a new paragraph.", function () { cp.update(); });
+    var cp = checksPanel("story", function () { return W("storyText"); }, [
+      "My verbs stay in the same tense (past or present)",
+      "I used adjectives to add detail",
+      "Names, places, days and months have capital letters",
+      "I checked my spelling and read it aloud"
+    ]);
+    var copy = h("button", { class: "btn ghost", type: "button" }, "Copy my story");
+    var note = h("span", { class: "stat" }, "");
+    copy.addEventListener("click", function () {
+      try { navigator.clipboard.writeText(W("storyText")).then(function () { note.textContent = "Copied."; }, function () { note.textContent = "Copy did not work here. Select the text and copy it."; }); }
+      catch (e) { note.textContent = "Copy did not work here. Select the text and copy it."; }
+    });
+    return h("div", null,
+      h("div", { class: "card" }, h("h2", null, "1. Plan it"), plan),
+      h("div", { class: "card" }, h("h2", null, "2. Try three different openers"),
+        h("div", { class: "tip" }, "Do not start with \u201COne day\u2026\u201D every time. Try an adverb (", h("i", null, "Suddenly,"), "), a time conjunction (", h("i", null, "When the clock struck midnight,"), "), a preposition (", h("i", null, "Behind the old oak tree,"), ") or speech."),
+        field("open0", 0, "Opener 1"), h("div", { style: "height:.4rem" }), field("open1", 0, "Opener 2"), h("div", { style: "height:.4rem" }), field("open2", 0, "Opener 3")),
+      h("div", { class: "card" }, h("h2", null, "3. Write your story"), ta, h("div", { class: "row", style: "margin-top:.6rem" }, copy, note)),
+      cp.el);
+  }
+
+  home();
+})();
+</script>
+<script src="../../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>
