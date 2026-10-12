@@ -19,6 +19,10 @@
     {
       "slug": "geography",
       "label": "Geography"
+    },
+    {
+      "slug": "french",
+      "label": "French"
     }
   ],
   "items": [
@@ -31,6 +35,16 @@
       "topic": "Language analysis",
       "print": "english/week1-language/week1-writing-sheet.pdf",
       "printTitle": "Week 1 writing sheet"
+    },
+    {
+      "title": "English Week 2: the smallest quote, and what it does",
+      "path": "english/week2-smallest-quote/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Language analysis",
+      "print": "english/week2-smallest-quote/week2-written.pdf",
+      "printTitle": "Week 2 written: London (Blake)"
     },
     {
       "title": "Algebra Quest",
@@ -65,6 +79,16 @@
       "topic": "Algebra",
       "print": "maths/week1-equations/week1-written.pdf",
       "printTitle": "Week 1 written equations"
+    },
+    {
+      "title": "Maths Week 2: brackets, equations and checking",
+      "path": "maths/week2-brackets/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Algebra",
+      "print": "maths/week2-brackets/week2-written.pdf",
+      "printTitle": "Week 2 written brackets and equations"
     },
     {
       "title": "Lungs and gas exchange",
@@ -109,6 +133,16 @@
       "printTitle": "Week 1 written chain and 6-mark answer"
     },
     {
+      "title": "Science Week 2: breathing and the Because Chain",
+      "path": "science/week2-breathing/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "B4 Organisms",
+      "print": "science/week2-breathing/week2-written.pdf",
+      "printTitle": "Week 2 written chain, bell jar and 6-mark answer"
+    },
+    {
       "title": "Rome: the 14-day revision road",
       "path": "history/rome.html",
       "type": "html",
@@ -144,11 +178,36 @@
       "status": "current"
     },
     {
+      "title": "History Week 2: rework your education paragraph (So What?)",
+      "path": "history/pdfs/so-what-week2-written.pdf",
+      "type": "pdf",
+      "year": 2026,
+      "status": "current"
+    },
+    {
       "title": "Geography Week 1: megacities and case-study evidence",
       "path": "geography/pdfs/megacities-week1-written.pdf",
       "type": "pdf",
       "year": 2026,
       "status": "current"
+    },
+    {
+      "title": "Geography Week 2: megacities and developing a point",
+      "path": "geography/week2-megacities/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "geography/week2-megacities/week2-written.pdf",
+      "printTitle": "Week 2 written megacities"
+    },
+    {
+      "title": "French Week 2: verbs and extending a sentence",
+      "path": "french/week2-verbs-extend/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "french/week2-verbs-extend/week2-written.pdf",
+      "printTitle": "Week 2 written verbs and extended sentences"
     }
   ]
 }
