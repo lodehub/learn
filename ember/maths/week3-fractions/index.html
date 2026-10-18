@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maths Week 3: Multiplying fractions</title>
+<style>
+:root{--bg:#f6f8fb;--card:#ffffff;--ink:#1f2937;--mute:#5b6675;--acc:#2f5d8a;--accsoft:#e6eef7;--ok:#1b7f4b;--oksoft:#e2f4ea;--bad:#b3261e;--badsoft:#fbe7e5;--line:#d3dbe5;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#12171d;--card:#1b222b;--ink:#e6ebf1;--mute:#9aa6b5;--acc:#7fb0e3;--accsoft:#223244;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#2f3a47;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12171d;--card:#1b222b;--ink:#e6ebf1;--mute:#9aa6b5;--acc:#7fb0e3;--accsoft:#223244;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#2f3a47;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0 2px;color:var(--acc)}
+.sub{color:var(--mute);margin:0 0 12px;font-size:14px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:999px;font-size:15px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--acc);color:var(--bg);border-color:var(--acc);font-weight:600}
+.panel{display:none}.panel.on{display:block}
+.skill{background:var(--accsoft);border-left:4px solid var(--acc);padding:10px 12px;border-radius:8px;margin-bottom:12px;font-size:15px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.card h3{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+.q{margin:0 0 10px;font-size:16px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:11px 12px;border-radius:10px;font-size:15px;cursor:pointer;font-family:inherit}
+.opt.right{background:var(--oksoft);border-color:var(--ok)}
+.opt.wrong{background:var(--badsoft);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.fb{margin-top:10px;font-size:15px;display:none}
+.fb.show{display:block}
+.fb b.g{color:var(--ok)}.fb b.r{color:var(--bad)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.math-q{font-size:20px;margin:0 0 8px}
+input[type=text]{font:inherit;font-size:18px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:170px}
+.btn{border:1px solid var(--acc);background:var(--acc);color:var(--bg);padding:9px 16px;border-radius:10px;font:inherit;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;color:var(--acc)}
+.score{font-size:14px;color:var(--mute);margin:2px 0 12px}
+.steps{display:flex;flex-direction:column;gap:8px}
+.step{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:11px 12px;border-radius:10px;text-align:left;font:inherit;font-size:15px;cursor:pointer}
+.step.done{background:var(--oksoft);border-color:var(--ok)}
+.step.nope{background:var(--badsoft);border-color:var(--bad)}
+.num{display:inline-block;min-width:22px;font-weight:700;color:var(--ok)}
+.note{font-size:13px;color:var(--mute)}
+.lab{margin:14px 0 8px;font-size:15px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Maths Week 3: Multiplying fractions</h1>
+<p class="sub">About 10 minutes per subject. Tap an answer to get feedback straight away.</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div id="panels"></div>
+</div>
+<script>
+"use strict";
+var SUBJECTS=[{"id": "maths", "name": "Maths", "skill": "Written method and checking", "writing_target": "Do not just show numbers. For every step, write one short sentence saying what you did and why, using the link words below.", "connectives": ["so", "because", "which means", "therefore", "this works because", "first … then …"], "warmup": [{"t": "mc", "h": "Warm-up: cold recall", "q": "Write 12/18 in its simplest form.", "o": ["2/3", "3/4", "6/9"], "c": 0, "why": "Divide top and bottom by the biggest number that goes into both (6). 12 ÷ 6 = 2 and 18 ÷ 6 = 3. 6/9 is simpler than 12/18 but not simplest."}, {"t": "mc", "h": "Warm-up: cold recall", "q": "Which fraction is equivalent to 3/4?", "o": ["9/12", "6/10", "4/5"], "c": 0, "why": "Multiply top and bottom by the same number: 3 × 3 = 9 and 4 × 3 = 12."}, {"t": "mc", "h": "Warm-up: cold recall", "q": "Write 2 1/3 as an improper fraction.", "o": ["7/3", "6/3", "5/3"], "c": 0, "why": "2 whole ones are 6 thirds, plus 1 third makes 7/3. This is the first step whenever you meet a mixed number."}], "drill": [{"t": "mc", "h": "Think first", "q": "When you multiply two proper fractions (both less than 1), the answer is…", "o": ["bigger than both", "smaller than both", "in between the two"], "c": 1, "why": "Taking a part of a part always leaves something smaller than either. That sentence is the So What of fraction multiplication."}, {"t": "mc", "h": "Spot the error", "q": "A pupil writes 1½ × 1½ = 1¼ (they did 1×1 and ½×½ separately). What mistake did they make?", "o": ["They forgot to simplify", "They multiplied the whole parts and the fraction parts separately instead of using improper fractions", "They added instead of multiplying"], "c": 1, "why": "Convert first: 3/2 × 3/2 = 9/4 = 2¼. Mixed numbers must become improper fractions before you multiply."}, {"t": "fracgen"}]}];
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e}
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t}return a||1}
+function ri(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function shuffle(a){var r=a.slice();for(var i=r.length-1;i>0;i--){var j=ri(0,i);var t=r[i];r[i]=r[j];r[j]=t}return r}
+
+function mcBlock(b){
+  var c=el("div","card");c.appendChild(el("h3",null,b.h));c.appendChild(el("p","q",b.q));
+  var o=el("div","opts");var fb=el("div","fb");
+  b.o.forEach(function(txt,i){
+    var bt=el("button","opt",txt);bt.type="button";
+    bt.onclick=function(){
+      Array.prototype.forEach.call(o.children,function(x,k){x.disabled=true;if(k===b.c)x.classList.add("right")});
+      if(i===b.c){fb.innerHTML="<b class='g'>Correct.</b> "+b.why}else{bt.classList.add("wrong");fb.innerHTML="<b class='r'>Not quite.</b> "+b.why}
+      fb.classList.add("show");
+    };
+    o.appendChild(bt);
+  });
+  c.appendChild(o);c.appendChild(fb);return c;
+}
+
+function orderBlock(b){
+  var c=el("div","card");c.appendChild(el("h3",null,b.h));c.appendChild(el("p","q",b.q));
+  var wrap=el("div","steps");var fb=el("div","fb");var next=0;
+  shuffle(b.steps.map(function(s,i){return {s:s,i:i}})).forEach(function(it){
+    var bt=el("button","step",it.s);bt.type="button";
+    bt.onclick=function(){
+      if(bt.classList.contains("done"))return;
+      if(it.i===next){next++;bt.classList.add("done");bt.innerHTML="<span class='num'>"+next+"</span>"+it.s;
+        if(next===b.steps.length){fb.innerHTML="<b class='g'>Chain complete.</b> Notice how each step causes the next. Use <i>so</i> and <i>which means</i> to write it like this.";fb.classList.add("show")}}
+      else{bt.classList.add("nope");setTimeout(function(){bt.classList.remove("nope")},600)}
+    };
+    wrap.appendChild(bt);
+  });
+  c.appendChild(wrap);c.appendChild(fb);return c;
+}
+
+function parseFrac(s){
+  s=s.trim().replace(/\s+/g," ");var m;
+  if((m=s.match(/^(\d+)$/)))return {n:+m[1],d:1,raw:s};
+  if((m=s.match(/^(\d+)\s*\/\s*(\d+)$/))&&+m[2]!==0)return {n:+m[1],d:+m[2],raw:s,simple:gcd(+m[1],+m[2])===1};
+  if((m=s.match(/^(\d+) (\d+)\s*\/\s*(\d+)$/))&&+m[3]!==0)return {n:(+m[1])*(+m[3])+(+m[2]),d:+m[3],raw:s,simple:gcd(+m[2],+m[3])===1};
+  return null;
+}
+function fmt(n,d){var g=gcd(n,d);n/=g;d/=g;if(d===1)return String(n);if(n>d)return Math.floor(n/d)+" "+(n%d)+"/"+d;return n+"/"+d}
+
+function makeQuestions(){
+  var qs=[],k,a,b,c,d,w;
+  function pf(){var x=ri(1,5),y=ri(x+1,8);return [x,y]}
+  for(k=0;k<2;k++){var p=pf(),r=pf();qs.push({text:p[0]+"/"+p[1]+" × "+r[0]+"/"+r[1],n:p[0]*r[0],d:p[1]*r[1],hint:"Cancel across first, then multiply tops and bottoms, then simplify."})}
+  var amt=[12,15,20,24,30,40,45,60][ri(0,7)];var f=pf();qs.push({text:f[0]+"/"+f[1]+" of "+amt,n:f[0]*amt,d:f[1],hint:"Divide by the bottom, multiply by the top."});
+  for(k=0;k<2;k++){w=ri(1,3);var m=pf();var m2=pf();var w2=ri(1,2);
+    qs.push({text:w+" "+m[0]+"/"+m[1]+" × "+w2+" "+m2[0]+"/"+m2[1],n:(w*m[1]+m[0])*(w2*m2[1]+m2[0]),d:m[1]*m2[1],hint:"Turn both into improper fractions first, then cancel and multiply."})}
+  return qs;
+}
+function fracBlock(){
+  var c=el("div","card");c.appendChild(el("h3",null,"Practice: instant marking"));
+  c.appendChild(el("p","note","Type answers as 3/4, or a whole number, or a mixed number like 2 1/4. Simplify fully. Use paper for working."));
+  var list=el("div");var score=el("div","score","");var qs=makeQuestions();var right=0,done=0;
+  function upd(){score.textContent="Correct: "+right+" of "+done+" attempted"}
+  qs.forEach(function(qq,idx){
+    var box=el("div",null);box.style.marginBottom="14px";
+    box.appendChild(el("p","math-q",(idx+1)+". "+qq.text+" ="));
+    var row=el("div","row");var inp=el("input");inp.type="text";inp.setAttribute("inputmode","text");inp.setAttribute("autocomplete","off");inp.setAttribute("aria-label","Answer to question "+(idx+1));
+    var bt=el("button","btn","Check");bt.type="button";var fb=el("div","fb");var finished=false;
+    bt.onclick=function(){
+      if(finished)return;var p=parseFrac(inp.value);
+      if(!p){fb.innerHTML="<b class='r'>I could not read that.</b> Try 3/4, 5, or 2 1/4.";fb.classList.add("show");return}
+      var ok=(p.n*qq.d===qq.n*p.d);
+      if(ok&&p.simple===false){fb.innerHTML="<b class='r'>Right value, now simplify it fully.</b>";fb.classList.add("show");return}
+      finished=true;done++;inp.disabled=true;bt.disabled=true;
+      if(ok){right++;fb.innerHTML="<b class='g'>Correct.</b> "+fmt(qq.n,qq.d)}
+      else{fb.innerHTML="<b class='r'>Not quite.</b> The answer is "+fmt(qq.n,qq.d)+". "+qq.hint}
+      fb.classList.add("show");upd();
+    };
+    inp.addEventListener("keydown",function(e){if(e.key==="Enter")bt.click()});
+    row.appendChild(inp);row.appendChild(bt);box.appendChild(row);box.appendChild(fb);list.appendChild(box);
+  });
+  c.appendChild(list);c.appendChild(score);
+  var nb=el("button","btn ghost","New set");nb.type="button";nb.onclick=function(){var p=c.parentNode;p.replaceChild(fracBlock(),c)};
+  c.appendChild(nb);upd();return c;
+}
+
+var tabs=document.getElementById("tabs"),panels=document.getElementById("panels");
+function blk(b){return b.t==="mc"?mcBlock(b):b.t==="order"?orderBlock(b):fracBlock()}
+function lab(t,m){var d=el("div","lab","<b>"+t+"</b> <span class='note'>"+m+"</span>");return d}
+SUBJECTS.forEach(function(s,i){
+  var t=el("button","tab",s.name);t.type="button";t.setAttribute("role","tab");t.setAttribute("aria-selected",i===0?"true":"false");
+  var p=el("div","panel"+(i===0?" on":""));
+  p.appendChild(el("div","skill","<b>Skill: "+s.skill+".</b>"));
+  p.appendChild(el("div","card","<h3>Writing target</h3><p class='q' style='margin:0'>"+s.writing_target+"</p><p class='note' style='margin:8px 0 0'>Link words: "+s.connectives.join(" · ")+"</p>"));
+  p.appendChild(lab("Warm-up","5 min, last week’s skill, cold"));
+  s.warmup.forEach(function(b){p.appendChild(blk(b))});
+  p.appendChild(lab("Drill","10 min, this week’s skill"));
+  s.drill.forEach(function(b){p.appendChild(blk(b))});
+  p.appendChild(el("div","skill","<b>Next:</b> do the paper task. Write in full sentences with link words, then mark your writing against the level box at the bottom."));
+  t.onclick=function(){Array.prototype.forEach.call(tabs.children,function(x){x.setAttribute("aria-selected","false")});
+    Array.prototype.forEach.call(panels.children,function(x){x.classList.remove("on")});t.setAttribute("aria-selected","true");p.classList.add("on");window.scrollTo(0,0)};
+  tabs.appendChild(t);panels.appendChild(p);
+});
+if(SUBJECTS.length===1){tabs.style.display="none"}
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>
