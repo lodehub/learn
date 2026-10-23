@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cancelling: the shortcut for percentages and ratios</title>
+<style>
+  :root {
+    --paper: #f5f9fc;
+    --grid: #dce8f2;
+    --ink: #1b2a4a;
+    --ink-soft: #4a5a78;
+    --pen: #d62839;
+    --hi: #ffe66d;
+    --ok: #1f8a5f;
+    --rule: #b9cde0;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--ink);
+    font-family: Charter, "Iowan Old Style", Georgia, serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1, h2, h3, button, summary, .tab {
+    font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  }
+  h1 { font-size: 2.1rem; line-height: 1.15; margin: 0 0 .5rem; letter-spacing: -.01em; }
+  h2 { font-size: 1.45rem; margin: 3rem 0 .75rem; line-height: 1.2; }
+  h3 { font-size: 1.1rem; margin: 1.75rem 0 .5rem; }
+  p { margin: .6rem 0; max-width: 38rem; }
+  .lede { color: var(--ink-soft); font-size: 1.2rem; }
+  section { background: var(--paper); padding: .1rem 0; }
+  .band { background: var(--paper); border-left: 4px solid var(--ink); padding: .75rem 1rem; margin: 1rem 0; }
+  .band.pen { border-left-color: var(--pen); }
+  .band.ok { border-left-color: var(--ok); }
+  mark { background: var(--hi); color: inherit; padding: 0 .15em; }
+
+  /* fractions */
+  .f { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 .15em; line-height: 1.25; font-variant-numeric: tabular-nums; }
+  .f > span:first-child { border-bottom: 2px solid currentColor; padding: 0 .3em; }
+  .f > span:last-child { padding: 0 .3em; }
+  .op { margin: 0 .25em; }
+  .cx { position: relative; display: inline-block; padding-right: .55em; }
+  .cx s { color: var(--pen); text-decoration-thickness: 2px; }
+  .cx b { position: absolute; right: 0; top: -.35em; font-size: .7em; color: var(--pen); }
+  .eq { font-size: 1.6rem; padding: 1rem .5rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; text-align: center; min-height: 6.5rem; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .ans-big { background: var(--hi); padding: .1em .35em; border-radius: 3px; font-weight: 700; }
+
+  /* side-by-side compare */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 1rem 0; }
+  .compare > div { background: var(--paper); border: 1px solid var(--rule); padding: .75rem 1rem; border-radius: 4px; }
+  .compare h3 { margin-top: 0; }
+  @media (max-width: 34rem) { .compare { grid-template-columns: 1fr; } }
+
+  /* stepper */
+  .tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1rem 0 .5rem; }
+  .tab { border: 2px solid var(--ink); background: var(--paper); color: var(--ink); padding: .45rem .8rem; border-radius: 4px; font-size: .95rem; cursor: pointer; }
+  .tab[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  .controls { display: flex; gap: .5rem; margin-top: .75rem; }
+  button.go { border: 0; background: var(--pen); color: #fff; padding: .6rem 1.1rem; font-size: 1rem; border-radius: 4px; cursor: pointer; font-weight: 600; }
+  button.ghost { border: 2px solid var(--ink); background: var(--paper); color: var(--ink); padding: .55rem 1rem; font-size: 1rem; border-radius: 4px; cursor: pointer; }
+  button:disabled { opacity: .4; cursor: default; }
+  .cap { min-height: 3.6rem; margin-top: .75rem; }
+  :focus-visible { outline: 3px solid var(--pen); outline-offset: 2px; }
+
+  /* questions */
+  ol.q { padding-left: 2.2rem; }
+  ol.q li { margin: .9rem 0; padding-left: .25rem; }
+  details.ans { margin-top: .25rem; }
+  details.ans summary { cursor: pointer; color: var(--ink-soft); font-size: .95rem; width: fit-content; }
+  details.ans .w { background: var(--paper); border-left: 3px solid var(--ok); padding: .4rem .8rem; margin-top: .3rem; }
+  .toolbar { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1rem 0; }
+
+  @media print {
+    body { background: #fff; }
+    .tabs, .controls, .toolbar, #stepper { display: none; }
+    details.ans { display: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Cancelling: a shortcut for percentages and ratios</h1>
+<p class="lede">Do the dividing early, while the numbers are still small.</p>
+
+<h2>Why cancelling is allowed</h2>
+
+<p>Take <strong>4 × 6 ÷ 3</strong>. Two ways to do it:</p>
+<div class="compare">
+  <div>
+    <h3>Multiply first</h3>
+    <p>4 × 6 = 24<br>24 ÷ 3 = <strong>8</strong></p>
+  </div>
+  <div>
+    <h3>Divide first</h3>
+    <p>6 ÷ 3 = 2<br>4 × 2 = <strong>8</strong></p>
+  </div>
+</div>
+<p>Same answer. The second way just used smaller numbers. <mark>Cancelling is dividing early.</mark></p>
+
+<h3>Why dividing top and bottom by the same number is safe</h3>
+<p>
+  <span class="f"><span>50</span><span>50</span></span> = 1, because anything divided by itself is 1.
+  Multiplying by 1 changes nothing. So when you divide a top number and a bottom number by the same thing, you are only multiplying by 1 in disguise.
+</p>
+
+<h3>Why it works across two fractions</h3>
+<p>
+  A multiplication like
+  <span class="f"><span>30</span><span>100</span></span> <span class="op">×</span> <span class="f"><span>50</span><span>1</span></span>
+  is really one fraction:
+  <span class="f"><span>30 × 50</span><span>100 × 1</span></span>.
+  Everything on top is multiplied together and everything on the bottom is multiplied together. So the 50 and the 100 are in the same fraction in the end, and you can cancel them even though they started in different places.
+</p>
+
+<div class="band">
+  <strong>Check with 30% of 50.</strong> 50 ÷ 100 = 0.5. Then 30 × 0.5 = 15. Cancelling gives the same 15, just by a tidier route.
+</div>
+
+<h2>Watch it happen</h2>
+<p>Pick an example and press Next. The red pen shows what was cancelled and what the number became.</p>
+
+<div id="stepper">
+  <div class="tabs" role="group" aria-label="Choose an example">
+    <button class="tab" data-i="0" aria-pressed="true">30% of 50</button>
+    <button class="tab" data-i="1" aria-pressed="false">15% of 60</button>
+    <button class="tab" data-i="2" aria-pressed="false">Share £45 in 2 : 3</button>
+  </div>
+  <div class="eq" id="eq" aria-live="polite"></div>
+  <p class="cap" id="cap"></p>
+  <div class="controls">
+    <button class="go" id="next">Next step</button>
+    <button class="ghost" id="back">Back</button>
+    <button class="ghost" id="reset">Start again</button>
+  </div>
+</div>
+
+<h2>The rules</h2>
+<div class="band ok">
+  <strong>Before multiplying, ask one question:</strong> does any number on top share a factor with any number on the bottom? If yes, divide both by it. Cancel first, multiply last.
+</div>
+<div class="band pen">
+  <strong>The trap: only cancel across multiplication.</strong><br>
+  <span class="f"><span>3 + 6</span><span>3</span></span> is <em>not</em> 3 + 2.
+  The top is 9, so it is 9 ÷ 3 = 3. The 3 on top is being added, so it is not a factor of the top.
+</div>
+<p>Ratios work the same way. A ratio share is a fraction (parts ÷ total parts) multiplied by the amount, so it is another fraction × whole number question.</p>
+
+<h2>Worked examples</h2>
+
+<h3>Percentage</h3>
+<p><strong>35% of 40</strong> →
+  <span class="f"><span>35</span><span>100</span></span> <span class="op">×</span> <span class="f"><span>40</span><span>1</span></span>.
+  Divide 100 and 40 by 20:
+  <span class="f"><span>35</span><span>5</span></span> <span class="op">×</span> <span class="f"><span>2</span><span>1</span></span>
+  = 7 × 2 = <span class="ans-big">14</span>
+</p>
+
+<h3>Ratio share</h3>
+<p><strong>Share 56 sweets in the ratio 2 : 5.</strong> Total parts = 7.
+  Smaller share:
+  <span class="f"><span>2</span><span>7</span></span> <span class="op">×</span> <span class="f"><span>56</span><span>1</span></span>
+  → 7 goes into 56 eight times → 2 × 8 = <span class="ans-big">16</span>.
+  Larger share: 5 × 8 = <span class="ans-big">40</span>.
+  Check: 16 + 40 = 56.
+</p>
+
+<h3>Scaling a recipe</h3>
+<p><strong>200 g butter makes 8 portions. How much for 12?</strong>
+  <span class="f"><span>12</span><span>8</span></span> <span class="op">×</span> <span class="f"><span>200</span><span>1</span></span>
+  → 8 goes into 200 twenty-five times → 12 × 25 = <span class="ans-big">300 g</span>.
+</p>
+
+<h2>Practice</h2>
+<p>Write each one as a fraction first, cancel, then multiply. Answers are hidden under each question.</p>
+<div class="toolbar">
+  <button class="ghost" id="showAll">Show all answers</button>
+  <button class="ghost" id="hideAll">Hide all answers</button>
+</div>
+
+<h3>Level 1: easy cancels</h3>
+<ol class="q" id="L1" start="1"></ol>
+
+<h3>Level 2: cancel by 20, 25 or 50</h3>
+<ol class="q" id="L2" start="7"></ol>
+
+<h3>Level 3: ratios and recipes</h3>
+<ol class="q" id="L3" start="13"></ol>
+
+<h3>Level 4: mixed, as in a paper</h3>
+<ol class="q" id="L4" start="19"></ol>
+
+</main>
+
+<script>
+(function () {
+  /* fraction helpers */
+  function f(t, b) { return '<span class="f"><span>' + t + '</span><span>' + b + '</span></span>'; }
+  function c(oldv, newv) { return '<span class="cx"><s>' + oldv + '</s><b>' + newv + '</b></span>'; }
+  var X = '<span class="op">×</span>';
+  var EQ = '<span class="op">=</span>';
+
+  var examples = [
+    [
+      { e: f(30, 100) + X + f(50, 1), t: 'Write 30% as 30 over 100. Write 50 as 50 over 1.' },
+      { e: f(30, 100) + X + f(50, 1), t: 'Look across the whole sum. 100 (bottom) and 50 (top) both divide by 50.' },
+      { e: f(30, c(100, 2)) + X + f(c(50, 1), 1), t: '100 ÷ 50 = 2 and 50 ÷ 50 = 1. The red pen shows the new numbers.' },
+      { e: f(30, 2) + X + f(1, 1), t: 'Now multiply across. Top: 30 × 1 = 30. Bottom: 2 × 1 = 2.' },
+      { e: f(30, 2) + EQ + '<span class="ans-big">15</span>', t: '30 ÷ 2 = 15. So 30% of 50 is 15.' }
+    ],
+    [
+      { e: f(15, 100) + X + f(60, 1), t: 'Write 15% as 15 over 100, and 60 as 60 over 1.' },
+      { e: f(15, 100) + X + f(60, 1), t: '100 and 60 both divide by 20.' },
+      { e: f(15, c(100, 5)) + X + f(c(60, 3), 1), t: '100 ÷ 20 = 5 and 60 ÷ 20 = 3.' },
+      { e: f(15, 5) + X + f(3, 1), t: 'Look again. 15 on top and 5 on the bottom both divide by 5.' },
+      { e: f(c(15, 3), c(5, 1)) + X + f(3, 1), t: '15 ÷ 5 = 3 and 5 ÷ 5 = 1. Nothing left to cancel.' },
+      { e: f(3, 1) + X + f(3, 1) + EQ + '<span class="ans-big">9</span>', t: '3 × 3 = 9. So 15% of 60 is 9.' }
+    ],
+    [
+      { e: f(3, 5) + X + f(45, 1), t: 'Share £45 in the ratio 2 : 3. Total parts = 5. The bigger share is 3 parts out of 5.' },
+      { e: f(3, 5) + X + f(45, 1), t: '5 (bottom) and 45 (top) both divide by 5.' },
+      { e: f(3, c(5, 1)) + X + f(c(45, 9), 1), t: '5 ÷ 5 = 1 and 45 ÷ 5 = 9.' },
+      { e: f(3, 1) + X + f(9, 1) + EQ + '<span class="ans-big">27</span>', t: '3 × 9 = 27. The bigger share is £27, so the smaller share is £45 − £27 = £18.' }
+    ]
+  ];
+
+  var ex = 0, step = 0;
+  var eq = document.getElementById('eq');
+  var cap = document.getElementById('cap');
+  var nextB = document.getElementById('next');
+  var backB = document.getElementById('back');
+  var tabs = document.querySelectorAll('.tab');
+
+  function render() {
+    var s = examples[ex][step];
+    eq.innerHTML = s.e;
+    cap.textContent = s.t;
+    nextB.disabled = step >= examples[ex].length - 1;
+    backB.disabled = step === 0;
+  }
+  nextB.addEventListener('click', function () { if (step < examples[ex].length - 1) { step++; render(); } });
+  backB.addEventListener('click', function () { if (step > 0) { step--; render(); } });
+  document.getElementById('reset').addEventListener('click', function () { step = 0; render(); });
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      ex = parseInt(t.getAttribute('data-i'), 10);
+      step = 0;
+      tabs.forEach(function (o) { o.setAttribute('aria-pressed', o === t ? 'true' : 'false'); });
+      render();
+    });
+  });
+  render();
+
+  /* questions */
+  var sets = {
+    L1: [
+      ['50% of 24', f(50,100) + X + f(24,1) + EQ + f(1,2) + X + f(24,1) + EQ + '<b>12</b>'],
+      ['10% of 70', f(10,100) + X + f(70,1) + EQ + f(1,10) + X + f(70,1) + EQ + '<b>7</b>'],
+      ['25% of 36', f(25,100) + X + f(36,1) + EQ + f(1,4) + X + f(36,1) + EQ + '<b>9</b>'],
+      ['20% of 45', f(20,100) + X + f(45,1) + EQ + f(1,5) + X + f(45,1) + EQ + '<b>9</b>'],
+      ['30% of 60', f(30,100) + X + f(60,1) + EQ + f(3,10) + X + f(60,1) + EQ + '3 × 6 = <b>18</b>'],
+      ['40% of 35', f(40,100) + X + f(35,1) + EQ + f(2,5) + X + f(35,1) + EQ + '2 × 7 = <b>14</b>']
+    ],
+    L2: [
+      ['15% of 80', f(15,100) + X + f(80,1) + ' → cancel 20 → ' + f(15,5) + X + f(4,1) + EQ + '3 × 4 = <b>12</b>'],
+      ['35% of 60', f(35,100) + X + f(60,1) + ' → cancel 20 → ' + f(35,5) + X + f(3,1) + EQ + '7 × 3 = <b>21</b>'],
+      ['12% of 50', f(12,100) + X + f(50,1) + ' → cancel 50 → ' + f(12,2) + EQ + '<b>6</b>'],
+      ['45% of 40', f(45,100) + X + f(40,1) + ' → cancel 20 → ' + f(45,5) + X + f(2,1) + EQ + '9 × 2 = <b>18</b>'],
+      ['75% of 28', f(75,100) + X + f(28,1) + EQ + f(3,4) + X + f(28,1) + EQ + '3 × 7 = <b>21</b>'],
+      ['16% of 25', f(16,100) + X + f(25,1) + ' → cancel 25 → ' + f(16,4) + EQ + '<b>4</b>']
+    ],
+    L3: [
+      ['Share £40 in the ratio 3 : 5. How much is each share?', 'Total parts = 8. ' + f(3,8) + X + f(40,1) + ' → 3 × 5 = <b>£15</b>. Other share: 5 × 5 = <b>£25</b>.'],
+      ['Share 56 sweets in the ratio 2 : 5.', 'Total parts = 7. 56 ÷ 7 = 8. 2 × 8 = <b>16</b> and 5 × 8 = <b>40</b>.'],
+      ['200 g of butter makes 8 portions. How much butter for 12 portions?', f(12,8) + X + f(200,1) + ' → 8 into 200 is 25 → 12 × 25 = <b>300 g</b>.'],
+      ['Boys : girls is 3 : 4. There are 28 children. How many boys and how many girls?', 'Total parts = 7. 28 ÷ 7 = 4. Boys: 3 × 4 = <b>12</b>. Girls: 4 × 4 = <b>16</b>.'],
+      ['6 pencils cost 90p. How much do 10 pencils cost?', f(10,6) + X + f(90,1) + ' → 6 into 90 is 15 → 10 × 15 = 150p = <b>£1.50</b>.'],
+      ['Blue paint : white paint is 3 : 2. If you use 12 tins of blue, how many tins of white?', f(2,3) + X + f(12,1) + ' → 3 into 12 is 4 → 2 × 4 = <b>8 tins</b>.']
+    ],
+    L4: [
+      ['24% of 75', f(24,100) + X + f(75,1) + ' → cancel 25 → ' + f(24,4) + X + f(3,1) + EQ + '6 × 3 = <b>18</b>'],
+      ['A shirt costs £48 and has 25% off. What is the sale price?', '75% of 48 = ' + f(3,4) + X + f(48,1) + ' = 3 × 12 = <b>£36</b>. (Or 25% off is £12, and 48 − 12 = 36.)'],
+      ['60 children are asked how they get to school. 35% walk. How many do not walk?', 'Walk: ' + f(35,100) + X + f(60,1) + ' → 7 × 3 = 21. Do not walk: 60 − 21 = <b>39</b>.'],
+      ['Share 77 stickers in the ratio 4 : 7.', 'Total parts = 11. 77 ÷ 11 = 7. 4 × 7 = <b>28</b> and 7 × 7 = <b>49</b>.'],
+      ['18% of 150', f(18,100) + X + f(150,1) + ' → cancel 50 → ' + f(18,2) + X + f(3,1) + EQ + '9 × 3 = <b>27</b>'],
+      ['What is 3/8 of 64?', f(3,8) + X + f(64,1) + ' → 8 into 64 is 8 → 3 × 8 = <b>24</b>. (Fractions use exactly the same idea.)']
+    ]
+  };
+  Object.keys(sets).forEach(function (id) {
+    var ol = document.getElementById(id);
+    sets[id].forEach(function (p) {
+      var li = document.createElement('li');
+      li.innerHTML = '<div>' + p[0] + '</div><details class="ans"><summary>Show answer</summary><div class="w">' + p[1] + '</div></details>';
+      ol.appendChild(li);
+    });
+  });
+  function setAll(open) { document.querySelectorAll('details.ans').forEach(function (d) { d.open = open; }); }
+  document.getElementById('showAll').addEventListener('click', function () { setAll(true); });
+  document.getElementById('hideAll').addEventListener('click', function () { setAll(false); });
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>
