@@ -1,13 +1,17 @@
 {
   "subjects": [
     {
-      "slug": "english",
-      "label": "English"
-    },
-    {
-      "slug": "maths",
-      "label": "Maths"
+      "slug": "french",
+      "label": "French"
     }
   ],
-  "items": []
+  "items": [
+    {
+      "title": "Phrase Lab: 12 weeks of everyday structures",
+      "path": "french/phrase-lab/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    }
+  ]
 }
