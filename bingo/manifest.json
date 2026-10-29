@@ -15,56 +15,63 @@
       "path": "maths/times-tables-3s/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Times tables"
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
     },
     {
       "title": "Times Table Blast Off: 4s",
       "path": "maths/times-tables-4s/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Times tables"
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
     },
     {
       "title": "Match & Blast: 3s & 4s",
       "path": "maths/match-and-blast/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Times tables"
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
     },
     {
       "title": "Say it, then flip it: 3×6, 3×7, 3×8",
       "path": "maths/threes-flip-pack/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Times tables"
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
     },
     {
       "title": "Climb the threes: the whole table",
       "path": "maths/climb-the-threes-full/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Times tables"
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
     },
     {
       "title": "Climb the fours: the whole table",
       "path": "maths/climb-the-fours-full/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Times tables"
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
     },
     {
       "title": "Threes Bakery",
       "path": "maths/threes-bakery/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Times tables"
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
     },
     {
       "title": "Times tables: 2s and 5s",

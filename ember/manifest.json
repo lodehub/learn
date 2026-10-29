@@ -35,10 +35,11 @@
       "path": "english/week1-language/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Language analysis",
       "print": "english/week1-language/week1-writing-sheet.pdf",
-      "printTitle": "Week 1 writing sheet"
+      "printTitle": "Week 1 writing sheet",
+      "term": "Autumn"
     },
     {
       "title": "English Week 2: the smallest quote, and what it does",
@@ -65,34 +66,38 @@
       "path": "maths/algebra-quest/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Algebra"
+      "status": "archived",
+      "topic": "Algebra",
+      "term": "Autumn"
     },
     {
       "title": "Sign Squad: brackets and signs",
       "path": "maths/sign-squad/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Algebra"
+      "status": "archived",
+      "topic": "Algebra",
+      "term": "Autumn"
     },
     {
       "title": "Forming and solving equations",
       "path": "maths/forming-equations/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Algebra"
+      "status": "archived",
+      "topic": "Algebra",
+      "term": "Autumn"
     },
     {
       "title": "Maths Week 1: solving equations, with working and a check",
       "path": "maths/week1-equations/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Algebra",
       "print": "maths/week1-equations/week1-written.pdf",
-      "printTitle": "Week 1 written equations"
+      "printTitle": "Week 1 written equations",
+      "term": "Autumn"
     },
     {
       "title": "Maths Week 2: brackets, equations and checking",
@@ -119,42 +124,47 @@
       "path": "science/lungs-gas-exchange/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "B4 Organisms"
+      "status": "archived",
+      "topic": "B4 Organisms",
+      "term": "Autumn"
     },
     {
       "title": "Breathing: how air moves in and out",
       "path": "science/breathing/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "B4 Organisms"
+      "status": "archived",
+      "topic": "B4 Organisms",
+      "term": "Autumn"
     },
     {
       "title": "Drugs, alcohol and smoking",
       "path": "science/drugs-alcohol-smoking/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "B4 Organisms"
+      "status": "archived",
+      "topic": "B4 Organisms",
+      "term": "Autumn"
     },
     {
       "title": "Nutrients, food tests and diet",
       "path": "science/nutrients-food-tests/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "B4 Organisms"
+      "status": "archived",
+      "topic": "B4 Organisms",
+      "term": "Autumn"
     },
     {
       "title": "Science Week 1: gas exchange and the Because Chain",
       "path": "science/week1-gas-exchange/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "B4 Organisms",
       "print": "science/week1-gas-exchange/week1-written.pdf",
-      "printTitle": "Week 1 written chain and 6-mark answer"
+      "printTitle": "Week 1 written chain and 6-mark answer",
+      "term": "Autumn"
     },
     {
       "title": "Science Week 2: breathing and the Because Chain",
@@ -181,35 +191,40 @@
       "path": "history/rome.html",
       "type": "html",
       "year": 2026,
-      "status": "current"
+      "status": "archived",
+      "term": "Autumn"
     },
     {
       "title": "Roman life and equality: 4-day consolidation",
       "path": "history/rome-life-equality.html",
       "type": "html",
       "year": 2026,
-      "status": "current"
+      "status": "archived",
+      "term": "Autumn"
     },
     {
       "title": "History coaching: from facts to explanation (So What?)",
       "path": "history/coaching-so-what.html",
       "type": "html",
       "year": 2026,
-      "status": "current"
+      "status": "archived",
+      "term": "Autumn"
     },
     {
       "title": "History writing task 2: Roman childhood",
       "path": "history/writing-task-2/",
       "type": "html",
       "year": 2026,
-      "status": "current"
+      "status": "archived",
+      "term": "Autumn"
     },
     {
       "title": "History trainer: tie it back to the question",
       "path": "history/tie-it-back/",
       "type": "html",
       "year": 2026,
-      "status": "current"
+      "status": "archived",
+      "term": "Autumn"
     },
     {
       "title": "History Week 2: rework your education paragraph (So What?)",
@@ -232,7 +247,8 @@
       "path": "geography/pdfs/megacities-week1-written.pdf",
       "type": "pdf",
       "year": 2026,
-      "status": "current"
+      "status": "archived",
+      "term": "Autumn"
     },
     {
       "title": "Geography Week 2: megacities and developing a point",
