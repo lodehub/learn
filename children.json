@@ -3,6 +3,6 @@
     { "slug": "ember", "label": "Ember", "colour": "orange", "icon": "flame" },
     { "slug": "ninja", "label": "Ninja", "colour": "purple", "icon": "swords" },
     { "slug": "bingo", "label": "Bingo", "colour": "blue",   "icon": "paw" },
-    { "slug": "bandit", "label": "Bandit", "colour": "green", "icon": "star" }
+    { "slug": "heeler", "label": "Heeler", "colour": "green", "icon": "star" }
   ]
 }
