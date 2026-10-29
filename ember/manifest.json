@@ -1,0 +1,288 @@
+{
+  "subjects": [
+    {
+      "slug": "english",
+      "label": "English"
+    },
+    {
+      "slug": "maths",
+      "label": "Maths"
+    },
+    {
+      "slug": "science",
+      "label": "Science"
+    },
+    {
+      "slug": "history",
+      "label": "History"
+    },
+    {
+      "slug": "geography",
+      "label": "Geography"
+    },
+    {
+      "slug": "french",
+      "label": "French"
+    },
+    {
+      "slug": "weekly",
+      "label": "Weekly packs"
+    }
+  ],
+  "items": [
+    {
+      "title": "English Language Week 1: say what words do",
+      "path": "english/week1-language/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Language analysis",
+      "print": "english/week1-language/week1-writing-sheet.pdf",
+      "printTitle": "Week 1 writing sheet",
+      "term": "Autumn"
+    },
+    {
+      "title": "English Week 2: the smallest quote, and what it does",
+      "path": "english/week2-smallest-quote/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Language analysis",
+      "print": "english/week2-smallest-quote/week2-written.pdf",
+      "printTitle": "Week 2 written: London (Blake)"
+    },
+    {
+      "title": "English Week 3: symbolism in Tsunami Girl",
+      "path": "english/week3-symbolism/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Language analysis",
+      "print": "english/week3-symbolism/week3-written.pdf",
+      "printTitle": "Week 3 written: symbol paragraph"
+    },
+    {
+      "title": "Algebra Quest",
+      "path": "maths/algebra-quest/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Algebra",
+      "term": "Autumn"
+    },
+    {
+      "title": "Sign Squad: brackets and signs",
+      "path": "maths/sign-squad/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Algebra",
+      "term": "Autumn"
+    },
+    {
+      "title": "Forming and solving equations",
+      "path": "maths/forming-equations/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Algebra",
+      "term": "Autumn"
+    },
+    {
+      "title": "Maths Week 1: solving equations, with working and a check",
+      "path": "maths/week1-equations/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Algebra",
+      "print": "maths/week1-equations/week1-written.pdf",
+      "printTitle": "Week 1 written equations",
+      "term": "Autumn"
+    },
+    {
+      "title": "Maths Week 2: brackets, equations and checking",
+      "path": "maths/week2-brackets/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Algebra",
+      "print": "maths/week2-brackets/week2-written.pdf",
+      "printTitle": "Week 2 written brackets and equations"
+    },
+    {
+      "title": "Maths Week 3: multiplying fractions, with working and a check",
+      "path": "maths/week3-fractions/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Fractions",
+      "print": "maths/week3-fractions/week3-written.pdf",
+      "printTitle": "Week 3 written multiplying fractions"
+    },
+    {
+      "title": "Lungs and gas exchange",
+      "path": "science/lungs-gas-exchange/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "B4 Organisms",
+      "term": "Autumn"
+    },
+    {
+      "title": "Breathing: how air moves in and out",
+      "path": "science/breathing/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "B4 Organisms",
+      "term": "Autumn"
+    },
+    {
+      "title": "Drugs, alcohol and smoking",
+      "path": "science/drugs-alcohol-smoking/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "B4 Organisms",
+      "term": "Autumn"
+    },
+    {
+      "title": "Nutrients, food tests and diet",
+      "path": "science/nutrients-food-tests/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "B4 Organisms",
+      "term": "Autumn"
+    },
+    {
+      "title": "Science Week 1: gas exchange and the Because Chain",
+      "path": "science/week1-gas-exchange/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "B4 Organisms",
+      "print": "science/week1-gas-exchange/week1-written.pdf",
+      "printTitle": "Week 1 written chain and 6-mark answer",
+      "term": "Autumn"
+    },
+    {
+      "title": "Science Week 2: breathing and the Because Chain",
+      "path": "science/week2-breathing/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "B4 Organisms",
+      "print": "science/week2-breathing/week2-written.pdf",
+      "printTitle": "Week 2 written chain, bell jar and 6-mark answer"
+    },
+    {
+      "title": "Science Week 3: forces and the Because Chain",
+      "path": "science/week3-forces/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Forces",
+      "print": "science/week3-forces/week3-written.pdf",
+      "printTitle": "Week 3 written forces and 6-mark answer"
+    },
+    {
+      "title": "Rome: the 14-day revision road",
+      "path": "history/rome.html",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "term": "Autumn"
+    },
+    {
+      "title": "Roman life and equality: 4-day consolidation",
+      "path": "history/rome-life-equality.html",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "term": "Autumn"
+    },
+    {
+      "title": "History coaching: from facts to explanation (So What?)",
+      "path": "history/coaching-so-what.html",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "term": "Autumn"
+    },
+    {
+      "title": "History writing task 2: Roman childhood",
+      "path": "history/writing-task-2/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "term": "Autumn"
+    },
+    {
+      "title": "History trainer: tie it back to the question",
+      "path": "history/tie-it-back/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "term": "Autumn"
+    },
+    {
+      "title": "History Week 2: rework your education paragraph (So What?)",
+      "path": "history/pdfs/so-what-week2-written.pdf",
+      "type": "pdf",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "History Week 3: the Black Death (So What?)",
+      "path": "history/week3-black-death/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "history/week3-black-death/week3-written.pdf",
+      "printTitle": "Week 3 written: Black Death So What paragraphs"
+    },
+    {
+      "title": "Geography Week 1: megacities and case-study evidence",
+      "path": "geography/pdfs/megacities-week1-written.pdf",
+      "type": "pdf",
+      "year": 2026,
+      "status": "archived",
+      "term": "Autumn"
+    },
+    {
+      "title": "Geography Week 2: megacities and developing a point",
+      "path": "geography/week2-megacities/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "geography/week2-megacities/week2-written.pdf",
+      "printTitle": "Week 2 written megacities"
+    },
+    {
+      "title": "Geography Week 3: megacities, evidence and a judgement",
+      "path": "geography/week3-megacities/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "geography/week3-megacities/week3-written.pdf",
+      "printTitle": "Week 3 written megacities judgement"
+    },
+    {
+      "title": "French Week 2: verbs and extending a sentence",
+      "path": "french/week2-verbs-extend/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "french/week2-verbs-extend/week2-written.pdf",
+      "printTitle": "Week 2 written verbs and extended sentences"
+    },
+    {
+      "title": "Week 3 homework pack (full, with parent answers)",
+      "path": "weekly/pdfs/week3-homework-pack.pdf",
+      "type": "pdf",
+      "year": 2026,
+      "status": "current"
+    }
+  ]
+}
