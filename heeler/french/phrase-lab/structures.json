@@ -1,0 +1,710 @@
+{
+  "structures": [
+    {
+      "id": "aider-a",
+      "week": 1,
+      "title": "Aide-moi à…",
+      "pattern": "aider quelqu'un à + infinitif",
+      "meaning": "to help someone (to) do something",
+      "notes": [
+        "aider takes a person directly (aider quelqu'un), then à + infinitive: Il m'aide à cuisiner.",
+        "In a command the pronoun goes after the verb, with a hyphen, and me becomes moi: Aide-moi à… / Aidez-moi à…",
+        "Polite request: Tu peux m'aider à… ? / Pourriez-vous m'aider à… ?",
+        "In a negative command the pronoun goes back in front: Ne m'aide pas à…",
+        "In the passé composé the participle agrees with a plural or feminine object in front: Il nous a aidés."
+      ],
+      "examples": [
+        ["Aide-moi à porter ces sacs, s'il te plaît.", "Help me carry these bags, please."],
+        ["Tu peux m'aider à trouver mes clés ?", "Can you help me find my keys?"],
+        ["Ma sœur m'a aidé à préparer le repas.", "My sister helped me prepare the meal."],
+        ["Cette appli m'aide à mieux comprendre le français.", "This app helps me understand French better."],
+        ["Seigneur, aide-moi à pardonner.", "Lord, help me to forgive."],
+        ["Je vais t'aider à ranger la cuisine.", "I'll help you tidy the kitchen."]
+      ],
+      "practice": [
+        ["Help me choose a present.", "Aide-moi à choisir un cadeau."],
+        ["Can you help me fill in this form?", "Tu peux m'aider à remplir ce formulaire ?"],
+        ["He helped us move house.", "Il nous a aidés à déménager."],
+        ["Could you help me find the station? (vous)", "Pourriez-vous m'aider à trouver la gare ?"],
+        ["Podcasts help me improve my listening.", "Les podcasts m'aident à améliorer ma compréhension orale."],
+        ["Don't help him do his homework!", "Ne l'aide pas à faire ses devoirs !"],
+        ["I'd like to help you learn English.", "J'aimerais t'aider à apprendre l'anglais."]
+      ]
+    },
+    {
+      "id": "avoir-besoin",
+      "week": 1,
+      "title": "J'ai besoin de…",
+      "pattern": "avoir besoin de + nom / infinitif",
+      "meaning": "to need (something / to do something)",
+      "notes": [
+        "de becomes d' before a vowel: J'ai besoin d'aide.",
+        "de + le = du, de + les = des for something specific: J'ai besoin du stylo rouge.",
+        "After a negative, just de: Je n'ai pas besoin de voiture.",
+        "en replaces de + thing: Tu as besoin des clés ? Oui, j'en ai besoin.",
+        "Questions: De quoi as-tu besoin ? / Tu as besoin de quoi ?"
+      ],
+      "examples": [
+        ["J'ai besoin de dormir.", "I need to sleep."],
+        ["On a besoin d'un peu de temps.", "We need a bit of time."],
+        ["Tu as besoin d'aide ?", "Do you need help?"],
+        ["De quoi avez-vous besoin ?", "What do you need?"],
+        ["Je n'ai pas besoin de ta permission.", "I don't need your permission."],
+        ["Ce livre ? Oui, j'en ai encore besoin.", "This book? Yes, I still need it."]
+      ],
+      "practice": [
+        ["I need to talk to you.", "J'ai besoin de te parler."],
+        ["We don't need a car.", "On n'a pas besoin de voiture. / Nous n'avons pas besoin de voiture."],
+        ["What do you need? (tu)", "De quoi as-tu besoin ? / Tu as besoin de quoi ?"],
+        ["She needs to rest.", "Elle a besoin de se reposer."],
+        ["Do you need the keys? Yes, I need them.", "Tu as besoin des clés ? Oui, j'en ai besoin."],
+        ["I needed to hear that.", "J'avais besoin d'entendre ça."]
+      ]
+    },
+    {
+      "id": "en-train-de",
+      "week": 2,
+      "title": "Je suis en train de…",
+      "pattern": "être en train de + infinitif",
+      "meaning": "to be (in the middle of) doing something",
+      "notes": [
+        "Only être changes: je suis / tu es / il est en train de…",
+        "Use it to stress that something is happening right now; the plain present also works.",
+        "Past: j'étais en train de… (imparfait), often interrupted by a passé composé: J'étais en train de manger quand il a appelé.",
+        "Reflexive verbs keep their pronoun: Je suis en train de m'habiller."
+      ],
+      "examples": [
+        ["Je suis en train de lire, tu peux attendre ?", "I'm reading, can you wait?"],
+        ["Qu'est-ce que tu es en train de faire ?", "What are you doing right now?"],
+        ["Ils sont en train de rénover la maison.", "They're renovating the house."],
+        ["J'étais en train de cuisiner quand tu as appelé.", "I was cooking when you called."],
+        ["Le monde est en train de changer.", "The world is changing."],
+        ["Je suis en train de me préparer.", "I'm getting ready."]
+      ],
+      "practice": [
+        ["I'm working right now.", "Je suis en train de travailler."],
+        ["We were watching a film when the phone rang.", "On était en train de regarder un film quand le téléphone a sonné."],
+        ["What are you doing? (vous)", "Qu'est-ce que vous êtes en train de faire ?"],
+        ["She's getting dressed.", "Elle est en train de s'habiller."],
+        ["I'm learning to drive.", "Je suis en train d'apprendre à conduire."],
+        ["They were arguing when I arrived.", "Ils étaient en train de se disputer quand je suis arrivé."]
+      ]
+    },
+    {
+      "id": "venir-de",
+      "week": 2,
+      "title": "Je viens de…",
+      "pattern": "venir de + infinitif",
+      "meaning": "to have just done something",
+      "notes": [
+        "venir in the present + de + infinitive = have just: Je viens de manger.",
+        "In the imparfait = had just: Je venais de partir quand…",
+        "Without de it means 'to come and do': Je viens manger = I'm coming to eat.",
+        "Reflexive verbs keep their pronoun: Il vient de se lever."
+      ],
+      "examples": [
+        ["Je viens de rentrer.", "I've just got home."],
+        ["Elle vient d'avoir un bébé.", "She's just had a baby."],
+        ["On vient de finir de manger.", "We've just finished eating."],
+        ["Le train vient de partir.", "The train has just left."],
+        ["Je venais de m'endormir quand le téléphone a sonné.", "I had just fallen asleep when the phone rang."],
+        ["Tu viens de dire exactement ce que je pensais.", "You've just said exactly what I was thinking."]
+      ],
+      "practice": [
+        ["I've just read that chapter.", "Je viens de lire ce chapitre."],
+        ["They've just arrived.", "Ils viennent d'arriver."],
+        ["He has just woken up.", "Il vient de se réveiller."],
+        ["We had just left when it started to rain.", "Nous venions de partir quand il a commencé à pleuvoir."],
+        ["Have you just eaten? (tu)", "Tu viens de manger ?"],
+        ["I've just understood something important.", "Je viens de comprendre quelque chose d'important."]
+      ]
+    },
+    {
+      "id": "il-faut",
+      "week": 3,
+      "title": "Il faut que…",
+      "pattern": "il faut + infinitif / il faut que + subjonctif",
+      "meaning": "must, have to, need to",
+      "notes": [
+        "il faut + infinitive is general: Il faut partir = we / you / one must leave.",
+        "il faut que + subjunctive names the person: Il faut que je parte.",
+        "Common subjunctives: que je fasse, que j'aille, que je sois, que j'aie, que je puisse, que je sache.",
+        "il ne faut pas = you mustn't. For 'you don't have to' say: pas besoin de… / ce n'est pas la peine de…",
+        "il me faut + noun = I need: Il me faut un stylo."
+      ],
+      "examples": [
+        ["Il faut partir maintenant.", "We have to leave now."],
+        ["Il faut que j'aille à la banque.", "I have to go to the bank."],
+        ["Il faut que tu sois patient.", "You need to be patient."],
+        ["Il ne faut pas toucher.", "You mustn't touch."],
+        ["Il faut que nous fassions un effort.", "We need to make an effort."],
+        ["Il me faut deux heures pour y aller.", "It takes me two hours to get there."]
+      ],
+      "practice": [
+        ["I have to call my mother.", "Il faut que j'appelle ma mère."],
+        ["You need to rest. (tu)", "Il faut que tu te reposes."],
+        ["We have to finish this today.", "Il faut qu'on finisse ça aujourd'hui. / Il faut que nous finissions ça aujourd'hui."],
+        ["You mustn't give up.", "Il ne faut pas abandonner."],
+        ["She has to be there at eight.", "Il faut qu'elle soit là à huit heures."],
+        ["You need to know that… (vous)", "Il faut que vous sachiez que…"]
+      ]
+    },
+    {
+      "id": "avoir-envie",
+      "week": 3,
+      "title": "J'ai envie de…",
+      "pattern": "avoir envie de + infinitif / nom",
+      "meaning": "to feel like, to fancy, to want",
+      "notes": [
+        "Softer and more everyday than vouloir.",
+        "With a noun: J'ai envie d'un café.",
+        "en replaces de + thing: Tu en as envie ?",
+        "Negative: Je n'ai pas envie de… / Je n'ai pas du tout envie de…",
+        "Ça te dit de + infinitif ? = Do you fancy…?"
+      ],
+      "examples": [
+        ["J'ai envie de sortir ce soir.", "I feel like going out tonight."],
+        ["Tu as envie de quoi ?", "What do you feel like?"],
+        ["Je n'ai pas du tout envie de travailler aujourd'hui.", "I really don't feel like working today."],
+        ["Elle avait envie de pleurer.", "She felt like crying."],
+        ["J'ai envie d'une glace.", "I fancy an ice cream."],
+        ["Ça te dit d'aller au cinéma ?", "Do you fancy going to the cinema?"]
+      ],
+      "practice": [
+        ["I feel like going for a walk.", "J'ai envie d'aller me promener. / J'ai envie de me promener."],
+        ["Do you fancy a coffee? (tu)", "Tu as envie d'un café ?"],
+        ["We don't feel like cooking tonight.", "On n'a pas envie de cuisiner ce soir."],
+        ["I've always wanted to visit Quebec.", "J'ai toujours eu envie de visiter le Québec."],
+        ["He felt like laughing.", "Il avait envie de rire."],
+        ["Do you fancy coming with us? (tu)", "Ça te dit de venir avec nous ?"]
+      ]
+    },
+    {
+      "id": "ca-fait-que",
+      "week": 4,
+      "title": "Ça fait… que / depuis",
+      "pattern": "ça fait + durée + que + présent / présent + depuis",
+      "meaning": "I've been doing something for…",
+      "notes": [
+        "French uses the present for something still going on: J'apprends le français depuis trois ans (not 'j'ai appris').",
+        "Ça fait + time + que + present: Ça fait trois ans que j'apprends le français.",
+        "Questions: Depuis quand… ? (since when) / Depuis combien de temps… ? (how long)",
+        "For something that hasn't happened for a while, use a negative passé composé: Ça fait longtemps que je ne t'ai pas vu.",
+        "il y a + time = ago, with a past tense: Je suis arrivé il y a deux ans."
+      ],
+      "examples": [
+        ["Ça fait trois ans que j'apprends le français.", "I've been learning French for three years."],
+        ["J'habite ici depuis 2019.", "I've lived here since 2019."],
+        ["Depuis combien de temps tu attends ?", "How long have you been waiting?"],
+        ["Ça fait une heure qu'on t'attend !", "We've been waiting for you for an hour!"],
+        ["Ça fait longtemps que je ne t'ai pas vu.", "I haven't seen you in ages."],
+        ["Je l'ai rencontré il y a dix ans.", "I met him ten years ago."]
+      ],
+      "practice": [
+        ["I've been reading this novel for two weeks.", "Ça fait deux semaines que je lis ce roman. / Je lis ce roman depuis deux semaines."],
+        ["How long have you been living in London? (vous)", "Depuis combien de temps habitez-vous à Londres ?"],
+        ["We've known each other for twenty years.", "Ça fait vingt ans qu'on se connaît. / On se connaît depuis vingt ans."],
+        ["I haven't spoken French for months.", "Ça fait des mois que je n'ai pas parlé français."],
+        ["She's been working here since January.", "Elle travaille ici depuis janvier."],
+        ["I started two years ago.", "J'ai commencé il y a deux ans."]
+      ]
+    },
+    {
+      "id": "arriver-a",
+      "week": 4,
+      "title": "Je n'arrive pas à…",
+      "pattern": "(ne pas) arriver à + infinitif",
+      "meaning": "to (not) manage to; I can't (however hard I try)",
+      "notes": [
+        "arriver à + infinitive = to manage to: Je suis arrivé à le réparer.",
+        "Je n'arrive pas à… is the natural way to say 'I can't…' when you're trying and failing.",
+        "arriver takes être in the passé composé: Elle n'est pas arrivée à dormir.",
+        "Ça m'arrive de + infinitif = I sometimes (happen to)…"
+      ],
+      "examples": [
+        ["Je n'arrive pas à dormir.", "I can't sleep."],
+        ["Tu arrives à lire sans lunettes ?", "Can you read without glasses?"],
+        ["Il n'arrive pas à se concentrer.", "He can't concentrate."],
+        ["Finalement, je suis arrivée à le convaincre.", "In the end I managed to convince him."],
+        ["Je n'arrive pas à croire que c'est déjà fini.", "I can't believe it's already over."],
+        ["Ça m'arrive de rêver en français.", "I sometimes dream in French."]
+      ],
+      "practice": [
+        ["I can't understand what he's saying.", "Je n'arrive pas à comprendre ce qu'il dit."],
+        ["Did you manage to get some sleep? (tu)", "Tu es arrivé à dormir un peu ?"],
+        ["We couldn't find the house.", "On n'est pas arrivés à trouver la maison."],
+        ["I can't remember her name.", "Je n'arrive pas à me souvenir de son nom."],
+        ["She managed to finish on time.", "Elle est arrivée à finir à temps."],
+        ["I sometimes forget.", "Ça m'arrive d'oublier."]
+      ]
+    },
+    {
+      "id": "ca-derange",
+      "week": 5,
+      "title": "Ça te dérange si… ?",
+      "pattern": "ça te / vous dérange si + présent ? / de + infinitif ?",
+      "meaning": "Do you mind if…? / Would you mind…?",
+      "notes": [
+        "si + present when it's you doing it: Ça te dérange si j'ouvre la fenêtre ?",
+        "de + infinitive when you're asking them to do it: Ça vous dérange de parler plus lentement ?",
+        "Answers: Non, pas du tout. / Vas-y. / Allez-y.",
+        "Ça me dérange = it bothers me."
+      ],
+      "examples": [
+        ["Ça te dérange si j'ouvre la fenêtre ?", "Do you mind if I open the window?"],
+        ["Ça vous dérange si je m'assois ici ?", "Do you mind if I sit here?"],
+        ["Ça vous dérange de parler un peu plus lentement ?", "Would you mind speaking a bit more slowly?"],
+        ["Non, ça ne me dérange pas du tout.", "No, I don't mind at all."],
+        ["Ça ne te dérange pas de conduire ?", "You don't mind driving?"],
+        ["Ça me dérange quand les gens arrivent en retard.", "It bothers me when people arrive late."]
+      ],
+      "practice": [
+        ["Do you mind if I call you tonight? (tu)", "Ça te dérange si je t'appelle ce soir ?"],
+        ["Would you mind repeating that? (vous)", "Ça vous dérange de répéter ?"],
+        ["Do you mind if we leave early? (tu)", "Ça te dérange si on part tôt ?"],
+        ["I don't mind waiting.", "Ça ne me dérange pas d'attendre."],
+        ["Does the noise bother you? (tu)", "Le bruit te dérange ?"],
+        ["Would you mind closing the door? (vous)", "Ça vous dérange de fermer la porte ?"]
+      ]
+    },
+    {
+      "id": "ce-qui-ce-que",
+      "week": 5,
+      "title": "Ce que j'aime, c'est…",
+      "pattern": "ce qui / ce que / ce dont…, c'est…",
+      "meaning": "What I… is… (to give an opinion with emphasis)",
+      "notes": [
+        "ce qui is the subject, so a verb follows: Ce qui me plaît, c'est…",
+        "ce que is the object, so a subject + verb follows: Ce que j'aime, c'est…",
+        "ce dont is for verbs with de (avoir besoin de, parler de): Ce dont j'ai besoin, c'est…",
+        "After c'est you can put a noun, an infinitive (often with de after ce dont), or que + a clause.",
+        "With a plural noun, written French prefers ce sont; speech often keeps c'est."
+      ],
+      "examples": [
+        ["Ce que j'aime à Paris, c'est l'ambiance.", "What I love about Paris is the atmosphere."],
+        ["Ce qui m'inquiète, c'est le prix.", "What worries me is the price."],
+        ["Ce dont j'ai besoin, c'est de repos.", "What I need is rest."],
+        ["Ce que je veux dire, c'est que c'est compliqué.", "What I mean is that it's complicated."],
+        ["Ce qui compte, c'est l'amour.", "What matters is love."],
+        ["Ce que je ne comprends pas, c'est pourquoi il est parti.", "What I don't understand is why he left."]
+      ],
+      "practice": [
+        ["What I like about this book is the characters.", "Ce que j'aime dans ce livre, ce sont les personnages."],
+        ["What surprises me is his patience.", "Ce qui me surprend, c'est sa patience."],
+        ["What I need is to rest.", "Ce dont j'ai besoin, c'est de me reposer."],
+        ["What I want to say is thank you.", "Ce que je veux dire, c'est merci."],
+        ["What bothers me is the noise.", "Ce qui me dérange, c'est le bruit."],
+        ["What I find hard is the subjunctive.", "Ce que je trouve difficile, c'est le subjonctif."]
+      ]
+    },
+    {
+      "id": "si-imparfait",
+      "week": 6,
+      "title": "Si j'avais…, je ferais…",
+      "pattern": "si + imparfait, conditionnel",
+      "meaning": "If I had…, I would… (and Si on… ? for suggestions)",
+      "notes": [
+        "Never put the conditional straight after si: Si j'avais (not 'si j'aurais').",
+        "Conditional = future stem + imparfait endings: je voudrais, je serais, j'aurais, je ferais, j'irais, je pourrais.",
+        "For a real possibility, use si + present, then the future: S'il pleut, on restera à la maison.",
+        "Si on + imparfait ? on its own is a suggestion: Si on allait au parc ? = How about going to the park?",
+        "si + il = s'il, but si elle / si on stay as they are."
+      ],
+      "examples": [
+        ["Si j'avais plus de temps, je lirais davantage.", "If I had more time, I'd read more."],
+        ["Si tu étais moi, qu'est-ce que tu ferais ?", "If you were me, what would you do?"],
+        ["Si on gagnait au loto, on achèterait une maison en Provence.", "If we won the lottery, we'd buy a house in Provence."],
+        ["Je viendrais si je pouvais.", "I'd come if I could."],
+        ["Si on allait au restaurant ce soir ?", "How about going to a restaurant tonight?"],
+        ["S'il fait beau demain, on ira à la plage.", "If it's nice tomorrow, we'll go to the beach."]
+      ],
+      "practice": [
+        ["If I lived in France, I would speak French every day.", "Si j'habitais en France, je parlerais français tous les jours."],
+        ["What would you do if you had a million euros? (tu)", "Qu'est-ce que tu ferais si tu avais un million d'euros ?"],
+        ["If she knew, she would be angry.", "Si elle savait, elle serait fâchée."],
+        ["How about going for a walk?", "Si on allait se promener ?"],
+        ["I would help you if I could. (tu)", "Je t'aiderais si je pouvais."],
+        ["If it rains, we'll stay at home.", "S'il pleut, on restera à la maison."]
+      ]
+    },
+    {
+      "id": "aurais-du",
+      "week": 6,
+      "title": "J'aurais dû…",
+      "pattern": "j'aurais dû / pu / voulu + infinitif",
+      "meaning": "I should have / could have / would have liked to…",
+      "notes": [
+        "aurais (conditional of avoir) + dû / pu / voulu, then an infinitive.",
+        "j'aurais dû = I should have; j'aurais pu = I could have; j'aurais voulu = I would have liked to.",
+        "Object pronouns go before the infinitive: Tu aurais dû me le dire.",
+        "Negative around aurais: Je n'aurais pas dû…"
+      ],
+      "examples": [
+        ["J'aurais dû partir plus tôt.", "I should have left earlier."],
+        ["Tu aurais pu me prévenir !", "You could have warned me!"],
+        ["J'aurais voulu être là.", "I would have liked to be there."],
+        ["On n'aurait pas dû manger autant.", "We shouldn't have eaten so much."],
+        ["Il aurait pu mourir.", "He could have died."],
+        ["Vous auriez dû me le dire.", "You should have told me."]
+      ],
+      "practice": [
+        ["I should have listened.", "J'aurais dû écouter."],
+        ["You could have called me. (tu)", "Tu aurais pu m'appeler."],
+        ["We should have bought tickets.", "On aurait dû acheter des billets."],
+        ["She would have liked to come.", "Elle aurait voulu venir."],
+        ["I shouldn't have said that.", "Je n'aurais pas dû dire ça."],
+        ["They could have won.", "Ils auraient pu gagner."]
+      ]
+    },
+    {
+      "id": "avoir-du-mal",
+      "week": 7,
+      "title": "J'ai du mal à…",
+      "pattern": "avoir du mal à + infinitif",
+      "meaning": "to find it hard to, to struggle to",
+      "notes": [
+        "avoir du mal à = finding it difficult; n'arriver pas à = not managing at all.",
+        "Past: j'ai eu du mal à (one occasion) / j'avais du mal à (ongoing).",
+        "Pronouns go before the infinitive: J'ai du mal à le comprendre.",
+        "sans mal = easily."
+      ],
+      "examples": [
+        ["J'ai du mal à comprendre l'accent québécois.", "I struggle to understand the Quebec accent."],
+        ["Elle a eu du mal à trouver un appartement.", "She had a hard time finding a flat."],
+        ["On a du mal à y croire.", "We find it hard to believe."],
+        ["J'ai du mal à me lever le matin.", "I find it hard to get up in the morning."],
+        ["Il avait du mal à respirer.", "He was struggling to breathe."],
+        ["Tu as du mal à dormir en ce moment ?", "Are you having trouble sleeping at the moment?"]
+      ],
+      "practice": [
+        ["I find it hard to speak quickly.", "J'ai du mal à parler vite."],
+        ["We struggled to find a parking space.", "On a eu du mal à trouver une place pour se garer."],
+        ["He finds it hard to say no.", "Il a du mal à dire non."],
+        ["I struggle to remember new words.", "J'ai du mal à retenir les nouveaux mots."],
+        ["She was having trouble concentrating.", "Elle avait du mal à se concentrer."],
+        ["Do you find it hard to understand films? (tu)", "Tu as du mal à comprendre les films ?"]
+      ]
+    },
+    {
+      "id": "vaut-la-peine",
+      "week": 7,
+      "title": "Ça vaut la peine de…",
+      "pattern": "ça vaut la peine / le coup de + infinitif",
+      "meaning": "it's worth (doing)",
+      "notes": [
+        "ça vaut la peine de… and ça vaut le coup de… (more casual) mean the same.",
+        "Ça (n')en vaut pas la peine = It's not worth it. Ça en valait la peine = It was worth it.",
+        "Ce n'est pas la peine de… = There's no need to… (a very useful way to say 'you don't have to').",
+        "With a passive idea: Ce film vaut la peine d'être vu."
+      ],
+      "examples": [
+        ["Ça vaut le coup d'essayer.", "It's worth a try."],
+        ["Ce film vaut vraiment la peine d'être vu.", "This film is really worth seeing."],
+        ["Ça ne vaut pas la peine de s'énerver.", "It's not worth getting upset."],
+        ["Ce n'est pas la peine de venir, j'ai tout ce qu'il faut.", "No need to come, I've got everything I need."],
+        ["Est-ce que ça vaut le coup d'y aller ?", "Is it worth going?"],
+        ["Ça en valait la peine.", "It was worth it."]
+      ],
+      "practice": [
+        ["It's worth visiting Lyon.", "Ça vaut le coup de visiter Lyon. / Ça vaut la peine de visiter Lyon."],
+        ["Is this book worth reading?", "Est-ce que ce livre vaut la peine d'être lu ?"],
+        ["It's not worth waiting.", "Ça ne vaut pas la peine d'attendre."],
+        ["No need to shout!", "Ce n'est pas la peine de crier !"],
+        ["It was worth it.", "Ça en valait la peine. / Ça valait le coup."],
+        ["It's worth asking.", "Ça vaut la peine de demander. / Ça vaut le coup de demander."]
+      ]
+    },
+    {
+      "id": "il-s-agit",
+      "week": 8,
+      "title": "Il s'agit de…",
+      "pattern": "il s'agit de + nom / infinitif",
+      "meaning": "it's about…; it's a matter of…",
+      "notes": [
+        "Always il as the subject: never 'le livre s'agit de'. Say Dans ce livre, il s'agit de… or Le livre parle de…",
+        "De quoi s'agit-il ? = What's it about?",
+        "+ infinitive = it's a matter of / what you have to do is: Il s'agit de bien choisir.",
+        "de + le = du: Il s'agit du pardon."
+      ],
+      "examples": [
+        ["Dans ce roman, il s'agit d'une famille camerounaise à New York.", "This novel is about a Cameroonian family in New York."],
+        ["De quoi s'agit-il ?", "What's it about?"],
+        ["Il s'agit de ta santé, c'est sérieux.", "It's about your health, it's serious."],
+        ["Il ne s'agit pas d'argent.", "It's not about money."],
+        ["Maintenant, il s'agit de trouver une solution.", "Now it's a matter of finding a solution."],
+        ["Le film parle de deux sœurs.", "The film is about two sisters."]
+      ],
+      "practice": [
+        ["What's the film about?", "De quoi parle le film ? / De quoi s'agit-il dans le film ?"],
+        ["It's about a young doctor.", "Il s'agit d'un jeune médecin."],
+        ["It's not about you. (tu)", "Il ne s'agit pas de toi."],
+        ["Now it's a matter of being patient.", "Maintenant, il s'agit d'être patient."],
+        ["This sermon is about forgiveness.", "Dans ce sermon, il s'agit du pardon. / Ce sermon parle du pardon."],
+        ["It's about trust.", "Il s'agit de confiance."]
+      ]
+    },
+    {
+      "id": "n-importe",
+      "week": 8,
+      "title": "N'importe quoi / qui / où…",
+      "pattern": "n'importe + qui / quoi / où / quand / comment / lequel",
+      "meaning": "any…, anyone, anything, anywhere, any time, any old way",
+      "notes": [
+        "n'importe qui = anyone (at all); n'importe quoi = anything; n'importe où = anywhere; n'importe quand = any time.",
+        "n'importe comment = any old way (often critical); n'importe lequel / laquelle = any one of them.",
+        "C'est n'importe quoi ! / Il dit n'importe quoi = That's nonsense / He's talking rubbish.",
+        "It can be a subject: N'importe qui peut le faire."
+      ],
+      "examples": [
+        ["Tu peux m'appeler n'importe quand.", "You can call me any time."],
+        ["Il dit n'importe quoi !", "He's talking nonsense!"],
+        ["Ne parle pas à n'importe qui.", "Don't talk to just anyone."],
+        ["On peut s'asseoir n'importe où.", "We can sit anywhere."],
+        ["Ce travail n'est pas fait n'importe comment.", "This work isn't done any old way."],
+        ["Choisis n'importe lequel.", "Pick any one."]
+      ],
+      "practice": [
+        ["You can come any time. (tu)", "Tu peux venir n'importe quand."],
+        ["Don't eat just anything. (tu)", "Ne mange pas n'importe quoi."],
+        ["Anyone can learn.", "N'importe qui peut apprendre."],
+        ["Put it anywhere. (tu)", "Mets-le n'importe où."],
+        ["That's nonsense!", "C'est n'importe quoi !"],
+        ["Take any one of them. (tu, a book)", "Prends n'importe lequel."]
+      ]
+    },
+    {
+      "id": "ne-que",
+      "week": 9,
+      "title": "Je n'ai que…",
+      "pattern": "ne + verbe + que…",
+      "meaning": "only",
+      "notes": [
+        "ne goes before the verb, que goes right before the thing that is 'only': Je n'ai que dix euros.",
+        "In the passé composé: Je ne l'ai vu qu'une fois.",
+        "Il ne reste que… = There's only … left.",
+        "Tu n'as qu'à + infinitive = All you have to do is…",
+        "Articles stay as normal after que (not changed to de): Je ne bois que de l'eau."
+      ],
+      "examples": [
+        ["Je n'ai que dix euros.", "I've only got ten euros."],
+        ["Il ne reste que deux places.", "There are only two seats left."],
+        ["On ne vit qu'une fois.", "You only live once."],
+        ["Elle ne pense qu'à son travail.", "She only thinks about her work."],
+        ["Tu n'as qu'à lui demander.", "You just have to ask him."],
+        ["Je ne l'ai vu qu'une fois.", "I've only seen him once."]
+      ],
+      "practice": [
+        ["I only drink water.", "Je ne bois que de l'eau."],
+        ["There's only one solution.", "Il n'y a qu'une solution."],
+        ["We've only got five minutes.", "On n'a que cinq minutes."],
+        ["All you have to do is call me. (tu)", "Tu n'as qu'à m'appeler."],
+        ["He only came once.", "Il n'est venu qu'une fois."],
+        ["There are only three days left.", "Il ne reste que trois jours."]
+      ]
+    },
+    {
+      "id": "faire-infinitif",
+      "week": 9,
+      "title": "Ça me fait penser à…",
+      "pattern": "faire + infinitif",
+      "meaning": "to make someone do / to have something done",
+      "notes": [
+        "faire + infinitive = make someone do something: Tu me fais rire.",
+        "Or have something done by someone else: Je fais réparer ma voiture.",
+        "se faire + infinitive for things done to you: Je me suis fait couper les cheveux.",
+        "Pronouns go before faire: Il me fait attendre. In a positive command, after: Fais-moi savoir.",
+        "Everyday: Ça me fait penser à… = That reminds me of…"
+      ],
+      "examples": [
+        ["Je dois faire réparer mon téléphone.", "I need to get my phone repaired."],
+        ["Tu me fais rire !", "You make me laugh!"],
+        ["Ça me fait penser à mon enfance.", "It reminds me of my childhood."],
+        ["Je me suis fait couper les cheveux.", "I got my hair cut."],
+        ["Désolé de vous avoir fait attendre.", "Sorry to have kept you waiting."],
+        ["Fais-moi savoir quand tu arrives.", "Let me know when you arrive."]
+      ],
+      "practice": [
+        ["This song makes me cry.", "Cette chanson me fait pleurer."],
+        ["We're having the kitchen painted.", "On fait peindre la cuisine."],
+        ["Let me know! (tu)", "Fais-moi savoir !"],
+        ["That reminds me of a film.", "Ça me fait penser à un film."],
+        ["She had her car repaired.", "Elle a fait réparer sa voiture."],
+        ["Don't keep me waiting! (tu)", "Ne me fais pas attendre !"]
+      ]
+    },
+    {
+      "id": "avant-de",
+      "week": 10,
+      "title": "Avant de… / Après avoir…",
+      "pattern": "avant de + infinitif / après avoir (être) + participe passé",
+      "meaning": "before doing / after doing (having done)",
+      "notes": [
+        "avant de + present infinitive: avant de partir.",
+        "après needs the past infinitive: après avoir mangé, après être arrivé(e)(s), après s'être levé(e).",
+        "With être, the participle agrees with the subject: Après être rentrée, elle a appelé sa mère.",
+        "Both halves of the sentence must have the same subject."
+      ],
+      "examples": [
+        ["Je prie avant de dormir.", "I pray before going to sleep."],
+        ["Lave-toi les mains avant de manger.", "Wash your hands before eating."],
+        ["Après avoir mangé, on est sortis.", "After eating, we went out."],
+        ["Après être rentrée, elle a appelé sa mère.", "After getting home, she called her mother."],
+        ["Réfléchis bien avant de répondre.", "Think carefully before answering."],
+        ["Après s'être reposés, ils sont repartis.", "After resting, they set off again."]
+      ],
+      "practice": [
+        ["Read the question before answering. (tu)", "Lis la question avant de répondre."],
+        ["After finishing the book, I watched the film.", "Après avoir fini le livre, j'ai regardé le film."],
+        ["Call me before leaving. (tu)", "Appelle-moi avant de partir."],
+        ["After arriving in Paris, we went to the hotel.", "Après être arrivés à Paris, nous sommes allés à l'hôtel."],
+        ["I always have a coffee before starting work.", "Je prends toujours un café avant de commencer le travail."],
+        ["After getting up, he had a shower.", "Après s'être levé, il a pris une douche."]
+      ]
+    },
+    {
+      "id": "gerondif",
+      "week": 10,
+      "title": "En lisant…",
+      "pattern": "en + participe présent (-ant)",
+      "meaning": "while doing / by doing / on doing",
+      "notes": [
+        "Take the nous form, drop -ons, add -ant: nous lisons → lisant, nous faisons → faisant.",
+        "Three irregulars: étant (être), ayant (avoir), sachant (savoir).",
+        "Same subject for both actions: J'écoute des podcasts en conduisant.",
+        "tout en + -ant stresses 'at the same time' or a contrast: Il souriait tout en disant non."
+      ],
+      "examples": [
+        ["J'écoute des podcasts en conduisant.", "I listen to podcasts while driving."],
+        ["On apprend en faisant des erreurs.", "You learn by making mistakes."],
+        ["En arrivant, j'ai vu qu'il n'y avait personne.", "When I arrived, I saw there was nobody there."],
+        ["Il s'est blessé en tombant.", "He hurt himself when he fell."],
+        ["Elle chante en faisant la vaisselle.", "She sings while doing the washing-up."],
+        ["En lisant tous les jours, tu progresseras vite.", "By reading every day, you'll improve quickly."]
+      ],
+      "practice": [
+        ["I improved my French by reading novels.", "J'ai amélioré mon français en lisant des romans."],
+        ["Don't talk while eating. (tu)", "Ne parle pas en mangeant."],
+        ["She smiled as she left.", "Elle a souri en partant."],
+        ["You'll save time by taking the train. (tu)", "Tu gagneras du temps en prenant le train."],
+        ["I learn songs by listening to them again and again.", "J'apprends les chansons en les écoutant encore et encore."],
+        ["He fell asleep while watching TV.", "Il s'est endormi en regardant la télé."]
+      ]
+    },
+    {
+      "id": "ca-depend",
+      "week": 11,
+      "title": "Ça dépend de…",
+      "pattern": "ça dépend de + nom / ça dépend si…",
+      "meaning": "it depends on…",
+      "notes": [
+        "de + le = du: Ça dépend du temps.",
+        "Ça dépend de toi = It's up to you.",
+        "Tout dépend de… = It all depends on…",
+        "Before a clause: ça dépend si… / tout dépend de ce que…"
+      ],
+      "examples": [
+        ["Ça dépend du temps.", "It depends on the weather."],
+        ["Ça dépend de toi.", "It's up to you."],
+        ["Tout dépend de ce que tu veux.", "It all depends on what you want."],
+        ["Ça dépend si j'ai le temps.", "It depends on whether I have time."],
+        ["— Tu viens ? — Ça dépend.", "\"Are you coming?\" \"It depends.\""],
+        ["Le prix dépend de la saison.", "The price depends on the season."]
+      ],
+      "practice": [
+        ["It depends on the price.", "Ça dépend du prix."],
+        ["It's up to you. (vous)", "Ça dépend de vous."],
+        ["It all depends on the traffic.", "Tout dépend de la circulation."],
+        ["It depends whether it's raining.", "Ça dépend s'il pleut."],
+        ["It depends what you mean. (tu)", "Ça dépend de ce que tu veux dire."],
+        ["My mood depends on the weather.", "Mon humeur dépend du temps."]
+      ]
+    },
+    {
+      "id": "je-me-demande",
+      "week": 11,
+      "title": "Je me demande si…",
+      "pattern": "se demander si / pourquoi / où / ce que…",
+      "meaning": "to wonder (if, why, where, what…)",
+      "notes": [
+        "It's reflexive: je me demande, on se demandait, je me suis demandé.",
+        "Reported questions keep normal word order (no inversion): Je me demande où il est.",
+        "est-ce que → si; qu'est-ce que → ce que; qu'est-ce qui → ce qui.",
+        "si + il = s'il."
+      ],
+      "examples": [
+        ["Je me demande s'il va pleuvoir.", "I wonder if it's going to rain."],
+        ["Je me demande pourquoi elle n'a pas répondu.", "I wonder why she didn't reply."],
+        ["On se demandait où tu étais.", "We were wondering where you were."],
+        ["Je me demande ce qu'il pense vraiment.", "I wonder what he really thinks."],
+        ["Tu ne te demandes jamais comment ça marche ?", "Don't you ever wonder how it works?"],
+        ["Je me suis toujours demandé ce que ça voulait dire.", "I've always wondered what that meant."]
+      ],
+      "practice": [
+        ["I wonder if he's at home.", "Je me demande s'il est à la maison."],
+        ["I wonder what she wants.", "Je me demande ce qu'elle veut."],
+        ["We were wondering when you'd arrive. (tu)", "On se demandait quand tu arriverais."],
+        ["I wonder how they met.", "Je me demande comment ils se sont rencontrés."],
+        ["She wonders why nobody called.", "Elle se demande pourquoi personne n'a appelé."],
+        ["I wonder whether it's worth it.", "Je me demande si ça vaut la peine."]
+      ]
+    },
+    {
+      "id": "a-force-de",
+      "week": 12,
+      "title": "À force de…",
+      "pattern": "à force de + infinitif / nom",
+      "meaning": "by (doing something) over and over; through so much…",
+      "notes": [
+        "Shows a result that builds up through repetition: À force de lire, je comprends mieux.",
+        "Works with a noun too: à force de patience.",
+        "de becomes d' before a vowel: à force d'écouter.",
+        "Often translated 'from … so much' or 'by dint of'."
+      ],
+      "examples": [
+        ["À force de lire en français, je comprends beaucoup mieux.", "From reading so much in French, I understand much better."],
+        ["À force de travailler, elle a réussi.", "Through sheer hard work, she succeeded."],
+        ["À force de crier, il a perdu sa voix.", "He shouted so much he lost his voice."],
+        ["À force de patience, on y arrive.", "With enough patience, you get there."],
+        ["À force d'écouter cette chanson, je la connais par cœur.", "I've listened to this song so often I know it by heart."],
+        ["À force de répéter, ça devient naturel.", "If you repeat it enough, it becomes natural."]
+      ],
+      "practice": [
+        ["By practising every day, you'll get there. (tu)", "À force de pratiquer tous les jours, tu vas y arriver."],
+        ["From talking so much, I'm tired.", "À force de parler, je suis fatigué."],
+        ["By listening to sermons, I've learnt a lot of vocabulary.", "À force d'écouter des sermons, j'ai appris beaucoup de vocabulaire."],
+        ["Through patience, she convinced him.", "À force de patience, elle l'a convaincu."],
+        ["He got good by playing every day.", "À force de jouer tous les jours, il est devenu bon."],
+        ["From waiting so long, we gave up.", "À force d'attendre, on a abandonné."]
+      ]
+    },
+    {
+      "id": "bien-que",
+      "week": 12,
+      "title": "Bien que… / Pourvu que…",
+      "pattern": "bien que / pourvu que / pour que / avant que + subjonctif",
+      "meaning": "although / as long as, let's hope / so that / before",
+      "notes": [
+        "All of these take the subjunctive: bien qu'il soit, pourvu que tu viennes, pour que tu saches, avant qu'il parte.",
+        "Pourvu que… ! on its own = Let's hope…!: Pourvu qu'il fasse beau !",
+        "Same subject? Use a preposition + infinitive instead: pour comprendre, avant de partir.",
+        "Common subjunctives: soit, ait, fasse, aille, puisse, sache, vienne, comprenne, pleuve."
+      ],
+      "examples": [
+        ["Bien qu'il soit fatigué, il continue.", "Although he's tired, he keeps going."],
+        ["Pourvu qu'il fasse beau demain !", "Let's hope it's nice tomorrow!"],
+        ["Tu peux sortir pourvu que tu rentres avant minuit.", "You can go out as long as you're back before midnight."],
+        ["Bien que je comprenne tout, j'ai du mal à parler.", "Although I understand everything, I find it hard to speak."],
+        ["Je t'explique pour que tu saches.", "I'm explaining so that you know."],
+        ["Appelle-moi avant qu'il soit trop tard.", "Call me before it's too late."]
+      ],
+      "practice": [
+        ["Although it's raining, we're going out.", "Bien qu'il pleuve, on sort."],
+        ["Let's hope he comes!", "Pourvu qu'il vienne !"],
+        ["As long as you're happy. (tu)", "Pourvu que tu sois heureux. / Pourvu que tu sois heureuse."],
+        ["Although she's young, she's very wise.", "Bien qu'elle soit jeune, elle est très sage."],
+        ["I'm speaking slowly so that you understand. (tu)", "Je parle lentement pour que tu comprennes."],
+        ["Leave before it gets dark. (tu)", "Pars avant qu'il fasse nuit."]
+      ]
+    }
+  ]
+}

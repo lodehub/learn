@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Phrase Lab: French structures to use every day</title>
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --text: #24292b;
+    --muted: #646b6e;
+    --line: #e2ded5;
+    --accent: #2f8a5b;
+    --accent-ink: #1f6e47;
+    --soft: #e5f4eb;
+    --warn: #a35a14;
+    --warn-soft: #fbefe2;
+    --bad: #b8382c;
+    --radius: 18px;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d1c;
+      --surface: #252826;
+      --text: #eef0ec;
+      --muted: #a7ada8;
+      --line: #383c39;
+      --accent: #4fbf86;
+      --accent-ink: #7ed6a8;
+      --soft: #1f3328;
+      --warn: #e7a868;
+      --warn-soft: #3a2c1f;
+      --bad: #f0857a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 16px 16px 96px; }
+  h1 { font-size: 1.6rem; line-height: 1.2; margin: 8px 0 4px; }
+  h2 { font-size: 1.25rem; margin: 28px 0 10px; }
+  h3 { font-size: 1.05rem; margin: 20px 0 8px; }
+  p { margin: 8px 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: .9rem; }
+  a { color: var(--accent-ink); }
+
+  nav.tabs {
+    position: sticky; top: 0; z-index: 10;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+    padding: calc(8px + env(safe-area-inset-top, 0px)) 8px 8px;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.tabs a {
+    display: flex; align-items: center; justify-content: center; min-height: 44px;
+    border-radius: 12px; text-decoration: none; color: var(--muted);
+    font-weight: 600; font-size: .92rem;
+  }
+  nav.tabs a[aria-current="page"] { background: var(--soft); color: var(--accent-ink); }
+  nav.tabs .count {
+    margin-left: 4px; min-width: 20px; padding: 0 6px; border-radius: 10px;
+    background: var(--accent); color: #fff; font-size: .75rem; line-height: 20px; text-align: center;
+  }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px; margin: 14px 0;
+  }
+  .card.accent { border-color: var(--accent); }
+  .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); }
+  .pattern {
+    display: inline-block; margin: 6px 0; padding: 6px 12px; border-radius: 10px;
+    background: var(--soft); color: var(--accent-ink); font-weight: 600;
+  }
+  .bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; margin: 10px 0 4px; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+
+  button, .btn {
+    font: inherit; font-weight: 600; min-height: 48px; padding: 10px 18px; border-radius: 14px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .5; cursor: default; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  .row > * { flex: 1 1 auto; }
+  .speak {
+    min-height: 40px; min-width: 40px; padding: 6px 10px; border-radius: 10px; font-size: .9rem;
+    flex: 0 0 auto;
+  }
+
+  ul.plain { list-style: none; margin: 0; padding: 0; }
+  ul.notes { margin: 6px 0; padding-left: 20px; }
+  ul.notes li { margin: 6px 0; }
+  .ex { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-top: 1px solid var(--line); }
+  .ex:first-child { border-top: 0; }
+  .ex .fr { font-weight: 600; }
+  .ex .en { color: var(--muted); font-size: .95rem; }
+  .ex > div { flex: 1; }
+
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 8px 0; }
+  .steps li { counter-increment: step; position: relative; padding: 4px 0 4px 34px; }
+  .steps li::before {
+    content: counter(step); position: absolute; left: 0; top: 4px; width: 24px; height: 24px;
+    border-radius: 50%; background: var(--soft); color: var(--accent-ink);
+    font-size: .8rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+
+  .drill .prompt { font-size: 1.25rem; font-weight: 600; margin: 8px 0 12px; }
+  textarea, input[type=text], select {
+    width: 100%; font: inherit; color: var(--text); background: var(--bg);
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px;
+  }
+  textarea { min-height: 84px; resize: vertical; }
+  label { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .answer { margin-top: 14px; padding: 14px; border-radius: 12px; background: var(--soft); }
+  .answer .fr { font-weight: 600; font-size: 1.1rem; }
+  .verdict { font-weight: 700; margin-bottom: 6px; }
+  .verdict.ok { color: var(--accent-ink); }
+  .verdict.near { color: var(--warn); }
+  .yours { margin-top: 8px; font-size: .95rem; color: var(--muted); }
+  .grades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+  .grades button { padding: 8px; flex-direction: column; gap: 0; }
+  .grades small { font-weight: 400; color: var(--muted); font-size: .78rem; }
+  .grades .again { border-color: var(--bad); color: var(--bad); }
+  .grades .primary small { color: rgba(255,255,255,.85); }
+
+  .week { margin: 10px 0; }
+  .week summary {
+    list-style: none; cursor: pointer; padding: 14px 16px; border-radius: 14px;
+    background: var(--surface); border: 1px solid var(--line); display: flex; gap: 10px; align-items: center;
+  }
+  .week summary::-webkit-details-marker { display: none; }
+  .week summary .t { flex: 1; }
+  .week[open] summary { border-color: var(--accent); }
+  .sessions a {
+    display: flex; gap: 10px; align-items: center; padding: 12px 14px; margin: 6px 0 0 12px;
+    border-radius: 12px; background: var(--surface); border: 1px solid var(--line);
+    text-decoration: none; color: var(--text); min-height: 48px;
+  }
+  .tick {
+    flex: 0 0 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line);
+    display: flex; align-items: center; justify-content: center; font-size: .8rem; color: #fff;
+  }
+  .tick.done { background: var(--accent); border-color: var(--accent); }
+  .tick.now { border-color: var(--accent); }
+  .tag { font-size: .75rem; font-weight: 700; padding: 2px 8px; border-radius: 8px; background: var(--warn-soft); color: var(--warn); }
+
+  .list a {
+    display: block; padding: 14px 16px; margin: 8px 0; border-radius: 14px; background: var(--surface);
+    border: 1px solid var(--line); text-decoration: none; color: var(--text);
+  }
+  .list a .t { font-weight: 600; }
+  .list a .m { color: var(--muted); font-size: .92rem; }
+  .locked { opacity: .55; }
+
+  pre.prompt-text {
+    white-space: pre-wrap; font: .92rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px; max-height: 320px; overflow: auto;
+  }
+  .toast {
+    position: fixed; left: 50%; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+    background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 12px; font-weight: 600;
+    opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 50;
+  }
+  .toast.show { opacity: 1; }
+  .empty { text-align: center; padding: 28px 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<nav class="tabs" id="tabs">
+  <a href="#today" data-tab="today">Today</a>
+  <a href="#plan" data-tab="plan">Plan</a>
+  <a href="#phrases" data-tab="phrases">Phrases</a>
+  <a href="#review" data-tab="review">Review</a>
+  <a href="#mine" data-tab="mine">Mine</a>
+</nav>
+<main id="app"><p class="muted">Loading…</p></main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var KEY = 'heeler:french:phrase-lab:state';
+  var DAY = 86400000;
+  // Review gaps in days for boxes 0..6. Box 0 = new or forgotten.
+  var GAPS = [0, 1, 2, 4, 8, 16, 32];
+
+  // Six sessions per week: learn and drill each structure, mix them, then use them in conversation.
+  var SESSIONS = [
+    { kind: 'learn', which: 0, title: 'Learn' },
+    { kind: 'drill', which: 0, title: 'Drill' },
+    { kind: 'learn', which: 1, title: 'Learn' },
+    { kind: 'drill', which: 1, title: 'Drill' },
+    { kind: 'mix', title: 'Mix it up' },
+    { kind: 'talk', title: 'Talk' }
+  ];
+
+  var app = document.getElementById('app');
+  var S = [];          // structures from structures.json
+  var weeks = [];      // weeks[w-1] = [structureA, structureB]
+  var state = load();
+
+  function load() {
+    var s = null;
+    try { s = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+    s = s || {};
+    s.done = s.done || {};
+    s.cards = s.cards || {};
+    s.mine = s.mine || [];
+    s.own = s.own || {};
+    s.spotted = s.spotted || [];
+    return s;
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function esc(t) {
+    return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast.timer); toast.timer = setTimeout(function () { t.classList.remove('show'); }, 1800);
+  }
+  function today() { var d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime(); }
+
+  // ---------- Speech ----------
+  var frVoice = null;
+  function pickVoice() {
+    if (!('speechSynthesis' in window)) return;
+    var vs = speechSynthesis.getVoices();
+    frVoice = vs.filter(function (v) { return /^fr[-_]FR/i.test(v.lang); })[0] ||
+              vs.filter(function (v) { return /^fr/i.test(v.lang); })[0] || null;
+  }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function say(text, slow) {
+    if (!('speechSynthesis' in window)) { toast('Speech is not available on this device'); return; }
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text.split(' / ')[0]);
+    u.lang = 'fr-FR'; if (frVoice) u.voice = frVoice;
+    u.rate = slow ? 0.7 : 0.95;
+    speechSynthesis.speak(u);
+  }
+  function speakBtn(text) {
+    return '<button type="button" class="speak" data-say="' + esc(text) + '" aria-label="Listen">🔊</button>';
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-say]');
+    if (!b) return;
+    // Second tap within 3 seconds plays it slowly.
+    var slow = b._last && Date.now() - b._last < 3000;
+    b._last = slow ? 0 : Date.now();
+    say(b.getAttribute('data-say'), slow);
+  });
+
+  // ---------- Structures and cards ----------
+  function allStructures() { return S.concat(state.mine); }
+  function byId(id) { return allStructures().filter(function (s) { return s.id === id; })[0]; }
+  function sid(w, i) { return w + '-' + i; }
+  function isDone(w, i) { return !!state.done[sid(w, i)]; }
+
+  function cardKey(s, i) { return s.id + ':' + i; }
+  function cardsOf(s) {
+    return s.practice.map(function (p, i) { return { key: cardKey(s, i), en: p[0], fr: p[1], s: s }; });
+  }
+  // A structure's cards join the review pile once you first drill it (or add it yourself).
+  function unlock(s) {
+    s.practice.forEach(function (p, i) {
+      var k = cardKey(s, i);
+      if (!state.cards[k]) state.cards[k] = { box: 0, due: today() };
+    });
+  }
+  function dueCards() {
+    var now = today(), out = [];
+    allStructures().forEach(function (s) {
+      cardsOf(s).forEach(function (c) {
+        var st = state.cards[c.key];
+        if (st && st.due <= now) out.push(c);
+      });
+    });
+    return out;
+  }
+  function learntCards() {
+    var out = [];
+    allStructures().forEach(function (s) {
+      cardsOf(s).forEach(function (c) { if (state.cards[c.key]) out.push(c); });
+    });
+    return out;
+  }
+  function grade(key, g) {
+    var st = state.cards[key] || { box: 0, due: today() };
+    if (g === 'again') st.box = 0;
+    else if (g === 'good') st.box = Math.min(st.box + 1, GAPS.length - 1);
+    // 'hard' keeps the box.
+    st.due = today() + (g === 'again' ? 0 : Math.max(1, GAPS[st.box]) * DAY);
+    state.cards[key] = st;
+    save();
+  }
+
+  function currentSession() {
+    for (var w = 1; w <= weeks.length; w++)
+      for (var i = 0; i < SESSIONS.length; i++)
+        if (!isDone(w, i)) return { w: w, i: i };
+    return null;
+  }
+  function doneCount() {
+    var n = 0;
+    for (var w = 1; w <= weeks.length; w++)
+      for (var i = 0; i < SESSIONS.length; i++) if (isDone(w, i)) n++;
+    return n;
+  }
+  function sessionTitle(w, i) {
+    var se = SESSIONS[i];
+    if (se.kind === 'learn' || se.kind === 'drill') return se.title + ': ' + weeks[w - 1][se.which].title;
+    return se.title;
+  }
+
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+
+  // ---------- Answer checking ----------
+  function norm(t, keepAccents) {
+    t = t.toLowerCase().replace(/[’']/g, "'").replace(/œ/g, 'oe');
+    if (!keepAccents) t = t.normalize('NFD').replace(/[̀-ͯ]/g, '');
+    return t.replace(/\([^)]*\)/g, ' ').replace(/[.,!?;:«»"—–-]/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+  function check(input, model) {
+    if (!input.trim()) return null;
+    var alts = model.split(' / ');
+    if (alts.some(function (a) { return norm(a, true) === norm(input, true); })) return 'ok';
+    if (alts.some(function (a) { return norm(a) === norm(input); })) return 'accents';
+    return 'diff';
+  }
+
+  // ---------- Pieces of UI ----------
+  function structureHTML(s) {
+    var html = '<div class="pattern">' + esc(s.pattern) + '</div>' +
+      '<p><strong>' + esc(s.meaning) + '</strong></p>';
+    if (s.notes && s.notes.length) {
+      html += '<h3>How it works</h3><ul class="notes">' +
+        s.notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul>';
+    }
+    if (s.examples && s.examples.length) {
+      html += '<h3>Examples <span class="muted small">(tap 🔊 to hear it, tap twice for slow)</span></h3><div>' +
+        s.examples.map(function (e) {
+          return '<div class="ex">' + speakBtn(e[0]) + '<div><div class="fr" lang="fr">' + esc(e[0]) +
+            '</div><div class="en">' + esc(e[1]) + '</div></div></div>';
+        }).join('') + '</div>';
+    }
+    return html;
+  }
+
+  function ownHTML(s) {
+    return '<label for="own-' + esc(s.id) + '">Write 3 sentences of your own with ' + esc(s.title) +
+      ' <span class="muted small">(about your life: family, work, church, what you\'re reading)</span></label>' +
+      '<textarea id="own-' + esc(s.id) + '" data-own="' + esc(s.id) + '" lang="fr" placeholder="Une phrase par ligne…">' +
+      esc(state.own[s.id] || '') + '</textarea>' +
+      '<p class="muted small">Saved as you type. On Talk day, these go into your conversation prompt so ChatGPT or Gemini can check them.</p>';
+  }
+  app.addEventListener('input', function (e) {
+    var id = e.target.getAttribute('data-own');
+    if (id) { state.own[id] = e.target.value; save(); }
+  });
+
+  // A drill deck. Calls onEnd when finished.
+  function runDeck(el, cards, onEnd, opts) {
+    opts = opts || {};
+    var i = 0, tally = { good: 0, hard: 0, again: 0 };
+    function show() {
+      if (i >= cards.length) {
+        el.innerHTML = '<div class="card accent"><div class="eyebrow">Done</div>' +
+          '<p><strong>' + cards.length + ' sentence' + (cards.length === 1 ? '' : 's') + '.</strong> ' +
+          tally.good + ' got it · ' + tally.hard + ' nearly · ' + tally.again + ' again.</p>' +
+          (tally.again ? '<p class="muted small">The ones you marked "Again" come back in Review today.</p>' : '') +
+          '</div>';
+        if (onEnd) onEnd(tally);
+        return;
+      }
+      var c = cards[i];
+      el.innerHTML = '<div class="card drill">' +
+        '<div class="eyebrow">' + (i + 1) + ' of ' + cards.length + (opts.showTitle ? ' · ' + esc(c.s.title) : '') + '</div>' +
+        '<div class="bar"><span style="width:' + Math.round(i / cards.length * 100) + '%"></span></div>' +
+        '<div class="pattern">' + esc(c.s.pattern) + '</div>' +
+        '<p class="prompt">' + esc(c.en) + '</p>' +
+        '<label for="ans">Say it out loud, then type it</label>' +
+        '<textarea id="ans" lang="fr" autocapitalize="sentences" spellcheck="false" placeholder="En français…"></textarea>' +
+        '<div class="row"><button type="button" class="primary" id="reveal">Check</button></div>' +
+        '<div id="result"></div></div>';
+      var ans = el.querySelector('#ans');
+      ans.focus({ preventScroll: true });
+      el.querySelector('#reveal').addEventListener('click', function () { reveal(c, ans.value); });
+      ans.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); reveal(c, ans.value); }
+      });
+    }
+    function reveal(c, input) {
+      var r = check(input, c.fr);
+      var verdict = r === 'ok' ? '<div class="verdict ok">Spot on.</div>' :
+        r === 'accents' ? '<div class="verdict near">Right words. Check the accents and apostrophes.</div>' :
+        r === 'diff' ? '<div class="verdict near">Compare with the model. Small differences can still be right.</div>' : '';
+      el.querySelector('#reveal').disabled = true;
+      el.querySelector('#result').innerHTML = '<div class="answer">' + verdict +
+        '<div class="ex" style="border:0;padding:0">' + speakBtn(c.fr) + '<div class="fr" lang="fr">' + esc(c.fr) + '</div></div>' +
+        (input.trim() && r !== 'ok' ? '<div class="yours">You wrote: <span lang="fr">' + esc(input) + '</span></div>' : '') +
+        '</div>' +
+        '<div class="grades">' +
+        '<button type="button" class="again" data-g="again">Again<small>today</small></button>' +
+        '<button type="button" data-g="hard">Nearly<small>soon</small></button>' +
+        '<button type="button" class="primary" data-g="good">Got it<small>later</small></button></div>';
+      say(c.fr);
+      Array.prototype.forEach.call(el.querySelectorAll('[data-g]'), function (b) {
+        b.addEventListener('click', function () {
+          var g = b.getAttribute('data-g');
+          tally[g]++;
+          grade(c.key, g);
+          i++; show(); setTabs();
+          window.scrollTo(0, 0);
+        });
+      });
+    }
+    show();
+  }
+
+  function talkPrompt(w) {
+    var pair = weeks[w - 1];
+    var recent = [];
+    for (var k = Math.max(1, w - 2); k < w; k++) recent = recent.concat(weeks[k - 1]);
+    var lines = [
+      "I'm learning French at about B1 level. Let's have a relaxed conversation in French about everyday life: my day, my family, my faith, and the novel I'm reading.",
+      '',
+      'This week I am practising these structures:'
+    ];
+    pair.forEach(function (s, n) { lines.push((n + 1) + '. ' + s.pattern + ' = ' + s.meaning); });
+    if (recent.length) {
+      lines.push('', 'Please also bring back these from earlier weeks now and then:');
+      recent.forEach(function (s) { lines.push('- ' + s.pattern + ' = ' + s.meaning); });
+    }
+    var own = pair.map(function (s) { return (state.own[s.id] || '').trim(); }).filter(Boolean).join('\n');
+    if (own) {
+      lines.push('', 'First, please correct these sentences I wrote myself, with a short explanation in English for each mistake:', own);
+    }
+    lines.push('',
+      'Then:',
+      "- Ask me questions that push me to use each of this week's structures several times.",
+      '- Use them yourself too, naturally, so I hear them.',
+      '- After each of my replies, briefly correct my mistakes (the corrected sentence in French, plus a few words of explanation in English), then carry on the conversation.',
+      '- Keep your messages short (2 or 3 sentences) so I do most of the talking.',
+      "- After about 15 exchanges, stop and give me: what I did well, my 3 most frequent mistakes, and 5 new example sentences using this week's structures.",
+      '',
+      'Commence par me poser une question.');
+    return lines.join('\n');
+  }
+
+  // ---------- Views ----------
+  function viewToday() {
+    var cur = currentSession();
+    var total = weeks.length * SESSIONS.length;
+    var due = dueCards().length;
+    var html = '<h1>Bonjour !</h1>';
+    if (!cur) {
+      html += '<div class="card accent"><div class="eyebrow">Programme complete</div>' +
+        '<p>You\'ve worked through all ' + weeks.length + ' weeks. Félicitations !</p>' +
+        '<p>Keep up your daily Review so the structures stay fresh, and keep adding new phrases under <a href="#mine">Mine</a>.</p></div>';
+    } else {
+      var pair = weeks[cur.w - 1];
+      html += '<p class="muted">Week ' + cur.w + ' of ' + weeks.length + ': <strong>' + esc(pair[0].title) + '</strong> and <strong>' +
+        esc(pair[1].title) + '</strong></p>' +
+        '<div class="bar"><span style="width:' + Math.round(doneCount() / total * 100) + '%"></span></div>' +
+        '<p class="muted small">' + doneCount() + ' of ' + total + ' sessions done</p>' +
+        '<a class="card accent" style="display:block;text-decoration:none;color:inherit" href="#s/' + cur.w + '/' + cur.i + '">' +
+        '<div class="eyebrow">Next session · about 15 minutes</div>' +
+        '<h2 style="margin:6px 0">' + esc(sessionTitle(cur.w, cur.i)) + '</h2>' +
+        '<p class="muted" style="margin:0">' + esc(sessionBlurb(cur.w, cur.i)) + '</p>' +
+        '<div class="row"><span class="btn primary">Start</span></div></a>';
+    }
+    html += '<div class="card"><div class="eyebrow">Review</div>' +
+      (due ? '<p><strong>' + due + ' sentence' + (due === 1 ? '' : 's') + '</strong> due. Five minutes a day keeps them in your head.</p>' +
+        '<div class="row"><a class="btn" href="#review">Review now</a></div>'
+        : '<p class="muted">Nothing due right now. Sentences come back just before you\'d forget them.</p>') + '</div>';
+    html += '<div class="card"><div class="eyebrow">Every day, anywhere</div>' +
+      '<p>When you hear or read one of your structures (in your novel, the Bible, a sermon, a song or a podcast), note it under <a href="#mine">Mine</a>. Spotting them in the wild is what makes them stick.</p></div>';
+    app.innerHTML = html;
+  }
+
+  function sessionBlurb(w, i) {
+    var k = SESSIONS[i].kind;
+    if (k === 'learn') return 'Read how it works, listen to the examples and repeat each one out loud.';
+    if (k === 'drill') return 'Translate sentences using it, then write three of your own.';
+    if (k === 'mix') return "Both of this week's structures mixed together, then any review that's due.";
+    return "Copy a ready-made prompt into ChatGPT or Gemini and use this week's structures in conversation.";
+  }
+
+  function viewSession(w, i) {
+    var se = SESSIONS[i], pair = weeks[w - 1];
+    if (!se || !pair) { location.hash = '#today'; return; }
+    var html = '<p class="eyebrow">Week ' + w + ' · Session ' + (i + 1) + ' of ' + SESSIONS.length + '</p>' +
+      '<h1>' + esc(sessionTitle(w, i)) + '</h1>';
+    var doneBtn = '<div class="row"><button type="button" class="primary" id="done">' +
+      (isDone(w, i) ? 'Done ✓ (back to Today)' : 'Mark session done') + '</button></div>';
+
+    if (se.kind === 'learn') {
+      var s = pair[se.which];
+      html += '<ol class="steps"><li>Read how it works.</li><li>Listen to each example and say it out loud, copying the rhythm.</li>' +
+        '<li>Cover the French and translate the English back.</li><li>Write two examples in your notebook.</li></ol>' +
+        '<div class="card">' + structureHTML(s) + '</div>' + doneBtn;
+      app.innerHTML = html;
+    } else if (se.kind === 'drill') {
+      var s2 = pair[se.which];
+      html += '<p class="muted">' + esc(s2.pattern) + ' · ' + esc(s2.meaning) + ' · <a href="#p/' + esc(s2.id) + '">notes</a></p>' +
+        '<div id="deck"></div><div id="after" hidden><div class="card">' + ownHTML(s2) + '</div>' + doneBtn + '</div>';
+      app.innerHTML = html;
+      unlock(s2); save();
+      runDeck(document.getElementById('deck'), cardsOf(s2), function () { document.getElementById('after').hidden = false; });
+      skipLink();
+    } else if (se.kind === 'mix') {
+      html += '<p class="muted">' + esc(pair[0].title) + ' and ' + esc(pair[1].title) + ', shuffled together.</p>' +
+        '<div id="deck"></div><div id="after" hidden>' + doneBtn + '</div>';
+      app.innerHTML = html;
+      pair.forEach(unlock); save();
+      var mixed = shuffle(cardsOf(pair[0]).concat(cardsOf(pair[1]))).slice(0, 8);
+      runDeck(document.getElementById('deck'), mixed, function () {
+        var due = dueCards().length;
+        var after = document.getElementById('after');
+        if (due) after.insertAdjacentHTML('afterbegin', '<p>You also have <strong>' + due + '</strong> review sentence' +
+          (due === 1 ? '' : 's') + ' due. <a href="#review">Do them now</a>, then come back and mark this done.</p>');
+        after.hidden = false;
+      }, { showTitle: true });
+      skipLink();
+    } else {
+      var text = talkPrompt(w);
+      html += '<ol class="steps"><li>Copy the prompt below.</li><li>Paste it into ChatGPT or Gemini. Voice mode is even better: you practise speaking.</li>' +
+        '<li>Chat for 10 to 15 minutes. Try to use each structure at least five times.</li>' +
+        '<li>Add any good sentences from the conversation to your notebook.</li></ol>' +
+        '<div class="card"><div class="row" style="margin-top:0"><button type="button" class="primary" id="copy">Copy prompt</button></div>' +
+        '<pre class="prompt-text" id="ptext">' + esc(text) + '</pre></div>' + doneBtn;
+      app.innerHTML = html;
+      document.getElementById('copy').addEventListener('click', function () { copy(text); });
+    }
+    var d = document.getElementById('done');
+    if (d) d.addEventListener('click', function () {
+      state.done[sid(w, i)] = true; save();
+      toast('Bien joué !');
+      location.hash = '#today';
+    });
+  }
+  // Lets you finish a session without doing every card.
+  function skipLink() {
+    var deck = document.getElementById('deck');
+    var a = document.createElement('p');
+    a.className = 'small muted';
+    a.innerHTML = '<a href="#" id="skip">Skip to the end of this session</a>';
+    deck.insertAdjacentElement('afterend', a);
+    a.querySelector('#skip').addEventListener('click', function (e) {
+      e.preventDefault(); document.getElementById('after').hidden = false; a.remove();
+      document.getElementById('after').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  function copy(text) {
+    function fallback() {
+      var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta);
+      ta.select(); try { document.execCommand('copy'); toast('Copied'); } catch (e) { toast('Select the text and copy it'); }
+      ta.remove();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { toast('Copied'); }, fallback);
+    } else fallback();
+  }
+
+  function viewPlan() {
+    var cur = currentSession();
+    var html = '<h1>Your 12-week plan</h1>' +
+      '<p class="muted">Two everyday structures a week, six short sessions each. Go at your own pace: missing a day doesn\'t break anything. Tap any session to open it.</p>';
+    weeks.forEach(function (pair, k) {
+      var w = k + 1, n = 0;
+      for (var i = 0; i < SESSIONS.length; i++) if (isDone(w, i)) n++;
+      html += '<details class="week"' + ((cur && cur.w === w) ? ' open' : '') + '><summary>' +
+        '<span class="tick' + (n === SESSIONS.length ? ' done' : (cur && cur.w === w ? ' now' : '')) + '">' + (n === SESSIONS.length ? '✓' : '') + '</span>' +
+        '<span class="t"><strong>Week ' + w + '</strong><br><span class="muted small">' + esc(pair[0].title) + ' · ' + esc(pair[1].title) + '</span></span>' +
+        '<span class="muted small">' + n + '/' + SESSIONS.length + '</span></summary><div class="sessions">' +
+        SESSIONS.map(function (se, i) {
+          var dn = isDone(w, i), now = cur && cur.w === w && cur.i === i;
+          return '<a href="#s/' + w + '/' + i + '"><span class="tick' + (dn ? ' done' : now ? ' now' : '') + '">' + (dn ? '✓' : '') + '</span>' +
+            '<span>' + esc(sessionTitle(w, i)) + '</span>' + (now ? ' <span class="tag">Next</span>' : '') + '</a>';
+        }).join('') + '</div></details>';
+    });
+    html += '<p class="muted small" style="margin-top:24px"><a href="#" id="reset">Start the programme again</a> (keeps your own phrases and notes)</p>';
+    app.innerHTML = html;
+    document.getElementById('reset').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (confirm('Clear all ticks and review progress? Your own phrases, sentences and spotted examples are kept.')) {
+        state.done = {}; state.cards = {};
+        state.mine.forEach(unlock);
+        save(); setTabs(); viewPlan();
+      }
+    });
+  }
+
+  function viewPhrases() {
+    var html = '<h1>Phrases</h1><p class="muted">Every structure in the programme, plus the ones you add yourself.</p><div class="list">';
+    weeks.forEach(function (pair, k) {
+      html += '<h3>Week ' + (k + 1) + '</h3>' + pair.map(phraseRow).join('');
+    });
+    if (state.mine.length) html += '<h3>Added by you</h3>' + state.mine.map(phraseRow).join('');
+    app.innerHTML = html + '</div>';
+  }
+  function phraseRow(s) {
+    var learnt = s.practice.some(function (p, i) { return state.cards[cardKey(s, i)]; });
+    return '<a href="#p/' + esc(s.id) + '"' + (learnt || s.mine ? '' : ' class="locked"') + '><div class="t">' + esc(s.title) +
+      '</div><div class="m">' + esc(s.meaning) + '</div></a>';
+  }
+
+  function viewPhrase(id) {
+    var s = byId(id);
+    if (!s) { location.hash = '#phrases'; return; }
+    app.innerHTML = '<p class="small"><a href="#phrases">← All phrases</a></p><h1>' + esc(s.title) + '</h1>' +
+      '<div class="card">' + structureHTML(s) + '</div>' +
+      '<div class="card">' + ownHTML(s) + '</div>' +
+      '<div class="row"><button type="button" id="drill">Drill these sentences</button></div><div id="deck"></div>';
+    document.getElementById('drill').addEventListener('click', function () {
+      unlock(s); save();
+      this.parentNode.remove();
+      runDeck(document.getElementById('deck'), cardsOf(s));
+    });
+  }
+
+  function viewReview() {
+    var due = dueCards();
+    var html = '<h1>Review</h1>';
+    if (due.length) {
+      html += '<p class="muted">' + due.length + ' due. "Got it" pushes a sentence further away (1, 2, 4, 8, 16, 32 days); "Again" brings it back today.</p><div id="deck"></div>';
+      app.innerHTML = html;
+      runDeck(document.getElementById('deck'), shuffle(due).slice(0, 20), function () {
+        var more = dueCards().length;
+        var deck = document.getElementById('deck');
+        deck.insertAdjacentHTML('beforeend', more
+          ? '<div class="row"><button type="button" class="primary" id="more">Keep going (' + more + ' left)</button></div>'
+          : '<div class="row"><a class="btn primary" href="#today">Back to Today</a></div>');
+        if (more) deck.querySelector('#more').addEventListener('click', function () { viewReview(); window.scrollTo(0, 0); });
+      }, { showTitle: true });
+    } else {
+      var learnt = learntCards();
+      html += '<div class="empty"><p><strong>All caught up.</strong></p><p>Sentences come back here just before you\'d forget them.</p></div>';
+      if (learnt.length) html += '<div class="row"><button type="button" id="extra">Practise 10 random sentences anyway</button></div><div id="deck"></div>';
+      else html += '<p class="muted" style="text-align:center">Start with <a href="#today">today\'s session</a>.</p>';
+      app.innerHTML = html;
+      var x = document.getElementById('extra');
+      if (x) x.addEventListener('click', function () {
+        x.parentNode.remove();
+        runDeck(document.getElementById('deck'), shuffle(learnt).slice(0, 10), null, { showTitle: true });
+      });
+    }
+  }
+
+  function viewMine() {
+    var html = '<h1>Mine</h1>' +
+      '<div class="card"><div class="eyebrow">Add a phrase you picked up</div>' +
+      '<p class="muted small">From a Facebook lesson, a sermon, a song… It becomes a phrase card with its own drills and joins your Review.</p>' +
+      '<label for="m-title">The phrase or structure</label><input type="text" id="m-title" lang="fr" placeholder="e.g. Je suis sur le point de…">' +
+      '<label for="m-pattern">The pattern <span class="muted small">(optional)</span></label><input type="text" id="m-pattern" lang="fr" placeholder="e.g. être sur le point de + infinitif">' +
+      '<label for="m-meaning">What it means</label><input type="text" id="m-meaning" placeholder="e.g. to be about to">' +
+      '<label for="m-notes">Notes <span class="muted small">(optional, one per line)</span></label><textarea id="m-notes" placeholder="Anything the video pointed out"></textarea>' +
+      '<label for="m-ex">Examples: one per line, French = English</label>' +
+      '<textarea id="m-ex" lang="fr" placeholder="Je suis sur le point de partir. = I\'m about to leave.\nOn était sur le point de manger. = We were about to eat."></textarea>' +
+      '<div class="row"><button type="button" class="primary" id="m-add">Add phrase</button></div></div>';
+    if (state.mine.length) {
+      html += '<h2>Your phrases</h2><div class="list">' + state.mine.map(function (s) {
+        return '<div style="display:flex;gap:8px;align-items:center"><a style="flex:1" href="#p/' + esc(s.id) + '"><div class="t">' + esc(s.title) +
+          '</div><div class="m">' + esc(s.meaning) + ' · ' + s.practice.length + ' example' + (s.practice.length === 1 ? '' : 's') + '</div></a>' +
+          '<button type="button" data-del="' + esc(s.id) + '" aria-label="Delete ' + esc(s.title) + '">✕</button></div>';
+      }).join('') + '</div>';
+    }
+    html += '<div class="card"><div class="eyebrow">Spotted in the wild</div>' +
+      '<p class="muted small">A sentence you read or heard that uses one of your structures.</p>' +
+      '<label for="sp-text">The sentence</label><textarea id="sp-text" lang="fr"></textarea>' +
+      '<label for="sp-where">Where</label><select id="sp-where"><option>Novel</option><option>Bible</option><option>Sermon</option>' +
+      '<option>Podcast</option><option>Song</option><option>Facebook lesson</option><option>Conversation</option><option>Other</option></select>' +
+      '<div class="row"><button type="button" id="sp-add">Save it</button></div>';
+    if (state.spotted.length) {
+      html += '<div style="margin-top:12px">' + state.spotted.slice().reverse().map(function (x) {
+        return '<div class="ex">' + speakBtn(x.text) + '<div><div class="fr" lang="fr">' + esc(x.text) + '</div><div class="en">' +
+          esc(x.where) + ' · ' + new Date(x.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) + '</div></div></div>';
+      }).join('') + '</div>';
+    }
+    html += '</div>';
+    html += '<div class="card"><div class="eyebrow">Keep them safe</div>' +
+      '<p class="muted small">Your progress lives in this browser only. Copy your phrases and sentences, and paste them to Claude to have them added to the site permanently.</p>' +
+      '<div class="row"><button type="button" id="export">Copy my phrases and sentences</button></div></div>';
+    app.innerHTML = html;
+
+    document.getElementById('m-add').addEventListener('click', addMine);
+    document.getElementById('sp-add').addEventListener('click', function () {
+      var t = document.getElementById('sp-text').value.trim();
+      if (!t) { toast('Write the sentence first'); return; }
+      state.spotted.push({ text: t, where: document.getElementById('sp-where').value, date: Date.now() });
+      save(); toast('Saved'); viewMine();
+    });
+    Array.prototype.forEach.call(app.querySelectorAll('[data-del]'), function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-del');
+        if (!confirm('Delete this phrase and its review cards?')) return;
+        state.mine = state.mine.filter(function (s) { return s.id !== id; });
+        Object.keys(state.cards).forEach(function (k) { if (k.indexOf(id + ':') === 0) delete state.cards[k]; });
+        save(); setTabs(); viewMine();
+      });
+    });
+    document.getElementById('export').addEventListener('click', function () {
+      copy(JSON.stringify({ mine: state.mine, own: state.own, spotted: state.spotted }, null, 2));
+    });
+  }
+
+  function addMine() {
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var title = v('m-title'), meaning = v('m-meaning');
+    var ex = v('m-ex').split('\n').map(function (l) {
+      var p = l.split('=');
+      return p.length >= 2 ? [p[0].trim(), p.slice(1).join('=').trim()] : null;
+    }).filter(function (p) { return p && p[0] && p[1]; });
+    if (!title || !meaning) { toast('Add the phrase and what it means'); return; }
+    if (!ex.length) { toast('Add at least one example: French = English'); return; }
+    var s = {
+      id: 'mine-' + Date.now().toString(36), mine: true, title: title,
+      pattern: v('m-pattern') || title, meaning: meaning,
+      notes: v('m-notes').split('\n').map(function (n) { return n.trim(); }).filter(Boolean),
+      examples: ex,
+      practice: ex.map(function (e) { return [e[1], e[0]]; })
+    };
+    state.mine.push(s); unlock(s); save(); setTabs();
+    toast('Added: it\'s in your Review now');
+    location.hash = '#p/' + s.id;
+  }
+
+  // ---------- Routing ----------
+  function setTabs() {
+    var tab = (location.hash.slice(1).split('/')[0]) || 'today';
+    if (tab === 's') tab = 'plan';
+    if (tab === 'p') tab = 'phrases';
+    var due = dueCards().length;
+    Array.prototype.forEach.call(document.querySelectorAll('#tabs a'), function (a) {
+      var t = a.getAttribute('data-tab');
+      if (t === tab) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+      if (t === 'review') a.innerHTML = 'Review' + (due ? '<span class="count">' + due + '</span>' : '');
+    });
+  }
+  function route() {
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+    var parts = location.hash.slice(1).split('/');
+    var r = parts[0] || 'today';
+    if (r === 's') viewSession(+parts[1], +parts[2]);
+    else if (r === 'p') viewPhrase(decodeURIComponent(parts.slice(1).join('/')));
+    else if (r === 'plan') viewPlan();
+    else if (r === 'phrases') viewPhrases();
+    else if (r === 'review') viewReview();
+    else if (r === 'mine') viewMine();
+    else viewToday();
+    setTabs();
+    window.scrollTo(0, 0);
+  }
+
+  fetch('structures.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (data) {
+    S = data.structures;
+    S.forEach(function (s) { (weeks[s.week - 1] = weeks[s.week - 1] || []).push(s); });
+    weeks = weeks.filter(function (p) { return p && p.length === 2; });
+    window.addEventListener('hashchange', route);
+    route();
+  }).catch(function () {
+    app.innerHTML = '<p>Couldn\'t load the phrases. Check your connection and reload.</p>';
+  });
+})();
+</script>
+<script src="../../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>
