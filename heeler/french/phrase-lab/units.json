@@ -1,0 +1,3727 @@
+{
+ "units": [
+  {
+   "id": "survie",
+   "emoji": "🛟",
+   "title": "Keeping a conversation going",
+   "fr": "Se faire comprendre",
+   "intro": "What to say when you don't understand, can't find a word, or need a moment to think. Learn these first: they keep any conversation alive.",
+   "sections": [
+    {
+     "title": "When you don't understand",
+     "phrases": [
+      [
+       "Pardon, je n'ai pas bien compris.",
+       "Sorry, I didn't quite understand."
+      ],
+      [
+       "Vous pouvez répéter, s'il vous plaît ?",
+       "Could you repeat that, please?"
+      ],
+      [
+       "Vous pouvez parler un peu plus lentement ?",
+       "Could you speak a little more slowly?"
+      ],
+      [
+       "Qu'est-ce que ça veut dire, « délestage » ?",
+       "What does 'délestage' mean?"
+      ],
+      [
+       "Vous voulez dire que… ?",
+       "Do you mean that…?"
+      ],
+      [
+       "Je ne suis pas sûr(e) d'avoir bien compris.",
+       "I'm not sure I understood properly."
+      ],
+      [
+       "Ça s'écrit comment ?",
+       "How do you spell that?"
+      ]
+     ]
+    },
+    {
+     "title": "When you can't find the word",
+     "phrases": [
+      [
+       "Comment on dit « deadline » en français ?",
+       "How do you say 'deadline' in French?"
+      ],
+      [
+       "Je cherche le mot…",
+       "I'm looking for the word…"
+      ],
+      [
+       "C'est un truc qui sert à…",
+       "It's a thing you use to…"
+      ],
+      [
+       "Comment dire…",
+       "How can I put it…"
+      ],
+      [
+       "Excusez mon français, je suis encore en train d'apprendre.",
+       "Excuse my French, I'm still learning."
+      ],
+      [
+       "N'hésitez pas à me corriger.",
+       "Feel free to correct me."
+      ]
+     ]
+    },
+    {
+     "title": "Keeping it going",
+     "phrases": [
+      [
+       "Ah bon ?",
+       "Really?"
+      ],
+      [
+       "C'est vrai ?",
+       "Is that right?"
+      ],
+      [
+       "Je vois.",
+       "I see."
+      ],
+      [
+       "Exactement.",
+       "Exactly."
+      ],
+      [
+       "Tant mieux !",
+       "Good! / So much the better!"
+      ],
+      [
+       "Tant pis.",
+       "Never mind. / Too bad."
+      ],
+      [
+       "C'est dommage.",
+       "That's a shame."
+      ],
+      [
+       "Du coup, on fait quoi ?",
+       "So what do we do, then?"
+      ],
+      [
+       "En fait, je préfère demain.",
+       "Actually, I prefer tomorrow."
+      ],
+      [
+       "Bon, alors, on y va ?",
+       "Right, so, shall we go?"
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "arriver-a",
+    "aider-a"
+   ],
+   "dialogue": {
+    "setting": "A colleague in Antananarivo explains tomorrow's plan, quickly.",
+    "lines": [
+     [
+      "Hery",
+      "Donc, demain on part à six heures, on passe prendre l'équipe et on arrive vers midi, si la route est bonne.",
+      "So tomorrow we leave at six, pick up the team and get there around noon, if the road's good."
+     ],
+     [
+      "Vous",
+      "Pardon, je n'ai pas bien compris. Vous pouvez répéter un peu plus lentement ?",
+      "Sorry, I didn't quite get that. Could you repeat it a bit more slowly?"
+     ],
+     [
+      "Hery",
+      "Bien sûr. Demain… on part… à six heures.",
+      "Of course. Tomorrow… we leave… at six."
+     ],
+     [
+      "Vous",
+      "D'accord, six heures. Et après ?",
+      "OK, six o'clock. And then?"
+     ],
+     [
+      "Hery",
+      "On passe prendre l'équipe, puis on prend la RN7.",
+      "We pick up the team, then we take the RN7."
+     ],
+     [
+      "Vous",
+      "Qu'est-ce que ça veut dire, « passer prendre » ?",
+      "What does 'passer prendre' mean?"
+     ],
+     [
+      "Hery",
+      "Ça veut dire aller chercher quelqu'un en voiture.",
+      "It means going to collect someone by car."
+     ],
+     [
+      "Vous",
+      "Ah, je vois. Merci. Et on arrive à quelle heure ?",
+      "Ah, I see. Thanks. And what time do we arrive?"
+     ],
+     [
+      "Hery",
+      "Vers midi, si tout va bien.",
+      "Around noon, if all goes well."
+     ],
+     [
+      "Vous",
+      "Parfait. N'hésitez pas à me corriger si je fais des erreurs.",
+      "Perfect. Feel free to correct me if I make mistakes."
+     ],
+     [
+      "Hery",
+      "Pas de souci, votre français est très bien !",
+      "No problem, your French is very good!"
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Vous avez compris ?",
+     "options": [
+      "Pas tout. Vous pouvez répéter, s'il vous plaît ?",
+      "Je ne comprends pas vous.",
+      "Oui, je suis compris."
+     ],
+     "why": "The pronoun goes before the verb: je ne vous comprends pas. 'Je suis compris' means 'I am understood'."
+    },
+    {
+     "say": "Attention, il y a du délestage à partir de dix-huit heures.",
+     "options": [
+      "Qu'est-ce que ça veut dire, « délestage » ?",
+      "Qu'est-ce que c'est veut dire ?",
+      "Que veut dire ça ?"
+     ],
+     "why": "Qu'est-ce que ça veut dire ? is the everyday way to ask what something means. (Délestage = scheduled power cuts.)"
+    },
+    {
+     "say": "Je pars en mission demain.",
+     "options": [
+      "Ah bon ? Pour combien de temps ?",
+      "Tant pis !",
+      "Je vois pas."
+     ],
+     "why": "Ah bon ? shows interest and invites them to say more. Tant pis = too bad, which would sound odd here."
+    },
+    {
+     "say": "Malheureusement, le directeur ne peut pas venir.",
+     "options": [
+      "C'est dommage.",
+      "Tant mieux !",
+      "Exactement."
+     ],
+     "why": "C'est dommage = that's a shame. Tant mieux would mean you're glad!"
+    },
+    {
+     "say": "Comment dit-on « deadline » en français ?",
+     "options": [
+      "On dit « la date limite » ou « l'échéance ».",
+      "On dit « la ligne morte ».",
+      "On ne dit pas."
+     ],
+     "why": "la date limite / l'échéance. You'll also hear 'deadline' in offices."
+    }
+   ],
+   "roleplay": "I'm at a busy work meeting in Antananarivo where people speak fast and use words I don't know. Make me ask people to repeat, slow down and explain words, and make me react naturally (Ah bon ? Je vois. C'est dommage. Tant mieux !)."
+  },
+  {
+   "id": "rencontres",
+   "emoji": "👋",
+   "title": "Meeting people",
+   "fr": "Faire connaissance",
+   "intro": "Introducing yourself and your work, asking about other people, tu or vous, and saying goodbye. Swap in your own details as you practise.",
+   "sections": [
+    {
+     "title": "Introductions",
+     "phrases": [
+      [
+       "Bonjour, je me présente : je m'appelle…",
+       "Hello, let me introduce myself: my name is…"
+      ],
+      [
+       "Enchanté(e).",
+       "Pleased to meet you."
+      ],
+      [
+       "Je viens du Royaume-Uni.",
+       "I'm from the UK."
+      ],
+      [
+       "Je suis ici pour un projet de recherche.",
+       "I'm here for a research project."
+      ],
+      [
+       "Je travaille dans une université.",
+       "I work at a university."
+      ],
+      [
+       "Je suis enseignant(e) et chercheur / chercheuse.",
+       "I'm a lecturer and researcher."
+      ],
+      [
+       "Et vous, qu'est-ce que vous faites dans la vie ?",
+       "And you, what do you do for a living?"
+      ],
+      [
+       "Vous êtes d'où ?",
+       "Where are you from?"
+      ],
+      [
+       "Ça fait longtemps que vous travaillez ici ?",
+       "Have you been working here long?"
+      ]
+     ]
+    },
+    {
+     "title": "Tu or vous?",
+     "phrases": [
+      [
+       "On peut se tutoyer ?",
+       "Shall we say 'tu' to each other?"
+      ],
+      [
+       "Tu peux me tutoyer.",
+       "You can call me 'tu'."
+      ],
+      [
+       "Je vous présente mon collègue.",
+       "Let me introduce my colleague."
+      ],
+      [
+       "Voici ma collègue, elle travaille avec moi sur le projet.",
+       "This is my colleague, she works with me on the project."
+      ]
+     ]
+    },
+    {
+     "title": "About you",
+     "phrases": [
+      [
+       "Vous avez des enfants ?",
+       "Do you have children?"
+      ],
+      [
+       "J'ai trois enfants.",
+       "I have three children."
+      ],
+      [
+       "J'apprends le français depuis quelques années.",
+       "I've been learning French for a few years."
+      ],
+      [
+       "Je suis déjà venu(e) à Madagascar il y a longtemps.",
+       "I came to Madagascar a long time ago."
+      ],
+      [
+       "C'est ma première fois ici.",
+       "It's my first time here."
+      ]
+     ]
+    },
+    {
+     "title": "Saying goodbye",
+     "phrases": [
+      [
+       "Ravi(e) d'avoir fait votre connaissance.",
+       "Lovely to have met you."
+      ],
+      [
+       "À bientôt !",
+       "See you soon!"
+      ],
+      [
+       "Bonne journée ! / Bonne soirée !",
+       "Have a good day! / Have a good evening!"
+      ],
+      [
+       "On reste en contact.",
+       "Let's stay in touch."
+      ],
+      [
+       "Je vous laisse mon numéro.",
+       "Let me give you my number."
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "ca-fait-que",
+    "venir-de"
+   ],
+   "dialogue": {
+    "setting": "Your first morning at a university department in Antananarivo.",
+    "lines": [
+     [
+      "Mme Rasoa",
+      "Bonjour, vous devez être notre collègue du Royaume-Uni ?",
+      "Hello, you must be our colleague from the UK?"
+     ],
+     [
+      "Vous",
+      "Oui, bonjour ! Je me présente, je m'appelle… Enchanté(e).",
+      "Yes, hello! Let me introduce myself, my name is… Pleased to meet you."
+     ],
+     [
+      "Mme Rasoa",
+      "Enchantée. Je suis Mme Rasoa, je dirige le département. Vous avez fait bon voyage ?",
+      "Pleased to meet you. I'm Mme Rasoa, I head the department. Did you have a good journey?"
+     ],
+     [
+      "Vous",
+      "Oui, très bon, merci. Je viens d'arriver hier soir.",
+      "Yes, very good, thanks. I only arrived last night."
+     ],
+     [
+      "Mme Rasoa",
+      "C'est votre première fois à Madagascar ?",
+      "Is it your first time in Madagascar?"
+     ],
+     [
+      "Vous",
+      "Non, je suis déjà venu(e) il y a quelques années, mais c'est la première fois que je viens pour le travail.",
+      "No, I came a few years ago, but it's the first time I've come for work."
+     ],
+     [
+      "Mme Rasoa",
+      "Et vous parlez très bien français ! Ça fait longtemps que vous l'apprenez ?",
+      "And you speak French very well! Have you been learning long?"
+     ],
+     [
+      "Vous",
+      "Merci, c'est gentil. Ça fait quelques années, mais j'ai encore beaucoup à apprendre.",
+      "Thank you, that's kind. A few years, but I still have a lot to learn."
+     ],
+     [
+      "Mme Rasoa",
+      "Je vous présente M. Andry, qui va travailler avec vous sur le projet.",
+      "Let me introduce M. Andry, who'll be working with you on the project."
+     ],
+     [
+      "Vous",
+      "Ravi(e) de vous rencontrer. On va bien travailler ensemble, j'en suis sûr(e).",
+      "Delighted to meet you. We'll work well together, I'm sure."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Vous êtes d'où ?",
+     "options": [
+      "Je viens du Royaume-Uni.",
+      "Je suis de Royaume-Uni.",
+      "Je viens au Royaume-Uni."
+     ],
+     "why": "venir de + du for masculine countries: je viens du Royaume-Uni, du Canada; de France; des États-Unis."
+    },
+    {
+     "say": "Qu'est-ce que vous faites dans la vie ?",
+     "options": [
+      "Je suis enseignante et chercheuse.",
+      "Je fais ma vie.",
+      "Je suis une enseignante."
+     ],
+     "why": "No article with a job after être: je suis enseignant(e), not 'une enseignante'."
+    },
+    {
+     "say": "On peut se tutoyer ?",
+     "options": [
+      "Oui, bien sûr, avec plaisir !",
+      "Oui, tutoie-vous.",
+      "Non, je suis tutoyé."
+     ],
+     "why": "Accept warmly. If someone senior suggests tu, follow their lead; otherwise stick to vous at work."
+    },
+    {
+     "say": "Ça fait combien de temps que vous êtes ici ?",
+     "options": [
+      "Ça fait une semaine.",
+      "Depuis une semaine dernière.",
+      "Il y a une semaine que je suis."
+     ],
+     "why": "Ça fait une semaine (que je suis ici). Or: depuis une semaine."
+    },
+    {
+     "say": "Bon, je dois y aller. Ravi d'avoir fait votre connaissance !",
+     "options": [
+      "Moi de même. Bonne journée !",
+      "De rien.",
+      "À votre santé !"
+     ],
+     "why": "Moi de même / Moi aussi = likewise. De rien answers merci; À votre santé is a toast."
+    }
+   ],
+   "roleplay": "I'm meeting colleagues for the first time at a university in Antananarivo. Make me introduce myself, my work and my project, ask about them, handle tu and vous, and say goodbye properly."
+  },
+  {
+   "id": "bavarder",
+   "emoji": "☕",
+   "title": "Small talk",
+   "fr": "Bavarder",
+   "intro": "Everyday chat: how are things, the weekend, the weather, interests, and how to show you're listening.",
+   "sections": [
+    {
+     "title": "How are things?",
+     "phrases": [
+      [
+       "Ça va ? Quoi de neuf ?",
+       "How's it going? What's new?"
+      ],
+      [
+       "Pas grand-chose, et toi ?",
+       "Not much, and you?"
+      ],
+      [
+       "Ça va, je suis un peu fatigué(e).",
+       "I'm OK, a bit tired."
+      ],
+      [
+       "Tu as passé un bon week-end ?",
+       "Did you have a good weekend?"
+      ],
+      [
+       "Qu'est-ce que tu as fait de beau ?",
+       "What did you get up to?"
+      ],
+      [
+       "Rien de spécial, je me suis reposé(e).",
+       "Nothing special, I had a rest."
+      ]
+     ]
+    },
+    {
+     "title": "Weather",
+     "phrases": [
+      [
+       "Il fait chaud aujourd'hui !",
+       "It's hot today!"
+      ],
+      [
+       "Il a plu toute la nuit.",
+       "It rained all night."
+      ],
+      [
+       "C'est la saison des pluies.",
+       "It's the rainy season."
+      ],
+      [
+       "Il fait frais le matin à Tana.",
+       "It's cool in the mornings in Tana."
+      ]
+     ]
+    },
+    {
+     "title": "Interests",
+     "phrases": [
+      [
+       "Qu'est-ce que tu aimes faire le week-end ?",
+       "What do you like doing at weekends?"
+      ],
+      [
+       "J'adore lire. En ce moment, je lis un roman en français.",
+       "I love reading. At the moment I'm reading a novel in French."
+      ],
+      [
+       "Je vais à l'église le dimanche.",
+       "I go to church on Sundays."
+      ],
+      [
+       "Tu as vu le match hier soir ?",
+       "Did you see the match last night?"
+      ],
+      [
+       "Tu connais un bon endroit pour manger ?",
+       "Do you know a good place to eat?"
+      ]
+     ]
+    },
+    {
+     "title": "Showing interest",
+     "phrases": [
+      [
+       "C'est intéressant, raconte !",
+       "That's interesting, tell me more!"
+      ],
+      [
+       "Et alors, ça s'est passé comment ?",
+       "So how did it go?"
+      ],
+      [
+       "Je suis content(e) pour toi.",
+       "I'm happy for you."
+      ],
+      [
+       "Oh, je suis désolé(e) d'entendre ça.",
+       "Oh, I'm sorry to hear that."
+      ],
+      [
+       "Ça te dit de prendre un café un de ces jours ?",
+       "Fancy getting a coffee one of these days?"
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "en-train-de",
+    "avoir-envie"
+   ],
+   "dialogue": {
+    "setting": "Monday morning coffee with a colleague.",
+    "lines": [
+     [
+      "Lova",
+      "Salut ! Ça va ? Tu as passé un bon week-end ?",
+      "Hi! How are you? Did you have a good weekend?"
+     ],
+     [
+      "Vous",
+      "Oui, très bien, merci. Je suis allé(e) au marché d'Analakely samedi.",
+      "Yes, very good, thanks. I went to Analakely market on Saturday."
+     ],
+     [
+      "Lova",
+      "Ah bon ? Et alors, ça t'a plu ?",
+      "Really? So, did you like it?"
+     ],
+     [
+      "Vous",
+      "Oui, beaucoup ! Il y avait un monde fou. Et toi, qu'est-ce que tu as fait de beau ?",
+      "Yes, a lot! It was packed. And you, what did you get up to?"
+     ],
+     [
+      "Lova",
+      "Pas grand-chose. Dimanche, je suis allée à l'église, et après on a mangé en famille.",
+      "Not much. On Sunday I went to church, and afterwards we had a family meal."
+     ],
+     [
+      "Vous",
+      "C'est bien. Moi aussi, j'ai envie de trouver une église ici. Tu en connais une ?",
+      "That's nice. I'd like to find a church here too. Do you know one?"
+     ],
+     [
+      "Lova",
+      "Oui, il y en a une près de l'université. Je peux t'y emmener dimanche prochain.",
+      "Yes, there's one near the university. I can take you next Sunday."
+     ],
+     [
+      "Vous",
+      "Avec plaisir, c'est très gentil.",
+      "I'd love that, that's very kind."
+     ],
+     [
+      "Lova",
+      "Et en ce moment, tu lis quelque chose ?",
+      "And are you reading anything at the moment?"
+     ],
+     [
+      "Vous",
+      "Oui, je suis en train de lire un roman traduit de l'anglais. Ça m'aide beaucoup pour le vocabulaire.",
+      "Yes, I'm reading a novel translated from English. It helps me a lot with vocabulary."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Quoi de neuf ?",
+     "options": [
+      "Pas grand-chose, et toi ?",
+      "C'est neuf.",
+      "Rien de nouveau chose."
+     ],
+     "why": "Pas grand-chose = not much."
+    },
+    {
+     "say": "J'ai eu une promotion !",
+     "options": [
+      "Félicitations ! Je suis content(e) pour toi.",
+      "Je suis désolé(e) d'entendre ça.",
+      "Tant pis."
+     ],
+     "why": "Félicitations = congratulations."
+    },
+    {
+     "say": "Mon père est malade en ce moment.",
+     "options": [
+      "Oh, je suis désolé(e) d'entendre ça. J'espère qu'il va vite se rétablir.",
+      "Tant mieux.",
+      "Ah, c'est intéressant !"
+     ],
+     "why": "se rétablir = to recover."
+    },
+    {
+     "say": "Ça te dit de prendre un café ?",
+     "options": [
+      "Avec plaisir ! Quand ça t'arrange ?",
+      "Oui, ça me dit.",
+      "Je prends."
+     ],
+     "why": "Quand ça t'arrange ? = Whenever suits you?"
+    },
+    {
+     "say": "Qu'est-ce qu'il fait chaud aujourd'hui !",
+     "options": [
+      "Oui, j'ai trop chaud !",
+      "Oui, je suis chaud.",
+      "Oui, il est chaud."
+     ],
+     "why": "Say j'ai chaud. Je suis chaud means something quite different (keen, or worse!)."
+    }
+   ],
+   "roleplay": "Coffee break with a friendly Malagasy colleague. Chat about the weekend, the weather, church, what I'm reading, and arrange to meet up. Ask me lots of follow-up questions."
+  },
+  {
+   "id": "arrivee",
+   "emoji": "✈️",
+   "title": "Arriving and getting around",
+   "fr": "Arrivée et transports",
+   "intro": "Airport, taxis, the taxi-brousse, directions and how long things take.",
+   "sections": [
+    {
+     "title": "At the airport",
+     "phrases": [
+      [
+       "Je viens pour un projet de recherche avec l'université.",
+       "I'm here for a research project with the university."
+      ],
+      [
+       "Je reste trois semaines.",
+       "I'm staying for three weeks."
+      ],
+      [
+       "Où est-ce qu'on paie le visa ?",
+       "Where do you pay for the visa?"
+      ],
+      [
+       "Ma valise n'est pas arrivée.",
+       "My suitcase hasn't arrived."
+      ],
+      [
+       "Je loge chez des amis.",
+       "I'm staying with friends."
+      ]
+     ]
+    },
+    {
+     "title": "Taxis",
+     "phrases": [
+      [
+       "Vous êtes libre ?",
+       "Are you free? (to a taxi driver)"
+      ],
+      [
+       "C'est combien pour aller au centre-ville ?",
+       "How much to go into town?"
+      ],
+      [
+       "C'est un peu cher. Vous pouvez faire un prix ?",
+       "That's a bit expensive. Can you do me a better price?"
+      ],
+      [
+       "Vous pouvez me déposer ici, s'il vous plaît.",
+       "You can drop me here, please."
+      ],
+      [
+       "Vous pouvez m'attendre cinq minutes ?",
+       "Can you wait for me for five minutes?"
+      ]
+     ]
+    },
+    {
+     "title": "Getting around",
+     "phrases": [
+      [
+       "Le taxi-brousse pour Antsirabe part à quelle heure ?",
+       "What time does the bush taxi to Antsirabe leave?"
+      ],
+      [
+       "Il faut réserver à l'avance ?",
+       "Do you need to book in advance?"
+      ],
+      [
+       "C'est loin d'ici ?",
+       "Is it far from here?"
+      ],
+      [
+       "On met combien de temps pour y aller ?",
+       "How long does it take to get there?"
+      ],
+      [
+       "Excusez-moi, je cherche l'université.",
+       "Excuse me, I'm looking for the university."
+      ],
+      [
+       "Continuez tout droit, puis tournez à gauche.",
+       "Go straight on, then turn left."
+      ],
+      [
+       "C'est juste à côté de la poste.",
+       "It's right next to the post office."
+      ],
+      [
+       "Je me suis perdu(e).",
+       "I'm lost."
+      ],
+      [
+       "Vous pouvez me montrer sur la carte ?",
+       "Can you show me on the map?"
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "avoir-besoin",
+    "il-faut"
+   ],
+   "dialogue": {
+    "setting": "Outside the airport at Ivato, with a taxi driver.",
+    "lines": [
+     [
+      "Chauffeur",
+      "Taxi ? Vous allez où ?",
+      "Taxi? Where are you going?"
+     ],
+     [
+      "Vous",
+      "Bonjour. Je vais à un hôtel en centre-ville. C'est combien ?",
+      "Hello. I'm going to a hotel in the town centre. How much is it?"
+     ],
+     [
+      "Chauffeur",
+      "Soixante mille ariary.",
+      "Sixty thousand ariary."
+     ],
+     [
+      "Vous",
+      "C'est un peu cher. Vous pouvez faire un prix ?",
+      "That's a bit expensive. Can you do me a better price?"
+     ],
+     [
+      "Chauffeur",
+      "Bon, cinquante mille, c'est mon dernier prix.",
+      "OK, fifty thousand, that's my final price."
+     ],
+     [
+      "Vous",
+      "D'accord. On met combien de temps pour y aller ?",
+      "OK. How long does it take to get there?"
+     ],
+     [
+      "Chauffeur",
+      "Ça dépend des embouteillages. Une heure, à peu près.",
+      "It depends on the traffic. About an hour."
+     ],
+     [
+      "Vous",
+      "Vous pouvez m'aider à mettre la valise dans le coffre ?",
+      "Can you help me put my suitcase in the boot?"
+     ],
+     [
+      "Chauffeur",
+      "Bien sûr. Vous êtes ici en vacances ?",
+      "Of course. Are you here on holiday?"
+     ],
+     [
+      "Vous",
+      "Non, je viens pour un projet de recherche avec l'université.",
+      "No, I'm here for a research project with the university."
+     ],
+     [
+      "Chauffeur",
+      "Ah, très bien ! Bienvenue à Madagascar !",
+      "Ah, very good! Welcome to Madagascar!"
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Quel est le motif de votre séjour ?",
+     "options": [
+      "Je viens pour un projet de recherche.",
+      "Je reste trois semaines.",
+      "Mon motif est bleu."
+     ],
+     "why": "motif du séjour = reason for your visit. For length of stay they'd ask: Combien de temps restez-vous ?"
+    },
+    {
+     "say": "C'est quatre-vingt mille.",
+     "options": [
+      "C'est un peu cher. Vous pouvez faire un prix ?",
+      "C'est très bon marché, merci.",
+      "Je vais payer moins."
+     ],
+     "why": "Faire un prix = to give a discount. Negotiating taxi fares is normal."
+    },
+    {
+     "say": "Vous descendez où ?",
+     "options": [
+      "Vous pouvez me déposer devant la poste.",
+      "Je descends l'escalier.",
+      "Je suis en bas."
+     ],
+     "why": "Vous descendez où ? = Where are you getting out?"
+    },
+    {
+     "say": "Vous avez réservé ?",
+     "options": [
+      "Non, il faut réserver à l'avance ?",
+      "Non, je n'ai pas de réserve.",
+      "Oui, j'ai réservé moi."
+     ],
+     "why": "Il faut réserver à l'avance ? = Do I need to book in advance?"
+    },
+    {
+     "say": "C'est à dix minutes à pied.",
+     "options": [
+      "Merci beaucoup. C'est par où ?",
+      "Je n'ai pas de pied.",
+      "Dix minutes, c'est loin d'ici."
+     ],
+     "why": "C'est par où ? = Which way is it?"
+    }
+   ],
+   "roleplay": "I've just landed at Ivato airport in Antananarivo. Play an immigration officer (reason for my visit and length of stay), then a taxi driver I have to negotiate with, then a passer-by I ask for directions."
+  },
+  {
+   "id": "logement",
+   "emoji": "🏨",
+   "title": "Where you're staying",
+   "fr": "Logement",
+   "intro": "Checking in, sorting out problems (power cuts included), and renting a place for a longer stay.",
+   "sections": [
+    {
+     "title": "Checking in",
+     "phrases": [
+      [
+       "J'ai une réservation au nom de Martin.",
+       "I have a booking in the name of Martin."
+      ],
+      [
+       "Le petit-déjeuner est servi à quelle heure ?",
+       "What time is breakfast served?"
+      ],
+      [
+       "C'est quoi, le code du wifi ?",
+       "What's the wifi password?"
+      ],
+      [
+       "Est-ce qu'il y a de l'eau chaude ?",
+       "Is there hot water?"
+      ],
+      [
+       "Je voudrais rester une nuit de plus.",
+       "I'd like to stay one more night."
+      ]
+     ]
+    },
+    {
+     "title": "Problems",
+     "phrases": [
+      [
+       "La clim ne marche pas.",
+       "The air conditioning isn't working."
+      ],
+      [
+       "Il n'y a pas d'eau dans la salle de bains.",
+       "There's no water in the bathroom."
+      ],
+      [
+       "Il y a une coupure de courant.",
+       "There's a power cut."
+      ],
+      [
+       "Il y a du délestage ce soir ?",
+       "Are there scheduled power cuts tonight?"
+      ],
+      [
+       "Vous pourriez m'apporter une moustiquaire ?",
+       "Could you bring me a mosquito net?"
+      ],
+      [
+       "Il y a trop de bruit, je n'arrive pas à dormir.",
+       "There's too much noise, I can't sleep."
+      ],
+      [
+       "Est-ce que je pourrais changer de chambre ?",
+       "Could I change rooms?"
+      ]
+     ]
+    },
+    {
+     "title": "Renting for longer",
+     "phrases": [
+      [
+       "Je cherche un appartement meublé pour deux mois.",
+       "I'm looking for a furnished flat for two months."
+      ],
+      [
+       "Le loyer est de combien par mois ?",
+       "How much is the rent per month?"
+      ],
+      [
+       "Les charges sont comprises ?",
+       "Are bills included?"
+      ],
+      [
+       "C'est sécurisé ? Il y a un gardien ?",
+       "Is it secure? Is there a guard?"
+      ],
+      [
+       "Je peux le visiter quand ?",
+       "When can I view it?"
+      ],
+      [
+       "Il faut verser une caution ?",
+       "Do I need to pay a deposit?"
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "ca-derange",
+    "ne-que"
+   ],
+   "dialogue": {
+    "setting": "At hotel reception in the evening.",
+    "lines": [
+     [
+      "Réceptionniste",
+      "Bonsoir, je peux vous aider ?",
+      "Good evening, can I help you?"
+     ],
+     [
+      "Vous",
+      "Bonsoir. Je suis dans la chambre douze. Désolé(e) de vous déranger, mais la clim ne marche pas.",
+      "Good evening. I'm in room twelve. Sorry to bother you, but the air conditioning isn't working."
+     ],
+     [
+      "Réceptionniste",
+      "Ah, je suis désolée. C'est à cause du délestage, le courant revient vers vingt-deux heures.",
+      "Ah, I'm sorry. It's the scheduled power cut; the power comes back at about ten."
+     ],
+     [
+      "Vous",
+      "D'accord. Et il n'y a pas d'eau chaude non plus.",
+      "OK. And there's no hot water either."
+     ],
+     [
+      "Réceptionniste",
+      "Le chauffe-eau ne marche qu'avec l'électricité, malheureusement.",
+      "The water heater only works with electricity, unfortunately."
+     ],
+     [
+      "Vous",
+      "Je comprends. Ça vous dérange si je change de chambre demain ? Celle-ci donne sur la rue, il y a beaucoup de bruit.",
+      "I understand. Do you mind if I change rooms tomorrow? This one looks onto the street and it's very noisy."
+     ],
+     [
+      "Réceptionniste",
+      "Pas du tout. Il nous reste une chambre côté jardin.",
+      "Not at all. We have one room left on the garden side."
+     ],
+     [
+      "Vous",
+      "Parfait. Et vous pourriez m'apporter une moustiquaire ce soir ?",
+      "Perfect. And could you bring me a mosquito net tonight?"
+     ],
+     [
+      "Réceptionniste",
+      "Bien sûr, je vous l'apporte tout de suite.",
+      "Of course, I'll bring it right away."
+     ],
+     [
+      "Vous",
+      "Merci beaucoup, vous êtes très gentille.",
+      "Thank you very much, you're very kind."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "C'est à quel nom ?",
+     "options": [
+      "C'est au nom de Martin.",
+      "Mon nom est réservé.",
+      "C'est le nom de moi."
+     ],
+     "why": "au nom de = in the name of."
+    },
+    {
+     "say": "Tout se passe bien dans votre chambre ?",
+     "options": [
+      "Pas vraiment, il n'y a pas d'eau chaude.",
+      "Oui, la chambre se passe bien.",
+      "Non, je suis dans la chambre."
+     ],
+     "why": "Tout se passe bien ? = Is everything going well? Answer about the room's problems."
+    },
+    {
+     "say": "Il y a du délestage de dix-huit heures à vingt-deux heures.",
+     "options": [
+      "D'accord. Vous avez une lampe ou des bougies ?",
+      "Super, merci pour le délestage !",
+      "Je vais délester."
+     ],
+     "why": "Scheduled power cuts are common. Ask for une lampe, une torche or des bougies (candles)."
+    },
+    {
+     "say": "Le loyer, c'est quatre cent mille ariary par mois.",
+     "options": [
+      "Les charges sont comprises ?",
+      "C'est quoi, un loyer ?",
+      "Je paie demain hier."
+     ],
+     "why": "les charges = bills (water, electricity, building costs)."
+    },
+    {
+     "say": "Vous voulez une chambre côté rue ou côté jardin ?",
+     "options": [
+      "Côté jardin, s'il vous plaît. C'est plus calme.",
+      "Côté de moi.",
+      "Les deux, merci."
+     ],
+     "why": "côté jardin / côté rue = on the garden side / street side."
+    }
+   ],
+   "roleplay": "Play hotel staff in Antananarivo. I check in, then come back with problems: no hot water, a power cut, noise. Then play a landlord I phone about renting a furnished flat for two months."
+  },
+  {
+   "id": "manger",
+   "emoji": "🍲",
+   "title": "Food, drink and the market",
+   "fr": "Manger et boire",
+   "intro": "Ordering, asking what dishes are, spice and allergies, paying, eating at someone's home, and shopping at the market.",
+   "sections": [
+    {
+     "title": "At the restaurant",
+     "phrases": [
+      [
+       "Une table pour deux, s'il vous plaît.",
+       "A table for two, please."
+      ],
+      [
+       "Qu'est-ce que vous me conseillez ?",
+       "What do you recommend?"
+      ],
+      [
+       "C'est quoi, le plat du jour ?",
+       "What's the dish of the day?"
+      ],
+      [
+       "Je vais prendre le romazava.",
+       "I'll have the romazava (Malagasy beef and greens stew)."
+      ],
+      [
+       "C'est épicé ?",
+       "Is it spicy?"
+      ],
+      [
+       "Sans piment, s'il vous plaît.",
+       "Without chilli, please."
+      ],
+      [
+       "Je suis allergique aux arachides.",
+       "I'm allergic to peanuts."
+      ],
+      [
+       "L'addition, s'il vous plaît.",
+       "The bill, please."
+      ],
+      [
+       "On peut payer par carte ?",
+       "Can we pay by card?"
+      ],
+      [
+       "C'était délicieux !",
+       "It was delicious!"
+      ]
+     ]
+    },
+    {
+     "title": "Drinks",
+     "phrases": [
+      [
+       "Une bouteille d'eau, s'il vous plaît.",
+       "A bottle of water, please."
+      ],
+      [
+       "On peut boire l'eau du robinet ?",
+       "Is the tap water safe to drink?"
+      ],
+      [
+       "Un café noir, sans sucre.",
+       "A black coffee, no sugar."
+      ],
+      [
+       "Un jus de fruit frais, s'il vous plaît.",
+       "A fresh fruit juice, please."
+      ]
+     ]
+    },
+    {
+     "title": "At the market",
+     "phrases": [
+      [
+       "C'est combien, le kilo ?",
+       "How much is it a kilo?"
+      ],
+      [
+       "Je voudrais un kilo de tomates.",
+       "I'd like a kilo of tomatoes."
+      ],
+      [
+       "Vous en avez des plus mûres ?",
+       "Do you have any riper ones?"
+      ],
+      [
+       "Je prends ça.",
+       "I'll take that."
+      ],
+      [
+       "Ça fait combien en tout ?",
+       "How much is that altogether?"
+      ],
+      [
+       "Vous avez de la monnaie ?",
+       "Do you have change?"
+      ]
+     ]
+    },
+    {
+     "title": "Eating with people",
+     "phrases": [
+      [
+       "Bon appétit !",
+       "Enjoy your meal!"
+      ],
+      [
+       "Servez-vous.",
+       "Help yourself."
+      ],
+      [
+       "Non merci, j'ai assez mangé. C'était délicieux.",
+       "No thanks, I've had plenty. It was delicious."
+      ],
+      [
+       "Qu'est-ce que c'est, ce plat ?",
+       "What is this dish?"
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "ce-qui-ce-que",
+    "n-importe"
+   ],
+   "dialogue": {
+    "setting": "Lunch at a hotely, a small local restaurant.",
+    "lines": [
+     [
+      "Serveuse",
+      "Bonjour ! Vous avez choisi ?",
+      "Hello! Have you decided?"
+     ],
+     [
+      "Vous",
+      "Pas encore. Qu'est-ce que vous me conseillez ?",
+      "Not yet. What do you recommend?"
+     ],
+     [
+      "Serveuse",
+      "Le romazava est très bon aujourd'hui. Ou le poulet au coco.",
+      "The romazava is very good today. Or the chicken in coconut."
+     ],
+     [
+      "Vous",
+      "C'est épicé, le romazava ?",
+      "Is the romazava spicy?"
+     ],
+     [
+      "Serveuse",
+      "Non, pas du tout. Le piment est à part.",
+      "No, not at all. The chilli is on the side."
+     ],
+     [
+      "Vous",
+      "Parfait, je vais prendre le romazava avec du riz.",
+      "Perfect, I'll have the romazava with rice."
+     ],
+     [
+      "Serveuse",
+      "Et comme boisson ?",
+      "And to drink?"
+     ],
+     [
+      "Vous",
+      "Un jus de fruit frais, s'il vous plaît. Qu'est-ce que vous avez comme fruits ?",
+      "A fresh fruit juice, please. What fruit do you have?"
+     ],
+     [
+      "Serveuse",
+      "Mangue, ananas ou corossol.",
+      "Mango, pineapple or soursop."
+     ],
+     [
+      "Vous",
+      "Mangue, alors. Merci.",
+      "Mango, then. Thanks."
+     ],
+     [
+      "Vous",
+      "C'était délicieux ! L'addition, s'il vous plaît.",
+      "That was delicious! The bill, please."
+     ],
+     [
+      "Serveuse",
+      "Ça fait vingt-deux mille ariary.",
+      "That's twenty-two thousand ariary."
+     ],
+     [
+      "Vous",
+      "Voilà. Gardez la monnaie.",
+      "Here you are. Keep the change."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Vous avez choisi ?",
+     "options": [
+      "Oui, je vais prendre le poulet au coco.",
+      "Oui, j'ai choisi moi.",
+      "Je prends à choisir."
+     ],
+     "why": "Je vais prendre… / Je prends… are the natural ways to order."
+    },
+    {
+     "say": "Vous voulez du piment ?",
+     "options": [
+      "Juste un peu, s'il vous plaît.",
+      "Oui, je suis piment.",
+      "Non, je ne veux pas de le piment."
+     ],
+     "why": "After a negative it's just de: pas de piment."
+    },
+    {
+     "say": "Encore un peu de riz ?",
+     "options": [
+      "Non merci, j'ai assez mangé. C'était délicieux.",
+      "Non, je suis plein.",
+      "Oui, encore riz."
+     ],
+     "why": "Avoid je suis plein(e): it sounds crude (and for an animal means pregnant!). Say j'ai assez mangé or j'ai bien mangé."
+    },
+    {
+     "say": "Les mangues, c'est trois mille le kilo.",
+     "options": [
+      "Je vais en prendre deux kilos.",
+      "Je vais prendre deux kilos d'elles.",
+      "J'en prends le kilo deux."
+     ],
+     "why": "en replaces 'of them': j'en prends deux kilos / je vais en prendre deux kilos."
+    },
+    {
+     "say": "Ça fait quinze mille en tout.",
+     "options": [
+      "Voilà. Désolé(e), je n'ai qu'un billet de vingt mille.",
+      "Ça fait tout.",
+      "Je fais quinze."
+     ],
+     "why": "je n'ai qu'un billet de… = I've only got a … note."
+    }
+   ],
+   "roleplay": "Play a waiter at a hotely (small local restaurant) in Madagascar, then a stallholder at Analakely market. Make me ask what dishes are, deal with spice and allergies, pay, and negotiate prices in ariary."
+  },
+  {
+   "id": "argent",
+   "emoji": "💳",
+   "title": "Money, phones and services",
+   "fr": "Argent et services",
+   "intro": "Changing money, cash machines, SIM cards and data, printing, receipts and invoices.",
+   "sections": [
+    {
+     "title": "Money",
+     "phrases": [
+      [
+       "Où est-ce que je peux changer de l'argent ?",
+       "Where can I change money?"
+      ],
+      [
+       "Quel est le taux de change aujourd'hui ?",
+       "What's today's exchange rate?"
+      ],
+      [
+       "Il y a un distributeur près d'ici ?",
+       "Is there a cash machine near here?"
+      ],
+      [
+       "Le distributeur a avalé ma carte.",
+       "The cash machine has swallowed my card."
+      ],
+      [
+       "Vous avez des petites coupures ?",
+       "Do you have small notes?"
+      ]
+     ]
+    },
+    {
+     "title": "Phone and internet",
+     "phrases": [
+      [
+       "Je voudrais une carte SIM.",
+       "I'd like a SIM card."
+      ],
+      [
+       "Il faut une pièce d'identité ?",
+       "Do you need ID?"
+      ],
+      [
+       "Je voudrais recharger mon crédit.",
+       "I'd like to top up my credit."
+      ],
+      [
+       "C'est combien, le forfait internet pour un mois ?",
+       "How much is the internet bundle for a month?"
+      ],
+      [
+       "Je peux payer par mobile money ?",
+       "Can I pay by mobile money?"
+      ],
+      [
+       "Je n'ai plus de batterie. Je peux charger mon téléphone ici ?",
+       "My battery's dead. Can I charge my phone here?"
+      ],
+      [
+       "Il n'y a pas de réseau ici.",
+       "There's no signal here."
+      ]
+     ]
+    },
+    {
+     "title": "Shops and services",
+     "phrases": [
+      [
+       "Vous avez ça en plus grand ?",
+       "Do you have this in a bigger size?"
+      ],
+      [
+       "Je cherche une librairie.",
+       "I'm looking for a bookshop."
+      ],
+      [
+       "Je voudrais faire imprimer ces documents.",
+       "I'd like to get these documents printed."
+      ],
+      [
+       "Vous faites des photocopies ?",
+       "Do you do photocopies?"
+      ],
+      [
+       "Ce sera prêt quand ?",
+       "When will it be ready?"
+      ],
+      [
+       "Je peux avoir un reçu ?",
+       "Can I have a receipt?"
+      ],
+      [
+       "Vous pouvez me faire une facture au nom de l'université ?",
+       "Can you make out an invoice to the university?"
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "vaut-la-peine"
+   ],
+   "dialogue": {
+    "setting": "Buying a SIM card in a phone shop.",
+    "lines": [
+     [
+      "Vendeur",
+      "Bonjour, qu'est-ce que je peux faire pour vous ?",
+      "Hello, what can I do for you?"
+     ],
+     [
+      "Vous",
+      "Bonjour. Je voudrais une carte SIM, s'il vous plaît.",
+      "Hello. I'd like a SIM card, please."
+     ],
+     [
+      "Vendeur",
+      "Pas de problème. Il me faut une pièce d'identité. Votre passeport, par exemple.",
+      "No problem. I need some ID. Your passport, for example."
+     ],
+     [
+      "Vous",
+      "Voilà. Et c'est combien, le forfait internet pour un mois ?",
+      "Here you are. And how much is a month's internet bundle?"
+     ],
+     [
+      "Vendeur",
+      "Ça dépend. On a dix gigas à trente mille, ou vingt-cinq gigas à soixante mille.",
+      "It depends. We have ten gigs for thirty thousand, or twenty-five gigs for sixty thousand."
+     ],
+     [
+      "Vous",
+      "Je vais beaucoup travailler en ligne. Ça vaut le coup de prendre le grand forfait ?",
+      "I'll be working online a lot. Is it worth taking the big bundle?"
+     ],
+     [
+      "Vendeur",
+      "Oui, si vous faites des visioconférences, prenez le grand.",
+      "Yes, if you do video calls, take the big one."
+     ],
+     [
+      "Vous",
+      "D'accord. Je peux payer par carte ?",
+      "OK. Can I pay by card?"
+     ],
+     [
+      "Vendeur",
+      "Non, désolé, seulement en espèces. Il y a un distributeur juste en face.",
+      "No, sorry, cash only. There's a cash machine just opposite."
+     ],
+     [
+      "Vous",
+      "Très bien, je reviens tout de suite. Vous pourrez me faire un reçu ?",
+      "Fine, I'll be right back. Could you give me a receipt?"
+     ],
+     [
+      "Vendeur",
+      "Bien sûr.",
+      "Of course."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Vous payez comment ?",
+     "options": [
+      "En espèces.",
+      "Avec l'argent.",
+      "Je paie bien."
+     ],
+     "why": "en espèces = in cash; par carte = by card."
+    },
+    {
+     "say": "Il faut une pièce d'identité.",
+     "options": [
+      "Mon passeport, ça va ?",
+      "Je n'ai pas de pièce, j'ai des billets.",
+      "Quelle pièce ?"
+     ],
+     "why": "une pièce d'identité = ID, not a coin!"
+    },
+    {
+     "say": "Vous avez de la monnaie ?",
+     "options": [
+      "Désolé(e), je n'ai qu'un gros billet.",
+      "Oui, j'ai de l'argent.",
+      "Non, je n'ai pas des monnaies."
+     ],
+     "why": "la monnaie = change / small money."
+    },
+    {
+     "say": "Ce sera prêt demain après-midi.",
+     "options": [
+      "Parfait, je passerai vers quinze heures.",
+      "Je suis prêt aussi.",
+      "Demain, c'est après."
+     ],
+     "why": "je passerai = I'll drop by."
+    },
+    {
+     "say": "Le réseau ne passe pas bien ici.",
+     "options": [
+      "Je vais sortir et je vous rappelle.",
+      "Le réseau est passé.",
+      "Je passe le réseau."
+     ],
+     "why": "Je vous rappelle = I'll call you back."
+    }
+   ],
+   "roleplay": "Play the people I deal with in Antananarivo as I change money, buy a SIM card with a data bundle, and get workshop documents printed with an invoice made out to the university."
+  },
+  {
+   "id": "madagascar",
+   "emoji": "🇲🇬",
+   "title": "Madagascar: customs and local words",
+   "fr": "À Madagascar",
+   "intro": "French is used for work, education and administration in Madagascar, alongside Malagasy. A few words of Malagasy and some awareness of local customs go a long way. Malagasy words have a rough pronunciation guide; the French voice can't say them properly.",
+   "sections": [
+    {
+     "title": "A few words of Malagasy",
+     "lang": "mg",
+     "phrases": [
+      [
+       "Salama !",
+       "Hello! (friendly)",
+       "roughly: sa-LAAM"
+      ],
+      [
+       "Manao ahoana tompoko !",
+       "Hello! (polite, to an elder or someone you respect)",
+       "roughly: ma-NOW a-OHN TOOM-pook"
+      ],
+      [
+       "Misaotra betsaka !",
+       "Thank you very much!",
+       "roughly: mi-SOWtch BETS-ak"
+      ],
+      [
+       "Azafady",
+       "Excuse me / Please",
+       "roughly: a-za-FAD"
+      ],
+      [
+       "Veloma !",
+       "Goodbye!",
+       "roughly: veh-LOOM"
+      ],
+      [
+       "Eny / Tsia",
+       "Yes / No",
+       "roughly: AY-n / TSEE"
+      ],
+      [
+       "Tsy misy olana.",
+       "No problem.",
+       "roughly: tsee MEESS oo-LAN"
+      ],
+      [
+       "Mora mora",
+       "Slowly, take it easy",
+       "roughly: MOO-ra MOO-ra"
+      ]
+     ]
+    },
+    {
+     "title": "Words you'll hear in French",
+     "phrases": [
+      [
+       "On m'appelle souvent « vazaha ».",
+       "People often call me 'vazaha' (foreigner)."
+      ],
+      [
+       "Le fokontany, c'est la plus petite unité administrative.",
+       "The fokontany is the smallest administrative unit (the neighbourhood or village)."
+      ],
+      [
+       "Il faut d'abord saluer le chef du fokontany.",
+       "You must first greet the head of the fokontany."
+      ],
+      [
+       "On prend le taxi-be jusqu'à Analakely ?",
+       "Shall we take the minibus (taxi-be) to Analakely?"
+      ],
+      [
+       "On a mangé dans un hotely.",
+       "We ate in a hotely (small local eatery)."
+      ],
+      [
+       "Ici, on mange du riz trois fois par jour.",
+       "Here people eat rice three times a day."
+      ],
+      [
+       "Le kabary du maire était très long.",
+       "The mayor's speech (kabary) was very long."
+      ]
+     ]
+    },
+    {
+     "title": "Politeness and customs",
+     "phrases": [
+      [
+       "Je voudrais apprendre quelques mots de malgache.",
+       "I'd like to learn a few words of Malagasy."
+      ],
+      [
+       "Comment dit-on « merci » en malgache ?",
+       "How do you say 'thank you' in Malagasy?"
+      ],
+      [
+       "Est-ce que je peux prendre une photo ?",
+       "May I take a photo?"
+      ],
+      [
+       "Il y a des fady à respecter ici ?",
+       "Are there any taboos (fady) to respect here?"
+      ],
+      [
+       "Excusez-moi, je ne connais pas encore bien les coutumes.",
+       "Sorry, I don't know the customs well yet."
+      ],
+      [
+       "Merci de votre accueil.",
+       "Thank you for your welcome."
+      ]
+     ]
+    }
+   ],
+   "patterns": [],
+   "dialogue": {
+    "setting": "Arriving in a village with a Malagasy colleague.",
+    "lines": [
+     [
+      "Andry",
+      "Avant de commencer, il faut aller saluer le chef du fokontany.",
+      "Before we start, we need to go and greet the head of the fokontany."
+     ],
+     [
+      "Vous",
+      "D'accord. Comment est-ce que je dois le saluer ?",
+      "OK. How should I greet him?"
+     ],
+     [
+      "Andry",
+      "Vous pouvez dire « Manao ahoana tompoko ». C'est très poli.",
+      "You can say 'Manao ahoana tompoko'. It's very polite."
+     ],
+     [
+      "Vous",
+      "Manao ahoana tompoko… C'est bien comme ça ?",
+      "Manao ahoana tompoko… Is that right?"
+     ],
+     [
+      "Andry",
+      "Parfait ! Il va être content.",
+      "Perfect! He'll be pleased."
+     ],
+     [
+      "Vous",
+      "Est-ce qu'il y a des fady à respecter ici ?",
+      "Are there any taboos to respect here?"
+     ],
+     [
+      "Andry",
+      "Oui. Par exemple, dans ce village, on ne montre pas le tombeau du doigt.",
+      "Yes. For example, in this village you don't point at the tomb."
+     ],
+     [
+      "Vous",
+      "Merci de me prévenir. Et je peux prendre des photos ?",
+      "Thanks for warning me. And can I take photos?"
+     ],
+     [
+      "Andry",
+      "Il vaut mieux demander d'abord. En général, les gens acceptent.",
+      "It's better to ask first. People usually say yes."
+     ],
+     [
+      "Vous",
+      "Très bien. Et comment on dit « merci beaucoup » ?",
+      "Very good. And how do you say 'thank you very much'?"
+     ],
+     [
+      "Andry",
+      "« Misaotra betsaka ».",
+      "'Misaotra betsaka'."
+     ],
+     [
+      "Vous",
+      "Misaotra betsaka, Andry !",
+      "Misaotra betsaka, Andry!"
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Les enfants vous appellent « vazaha », ça vous dérange ?",
+     "options": [
+      "Non, pas du tout, ils sont curieux.",
+      "Oui, je ne suis pas vazaha !",
+      "Je ne comprends pas vazaha."
+     ],
+     "why": "Vazaha is usually just descriptive. A smile (and a Salama !) works best."
+    },
+    {
+     "say": "Ici, c'est fady de manger du porc.",
+     "options": [
+      "Merci de me prévenir, je ferai attention.",
+      "Ah bon, c'est fade ?",
+      "Je mange quand même."
+     ],
+     "why": "fady (taboo) is not fade (bland)! Thank people for telling you."
+    },
+    {
+     "say": "Vous parlez malgache ?",
+     "options": [
+      "Juste quelques mots : salama, misaotra… mais j'aimerais apprendre !",
+      "Non, je parle pas.",
+      "Je suis malgache."
+     ],
+     "why": "Trying a few words is always appreciated."
+    },
+    {
+     "say": "On prend le taxi-be ?",
+     "options": [
+      "Oui, pourquoi pas ! On descend où ?",
+      "Non, je n'ai pas de taxi.",
+      "Le taxi est beau."
+     ],
+     "why": "taxi-be = the city minibus (be = big in Malagasy)."
+    },
+    {
+     "say": "Le chef va faire un petit kabary pour vous accueillir.",
+     "options": [
+      "Quel honneur ! Je dois répondre quelque chose ?",
+      "C'est quoi, un chef ?",
+      "Je n'ai pas faim."
+     ],
+     "why": "A kabary is a formal speech. It's courteous to reply briefly with thanks."
+    }
+   ],
+   "roleplay": "I'm visiting a rural community in Madagascar with a Malagasy colleague. Help me greet local leaders politely, ask about customs and fady, ask permission to take photos, and try a few words of Malagasy. Explain any cultural points briefly in English."
+  },
+  {
+   "id": "telephone",
+   "emoji": "📱",
+   "title": "Phone calls, messages and meetings",
+   "fr": "Téléphone et rendez-vous",
+   "intro": "Making and taking calls, arranging and moving meetings, and the standard phrases for a formal email.",
+   "sections": [
+    {
+     "title": "On the phone",
+     "phrases": [
+      [
+       "Allô, bonjour, c'est Martin à l'appareil.",
+       "Hello, this is Martin speaking."
+      ],
+      [
+       "Je voudrais parler à Mme Rakoto, s'il vous plaît.",
+       "I'd like to speak to Mme Rakoto, please."
+      ],
+      [
+       "C'est de la part de qui ?",
+       "Who's calling?"
+      ],
+      [
+       "Ne quittez pas.",
+       "Hold the line."
+      ],
+      [
+       "Je vous entends mal, ça coupe.",
+       "I can't hear you well, it's breaking up."
+      ],
+      [
+       "Je peux laisser un message ?",
+       "Can I leave a message?"
+      ],
+      [
+       "Je vous rappelle dans dix minutes.",
+       "I'll call you back in ten minutes."
+      ]
+     ]
+    },
+    {
+     "title": "Making arrangements",
+     "phrases": [
+      [
+       "On pourrait se voir cette semaine ?",
+       "Could we meet this week?"
+      ],
+      [
+       "Quand est-ce que ça vous arrange ?",
+       "When suits you?"
+      ],
+      [
+       "Mardi matin, ça vous va ?",
+       "Does Tuesday morning work for you?"
+      ],
+      [
+       "Je suis pris(e) jeudi, mais vendredi je suis libre.",
+       "I'm busy on Thursday, but I'm free on Friday."
+      ],
+      [
+       "On se retrouve où ?",
+       "Where shall we meet?"
+      ],
+      [
+       "Je vais avoir un peu de retard.",
+       "I'm going to be a little late."
+      ],
+      [
+       "On peut décaler le rendez-vous à demain ?",
+       "Can we move the meeting to tomorrow?"
+      ],
+      [
+       "Je vous envoie un message sur WhatsApp.",
+       "I'll send you a message on WhatsApp."
+      ]
+     ]
+    },
+    {
+     "title": "Formal emails",
+     "phrases": [
+      [
+       "Madame, Monsieur,",
+       "Dear Sir or Madam,"
+      ],
+      [
+       "Je me permets de vous écrire au sujet de l'atelier.",
+       "I am writing to you about the workshop."
+      ],
+      [
+       "Suite à notre conversation de ce matin, je vous confirme la date.",
+       "Following our conversation this morning, I can confirm the date."
+      ],
+      [
+       "Vous trouverez ci-joint le programme.",
+       "Please find the programme attached."
+      ],
+      [
+       "Je reste à votre disposition pour toute question.",
+       "Please don't hesitate to contact me with any questions."
+      ],
+      [
+       "Dans l'attente de votre réponse, je vous prie d'agréer mes salutations distinguées.",
+       "I look forward to your reply. Yours faithfully."
+      ],
+      [
+       "Bien cordialement,",
+       "Kind regards,"
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "avant-de"
+   ],
+   "dialogue": {
+    "setting": "Phoning a university department to set up a meeting.",
+    "lines": [
+     [
+      "Secrétaire",
+      "Allô, département de biologie, bonjour.",
+      "Hello, biology department, good morning."
+     ],
+     [
+      "Vous",
+      "Bonjour madame. Je voudrais parler au professeur Rakoto, s'il vous plaît.",
+      "Good morning. I'd like to speak to Professor Rakoto, please."
+     ],
+     [
+      "Secrétaire",
+      "C'est de la part de qui ?",
+      "Who's calling?"
+     ],
+     [
+      "Vous",
+      "C'est Martin. Je travaille avec lui sur le projet de recherche.",
+      "It's Martin. I'm working with him on the research project."
+     ],
+     [
+      "Secrétaire",
+      "Ne quittez pas… Désolée, il est en réunion. Vous voulez laisser un message ?",
+      "Hold the line… Sorry, he's in a meeting. Would you like to leave a message?"
+     ],
+     [
+      "Vous",
+      "Oui. J'aimerais le rencontrer cette semaine. Mardi matin, ça lui irait ?",
+      "Yes. I'd like to meet him this week. Would Tuesday morning suit him?"
+     ],
+     [
+      "Secrétaire",
+      "Mardi, il donne cours toute la matinée. Mercredi à quatorze heures, ça vous va ?",
+      "On Tuesday he's teaching all morning. Does Wednesday at two work for you?"
+     ],
+     [
+      "Vous",
+      "Oui, c'est parfait. On se retrouve à son bureau ?",
+      "Yes, that's perfect. Shall we meet at his office?"
+     ],
+     [
+      "Secrétaire",
+      "Oui, au deuxième étage. Je lui transmets le message.",
+      "Yes, on the second floor. I'll pass the message on."
+     ],
+     [
+      "Vous",
+      "Merci beaucoup. Avant de raccrocher, je peux vous donner mon numéro ?",
+      "Thank you very much. Before I hang up, can I give you my number?"
+     ],
+     [
+      "Secrétaire",
+      "Bien sûr, je vous écoute.",
+      "Of course, go ahead."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "C'est de la part de qui ?",
+     "options": [
+      "C'est de la part de Mme Martin.",
+      "C'est une partie de moi.",
+      "C'est pour qui ?"
+     ],
+     "why": "C'est de la part de… = It's… calling."
+    },
+    {
+     "say": "Il n'est pas là. Vous voulez laisser un message ?",
+     "options": [
+      "Oui, vous pouvez lui dire de me rappeler ?",
+      "Non, je le laisse.",
+      "Oui, laissez-moi."
+     ],
+     "why": "dire à quelqu'un de + infinitive = to tell someone to…"
+    },
+    {
+     "say": "Jeudi à dix heures, ça vous va ?",
+     "options": [
+      "Désolé(e), je suis pris(e) jeudi. Vendredi, c'est possible ?",
+      "Oui, ça me va bien jeudi dix.",
+      "Je vais jeudi."
+     ],
+     "why": "pris(e) = busy, booked."
+    },
+    {
+     "say": "Allô ? Je vous entends très mal.",
+     "options": [
+      "Ça coupe, je vous rappelle.",
+      "Moi, je vous entends bien.",
+      "Allô, allô, allô."
+     ],
+     "why": "When the line is bad, offer to call back."
+    },
+    {
+     "say": "On se retrouve où ?",
+     "options": [
+      "Devant l'entrée principale, à neuf heures.",
+      "On se retrouve demain.",
+      "On se trouve bien."
+     ],
+     "why": "Où = where, so answer with a place."
+    }
+   ],
+   "roleplay": "I phone a university department in Antananarivo to arrange a meeting with a professor who isn't available. Then something comes up and I have to rearrange it. Finally help me write a short formal email confirming the new time."
+  },
+  {
+   "id": "sante",
+   "emoji": "🩺",
+   "title": "Health",
+   "fr": "Santé",
+   "intro": "At the chemist's, at the doctor's and in an emergency.",
+   "sections": [
+    {
+     "title": "At the chemist's",
+     "phrases": [
+      [
+       "J'ai mal à la tête depuis hier.",
+       "I've had a headache since yesterday."
+      ],
+      [
+       "Vous avez quelque chose contre la diarrhée ?",
+       "Do you have something for diarrhoea?"
+      ],
+      [
+       "Je me suis fait piquer par des moustiques.",
+       "I've been bitten by mosquitoes."
+      ],
+      [
+       "Vous avez du répulsif anti-moustiques ?",
+       "Do you have mosquito repellent?"
+      ],
+      [
+       "Il faut une ordonnance ?",
+       "Do I need a prescription?"
+      ],
+      [
+       "Je dois en prendre combien par jour ?",
+       "How many should I take a day?"
+      ]
+     ]
+    },
+    {
+     "title": "At the doctor's",
+     "phrases": [
+      [
+       "Je voudrais prendre rendez-vous avec un médecin.",
+       "I'd like to make an appointment with a doctor."
+      ],
+      [
+       "J'ai de la fièvre et des frissons.",
+       "I have a temperature and chills."
+      ],
+      [
+       "J'ai mal au ventre.",
+       "I have a stomach ache."
+      ],
+      [
+       "Je tousse beaucoup.",
+       "I'm coughing a lot."
+      ],
+      [
+       "Je prends un traitement contre le paludisme.",
+       "I'm taking anti-malaria medication."
+      ],
+      [
+       "Je suis allergique à la pénicilline.",
+       "I'm allergic to penicillin."
+      ],
+      [
+       "C'est grave ?",
+       "Is it serious?"
+      ],
+      [
+       "Je me sens mieux aujourd'hui.",
+       "I feel better today."
+      ]
+     ]
+    },
+    {
+     "title": "Emergencies",
+     "phrases": [
+      [
+       "Au secours !",
+       "Help!"
+      ],
+      [
+       "Appelez une ambulance !",
+       "Call an ambulance!"
+      ],
+      [
+       "Où est l'hôpital le plus proche ?",
+       "Where's the nearest hospital?"
+      ],
+      [
+       "Il y a eu un accident.",
+       "There's been an accident."
+      ],
+      [
+       "Mon collègue s'est fait mal à la jambe.",
+       "My colleague has hurt his leg."
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "avoir-du-mal"
+   ],
+   "dialogue": {
+    "setting": "At a pharmacy, feeling unwell.",
+    "lines": [
+     [
+      "Pharmacienne",
+      "Bonjour, je peux vous aider ?",
+      "Hello, can I help you?"
+     ],
+     [
+      "Vous",
+      "Bonjour. Je ne me sens pas très bien. J'ai mal au ventre depuis hier soir.",
+      "Hello. I don't feel very well. I've had a stomach ache since last night."
+     ],
+     [
+      "Pharmacienne",
+      "Vous avez de la fièvre ?",
+      "Do you have a temperature?"
+     ],
+     [
+      "Vous",
+      "Un peu, je crois. Et j'ai du mal à manger.",
+      "A little, I think. And I'm finding it hard to eat."
+     ],
+     [
+      "Pharmacienne",
+      "Vous avez bu de l'eau du robinet ?",
+      "Have you drunk tap water?"
+     ],
+     [
+      "Vous",
+      "Non, seulement de l'eau en bouteille. Mais j'ai mangé des crudités au restaurant.",
+      "No, only bottled water. But I ate raw salad at the restaurant."
+     ],
+     [
+      "Pharmacienne",
+      "Ah, c'est peut-être ça. Je vous donne ceci, et buvez beaucoup d'eau.",
+      "Ah, that might be it. I'll give you this, and drink lots of water."
+     ],
+     [
+      "Vous",
+      "Je dois en prendre combien par jour ?",
+      "How many should I take a day?"
+     ],
+     [
+      "Pharmacienne",
+      "Deux comprimés, trois fois par jour. Si la fièvre monte, il faut voir un médecin.",
+      "Two tablets, three times a day. If the fever goes up, you need to see a doctor."
+     ],
+     [
+      "Vous",
+      "D'accord. Je prends aussi un traitement contre le paludisme, ce n'est pas un problème ?",
+      "OK. I'm also taking anti-malaria medication, is that a problem?"
+     ],
+     [
+      "Pharmacienne",
+      "Non, vous pouvez prendre les deux. Bon rétablissement !",
+      "No, you can take both. Get well soon!"
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Qu'est-ce qui ne va pas ?",
+     "options": [
+      "J'ai mal à la gorge depuis deux jours.",
+      "Je ne vais pas.",
+      "Je suis mal."
+     ],
+     "why": "Qu'est-ce qui ne va pas ? = What's wrong? Describe your symptoms."
+    },
+    {
+     "say": "Vous avez des allergies ?",
+     "options": [
+      "Oui, je suis allergique à la pénicilline.",
+      "Oui, j'ai allergie de pénicilline.",
+      "Non, je n'ai pas des allergies."
+     ],
+     "why": "allergique à; in the negative: pas d'allergies."
+    },
+    {
+     "say": "Ça fait combien de temps que vous avez de la fièvre ?",
+     "options": [
+      "Depuis deux jours.",
+      "Il y a deux jours que.",
+      "Pendant deux jours avant."
+     ],
+     "why": "Depuis deux jours / Ça fait deux jours."
+    },
+    {
+     "say": "Comment vous sentez-vous aujourd'hui ?",
+     "options": [
+      "Je me sens beaucoup mieux, merci.",
+      "Je sens bien.",
+      "Je me sens bon."
+     ],
+     "why": "se sentir bien / mieux: reflexive, with an adverb."
+    },
+    {
+     "say": "Votre collègue s'est fait mal ?",
+     "options": [
+      "Oui, il est tombé et il a mal au genou.",
+      "Oui, il s'a fait mal.",
+      "Oui, il a fait mal."
+     ],
+     "why": "Reflexive verbs take être: il s'est fait mal. 'Il a fait mal' means he hurt someone else."
+    }
+   ],
+   "roleplay": "I feel unwell during fieldwork in Madagascar. Play a pharmacist, then a doctor's receptionist on the phone, then the doctor. Make me describe symptoms, explain my medication and allergies, and understand instructions."
+  },
+  {
+   "id": "social",
+   "emoji": "🎉",
+   "title": "Invitations and social life",
+   "fr": "Vie sociale",
+   "intro": "Inviting, accepting, declining politely, being a good guest, and what to say on special occasions, including church and faith.",
+   "sections": [
+    {
+     "title": "Inviting",
+     "phrases": [
+      [
+       "Tu es libre samedi soir ?",
+       "Are you free on Saturday evening?"
+      ],
+      [
+       "On organise un petit repas à la maison, tu veux venir ?",
+       "We're having a little meal at home, do you want to come?"
+      ],
+      [
+       "Je vous invite à déjeuner.",
+       "Let me take you out to lunch (my treat)."
+      ],
+      [
+       "Ça te dirait de venir au culte avec moi dimanche ?",
+       "Would you like to come to the service with me on Sunday?"
+      ]
+     ]
+    },
+    {
+     "title": "Accepting and declining",
+     "phrases": [
+      [
+       "Avec plaisir !",
+       "With pleasure!"
+      ],
+      [
+       "C'est très gentil, merci.",
+       "That's very kind, thank you."
+      ],
+      [
+       "Je ne pourrai pas venir, malheureusement.",
+       "Unfortunately I won't be able to come."
+      ],
+      [
+       "J'aurais bien aimé, mais j'ai déjà quelque chose de prévu.",
+       "I'd have loved to, but I've already got something planned."
+      ],
+      [
+       "Une autre fois, peut-être ?",
+       "Another time, perhaps?"
+      ],
+      [
+       "Qu'est-ce que je peux apporter ?",
+       "What can I bring?"
+      ]
+     ]
+    },
+    {
+     "title": "As a guest",
+     "phrases": [
+      [
+       "Merci pour l'invitation.",
+       "Thanks for the invitation."
+      ],
+      [
+       "Je vous ai apporté un petit quelque chose.",
+       "I've brought you a little something."
+      ],
+      [
+       "Vous avez une très belle maison.",
+       "You have a lovely home."
+      ],
+      [
+       "Merci pour tout, j'ai passé une excellente soirée.",
+       "Thank you for everything, I've had a wonderful evening."
+      ]
+     ]
+    },
+    {
+     "title": "Special occasions",
+     "phrases": [
+      [
+       "Félicitations !",
+       "Congratulations!"
+      ],
+      [
+       "Joyeux anniversaire !",
+       "Happy birthday!"
+      ],
+      [
+       "Bonne année ! Meilleurs vœux !",
+       "Happy New Year! Best wishes!"
+      ],
+      [
+       "Toutes mes condoléances.",
+       "My deepest sympathy."
+      ],
+      [
+       "Je pense bien à vous.",
+       "I'm thinking of you."
+      ],
+      [
+       "Je prierai pour toi.",
+       "I'll pray for you."
+      ],
+      [
+       "Que Dieu vous bénisse.",
+       "God bless you."
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "aurais-du"
+   ],
+   "dialogue": {
+    "setting": "A colleague invites you for Sunday.",
+    "lines": [
+     [
+      "Fara",
+      "Tu es libre dimanche ? On fait un repas en famille après le culte. Tu veux venir ?",
+      "Are you free on Sunday? We're having a family meal after church. Do you want to come?"
+     ],
+     [
+      "Vous",
+      "Avec plaisir, c'est très gentil ! Qu'est-ce que je peux apporter ?",
+      "I'd love to, that's very kind! What can I bring?"
+     ],
+     [
+      "Fara",
+      "Rien du tout, viens comme tu es !",
+      "Nothing at all, just come as you are!"
+     ],
+     [
+      "Vous",
+      "D'accord. Le culte commence à quelle heure ?",
+      "OK. What time does the service start?"
+     ],
+     [
+      "Fara",
+      "À neuf heures. Ça dure environ deux heures, il y a beaucoup de chants.",
+      "At nine. It lasts about two hours, there's a lot of singing."
+     ],
+     [
+      "Vous",
+      "Super, j'adore chanter. Je chanterai avec vous, même si je ne connais pas les paroles !",
+      "Great, I love singing. I'll sing along, even if I don't know the words!"
+     ],
+     [
+      "Fara",
+      "Les paroles sont sur un écran, ne t'inquiète pas.",
+      "The words are on a screen, don't worry."
+     ],
+     [
+      "Vous",
+      "Parfait. Samedi, par contre, je ne pourrai pas venir à la fête de ton frère. J'ai déjà quelque chose de prévu.",
+      "Perfect. On Saturday, though, I won't be able to come to your brother's party. I've already got something planned."
+     ],
+     [
+      "Fara",
+      "C'est dommage ! Une autre fois, alors.",
+      "That's a shame! Another time, then."
+     ],
+     [
+      "Vous",
+      "Oui, j'aurais bien aimé. Souhaite-lui un bon anniversaire de ma part.",
+      "Yes, I'd have loved to. Wish him a happy birthday from me."
+     ],
+     [
+      "Fara",
+      "Je n'y manquerai pas !",
+      "I certainly will!"
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Tu veux venir dîner samedi ?",
+     "options": [
+      "Avec plaisir ! Je peux apporter quelque chose ?",
+      "Oui, je veux venir dîner samedi.",
+      "Je suis venu."
+     ],
+     "why": "The second is correct but stiff; the first sounds warm and natural."
+    },
+    {
+     "say": "Tu viens à la fête ce soir ?",
+     "options": [
+      "J'aurais bien aimé, mais je suis pris(e). Une autre fois ?",
+      "Non.",
+      "Je ne viens pas ce soir à la fête."
+     ],
+     "why": "Soften a no: J'aurais bien aimé, mais…"
+    },
+    {
+     "say": "Ma grand-mère est décédée la semaine dernière.",
+     "options": [
+      "Oh, je suis vraiment désolé(e). Toutes mes condoléances.",
+      "Félicitations !",
+      "Tant pis."
+     ],
+     "why": "Toutes mes condoléances = my deepest sympathy."
+    },
+    {
+     "say": "Je me marie en décembre !",
+     "options": [
+      "Félicitations ! Je suis tellement content(e) pour toi !",
+      "Bonne chance !",
+      "Condoléances."
+     ],
+     "why": "Félicitations for good news."
+    },
+    {
+     "say": "Merci d'être venu(e) !",
+     "options": [
+      "Merci à vous pour l'invitation. J'ai passé une excellente soirée.",
+      "De rien.",
+      "Je suis venu(e)."
+     ],
+     "why": "As the guest, thank them back. De rien answers thanks for a favour."
+    }
+   ],
+   "roleplay": "A Malagasy colleague invites me to a family meal after church. Make me accept, ask what to bring, make conversation as a guest with family members, politely decline another invitation, and thank my hosts."
+  },
+  {
+   "id": "imprevus",
+   "emoji": "⚠️",
+   "title": "When things go wrong",
+   "fr": "Imprévus et problèmes",
+   "intro": "Delays, cancellations, breakdowns, lost and stolen things, complaints, apologies and finding solutions.",
+   "sections": [
+    {
+     "title": "Delays and changes",
+     "phrases": [
+      [
+       "Désolé(e), je suis en retard, il y avait des embouteillages.",
+       "Sorry I'm late, there was traffic."
+      ],
+      [
+       "Le vol a été annulé.",
+       "The flight has been cancelled."
+      ],
+      [
+       "La route est coupée à cause des pluies.",
+       "The road is closed because of the rains."
+      ],
+      [
+       "Il y a une grève.",
+       "There's a strike."
+      ],
+      [
+       "On va devoir reporter la réunion.",
+       "We'll have to postpone the meeting."
+      ],
+      [
+       "Qu'est-ce qu'on fait maintenant ?",
+       "What do we do now?"
+      ]
+     ]
+    },
+    {
+     "title": "Things going wrong",
+     "phrases": [
+      [
+       "J'ai perdu mon portefeuille.",
+       "I've lost my wallet."
+      ],
+      [
+       "On m'a volé mon téléphone.",
+       "My phone has been stolen."
+      ],
+      [
+       "Je voudrais porter plainte.",
+       "I'd like to report it to the police."
+      ],
+      [
+       "La voiture est tombée en panne.",
+       "The car has broken down."
+      ],
+      [
+       "Mon ordinateur ne s'allume plus.",
+       "My computer won't switch on any more."
+      ],
+      [
+       "Il y a une erreur sur la facture.",
+       "There's a mistake on the bill."
+      ]
+     ]
+    },
+    {
+     "title": "Apologising and solving",
+     "phrases": [
+      [
+       "Je suis vraiment désolé(e), c'est de ma faute.",
+       "I'm really sorry, it's my fault."
+      ],
+      [
+       "Ce n'est pas grave.",
+       "It doesn't matter."
+      ],
+      [
+       "Ne vous inquiétez pas, on va trouver une solution.",
+       "Don't worry, we'll find a solution."
+      ],
+      [
+       "Est-ce qu'il y a une autre possibilité ?",
+       "Is there another option?"
+      ],
+      [
+       "Vous pourriez vous en occuper ?",
+       "Could you deal with it?"
+      ],
+      [
+       "Je ne suis pas satisfait(e). Je voudrais parler au responsable.",
+       "I'm not satisfied. I'd like to speak to the manager."
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "desole-de"
+   ],
+   "dialogue": {
+    "setting": "On the road to a field site, the car breaks down.",
+    "lines": [
+     [
+      "Chauffeur",
+      "Oh non… La voiture est tombée en panne.",
+      "Oh no… The car has broken down."
+     ],
+     [
+      "Vous",
+      "Qu'est-ce qui se passe ? C'est grave ?",
+      "What's happening? Is it serious?"
+     ],
+     [
+      "Chauffeur",
+      "Je pense que c'est le moteur. Il faut appeler un mécanicien.",
+      "I think it's the engine. We need to call a mechanic."
+     ],
+     [
+      "Vous",
+      "On est loin de la prochaine ville ?",
+      "Are we far from the next town?"
+     ],
+     [
+      "Chauffeur",
+      "Une trentaine de kilomètres. Le mécanicien peut venir, mais dans deux ou trois heures.",
+      "About thirty kilometres. The mechanic can come, but in two or three hours."
+     ],
+     [
+      "Vous",
+      "Bon. Je vais prévenir l'équipe qu'on va avoir du retard. Il y a du réseau ici ?",
+      "Right. I'll let the team know we're going to be late. Is there any signal here?"
+     ],
+     [
+      "Chauffeur",
+      "Un peu, si vous montez sur la colline.",
+      "A bit, if you go up the hill."
+     ],
+     [
+      "Vous",
+      "Allô, Hery ? Désolé(e) de te déranger. On est tombés en panne sur la route.",
+      "Hello, Hery? Sorry to bother you. We've broken down on the road."
+     ],
+     [
+      "Hery",
+      "Oh là là ! Ne t'inquiète pas, on va reporter la réunion à demain matin.",
+      "Oh dear! Don't worry, we'll postpone the meeting until tomorrow morning."
+     ],
+     [
+      "Vous",
+      "Merci, c'est gentil. Désolé(e) pour le contretemps.",
+      "Thanks, that's kind. Sorry for the hold-up."
+     ],
+     [
+      "Hery",
+      "Ce n'est pas grave. Ce sont des choses qui arrivent !",
+      "It doesn't matter. These things happen!"
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Vous êtes en retard !",
+     "options": [
+      "Je suis vraiment désolé(e), il y avait des embouteillages.",
+      "Oui, je suis retard.",
+      "Pardon pour mon retarder."
+     ],
+     "why": "être en retard = to be late; le retard = the delay."
+    },
+    {
+     "say": "Je suis désolé, j'ai oublié le document.",
+     "options": [
+      "Ce n'est pas grave, tu peux me l'envoyer par mail.",
+      "Tant mieux !",
+      "C'est dommage pour toi."
+     ],
+     "why": "Ce n'est pas grave = it doesn't matter."
+    },
+    {
+     "say": "Le vol est annulé à cause de la météo.",
+     "options": [
+      "Est-ce qu'il y a une autre possibilité ? Un vol demain ?",
+      "Ah bon, c'est annulé quoi ?",
+      "Je prends le vol quand même."
+     ],
+     "why": "Ask for alternatives: une autre possibilité, un autre vol."
+    },
+    {
+     "say": "On m'a volé mon sac !",
+     "options": [
+      "Oh non ! Il faut aller porter plainte au commissariat.",
+      "C'est de ta faute.",
+      "Tant pis pour le sac."
+     ],
+     "why": "porter plainte = to report a crime; le commissariat = the police station."
+    },
+    {
+     "say": "Il y a une erreur sur la facture.",
+     "options": [
+      "Ah, je suis désolé, je vérifie tout de suite.",
+      "Non, c'est la facture.",
+      "Ce n'est pas mon erreur."
+     ],
+     "why": "This is what a good reply from staff sounds like, so you know what to expect."
+    }
+   ],
+   "roleplay": "On a field trip in Madagascar my car breaks down, a meeting has to be rescheduled, a flight is cancelled and later my phone is stolen. Play the people I deal with. Make me explain problems, apologise, complain politely and find solutions."
+  },
+  {
+   "id": "raconter",
+   "emoji": "📖",
+   "title": "Telling a story",
+   "fr": "Raconter",
+   "intro": "Telling what happened: setting the scene with the imparfait, the events with the passé composé, sequencing words, and reacting to other people's stories.",
+   "sections": [
+    {
+     "title": "Starting and sequencing",
+     "phrases": [
+      [
+       "Il m'est arrivé un truc incroyable.",
+       "Something incredible happened to me."
+      ],
+      [
+       "Tu sais ce qui s'est passé hier ?",
+       "Do you know what happened yesterday?"
+      ],
+      [
+       "D'abord on a mangé, ensuite on est sortis, et finalement on est rentrés tard.",
+       "First we ate, then we went out, and finally we got home late."
+      ],
+      [
+       "Au début, je ne comprenais rien.",
+       "At first I didn't understand anything."
+      ],
+      [
+       "Tout à coup, il s'est mis à pleuvoir.",
+       "Suddenly it started to rain."
+      ],
+      [
+       "Au bout d'une heure, on est enfin arrivés.",
+       "After an hour, we finally arrived."
+      ],
+      [
+       "Pendant ce temps-là, les autres attendaient.",
+       "Meanwhile, the others were waiting."
+      ]
+     ]
+    },
+    {
+     "title": "Setting the scene",
+     "phrases": [
+      [
+       "Il faisait très chaud et il y avait beaucoup de monde.",
+       "It was very hot and there were lots of people."
+      ],
+      [
+       "J'étais fatigué(e), alors je suis rentré(e).",
+       "I was tired, so I went home."
+      ],
+      [
+       "Quand j'étais petit(e), j'habitais à la campagne.",
+       "When I was little, I lived in the countryside."
+      ],
+      [
+       "Avant, je ne parlais pas du tout français.",
+       "I used to not speak French at all."
+      ]
+     ]
+    },
+    {
+     "title": "Reacting to a story",
+     "phrases": [
+      [
+       "Et alors ? Qu'est-ce qui s'est passé ?",
+       "And then? What happened?"
+      ],
+      [
+       "Sans blague !",
+       "No way! / You're kidding!"
+      ],
+      [
+       "Ça a dû être difficile.",
+       "That must have been hard."
+      ],
+      [
+       "Tu as eu de la chance !",
+       "You were lucky!"
+      ],
+      [
+       "Je n'en reviens pas !",
+       "I can't believe it!"
+      ],
+      [
+       "C'est fou !",
+       "That's crazy!"
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "se-rendre-compte"
+   ],
+   "dialogue": {
+    "setting": "Telling a friend about a weekend trip.",
+    "lines": [
+     [
+      "Vous",
+      "Tu sais ce qui m'est arrivé ce week-end ?",
+      "Do you know what happened to me this weekend?"
+     ],
+     [
+      "Lova",
+      "Non, raconte !",
+      "No, tell me!"
+     ],
+     [
+      "Vous",
+      "Samedi, j'ai pris le taxi-brousse pour Antsirabe. Il faisait beau, tout allait bien…",
+      "On Saturday I took the bush taxi to Antsirabe. The weather was nice, everything was going well…"
+     ],
+     [
+      "Lova",
+      "Et alors ?",
+      "And then?"
+     ],
+     [
+      "Vous",
+      "Au bout de deux heures, le chauffeur s'est arrêté au milieu de nulle part. On avait un pneu crevé !",
+      "After two hours, the driver stopped in the middle of nowhere. We had a flat tyre!"
+     ],
+     [
+      "Lova",
+      "Sans blague ! Et vous avez attendu longtemps ?",
+      "No way! And did you wait long?"
+     ],
+     [
+      "Vous",
+      "Une heure. Pendant ce temps-là, les passagers chantaient et partageaient à manger.",
+      "An hour. Meanwhile, the passengers were singing and sharing food."
+     ],
+     [
+      "Lova",
+      "Ça, c'est bien Madagascar !",
+      "That's Madagascar for you!"
+     ],
+     [
+      "Vous",
+      "Oui ! Et à ce moment-là, je me suis rendu compte que je comprenais presque tout ce qu'ils disaient.",
+      "Yes! And at that moment I realised I understood almost everything they were saying."
+     ],
+     [
+      "Lova",
+      "C'est génial ! Ton français a fait beaucoup de progrès.",
+      "That's great! Your French has come on a lot."
+     ],
+     [
+      "Vous",
+      "Merci ! Finalement, on est arrivés le soir, fatigués mais contents.",
+      "Thanks! In the end we arrived in the evening, tired but happy."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Il m'est arrivé un truc incroyable hier !",
+     "options": [
+      "Ah bon ? Raconte !",
+      "Tant pis.",
+      "Ça arrive."
+     ],
+     "why": "Raconte ! = Tell me (all about it)!"
+    },
+    {
+     "say": "On a attendu le bus pendant trois heures sous la pluie.",
+     "options": [
+      "Oh là là, ça a dû être pénible !",
+      "Tu as eu de la chance !",
+      "C'est génial !"
+     ],
+     "why": "ça a dû être pénible = that must have been a pain."
+    },
+    {
+     "say": "Quand tu es arrivé(e), c'était comment ?",
+     "options": [
+      "Il y avait beaucoup de monde et il faisait chaud.",
+      "Il y a eu beaucoup de monde et il a fait chaud.",
+      "Il a beaucoup de monde."
+     ],
+     "why": "Background description in the past uses the imparfait: il y avait, il faisait."
+    },
+    {
+     "say": "J'ai gagné un voyage à La Réunion !",
+     "options": [
+      "Sans blague ! Tu as eu de la chance !",
+      "Ça a dû être difficile.",
+      "Je suis désolé(e)."
+     ],
+     "why": "Sans blague ! = No way!"
+    },
+    {
+     "say": "Et après, qu'est-ce que vous avez fait ?",
+     "options": [
+      "Après, on est allés manger dans un hotely.",
+      "Après, on allait manger.",
+      "Après, on va manger."
+     ],
+     "why": "A completed event in a story is passé composé: on est allés."
+    }
+   ],
+   "roleplay": "Let's swap stories about trips and surprising things that happened. Make me tell my stories (setting the scene in the imparfait, events in the passé composé, with d'abord, ensuite, tout à coup, finalement), and tell me yours so I practise reacting."
+  },
+  {
+   "id": "reunions",
+   "emoji": "🤝",
+   "title": "Meetings and working together",
+   "fr": "Réunions et collaboration",
+   "intro": "Running and joining meetings: giving your view, agreeing and disagreeing politely, clarifying, deciding who does what.",
+   "sections": [
+    {
+     "title": "Opening and steering",
+     "phrases": [
+      [
+       "Merci à tous d'être venus.",
+       "Thank you all for coming."
+      ],
+      [
+       "L'objectif de cette réunion, c'est de fixer le calendrier.",
+       "The aim of this meeting is to set the timetable."
+      ],
+      [
+       "Commençons par le premier point.",
+       "Let's start with the first point."
+      ],
+      [
+       "Passons au point suivant.",
+       "Let's move on to the next point."
+      ],
+      [
+       "Pour résumer, on est d'accord sur trois choses.",
+       "To sum up, we agree on three things."
+      ]
+     ]
+    },
+    {
+     "title": "Giving your view",
+     "phrases": [
+      [
+       "À mon avis, c'est trop tôt.",
+       "In my opinion, it's too early."
+      ],
+      [
+       "Je pense qu'on devrait attendre.",
+       "I think we should wait."
+      ],
+      [
+       "Il me semble que c'est la meilleure solution.",
+       "It seems to me that it's the best solution."
+      ],
+      [
+       "Je suis tout à fait d'accord.",
+       "I completely agree."
+      ],
+      [
+       "Je ne suis pas tout à fait d'accord.",
+       "I don't entirely agree."
+      ],
+      [
+       "Je comprends votre point de vue, mais…",
+       "I understand your point of view, but…"
+      ],
+      [
+       "C'est une bonne idée, mais il faudrait vérifier le budget.",
+       "It's a good idea, but we'd need to check the budget."
+      ]
+     ]
+    },
+    {
+     "title": "Clarifying and deciding",
+     "phrases": [
+      [
+       "Si je comprends bien, vous proposez de commencer en mars ?",
+       "If I understand correctly, you're suggesting we start in March?"
+      ],
+      [
+       "Vous pourriez préciser ?",
+       "Could you be more specific?"
+      ],
+      [
+       "Qui s'occupe de quoi ?",
+       "Who's doing what?"
+      ],
+      [
+       "Je m'en occupe.",
+       "I'll take care of it."
+      ],
+      [
+       "C'est pour quand ?",
+       "When's it needed by?"
+      ],
+      [
+       "On se fixe une date limite ?",
+       "Shall we set a deadline?"
+      ],
+      [
+       "Je vous envoie le compte rendu demain.",
+       "I'll send you the minutes tomorrow."
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "ca-depend",
+    "si-imparfait"
+   ],
+   "dialogue": {
+    "setting": "Planning a survey with Malagasy colleagues.",
+    "lines": [
+     [
+      "M. Andry",
+      "Merci à tous d'être venus. L'objectif aujourd'hui, c'est de fixer le calendrier de l'enquête.",
+      "Thank you all for coming. Today's aim is to set the timetable for the survey."
+     ],
+     [
+      "Vous",
+      "Merci. À mon avis, on devrait commencer par les villages les plus proches.",
+      "Thank you. In my opinion, we should start with the nearest villages."
+     ],
+     [
+      "Mme Rasoa",
+      "Je ne suis pas tout à fait d'accord. En janvier, c'est la saison des pluies, et les routes du sud seront coupées.",
+      "I don't entirely agree. January is the rainy season, and the roads in the south will be cut off."
+     ],
+     [
+      "Vous",
+      "Je comprends. Si je comprends bien, vous proposez de commencer par le sud ?",
+      "I see. If I understand correctly, you're suggesting we start with the south?"
+     ],
+     [
+      "Mme Rasoa",
+      "Exactement. Si on commençait par le sud en décembre, on éviterait les problèmes.",
+      "Exactly. If we started with the south in December, we'd avoid the problems."
+     ],
+     [
+      "Vous",
+      "C'est une bonne idée. Mais ça dépend aussi de la disponibilité des enquêteurs.",
+      "That's a good idea. But it also depends on the interviewers being available."
+     ],
+     [
+      "M. Andry",
+      "Je m'en occupe. Je vais les contacter cette semaine.",
+      "I'll take care of it. I'll contact them this week."
+     ],
+     [
+      "Vous",
+      "Parfait. Alors, qui s'occupe du questionnaire ?",
+      "Perfect. So, who's doing the questionnaire?"
+     ],
+     [
+      "Mme Rasoa",
+      "Je peux le traduire en malgache, si vous m'envoyez la version finale.",
+      "I can translate it into Malagasy if you send me the final version."
+     ],
+     [
+      "Vous",
+      "Très bien, je vous l'envoie vendredi. Pour résumer : le sud en décembre, Andry contacte les enquêteurs, et je finalise le questionnaire.",
+      "Very good, I'll send it to you on Friday. To sum up: the south in December, Andry contacts the interviewers, and I finalise the questionnaire."
+     ],
+     [
+      "M. Andry",
+      "C'est noté. Je vous envoie le compte rendu demain.",
+      "Noted. I'll send you the minutes tomorrow."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Qu'est-ce que vous en pensez ?",
+     "options": [
+      "À mon avis, c'est une bonne idée, mais il faudrait vérifier le budget.",
+      "Je pense de ça que oui.",
+      "J'en pense."
+     ],
+     "why": "Qu'est-ce que vous en pensez ? = What do you think (of it)? À mon avis… is a good opener."
+    },
+    {
+     "say": "Je propose qu'on reporte l'enquête à mars.",
+     "options": [
+      "Je comprends votre point de vue, mais ce serait trop tard pour nous.",
+      "Non, c'est nul.",
+      "Vous avez tort."
+     ],
+     "why": "Disagree politely: acknowledge first, then give a reason."
+    },
+    {
+     "say": "Qui peut s'occuper des réservations ?",
+     "options": [
+      "Je m'en occupe.",
+      "Je m'occupe d'elles.",
+      "C'est moi qui occupe."
+     ],
+     "why": "s'occuper de quelque chose → je m'en occupe."
+    },
+    {
+     "say": "On doit rendre le rapport pour quand ?",
+     "options": [
+      "Pour le quinze mars au plus tard.",
+      "Pour le rapport.",
+      "Quand on veut."
+     ],
+     "why": "au plus tard = at the latest."
+    },
+    {
+     "say": "Vous pourriez préciser ?",
+     "options": [
+      "Oui. Je veux dire qu'il nous faut deux enquêteurs de plus.",
+      "Oui, je peux.",
+      "Préciser quoi ?"
+     ],
+     "why": "Je veux dire que… = What I mean is…"
+    }
+   ],
+   "roleplay": "I'm in a project meeting with Malagasy university colleagues planning fieldwork. Play two or three colleagues with different opinions. Make me give my view, disagree politely, clarify proposals, agree who does what, and summarise the decisions."
+  },
+  {
+   "id": "recherche",
+   "emoji": "🔬",
+   "title": "Presenting your research",
+   "fr": "Présenter sa recherche",
+   "intro": "Explaining what your project is about, its aims and methods, partnerships and ethics, presenting results and handling questions.",
+   "sections": [
+    {
+     "title": "Explaining your project",
+     "phrases": [
+      [
+       "Je travaille sur l'éducation en milieu rural.",
+       "I work on education in rural areas."
+      ],
+      [
+       "Mon projet porte sur l'accès à l'école primaire.",
+       "My project is about access to primary school."
+      ],
+      [
+       "L'objectif principal, c'est de comprendre pourquoi les enfants quittent l'école.",
+       "The main aim is to understand why children leave school."
+      ],
+      [
+       "On s'intéresse surtout aux familles d'agriculteurs.",
+       "We're particularly interested in farming families."
+      ],
+      [
+       "Le projet est financé par une fondation britannique.",
+       "The project is funded by a British foundation."
+      ],
+      [
+       "Il s'agit d'une étude sur trois ans.",
+       "It's a three-year study."
+      ]
+     ]
+    },
+    {
+     "title": "Methods and ethics",
+     "phrases": [
+      [
+       "On va faire des entretiens et des questionnaires.",
+       "We're going to do interviews and questionnaires."
+      ],
+      [
+       "On travaille en partenariat avec l'université d'Antananarivo.",
+       "We're working in partnership with the University of Antananarivo."
+      ],
+      [
+       "On va recueillir des données dans quatre régions.",
+       "We're going to collect data in four regions."
+      ],
+      [
+       "Les données seront anonymisées.",
+       "The data will be anonymised."
+      ],
+      [
+       "Le projet a reçu l'accord du comité d'éthique.",
+       "The project has been approved by the ethics committee."
+      ],
+      [
+       "Les premiers résultats montrent que la distance joue un rôle important.",
+       "The first results show that distance plays an important role."
+      ]
+     ]
+    },
+    {
+     "title": "Presenting and questions",
+     "phrases": [
+      [
+       "Je vais vous présenter rapidement notre projet.",
+       "I'm going to give you a quick overview of our project."
+      ],
+      [
+       "Comme vous pouvez le voir sur ce graphique, …",
+       "As you can see on this graph, …"
+      ],
+      [
+       "Quels sont, selon vous, les principaux défis ?",
+       "What, in your view, are the main challenges?"
+      ],
+      [
+       "Vous avez des questions ou des remarques ?",
+       "Do you have any questions or comments?"
+      ],
+      [
+       "C'est une très bonne question.",
+       "That's a very good question."
+      ],
+      [
+       "Je n'ai pas encore la réponse, mais je vais me renseigner.",
+       "I don't have the answer yet, but I'll find out."
+      ],
+      [
+       "Je vous remercie de votre attention.",
+       "Thank you for your attention."
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "il-s-agit",
+    "gerondif"
+   ],
+   "dialogue": {
+    "setting": "Meeting the dean of a faculty.",
+    "lines": [
+     [
+      "Doyen",
+      "Alors, parlez-moi de votre projet.",
+      "So, tell me about your project."
+     ],
+     [
+      "Vous",
+      "Bien sûr. Il s'agit d'une étude sur l'accès à l'éducation en milieu rural.",
+      "Of course. It's a study on access to education in rural areas."
+     ],
+     [
+      "Doyen",
+      "Intéressant. Et quel est l'objectif principal ?",
+      "Interesting. And what's the main aim?"
+     ],
+     [
+      "Vous",
+      "L'objectif, c'est de comprendre pourquoi beaucoup d'enfants quittent l'école avant la fin du primaire.",
+      "The aim is to understand why many children leave school before the end of primary."
+     ],
+     [
+      "Doyen",
+      "C'est un vrai problème chez nous. Comment allez-vous procéder ?",
+      "That's a real problem here. How are you going to go about it?"
+     ],
+     [
+      "Vous",
+      "On va faire des entretiens avec des familles et des enseignants, en travaillant avec vos étudiants de master.",
+      "We're going to interview families and teachers, working with your master's students."
+     ],
+     [
+      "Doyen",
+      "Très bien. Et les données ?",
+      "Very good. And the data?"
+     ],
+     [
+      "Vous",
+      "Elles seront anonymisées et partagées avec l'université. On veut que les résultats servent ici aussi.",
+      "They'll be anonymised and shared with the university. We want the results to be useful here too."
+     ],
+     [
+      "Doyen",
+      "C'est important pour nous. Vous pourriez présenter le projet à nos enseignants la semaine prochaine ?",
+      "That's important to us. Could you present the project to our teaching staff next week?"
+     ],
+     [
+      "Vous",
+      "Avec plaisir. Ce serait l'occasion d'avoir leurs remarques.",
+      "With pleasure. It would be a chance to hear their comments."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Votre projet porte sur quoi ?",
+     "options": [
+      "Il porte sur la santé des mères en milieu rural.",
+      "Il porte un sac.",
+      "Il est sur la table."
+     ],
+     "why": "porter sur = to be about (a study, a project, a book)."
+    },
+    {
+     "say": "Comment allez-vous recueillir les données ?",
+     "options": [
+      "En faisant des entretiens et en distribuant des questionnaires.",
+      "Avec mes mains.",
+      "Je vais les recueillir demain."
+     ],
+     "why": "en + -ant explains how: en faisant, en distribuant."
+    },
+    {
+     "say": "Est-ce que les personnes interrogées resteront anonymes ?",
+     "options": [
+      "Oui, toutes les données seront anonymisées.",
+      "Oui, ils sont anonymes de nom.",
+      "Non, on publie les noms."
+     ],
+     "why": "anonymiser les données = to anonymise the data."
+    },
+    {
+     "say": "Quels sont les premiers résultats ?",
+     "options": [
+      "Les premiers résultats montrent que la distance joue un rôle important.",
+      "Les résultats sont premiers.",
+      "Je n'ai pas de résultat à vous."
+     ],
+     "why": "Les résultats montrent que… = The results show that…"
+    },
+    {
+     "say": "Je ne suis pas sûr de comprendre votre méthode.",
+     "options": [
+      "Je vais vous expliquer autrement. En fait, on compare deux groupes.",
+      "C'est normal.",
+      "Tant pis."
+     ],
+     "why": "Je vais vous expliquer autrement = Let me explain it another way."
+    }
+   ],
+   "roleplay": "Play a university dean in Madagascar, and then a room of lecturers after my short talk. Make me present my research project (aims, methods, partnership, ethics, data) and answer questions, including some I can't answer yet."
+  },
+  {
+   "id": "terrain",
+   "emoji": "🌾",
+   "title": "Fieldwork and interviews",
+   "fr": "Sur le terrain",
+   "intro": "Introducing a study to participants, consent and recording, asking open questions and follow-ups, working with an interpreter, and thanking people.",
+   "sections": [
+    {
+     "title": "Before the interview",
+     "phrases": [
+      [
+       "Bonjour, je fais une étude avec l'université.",
+       "Hello, I'm doing a study with the university."
+      ],
+      [
+       "L'entretien dure environ trente minutes.",
+       "The interview takes about thirty minutes."
+      ],
+      [
+       "Votre participation est volontaire.",
+       "Taking part is voluntary."
+      ],
+      [
+       "Vous pouvez arrêter à tout moment.",
+       "You can stop at any time."
+      ],
+      [
+       "Est-ce que je peux enregistrer notre conversation ?",
+       "May I record our conversation?"
+      ],
+      [
+       "Votre nom n'apparaîtra nulle part.",
+       "Your name won't appear anywhere."
+      ],
+      [
+       "Vous êtes d'accord pour participer ?",
+       "Do you agree to take part?"
+      ]
+     ]
+    },
+    {
+     "title": "During the interview",
+     "phrases": [
+      [
+       "Pouvez-vous me parler de votre travail ?",
+       "Can you tell me about your work?"
+      ],
+      [
+       "Depuis combien de temps vous habitez ici ?",
+       "How long have you lived here?"
+      ],
+      [
+       "Qu'est-ce qui a changé ces dernières années ?",
+       "What has changed in recent years?"
+      ],
+      [
+       "Pouvez-vous me donner un exemple ?",
+       "Can you give me an example?"
+      ],
+      [
+       "Si je comprends bien, la récolte a été mauvaise ?",
+       "If I understand correctly, the harvest was poor?"
+      ],
+      [
+       "Vous voulez ajouter quelque chose ?",
+       "Would you like to add anything?"
+      ],
+      [
+       "Prenez votre temps.",
+       "Take your time."
+      ]
+     ]
+    },
+    {
+     "title": "With an interpreter",
+     "phrases": [
+      [
+       "Vous pouvez traduire, s'il vous plaît ?",
+       "Could you translate, please?"
+      ],
+      [
+       "Demandez-lui s'il est d'accord.",
+       "Ask him if he agrees."
+      ],
+      [
+       "Qu'est-ce qu'elle a dit exactement ?",
+       "What exactly did she say?"
+      ]
+     ]
+    },
+    {
+     "title": "Thanking",
+     "phrases": [
+      [
+       "Merci beaucoup pour votre temps.",
+       "Thank you very much for your time."
+      ],
+      [
+       "Vos réponses nous sont très utiles.",
+       "Your answers are very useful to us."
+      ],
+      [
+       "On reviendra vous présenter les résultats.",
+       "We'll come back to present the results to you."
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "je-me-demande",
+    "faire-infinitif"
+   ],
+   "dialogue": {
+    "setting": "Interviewing a rice farmer.",
+    "lines": [
+     [
+      "Vous",
+      "Bonjour madame. Je fais une étude avec l'université sur l'agriculture dans la région.",
+      "Hello. I'm doing a study with the university on farming in the region."
+     ],
+     [
+      "Agricultrice",
+      "Bonjour. Qu'est-ce que vous voulez savoir ?",
+      "Hello. What do you want to know?"
+     ],
+     [
+      "Vous",
+      "J'aimerais vous poser quelques questions. Ça dure environ trente minutes. Votre participation est volontaire, et vous pouvez arrêter à tout moment.",
+      "I'd like to ask you a few questions. It takes about thirty minutes. Taking part is voluntary, and you can stop at any time."
+     ],
+     [
+      "Agricultrice",
+      "D'accord, pas de problème.",
+      "OK, no problem."
+     ],
+     [
+      "Vous",
+      "Est-ce que je peux enregistrer notre conversation ? Votre nom n'apparaîtra nulle part.",
+      "May I record our conversation? Your name won't appear anywhere."
+     ],
+     [
+      "Agricultrice",
+      "Oui, vous pouvez.",
+      "Yes, you can."
+     ],
+     [
+      "Vous",
+      "Merci. Depuis combien de temps vous cultivez du riz ici ?",
+      "Thank you. How long have you been growing rice here?"
+     ],
+     [
+      "Agricultrice",
+      "Depuis toujours. Mes parents le faisaient déjà.",
+      "All my life. My parents did it before me."
+     ],
+     [
+      "Vous",
+      "Et qu'est-ce qui a changé ces dernières années ?",
+      "And what has changed in recent years?"
+     ],
+     [
+      "Agricultrice",
+      "Les pluies arrivent plus tard, et les récoltes sont moins bonnes.",
+      "The rains come later, and the harvests are poorer."
+     ],
+     [
+      "Vous",
+      "Pouvez-vous me donner un exemple ?",
+      "Can you give me an example?"
+     ],
+     [
+      "Agricultrice",
+      "L'année dernière, on a dû replanter deux fois.",
+      "Last year we had to replant twice."
+     ],
+     [
+      "Vous",
+      "Merci beaucoup pour votre temps. Vos réponses nous sont très utiles. On reviendra vous présenter les résultats.",
+      "Thank you very much for your time. Your answers are very useful to us. We'll come back to present the results."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Ça va durer longtemps ?",
+     "options": [
+      "Environ trente minutes, mais vous pouvez arrêter quand vous voulez.",
+      "Oui, très longtemps.",
+      "Ça dure."
+     ],
+     "why": "Reassure: give the length and remind them they can stop."
+    },
+    {
+     "say": "Pourquoi vous enregistrez ?",
+     "options": [
+      "Pour ne rien oublier. L'enregistrement restera confidentiel.",
+      "Parce que.",
+      "Pour la radio."
+     ],
+     "why": "pour ne rien oublier = so as not to forget anything."
+    },
+    {
+     "say": "Je ne sais pas trop quoi dire…",
+     "options": [
+      "Prenez votre temps. Il n'y a pas de bonne ou de mauvaise réponse.",
+      "Dites quelque chose.",
+      "Alors on arrête."
+     ],
+     "why": "Put people at ease: there's no right or wrong answer."
+    },
+    {
+     "say": "Il dit que c'était mieux avant.",
+     "options": [
+      "Vous pouvez lui demander pourquoi ?",
+      "Demandez-lui pourquoi il est vieux.",
+      "C'est faux."
+     ],
+     "why": "To an interpreter: Vous pouvez lui demander… ? / Demandez-lui…"
+    },
+    {
+     "say": "Et les résultats, on va les voir ?",
+     "options": [
+      "Oui, on reviendra vous les présenter l'année prochaine.",
+      "Non, c'est pour l'université.",
+      "Les résultats sont secrets."
+     ],
+     "why": "Promise to share results, and keep the promise!"
+    }
+   ],
+   "roleplay": "Play a participant in a rural community in Madagascar whom I'm interviewing for a research study, plus an interpreter when I ask for one. Make me introduce the study, explain consent and recording, ask open questions and follow-ups, and thank the participant."
+  },
+  {
+   "id": "enseigner",
+   "emoji": "🎓",
+   "title": "Teaching",
+   "fr": "Enseigner",
+   "intro": "Classroom instructions, explaining and checking understanding, encouraging and giving feedback, homework and exams.",
+   "sections": [
+    {
+     "title": "Classroom instructions",
+     "phrases": [
+      [
+       "Bonjour à tous, on va commencer.",
+       "Good morning everyone, let's begin."
+      ],
+      [
+       "Ouvrez votre cahier à la page vingt.",
+       "Open your exercise book at page twenty."
+      ],
+      [
+       "Mettez-vous par groupes de quatre.",
+       "Get into groups of four."
+      ],
+      [
+       "Vous avez quinze minutes.",
+       "You have fifteen minutes."
+      ],
+      [
+       "Qui veut commencer ?",
+       "Who wants to start?"
+      ],
+      [
+       "Levez la main si vous avez une question.",
+       "Put your hand up if you have a question."
+      ],
+      [
+       "Un peu de silence, s'il vous plaît.",
+       "A bit of quiet, please."
+      ]
+     ]
+    },
+    {
+     "title": "Explaining and checking",
+     "phrases": [
+      [
+       "Aujourd'hui, on va voir comment écrire une introduction.",
+       "Today we're going to look at how to write an introduction."
+      ],
+      [
+       "Je vais vous donner un exemple.",
+       "I'm going to give you an example."
+      ],
+      [
+       "Autrement dit, il faut toujours justifier sa réponse.",
+       "In other words, you always have to justify your answer."
+      ],
+      [
+       "Est-ce que c'est clair ?",
+       "Is that clear?"
+      ],
+      [
+       "Qui peut résumer ce qu'on vient de voir ?",
+       "Who can sum up what we've just covered?"
+      ],
+      [
+       "Vous avez des questions ?",
+       "Do you have any questions?"
+      ],
+      [
+       "Je répète la question.",
+       "I'll repeat the question."
+      ]
+     ]
+    },
+    {
+     "title": "Encouraging and feedback",
+     "phrases": [
+      [
+       "Très bonne réponse !",
+       "Very good answer!"
+      ],
+      [
+       "C'est presque ça.",
+       "That's almost it."
+      ],
+      [
+       "Tu y es presque, continue !",
+       "You're nearly there, keep going!"
+      ],
+      [
+       "N'ayez pas peur de vous tromper.",
+       "Don't be afraid of getting it wrong."
+      ],
+      [
+       "Bravo, vous avez fait beaucoup de progrès.",
+       "Well done, you've made a lot of progress."
+      ]
+     ]
+    },
+    {
+     "title": "Homework and exams",
+     "phrases": [
+      [
+       "Pour la semaine prochaine, lisez le chapitre trois.",
+       "For next week, read chapter three."
+      ],
+      [
+       "Le devoir est à rendre lundi.",
+       "The assignment is due on Monday."
+      ],
+      [
+       "L'examen aura lieu le douze juin.",
+       "The exam will take place on 12 June."
+      ]
+     ]
+    }
+   ],
+   "patterns": [
+    "a-force-de",
+    "bien-que"
+   ],
+   "dialogue": {
+    "setting": "Running a workshop for secondary school teachers.",
+    "lines": [
+     [
+      "Vous",
+      "Bonjour à tous, merci d'être là. Aujourd'hui, on va voir comment faire participer les élèves en classe.",
+      "Good morning everyone, thank you for being here. Today we're going to look at how to get pupils to take part in class."
+     ],
+     [
+      "Enseignante",
+      "Bonjour. Nos classes sont très grandes, parfois soixante élèves.",
+      "Hello. Our classes are very big, sometimes sixty pupils."
+     ],
+     [
+      "Vous",
+      "C'est une très bonne remarque. Bien que les classes soient grandes, on peut faire travailler les élèves par deux.",
+      "That's a very good point. Although the classes are big, you can get pupils to work in pairs."
+     ],
+     [
+      "Enseignant",
+      "Mais ça fait beaucoup de bruit !",
+      "But it makes a lot of noise!"
+     ],
+     [
+      "Vous",
+      "C'est vrai, au début. Mais à force de le faire, les élèves prennent l'habitude. Je vais vous donner un exemple.",
+      "True, at first. But if you do it regularly, pupils get used to it. I'll give you an example."
+     ],
+     [
+      "Vous",
+      "Mettez-vous par deux, s'il vous plaît. Vous avez cinq minutes pour préparer trois questions sur le texte.",
+      "Get into pairs, please. You have five minutes to prepare three questions on the text."
+     ],
+     [
+      "Enseignante",
+      "Trois questions de compréhension ?",
+      "Three comprehension questions?"
+     ],
+     [
+      "Vous",
+      "Oui, exactement. Bon, qui veut commencer ?",
+      "Yes, exactly. Right, who wants to start?"
+     ],
+     [
+      "Enseignant",
+      "Nous ! Pourquoi l'auteur a-t-il quitté son village ?",
+      "Us! Why did the author leave his village?"
+     ],
+     [
+      "Vous",
+      "Très bonne question ! Vous voyez, tout le monde a participé. Est-ce que c'est clair ?",
+      "Very good question! You see, everyone took part. Is that clear?"
+     ],
+     [
+      "Enseignante",
+      "Oui, c'est très clair. On va essayer la semaine prochaine.",
+      "Yes, very clear. We'll try it next week."
+     ]
+    ]
+   },
+   "replies": [
+    {
+     "say": "Je n'ai pas compris l'exercice.",
+     "options": [
+      "Pas de souci, je vais vous donner un exemple.",
+      "C'est simple, pourtant.",
+      "Tant pis."
+     ],
+     "why": "An example is often the quickest way to explain."
+    },
+    {
+     "say": "C'est « elle est allé » ?",
+     "options": [
+      "C'est presque ça ! Il manque juste l'accord : allée.",
+      "Non, faux.",
+      "Je ne sais pas."
+     ],
+     "why": "Encourage first, then point to the detail."
+    },
+    {
+     "say": "On doit rendre le devoir quand ?",
+     "options": [
+      "Il est à rendre lundi prochain.",
+      "Rendez-le.",
+      "Le devoir est rendu."
+     ],
+     "why": "à rendre = due (to be handed in)."
+    },
+    {
+     "say": "J'ai peur de me tromper.",
+     "options": [
+      "N'ayez pas peur de vous tromper, c'est comme ça qu'on apprend.",
+      "Alors ne parlez pas.",
+      "Moi aussi."
+     ],
+     "why": "se tromper = to make a mistake."
+    },
+    {
+     "say": "Il y a beaucoup de bruit dans la classe.",
+     "options": [
+      "Un peu de silence, s'il vous plaît. Merci !",
+      "Taisez-vous tout de suite !",
+      "Ce n'est pas grave."
+     ],
+     "why": "Firm but polite works best. Taisez-vous ! (Be quiet!) is much sharper."
+    }
+   ],
+   "roleplay": "Play a group of students (or teachers at a training workshop) in Madagascar while I teach a short session. Make me give instructions, explain with examples, check understanding, encourage people, deal with a confused student, and set homework."
+  }
+ ]
+}
