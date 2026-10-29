@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Climb the fours: the whole table</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#14345C;
+  --deep:#0E2340;
+  --mint:#4FD1A5;
+  --sun:#FFCF4D;
+  --coral:#FF6F59;
+  --ink:#0B1B36;
+  --paper:#F3F8FF;
+  --soft:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--sky);color:var(--paper);
+  font:400 18px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  min-height:100vh;
+}
+h1,h2,h3,.num,.btn,.k,.box,.pill,.chip,.mb,.step{font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif}
+.app{max-width:560px;margin:0 auto;padding:14px 16px 48px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top h1{font-size:26px;font-weight:800;margin:0}
+.pill{
+  appearance:none;border:2px solid var(--soft);background:transparent;color:var(--paper);
+  border-radius:999px;padding:2px 14px;font-size:16px;font-weight:600;cursor:pointer;min-height:36px;
+}
+.prog{display:flex;gap:8px;list-style:none;margin:12px 0 18px;padding:0}
+.prog li{
+  flex:1;text-align:center;padding:5px 0;border-radius:12px;background:var(--soft);
+  font:600 16px "Baloo 2",sans-serif;opacity:.65;
+}
+.prog li.now{background:var(--paper);color:var(--ink);opacity:1}
+.prog li.past{background:var(--mint);color:var(--ink);opacity:1}
+h2{font-size:clamp(28px,7vw,36px);line-height:1.1;font-weight:800;margin:6px 0 8px}
+h3{font-size:24px;line-height:1.2;font-weight:800;margin:0 0 6px}
+p{margin:0 0 12px;max-width:52ch}
+.ins{font-size:20px;font-weight:700;margin-bottom:0}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:8px}
+h2:focus{outline:none}
+
+.btn{
+  appearance:none;border:0;border-radius:18px;background:var(--sun);color:var(--ink);
+  min-height:58px;padding:8px 26px;font-size:22px;font-weight:800;cursor:pointer;box-shadow:0 5px 0 #B98A10;
+}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #B98A10}
+.btn.ghost{background:transparent;color:var(--paper);border:3px solid var(--paper);box-shadow:none;min-height:54px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px}
+
+/* ---- stairs ---- */
+.stairs{display:flex;align-items:flex-end;gap:4px;height:320px;margin:44px 0 6px}
+.step{
+  flex:1;height:var(--h);position:relative;border-radius:8px 8px 3px 3px;
+  border:2px dashed rgba(255,255,255,.4);background:var(--soft);color:var(--paper);
+  font-size:clamp(13px,3.6vw,20px);font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  padding:5px 0;cursor:pointer;min-width:0;
+}
+.step.gold{border-color:var(--sun)}
+.step.on{border-style:solid;border-color:transparent;background:var(--mint);color:var(--ink)}
+.step.gold.on{background:var(--sun)}
+.step .idx{font:400 11px "Atkinson Hyperlegible",sans-serif;opacity:.85}
+.step.nx{outline:3px solid var(--paper);outline-offset:2px}
+.who{display:none;position:absolute;top:-36px;left:50%;width:28px;height:28px;margin-left:-14px;border-radius:50%;background:var(--coral)}
+.who.here{display:block;animation:hop .5s}
+.who::before,.who::after{content:"";position:absolute;top:10px;width:5px;height:5px;border-radius:50%;background:#fff}
+.who::before{left:6px}
+.who::after{right:6px}
+.cap{min-height:88px;padding-top:6px}
+.cap .big{font:800 clamp(34px,9vw,46px)/1.05 "Baloo 2",sans-serif;display:block}
+.chain{font:800 30px/1.2 "Baloo 2",sans-serif}
+.chain span{color:var(--sun)}
+.after{margin-top:8px;padding:16px 18px;border-radius:20px;background:var(--soft)}
+.after b{color:var(--sun)}
+
+/* ---- match ---- */
+.mstat{display:flex;justify-content:space-between;color:#CFE0F7;margin:8px 0}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mc{border:0;padding:0;background:none;perspective:700px;aspect-ratio:3/4;cursor:pointer;font:inherit}
+.mi{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s}
+.mc.up .mi,.mc.done .mi{transform:rotateY(180deg)}
+.mf,.mb{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:grid;place-items:center}
+.mf{background:var(--deep);border:3px solid var(--soft)}
+.mf::after{content:"?";font:800 34px "Baloo 2",sans-serif;color:var(--soft)}
+.mb{transform:rotateY(180deg);background:var(--paper);color:var(--ink);font-size:clamp(20px,6vw,30px);font-weight:800}
+.mb.a{background:var(--mint)}
+.mc.done .mb{background:var(--sun)}
+.mbanner{min-height:60px;margin-top:12px}
+.mbanner .big{font:800 34px/1.1 "Baloo 2",sans-serif}
+
+/* ---- stars ---- */
+.q{font:800 clamp(56px,16vw,84px)/1 "Baloo 2",sans-serif;margin:8px 0 6px;text-align:center}
+.boxes{display:flex;gap:10px;justify-content:center;margin-bottom:8px}
+.box{width:66px;height:78px;border-radius:14px;background:var(--paper);color:var(--ink);display:grid;place-items:center;font-size:50px;font-weight:800}
+.strip{display:flex;gap:3px;margin:8px 0}
+.strip[hidden]{display:none}
+.chip{flex:1;text-align:center;padding:4px 0;border-radius:8px;background:var(--soft);font-size:clamp(11px,3vw,16px);font-weight:800;border:2px solid transparent;min-width:0}
+.chip.gold{border-color:var(--sun)}
+.chip.hl{background:var(--mint);color:var(--ink)}
+.chip.gold.hl{background:var(--sun)}
+.msg{min-height:56px;text-align:center;font-size:20px;font-weight:700;margin:4px 0}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:340px;margin:0 auto}
+.k{
+  appearance:none;border:0;min-height:62px;border-radius:16px;background:var(--paper);color:var(--ink);
+  font-size:30px;font-weight:800;cursor:pointer;box-shadow:0 4px 0 #9FB3D6;
+}
+.k:active{transform:translateY(3px);box-shadow:0 1px 0 #9FB3D6}
+.k.fn{background:var(--soft);color:var(--paper);box-shadow:none;font-size:20px}
+.stars{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin:0 0 6px}
+.star{font-size:24px;line-height:1;color:rgba(255,255,255,.22)}
+.star.gold{color:var(--sun)}
+.star.silver{color:#C9CFE0}
+.finstars .star{font-size:32px}
+.peek{display:block;margin:10px auto 0}
+.peek[hidden]{display:none}
+.shake{animation:shake .35s}
+
+@keyframes hop{0%{transform:translateY(-14px)}60%{transform:translateY(3px)}100%{transform:none}}
+@keyframes shake{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <h1>Climb the fours</h1>
+    <button class="pill" id="snd" aria-pressed="true">Sound on</button>
+  </div>
+  <ol class="prog" id="prog" aria-label="Stages"></ol>
+  <main id="stage"></main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var $=function(s){return document.querySelector(s)};
+  var S={sound:true,stage:0,run:0,results:[]};
+  var N=12,T=4;
+  var WORDS=["","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"];
+  var SCALE=[262,294,330,349,392,440,494,523,587,659,698,784];
+  var timers=[];
+  var actx=null;
+
+  /* ---------- sound and speech (both optional, both fail quietly) ---------- */
+  function tone(freq,dur,type,gain){
+    if(!S.sound)return;
+    try{
+      actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+      if(actx.state==="suspended")actx.resume();
+      var o=actx.createOscillator(),g=actx.createGain();
+      o.type=type||"triangle";o.frequency.value=freq;
+      g.gain.setValueAtTime(gain||0.14,actx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001,actx.currentTime+(dur||0.2));
+      o.connect(g);g.connect(actx.destination);
+      o.start();o.stop(actx.currentTime+(dur||0.2));
+    }catch(e){}
+  }
+  function say(text){
+    if(!S.sound)return;
+    try{
+      if(!("speechSynthesis" in window))return;
+      window.speechSynthesis.cancel();
+      var u=new SpeechSynthesisUtterance(text);
+      u.lang="en-GB";u.rate=0.9;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+  function factSpeech(x,y){return WORDS[x]+" times "+WORDS[y]+" is "+(x*y)}
+  function chime(){tone(523,0.15);setTimeout(function(){tone(659,0.15)},120);setTimeout(function(){tone(784,0.28)},240)}
+  function thud(){tone(196,0.18,"sine",0.12)}
+
+  /* ---------- helpers ---------- */
+  function later(fn,ms){
+    var run=S.run;
+    var id=setTimeout(function(){if(run===S.run)fn()},ms);
+    timers.push(id);return id;
+  }
+  function clearAll(){
+    timers.forEach(clearTimeout);timers=[];
+    try{window.speechSynthesis.cancel()}catch(e){}
+  }
+  function shuffle(a){
+    for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}
+    return a;
+  }
+  function shake(el){
+    if(!el)return;
+    el.classList.remove("shake");void el.offsetWidth;el.classList.add("shake");
+  }
+  function focusHeading(){var h=$("#stage h2");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true})}}
+  function orient(k){
+    /* 4 x k most of the time, k x 4 sometimes, so both orders get seen */
+    var rev=(k!==T&&Math.random()<0.5);
+    return {k:k,x:rev?k:T,y:rev?T:k};
+  }
+  function chantAll(from,to,gap){
+    S.run++;clearAll();
+    for(var k=from;k<=to;k++){
+      (function(kk,i){later(function(){tone(SCALE[kk-1],0.28);say(String(T*kk))},i*gap)})(k,k-from);
+    }
+  }
+  function chantFacts(list,gap){
+    S.run++;clearAll();
+    list.forEach(function(k,i){
+      later(function(){tone(SCALE[k-1],0.3);say(factSpeech(T,k))},i*gap);
+    });
+  }
+
+  var STAGES=["Climb","Match","Stars"];
+  function drawProg(){
+    var html="";
+    STAGES.forEach(function(name,i){
+      var n=i+1;
+      var cls=S.stage===n?"now":(S.stage>n?"past":"");
+      html+='<li class="'+cls+'">'+name+'</li>';
+    });
+    $("#prog").innerHTML=html;
+  }
+  function go(stage){
+    S.run++;clearAll();S.stage=stage;drawProg();
+    [intro,climb,match,keys,finish][stage]();
+    focusHeading();
+    try{window.scrollTo(0,0)}catch(e){}
+  }
+
+  /* ---------- 0. intro ---------- */
+  function intro(){
+    $("#stage").innerHTML=
+      '<h2>The whole fours table. About ten minutes.</h2>'+
+      '<p>Climb the stairs from 4 × 1 to 4 × 12, flip cards to find pairs, then earn a star for every answer. Say each number out loud as you go.</p>'+
+      '<p>Turn the sound up. The game says each fact too.</p>'+
+      '<div class="row"><button class="btn" id="go">Start climbing</button></div>';
+    $("#go").onclick=function(){chime();go(1)};
+  }
+
+  /* ---------- 1. climb ---------- */
+  function climb(){
+    var next=1;
+    var html='<h2>Climb the stairs</h2><p class="ins" id="ins" aria-live="polite">Tap step 1. Say each number out loud.</p><div class="stairs" id="stairs">';
+    for(var k=1;k<=N;k++){
+      html+='<button class="step'+(k>=6&&k<=8?' gold':'')+'" data-k="'+k+'" style="--h:'+(44+k*20)+'px" aria-label="Step '+k+'">'+
+            '<span class="who"></span><span class="val">?</span><span class="idx">'+k+'</span></button>';
+    }
+    html+='</div><div class="cap" id="cap" aria-live="polite"></div><div id="after"></div>';
+    $("#stage").innerHTML=html;
+
+    var stairs=$("#stairs"),ins=$("#ins"),cap=$("#cap");
+    function mark(){
+      [].forEach.call(stairs.querySelectorAll(".step"),function(b){
+        b.classList.toggle("nx",+b.getAttribute("data-k")===next);
+      });
+    }
+    mark();
+
+    function reveal(k){
+      var b=stairs.querySelector('[data-k="'+k+'"]');
+      b.classList.add("on");
+      b.querySelector(".val").textContent=T*k;
+      [].forEach.call(stairs.querySelectorAll(".who"),function(w){w.classList.remove("here")});
+      var who=b.querySelector(".who");void who.offsetWidth;who.classList.add("here");
+      cap.innerHTML='<span class="big">'+T+' × '+k+' = '+(T*k)+'</span><span>'+(k===1?"One jump of 4.":k+" jumps of 4.")+'</span>';
+      tone(SCALE[k-1],0.3);
+      say(factSpeech(T,k));
+    }
+
+    stairs.addEventListener("click",function(e){
+      var b=e.target.closest(".step");if(!b)return;
+      var k=+b.getAttribute("data-k");
+      if(k===next){
+        reveal(k);next++;
+        if(next>N){ins.textContent="You reached the top!";mark();finishClimb()}
+        else{ins.textContent="Now step "+next+".";mark()}
+      }else if(k<next){
+        reveal(k);
+      }else{
+        shake(b);thud();
+        ins.textContent="One at a time. Next is step "+next+".";
+      }
+    });
+
+    function finishClimb(){
+      later(chime,400);
+      $("#after").innerHTML=
+        '<div class="after">'+
+          '<h3>Three things to spot</h3>'+
+          '<p><b>Every step is 4 more than the last.</b> If a fact goes missing, climb up to it from the step before.</p>'+
+          '<p><b>Double, then double again.</b> 4 × 7: double 7 is 14, double 14 is 28. It works for every fact in the fours.</p>'+
+          '<p><b>Look at the last digits:</b> 4, 8, 2, 6, 0, then round again. That is a quick way to check an answer.</p>'+
+          '<p>The gold steps, 24, 28 and 32, are often the tricky ones.</p>'+
+          '<div class="row"><button class="btn ghost" id="hear">Hear the gold three</button>'+
+          '<button class="btn" id="nxt">Next: flip and match</button></div>'+
+        '</div>';
+      $("#hear").onclick=function(){chantFacts([6,7,8],2800)};
+      $("#nxt").onclick=function(){go(2)};
+      $("#nxt").scrollIntoView({block:"nearest"});
+    }
+  }
+
+  /* ---------- 2. match (three rounds of four facts) ---------- */
+  var GROUPS=[[1,2,3,4],[5,6,7,8],[9,10,11,12]];
+
+  function match(){ matchRound(0); }
+
+  function matchRound(r){
+    S.run++;clearAll();
+    var group=GROUPS[r];
+    var cards=[];
+    group.forEach(function(k){
+      var o=orient(k);
+      cards.push({t:"s",p:T*k,x:o.x,y:o.y,label:o.x+" × "+o.y});
+      cards.push({t:"a",p:T*k,label:String(T*k)});
+    });
+    shuffle(cards);
+    var up=[],lock=false,tries=0,found=0,total=group.length;
+
+    var html='<h2>Flip and match</h2>'+
+      '<p class="ins">Round '+(r+1)+' of '+GROUPS.length+': '+T+' × '+group[0]+' to '+T+' × '+group[group.length-1]+'. A sum matches its answer.</p>'+
+      '<div class="mstat"><span id="tries">Tries: 0</span><span id="pairs">Pairs: 0 of '+total+'</span></div><div class="mgrid" id="grid">';
+    cards.forEach(function(c,i){
+      html+='<button class="mc" data-i="'+i+'" aria-label="Card '+(i+1)+', face down">'+
+        '<span class="mi"><span class="mf"></span><span class="mb '+c.t+'">'+c.label+'</span></span></button>';
+    });
+    html+='</div><div class="mbanner" id="mb" aria-live="polite"></div><div id="after"></div>';
+    $("#stage").innerHTML=html;
+    focusHeading();
+
+    var grid=$("#grid");
+    function btn(i){return grid.querySelector('[data-i="'+i+'"]')}
+    function setLabel(i,faceUp){
+      btn(i).setAttribute("aria-label","Card "+(i+1)+(faceUp?": "+cards[i].label:", face down"));
+    }
+
+    grid.addEventListener("click",function(e){
+      var b=e.target.closest(".mc");if(!b||lock)return;
+      var i=+b.getAttribute("data-i");
+      if(up.indexOf(i)>-1||b.classList.contains("done"))return;
+      b.classList.add("up");setLabel(i,true);up.push(i);
+      tone(cards[i].t==="s"?440:523,0.12);
+      if(up.length<2)return;
+
+      tries++;$("#tries").textContent="Tries: "+tries;
+      var a=cards[up[0]],c=cards[up[1]];
+      if(a.t!==c.t&&a.p===c.p){
+        var sum=a.t==="s"?a:c;
+        btn(up[0]).classList.add("done");btn(up[1]).classList.add("done");
+        found++;$("#pairs").textContent="Pairs: "+found+" of "+total;
+        $("#mb").innerHTML='<span class="big">'+sum.x+' × '+sum.y+' = '+sum.p+'</span>';
+        chime();say(factSpeech(sum.x,sum.y));
+        up=[];
+        if(found===total)later(doneRound,1700);
+      }else{
+        lock=true;thud();
+        var pair=up.slice();
+        later(function(){
+          pair.forEach(function(j){btn(j).classList.remove("up");setLabel(j,false)});
+          up=[];lock=false;
+        },1300);
+      }
+    });
+
+    function doneRound(){
+      $("#mb").innerHTML='';
+      var last=(r===GROUPS.length-1);
+      $("#after").innerHTML=
+        '<div class="after"><h3>Round '+(r+1)+' done in '+tries+' tries</h3>'+
+        '<p>'+(last?"Now the last stage. You will earn a star for each answer.":"Next round is a bit harder.")+'</p>'+
+        '<div class="row"><button class="btn" id="nxt">'+(last?"Next: earn your stars":"Next round")+'</button></div></div>';
+      $("#nxt").onclick=function(){if(last)go(3);else matchRound(r+1)};
+      $("#nxt").scrollIntoView({block:"nearest"});
+    }
+  }
+
+  /* ---------- 3. stars (all twelve facts, once each) ---------- */
+  function keys(){
+    var easy=shuffle([1,2,5,10]);
+    var hard=shuffle([3,4,6,7,8,9,11,12]);
+    var order=easy.slice(0,2).concat(shuffle(easy.slice(2).concat(hard)));
+    var qs=order.map(orient);
+
+    var idx=0,typed="",mode="ask",helped=false,locked=false;
+    S.results=[];
+
+    var chips="";
+    for(var k=1;k<=N;k++)chips+='<span class="chip'+(k>=6&&k<=8?' gold':'')+'" data-k="'+k+'">'+(T*k)+'</span>';
+    var pad="";
+    [1,2,3,4,5,6,7,8,9].forEach(function(d){pad+='<button class="k" data-d="'+d+'">'+d+'</button>'});
+    pad+='<button class="k fn" data-fn="del" aria-label="Delete">Del</button><button class="k" data-d="0">0</button><span></span>';
+    var starsHtml="";
+    for(var s=0;s<N;s++)starsHtml+='<span class="star">★</span>';
+
+    $("#stage").innerHTML=
+      '<h2>Earn your stars</h2>'+
+      '<div class="stars" id="stars" aria-label="Stars earned">'+starsHtml+'</div>'+
+      '<div class="q" id="q"></div>'+
+      '<div class="boxes" id="boxes"></div>'+
+      '<div class="strip" id="strip">'+chips+'</div>'+
+      '<div class="msg" id="msg" aria-live="polite"></div>'+
+      '<div class="pad" id="pad">'+pad+'</div>'+
+      '<button class="btn ghost peek" id="peek">Peek at the stairs</button>';
+
+    var strip=$("#strip"),msg=$("#msg"),boxes=$("#boxes"),peekBtn=$("#peek");
+
+    function need(){var q=qs[idx];return String(q.x*q.y).length}
+    function drawBoxes(){
+      var n=need(),h="";
+      for(var i=0;i<n;i++)h+='<div class="box">'+(typed.charAt(i)||"")+'</div>';
+      boxes.innerHTML=h;
+    }
+    function clearChips(){
+      [].forEach.call(strip.children,function(c){c.classList.remove("hl")});
+    }
+    function showQ(){
+      var q=qs[idx];
+      typed="";mode="ask";helped=false;locked=false;
+      $("#q").textContent=q.x+" × "+q.y+" =";
+      drawBoxes();clearChips();
+      var showStrip=idx<2;
+      strip.hidden=!showStrip;
+      peekBtn.hidden=showStrip;
+      msg.textContent=idx===0?"Type the answer. The stairs are here to help.":"Type the answer.";
+    }
+
+    function award(star){
+      S.results.push(star);
+      var stars=$("#stars").children;
+      stars[S.results.length-1].className="star "+star;
+      var q=qs[idx];
+      locked=true;
+      msg.textContent="Yes! "+q.x+" × "+q.y+" = "+(q.x*q.y);
+      chime();say(factSpeech(q.x,q.y));
+      later(function(){
+        idx++;
+        if(idx>=qs.length)go(4);else showQ();
+      },2200);
+    }
+
+    function chant(answer){
+      locked=true;
+      var target=answer/T;
+      strip.hidden=false;peekBtn.hidden=true;clearChips();
+      msg.textContent="Nearly! Let us climb to it.";
+      for(var s=1;s<=target;s++){
+        (function(step){
+          later(function(){
+            var chip=strip.querySelector('[data-k="'+step+'"]');
+            if(chip)chip.classList.add("hl");
+            tone(SCALE[step-1],0.22);
+          },600+(step-1)*380);
+        })(s);
+      }
+      later(function(){
+        msg.textContent="Now type "+answer+".";
+        say(String(answer));
+        typed="";drawBoxes();locked=false;
+      },600+target*380+300);
+    }
+
+    function check(){
+      var q=qs[idx],ans=q.x*q.y;
+      if(+typed===ans){
+        award(mode==="ask"&&!helped?"gold":"silver");
+      }else if(mode==="ask"){
+        helped=true;mode="copy";thud();chant(ans);
+      }else{
+        shake(boxes);thud();typed="";
+        setTimeout(drawBoxes,250);
+        msg.textContent="Look at the lit-up step and type "+ans+".";
+      }
+    }
+
+    function press(d){
+      if(locked||typed.length>=need())return;
+      typed+=d;drawBoxes();tone(330+(+d)*22,0.08,"sine",0.1);
+      if(typed.length===need()){
+        locked=true;
+        setTimeout(function(){locked=false;check()},220);
+      }
+    }
+    function del(){if(locked)return;typed=typed.slice(0,-1);drawBoxes()}
+
+    $("#pad").addEventListener("click",function(e){
+      var b=e.target.closest("button");if(!b)return;
+      if(b.getAttribute("data-fn")==="del")del();
+      else if(b.hasAttribute("data-d"))press(b.getAttribute("data-d"));
+    });
+    peekBtn.onclick=function(){
+      if(locked)return;
+      helped=true;strip.hidden=false;peekBtn.hidden=true;
+      msg.textContent="Peeking is fine. It just earns a silver star.";
+    };
+    keys.onKey=function(e){
+      if(S.stage!==3)return;
+      if(e.key>="0"&&e.key<="9")press(e.key);
+      else if(e.key==="Backspace")del();
+    };
+
+    showQ();
+  }
+
+  /* ---------- 4. finish ---------- */
+  function finish(){
+    var gold=S.results.filter(function(r){return r==="gold"}).length;
+    var silver=S.results.length-gold;
+    var stars="";
+    S.results.forEach(function(r){stars+='<span class="star '+r+'">★</span>'});
+    $("#stage").innerHTML=
+      '<h2>You climbed the whole fours table</h2>'+
+      '<div class="stars finstars" aria-label="Stars earned">'+stars+'</div>'+
+      '<p>'+gold+' gold '+(gold===1?"star":"stars")+(silver?' and '+silver+' silver.':'.')+' Silver just means the stairs helped.</p>'+
+      '<p>Say the whole staircase out loud once more before you go: 4, 8, 12, all the way up to 48.</p>'+
+      '<div class="row"><button class="btn" id="hear">Hear the staircase</button><button class="btn ghost" id="again">Climb again</button></div>';
+    chime();later(chime,500);
+    $("#hear").onclick=function(){chantAll(1,N,1100)};
+    $("#again").onclick=function(){go(1)};
+  }
+
+  /* ---------- global wiring ---------- */
+  $("#snd").onclick=function(){
+    S.sound=!S.sound;
+    this.textContent=S.sound?"Sound on":"Sound off";
+    this.setAttribute("aria-pressed",S.sound?"true":"false");
+    if(!S.sound){try{window.speechSynthesis.cancel()}catch(e){}}
+  };
+  document.addEventListener("keydown",function(e){if(keys.onKey)keys.onKey(e)});
+
+  go(0);
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

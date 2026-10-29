@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sign Squad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#101425; --grid:#1B2140; --ink:#0B0E1C; --paperink:#F2F0FF;
+  --pos:#3BD6A0; --possoft:#173A34; --neg:#FF6B7A; --negsoft:#3C1B24;
+  --sun:#FFC53D; --violet:#8C7BFF; --violetsoft:#221B45; --white:#fff;
+  --display:'Bricolage Grotesque',ui-rounded,system-ui,sans-serif;
+  --body:'Atkinson Hyperlegible',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --math:'STIX Two Text','Times New Roman',Georgia,serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--paperink);font-family:var(--body);font-size:17px;line-height:1.5;
+  background-color:var(--paper);
+  background-image:radial-gradient(circle at 1px 1px,var(--grid) 1.4px,transparent 1.4px);
+  background-size:26px 26px;min-height:100vh;
+}
+#app{max-width:640px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top,0px)) 16px calc(60px + env(safe-area-inset-bottom,0px))}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.sr{position:absolute;left:-9999px}
+.m{font-family:var(--math);font-weight:500;font-size:1.12em;white-space:nowrap}
+.m i{font-style:italic}
+.pm{font-weight:800}
+.pm.pos{color:var(--pos)} .pm.neg{color:var(--neg)}
+
+.card,.btn,.chip,.node,.key,.opt,.cell{border:2px solid rgba(242,240,255,.14);border-radius:14px}
+.card{background:#171B31;box-shadow:0 10px 30px -12px rgba(0,0,0,.6);padding:18px}
+.btn{background:var(--violet);color:#12102A;font-family:var(--display);font-weight:800;font-size:1.05rem;padding:11px 20px;border-color:transparent;transition:transform .08s,filter .08s}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:scale(.97)}
+.btn.alt{background:var(--sun)}
+.btn.plain{background:transparent;color:var(--paperink);border-color:rgba(242,240,255,.25)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.ghost{background:transparent;border:none;color:#9EA3C4;font-weight:700;padding:6px 10px;border-radius:10px}
+.ghost:hover{color:var(--paperink)}
+.ghost.small{font-size:.9rem}
+.chip{background:#1F2440;padding:3px 11px;font-weight:700;font-size:.95rem}
+
+.hero h1{font-family:var(--display);font-weight:800;font-size:2.3rem;line-height:1.05;margin:6px 0 4px;letter-spacing:-.01em}
+.hero p{margin:0 0 14px;color:#AEB3D4}
+.rank{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.rank .name{font-family:var(--display);font-weight:800;font-size:1.1rem;background:var(--violet);color:#12102A;border-radius:999px;padding:2px 14px}
+.xpbar{height:14px;border-radius:999px;background:#1F2440;overflow:hidden}
+.xpbar>div{height:100%;background:linear-gradient(90deg,var(--pos),var(--sun));width:0;transition:width .6s}
+.xptxt{font-size:.9rem;color:#9EA3C4;margin:4px 0 18px}
+
+.path{list-style:none;margin:0;padding:0;position:relative}
+.path::before{content:"";position:absolute;left:23px;top:22px;bottom:22px;width:3px;background:repeating-linear-gradient(rgba(242,240,255,.25) 0 7px,transparent 7px 13px)}
+.path li{position:relative;padding-left:64px;margin-bottom:14px}
+.pin{position:absolute;left:0;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:2px solid rgba(242,240,255,.2);background:#1B2140;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.2rem}
+.pin.done{background:var(--pos);color:#0C2620;border-color:transparent}
+.pin.boss{background:var(--sun);color:#12102A;border-color:transparent}
+.pin.lock{color:#6B7094}
+.node{display:block;width:100%;text-align:left;background:#171B31;padding:12px 14px;transition:transform .08s,background .12s}
+.node:hover:not([disabled]){transform:translateX(2px);background:#1D2242}
+.node[disabled]{background:transparent;border-style:dashed;color:#6B7094;cursor:not-allowed}
+.node.boss{background:linear-gradient(135deg,#2A2450,#1D2242)}
+.node .t{font-family:var(--display);font-weight:800;font-size:1.1rem;display:flex;justify-content:space-between;gap:8px}
+.node .ex{color:#9EA3C4;font-size:.95rem}
+.stars{letter-spacing:2px;color:#3A3F63;font-size:1.1rem;white-space:nowrap}
+.stars b{color:var(--sun);font-weight:400}
+.tools{margin-top:26px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;font-size:.9rem}
+
+.bar{display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:10px}
+.bar .lvl{font-family:var(--display);font-weight:800;flex:1;text-align:center;font-size:1.02rem}
+.chips{display:flex;gap:6px}
+.dots{display:flex;gap:6px;margin-bottom:14px}
+.dot{flex:1;height:9px;border-radius:99px;background:#1F2440}
+.dot.first{background:var(--pos)} .dot.second{background:var(--sun)} .dot.miss{background:var(--neg)}
+.dot.now{background:var(--violet)}
+.qnum{color:#9EA3C4;font-size:.9rem;margin-bottom:6px}
+.prompt{font-size:1.25rem;line-height:1.7;margin-bottom:14px}
+.prompt .m{font-size:1.45em;background:var(--violetsoft);border-radius:8px;padding:1px 8px}
+
+.teach{border-radius:16px;background:linear-gradient(160deg,#221B45,#171B31);border:2px solid rgba(140,123,255,.35);padding:18px;margin-bottom:16px}
+.teach h3{font-family:var(--display);margin:0 0 8px;font-size:1.2rem}
+.teach .rule{font-family:var(--display);font-weight:800;font-size:1.3rem;background:#12102A;border-radius:10px;padding:10px 14px;margin:10px 0;text-align:center}
+.teach .trap{background:var(--negsoft);border-radius:10px;padding:10px 14px;margin-top:10px;font-size:.95rem}
+.teach .trap b{color:var(--neg)}
+
+.signrow{display:flex;gap:10px;justify-content:center;margin:16px 0}
+.signbtn{width:76px;height:76px;border-radius:18px;background:#1F2440;font:800 2.2rem var(--display);display:grid;place-items:center;transition:transform .08s}
+.signbtn:hover:not([disabled]){transform:translateY(-2px)}
+.signbtn.pos{color:var(--pos)} .signbtn.neg{color:var(--neg)}
+.signbtn.right{background:var(--possoft);outline:2px solid var(--pos)}
+.signbtn.wrong{background:var(--negsoft);outline:2px solid var(--neg)}
+
+.ans{display:flex;gap:10px}
+.ans input{flex:1;min-width:0;font:600 1.5rem var(--math);border:2px solid rgba(242,240,255,.2);border-radius:12px;padding:8px 12px;background:#12102A;color:var(--paperink)}
+.pad{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 6px}
+.key{background:#1F2440;min-width:44px;height:42px;padding:0 10px;font:600 1.15rem var(--math)}
+.key:active{transform:scale(.94)}
+.opts{display:grid;gap:10px}
+.opt{background:#171B31;text-align:left;padding:12px 14px}
+.opt:hover:not([disabled]){background:#1F2440}
+.opt.right{background:var(--possoft);outline:2px solid var(--pos)} .opt.wrong{background:var(--negsoft);outline:2px solid var(--neg)}
+.hint{font-size:.85rem;color:#9EA3C4;margin:6px 0 0}
+
+.boxwrap{margin:14px 0;overflow-x:auto}
+.boxgrid{display:grid;grid-template-columns:70px 1fr 1fr;gap:6px;min-width:340px}
+.bx{border-radius:10px;display:flex;align-items:center;justify-content:center;padding:8px;text-align:center}
+.bx.hdr{background:#1F2440;font-family:var(--math);font-weight:600;font-size:1.05rem}
+.bx.corner{background:transparent}
+.bx.cell{background:#12102A;border:2px solid rgba(140,123,255,.35)}
+.bx.cell input{width:100%;min-width:0;background:transparent;border:none;color:var(--paperink);font:600 1.1rem var(--math);text-align:center;padding:6px 2px}
+.bx.cell input:focus{outline:none}
+.bx.cell.right{border-color:var(--pos);background:var(--possoft)}
+.bx.cell.wrong{border-color:var(--neg);background:var(--negsoft)}
+.boxnote{font-size:.85rem;color:#9EA3C4;margin:6px 0 14px}
+
+.fb{margin-top:16px;border-radius:12px;padding:14px}
+.fb.good{background:var(--possoft);border:2px solid rgba(59,214,160,.4)}
+.fb.bad{background:var(--negsoft);border:2px solid rgba(255,107,122,.4)}
+.fb.try{background:#332A14;border:2px solid rgba(255,197,61,.4)}
+.fb strong{font-family:var(--display);font-size:1.15rem}
+.fb .steps{margin:8px 0;padding-left:22px}
+.fb .steps li{margin-bottom:5px}
+.fb .why{margin:8px 0 12px;font-style:italic;color:#C7CBE8}
+.fb details{margin:6px 0}
+.fb summary{cursor:pointer;font-weight:700}
+.fb .theans{margin:6px 0}
+.xpfloat{position:fixed;left:50%;top:38%;transform:translateX(-50%);font:800 2rem var(--display);color:var(--sun);pointer-events:none;animation:up 1s ease-out forwards}
+@keyframes up{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-70px)}}
+
+.res{text-align:center}
+.res h2{font-family:var(--display);font-weight:800;font-size:2rem;margin:4px 0}
+.bigstars{font-size:3.4rem;letter-spacing:6px;color:#3A3F63;line-height:1.1}
+.bigstars b{color:var(--sun);font-weight:400}
+.statrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.rankup{background:var(--sun);color:#12102A;border-radius:12px;padding:8px 12px;font-family:var(--display);font-weight:800;margin:10px 0}
+.btnrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.review{text-align:left;margin-top:22px}
+.review h3{font-family:var(--display);margin:0 0 8px}
+.review .card{margin-bottom:12px;padding:14px}
+.confetti{position:fixed;top:-12px;width:9px;height:13px;border-radius:2px;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg)}}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.xpfloat{animation:none;opacity:0}.xpbar>div{transition:none}}
+@media (max-width:420px){.hero h1{font-size:1.9rem}.prompt{font-size:1.1rem}.signbtn{width:64px;height:64px;font-size:1.8rem}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<noscript>This game needs JavaScript switched on.</noscript>
+<script>
+/* ---------- helpers ---------- */
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[R(0,a.length-1)];
+const nz=(a,b)=>{let v=0;while(v===0)v=R(a,b);return v;};
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]];}return a;};
+const N=n=>(n<0?'−':'')+Math.abs(n);
+const P=n=>n<0?'('+N(n)+')':String(n);
+const cx=(c,v='x')=>c===1?v:c===-1?'−'+v:N(c)+v;
+const sumStr=cs=>cs.map((c,i)=>i===0?N(c):(c<0?'− '+N(-c):'+ '+c)).join(' ');
+function poly(terms){
+  let s='';
+  terms.filter(t=>t[0]!==0).forEach((t,i)=>{
+    const c=t[0],v=t[1],a=Math.abs(c);
+    const body=v===''?String(a):(a===1?v:a+v);
+    s+= i===0 ? (c<0?'−':'')+body : (c<0?' − ':' + ')+body;
+  });
+  return s||'0';
+}
+const mh=s=>s.replace(/[xy]/g,'<i>$&</i>');
+const rich=s=>s.replace(/\{\{(.+?)\}\}/g,(_,m)=>'<span class="m">'+mh(m)+'</span>');
+const signTag=n=>`<span class="pm ${n<0?'neg':'pos'}">${n<0?'−':'+'}</span>`;
+
+/* ---------- tiny polynomial engine ---------- */
+const padd=(a,b,s=1)=>{const r={...a};for(const k in b)r[k]=(r[k]||0)+s*b[k];return r;};
+function pmul(a,b){const r={};for(const k in a)for(const l in b){const[i,j]=k.split(',').map(Number),[m,n]=l.split(',').map(Number);const kk=(i+m)+','+(j+n);r[kk]=(r[kk]||0)+a[k]*b[l];}return r;}
+function clean(a){const r={};for(const k in a)if(Math.abs(a[k])>1e-9)r[k]=a[k];return r;}
+function peq(a,b){a=clean(a);b=clean(b);for(const k of new Set([...Object.keys(a),...Object.keys(b)]))if(Math.abs((a[k]||0)-(b[k]||0))>1e-9)return false;return true;}
+const isNum=t=>/^[\d.]/.test(t), isVar=t=>/^[xy]$/.test(t);
+function tokenize(str){
+  const s=str.toLowerCase().replace(/\s+/g,'').replace(/[−–—]/g,'-').replace(/[×·]/g,'*').replace(/÷/g,'/').replace(/²/g,'^2');
+  const toks=s.match(/\d+\.?\d*|\.\d+|[xy]|[-+*\/^()]/g)||[];
+  if(toks.join('')!==s)return null;
+  const out=[];
+  for(const t of toks){
+    const p=out[out.length-1];
+    if(p!==undefined&&(isNum(p)||isVar(p)||p===')')&&(isVar(t)||t==='('||isNum(t)))out.push('*');
+    out.push(t);
+  }
+  return out;
+}
+function parse(str){
+  const toks=tokenize(str);if(!toks||!toks.length)return null;
+  let i=0;const peek=()=>toks[i],next=()=>toks[i++];
+  function expr(){let v=term();while(peek()==='+'||peek()==='-'){const o=next();v=padd(v,term(),o==='+'?1:-1);}return v;}
+  function term(){let v=unary();while(peek()==='*'||peek()==='/'){const o=next();const r=unary();
+    if(o==='*')v=pmul(v,r);else{const c=clean(r),ks=Object.keys(c);if(ks.length!==1||ks[0]!=='0,0')throw 0;v=pmul(v,{'0,0':1/c['0,0']});}}return v;}
+  function unary(){if(peek()==='-'){next();return pmul(unary(),{'0,0':-1});}if(peek()==='+'){next();return unary();}return pw();}
+  function pw(){let b=atom();if(peek()==='^'){next();const e=next();if(!e||!/^\d+$/.test(e)||+e>4)throw 0;let r={'0,0':1};for(let k=0;k<+e;k++)r=pmul(r,b);b=r;}return b;}
+  function atom(){const t=next();if(t===undefined)throw 0;if(t==='('){const v=expr();if(next()!==')')throw 0;return v;}
+    if(t==='x')return{'1,0':1};if(t==='y')return{'0,1':1};if(isNum(t)){const n=parseFloat(t);if(isNaN(n))throw 0;return{'0,0':n};}throw 0;}
+  try{const v=expr();return i!==toks.length?null:clean(v);}catch(e){return null;}
+}
+function termCount(str){const t=tokenize(str);if(!t)return 0;let c=1;
+  for(let i=1;i<t.length;i++)if((t[i]==='+'||t[i]==='-')&&(isNum(t[i-1])||isVar(t[i-1])||t[i-1]===')'))c++;return c;}
+function checkNum(raw,ans){const p=parse((raw||'').trim());if(!p)return{ok:false,msg:"I couldn't read that — type a number, like 4 or −3."};
+  if(Object.keys(p).some(k=>k!=='0,0'))return{ok:false,msg:'The answer should be just a number.'};return{ok:peq(p,ans)};}
+function checkExpr(raw,q){
+  const p=parse(raw);
+  if(!p)return{ok:false,msg:"I couldn't read that. Use x, +, −, brackets, and the x² key for powers."};
+  if(!peq(p,q.ans))return{ok:false};
+  const t=tokenize(raw);
+  if(t.includes('('))return{ok:false,msg:'Right value, but you still have brackets — expand fully.'};
+  if(termCount(raw)!==(Object.keys(q.ans).length||1))return{ok:false,msg:'Right value, but not fully simplified — collect the like terms.'};
+  return{ok:true};
+}
+function checkCell(raw,ans){const p=parse((raw||'').trim());if(!p)return false;if(!peq(p,ans))return false;return true;}
+
+function foil(p,a,q,b){
+  const A=p*q,B=p*b+a*q,C=a*b;
+  return{ans:poly([[A,'x²'],[B,'x'],[C,'']]),A,B,C,
+    steps:[`Multiply every term in the first bracket by every term in the second (four products).`,
+      `{{${cx(p)} × ${cx(q)} = ${cx(A,'x²')}}}, {{${cx(p)} × ${P(b)} = ${cx(p*b)}}}, {{${P(a)} × ${cx(q)} = ${cx(a*q)}}}, {{${P(a)} × ${P(b)} = ${N(C)}}}`,
+      `Collect the {{x}} terms: {{${sumStr([p*b,a*q])} = ${N(B)}}}${B===0?', so they cancel':''}`]};
+}
+
+/* ---------- question generators ---------- */
+function Q(o){if(o.type==='expr'||o.type==='num')o.ans=parse(o.ansStr);return o;}
+
+// Level 1: pure sign-of-product drill
+function gSign(){
+  const a=nz(-9,9),b=nz(-9,9),ans=a*b;
+  const same=(a<0)===(b<0);
+  return Q({type:'num',prompt:`Work out {{${P(a)} × ${P(b)}}}`,ansStr:N(ans),
+    steps:[`The signs are ${same?'the same':'different'}, so the answer is ${same?'positive':'negative'}.`,
+      `${Math.abs(a)} × ${Math.abs(b)} = ${Math.abs(ans)}, so the answer is {{${N(ans)}}}.`],
+    hint:'Same signs → positive. Different signs → negative. Then multiply the numbers as normal.',
+    why:same?'Two numbers with the same sign always multiply to a positive answer.':'One positive and one negative always multiply to a negative answer.'});
+}
+
+// Level 2: predict the sign of the constant term in a double bracket, before expanding
+function gPredict(){
+  const a=nz(-9,9),b=nz(-9,9),c=a*b,same=(a<0)===(b<0);
+  const left=`(${poly([[1,'x'],[a,'']])})`,right=`(${poly([[1,'x'],[b,'']])})`;
+  return{type:'sign',prompt:`Before you expand {{${left}${right}}} — what sign will the very last term have?`,
+    correct:c<0?'neg':'pos',
+    steps:[`The last term comes from {{${P(a)} × ${P(b)}}}.`,`The signs are ${same?'the same':'different'}, so the product is ${same?'positive':'negative'}.`,
+      `Expanded fully: {{${foil(1,a,1,b).ans}}}`],
+    hint:'Look only at the two numbers (ignore the x terms) and apply the same/different sign rule.',
+    why:'The last term of a double bracket is always the product of the two numbers, so its sign follows the ordinary multiplication rule.'};
+}
+
+// Level 3: box method
+function gBox(){
+  let p,a,q,b;
+  const t=R(1,3);
+  if(t===1){p=1;a=nz(-9,9);q=1;b=nz(-9,9);}
+  else if(t===2){p=R(2,3);a=nz(-7,7);q=1;b=nz(-7,7);}
+  else{p=1;a=nz(-8,8);q=1;b=a;} // squared-ish but via box, kept general
+  const f=foil(p,a,q,b);
+  const cells=[
+    {r:cx(p,'x'),c:cx(q,'x'),ans:{'2,0':p*q},label:'x²'},
+    {r:cx(p,'x'),c:P(b),ans:{[(1)+',0']:p*b},label:'x'},
+    {r:P(a),c:cx(q,'x'),ans:{[(1)+',0']:a*q},label:'x'},
+    {r:P(a),c:P(b),ans:{'0,0':a*b},label:'number'}
+  ];
+  return{type:'box',prompt:`Fill in the box for {{(${poly([[p,'x'],[a,'']])})(${poly([[q,'x'],[b,'']])})}}`,
+    rowHdr:[cx(p,'x'),P(a)],colHdr:[cx(q,'x'),P(b)],cells,ans:parse(f.ans),ansStr:f.ans,
+    steps:[`Row × column, one cell at a time — the sign of each cell is decided by the row and column labels.`,
+      `Top-left: {{${cx(p,'x')} × ${cx(q,'x')} = ${cx(p*q,'x²')}}}`,
+      `Top-right: {{${cx(p,'x')} × ${P(b)} = ${cx(p*b)}}}`,
+      `Bottom-left: {{${P(a)} × ${cx(q,'x')} = ${cx(a*q)}}}`,
+      `Bottom-right: {{${P(a)} × ${P(b)} = ${N(a*b)}}}`,
+      `Now add the two middle (x) cells: {{${sumStr([p*b,a*q])} = ${N(f.B)}}}`],
+    hint:'Multiply the row label by the column label for each cell. The sign comes from the labels, not from memory.',
+    why:'A box forces every one of the four products to be written down, so there is nowhere for a sign to quietly go missing.'};
+}
+
+// Level 4: squared brackets — teach the formula, drill the middle term specifically
+function gSquare(){
+  const a=nz(-9,9);
+  const f=foil(1,a,1,a);
+  return Q({type:'expr',mode:'simplify',
+    prompt:`Expand and simplify {{(${poly([[1,'x'],[a,'']])})²}}`,ansStr:f.ans,
+    steps:[`Write it out twice — a square means the bracket times itself: {{(${poly([[1,'x'],[a,'']])})(${poly([[1,'x'],[a,'']])})}}`,
+      `Using the formula: {{x² + 2(${P(a)})x + (${P(a)})²}}`,
+      `Middle term: {{2 × ${P(a)} = ${N(2*a)}}}, so {{${cx(2*a)}}}`,`Last term: {{(${P(a)})² = ${a*a}}} (always positive, even when ${P(a)} is negative)`],
+    hint:'(x + a)² = x² + 2ax + a². Double the number for the middle term; square it (always positive) for the last term.',
+    why:a<0?'This is the trap: a is negative, so the middle term is negative too — but the last term, a², is still positive because a negative squared is positive.':'Squaring a bracket doubles the number into the middle term and squares it for the last term.'});
+}
+function gSquareMid(){
+  // isolates just the middle-term sign/coefficient, the single most-missed piece
+  const a=nz(-9,9);
+  return mcQ(`In {{(${poly([[1,'x'],[a,'']])})²}}, what is the middle term?`,
+    `{{${cx(2*a)}}}`,
+    [`{{${cx(Math.abs(2*a))}}}`,`{{${cx(a)}}}`,`{{${a*a}}}`],
+    [`The formula gives a middle term of {{2ax}}.`,`Here {{a = ${P(a)}}}, so the middle term is {{2 × ${P(a)} = ${N(2*a)}}}, giving {{${cx(2*a)}}}.`],
+    'The middle term keeps the same sign as the number inside the bracket — it does not become positive just because it gets squared later.');
+}
+function mcQ(prompt,right,wrongs,steps,why){
+  const opts=[right,...wrongs],idx=shuffle(opts.map((_,i)=>i));
+  return{type:'mc',prompt,options:idx.map(i=>opts[i]),correct:idx.indexOf(0),ansStr:right,steps,why};
+}
+
+// Boss: mixed, includes a general (unequal) double bracket expand too
+function gGeneral(){
+  const p=R(1,3),a=nz(-8,8),q=R(1,2),b=nz(-8,8),f=foil(p,a,q,b);
+  return Q({type:'expr',mode:'simplify',
+    prompt:`Expand and simplify {{(${poly([[p,'x'],[a,'']])})(${poly([[q,'x'],[b,'']])})}}`,ansStr:f.ans,steps:f.steps,
+    hint:'Four products: first, outer, inner, last. Then collect the x terms.',
+    why:'Every term in one bracket meets every term in the other — miss one and the sign or the answer breaks.'});
+}
+const BOSS_GENS=[gSign,gPredict,gSquare,gSquareMid,gGeneral,gGeneral];
+
+/* ---------- level data ---------- */
+const LEVELS=[
+  {id:1,name:'Sign rules',ex:'(−4) × (−6)',gen:gSign,n:8,
+    teach:{title:'The rule',rule:'Same signs → positive&nbsp;&nbsp;·&nbsp;&nbsp;Different signs → negative',
+      body:'This is the one rule behind almost every bracket-sign mistake. Get this automatic before brackets come in.',
+      trap:'<b>Watch for:</b> two negatives make a positive — it feels wrong but it isn\'t.'}},
+  {id:2,name:'Predict the sign',ex:'(x−3)(x+5) → last term?',gen:gPredict,n:8,
+    teach:{title:'Same trick, inside brackets',rule:'Ignore the x\'s — just look at the two numbers',
+      body:'The very last term of a double bracket is always just those two numbers multiplied together. Spot its sign before you expand anything.',
+      trap:'<b>Watch for:</b> the sign of the last term has nothing to do with the sign of the x² term.'}},
+  {id:3,name:'The box method',ex:'Grid instead of FOIL',gen:gBox,n:6,
+    teach:{title:'Every product, nowhere to hide',rule:'Row label × column label = one cell',
+      body:'Instead of a memorised order (First, Outer, Inner, Last), a box makes you write all four products down. The sign comes from the labels you already wrote, not from memory.',
+      trap:'<b>Watch for:</b> the two middle cells (top-right and bottom-left) are the ones that get combined at the end.'}},
+  {id:4,name:'Squared brackets',ex:'(x − 4)²',gen:gSquare,mix:[gSquareMid],n:8,
+    teach:{title:'The formula',rule:'(x + a)² = x² + 2ax + a²',
+      body:'Once the box method feels automatic, this formula is a faster route to the same answer.',
+      trap:'<b>The trap:</b> if a is negative, the middle term (2ax) stays negative — but the last term (a²) is always positive, because a negative number squared is positive.'}},
+  {id:5,name:'Boss round',ex:'Everything, mixed together',gen:null,n:10,boss:true}
+];
+const RANKS=[[0,'Recruit'],[80,'Sign Spotter'],[200,'Box Builder'],[380,'Square Solver'],[600,'Sign Squad Captain']];
+function rank(xp){let idx=0;RANKS.forEach((r,i)=>{if(xp>=r[0])idx=i;});const nx=RANKS[idx+1];return{idx,name:RANKS[idx][1],base:RANKS[idx][0],next:nx?nx[0]:null,nextName:nx?nx[1]:null};}
+
+/* ---------- save ---------- */
+const KEY='ember:maths:sign-squad:save';
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.stars)return s;}catch(e){}return{xp:0,stars:{},best:0,all:false};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+let S=load(),run=null;
+const app=document.getElementById('app');
+const starsHTML=n=>'<span class="stars" aria-label="'+n+' of 3 stars">'+[1,2,3].map(i=>i<=n?'<b>★</b>':'★').join('')+'</span>';
+const unlocked=id=>S.all||id===1||(S.stars[id-1]||0)>=1;
+
+/* ---------- home ---------- */
+function home(){
+  run=null;const r=rank(S.xp);
+  const pct=r.next?Math.round((S.xp-r.base)/(r.next-r.base)*100):100;
+  app.innerHTML=`
+  <section class="hero">
+    <h1>Sign Squad</h1>
+    <p>Four short missions on the exact place double brackets go wrong: the +/− rule, and the squared-bracket formula.</p>
+    <div class="rank"><span class="name">${r.name}</span><span class="chip">${S.xp} XP</span><span class="chip">Best streak ${S.best||0}</span></div>
+    <div class="xpbar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><div style="width:${pct}%"></div></div>
+    <div class="xptxt">${r.next?`${r.next-S.xp} XP to ${r.nextName}`:'Top rank reached'}</div>
+  </section>
+  <ol class="path">${LEVELS.map(L=>{
+    const ok=unlocked(L.id),st=S.stars[L.id]||0;
+    return `<li><span class="pin ${!ok?'lock':L.boss?'boss':st?'done':''}">${!ok?'🔒':L.boss?'★':L.id}</span>
+      <button class="node ${L.boss?'boss':''}" data-act="start" data-id="${L.id}" ${ok?'':'disabled'}>
+        <span class="t"><span>${L.name}</span>${starsHTML(st)}</span>
+        <span class="ex">${L.ex}</span></button></li>`;}).join('')}</ol>
+  <div class="tools">
+    <button class="ghost small" data-act="unlock">${S.all?'Lock levels again':'Unlock all levels'}</button>
+    <button class="ghost small" data-act="reset">Reset progress</button>
+  </div>`;
+  window.scrollTo(0,0);
+}
+
+/* ---------- play ---------- */
+function start(id){
+  const L=LEVELS.find(l=>l.id===id);let qs=[];
+  if(L.boss){qs=shuffle([...BOSS_GENS,...BOSS_GENS]).slice(0,L.n).map(g=>g());}
+  else{const pool=L.mix?[L.gen,L.gen,L.gen,...L.mix]:[L.gen];const seen=new Set();
+    for(let i=0;i<L.n;i++){let q;for(let t=0;t<15;t++){q=pick(pool)();if(!seen.has(q.prompt))break;}seen.add(q.prompt);qs.push(q);}}
+  run={L,qs,i:0,att:0,first:0,ok:0,xp:0,streak:0,bestStreak:0,res:[],missed:[],locked:false,rankBefore:rank(S.xp).idx,showedTeach:!L.teach};
+  renderTeachOrQ();
+}
+function renderTeachOrQ(){
+  if(!run.showedTeach){
+    const t=run.L.teach;
+    app.innerHTML=`<div class="bar"><button class="ghost small" data-act="home">← Map</button><div class="lvl">${run.L.name}</div><span></span></div>
+    <div class="teach"><h3>${t.title}</h3><div class="rule">${rich('{{'+t.rule+'}}')}</div><p>${t.body}</p><div class="trap">${t.trap}</div></div>
+    <div class="btnrow"><button class="btn" data-act="teachdone">Got it — let's practise</button></div>`;
+    return;
+  }
+  renderQ();
+}
+function keysFor(q){
+  const all=[['x','x'],['x²','^2'],['(','('],[')',')'],['+','+'],['−','-'],['⌫','back']];
+  if(q.type==='num')return all.filter(k=>['−','⌫'].includes(k[0]));
+  return all;
+}
+function renderQ(){
+  const q=run.qs[run.i];run.att=0;run.locked=false;
+  const head=`<div class="bar"><button class="ghost small" data-act="home">← Map</button><div class="lvl">${run.L.name}</div>
+    <div class="chips"><span class="chip" id="chipS">🔥 ${run.streak}</span><span class="chip" id="chipX">${run.xp} XP</span></div></div>
+  <div class="dots">${run.qs.map((_,i)=>`<span class="dot ${run.res[i]||(i===run.i?'now':'')}"></span>`).join('')}</div>
+  <section class="card"><div class="qnum">Question ${run.i+1} of ${run.qs.length}</div><div class="prompt">${rich(q.prompt)}</div>`;
+  let body='';
+  if(q.type==='sign'){
+    body=`<div class="signrow">
+      <button class="signbtn pos" data-act="signpick" data-v="pos" aria-label="positive">+</button>
+      <button class="signbtn neg" data-act="signpick" data-v="neg" aria-label="negative">−</button>
+    </div><p class="hint">${rich(q.hint)}</p>`;
+  }else if(q.type==='mc'){
+    body=`<div class="opts">${q.options.map((o,i)=>`<button class="opt" data-act="opt" data-i="${i}">${rich(o)}</button>`).join('')}</div>`;
+  }else if(q.type==='box'){
+    body=`<div class="boxwrap"><div class="boxgrid">
+      <div class="bx corner"></div><div class="bx hdr">${rich('{{'+q.colHdr[0]+'}}')}</div><div class="bx hdr">${rich('{{'+q.colHdr[1]+'}}')}</div>
+      <div class="bx hdr">${rich('{{'+q.rowHdr[0]+'}}')}</div>
+      <div class="bx cell" data-cell="0"><input inputmode="text" autocomplete="off" spellcheck="false" aria-label="top left cell"></div>
+      <div class="bx cell" data-cell="1"><input inputmode="text" autocomplete="off" spellcheck="false" aria-label="top right cell"></div>
+      <div class="bx hdr">${rich('{{'+q.rowHdr[1]+'}}')}</div>
+      <div class="bx cell" data-cell="2"><input inputmode="text" autocomplete="off" spellcheck="false" aria-label="bottom left cell"></div>
+      <div class="bx cell" data-cell="3"><input inputmode="text" autocomplete="off" spellcheck="false" aria-label="bottom right cell"></div>
+    </div></div><div class="boxnote">Fill all four cells, then combine into one simplified answer.</div>
+    <div class="ans"><label class="sr" for="inp">Simplified answer</label>
+      <input id="inp" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="Combined answer">
+      <button class="btn" data-act="check" id="chk">Check</button></div>
+    <div class="pad">${keysFor({type:'expr'}).map(k=>`<button class="key" type="button" data-act="key" data-k="${k[1]}" aria-label="${k[0]}">${k[0]}</button>`).join('')}</div>`;
+  }else{
+    body=`<div class="ans"><label class="sr" for="inp">Your answer</label>
+        <input id="inp" type="text" inputmode="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="${q.type==='num'?'e.g. −24':'Type your answer'}">
+        <button class="btn" data-act="check" id="chk">Check</button></div>
+      <div class="pad">${keysFor(q).map(k=>`<button class="key" type="button" data-act="key" data-k="${k[1]}" aria-label="${k[0]}">${k[0]}</button>`).join('')}</div>
+      <p class="hint">Powers: type x^2 or use the x² key.</p>
+      <button class="ghost small" data-act="skip">I'm stuck — show me the method</button>`;
+  }
+  app.innerHTML=head+body+`<div id="fb" aria-live="polite"></div></section>`;
+  const inp=document.getElementById('inp');if(inp)inp.focus({preventScroll:true});
+  if(q.type==='box')document.querySelector('.bx.cell input').focus({preventScroll:true});
+}
+function pop(txt){const d=document.createElement('div');d.className='xpfloat';d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),1000);}
+function setChips(){const a=document.getElementById('chipS'),b=document.getElementById('chipX');if(a)a.textContent='🔥 '+run.streak;if(b)b.textContent=run.xp+' XP';}
+function lock(){run.locked=true;document.querySelectorAll('#app input,#app .key,#app .opt,#chk,[data-act=skip],[data-act=signpick]').forEach(e=>e.disabled=true);}
+function showFb(kind,q,extra){
+  const last=run.i===run.qs.length-1,good=kind==='first'||kind==='second';
+  const steps=`<ol class="steps">${q.steps.map(s=>`<li>${rich(s)}</li>`).join('')}</ol>`;
+  const head=kind==='first'?`Correct! ${extra}`:kind==='second'?`Got it on the second go. ${extra}`:kind==='wrong'?'Not this time':'Here is the method';
+  let ansLine='';
+  if(!good){
+    if(q.type==='sign')ansLine=`<div class="theans">It's <span class="pm ${q.correct}">${q.correct==='pos'?'positive':'negative'}</span></div>`;
+    else if(q.type==='mc')ansLine=`<div class="theans">The answer: ${rich(q.options[q.correct])}</div>`;
+    else ansLine=`<div class="theans">The answer: ${rich('{{'+q.ansStr+'}}')}</div>`;
+  }
+  document.getElementById('fb').innerHTML=`<div class="fb ${good?'good':'bad'}"><strong>${head}</strong>${ansLine}
+    ${good?`<details><summary>See the method</summary>${steps}</details>`:steps}
+    <p class="why">${rich(q.why)}</p>
+    <button class="btn" data-act="next" id="nextBtn">${last?'See results':'Next question'}</button></div>`;
+  const nb=document.getElementById('nextBtn');nb.scrollIntoView({block:'nearest',behavior:'smooth'});nb.focus({preventScroll:true});
+}
+function award(kind,q){
+  let xp=0;
+  if(kind==='first'){run.streak++;run.bestStreak=Math.max(run.bestStreak,run.streak);xp=10+Math.min(run.streak,5)*2;run.first++;run.ok++;}
+  else if(kind==='second'){xp=5;run.ok++;}
+  else{run.streak=0;run.missed.push(q);}
+  run.xp+=xp;run.res[run.i]=kind==='wrong'||kind==='miss'?'miss':kind;
+  setChips();if(xp)pop('+'+xp+' XP');
+  lock();showFb(kind,q,xp?`+${xp} XP`:'');
+}
+function doCheck(){
+  if(!run||run.locked)return;const q=run.qs[run.i],inp=document.getElementById('inp');if(!inp||!inp.value.trim())return;
+  let r;
+  if(q.type==='num')r=checkNum(inp.value,q.ans);
+  else if(q.type==='box')r=checkExpr(inp.value,q);
+  else r=checkExpr(inp.value,q);
+  if(r.ok)return award(run.att===0?'first':'second',q);
+  if(run.att===0){
+    run.att=1;run.streak=0;setChips();
+    document.getElementById('fb').innerHTML=`<div class="fb try"><strong>${r.msg?'Almost':'Not quite'}</strong> One more go.<p>${r.msg||''}</p><p><b>Hint:</b> ${rich(q.hint)}</p></div>`;
+    inp.select();
+  }else award('miss',q);
+}
+function doSign(v){
+  if(!run||run.locked)return;const q=run.qs[run.i];
+  document.querySelectorAll('.signbtn').forEach(b=>{
+    if(b.dataset.v===q.correct)b.classList.add('right');else if(b.dataset.v===v)b.classList.add('wrong');
+  });
+  award(v===q.correct?'first':'wrong',q);
+}
+function next(){if(run.i<run.qs.length-1){run.i++;renderQ();}else finish();}
+
+/* ---------- results ---------- */
+function confetti(){
+  const c=['#FFC53D','#8C7BFF','#3BD6A0','#FF6B7A'];
+  for(let i=0;i<40;i++){const d=document.createElement('span');d.className='confetti';d.style.left=R(0,100)+'vw';d.style.background=pick(c);d.style.animationDuration=(1.6+Math.random()*1.6)+'s';d.style.animationDelay=(Math.random()*.4)+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),3800);}
+}
+function finish(){
+  const{L}=run,n=run.qs.length;
+  const stars=run.first/n>=.85?3:run.ok/n>=.7?2:run.ok/n>=.5?1:0;
+  const prev=S.stars[L.id]||0;if(stars>prev)S.stars[L.id]=stars;
+  S.xp+=run.xp;S.best=Math.max(S.best||0,run.bestStreak);save();
+  const rk=rank(S.xp),up=rk.idx>run.rankBefore,nextL=LEVELS.find(l=>l.id===L.id+1);
+  const msg=stars===3?'Brilliant. That is mastery.':stars===2?'Strong work. Aim for 3 stars next time.':stars===1?'Level cleared. Read the methods below, then try for more stars.':'Not cleared yet. Read the methods below, then go again — the questions change every time.';
+  app.innerHTML=`
+  <section class="card res">
+    <div class="bigstars" aria-label="${stars} of 3 stars">${[1,2,3].map(i=>i<=stars?'<b>★</b>':'★').join('')}</div>
+    <h2>${L.name}</h2><p>${msg}</p>
+    ${up?`<div class="rankup">Rank up: ${rk.name}!</div>`:''}
+    <div class="statrow"><span class="chip">${run.ok}/${n} correct</span><span class="chip">${run.first}/${n} first try</span><span class="chip">+${run.xp} XP</span><span class="chip">Streak ${run.bestStreak}</span></div>
+    <div class="btnrow">
+      <button class="btn alt" data-act="start" data-id="${L.id}">Play again</button>
+      ${stars>0&&nextL&&unlocked(nextL.id)?`<button class="btn" data-act="start" data-id="${nextL.id}">Next: ${nextL.name}</button>`:''}
+      <button class="btn plain" data-act="home">Map</button>
+    </div>
+  </section>
+  ${run.missed.length?`<section class="review"><h3>Review the ones you missed</h3>${run.missed.map(q=>`
+    <div class="card"><div class="prompt" style="margin-bottom:6px">${rich(q.prompt)}</div>
+    <div class="theans">${q.type==='sign'?`It's <span class="pm ${q.correct}">${q.correct==='pos'?'positive':'negative'}</span>`:'The answer: '+rich(q.type==='mc'?q.options[q.correct]:'{{'+q.ansStr+'}}')}</div>
+    <ol class="steps">${q.steps.map(s=>`<li>${rich(s)}</li>`).join('')}</ol><p class="why">${rich(q.why)}</p></div>`).join('')}</section>`:''}`;
+  window.scrollTo(0,0);if(stars===3)confetti();
+}
+
+/* ---------- events ---------- */
+app.addEventListener('mousedown',e=>{if(e.target.closest('.key'))e.preventDefault();});
+app.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b||b.disabled)return;
+  switch(b.dataset.act){
+    case'start':start(+b.dataset.id);break;
+    case'home':home();break;
+    case'teachdone':run.showedTeach=true;renderQ();break;
+    case'check':doCheck();break;
+    case'next':next();break;
+    case'signpick':doSign(b.dataset.v);break;
+    case'skip':if(run&&!run.locked){run.streak=0;award('miss',run.qs[run.i]);}break;
+    case'opt':{if(run.locked)break;const q=run.qs[run.i],i=+b.dataset.i;
+      document.querySelectorAll('.opt').forEach((o,j)=>{if(j===q.correct)o.classList.add('right');else if(j===i)o.classList.add('wrong');});
+      award(i===q.correct?'first':'wrong',q);break;}
+    case'key':{const inp=document.getElementById('inp');if(!inp||run.locked)break;
+      const s=inp.selectionStart,en=inp.selectionEnd,k=b.dataset.k;
+      if(k==='back'){if(s===en&&s>0){inp.value=inp.value.slice(0,s-1)+inp.value.slice(en);inp.setSelectionRange(s-1,s-1);}else{inp.value=inp.value.slice(0,s)+inp.value.slice(en);inp.setSelectionRange(s,s);}}
+      else{inp.value=inp.value.slice(0,s)+k+inp.value.slice(en);inp.setSelectionRange(s+k.length,s+k.length);}
+      inp.focus({preventScroll:true});break;}
+    case'unlock':S.all=!S.all;save();home();break;
+    case'reset':if(b.dataset.sure){S={xp:0,stars:{},best:0,all:false};save();home();}else{b.dataset.sure='1';b.textContent='Tap again to confirm reset';}break;
+  }
+});
+app.addEventListener('input',e=>{
+  const cellDiv=e.target.closest('.bx.cell');
+  if(!cellDiv||!run||run.locked)return;
+  const q=run.qs[run.i];if(q.type!=='box')return;
+  const idx=+cellDiv.dataset.cell,v=e.target.value.trim();
+  if(!v){cellDiv.classList.remove('right','wrong');return;}
+  const ok=checkCell(v,q.cells[idx].ans);
+  cellDiv.classList.toggle('right',ok);cellDiv.classList.toggle('wrong',!ok);
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter'||!run)return;
+  if(run.locked){const nb=document.getElementById('nextBtn');if(nb&&document.activeElement!==nb){e.preventDefault();next();}}
+  else if(e.target&&e.target.id==='inp'){e.preventDefault();doCheck();}
+});
+home();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

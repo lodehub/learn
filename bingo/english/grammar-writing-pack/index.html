@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Year 3 English: Grammar and Writing Pack</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d2b33;
+    --teal: #0f6b6b;
+    --teal-soft: #e3f2f0;
+    --sun: #ffd35c;
+    --sun-soft: #fff6d6;
+    --line: #9fb3b8;
+    --paper: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 18px; }
+  body {
+    margin: 0; background: #eef3f3; color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Trebuchet MS", Verdana, sans-serif;
+    line-height: 1.55;
+  }
+  .toolbar {
+    position: sticky; top: 0; z-index: 5; background: var(--teal); color: #fff;
+    padding: .6rem 1rem; display: flex; gap: .75rem; flex-wrap: wrap; align-items: center;
+  }
+  .toolbar span { font-weight: 700; margin-right: auto; }
+  .toolbar button {
+    font: inherit; border: 2px solid #fff; background: transparent; color: #fff;
+    padding: .3rem .9rem; border-radius: 999px; cursor: pointer;
+  }
+  .toolbar button:hover, .toolbar button:focus-visible { background: #fff; color: var(--teal); outline: none; }
+  .page {
+    width: 100%; max-width: 210mm; margin: 1.2rem auto; background: var(--paper);
+    padding: 14mm 15mm; border-radius: 6px; box-shadow: 0 1px 6px rgba(0,0,0,.15);
+  }
+  h1 { font-size: 2rem; margin: 0 0 .3rem; color: var(--teal); }
+  h2 {
+    font-size: 1.35rem; margin: 0 0 .6rem; padding: .25rem .7rem;
+    background: var(--teal); color: #fff; border-radius: 6px; display: inline-block;
+  }
+  h3 { font-size: 1.05rem; margin: 1rem 0 .35rem; color: var(--teal); }
+  p { margin: .35rem 0; }
+  .name-row { display: flex; gap: 1.5rem; margin: .6rem 0 1rem; }
+  .name-row div { flex: 1; border-bottom: 2px solid var(--ink); padding-bottom: 2px; }
+  .tip {
+    background: var(--sun-soft); border-left: 6px solid var(--sun);
+    padding: .5rem .8rem; border-radius: 0 6px 6px 0; margin: .6rem 0;
+  }
+  .tip b { color: #7a5600; }
+  .box { border: 2px solid var(--teal); border-radius: 8px; padding: .5rem .8rem; margin: .6rem 0; background: var(--teal-soft); }
+  ol.q { padding-left: 1.5rem; margin: .4rem 0; }
+  ol.q li { margin: .55rem 0; padding-left: .2rem; }
+  .blank { display: inline-block; min-width: 6.5rem; border-bottom: 2px solid var(--ink); height: 1.1em; vertical-align: baseline; }
+  .blank.long { min-width: 12rem; }
+  .wordbank { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0; }
+  .wordbank span { background: var(--sun); padding: .1rem .7rem; border-radius: 999px; font-weight: 700; }
+  table { border-collapse: collapse; width: 100%; margin: .5rem 0; }
+  th, td { border: 2px solid var(--line); padding: .4rem .6rem; text-align: left; vertical-align: top; }
+  th { background: var(--teal-soft); }
+  td.tall { height: 3.2rem; }
+  .lines { margin: .4rem 0; }
+  .lines div { border-bottom: 1.5px solid var(--line); height: 2rem; }
+  .lines.dotted div { border-bottom-style: dashed; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem 2rem; }
+  .plan { display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem; margin: .6rem 0; }
+  .plan div { border: 2px solid var(--teal); border-radius: 8px; padding: .4rem .6rem; min-height: 5.5rem; }
+  .plan b { color: var(--teal); }
+  .check li { list-style: none; margin: .25rem 0; }
+  .check li::before { content: "\2610\00a0"; }
+  .stars { letter-spacing: .15em; }
+  .answers { display: none; }
+  body.show-answers .answers { display: block; }
+  .answers ol { margin: .3rem 0; padding-left: 1.5rem; }
+  .answers h3 { margin-top: .9rem; }
+  @media (max-width: 600px) {
+    .page { padding: 1rem; } .grid2, .plan { grid-template-columns: 1fr; }
+  }
+  @media print {
+    html { font-size: 12.5pt; }
+    body { background: #fff; }
+    .toolbar { display: none; }
+    .page { box-shadow: none; margin: 0; max-width: none; padding: 0; border-radius: 0; page-break-after: always; break-after: page; }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+    @page { size: A4; margin: 13mm 14mm; }
+    h2, .tip, .box, table, .plan div { break-inside: avoid; }
+    h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tip, .box, th, .wordbank span { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body:not(.show-answers) .answers { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span>Year 3 English: Grammar and Writing</span>
+  <button id="ansBtn" type="button">Show answers</button>
+  <button type="button" onclick="window.print()">Print</button>
+</div>
+
+<!-- ============ PAGE 1: COVER + WORD CLASSES ============ -->
+<section class="page">
+  <h1>Year 3 English: Grammar and Writing Pack</h1>
+  <div class="name-row"><div>Name:</div><div>Date:</div></div>
+  <p>This pack has twelve short grammar sections, then writing tasks that put the grammar to work. Do a section or two at a time. Answers are at the back (use the Show answers button, then print).</p>
+
+  <h2>1. Word classes</h2>
+  <div class="tip"><b>Remember:</b> A <b>noun</b> names a thing, person or place. A <b>verb</b> is an action or being word. An <b>adjective</b> describes a noun. An <b>adverb</b> tells you how, when or where something happens.</div>
+  <h3>A. Sort the words into the table.</h3>
+  <div class="wordbank"><span>dragon</span><span>whisper</span><span>enormous</span><span>quickly</span><span>village</span><span>leap</span><span>shiny</span><span>silently</span><span>teacher</span><span>wobble</span><span>freezing</span><span>carefully</span></div>
+  <table>
+    <tr><th>Noun</th><th>Verb</th><th>Adjective</th><th>Adverb</th></tr>
+    <tr><td class="tall"></td><td></td><td></td><td></td></tr>
+    <tr><td class="tall"></td><td></td><td></td><td></td></tr>
+    <tr><td class="tall"></td><td></td><td></td><td></td></tr>
+  </table>
+  <h3>B. Underline the noun and circle the verb in each sentence.</h3>
+  <ol class="q">
+    <li>The cat sprinted across the garden.</li>
+    <li>Maya painted a picture of the sea.</li>
+    <li>Thunder rumbled above the castle.</li>
+  </ol>
+
+  <h2>2. Nouns: common and proper</h2>
+  <div class="tip"><b>Remember:</b> <b>Proper nouns</b> name a particular person, place, day or month, so they start with a capital letter. <b>Common nouns</b> name everything else.</div>
+  <h3>Rewrite each sentence with the capital letters in the right places.</h3>
+  <ol class="q">
+    <li>on tuesday, my friend amir visited cambridge.<div class="lines dotted"><div></div></div></li>
+    <li>we are going to the river cam in august.<div class="lines dotted"><div></div></div></li>
+  </ol>
+</section>
+
+<!-- ============ PAGE 2: ADJECTIVES, VERBS, TENSE ============ -->
+<section class="page">
+  <h2>3. Adjectives</h2>
+  <div class="tip"><b>Remember:</b> Adjectives make a noun more interesting. Choose exact ones. <i>Big</i> is fine, but <i>towering</i> or <i>gigantic</i> paints a better picture.</div>
+  <h3>A. Swap the boring adjective for a stronger one.</h3>
+  <div class="wordbank"><span>ancient</span><span>ravenous</span><span>tiny</span><span>glittering</span><span>stormy</span></div>
+  <ol class="q">
+    <li>The <b>old</b> temple stood on the hill. <span class="blank"></span></li>
+    <li>A <b>small</b> mouse crept out. <span class="blank"></span></li>
+    <li>The <b>hungry</b> wolf howled. <span class="blank"></span></li>
+    <li>She wore a <b>shiny</b> crown. <span class="blank"></span></li>
+    <li>It was a <b>rainy</b> night. <span class="blank"></span></li>
+  </ol>
+  <h3>B. Write a sentence with <b>two</b> adjectives before the noun.</h3>
+  <div class="lines"><div></div></div>
+
+  <h2>4. Verbs and tenses</h2>
+  <div class="tip"><b>Remember:</b> <b>Present tense</b> is happening now (<i>I walk</i>). <b>Past tense</b> has already happened (<i>I walked</i>). Some verbs are irregular: <i>run &rarr; ran</i>, <i>go &rarr; went</i>.</div>
+  <h3>A. Change each sentence to the past tense.</h3>
+  <ol class="q">
+    <li>I jump over the puddle. <span class="blank long"></span></li>
+    <li>We eat our lunch outside. <span class="blank long"></span></li>
+    <li>The bird sings in the tree. <span class="blank long"></span></li>
+    <li>He catches the ball. <span class="blank long"></span></li>
+  </ol>
+  <h3>B. The present perfect: choose <b>has</b> or <b>have</b>.</h3>
+  <div class="tip"><b>Remember:</b> We use <i>has</i> or <i>have</i> plus a verb to show something that finished but still matters now: <i>She has finished her book.</i></div>
+  <ol class="q">
+    <li>I <span class="blank"></span> eaten my breakfast.</li>
+    <li>The dog <span class="blank"></span> dug a huge hole.</li>
+    <li>They <span class="blank"></span> built a sandcastle.</li>
+  </ol>
+  <h3>C. Spot the mistake. Write each sentence correctly.</h3>
+  <ol class="q">
+    <li>Yesterday I runned to the park.<div class="lines dotted"><div></div></div></li>
+    <li>We was very tired after the trip.<div class="lines dotted"><div></div></div></li>
+  </ol>
+</section>
+
+<!-- ============ PAGE 3: ADVERBS, CONJUNCTIONS ============ -->
+<section class="page">
+  <h2>5. Adverbs</h2>
+  <div class="tip"><b>Remember:</b> Many adverbs end in <b>-ly</b> and tell you <i>how</i> a verb is done: <i>The tortoise moved slowly.</i> Others tell you <i>when</i> (<i>soon, later</i>) or <i>where</i> (<i>outside, nearby</i>).</div>
+  <h3>A. Choose the best adverb to finish each sentence.</h3>
+  <div class="wordbank"><span>gently</span><span>loudly</span><span>suddenly</span><span>bravely</span><span>eagerly</span></div>
+  <ol class="q">
+    <li>The baby giggled <span class="blank"></span>.</li>
+    <li><span class="blank"></span>, the lights went out.</li>
+    <li>The knight fought <span class="blank"></span>.</li>
+    <li>She placed the egg <span class="blank"></span> in the nest.</li>
+    <li>The children waited <span class="blank"></span> for the bell.</li>
+  </ol>
+  <h3>B. Add an adverb to each sentence to say <i>how</i> it happens.</h3>
+  <ol class="q">
+    <li>The wind blew. <span class="blank long"></span></li>
+    <li>Ravi opened the box. <span class="blank long"></span></li>
+  </ol>
+
+  <h2>6. Conjunctions</h2>
+  <div class="tip"><b>Remember:</b> A conjunction joins two ideas.
+    <br><b>and, but, or</b> join equal ideas.
+    <br><b>because, so</b> give a reason or result.
+    <br><b>when, before, after, while, until</b> show time.
+    <br><b>although, if</b> show a contrast or a condition.</div>
+  <h3>A. Choose the best conjunction.</h3>
+  <div class="wordbank"><span>because</span><span>although</span><span>before</span><span>while</span><span>so</span><span>until</span></div>
+  <ol class="q">
+    <li>I wore my coat <span class="blank"></span> it was freezing.</li>
+    <li>Wash your hands <span class="blank"></span> you eat.</li>
+    <li><span class="blank"></span> it was raining, we still played outside.</li>
+    <li>Mum cooked dinner <span class="blank"></span> I laid the table.</li>
+    <li>We waited <span class="blank"></span> the train arrived.</li>
+    <li>I was thirsty, <span class="blank"></span> I drank some water.</li>
+  </ol>
+  <h3>B. Finish each sentence in your own way.</h3>
+  <ol class="q">
+    <li>I felt nervous because <span class="blank long"></span></li>
+    <li>Although it was late, <span class="blank long"></span></li>
+    <li>We stayed inside until <span class="blank long"></span></li>
+  </ol>
+</section>
+
+<!-- ============ PAGE 4: PREPOSITIONS, A/AN, SPEECH ============ -->
+<section class="page">
+  <h2>7. Prepositions</h2>
+  <div class="tip"><b>Remember:</b> A preposition tells you where something is or when it happens: <i>under, behind, beside, across, through, during, after, before.</i></div>
+  <h3>A. Circle the preposition in each sentence.</h3>
+  <ol class="q">
+    <li>The fox hid behind the wall.</li>
+    <li>We walked through the dark forest.</li>
+    <li>She read a book during the long journey.</li>
+  </ol>
+  <h3>B. Complete the sentences with a preposition of your own.</h3>
+  <ol class="q">
+    <li>The frog jumped <span class="blank"></span> the pond.</li>
+    <li>I put my shoes <span class="blank"></span> the bed.</li>
+    <li>We play outside <span class="blank"></span> lunch.</li>
+  </ol>
+
+  <h2>8. a or an?</h2>
+  <div class="tip"><b>Remember:</b> Use <b>an</b> before a word that starts with a vowel <i>sound</i> (a, e, i, o, u). Use <b>a</b> before a consonant sound.</div>
+  <ol class="q">
+    <li><span class="blank" style="min-width:2.5rem"></span> umbrella</li>
+    <li><span class="blank" style="min-width:2.5rem"></span> giant</li>
+    <li><span class="blank" style="min-width:2.5rem"></span> orange</li>
+    <li><span class="blank" style="min-width:2.5rem"></span> rocket</li>
+    <li><span class="blank" style="min-width:2.5rem"></span> elephant</li>
+    <li><span class="blank" style="min-width:2.5rem"></span> adventure</li>
+  </ol>
+
+  <h2>9. Direct speech</h2>
+  <div class="tip"><b>Remember:</b> Put <b>speech marks</b> (inverted commas) around the exact words someone says. Punctuation goes <i>inside</i> the speech marks. A new speaker means a new line.<br>
+  <i>&ldquo;Where are we going?&rdquo; asked Tom.</i><br>
+  <i>Mum smiled and said, &ldquo;To the beach!&rdquo;</i></div>
+  <h3>A. Add speech marks to each sentence.</h3>
+  <ol class="q">
+    <li>Watch out! shouted Sam.</li>
+    <li>I love chocolate cake, said Priya.</li>
+    <li>The teacher asked, Who has finished?</li>
+  </ol>
+  <h3>B. Write what each person might say. Use speech marks.</h3>
+  <ol class="q">
+    <li>A pirate finds a treasure chest.<div class="lines dotted"><div></div></div></li>
+    <li>A girl sees a mouse in her bedroom.<div class="lines dotted"><div></div></div></li>
+  </ol>
+</section>
+
+<!-- ============ PAGE 5: APOSTROPHES, COMMAS, PARAGRAPHS ============ -->
+<section class="page">
+  <h2>10. Apostrophes</h2>
+  <div class="tip"><b>Remember:</b> An apostrophe has two jobs.
+    <br><b>Missing letters:</b> <i>don&rsquo;t</i> (do not), <i>can&rsquo;t</i> (cannot), <i>it&rsquo;s</i> (it is).
+    <br><b>Belonging:</b> <i>the girl&rsquo;s coat</i> (one girl), <i>the boys&rsquo; ball</i> (more than one boy).</div>
+  <h3>A. Write the short form.</h3>
+  <ol class="q">
+    <li>did not &rarr; <span class="blank"></span></li>
+    <li>she is &rarr; <span class="blank"></span></li>
+    <li>we have &rarr; <span class="blank"></span></li>
+    <li>could not &rarr; <span class="blank"></span></li>
+  </ol>
+  <h3>B. Rewrite using an apostrophe to show belonging.</h3>
+  <ol class="q">
+    <li>the bone belonging to the dog &rarr; <span class="blank long"></span></li>
+    <li>the toys belonging to the children &rarr; <span class="blank long"></span></li>
+    <li>the tail belonging to the cat &rarr; <span class="blank long"></span></li>
+  </ol>
+
+  <h2>11. Commas in lists</h2>
+  <div class="tip"><b>Remember:</b> Use commas to separate items in a list. Put <b>and</b> before the last item, with no comma before it.<br><i>I packed a torch, a map, some water and a compass.</i></div>
+  <h3>Add the missing commas.</h3>
+  <ol class="q">
+    <li>We saw lions tigers zebras and monkeys at the zoo.</li>
+    <li>You will need paper scissors glue and a pencil.</li>
+  </ol>
+  <h3>Write your own sentence listing four things you would take on holiday.</h3>
+  <div class="lines"><div></div></div>
+
+  <h2>12. Paragraphs and headings</h2>
+  <div class="tip"><b>Remember:</b> A <b>paragraph</b> is a group of sentences about one idea. Start a new paragraph when you change <b>time</b>, <b>place</b>, <b>topic</b> or <b>speaker</b>. A <b>heading</b> tells the reader what a section is about.</div>
+  <h3>Read this text. Draw a line (//) where the new paragraph should start, then write a heading for each paragraph.</h3>
+  <div class="box">Owls are birds of prey that hunt at night. They have large eyes and can turn their heads almost all the way round. Most owls eat small animals such as mice and voles. Owls live in many places around the world. Barn owls like old barns and church towers, but snowy owls live in the freezing Arctic.</div>
+  <p>Heading 1: <span class="blank long"></span></p>
+  <p>Heading 2: <span class="blank long"></span></p>
+</section>
+
+<!-- ============ PAGE 6: WRITING - SENTENCE LADDER ============ -->
+<section class="page">
+  <h1>Writing</h1>
+  <div class="name-row"><div>Name:</div><div>Date:</div></div>
+
+  <h2>Writing 1: Sentence ladder</h2>
+  <p>Start with a plain sentence. Make it better one step at a time.</p>
+  <table>
+    <tr><th style="width:28%">Step</th><th>Your sentence</th></tr>
+    <tr><td><b>Start:</b> The dog ran.</td><td class="tall"></td></tr>
+    <tr><td><b>Add an adjective</b></td><td class="tall"></td></tr>
+    <tr><td><b>Add an adverb</b></td><td class="tall"></td></tr>
+    <tr><td><b>Add where or when</b> (preposition)</td><td class="tall"></td></tr>
+    <tr><td><b>Add a conjunction</b> and a second idea</td><td class="tall"></td></tr>
+  </table>
+  <p>Try again with a new plain sentence of your own:</p>
+  <div class="lines"><div></div><div></div><div></div><div></div></div>
+
+  <h2>Writing 2: Describe a setting</h2>
+  <p>Pick one place: <b>a stormy beach</b>, <b>a dark cave</b>, <b>a busy market</b> or <b>a magical forest</b>. Fill in the senses chart first.</p>
+  <table>
+    <tr><th>I can see</th><th>I can hear</th><th>I can smell</th><th>I can feel</th></tr>
+    <tr><td class="tall"></td><td></td><td></td><td></td></tr>
+    <tr><td class="tall"></td><td></td><td></td><td></td></tr>
+  </table>
+  <p>Now write one paragraph (4 to 6 sentences). Use at least two adjectives, one adverb and one preposition.</p>
+  <div class="lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</section>
+
+<!-- ============ PAGE 7: STORY PLAN ============ -->
+<section class="page">
+  <h2>Writing 3: Plan a story</h2>
+  <p>Plan a short adventure story. Keep each box to notes, not full sentences.</p>
+  <div class="plan">
+    <div><b>Characters</b> (who?)</div>
+    <div><b>Setting</b> (where and when?)</div>
+    <div><b>Beginning</b> (meet the characters, something happens)</div>
+    <div><b>Problem</b> (what goes wrong?)</div>
+    <div><b>Solution</b> (how is it fixed?)</div>
+    <div><b>Ending</b> (how does everyone feel?)</div>
+  </div>
+  <div class="tip"><b>Tip:</b> A good story opening does not start with &ldquo;One day&hellip;&rdquo; every time. Try a different opener: an <b>adverb</b> (<i>Suddenly,</i>), a <b>time conjunction</b> (<i>When the clock struck midnight,</i>), a <b>preposition</b> (<i>Behind the old oak tree,</i>), or <b>speech</b> (<i>&ldquo;Run!&rdquo; yelled Mia.</i>).</div>
+  <h3>Write three different openers for your story.</h3>
+  <div class="lines"><div></div><div></div><div></div></div>
+  <h3>Beginning of your story (one paragraph)</h3>
+  <div class="lines"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</section>
+
+<!-- ============ PAGE 8: STORY WRITE + CHECKLIST ============ -->
+<section class="page">
+  <h2>Writing 4: Write your story</h2>
+  <p>Use your plan. Remember to start a new paragraph when the time, place or speaker changes.</p>
+  <div class="lines"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+  <h2>My editing checklist</h2>
+  <p>Read your writing aloud, then tick each one.</p>
+  <ul class="check" style="padding:0">
+    <li>Every sentence begins with a capital letter and ends with . ! or ?</li>
+    <li>Names, places, days and months have capital letters.</li>
+    <li>I used at least three different conjunctions.</li>
+    <li>I used adjectives and adverbs to add detail.</li>
+    <li>My verbs stay in the same tense (past or present).</li>
+    <li>I used speech marks correctly (if I included speech).</li>
+    <li>I used apostrophes correctly.</li>
+    <li>I started new paragraphs in the right places.</li>
+    <li>I checked my spelling, especially the tricky words.</li>
+  </ul>
+  <p><b>My best sentence is:</b></p>
+  <div class="lines"><div></div><div></div></div>
+  <p><b>Self-rating:</b> <span class="stars">&#9734; &#9734; &#9734; &#9734; &#9734;</span></p>
+</section>
+
+<!-- ============ ANSWERS ============ -->
+<section class="page answers">
+  <h1>Answers</h1>
+  <p>Writing tasks are open-ended, so use the checklist and the notes below.</p>
+
+  <h3>1. Word classes</h3>
+  <p><b>A.</b> Nouns: dragon, village, teacher. Verbs: whisper, leap, wobble. Adjectives: enormous, shiny, freezing. Adverbs: quickly, silently, carefully.</p>
+  <p><b>B.</b> (1) noun <i>cat</i> (or <i>garden</i>), verb <i>sprinted</i>. (2) noun <i>picture</i> / <i>Maya</i> / <i>sea</i>, verb <i>painted</i>. (3) noun <i>thunder</i> / <i>castle</i>, verb <i>rumbled</i>.</p>
+
+  <h3>2. Nouns</h3>
+  <ol><li>On Tuesday, my friend Amir visited Cambridge.</li><li>We are going to the River Cam in August.</li></ol>
+
+  <h3>3. Adjectives</h3>
+  <p>A. (1) ancient (2) tiny (3) ravenous (4) glittering (5) stormy. B. Any sentence with two adjectives before a noun, for example <i>The fluffy white rabbit hopped away.</i></p>
+
+  <h3>4. Verbs and tenses</h3>
+  <p><b>A.</b> (1) I jumped over the puddle. (2) We ate our lunch outside. (3) The bird sang in the tree. (4) He caught the ball.</p>
+  <p><b>B.</b> (1) have (2) has (3) have.</p>
+  <p><b>C.</b> (1) Yesterday I ran to the park. (2) We were very tired after the trip.</p>
+
+  <h3>5. Adverbs</h3>
+  <p>A. (1) loudly (or gently) (2) Suddenly (3) bravely (4) gently (5) eagerly. Accept any sensible alternative that fits. B. Open answers, for example <i>The wind blew fiercely. Ravi opened the box carefully.</i></p>
+
+  <h3>6. Conjunctions</h3>
+  <p>A. (1) because (2) before (3) Although (4) while (5) until (6) so. B. Open answers. Check each ending is a complete idea that follows from the conjunction.</p>
+
+  <h3>7. Prepositions</h3>
+  <p>A. (1) behind (2) through (3) during. B. Any suitable preposition, for example <i>into, beside, after</i>.</p>
+
+  <h3>8. a or an</h3>
+  <p>(1) an (2) a (3) an (4) a (5) an (6) an.</p>
+
+  <h3>9. Direct speech</h3>
+  <ol>
+    <li>&ldquo;Watch out!&rdquo; shouted Sam.</li>
+    <li>&ldquo;I love chocolate cake,&rdquo; said Priya.</li>
+    <li>The teacher asked, &ldquo;Who has finished?&rdquo;</li>
+  </ol>
+  <p>B. Open answers. Check speech marks go around the spoken words only and punctuation sits inside them.</p>
+
+  <h3>10. Apostrophes</h3>
+  <p>A. (1) didn&rsquo;t (2) she&rsquo;s (3) we&rsquo;ve (4) couldn&rsquo;t. B. (1) the dog&rsquo;s bone (2) the children&rsquo;s toys (3) the cat&rsquo;s tail.</p>
+
+  <h3>11. Commas in lists</h3>
+  <ol>
+    <li>We saw lions, tigers, zebras and monkeys at the zoo.</li>
+    <li>You will need paper, scissors, glue and a pencil.</li>
+  </ol>
+
+  <h3>12. Paragraphs and headings</h3>
+  <p>Split after <i>&ldquo;&hellip;voles.&rdquo;</i> (before <i>Owls live in many places&hellip;</i>). Sample headings: <i>How owls hunt</i> and <i>Where owls live</i>.</p>
+
+  <h3>Writing tasks: what to look for</h3>
+  <p><b>Sentence ladder:</b> each step adds only the new feature asked for, and the sentence still makes sense. <b>Setting:</b> uses more than one sense, with adjectives, an adverb and a preposition. <b>Story:</b> clear beginning, problem, solution and ending; varied openers; new paragraphs for changes of time, place or speaker; consistent tense.</p>
+</section>
+
+<script>
+  var btn = document.getElementById('ansBtn');
+  btn.addEventListener('click', function () {
+    var on = document.body.classList.toggle('show-answers');
+    btn.textContent = on ? 'Hide answers' : 'Show answers';
+    if (on) { document.querySelector('.answers').scrollIntoView({ behavior: 'smooth' }); }
+  });
+</script>
+<script src="../../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>

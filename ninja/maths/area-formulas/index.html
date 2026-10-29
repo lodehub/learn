@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shape Up — Area Formula Trainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3F6FB;
+    --surface: #FFFFFF;
+    --ink: #1B1F2A;
+    --ink-soft: #5B6478;
+    --line: #E1E7F1;
+    --triangle: #FF6B5B;
+    --triangle-soft: #FFE3DE;
+    --para: #16948A;
+    --para-soft: #D7F3EF;
+    --trap: #4A54C7;
+    --trap-soft: #E2E3FA;
+    --circle: #D98C1C;
+    --circle-soft: #FBEACD;
+    --compound: #8E5FD6;
+    --compound-soft: #ECE3FB;
+    --good: #1E9A63;
+    --good-soft: #DDF3E7;
+    --bad: #E0483D;
+    --bad-soft: #FBE1DE;
+    --shadow: 0 10px 30px -14px rgba(27,31,42,0.25);
+    color-scheme: light;
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #12141C;
+      --surface: #1B1F2B;
+      --ink: #ECEFF6;
+      --ink-soft: #A7AEC2;
+      --line: #2C3040;
+      --triangle-soft: #3A2622;
+      --para-soft: #17322D;
+      --trap-soft: #24263F;
+      --circle-soft: #3A2F17;
+      --compound-soft: #2C2440;
+      --good-soft: #143324;
+      --bad-soft: #3A211E;
+      --shadow: 0 10px 30px -12px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12141C;
+    --surface: #1B1F2B;
+    --ink: #ECEFF6;
+    --ink-soft: #A7AEC2;
+    --line: #2C3040;
+    --triangle-soft: #3A2622;
+    --para-soft: #17322D;
+    --trap-soft: #24263F;
+    --circle-soft: #3A2F17;
+    --compound-soft: #2C2440;
+    --good-soft: #143324;
+    --bad-soft: #3A211E;
+    --shadow: 0 10px 30px -12px rgba(0,0,0,0.55);
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    height: 100%;
+  }
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display {
+    font-family: 'Baloo 2', system-ui, sans-serif;
+  }
+
+  .app {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 28px 20px 56px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    text-align: left;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: rise 0.6s ease-out 0.05s forwards;
+  }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+  .hero-shapes {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .hero-shapes svg { display: block; }
+
+  .hero h1 {
+    font-size: 28px;
+    line-height: 1.15;
+    margin: 0 0 8px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .hero p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.5;
+    max-width: 46ch;
+  }
+
+  .section-label {
+    font-family: 'Baloo 2', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin: 34px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--line);
+  }
+
+  /* ---------- Flashcards ---------- */
+  .card-stage {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .nav:hover { transform: translateY(-1px); }
+  .nav:active { transform: translateY(0); }
+  .nav:focus-visible, button:focus-visible, .quiz-opt:focus-visible {
+    outline: 3px solid var(--trap);
+    outline-offset: 2px;
+  }
+
+  .flip-card {
+    flex: 1 1 auto;
+    perspective: 1200px;
+    height: 300px;
+    cursor: pointer;
+  }
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(.4,.2,.2,1);
+    transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-inner {
+    transform: rotateY(180deg);
+  }
+  .flip-front, .flip-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    padding: 22px 22px 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .flip-back { transform: rotateY(180deg); }
+
+  .shape-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Baloo 2', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 12px 5px 8px;
+    border-radius: 999px;
+    align-self: flex-start;
+    margin-bottom: 12px;
+  }
+  .shape-tag .dot { width: 9px; height: 9px; border-radius: 50%; }
+
+  .flip-front .prompt {
+    font-family: 'Baloo 2', system-ui, sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 6px 0 10px;
+  }
+  .flip-front .diagram {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .flip-front .tap-note {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .flip-back .formula {
+    font-family: 'Baloo 2', system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 4px 0 12px;
+    line-height: 1.3;
+  }
+  .flip-back .mnemonic {
+    font-size: 14.5px;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--ink);
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border-left: 3px solid currentColor;
+    border-radius: 6px;
+  }
+  .flip-back .example {
+    margin-top: auto;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-family: 'Inter', monospace;
+  }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 16px;
+  }
+  .dot-btn {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--line);
+    padding: 0;
+    cursor: pointer;
+  }
+  .dot-btn.active {
+    width: 22px;
+    border-radius: 5px;
+  }
+  .tap-hint {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin: 10px 0 0;
+  }
+
+  /* ---------- Quiz ---------- */
+  .quiz-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 22px;
+  }
+  .quiz-shape {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+  .quiz-question {
+    font-family: 'Baloo 2', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    margin: 4px 0 16px;
+  }
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .quiz-opt {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 12px 10px;
+    border-radius: 12px;
+    border: 1.5px solid var(--line);
+    background: var(--bg);
+    color: var(--ink);
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.35;
+    transition: transform 0.12s ease, border-color 0.12s ease;
+  }
+  .quiz-opt:hover { transform: translateY(-1px); }
+  .quiz-opt[disabled] { cursor: default; }
+  .quiz-opt.correct {
+    background: var(--good-soft);
+    border-color: var(--good);
+    color: var(--good);
+    font-weight: 700;
+  }
+  .quiz-opt.wrong {
+    background: var(--bad-soft);
+    border-color: var(--bad);
+    color: var(--bad);
+  }
+  .quiz-feedback {
+    min-height: 20px;
+    text-align: center;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin: 14px 0 0;
+  }
+  .quiz-feedback.good { color: var(--good); }
+  .quiz-feedback.bad { color: var(--bad); }
+
+  .quiz-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 18px;
+  }
+  .quiz-stats > div {
+    text-align: center;
+  }
+  .quiz-stats span {
+    display: block;
+    font-family: 'Baloo 2', system-ui, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+  }
+  .quiz-stats label {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    text-transform: lowercase;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 40px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero { animation: none; opacity: 1; transform: none; }
+    .flip-inner { transition: none; }
+    .nav, .quiz-opt { transition: none; }
+  }
+
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 24px; }
+    .flip-card { height: 320px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="hero">
+    <div class="hero-shapes" aria-hidden="true">
+      <svg width="30" height="26" viewBox="0 0 30 26"><polygon points="15,2 28,24 2,24" fill="var(--triangle)"/></svg>
+      <svg width="34" height="26" viewBox="0 0 34 26"><polygon points="8,2 34,2 26,24 0,24" fill="var(--para)"/></svg>
+      <svg width="34" height="26" viewBox="0 0 34 26"><polygon points="11,2 23,2 32,24 2,24" fill="var(--trap)"/></svg>
+      <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="12" fill="var(--circle)"/></svg>
+    </div>
+    <h1>Shape Up your area formulas</h1>
+    <p>Flip each card to learn the trick behind the formula, then test how well it's stuck.</p>
+  </div>
+
+  <div class="section-label">Learn each shape — tap the card to flip</div>
+
+  <div class="card-stage">
+    <button class="nav" id="prevBtn" aria-label="Previous shape">‹</button>
+    <div class="flip-card" id="flipCard" tabindex="0" role="button" aria-label="Flip card to reveal formula">
+      <div class="flip-inner" id="flipInner"></div>
+    </div>
+    <button class="nav" id="nextBtn" aria-label="Next shape">›</button>
+  </div>
+
+  <div class="dots" id="dots"></div>
+  <p class="tap-hint">Card <span id="cardPos">1</span> of <span id="cardTotal">5</span></p>
+
+  <div class="section-label">Test yourself</div>
+
+  <div class="quiz-card">
+    <div class="quiz-shape" id="quizShape"></div>
+    <p class="quiz-question" id="quizQuestion"></p>
+    <div class="quiz-options" id="quizOptions"></div>
+    <p class="quiz-feedback" id="quizFeedback"></p>
+  </div>
+
+  <div class="quiz-stats">
+    <div><span id="streak">0</span><label>current streak</label></div>
+    <div><span id="best">0</span><label>best streak</label></div>
+  </div>
+
+  <footer>Progress resets when you reload the page — that's on purpose, it keeps you actively recalling instead of coasting.</footer>
+</div>
+
+<script>
+(function(){
+
+  // ---------- Diagram helpers ----------
+  function svgWrap(inner, vb) {
+    return '<svg width="180" height="140" viewBox="'+vb+'" xmlns="http://www.w3.org/2000/svg">'+inner+'</svg>';
+  }
+  function dashedLine(x1,y1,x2,y2,color){
+    return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+color+'" stroke-width="2" stroke-dasharray="5 4"/>';
+  }
+  function rightAngle(x,y,s,color){
+    return '<polyline points="'+x+','+(y-s)+' '+x+','+y+' '+(x+s)+','+y+'" fill="none" stroke="'+color+'" stroke-width="1.6"/>';
+  }
+
+  var triangleSVG = svgWrap(
+    '<polygon points="30,110 150,110 95,20" fill="var(--triangle-soft)" stroke="var(--triangle)" stroke-width="3"/>' +
+    dashedLine(95,20,95,110,'var(--triangle)') +
+    rightAngle(95,110,10,'var(--triangle)') ,
+    '0 0 180 140');
+
+  var paraSVG = svgWrap(
+    '<polygon points="35,110 130,110 150,30 55,30" fill="var(--para-soft)" stroke="var(--para)" stroke-width="3"/>' +
+    dashedLine(55,30,55,110,'var(--para)') +
+    rightAngle(55,110,10,'var(--para)'),
+    '0 0 180 140');
+
+  var trapSVG = svgWrap(
+    '<polygon points="25,112 155,112 125,28 65,28" fill="var(--trap-soft)" stroke="var(--trap)" stroke-width="3"/>' +
+    dashedLine(65,28,65,112,'var(--trap)') +
+    rightAngle(65,112,10,'var(--trap)'),
+    '0 0 180 140');
+
+  var circleSVG = svgWrap(
+    '<circle cx="90" cy="70" r="55" fill="var(--circle-soft)" stroke="var(--circle)" stroke-width="3"/>' +
+    dashedLine(90,70,145,70,'var(--circle)') +
+    '<circle cx="90" cy="70" r="3" fill="var(--circle)"/>',
+    '0 0 180 140');
+
+  var compoundSVG = svgWrap(
+    '<polygon points="25,20 105,20 105,65 155,65 155,115 25,115" fill="var(--compound-soft)" stroke="var(--compound)" stroke-width="3"/>' +
+    dashedLine(25,65,155,65,'var(--compound)'),
+    '0 0 180 140');
+
+  // ---------- Data ----------
+  var shapes = [
+    {
+      id: 'triangle', name: 'Triangle', color: 'var(--triangle)', soft: 'var(--triangle-soft)',
+      svg: triangleSVG, prompt: 'Area of a triangle?',
+      formula: '½ × base × height',
+      mnemonic: "A triangle is shy — it only ever wants HALF of the rectangle it's hiding inside.",
+      example: 'base 12, height 7 → ½ × 12 × 7 = 42',
+      short: '½ × b × h'
+    },
+    {
+      id: 'para', name: 'Parallelogram', color: 'var(--para)', soft: 'var(--para-soft)',
+      svg: paraSVG, prompt: 'Area of a parallelogram?',
+      formula: 'base × height',
+      mnemonic: "Push it upright and it's just a rectangle. Base times height — no halving, no slanted side.",
+      example: 'base 9, height 5 → 9 × 5 = 45',
+      short: 'b × h'
+    },
+    {
+      id: 'trap', name: 'Trapezium', color: 'var(--trap)', soft: 'var(--trap-soft)',
+      svg: trapSVG, prompt: 'Area of a trapezium?',
+      formula: '½ × (a + b) × h',
+      mnemonic: 'Add the two parallel "train track" sides, times the height, then halve it — like two trapeziums zipped into one parallelogram.',
+      example: 'sides 8 & 12, height 5 → ½ × 20 × 5 = 50',
+      short: '½ × (a+b) × h'
+    },
+    {
+      id: 'circle', name: 'Circle', color: 'var(--circle)', soft: 'var(--circle-soft)',
+      svg: circleSVG, prompt: 'Area of a circle?',
+      formula: 'π × r²',
+      mnemonic: '"Pi are round, not square" — but the AREA is π times the radius, squared.',
+      example: 'radius 5 → π × 5² ≈ 3.14 × 25 = 78.5',
+      short: 'π × r²'
+    },
+    {
+      id: 'compound', name: 'Compound shape', color: 'var(--compound)', soft: 'var(--compound-soft)',
+      svg: compoundSVG, prompt: 'Area of a compound shape?',
+      formula: 'Split, then add or subtract',
+      mnemonic: 'No formula to memorise here — slice it into rectangles/triangles you already know, then add the pieces (or subtract a missing bite).',
+      example: '8×6 rectangle + 10×4 rectangle = 48 + 40 = 88',
+      short: 'split → add/subtract'
+    }
+  ];
+
+  // ---------- Flashcards ----------
+  var flipCard = document.getElementById('flipCard');
+  var flipInner = document.getElementById('flipInner');
+  var dotsEl = document.getElementById('dots');
+  var cardPos = document.getElementById('cardPos');
+  var cardTotal = document.getElementById('cardTotal');
+  cardTotal.textContent = shapes.length;
+
+  var current = 0;
+  var isFlipped = false;
+
+  function renderCard() {
+    var s = shapes[current];
+    isFlipped = false;
+    flipCard.classList.remove('flipped');
+    flipInner.style.color = s.color;
+    flipInner.innerHTML =
+      '<div class="flip-front">' +
+        '<div class="shape-tag" style="background:'+s.soft+'; color:'+s.color+'"><span class="dot" style="background:'+s.color+'"></span>'+s.name+'</div>' +
+        '<div class="prompt">'+s.prompt+'</div>' +
+        '<div class="diagram">'+s.svg+'</div>' +
+        '<p class="tap-note">Tap to reveal the formula</p>' +
+      '</div>' +
+      '<div class="flip-back">' +
+        '<div class="shape-tag" style="background:'+s.soft+'; color:'+s.color+'"><span class="dot" style="background:'+s.color+'"></span>'+s.name+'</div>' +
+        '<div class="formula">'+s.formula+'</div>' +
+        '<p class="mnemonic">'+s.mnemonic+'</p>' +
+        '<p class="example">e.g. '+s.example+'</p>' +
+      '</div>';
+    cardPos.textContent = current + 1;
+    renderDots();
+  }
+
+  function renderDots() {
+    dotsEl.innerHTML = '';
+    shapes.forEach(function(s, i){
+      var b = document.createElement('button');
+      b.className = 'dot-btn' + (i === current ? ' active' : '');
+      b.setAttribute('aria-label', 'Go to ' + s.name + ' card');
+      b.style.background = i === current ? s.color : '';
+      b.addEventListener('click', function(){ current = i; renderCard(); });
+      dotsEl.appendChild(b);
+    });
+  }
+
+  function flip() {
+    isFlipped = !isFlipped;
+    flipCard.classList.toggle('flipped', isFlipped);
+  }
+
+  flipCard.addEventListener('click', flip);
+  flipCard.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+  });
+
+  document.getElementById('prevBtn').addEventListener('click', function(){
+    current = (current - 1 + shapes.length) % shapes.length;
+    renderCard();
+  });
+  document.getElementById('nextBtn').addEventListener('click', function(){
+    current = (current + 1) % shapes.length;
+    renderCard();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.target === flipCard) return;
+    if (e.key === 'ArrowLeft') { current = (current - 1 + shapes.length) % shapes.length; renderCard(); }
+    if (e.key === 'ArrowRight') { current = (current + 1) % shapes.length; renderCard(); }
+  });
+
+  renderCard();
+
+  // ---------- Quiz (adaptive: wrong answers come back sooner) ----------
+  var quizShapeEl = document.getElementById('quizShape');
+  var quizQuestionEl = document.getElementById('quizQuestion');
+  var quizOptionsEl = document.getElementById('quizOptions');
+  var quizFeedbackEl = document.getElementById('quizFeedback');
+  var streakEl = document.getElementById('streak');
+  var bestEl = document.getElementById('best');
+
+  var streak = 0, best = 0;
+  var queue = shapes.map(function(s, i){ return i; });
+  var lastIndex = -1;
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function nextQuizIndex() {
+    if (queue.length === 0) queue = shapes.map(function(s,i){ return i; });
+    var idx = queue.shift();
+    if (idx === lastIndex && queue.length > 0) {
+      queue.push(idx);
+      idx = queue.shift();
+    }
+    lastIndex = idx;
+    return idx;
+  }
+
+  function renderQuiz() {
+    var idx = nextQuizIndex();
+    var s = shapes[idx];
+    quizShapeEl.innerHTML = s.svg.replace('width="180" height="140"', 'width="110" height="86"');
+    quizQuestionEl.textContent = 'Which formula matches a ' + s.name.toLowerCase() + '?';
+    quizFeedbackEl.textContent = '';
+    quizFeedbackEl.className = 'quiz-feedback';
+
+    var distractors = shapes.filter(function(x){ return x.id !== s.id; });
+    var picks = shuffle(distractors).slice(0, 3).map(function(x){ return x.short; });
+    var options = shuffle(picks.concat([s.short]));
+
+    quizOptionsEl.innerHTML = '';
+    options.forEach(function(opt){
+      var btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.addEventListener('click', function(){ handleAnswer(opt, s, btn); });
+      quizOptionsEl.appendChild(btn);
+    });
+  }
+
+  function handleAnswer(chosen, s, btnEl) {
+    var buttons = quizOptionsEl.querySelectorAll('.quiz-opt');
+    buttons.forEach(function(b){ b.disabled = true; });
+
+    var correct = (chosen === s.short);
+    buttons.forEach(function(b){
+      if (b.textContent === s.short) b.classList.add('correct');
+      else if (b === btnEl) b.classList.add('wrong');
+    });
+
+    if (correct) {
+      streak++;
+      best = Math.max(best, streak);
+      quizFeedbackEl.textContent = 'Yes! ' + s.mnemonic;
+      quizFeedbackEl.className = 'quiz-feedback good';
+    } else {
+      streak = 0;
+      var sIdx = shapes.indexOf(s);
+      queue.splice(1, 0, sIdx); // bring it back soon
+      quizFeedbackEl.textContent = 'Not quite — ' + s.name + ' is ' + s.short + '.';
+      quizFeedbackEl.className = 'quiz-feedback bad';
+    }
+    streakEl.textContent = streak;
+    bestEl.textContent = best;
+
+    setTimeout(renderQuiz, 1400);
+  }
+
+  renderQuiz();
+
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

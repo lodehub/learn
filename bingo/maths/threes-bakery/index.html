@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Threes Bakery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF4F7;
+  --plum:#3B1440;
+  --muted:#6E4A72;
+  --berry:#C2255C;
+  --mint:#2BB39A;
+  --butter:#FFD25E;
+  --butter-d:#E3AE2B;
+  --choc:#7A4A35;
+  --line:#F0C9D9;
+  --white:#fff;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--plum);
+  font:400 18px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  min-height:100vh;
+}
+h1,h2,h3,.btn,.k,.box,.pill,.eq,.tally,.count{font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif}
+.awning{
+  height:18px;
+  background:repeating-linear-gradient(90deg,var(--berry) 0 30px,var(--white) 30px 60px);
+  border-radius:0 0 14px 14px;
+}
+.app{max-width:560px;margin:0 auto;padding:14px 16px 56px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top h1{font-size:28px;font-weight:800;margin:0}
+.pill{
+  appearance:none;border:2px solid var(--line);background:var(--white);color:var(--plum);
+  border-radius:999px;padding:2px 14px;font-size:16px;font-weight:600;cursor:pointer;min-height:36px;
+}
+h2{font-size:clamp(28px,7vw,36px);line-height:1.1;font-weight:800;margin:14px 0 8px}
+p{margin:0 0 12px;max-width:52ch}
+:focus-visible{outline:3px solid var(--berry);outline-offset:3px;border-radius:8px}
+h2:focus{outline:none}
+
+.btn{
+  appearance:none;border:0;border-radius:18px;background:var(--berry);color:#fff;
+  min-height:58px;padding:8px 26px;font-size:22px;font-weight:800;cursor:pointer;box-shadow:0 5px 0 #8E1A44;
+}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #8E1A44}
+.btn.ghost{background:var(--white);color:var(--plum);border:3px solid var(--plum);box-shadow:none;min-height:52px;font-size:20px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px}
+
+/* display shelf */
+.shelf{display:flex;gap:4px;margin:6px 0 12px}
+.slot{flex:1;max-width:34px;aspect-ratio:1/1.1;border:2px dashed var(--line);border-radius:10px;position:relative}
+.shelf.big{flex-wrap:wrap;justify-content:flex-start;gap:8px;margin:14px 0}
+.shelf.big .slot{max-width:68px;min-width:52px;border:0;background:var(--white);border-radius:14px;box-shadow:0 3px 0 var(--line)}
+.cake{position:absolute;inset:0}
+.cake .cup{position:absolute;left:14%;right:14%;bottom:8%;height:40%;background:var(--choc);clip-path:polygon(0 0,100% 0,84% 100%,16% 100%)}
+.cake .top{position:absolute;left:6%;right:6%;top:24%;height:44%;border-radius:50% 50% 38% 38%;background:var(--fr)}
+.cake .cherry{position:absolute;left:50%;top:6%;width:26%;aspect-ratio:1;margin-left:-13%;border-radius:50%;background:#D61F3D;z-index:1}
+.pop{animation:pop .4s}
+
+/* customer */
+.cust{display:flex;gap:12px;align-items:center;margin:6px 0 4px}
+.av{width:48px;height:48px;border-radius:50%;background:var(--c,#F4A3B8);position:relative;flex:none}
+.av i{position:absolute;top:19px;width:6px;height:6px;border-radius:50%;background:var(--plum)}
+.av i:first-child{left:14px}
+.av i:last-child{right:14px}
+.bubble{
+  margin:0;background:var(--white);border:3px solid var(--line);border-radius:18px;padding:8px 14px;
+  font-size:19px;font-weight:700;max-width:none;
+}
+.eq{font-size:clamp(52px,15vw,78px);font-weight:800;line-height:1;text-align:center;margin:8px 0 4px}
+
+/* boxes */
+.boxes{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:8px 0}
+.bx{border:0;background:none;padding:0;aspect-ratio:1;perspective:520px;cursor:pointer;font:inherit}
+.in{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .4s}
+.bx.open .in{transform:rotateY(180deg)}
+.fr,.bk{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.fr{background:var(--butter);border:3px solid var(--butter-d)}
+.fr::before{content:"";position:absolute;left:0;right:0;top:42%;height:16%;background:var(--berry)}
+.fr::after{content:"";position:absolute;top:0;bottom:0;left:42%;width:16%;background:var(--berry)}
+.bk{transform:rotateY(180deg);background:var(--white);border:3px solid var(--line);display:grid;place-items:center}
+.dots{display:flex;gap:3px}
+.dots i{display:block;width:9px;height:9px;border-radius:50%}
+.dots i:nth-child(1){background:#FF8FB1}
+.dots i:nth-child(2){background:var(--mint)}
+.dots i:nth-child(3){background:var(--butter-d)}
+.tally{min-height:42px;text-align:center;font-size:28px;font-weight:800;color:var(--berry)}
+
+/* keypad */
+.digits{display:flex;gap:10px;justify-content:center;margin:0 0 8px}
+.box{width:64px;height:76px;border-radius:14px;background:var(--white);border:3px solid var(--plum);display:grid;place-items:center;font-size:48px;font-weight:800}
+.msg{min-height:56px;text-align:center;font-size:20px;font-weight:700;margin:2px 0}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:340px;margin:0 auto}
+.k{
+  appearance:none;border:0;min-height:60px;border-radius:16px;background:var(--white);color:var(--plum);
+  border:3px solid var(--plum);font-size:30px;font-weight:800;cursor:pointer;box-shadow:0 4px 0 var(--plum);
+}
+.k:active{transform:translateY(3px);box-shadow:0 1px 0 var(--plum)}
+.k.fn{background:var(--line);font-size:20px}
+.peek{display:block;margin:14px auto 0}
+.shake{animation:shake .35s}
+
+@keyframes pop{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes shake{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="awning" aria-hidden="true"></div>
+<div class="app">
+  <div class="top">
+    <h1>Threes Bakery</h1>
+    <button class="pill" id="snd" aria-pressed="true">Sound on</button>
+  </div>
+  <main id="stage"></main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var $=function(s){return document.querySelector(s)};
+  var T=3,N=12;                     /* each box holds T cupcakes; N customers */
+  var S={sound:true,stage:0,run:0,results:[]};
+  var WORDS=["","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"];
+  var SCALE=[262,294,330,349,392,440,494,523,587,659,698,784];
+  var FROST=["#FF8FB1","#7FE0C8","#FFD25E","#B69CFF"];
+  var CUSTOMERS=[
+    ["Mrs Otter","#F4A3B8"],["Mr Fox","#FFB870"],["Ms Hedgehog","#C9B6F2"],["Mr Badger","#B9C7D6"],
+    ["Mrs Duck","#FFE07A"],["Mr Owl","#D9B48F"],["Ms Rabbit","#F7C6DA"],["Mr Mole","#A9B8A0"],
+    ["Mrs Swan","#CFE8F7"],["Mr Hare","#F2C9A0"],["Ms Squirrel","#F0A88E"],["Mr Bear","#C7A98F"]
+  ];
+  var timers=[];
+  var actx=null;
+
+  /* ---------- sound and speech (optional, fail quietly) ---------- */
+  function tone(freq,dur,type,gain){
+    if(!S.sound)return;
+    try{
+      actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+      if(actx.state==="suspended")actx.resume();
+      var o=actx.createOscillator(),g=actx.createGain();
+      o.type=type||"triangle";o.frequency.value=freq;
+      g.gain.setValueAtTime(gain||0.14,actx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001,actx.currentTime+(dur||0.2));
+      o.connect(g);g.connect(actx.destination);
+      o.start();o.stop(actx.currentTime+(dur||0.2));
+    }catch(e){}
+  }
+  function say(text){
+    if(!S.sound)return;
+    try{
+      if(!("speechSynthesis" in window))return;
+      window.speechSynthesis.cancel();
+      var u=new SpeechSynthesisUtterance(text);
+      u.lang="en-GB";u.rate=0.9;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+  function factSpeech(x,y){return WORDS[x]+" times "+WORDS[y]+" is "+(x*y)}
+  function chime(){tone(523,0.15);setTimeout(function(){tone(659,0.15)},120);setTimeout(function(){tone(784,0.28)},240)}
+  function thud(){tone(196,0.18,"sine",0.12)}
+
+  /* ---------- helpers ---------- */
+  function later(fn,ms){
+    var run=S.run;
+    var id=setTimeout(function(){if(run===S.run)fn()},ms);
+    timers.push(id);return id;
+  }
+  function clearAll(){
+    timers.forEach(clearTimeout);timers=[];
+    try{window.speechSynthesis.cancel()}catch(e){}
+  }
+  function shuffle(a){
+    for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}
+    return a;
+  }
+  function shake(el){
+    if(!el)return;
+    el.classList.remove("shake");void el.offsetWidth;el.classList.add("shake");
+  }
+  function focusHeading(){var h=$("#stage h2");if(h){h.setAttribute("tabindex","-1");h.focus({preventScroll:true})}}
+  function orient(k){
+    var rev=(k!==T&&Math.random()<0.5);
+    return {x:rev?k:T,y:rev?T:k};
+  }
+  function cakeHTML(i,cherry){
+    return '<span class="cake pop" style="--fr:'+FROST[i%FROST.length]+'">'+
+      (cherry?'<span class="cherry"></span>':'')+'<span class="top"></span><span class="cup"></span></span>';
+  }
+  function chantAll(gap){
+    S.run++;clearAll();
+    for(var k=1;k<=N;k++){
+      (function(kk){later(function(){tone(SCALE[kk-1],0.28);say(String(T*kk))},(kk-1)*gap)})(k);
+    }
+  }
+  function go(stage){
+    S.run++;clearAll();S.stage=stage;
+    [intro,orders,finish][stage]();
+    focusHeading();
+    try{window.scrollTo(0,0)}catch(e){}
+  }
+
+  /* ---------- intro ---------- */
+  function intro(){
+    $("#stage").innerHTML=
+      '<h2>Open the bakery. About five minutes.</h2>'+
+      '<p>Every cupcake box holds '+T+' cupcakes. Customers order some boxes. You say how many cupcakes that is.</p>'+
+      '<p>Type the total. Stuck? Tap the boxes to open them and count in threes. Know it without counting, and your cupcake gets a cherry on top.</p>'+
+      '<div class="row"><button class="btn" id="go">Open the shop</button></div>';
+    $("#go").onclick=function(){chime();go(1)};
+  }
+
+  /* ---------- the orders ---------- */
+  function orders(){
+    var easy=shuffle([1,2,5,10]);
+    var hard=shuffle([3,4,6,7,8,9,11,12]);
+    var order=easy.slice(0,2).concat(shuffle(easy.slice(2).concat(hard)));
+    var names=shuffle(CUSTOMERS.slice());
+    var qs=order.map(function(k,i){var o=orient(k);return {k:k,x:o.x,y:o.y,who:names[i%names.length]}});
+    var idx=0,typed="",mode="ask",helped=false,opened=0,locked=false;
+    S.results=[];
+
+    var pad="";
+    [1,2,3,4,5,6,7,8,9].forEach(function(d){pad+='<button class="k" data-d="'+d+'">'+d+'</button>'});
+    pad+='<button class="k fn" data-fn="del" aria-label="Delete">Del</button><button class="k" data-d="0">0</button><span></span>';
+    var slots="";
+    for(var s=0;s<N;s++)slots+='<div class="slot"></div>';
+
+    $("#stage").innerHTML=
+      '<h2>Serve the customers</h2>'+
+      '<div class="shelf" id="shelf" aria-label="Your display shelf">'+slots+'</div>'+
+      '<div class="cust"><span class="av" id="av"><i></i><i></i></span><p class="bubble" id="bub"></p></div>'+
+      '<div class="eq" id="eq"></div>'+
+      '<div class="boxes" id="boxes"></div>'+
+      '<div class="tally" id="tally" aria-live="polite"></div>'+
+      '<div class="digits" id="digits"></div>'+
+      '<div class="msg" id="msg" aria-live="polite"></div>'+
+      '<div class="pad" id="pad">'+pad+'</div>'+
+      '<button class="btn ghost peek" id="openbtn">Open a box and count</button>';
+
+    var msg=$("#msg");
+
+    function ans(){var q=qs[idx];return q.x*q.y}
+    function drawDigits(){
+      var n=String(ans()).length,h="";
+      for(var i=0;i<n;i++)h+='<div class="box">'+(typed.charAt(i)||"")+'</div>';
+      $("#digits").innerHTML=h;
+    }
+    function boxEl(i){return $("#boxes").children[i]}
+
+    function showOrder(){
+      var q=qs[idx];
+      typed="";mode="ask";helped=false;opened=0;locked=false;
+      $("#av").style.setProperty("--c",q.who[1]);
+      $("#bub").textContent=q.who[0]+": \u201CI would like "+q.k+(q.k===1?" box":" boxes")+" of "+T+", please!\u201D";
+      $("#eq").textContent=q.x+" \u00D7 "+q.y+" =";
+      var b="";
+      for(var i=0;i<q.k;i++){
+        b+='<button class="bx" aria-label="Box '+(i+1)+', closed"><span class="in"><span class="fr"></span>'+
+           '<span class="bk"><span class="dots"><i></i><i></i><i></i></span></span></span></button>';
+      }
+      $("#boxes").innerHTML=b;
+      $("#tally").textContent="";
+      drawDigits();
+      $("#openbtn").hidden=false;
+      msg.textContent=idx===0?"How many cupcakes altogether? Type it, or open the boxes and count.":"How many cupcakes altogether?";
+    }
+
+    function openOne(speak){
+      var q=qs[idx];
+      if(opened>=q.k)return false;
+      var b=boxEl(opened);
+      b.classList.add("open");
+      b.setAttribute("aria-label","Box "+(opened+1)+", open, "+T+" cupcakes");
+      opened++;
+      var total=opened*T;
+      $("#tally").textContent=total;
+      tone(SCALE[opened-1],0.22);
+      if(speak)say(String(total));
+      return true;
+    }
+    function openRest(gap,speak,done){
+      var remaining=qs[idx].k-opened;
+      if(remaining<=0){if(done)later(done,0);return}
+      for(var i=0;i<remaining;i++){
+        (function(j){
+          later(function(){
+            openOne(speak);
+            if(j===remaining-1&&done)later(done,speak?800:300);
+          },150+j*gap);
+        })(i);
+      }
+    }
+
+    function manualOpen(){
+      if(locked)return;
+      var q=qs[idx];
+      if(opened>=q.k)return;
+      helped=true;
+      openOne(true);
+      if(opened===q.k){
+        mode="copy";typed="";drawDigits();
+        msg.textContent="Now type "+ans()+".";
+      }else{
+        msg.textContent="Keep counting in threes.";
+      }
+    }
+
+    function finishOrder(star){
+      S.results.push(star);
+      var i=S.results.length-1;
+      $("#shelf").children[i].innerHTML=cakeHTML(i,star==="gold");
+      var q=qs[idx];
+      locked=true;
+      msg.textContent="Yes! "+q.x+" \u00D7 "+q.y+" = "+ans()+(star==="gold"?" Cherry on top!":"");
+      chime();
+      openRest(200,false,function(){
+        say(factSpeech(q.x,q.y));
+        later(next,2400);
+      });
+    }
+
+    function next(){
+      idx++;
+      if(idx>=qs.length)go(2);else showOrder();
+    }
+
+    function check(){
+      var a=ans();
+      if(+typed===a){
+        finishOrder(helped?"silver":"gold");
+      }else if(mode==="ask"){
+        helped=true;mode="copy";thud();typed="";drawDigits();
+        locked=true;
+        msg.textContent="Nearly! Let us count the boxes.";
+        openRest(700,true,function(){
+          msg.textContent="Now type "+a+".";
+          locked=false;
+        });
+      }else{
+        shake($("#digits"));thud();typed="";
+        setTimeout(drawDigits,250);
+        msg.textContent="Look at the count and type "+a+".";
+      }
+    }
+
+    function press(d){
+      if(locked||typed.length>=String(ans()).length)return;
+      typed+=d;drawDigits();tone(330+(+d)*22,0.08,"sine",0.1);
+      if(typed.length===String(ans()).length){
+        locked=true;
+        setTimeout(function(){locked=false;check()},220);
+      }
+    }
+    function del(){if(locked)return;typed=typed.slice(0,-1);drawDigits()}
+
+    $("#pad").addEventListener("click",function(e){
+      var b=e.target.closest("button");if(!b)return;
+      if(b.getAttribute("data-fn")==="del")del();
+      else if(b.hasAttribute("data-d"))press(b.getAttribute("data-d"));
+    });
+    $("#boxes").addEventListener("click",function(e){
+      if(e.target.closest(".bx"))manualOpen();
+    });
+    $("#openbtn").onclick=manualOpen;
+    orders.onKey=function(e){
+      if(S.stage!==1)return;
+      if(e.key>="0"&&e.key<="9")press(e.key);
+      else if(e.key==="Backspace")del();
+    };
+
+    showOrder();
+  }
+
+  /* ---------- finish ---------- */
+  function finish(){
+    var gold=S.results.filter(function(r){return r==="gold"}).length;
+    var cakes="";
+    S.results.forEach(function(r,i){cakes+='<div class="slot">'+cakeHTML(i,r==="gold")+'</div>'});
+    $("#stage").innerHTML=
+      '<h2>The bakery is open!</h2>'+
+      '<div class="shelf big" aria-label="Your finished display shelf">'+cakes+'</div>'+
+      '<p>You served all '+N+' customers. '+gold+' '+(gold===1?"cupcake has":"cupcakes have")+' a cherry on top, because you knew the answer without counting.</p>'+
+      '<p>Say the count out loud once more: '+T+', '+(2*T)+', '+(3*T)+', all the way up to '+(N*T)+'.</p>'+
+      '<div class="row"><button class="btn" id="hear">Hear the count</button><button class="btn ghost" id="again">Open another day</button></div>';
+    chime();later(chime,500);
+    $("#hear").onclick=function(){chantAll(1100)};
+    $("#again").onclick=function(){go(1)};
+  }
+
+  /* ---------- wiring ---------- */
+  $("#snd").onclick=function(){
+    S.sound=!S.sound;
+    this.textContent=S.sound?"Sound on":"Sound off";
+    this.setAttribute("aria-pressed",S.sound?"true":"false");
+    if(!S.sound){try{window.speechSynthesis.cancel()}catch(e){}}
+  };
+  document.addEventListener("keydown",function(e){if(orders.onKey)orders.onKey(e)});
+
+  go(0);
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

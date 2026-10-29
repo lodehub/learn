@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lungs and gas exchange · AQA-style practice</title>
+<style>
+:root{--paper:#f6f8fc;--grid:#e7ebf6;--card:#fff;--ink:#1c2140;--muted:#5b6285;--line:#d3d9ec;--accent:#3b4cc0;--accent-ink:#fff;--gold:#f0b429;--ok:#137a5a;--okbg:#e3f5ee;--bad:#a63a28;--badbg:#fbe9e5}
+@media (prefers-color-scheme:dark){:root{--paper:#12152a;--grid:#1a1e38;--card:#1b1f3a;--ink:#eceffd;--muted:#a3abd0;--line:#343a62;--accent:#8fa0ff;--accent-ink:#12152a;--ok:#5fd6ad;--okbg:#14332b;--bad:#ff9c86;--badbg:#3a1f1a}}
+*{box-sizing:border-box}
+html{font-size:17px}
+body{margin:0;color:var(--ink);background:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;line-height:1.5;padding-bottom:5rem}
+main,header .in{max-width:46rem;margin:0 auto;padding:0 1rem}
+header{padding:1.4rem 0 .6rem}
+h1{font-size:1.9rem;line-height:1.15;margin:0 0 .25rem}
+.sub{color:var(--muted);margin:0}
+.bar{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-top:.8rem}
+.qhead{margin:2rem 0 .3rem;font-size:1.25rem}
+.qhead small{color:var(--muted);font-weight:400;font-size:1rem;margin-left:.4rem}
+.intro{margin:.2rem 0 .8rem}
+.part{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:6px;padding:1rem 1rem 1.1rem;margin:0 0 1rem}
+.part h3{font-size:1rem;margin:0 0 .7rem;font-weight:600;display:flex;gap:.7rem;align-items:baseline}
+.part h3 .id{font-variant-numeric:tabular-nums;color:var(--accent);flex:none}
+.part h3 .t{flex:1;white-space:pre-line}
+.part h3 .m{flex:none;color:var(--muted);font-weight:500;font-size:.9rem}
+.in{width:100%;font:inherit;color:inherit;background:var(--paper);border:1.5px solid var(--line);border-radius:6px;padding:.6rem .7rem}
+textarea.in{resize:vertical;min-height:5.5rem}
+.in:focus,.btn:focus-visible,.card:focus-visible,select:focus-visible,.lv:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn{font:inherit;font-weight:600;background:var(--accent);color:var(--accent-ink);border:0;border-radius:6px;padding:.6rem 1rem;min-height:44px;cursor:pointer;margin-top:.6rem}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.row{display:flex;gap:.6rem;flex-wrap:wrap}
+.row .in{flex:1 1 12rem}
+.fb{margin-top:.6rem;padding:.55rem .75rem;border-radius:6px;font-size:.95rem}
+.fb.ok{background:var(--okbg);color:var(--ok)}
+.fb.no{background:var(--badbg);color:var(--bad)}
+.fb.info{background:var(--paper);border:1px dashed var(--line);color:var(--muted)}
+.ms{margin-top:.8rem;border-top:1px dashed var(--line);padding-top:.7rem}
+.ms label{display:flex;gap:.6rem;align-items:flex-start;padding:.3rem 0;cursor:pointer}
+.ms input[type=checkbox]{width:1.3rem;height:1.3rem;margin-top:.15rem;flex:none}
+.ms .extra{color:var(--muted);font-size:.9rem;margin:.4rem 0 0}
+.got{font-weight:700;margin-top:.5rem}
+table.d{border-collapse:collapse;margin:.4rem 0 1rem;width:100%;background:var(--card)}
+table.d th,table.d td{border:1px solid var(--line);padding:.4rem .6rem;text-align:left}
+table.d th{background:var(--paper)}
+caption{text-align:left;font-weight:600;padding-bottom:.3rem}
+/* the chain: the one memorable thing */
+.hint{color:var(--muted);margin:0 0 .6rem;font-size:.95rem}
+.pool{display:flex;flex-direction:column;gap:.5rem;margin-bottom:.9rem}
+.card{font:inherit;text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--accent);border-radius:999px;padding:.55rem 1.1rem;min-height:44px;cursor:pointer}
+.card.placed{background:var(--accent);color:var(--accent-ink)}
+.chain{display:flex;flex-direction:column;align-items:stretch}
+.slot{border:2px dashed var(--line);border-radius:999px;padding:.55rem 1.1rem;color:var(--muted);min-height:44px}
+.join{align-self:center;display:flex;flex-direction:column;align-items:center}
+.join:before,.join:after{content:"";width:0;height:.55rem;border-left:3px solid var(--gold)}
+.join select{font:inherit;padding:.3rem .5rem;border:2px solid var(--gold);border-radius:999px;background:var(--card);color:var(--ink);min-height:38px}
+.lock .card{cursor:default}
+/* six marker */
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0 0}
+.chip{font-size:.85rem;padding:.2rem .65rem;border-radius:999px;border:1.5px solid var(--line);color:var(--muted)}
+.chip.on{border-color:var(--ok);background:var(--okbg);color:var(--ok);font-weight:600}
+.lvls{display:grid;gap:.4rem;margin:.6rem 0}
+.lvls div{border:1px solid var(--line);border-radius:6px;padding:.4rem .6rem;font-size:.95rem}
+.lvls b{display:inline-block;min-width:3rem}
+.pick{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+.lv{font:inherit;font-weight:700;width:44px;height:44px;border-radius:50%;border:2px solid var(--accent);background:var(--card);color:var(--accent);cursor:pointer}
+.lv[aria-pressed=true]{background:var(--accent);color:var(--accent-ink)}
+.real{margin-top:2rem;padding:1rem;border:1.5px dashed var(--accent);border-radius:6px;background:var(--card)}
+.real p{margin:.3rem 0}
+#score{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:2px solid var(--accent);padding:.6rem 1rem;display:flex;justify-content:space-between;gap:1rem;align-items:center;z-index:5}
+#score b{font-size:1.15rem}
+#timer{font-variant-numeric:tabular-nums;font-weight:700}
+footer{text-align:center;color:var(--muted);font-size:.85rem;margin:2rem 0}
+footer button{font:inherit;color:var(--muted);background:none;border:0;text-decoration:underline;cursor:pointer}
+sub,sup{line-height:0}
+@media (prefers-reduced-motion:no-preference){.fb{transition:opacity .2s}}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <h1>Lungs and gas exchange</h1>
+  <p class="sub">Year 8 Biology, B4 Organisms. AQA GCSE-style questions: 18 marks, about 20 minutes.</p>
+  <div class="bar">
+    <button class="btn ghost" id="tbtn" style="margin:0">Start timer</button>
+    <span id="timer">00:00</span>
+    <span class="sub">Answer first. Then mark. Tick only what you actually wrote.</span>
+  </div>
+</div></header>
+<main id="app"></main>
+<div id="score"><span>Your marks</span><b id="tot">0 / 18</b></div>
+<footer><button id="reset">Clear my answers and start again</button></footer>
+
+<script>
+const KEY='ember:science:lungs-gas-exchange:answers';
+let S={};try{S=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const st=id=>S[id]||(S[id]={});
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=s=>esc(s).replace(/CO2/g,'CO<sub>2</sub>').replace(/dm3/g,'dm<sup>3</sup>');
+const mk=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+
+const GROUPS=[
+ {num:'01',intro:'The lungs are the organs of gas exchange.',parts:[
+  {id:'01.1',type:'short',marks:1,text:'Name the tiny air sacs where oxygen passes into the blood.',accept:/alveol/i,scheme:['alveoli'],extra:['allow alveolus']},
+  {id:'01.2',type:'write',marks:2,rows:2,text:'Give two ways the alveoli are adapted for gas exchange.',
+   points:['very thin walls / walls one cell thick','large surface area / there are millions of them','good blood supply / surrounded by capillaries'],pick:2,
+   extra:['ignore small, efficient or good for gas exchange']},
+  {id:'01.3',type:'write',marks:2,rows:3,text:'Explain why thin alveolus walls make gas exchange faster.',
+   points:['oxygen and CO2 have a shorter distance to diffuse','(so) gases move across more quickly'],
+   extra:['Both marks need the link: thin, so short distance, so faster.','ignore easier / better with no reason']}]},
+ {num:'02',intro:'A student measured her breathing at rest and during exercise. Table 1 shows her results.',
+  table:{cap:'Table 1',head:['Activity','Breaths per minute','Volume of air per breath in dm3'],rows:[['Rest','12','0.5'],['Jogging','24','1.0'],['Sprinting','36','1.5']]},
+  parts:[
+  {id:'02.1',type:'write',marks:2,rows:2,text:'Describe the pattern shown in Table 1.',
+   points:['as activity gets harder, breathing rate increases','and the volume of air per breath increases'],
+   extra:['allow use of data, e.g. 12 to 36 breaths per minute']},
+  {id:'02.2',type:'calc',marks:2,text:'Calculate the volume of air she breathed in one minute while sprinting.\nUse: volume per minute = breaths per minute × volume per breath.',
+   step:/36\s*[x×*]\s*1\.5|1\.5\s*[x×*]\s*36/i,ans:54,unit:'dm3 per minute'},
+  {id:'02.3',type:'chain',marks:3,text:'Explain why her breathing rate and breath volume increase during exercise.',
+   links:['Muscles respire faster and need more energy','More oxygen is needed and more CO2 is produced','Faster, deeper breathing delivers oxygen and removes CO2 more quickly'],
+   points:['muscles respire faster / need more energy','(so) more oxygen needed and more CO2 produced','(so) faster, deeper breathing delivers oxygen / removes CO2 more quickly'],
+   extra:['Energy is released or transferred. It is never made, produced or created.']}]},
+ {num:'03',intro:'',parts:[
+  {id:'03',type:'six',marks:6,rows:8,text:'Explain how the lungs are adapted for efficient gas exchange.',
+   levels:[['5–6','Adaptations are identified, each explained in detail, and logically linked to form a clear account.'],['3–4','Adaptations are identified and there are attempts at linking. The account is not fully clear.'],['1–2','Points are stated simply. Their relevance is not clear and there is no linking.'],['0','No relevant content.']],
+   indicative:['many alveoli → large surface area → more oxygen diffuses at once','walls one cell thick → short diffusion distance → diffusion is fast','capillary network / rich blood supply → oxygen carried away, CO2 brought → steep concentration gradient','ventilation → fresh air in, CO2 out → steep concentration gradient'],
+   note:'For Level 3, expect at least three different types of adaptation, each with its explanation.',
+   keys:[['surface area',/surface area|millions|many alveoli|large number/i],['thin walls / short distance',/thin|one cell|diffusion distance|short(er)? distance/i],['blood supply',/blood supply|capillar/i],['ventilation',/ventilat|fresh air|breath(e|ing) in/i]]}]}
+];
+const ALL=GROUPS.flatMap(g=>g.parts), TOTAL=ALL.reduce((a,p)=>a+p.marks,0);
+const LINK=/\b(because|so|which means|this means|therefore|as a result|meaning|allows|leads to)\b/gi;
+
+function updateScore(){const n=ALL.reduce((a,p)=>a+(st(p.id).marks||0),0);document.getElementById('tot').textContent=n+' / '+TOTAL}
+function award(id,n){st(id).marks=n;save();updateScore()}
+
+/* ---- renderers ---- */
+function rShort(p,box){
+  const s=st(p.id);
+  box.innerHTML=`<div class="row"><input class="in" value="${esc(s.text||'')}" placeholder="Type your answer" aria-label="Your answer"><button class="btn" style="margin:0">Check</button></div><div class="fb" hidden></div>`;
+  const inp=box.querySelector('input'),fb=box.querySelector('.fb');
+  const show=()=>{fb.hidden=false;if(s.done){const ok=s.marks===1;fb.className='fb '+(ok?'ok':'no');fb.innerHTML=ok?'Correct: alveoli (1 mark)':'Not this time. Mark scheme: alveoli (allow alveolus). 0 marks.'}};
+  inp.oninput=()=>{s.text=inp.value;save()};
+  box.querySelector('button').onclick=()=>{s.done=true;award(p.id,p.accept.test(inp.value)?1:0);show()};
+  if(s.done)show();
+}
+function scheme(p,box,after){
+  const s=st(p.id);s.ticks=s.ticks||[];
+  const ms=mk('div','ms');
+  ms.innerHTML=`<div><b>Mark scheme:</b> ${p.pick?`any ${p.pick} from`:'one mark for each'}</div>`+p.points.map((t,i)=>`<label><input type="checkbox" data-i="${i}" ${s.ticks[i]?'checked':''}><span>${fmt(t)}</span></label>`).join('')+(p.extra&&p.extra.length?`<p class="extra">${p.extra.map(fmt).join('<br>')}</p>`:'')+`<div class="got"></div>`;
+  const got=ms.querySelector('.got');
+  const calc=()=>{const c=s.ticks.filter(Boolean).length;const n=Math.min(c,p.pick||p.points.length);award(p.id,n);got.textContent='You scored '+n+' out of '+p.marks};
+  ms.onchange=e=>{if(e.target.dataset.i!=null){s.ticks[+e.target.dataset.i]=e.target.checked;calc()}};
+  box.appendChild(ms);calc();
+}
+function rWrite(p,box){
+  const s=st(p.id);
+  box.innerHTML=`<textarea class="in" rows="${p.rows||3}" placeholder="Write your answer here" aria-label="Your answer">${esc(s.text||'')}</textarea><button class="btn">Mark it</button>`;
+  const ta=box.querySelector('textarea'),b=box.querySelector('button');
+  ta.oninput=()=>{s.text=ta.value;save()};
+  const open=()=>{b.hidden=true;scheme(p,box)};
+  b.onclick=()=>{s.marked=true;save();open()};
+  if(s.marked)open();
+}
+function rCalc(p,box){
+  const s=st(p.id);
+  box.innerHTML=`<div class="row"><input class="in w" placeholder="Working" value="${esc(s.w||'')}" aria-label="Working"><input class="in a" placeholder="Answer" value="${esc(s.a||'')}" aria-label="Answer"></div><button class="btn">Check</button><div class="fb" hidden></div>`;
+  const w=box.querySelector('.w'),a=box.querySelector('.a'),fb=box.querySelector('.fb');
+  w.oninput=()=>{s.w=w.value;save()};a.oninput=()=>{s.a=a.value;save()};
+  const show=()=>{const m1=p.step.test(s.w||'')||parseFloat(s.a)===p.ans,m2=parseFloat(s.a)===p.ans;const n=(m1?1:0)+(m2?1:0);award(p.id,n);
+    fb.hidden=false;fb.className='fb '+(n===2?'ok':'no');
+    fb.innerHTML=`Mark scheme: 36 × 1.5 (1), then ${p.ans} ${fmt(p.unit)} (1). Units are ignored.<br>You scored ${n} out of 2.`+(n<2?' Check that you multiplied breaths per minute by volume per breath.':'')};
+  box.querySelector('button').onclick=()=>{s.done=true;show()};
+  if(s.done)show();
+}
+function rChain(p,box){
+  const s=st(p.id);s.order=s.order||[];s.joins=s.joins||['',''];
+  const OPTS=['so','which means','therefore','as a result','and','because'];
+  function draw(){
+    const pool=[2,0,1].filter(i=>!s.order.includes(i)),locked=!!s.chainOk;
+    let h=`<p class="hint">${locked?'Chain built. Now write it out as your answer.':'Tap the three links in the order they happen. Then choose the joining word between each pair.'}</p>`;
+    if(!locked)h+=`<div class="pool">${pool.map(i=>`<button class="card" data-add="${i}">${fmt(p.links[i])}</button>`).join('')||''}</div>`;
+    h+=`<div class="chain ${locked?'lock':''}">`;
+    for(let k=0;k<3;k++){
+      h+=s.order[k]!=null?`<button class="card placed" data-rm="${k}" ${locked?'disabled':''}>${fmt(p.links[s.order[k]])}</button>`:`<div class="slot">link ${k+1}</div>`;
+      if(k<2)h+=`<div class="join"><select data-j="${k}" aria-label="Joining word ${k+1}" ${locked?'disabled':''}><option value="">join…</option>${OPTS.map(o=>`<option ${s.joins[k]===o?'selected':''}>${o}</option>`).join('')}</select></div>`;
+    }
+    h+=`</div>`;
+    if(!locked)h+=`<button class="btn" data-check>Check my chain</button><div class="fb" hidden></div>`;
+    else h+=`<div class="sub2" style="margin-top:.8rem"></div>`;
+    box.innerHTML=h;
+    if(locked){const sub=box.querySelector('.sub2');rWrite(p,sub)}
+  }
+  box.onclick=e=>{
+    const t=e.target.closest('button');if(!t||s.chainOk)return;
+    if(t.dataset.add!=null){s.order.push(+t.dataset.add);save();draw()}
+    else if(t.dataset.rm!=null){s.order.splice(+t.dataset.rm,1);save();draw()}
+    else if(t.dataset.check!=null){
+      const fb=box.querySelector('.fb');fb.hidden=false;fb.className='fb no';
+      if(s.order.length<3){fb.textContent='Place all three links first.';return}
+      const bad=s.order.findIndex((v,i)=>v!==i);
+      if(bad>-1){fb.textContent='Not quite. Link '+(bad+1)+' is out of place. Ask: what has to happen first, and what does that cause next?';return}
+      if(s.joins.some(j=>!j)){fb.textContent='The order is right. Now choose a joining word for both gaps.';return}
+      if(s.joins.includes('and')){fb.textContent='"and" only lists things. Use a word that shows one thing causes the next: so, which means, therefore.';return}
+      if(s.joins.includes('because')){fb.textContent='"because" points backwards. Here the next link is the result, so use so / which means / therefore.';return}
+      s.chainOk=true;save();draw();
+    }
+  };
+  box.onchange=e=>{if(e.target.dataset.j!=null){s.joins[+e.target.dataset.j]=e.target.value;save()}};
+  draw();
+}
+function rSix(p,box){
+  const s=st(p.id);
+  box.innerHTML=`<textarea class="in" rows="${p.rows}" placeholder="Write your answer here. Aim for three adaptations, each with a reason." aria-label="Your answer">${esc(s.text||'')}</textarea>
+  <div class="chips" aria-live="polite"></div><div class="fb info coach">This is a nudge, not a marker. It only spots key words.</div><button class="btn">Mark it</button>`;
+  const ta=box.querySelector('textarea'),chips=box.querySelector('.chips'),coach=box.querySelector('.coach'),b=box.querySelector('button');
+  const upd=()=>{const t=ta.value;
+    chips.innerHTML=p.keys.map(([n,re])=>`<span class="chip ${re.test(t)?'on':''}">${esc(n)}</span>`).join('');
+    const found=p.keys.filter(([n,re])=>re.test(t)).length,links=(t.match(LINK)||[]).length;
+    coach.textContent=`Adaptations spotted: ${found}. Linking words used: ${links}. `+(found>=3&&links>=3?'Good. Now check that every adaptation says what it does, and why that helps.':found<3?'Level 3 needs at least three different adaptations.':'Add more so / which means: say what each adaptation does.')};
+  ta.oninput=()=>{s.text=ta.value;save();upd()};upd();
+  const open=()=>{b.hidden=true;
+    const ms=mk('div','ms');
+    ms.innerHTML=`<div><b>Mark scheme (level of response)</b></div><div class="lvls">${p.levels.map(l=>`<div><b>${l[0]}</b> ${fmt(l[1])}</div>`).join('')}</div>
+    <div><b>Indicative content</b> (a guide; other valid points count)</div><ul>${p.indicative.map(i=>`<li>${fmt(i)}</li>`).join('')}</ul><p class="extra">${fmt(p.note)}</p>
+    <div><b>Pick your mark</b>. Be honest: best fit to the level descriptors.</div><div class="pick">${[0,1,2,3,4,5,6].map(n=>`<button class="lv" aria-pressed="${s.marks===n&&s.picked}" data-n="${n}">${n}</button>`).join('')}</div><div class="got"></div>`;
+    const got=ms.querySelector('.got');const show=()=>{got.textContent=s.picked?'You scored '+s.marks+' out of 6':''};
+    ms.onclick=e=>{const t=e.target.closest('.lv');if(!t)return;s.picked=true;award(p.id,+t.dataset.n);ms.querySelectorAll('.lv').forEach(x=>x.setAttribute('aria-pressed',x===t));show()};
+    box.appendChild(ms);show()};
+  b.onclick=()=>{s.marked=true;save();open()};
+  if(s.marked)open();
+}
+const R={short:rShort,write:rWrite,calc:rCalc,chain:rChain,six:rSix};
+
+function build(){
+  const app=document.getElementById('app');app.innerHTML='';
+  GROUPS.forEach(g=>{
+    app.appendChild(mk('h2','qhead',`Question ${g.num}`));
+    if(g.intro)app.appendChild(mk('p','intro',fmt(g.intro)));
+    if(g.table){const t=g.table;app.appendChild(mk('table','d',`<caption>${fmt(t.cap)}</caption><tr>${t.head.map(h=>`<th>${fmt(h)}</th>`).join('')}</tr>`+t.rows.map(r=>`<tr>${r.map(c=>`<td>${fmt(c)}</td>`).join('')}</tr>`).join('')))}
+    g.parts.forEach(p=>{
+      const sec=mk('section','part');
+      sec.innerHTML=`<h3><span class="id">${p.id}</span><span class="t">${fmt(p.text)}</span><span class="m">[${p.marks} mark${p.marks>1?'s':''}]</span></h3>`;
+      const box=mk('div');sec.appendChild(box);R[p.type](p,box);app.appendChild(sec);
+    });
+  });
+  const real=mk('div','real',`<b>Now try the real thing</b><p>AQA GCSE Biology 8461/1F (Foundation), June 2022, Paper 1, Q06.6 (6 marks). Same skill on a real question. Do it once you have marked question 03 above.</p><p>Stretch, after the Breathing lesson: 8461/1F, June 2023, Paper 1, Q07.8 (6 marks).</p><p class="sub">Download the papers and mark schemes free from aqa.org.uk.</p>`);
+  app.appendChild(real);updateScore();
+}
+build();
+
+/* timer */
+let tv=0,ti=null;const tb=document.getElementById('tbtn'),tt=document.getElementById('timer');
+tb.onclick=()=>{if(ti){clearInterval(ti);ti=null;tb.textContent='Start timer'}else{ti=setInterval(()=>{tv++;tt.textContent=String(Math.floor(tv/60)).padStart(2,'0')+':'+String(tv%60).padStart(2,'0')},1000);tb.textContent='Pause'}};
+document.getElementById('reset').onclick=()=>{if(confirm('Clear all your answers and marks for this sheet?')){S={};save();build()}};
+</script>
+<script src="../../../assets/back.js" data-bottom="72"></script>
+</body>
+</html>

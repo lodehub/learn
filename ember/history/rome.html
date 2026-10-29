@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rome: the 14-day revision road</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEFF3; --surface:#FFFFFF; --ink:#1D1A2B; --muted:#5B5870;
+  --tyrian:#5E2350; --tyrian-soft:#F0E3EE; --laurel:#3F6B4F; --laurel-soft:#E1EEE5;
+  --bronze:#A9772B; --bronze-soft:#F5EAD6; --line:#D5D8E0; --warn:#9B2C2C; --warn-soft:#F8E2E2;
+  --head:"Cinzel","Trajan Pro",Georgia,serif; --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#14121D; --surface:#1F1C2C; --ink:#EEEAF6; --muted:#A9A5BD;
+    --tyrian:#D79BC8; --tyrian-soft:#3A2136; --laurel:#8CC7A0; --laurel-soft:#1F3327;
+    --bronze:#DDB067; --bronze-soft:#3A2F1A; --line:#3A3650; --warn:#F0A0A0; --warn-soft:#3F2323;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14121D; --surface:#1F1C2C; --ink:#EEEAF6; --muted:#A9A5BD;
+  --tyrian:#D79BC8; --tyrian-soft:#3A2136; --laurel:#8CC7A0; --laurel-soft:#1F3327;
+  --bronze:#DDB067; --bronze-soft:#3A2F1A; --line:#3A3650; --warn:#F0A0A0; --warn-soft:#3F2323;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
+h1,h2,h3{font-family:var(--head);font-weight:700;line-height:1.25;margin:0 0 .5em;letter-spacing:.01em}
+h1{font-size:clamp(1.6rem,5vw,2.4rem)}
+h2{font-size:1.35rem} h3{font-size:1.1rem}
+p{margin:.4em 0 .8em}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+header.top{padding:28px 0 12px}
+header.top p{color:var(--muted);margin:0;max-width:60ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:8px;padding-bottom:0}
+nav.tabs button{font:600 .95rem var(--head);border:0;background:none;color:var(--muted);padding:10px 14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--tyrian);border-bottom-color:var(--tyrian)}
+main{padding:20px 0 60px}
+section.view{display:none} section.view.on{display:block}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0 0 14px}
+.card.soft{background:var(--tyrian-soft);border-color:transparent}
+.note{background:var(--bronze-soft);border-left:4px solid var(--bronze);padding:10px 14px;border-radius:0 8px 8px 0;margin:0 0 16px;font-size:.98rem}
+.muted{color:var(--muted)} .small{font-size:.9rem}
+button,.btn{font:600 .95rem var(--body)}
+.btn{background:var(--tyrian);color:#fff;border:0;border-radius:8px;padding:9px 16px;cursor:pointer}
+:root[data-theme="dark"] .btn{color:#14121D}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#14121D}}
+.btn.ghost{background:transparent;color:var(--tyrian);border:1.5px solid var(--tyrian)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.mini{padding:5px 10px;font-size:.85rem}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+:focus-visible{outline:3px solid var(--bronze);outline-offset:2px}
+
+/* the road */
+.road{display:flex;flex-wrap:wrap;gap:10px 8px;padding:18px 4px 14px;border-bottom:6px dashed var(--line);margin-bottom:18px}
+.stone{width:52px;height:64px;border:2px solid var(--muted);background:var(--surface);color:var(--muted);border-radius:26px 26px 4px 4px;font:700 .8rem var(--head);cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px}
+.stone.done{background:var(--tyrian);border-color:var(--tyrian);color:#fff}
+:root[data-theme="dark"] .stone.done{color:#14121D}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .stone.done{color:#14121D}}
+.stone.next{border-color:var(--bronze);color:var(--bronze);box-shadow:0 0 0 3px var(--bronze-soft)}
+.day{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start}
+.day input[type=checkbox]{width:22px;height:22px;margin-top:4px;accent-color:var(--tyrian)}
+.day h3{margin:0}
+.day ul{margin:.3em 0 .5em;padding-left:1.1em}
+.day.done h3{text-decoration:line-through;text-decoration-color:var(--laurel)}
+.golinks{display:flex;flex-wrap:wrap;gap:6px}
+.tests{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.tests .card{margin:0}
+.tests b{font-family:var(--head)}
+
+/* learn */
+.timeline{display:flex;gap:0;overflow-x:auto;padding:6px 2px 14px;margin:0 0 8px;list-style:none;border-bottom:1px solid var(--line)}
+.timeline li{flex:0 0 auto;width:150px;padding:0 10px 0 0;font-size:.88rem;line-height:1.35}
+.timeline b{display:block;font-family:var(--head);color:var(--tyrian);font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{font:600 .92rem var(--body);background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;text-align:left}
+.chip[aria-pressed="true"]{background:var(--tyrian);border-color:var(--tyrian);color:#fff}
+:root[data-theme="dark"] .chip[aria-pressed="true"]{color:#14121D}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip[aria-pressed="true"]{color:#14121D}}
+details.fact{border:1px solid var(--line);border-radius:8px;background:var(--surface);margin:0 0 8px}
+details.fact summary{cursor:pointer;padding:11px 14px;font-weight:600;list-style:none}
+details.fact summary::-webkit-details-marker{display:none}
+details.fact summary::before{content:"▸ ";color:var(--tyrian)}
+details.fact[open] summary::before{content:"▾ "}
+details.fact .so{padding:0 14px 12px;color:var(--ink)}
+details.fact .so b{color:var(--laurel)}
+dl.kw{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:8px 0}
+dl.kw dt{font-weight:600;color:var(--tyrian)} dl.kw dd{margin:0}
+
+/* practise / quiz */
+.opt{display:block;width:100%;text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:11px 14px;margin:8px 0;cursor:pointer;font:400 1rem var(--body)}
+.opt:hover:not(:disabled){border-color:var(--tyrian)}
+.opt.good{border-color:var(--laurel);background:var(--laurel-soft)}
+.opt.bad{border-color:var(--warn);background:var(--warn-soft)}
+.opt .tag{display:block;font-weight:600;font-size:.88rem;margin-top:4px}
+.opt.good .tag{color:var(--laurel)} .opt.bad .tag{color:var(--warn)}
+.progress{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:8px 0 14px}
+.progress i{display:block;height:100%;background:var(--tyrian)}
+textarea{width:100%;font:1rem/1.55 var(--body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:8px;padding:12px;resize:vertical;min-height:120px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+ol.picked{padding-left:1.4em;margin:8px 0}
+ol.picked li{margin:4px 0}
+.fb{margin-top:10px}
+.ok{color:var(--laurel);font-weight:600} .no{color:var(--warn);font-weight:600}
+.checks{list-style:none;padding:0;margin:8px 0}
+.checks li{padding:4px 0}
+.checks li::before{content:"○ ";color:var(--muted)}
+.checks li.ok::before{content:"● ";color:var(--laurel)}
+.checks li.ok{font-weight:400;color:var(--ink)}
+.timer{font:700 1.2rem var(--head);color:var(--tyrian);min-width:4.5ch}
+.qlist{display:grid;gap:8px}
+.qbtn{text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;font:400 1rem var(--body)}
+.qbtn[aria-pressed="true"]{border-color:var(--tyrian);background:var(--tyrian-soft)}
+.qbtn b{font-family:var(--head);color:var(--tyrian);margin-right:8px}
+.qbtn .dot{float:right;color:var(--laurel)}
+ul.tight{margin:.3em 0;padding-left:1.2em} ul.tight li{margin:.2em 0}
+footer{color:var(--muted);font-size:.85rem;padding:0 0 30px}
+@media (max-width:520px){.stone{width:44px;height:56px}dl.kw{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <h1>Rome: the 14-day revision road</h1>
+  <p>Twelve minutes of remembering, the rest of the time explaining. That is the habit that moves an answer up a level.</p>
+</div></header>
+
+<nav class="tabs" aria-label="Sections"><div class="wrap" role="tablist">
+  <button role="tab" data-view="plan" aria-selected="true">Plan</button>
+  <button role="tab" data-view="learn" aria-selected="false">Learn</button>
+  <button role="tab" data-view="practise" aria-selected="false">Practise</button>
+  <button role="tab" data-view="recall" aria-selected="false">Recall</button>
+  <button role="tab" data-view="write" aria-selected="false">Write</button>
+</div></nav>
+
+<main class="wrap">
+
+<!-- PLAN -->
+<section class="view on" id="v-plan">
+  <div class="note"><b>Before you start:</b> the exact assessment topic isn’t confirmed, so this is built on the Rome unit from the homework sheet. Rome isn’t on the AQA GCSE course itself, so the facts are Year 8 level, but the questions copy GCSE styles (4, 12 and 16 marks) because the skill is the same.</div>
+  <h2>Your road</h2>
+  <p class="muted small">Tap a milestone stone to mark that day done. The gold one is next.</p>
+  <div class="road" id="road"></div>
+  <div id="days"></div>
+
+  <h2 style="margin-top:28px">Six habit tests, one at a time</h2>
+  <p class="muted small">Don’t use all six at once. Each unlocks on the day shown and stays with you after that.</p>
+  <div class="tests" id="tests"></div>
+</section>
+
+<!-- LEARN -->
+<section class="view" id="v-learn">
+  <h2>Learn it, then explain it</h2>
+  <div class="card soft">
+    <b>How to use this page.</b> Read a fact, then <em>cover the answer and say your own “So what?” out loud</em>. Only then tap the fact to compare. Facts are what you remember; “So what?” is what earns marks.
+  </div>
+  <h3>The big timeline</h3>
+  <ul class="timeline" id="timeline"></ul>
+  <div class="chips" id="topicChips" role="group" aria-label="Topics"></div>
+  <div id="topicBody"></div>
+</section>
+
+<!-- PRACTISE -->
+<section class="view" id="v-practise">
+  <h2>Practise the skills</h2>
+  <div class="chips" id="drillChips" role="group" aria-label="Drills">
+    <button class="chip" data-drill="sowhat" aria-pressed="true">So what?</button>
+    <button class="chip" data-drill="says" aria-pressed="false">Says who?</button>
+    <button class="chip" data-drill="domino" aria-pressed="false">Domino chains</button>
+    <button class="chip" data-drill="time" aria-pressed="false">Timeline order</button>
+  </div>
+  <div id="drillBody"></div>
+</section>
+
+<!-- RECALL -->
+<section class="view" id="v-recall">
+  <h2>Recall quiz</h2>
+  <p class="muted">Ten questions a round. Anything you miss comes back first next time. Aim for 9 or 10 before Day 13.</p>
+  <div id="quizBody"></div>
+</section>
+
+<!-- WRITE -->
+<section class="view" id="v-write">
+  <h2>Write it like an exam</h2>
+  <p class="muted">Pick a question, write without notes, then check. Your writing saves on this device as you type.</p>
+  <div class="qlist" id="qlist"></div>
+  <div id="workspace" style="margin-top:16px"></div>
+</section>
+
+</main>
+<footer><div class="wrap">Progress and drafts are stored only in this browser. Clearing site data resets them.</div></footer>
+
+<script>
+/* ---------- helpers & storage ---------- */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const KEY='ember:history:rome:progress';
+let S={days:{},best:0,seen:{},drafts:{}};
+try{const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(S,JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const roman=n=>{const m=[[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];let r='';for(const[v,s]of m){while(n>=v){r+=s;n-=v;}}return r;};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- navigation ---------- */
+function show(view,arg){
+  $$('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+view));
+  $$('nav.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.view===view));
+  if(view==='learn'&&arg) openTopic(arg);
+  if(view==='practise'&&arg) openDrill(arg);
+  if(view==='write'&&arg) openQ(arg);
+  window.scrollTo({top:0});
+}
+$$('nav.tabs button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]'); if(!g) return;
+  const [v,a]=g.dataset.go.split(':'); show(v,a);
+});
+
+/* ---------- PLAN ---------- */
+const DAYS=[
+ {t:'Find out what you already know',m:25,tasks:['Write down everything you can remember about Rome. No notes, 5 minutes.','Read the big timeline, then the Republic to Empire topic.','Take one round of the Recall quiz as a baseline. The score doesn’t matter yet.'],go:[['learn:republic','Republic to Empire'],['recall','Recall quiz']]},
+ {t:'The army',m:30,tasks:['Learn the Army topic. For each fact, say your own “So what?” first.','Do the So what? drill (all 10). Habit test 1 starts today.'],go:[['learn:army','The army'],['practise:sowhat','So what? drill']]},
+ {t:'Roman Britain',m:30,tasks:['Learn Roman Britain, including why Roman writers can’t be trusted completely.','Do the Says who? drill. Habit test 2 starts today.'],go:[['learn:britain','Roman Britain'],['practise:says','Says who? drill']]},
+ {t:'Society, houses and childhood',m:30,tasks:['Learn Society, then Houses and Childhood (your homework sheet, with extra detail).','Write the PEEL paragraph “Why was the army so important?”. Label P, E, E, L.'],go:[['learn:society','Society'],['learn:homes','Houses & childhood'],['write:peel1','PEEL paragraph']]},
+ {t:'Recall and explain',m:25,tasks:['One round of the Recall quiz. Aim to beat Day 1.','Redo the So what? drill without looking at the options first: say your inference, then choose.'],go:[['recall','Recall quiz'],['practise:sowhat','So what? drill']]},
+ {t:'Entertainment and religion',m:30,tasks:['Learn Entertainment, then Religion and Christianity.','Do the Domino chains drill. Habit test 3 starts today.'],go:[['learn:games','Entertainment'],['learn:religion','Religion'],['practise:domino','Domino drill']]},
+ {t:'Light day',m:10,tasks:['Read the big timeline once. Look at your Recall misses. Then stop.'],go:[['learn','Timeline'],['recall','Recall quiz']]},
+ {t:'Engineering and the fall of Rome',m:30,tasks:['Learn Engineering, then The fall of Rome.','Do the Timeline order drill, both timelines.'],go:[['learn:engineering','Engineering'],['learn:fall','Fall of Rome'],['practise:time','Timeline order']]},
+ {t:'4-mark answers',m:25,tasks:['Write two 4-mark “Describe” answers. Two features, each with a name, date or number. No explaining needed.','Check your answers with the word-check.'],go:[['write:d1','4-mark 1'],['write:d2','4-mark 2']]},
+ {t:'First 12-marker',m:30,tasks:['Write “Explain why the Romans built such a large empire” in about 18 minutes.','Habit test 4 (Compared to what?) starts today: rank your causes.'],go:[['write:e1','12-mark 1']]},
+ {t:'Second 12-marker',m:30,tasks:['Recall quiz, retry your misses.','Write “Explain why Boudicca’s rebellion happened”. Check for linking and a ranked judgement.'],go:[['recall','Recall quiz'],['write:e2','12-mark 2']]},
+ {t:'The 16-marker',m:35,tasks:['Write “The army was the main reason for Rome’s success. How far do you agree?”','Habit test 5 (Yes, but…) starts today. Argue the other side fairly before you judge.'],go:[['write:h1','16-mark 1']]},
+ {t:'Mini-mock',m:40,tasks:['No notes. One 4-mark, one 12-mark, 35 minutes total.','Get someone to mark it with the marker’s guide on the Write page.'],go:[['write:d3','4-mark 3'],['write:e3','12-mark 3']]},
+ {t:'Light day before the assessment',m:15,tasks:['Read the timeline. One round of Recall. Say three “So what?” inferences out loud.','Then stop. Sleep is revision too.'],go:[['learn','Timeline'],['recall','Recall quiz']]}
+];
+const TESTS=[
+ ['So what?','Day 2','After every fact ask: what does this tell us about what people valued, feared or believed? Write one more sentence.'],
+ ['Says who?','Day 3','Could I attach a real name, date, number or place? If not, the sentence is too vague to earn a mark.'],
+ ['Domino','Day 6','What did this cause directly lead to? Keep asking until you reach the outcome in the question.'],
+ ['Compared to what?','Day 10','Which cause mattered more than the others, and what makes it bigger, not just present?'],
+ ['Yes, but…','Day 12','What would someone who disagrees say? Write that case fairly, then return to your own judgement.'],
+ ['Who’s talking?','If a source appears','Who wrote it, when, and why? A source’s use depends on the author’s viewpoint and purpose.']
+];
+function renderPlan(){
+  const firstOpen=DAYS.findIndex((_,i)=>!S.days[i+1]);
+  $('#road').innerHTML=DAYS.map((_,i)=>`<button class="stone ${S.days[i+1]?'done':''} ${i===firstOpen?'next':''}" data-day="${i+1}" aria-label="Day ${i+1}${S.days[i+1]?', done':''}">${roman(i+1)}</button>`).join('');
+  $('#days').innerHTML=DAYS.map((d,i)=>`
+   <div class="card day ${S.days[i+1]?'done':''}">
+     <input type="checkbox" id="d${i+1}" data-day="${i+1}" ${S.days[i+1]?'checked':''} aria-label="Day ${i+1} done">
+     <div><h3><label for="d${i+1}">Day ${i+1}: ${d.t}</label> <span class="muted small">(about ${d.m} min)</span></h3>
+       <ul>${d.tasks.map(t=>`<li>${t}</li>`).join('')}</ul>
+       <div class="golinks">${d.go.map(([g,l])=>`<button class="btn ghost mini" data-go="${g}">${l}</button>`).join('')}</div>
+     </div></div>`).join('');
+  $('#tests').innerHTML=TESTS.map(t=>`<div class="card"><b>${t[0]}</b> <span class="muted small">${t[1]}</span><p class="small">${t[2]}</p></div>`).join('');
+}
+$('#v-plan').addEventListener('click',e=>{
+  const d=e.target.closest('[data-day]'); if(!d) return;
+  const n=d.dataset.day;
+  if(d.type==='checkbox') S.days[n]=d.checked; else S.days[n]=!S.days[n];
+  save(); renderPlan();
+});
+
+/* ---------- LEARN ---------- */
+const TIMELINE=[['753 BC','Rome founded (legend)'],['509 BC','Republic begins'],['264–146 BC','Punic Wars with Carthage'],['73–71 BC','Spartacus’s revolt'],['44 BC','Caesar assassinated'],['27 BC','Augustus, first emperor'],['AD 43','Claudius invades Britain'],['AD 60/61','Boudicca’s revolt'],['AD 79','Vesuvius buries Pompeii'],['AD 80','Colosseum opens'],['AD 122','Hadrian’s Wall begun'],['AD 212','Citizenship for free people'],['AD 235–284','Crisis of the Third Century'],['AD 313','Christianity legalised'],['AD 410','Visigoths sack Rome'],['AD 476','Last Western emperor deposed']];
+$('#timeline').innerHTML=TIMELINE.map(([d,e])=>`<li><b>${d}</b>${e}</li>`).join('');
+
+const TOPICS=[
+{id:'republic',name:'Republic to Empire',
+ facts:[
+  ['509 BC: the Romans throw out their last king and set up a Republic run by two elected consuls and the Senate.','The Romans defined themselves against kings, and sharing power was a deliberate safeguard. That hatred of kings is why later rulers had to disguise their power.'],
+  ['264–146 BC: Rome fights Carthage in the Punic Wars. Hannibal crosses the Alps with elephants in 218 BC. Rome wins at Zama in 202 BC and destroys Carthage in 146 BC.','Rome kept raising armies even after huge defeats like Cannae (216 BC). That suggests its real strength was manpower and allies, and victory made it master of the Mediterranean.'],
+  ['107 BC: the general Marius lets poor, landless citizens join the army. They expect land from their general when they retire.','Soldiers’ loyalty shifted from the Republic to individual generals. Whoever could pay and reward them held real power, which made civil war likely.'],
+  ['49 BC: Julius Caesar crosses the Rubicon with his army and starts a civil war. On 15 March 44 BC a group of senators stabs him to death.','It shows a general with loyal soldiers could beat the Senate. The killers acted because they feared Caesar was turning himself into a king.'],
+  ['31 BC: Octavian defeats Antony and Cleopatra at Actium. In 27 BC the Senate gives him the name Augustus, making him the first emperor.','Augustus kept the Senate and used modest titles like “princeps” (first citizen). Caesar’s fate showed that openly ruling as a king was dangerous, so he disguised monarchy as a restored Republic.'],
+  ['The Pax Romana: roughly 27 BC to AD 180 was a long period of relative peace inside the empire.','Peace let trade and cities grow, but it was a peace enforced by the army, not a peace of agreement.']],
+ kw:[['consul','one of two elected leaders of the Republic'],['Senate','council of wealthy elite men that advised and governed'],['dictator','a leader given total power (Caesar had himself made dictator for life)'],['emperor','sole ruler of Rome, from Augustus onwards'],['civil war','a war between Romans']]},
+{id:'army',name:'The army',
+ facts:[
+  ['A legion had about 5,000 heavy infantry (legionaries), split into centuries of about 80 men, each led by a centurion.','Rome’s strength was organisation: small units with clear leaders meant it could beat larger tribal armies.'],
+  ['Legionaries were Roman citizens who served about 25 years and received land or money when they retired.','Rome bought loyalty with long-term rewards. That made the army reliable, but dangerous whenever pay failed or a general could offer more.'],
+  ['Kit: the gladius (short stabbing sword), the pilum (javelin), the scutum (large shield) and segmentata (plate armour). The testudo (“tortoise”) was a shield-covered formation.','The kit mattered less than training and discipline. Fighting as a unit, not as individuals, was the Roman edge.'],
+  ['Soldiers built as well as fought: roads, forts, bridges and walls such as Hadrian’s Wall.','The army was also a construction force. The roads it built moved troops quickly and later carried trade and Roman ideas, which spread Romanisation.'],
+  ['Auxiliaries were non-citizen soldiers who earned citizenship after 25 years.','Rome used citizenship as a reward to bind conquered peoples to the empire.']],
+ kw:[['legion','main unit of about 5,000 soldiers'],['century','about 80 men'],['centurion','officer commanding a century'],['auxiliary','non-citizen soldier'],['testudo','tortoise formation of interlocked shields']]},
+{id:'britain',name:'Roman Britain',
+ facts:[
+  ['55 and 54 BC: Julius Caesar raids Britain but does not stay.','Caesar’s visits were more about prestige at home than about conquest.'],
+  ['AD 43: Emperor Claudius invades with about 40,000 men. Claudius had no military record and had become emperor only in AD 41. Camulodunum (Colchester) becomes the first capital.','The invasion was as much about a new emperor needing glory and authority as it was about Britain itself, though Britain’s tin, lead and grain helped.'],
+  ['AD 60/61: Boudicca, queen of the Iceni, leads a revolt after her husband Prasutagus dies and Romans seize Iceni land. Rebels burn Camulodunum, Londinium and Verulamium. The governor Suetonius Paulinus defeats them.','It shows Roman rule could be greedy and harsh enough to push even allies into rebellion. Paulinus was away attacking druids on Anglesey, so the province was lightly defended.'],
+  ['Our main sources for Boudicca, Tacitus and Cassius Dio, were Romans. Tacitus wrote decades later, and his father-in-law Agricola served in Britain.','Who’s talking? Roman writers had reasons to praise Roman victories and to make rebels look barbaric, so the story needs careful use. (Boudicca left no writing of her own.)'],
+  ['AD 122: Emperor Hadrian orders a wall across northern Britain, about 73 miles long.','By the AD 120s Rome was defending its edges, not expanding. It accepted limits to its power in the north.'],
+  ['Romanisation: towns, villas, roads, Latin, and baths such as at Aquae Sulis (Bath). The last legions left Britain around AD 410.','British elites who cooperated gained wealth and status, so Roman rule survived by rewarding collaboration and not only by force.']],
+ kw:[['Iceni','tribe of eastern Britain, ruled by Boudicca'],['Romanisation','local people adopting Roman ways'],['province','a region ruled by Rome through a governor'],['garrison','soldiers stationed in a place']]},
+{id:'society',name:'Society & hierarchy',
+ facts:[
+  ['Roman society was layered: the emperor, then senators and equestrians (rich elites), then plebeians (ordinary free citizens), freedmen (freed slaves), and slaves at the bottom.','Status decided almost everything: job, vote, marriage and legal rights. Birth counted for more than ability.'],
+  ['Slaves were legally property. Many were prisoners of war. Some were freed and became freedmen.','Conquest fed slavery. The more Rome won, the more slaves it had, so the economy depended on war.'],
+  ['73–71 BC: Spartacus, a gladiator, leads a slave revolt of tens of thousands. It is crushed and thousands are crucified along the Appian Way.','Rome’s harsh punishment sent a warning that the social order was not to be challenged.'],
+  ['Women could not vote or hold office, but wealthy women could own property and run households.','Roman public life was male, yet women had real influence within the family.'],
+  ['AD 212: Emperor Caracalla gives citizenship to almost all free people in the empire.','Being “Roman” was becoming about belonging to the empire and not about birth in Italy.']],
+ kw:[['patrician','wealthy, old, land-owning family'],['plebeian','ordinary free citizen'],['freedman','former slave who has been freed'],['citizen','a person with legal rights and protections'],['equestrian','wealthy class just below senators']]},
+{id:'homes',name:'Houses & childhood',
+ facts:[
+  ['The wealthy lived in a domus: a single-family house around a central atrium, with mosaic floors, painted walls and a private garden. Some had hypocaust underfloor heating.','Comfort and privacy were treated as privileges you inherited or bought, not basic rights.'],
+  ['The poor lived in insulae, cramped multi-storey blocks, poorly built, with fire a constant danger. The higher floors were cheaper and worse.','The poor lived in the most dangerous part of the building, so safety depended on wealth. (In AD 64 a great fire wrecked much of Rome.)'],
+  ['Rich country estates were called villas.','The rich could leave the crowded city; the poor could not.'],
+  ['Wealthy boys were taught reading, writing, rhetoric and maths, often by a paedagogus, a tutor who was frequently an educated Greek slave. Rhetoric prepared them for public and political life.','Education was training for power. The educated elite made sure the powerful stayed a small group.'],
+  ['Wealthy girls were educated at home in fewer subjects and could be married in their early teens.','For elite families a daughter’s marriage built alliances between families, more than it was a personal choice.'],
+  ['Poor children had no formal schooling and worked young in family trades, farming or domestic labour.','Poverty locked children out of the education that led to power, so class repeated itself each generation.'],
+  ['Patria potestas: a father had total legal authority over his children, even adult ones, for life.','The family was a small version of the state, with the father as ruler. That shows how much Romans valued order and authority.']],
+ kw:[['domus','wealthy town house'],['atrium','open central courtyard'],['insula','apartment block'],['villa','country estate'],['paedagogus','tutor, often an educated slave'],['patria potestas','a father’s legal power over his children']]},
+{id:'games',name:'Entertainment',
+ facts:[
+  ['The Colosseum opened in AD 80 and held around 50,000 people. Entry was free. Shows included gladiator fights, animal hunts and executions.','Emperors used spectacle as a political tool: paying to entertain the crowd bought popularity and kept the poor of Rome content.'],
+  ['Circus Maximus: chariot racing, with a crowd of around 150,000.','Rome could gather crowds bigger than most cities. That shows its scale, and why the emperor cared about pleasing them.'],
+  ['The satirist Juvenal complained that Romans cared only for “bread and circuses”: free grain and games.','Who’s talking? Juvenal was criticising the people. It shows how some elite Romans saw politics turning into a trade of food and shows for loyalty.'],
+  ['Gladiators were mostly slaves, prisoners or condemned criminals, trained in special schools. A few were volunteers.','Roman entertainment relied on the lack of rights of the lowest class, which shows how little value slaves’ lives held.'],
+  ['Public baths were places to wash, exercise, do business and meet.','They were a social centre for citizens, one way Roman ways spread through the provinces.']],
+ kw:[['gladiator','trained fighter in public shows'],['amphitheatre','oval arena with seating all round'],['spectacle','a large public show']]},
+{id:'religion',name:'Religion & Christianity',
+ facts:[
+  ['Romans worshipped many gods, including Jupiter (king of the gods), Juno and Mars. They believed in a deal with the gods: give offerings and receive protection.','Religion was practical and civic. Keeping the gods happy was seen as keeping Rome safe.'],
+  ['Emperors were treated as divine after death, and people were expected to honour the emperor in ceremonies.','Religion and loyalty to the state were the same thing, so refusing the ceremony looked like disloyalty.'],
+  ['Christians refused to worship the emperor as a god. In AD 64 Nero blamed them for the Great Fire of Rome. Diocletian began the Great Persecution in AD 303.','Christians were punished as a threat to order, not just for their beliefs.'],
+  ['AD 313: Constantine’s Edict of Milan legalises Christianity. AD 380: Theodosius makes it the official religion.','It shows the religion grew despite persecution, and that later emperors saw Christianity as a way to unite the empire.']],
+ kw:[['polytheistic','believing in many gods'],['persecution','punishing people for their beliefs'],['Edict of Milan','AD 313 decision to tolerate Christianity']]},
+{id:'engineering',name:'Engineering & Pompeii',
+ facts:[
+  ['Aqueducts carried water long distances on a gentle downhill slope, using gravity. Examples include the Pont du Gard in France.','Rome’s engineers solved big problems without modern machinery. Clean water let cities grow much larger.'],
+  ['Rome built over 80,000 km of paved roads.','A huge, connected empire depended on being able to move soldiers, messages and goods fast.'],
+  ['Roman concrete let builders make huge structures such as the Pantheon in Rome, whose dome is still standing.','New materials and skills let Romans build on a scale no one before them had managed.'],
+  ['AD 79: Mount Vesuvius erupts and buries Pompeii and Herculaneum.','Pompeii is unusually valuable for historians because everyday life was frozen in place: shops, houses, graffiti and mosaics.']],
+ kw:[['aqueduct','bridge-like channel carrying water'],['hypocaust','underfloor heating'],['concrete','mix of lime, volcanic ash and stone']]},
+{id:'fall',name:'The fall of Rome',
+ facts:[
+  ['AD 235–284, the Crisis of the Third Century: more than 20 emperors in about 50 years, most murdered or killed in civil war.','Nobody had a reliable way to pass on power, so the army could make and unmake emperors. A state fighting itself was weaker on its borders.'],
+  ['AD 293: Diocletian splits the running of the empire between several rulers. AD 330: Constantine builds a new capital, Constantinople, in the East.','Rome tried to fix the size problem by splitting it up, but the richer East drew power and wealth away from the West.'],
+  ['AD 378: Goths defeat a Roman army at Adrianople. AD 410: the Visigoths under Alaric sack Rome.','Rome’s armies could be beaten, and even the city of Rome was no longer safe, which damaged its prestige.'],
+  ['AD 476: the last Western emperor, Romulus Augustulus, is deposed by the German leader Odoacer. The Eastern (Byzantine) Empire lasts until 1453.','“Fall” is a simplification. The West faded over time while the East lived on for nearly a thousand years more.']],
+ kw:[['Visigoths','Germanic people who sacked Rome in AD 410'],['Constantinople','new capital city founded by Constantine'],['Byzantine Empire','the surviving eastern half of Rome']]}
+];
+let topicId='republic';
+function openTopic(id){topicId=id;renderLearn();}
+function renderLearn(){
+  $('#topicChips').innerHTML=TOPICS.map(t=>`<button class="chip" data-t="${t.id}" aria-pressed="${t.id===topicId}">${t.name}</button>`).join('');
+  const t=TOPICS.find(x=>x.id===topicId);
+  $('#topicBody').innerHTML=`<h2>${t.name}</h2>`+
+   t.facts.map(f=>`<details class="fact"><summary>${f[0]}</summary><div class="so"><b>So what?</b> ${f[1]}</div></details>`).join('')+
+   `<h3 style="margin-top:18px">Key words</h3><dl class="kw">${t.kw.map(k=>`<dt>${k[0]}</dt><dd>${k[1]}</dd>`).join('')}</dl>`+
+   `<div class="row"><button class="btn" data-go="practise:sowhat">Practise “So what?”</button><button class="btn ghost" data-go="recall">Quiz me</button></div>`;
+}
+$('#topicChips').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b)openTopic(b.dataset.t);});
+
+/* ---------- PRACTISE ---------- */
+const SOWHAT=[
+ {fact:'Poorer Romans lived in insulae, multi-storey blocks where the higher floors were cheaper.',
+  good:'This suggests that safety and comfort depended on wealth. The poor lived in the most dangerous part of the building, where fire was the biggest threat and escape was hardest.',
+  repeat:'This means poor people lived in tall buildings and the top floors cost less.',
+  drift:'This proves the Roman government hated poor people and wanted them to die in fires.',driftWhy:'Nothing in the evidence says it was deliberate. That is a leap, not an inference.'},
+ {fact:'In 107 BC Marius let poor, landless citizens join the army. They expected land from their general when they retired.',
+  good:'This suggests soldiers’ loyalty shifted from the Republic to individual generals. Whoever could pay and reward them held real power, which made civil war likely.',
+  repeat:'Marius let poor men join the army and they wanted land afterwards.',
+  drift:'This shows Marius planned to make himself emperor.',driftWhy:'Emperors didn’t exist yet, and the fact says nothing about Marius’s plans.'},
+ {fact:'The Colosseum held around 50,000 spectators, and entry was free.',
+  good:'This reveals that emperors used spectacle as a political tool. Paying to entertain the crowd bought popularity and kept the poor of Rome content.',
+  repeat:'The Colosseum was big and did not cost anything to get into.',
+  drift:'This proves all Romans were cruel and loved violence above everything.',driftWhy:'One fact about one building can’t prove what every Roman felt.'},
+ {fact:'Claudius invaded Britain in AD 43. He had no military record and had become emperor only two years earlier.',
+  good:'This suggests the invasion was as much about a new emperor’s need for glory and authority as about Britain itself. A victory would make him look legitimate.',
+  repeat:'Claudius invaded Britain in AD 43, not long after becoming emperor.',
+  drift:'This means Britain was easy to conquer and had nothing worth taking.',driftWhy:'The evidence says nothing about how easy Britain was, and Britain did have tin, lead and grain.'},
+ {fact:'Legionaries served about 25 years and received land or money on retirement.',
+  good:'This suggests Rome bound its soldiers to the empire with long-term rewards. Loyalty was bought, which made the army reliable but dangerous whenever pay failed.',
+  repeat:'Soldiers served for 25 years and then got land or a payment.',
+  drift:'This shows Roman soldiers only cared about money and did not care about Rome.',driftWhy:'That overreaches. The fact shows rewards existed, not that nothing else mattered to soldiers.'},
+ {fact:'Wealthy Roman girls were often married by their early teens.',
+  good:'This suggests that for elite families a daughter’s main value was as a link between families. Marriage built alliances more than it was a personal choice.',
+  repeat:'Rich girls often got married when they were about twelve or thirteen.',
+  drift:'This shows Roman women were unhappy and treated terribly.',driftWhy:'We can’t tell how they felt from this fact alone.'},
+ {fact:'In AD 212 Caracalla gave citizenship to almost all free people in the empire.',
+  good:'This suggests that being “Roman” was becoming about belonging to the empire, not birth in Italy. The empire was becoming one community and not a ruling city plus its subjects.',
+  repeat:'Caracalla made nearly all free people in the empire citizens in AD 212.',
+  drift:'This proves conquered peoples were finally happy with Roman rule.',driftWhy:'Citizenship doesn’t tell us how anyone felt.'},
+ {fact:'Christians refused to worship the emperor as a god.',
+  good:'This suggests Romans saw religion and loyalty as the same thing. Refusing the state’s rituals looked like disloyalty, so Christians were punished as a threat to order, not just for what they believed.',
+  repeat:'Christians would not worship the emperor, so they were in trouble.',
+  drift:'This means Christians wanted to overthrow Rome.',driftWhy:'The fact says they refused a ceremony, not that they planned rebellion.'},
+ {fact:'AD 235–284: over 20 emperors in about 50 years, most murdered or killed in civil war.',
+  good:'This suggests the empire had no reliable way to pass on power, so the army could make and unmake emperors. A state fighting itself was less able to defend its borders.',
+  repeat:'There were more than 20 emperors in around 50 years and most of them were killed.',
+  drift:'This proves the Roman people no longer wanted an emperor.',driftWhy:'The killings were mainly by soldiers and rivals. We have no evidence of what “the people” wanted.'},
+ {fact:'Hadrian’s Wall was begun in AD 122 and ran about 73 miles across northern Britain.',
+  good:'This suggests that by the AD 120s Rome was defending its edges rather than expanding. It accepted limits to its power, at least in the north of Britain.',
+  repeat:'Hadrian built a wall about 73 miles long across northern Britain in AD 122.',
+  drift:'This proves the Romans were terrified of the tribes to the north and could not fight them.',driftWhy:'Building a wall isn’t proof of fear or inability. That’s a guess dressed as a fact.'}
+];
+const SAYS=[
+ ['Many soldiers were in the Roman army.','A legion had about 5,000 legionaries, divided into centuries of about 80 men, each led by a centurion.'],
+ ['The Romans built lots of roads.','By the 2nd century AD Rome had built over 80,000 km of paved roads, including routes such as Watling Street in Britain.'],
+ ['Rich Romans had nice houses.','Wealthy Romans lived in a domus built around an atrium, with mosaic floors and a private garden.'],
+ ['A rebellion happened in Britain.','In AD 60/61 Boudicca, queen of the Iceni, led a rebellion that burned Camulodunum, Londinium and Verulamium.'],
+ ['The games were very popular.','The Colosseum, opened in AD 80, held around 50,000 spectators for gladiator fights and animal hunts.'],
+ ['Julius Caesar was killed.','On 15 March 44 BC a group of senators stabbed Julius Caesar to death because they feared he was making himself king.'],
+ ['Rome lasted a long time.','According to legend Rome was founded in 753 BC, and the last Western emperor was deposed in AD 476, over 1,200 years later.'],
+ ['Slaves had a hard life.','Slaves were legally property. In 73 BC Spartacus led a revolt of tens of thousands, which was crushed in 71 BC.']
+];
+const CHAINS=[
+ {title:'How did Rome go from Republic to rule by one man?',prompt:'Tap the events in the order the “dominoes” fell.',items:['Poor citizens join the army under generals like Marius and depend on their general for land and pay','Soldiers become loyal to their generals more than to the Republic','Caesar crosses the Rubicon with his army and takes power in 49 BC','Caesar is assassinated in 44 BC and new civil wars break out','Octavian wins at Actium in 31 BC and becomes Augustus, the first emperor, in 27 BC']},
+ {title:'Why did Boudicca’s revolt happen?',prompt:'Order the chain of causes.',items:['King Prasutagus of the Iceni dies, and Romans seize Iceni land','Boudicca is flogged and her daughters are attacked (according to Tacitus)','The governor Suetonius Paulinus is away in Anglesey, leaving the province weakly defended','The Iceni and their allies burn Camulodunum, Londinium and Verulamium','Paulinus returns and crushes the rebels']},
+ {title:'How did Christianity go from banned to official?',prompt:'Order the chain.',items:['Christians refuse to honour the emperor as a god','Romans see them as disloyal, and Nero blames them for the fire of AD 64','Persecutions continue, including Diocletian’s in AD 303, but the religion keeps growing','Constantine legalises Christianity with the Edict of Milan in AD 313','Theodosius makes it the official religion in AD 380']},
+ {title:'Why did the Western Empire collapse?',prompt:'Order the chain.',items:['The Crisis of the Third Century: emperors are murdered and the state is unstable','Rome is split into East and West for easier control, and the East grows richer','Goths defeat the Roman army at Adrianople in AD 378','The Visigoths sack Rome itself in AD 410','The last Western emperor is deposed in AD 476']}
+];
+const TIMES=[
+ {title:'Republic to Empire',prompt:'Put these in date order. The dates appear when you check.',items:[['Republic begins','509 BC'],['Hannibal crosses the Alps','218 BC'],['Carthage destroyed','146 BC'],['Caesar crosses the Rubicon','49 BC'],['Caesar assassinated','44 BC'],['Battle of Actium','31 BC'],['Augustus becomes first emperor','27 BC']]},
+ {title:'Empire, Britain and decline',prompt:'Put these in date order. The dates appear when you check.',items:[['Claudius invades Britain','AD 43'],['Boudicca’s revolt','AD 60/61'],['Vesuvius buries Pompeii','AD 79'],['Colosseum opens','AD 80'],['Hadrian’s Wall begun','AD 122'],['Caracalla extends citizenship','AD 212'],['Edict of Milan','AD 313'],['Visigoths sack Rome','AD 410']]}
+];
+
+let drill='sowhat';
+function openDrill(d){drill=d;renderDrill();}
+$('#drillChips').addEventListener('click',e=>{const b=e.target.closest('[data-drill]');if(b)openDrill(b.dataset.drill);});
+function renderDrill(){
+  $$('#drillChips .chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.drill===drill));
+  const host=$('#drillBody');
+  if(drill==='sowhat') soWhat(host);
+  if(drill==='says') says(host);
+  if(drill==='domino') orderMenu(host,CHAINS,true);
+  if(drill==='time') orderMenu(host,TIMES,false);
+}
+/* So what? */
+function soWhat(host){
+  const order=shuffle(SOWHAT); let i=0, right=0;
+  function draw(){
+    if(i>=order.length){
+      host.innerHTML=`<div class="card"><h3>Round complete</h3><p>You picked the grounded inference first time on <b>${right} of ${order.length}</b>.</p><p class="muted small">The real test is whether you can write the sentence yourself before seeing the options. Try the round again, covering the options and saying your inference out loud first.</p><button class="btn" id="again">Go again</button></div>`;
+      $('#again').onclick=()=>soWhat(host);return;
+    }
+    const q=order[i];
+    const opts=shuffle([['good',q.good],['repeat',q.repeat],['drift',q.drift]]);
+    host.innerHTML=`<div class="progress"><i style="width:${i/order.length*100}%"></i></div>
+     <div class="card soft"><b>Fact:</b> ${q.fact}</div>
+     <p>Say your own “So what?” out loud. Then choose the best explanation.</p>
+     <div id="opts">${opts.map(([k,t])=>`<button class="opt" data-k="${k}">${t}</button>`).join('')}</div><div class="fb"></div>`;
+    $('#opts').onclick=e=>{
+      const b=e.target.closest('.opt'); if(!b||b.disabled) return;
+      if(b.dataset.k==='good') right++;
+      $$('#opts .opt').forEach(o=>{
+        o.disabled=true;
+        const k=o.dataset.k;
+        o.classList.add(k==='good'?'good':'bad');
+        o.insertAdjacentHTML('beforeend',`<span class="tag">${k==='good'?'Grounded inference: it follows from the fact and says what it reveals':k==='repeat'?'Just repeats the fact (describing, not explaining)':'Drifts: '+q.driftWhy}</span>`);
+      });
+      $('.fb').innerHTML=`<button class="btn" id="nx">${i+1<order.length?'Next fact':'Finish'}</button>`;
+      $('#nx').onclick=()=>{i++;draw();};
+    };
+  }
+  draw();
+}
+/* Says who? */
+function says(host){
+  const order=shuffle(SAYS); let i=0;
+  function draw(){
+    if(i>=order.length){host.innerHTML=`<div class="card"><h3>All eight done</h3><p>The habit: before you write any sentence, ask “Could I add a name, date, number or place?”</p><button class="btn" id="again">Go again</button></div>`;$('#again').onclick=()=>says(host);return;}
+    const [v,m]=order[i];
+    host.innerHTML=`<div class="progress"><i style="width:${i/order.length*100}%"></i></div>
+     <div class="card soft"><b>Vague sentence:</b> ${v}</div>
+     <p>Rewrite it with a real name, date, number or place. Use your memory, then check the Learn page if you’re stuck.</p>
+     <textarea id="ans" rows="3" aria-label="Your rewrite"></textarea>
+     <div class="row"><button class="btn" id="rev">Show model</button></div><div class="fb"></div>`;
+    $('#rev').onclick=()=>{
+      $('.fb').innerHTML=`<div class="card"><b>Model:</b> ${m}<p class="small muted">Did yours have at least one name, date, number or place? Different correct details are fine.</p></div><button class="btn" id="nx">${i+1<order.length?'Next':'Finish'}</button>`;
+      $('#rev').disabled=true;
+      $('#nx').onclick=()=>{i++;draw();};
+    };
+  }
+  draw();
+}
+/* ordering games */
+function orderMenu(host,sets,isChain){
+  host.innerHTML=`<p class="muted">Choose one:</p><div class="qlist">${sets.map((s,i)=>`<button class="qbtn" data-i="${i}">${s.title}</button>`).join('')}</div><div id="game" style="margin-top:14px"></div>`;
+  host.querySelector('.qlist').onclick=e=>{const b=e.target.closest('[data-i]');if(!b)return;orderGame($('#game'),sets[b.dataset.i],isChain);$('#game').scrollIntoView({behavior:'smooth',block:'start'});};
+}
+function orderGame(host,set,isChain){
+  const items=set.items.map((it,i)=>isChain?{i,t:it}:{i,t:it[0],d:it[1]});
+  let pool=shuffle(items), picked=[];
+  function draw(feedback){
+    host.innerHTML=`<h3>${set.title}</h3><p>${set.prompt}</p>
+     <ol class="picked">${picked.map(p=>`<li>${p.t}</li>`).join('')}</ol>
+     <div class="pool">${pool.filter(o=>!picked.includes(o)).map(o=>`<button class="chip" data-i="${o.i}">${o.t}</button>`).join('')}</div>
+     <div class="row"><button class="btn" data-a="check" ${picked.length<items.length?'disabled':''}>Check order</button><button class="btn ghost" data-a="undo" ${picked.length?'':'disabled'}>Undo</button><button class="btn ghost" data-a="reset">Start again</button></div>
+     <div class="fb">${feedback||''}</div>`;
+  }
+  host.onclick=e=>{
+    const c=e.target.closest('[data-i]'), a=e.target.closest('[data-a]');
+    if(c&&c.classList.contains('chip')){picked.push(pool.find(o=>o.i==c.dataset.i));draw();}
+    if(a){
+      if(a.dataset.a==='undo'){picked.pop();draw();}
+      if(a.dataset.a==='reset'){pool=shuffle(items);picked=[];draw();}
+      if(a.dataset.a==='check'){
+        const ok=picked.every((p,k)=>p.i===k);
+        const correct=items.map(o=>isChain?o.t:`<b>${o.d}</b>: ${o.t}`);
+        let fb=ok?`<p class="ok">Correct order.</p>`:`<p class="no">Not quite. Here is the right order:</p>`;
+        fb+=`<ol class="picked">${correct.map(t=>`<li>${t}</li>`).join('')}</ol>`;
+        if(isChain) fb+=`<p class="small muted">Now say it as one sentence using linking words: “…, which meant that …, and as a direct result …”. That is exactly what a Level 4 answer does.</p>`;
+        draw(fb);
+        $$('.row button',host).forEach(b=>{if(b.dataset.a==='check')b.disabled=true;});
+      }
+    }
+  };
+  draw();
+}
+
+/* ---------- RECALL ---------- */
+const QZ=[
+ ['q1','When did the Roman Republic begin?','509 BC',['753 BC','264 BC','27 BC']],
+ ['q2','Who was the first Roman emperor?','Augustus',['Julius Caesar','Nero','Claudius']],
+ ['q3','What happened to Julius Caesar on 15 March 44 BC?','He was assassinated by senators',['He crossed the Rubicon','He became emperor','He defeated Hannibal']],
+ ['q4','Which battle in 31 BC gave Octavian control of Rome?','Actium',['Zama','Cannae','Adrianople']],
+ ['q5','Who crossed the Alps with elephants in 218 BC?','Hannibal',['Spartacus','Marius','Alaric']],
+ ['q6','About how many soldiers were in a legion?','5,000',['500','80','50,000']],
+ ['q7','About how many men were in a century?','80',['8','800','5,000']],
+ ['q8','Who commanded a century?','A centurion',['A consul','An auxiliary','A legate']],
+ ['q9','What was the Roman “tortoise” formation called?','Testudo',['Gladius','Pilum','Scutum']],
+ ['q10','What was the Roman short stabbing sword called?','Gladius',['Pilum','Scutum','Testudo']],
+ ['q11','Which emperor invaded Britain in AD 43?','Claudius',['Nero','Hadrian','Augustus']],
+ ['q12','Boudicca was queen of which tribe?','The Iceni',['The Picts','The Goths','The Franks']],
+ ['q13','Which three towns did Boudicca’s rebels burn?','Camulodunum, Londinium, Verulamium',['Eboracum, Londinium, Deva','Camulodunum, Aquae Sulis, Deva','Verulamium, Eboracum, Aquae Sulis']],
+ ['q14','When was Hadrian’s Wall begun?','AD 122',['AD 43','AD 79','AD 212']],
+ ['q15','What were ordinary free Roman citizens called?','Plebeians',['Patricians','Freedmen','Equestrians']],
+ ['q16','What was a freed slave called?','A freedman',['A plebeian','A patrician','An auxiliary']],
+ ['q17','What was a wealthy Roman town house called?','A domus',['An insula','A villa','A forum']],
+ ['q18','What was a poor person’s apartment block called?','An insula',['A domus','A villa','An atrium']],
+ ['q19','What does patria potestas mean?','A father’s legal power over his children',['The Senate’s power over the army','A slave owner’s power','The emperor’s power over the Senate']],
+ ['q20','What was the tutor, often an educated Greek slave, called?','A paedagogus',['A centurion','A gladiator','A consul']],
+ ['q21','When did the Colosseum open?','AD 80',['AD 43','AD 122','AD 212']],
+ ['q22','Which writer complained about “bread and circuses”?','Juvenal',['Tacitus','Virgil','Caesar']],
+ ['q23','Spartacus led a slave revolt in which years?','73–71 BC',['218–202 BC','49–44 BC','AD 60–61']],
+ ['q24','Who was the king of the Roman gods?','Jupiter',['Mars','Neptune','Apollo']],
+ ['q25','Which emperor legalised Christianity with the Edict of Milan (AD 313)?','Constantine',['Nero','Diocletian','Theodosius']],
+ ['q26','Which emperor blamed Christians for the Great Fire of AD 64?','Nero',['Claudius','Hadrian','Augustus']],
+ ['q27','What was Constantine’s new capital, founded in AD 330?','Constantinople',['Ravenna','Athens','Alexandria']],
+ ['q28','In which year is the Western Empire traditionally said to have ended?','AD 476',['AD 410','AD 313','AD 284']],
+ ['q29','Which people, led by Alaric, sacked Rome in AD 410?','The Visigoths',['The Iceni','The Carthaginians','The Persians']],
+ ['q30','Which Roman building has a huge concrete dome that still stands?','The Pantheon',['The Colosseum','The Circus Maximus','The Pont du Gard']],
+ ['q31','How did Roman aqueducts move water?','Gravity, on a gentle downward slope',['With pumps','With slaves turning wheels only','By pushing water uphill']],
+ ['q32','What buried Pompeii in AD 79?','The eruption of Vesuvius',['A great fire','An earthquake only','A Gothic attack']],
+ ['q33','Who gave citizenship to almost all free people in AD 212?','Caracalla',['Augustus','Constantine','Claudius']],
+ ['q34','What did Marius change about the army in 107 BC?','Allowed poor, landless citizens to join',['Made service last 5 years','Banned auxiliaries','Made soldiers pay for their kit']],
+ ['q35','Which years were the Crisis of the Third Century?','AD 235–284',['AD 43–100','AD 313–380','AD 410–476']]
+];
+function quiz(){
+  const host=$('#quizBody');
+  host.innerHTML=`<div class="card"><p>Best score so far: <b>${S.best||0}/10</b></p><button class="btn" id="go">Start a round</button></div>`;
+  $('#go').onclick=startRound;
+}
+function startRound(){
+  const missed=QZ.filter(q=>S.seen[q[0]]===false), rest=shuffle(QZ.filter(q=>S.seen[q[0]]!==false));
+  const set=shuffle(missed).concat(rest).slice(0,10);
+  let i=0,score=0,miss=[];
+  const host=$('#quizBody');
+  function draw(){
+    if(i>=set.length){
+      S.best=Math.max(S.best||0,score);save();
+      host.innerHTML=`<div class="card"><h3>${score} out of 10</h3>${miss.length?`<p>Missed:</p><ul class="tight">${miss.map(q=>`<li>${q[1]} <b>${q[2]}</b></li>`).join('')}</ul><p class="muted small">These come back first next round.</p>`:'<p class="ok">Perfect round.</p>'}<div class="row"><button class="btn" id="again">Another round</button></div></div>`;
+      $('#again').onclick=startRound;return;
+    }
+    const q=set[i], opts=shuffle([q[2],...q[3]]);
+    host.innerHTML=`<div class="progress"><i style="width:${i/10*100}%"></i></div><div class="card"><b>${i+1}. ${q[1]}</b></div>
+     <div id="opts">${opts.map(o=>`<button class="opt" data-v="${esc(o)}">${o}</button>`).join('')}</div><div class="fb"></div>`;
+    $('#opts').onclick=e=>{
+      const b=e.target.closest('.opt');if(!b||b.disabled)return;
+      const ok=b.dataset.v===q[2];
+      $$('#opts .opt').forEach(o=>{o.disabled=true;if(o.dataset.v===q[2])o.classList.add('good');});
+      if(!ok)b.classList.add('bad');
+      if(ok)score++;else miss.push(q);
+      S.seen[q[0]]=ok;save();
+      $('.fb').innerHTML=`<p class="${ok?'ok':'no'}">${ok?'Correct.':'The answer is '+q[2]+'.'}</p><button class="btn" id="nx">${i+1<set.length?'Next':'See score'}</button>`;
+      $('#nx').onclick=()=>{i++;draw();};
+    };
+  }
+  draw();
+}
+
+/* ---------- WRITE ---------- */
+const QS=[
+ {id:'peel1',type:'PEEL',label:'PEEL',q:'Why was the army so important to the Roman Empire?',mins:10,aim:[60,110],
+  think:['Conquest','Keeping order','Building roads and forts','Loyalty and citizenship'],
+  model:['Point: The army was the foundation of Roman power because it both won and held the empire.','Evidence: A legion of about 5,000 men, split into centuries of 80 led by centurions, beat larger tribal armies. In AD 43 about 40,000 troops invaded Britain.','Explain: This suggests Rome’s advantage was organisation and discipline, not just numbers. Once conquered, the army built roads and forts, which held territory in place.','Link: Without the army there would have been no empire to govern.']},
+ {id:'d1',type:'4',label:'4 marks',q:'Describe two features of a Roman legion.',mins:5,aim:[40,80],
+  think:['Size and structure','Length of service and rewards','Equipment and formations'],
+  model:['A legion had about 5,000 heavy infantry, split into centuries of about 80 men, each commanded by a centurion.','Legionaries were citizens who served around 25 years and were rewarded with land or money on retirement.','(Also fine: gladius, pilum, scutum, testudo formation.)']},
+ {id:'d2',type:'4',label:'4 marks',q:'Describe two features of Roman gladiator games.',mins:5,aim:[40,80],
+  think:['Where and how big','Who fought','What else happened'],
+  model:['The Colosseum opened in AD 80 and held around 50,000 spectators, with free entry.','Gladiators were mostly slaves, prisoners or condemned criminals, trained in special schools. Shows also included animal hunts and executions.']},
+ {id:'d3',type:'4',label:'4 marks',q:'Describe two features of a wealthy Roman home.',mins:5,aim:[40,80],
+  think:['Layout','Decoration and comfort'],
+  model:['A domus was a single-family house built around an open central atrium.','Wealthy homes had mosaic floors, painted walls, a private garden and sometimes hypocaust underfloor heating.']},
+ {id:'e1',type:'12',label:'12 marks',q:'Explain why the Romans were able to build such a large empire.',mins:18,aim:[250,380],
+  think:['The army','Roads and engineering','Citizenship and Romanisation','Wealth and politics of the Republic'],
+  model:['Army: legions of about 5,000 in centuries of 80, 25 years’ service, testudo. Discipline beat larger tribal forces.','Roads/engineering: over 80,000 km of paved roads, built by soldiers. Domino: roads moved troops fast, which let a small army control a huge area.','Citizenship: auxiliaries gained citizenship after 25 years, and in AD 212 Caracalla extended it. It gave conquered peoples a stake in Rome.','Republic: the Punic Wars (264–146 BC) made Rome a Mediterranean power with wealth to pay soldiers.','Judgement: the army mattered most, because roads and citizenship were both delivered through it. Compared to what? Without soldiers, the other factors could not have been applied.']},
+ {id:'e2',type:'12',label:'12 marks',q:'Explain why Boudicca’s rebellion happened in AD 60/61.',mins:18,aim:[250,380],
+  think:['Iceni land and the death of Prasutagus','Treatment of Boudicca','Roman taxes and debts','Weakness of the garrison'],
+  model:['Land: when Prasutagus died, Romans seized Iceni land instead of honouring his arrangement, which stripped the Iceni of their independence.','Treatment: Tacitus says Boudicca was flogged and her daughters attacked. This turned a political grievance into a personal one and gave the revolt a leader.','Debts/taxes: some sources say heavy Roman taxes and called-in loans hurt British elites.','Opportunity: Suetonius Paulinus was attacking druids on Anglesey, so the province was lightly defended.','Judgement: the seizure of land was the deepest cause, because it took away the Iceni’s independence. The attack on Boudicca and the absent governor were triggers and opportunities. Who’s talking? Remember these accounts are Roman.']},
+ {id:'e3',type:'12',label:'12 marks',q:'Explain why the Western Roman Empire fell.',mins:18,aim:[250,380],
+  think:['Instability and civil war','Splitting East and West','Invasions','Economic and military weakness'],
+  model:['Instability: AD 235–284, over 20 emperors in about 50 years, most murdered. The empire spent energy fighting itself.','Split: Diocletian split the administration in AD 293 and Constantine founded Constantinople in AD 330. The richer East drew wealth from the West.','Invasions: Goths beat Rome at Adrianople in AD 378, and the Visigoths sacked Rome in AD 410.','End: in AD 476 Odoacer deposed the last Western emperor.','Judgement: instability mattered most, because it weakened the army and the economy, making the invasions far harder to resist. Domino: instability, then weak defence, then defeat.']},
+ {id:'h1',type:'16',label:'16 marks',q:'“The army was the main reason for Rome’s success.” How far do you agree?',mins:25,aim:[400,600],
+  think:['For: conquest, order, roads','Against: engineering, law and government, trade, citizenship','Judgement: which mattered more, and why?'],
+  model:['For: legions conquered the empire (Claudius’s 40,000 troops in AD 43); soldiers built roads and forts; the army enforced the Pax Romana.','Yes, but: the Republic’s Twelve Tables (450 BC) and system of law gave stability; engineering such as aqueducts made big cities possible; trade thrived because of peace and roads; citizenship (AD 212) bound peoples to Rome.','Judgement: largely agree, since most other factors depended on the army protecting and building them. But success also needed administration; the army alone could not run an empire. It was necessary, not sufficient.']},
+ {id:'h2',type:'16',label:'16 marks',q:'“In Roman society, life was decided by birth, not ability.” How far do you agree?',mins:25,aim:[400,600],
+  think:['For: patricians, slaves, homes, patria potestas','Against: freedmen, army careers, emperors from humble origins','Judgement'],
+  model:['For: patricians held political office; slaves were property with almost no rights; the wealthy lived in a domus and the poor in insulae; poor children had no formal schooling; patria potestas gave fathers power for life.','Yes, but: freedmen could become wealthy; soldiers could rise through the ranks and earn citizenship as auxiliaries; Diocletian rose from a humble background to become emperor in AD 284; Caracalla extended citizenship in AD 212.','Judgement: mostly agree. The exceptions were real but rare, and even they usually needed patrons or the army. Birth set the limits, and ability worked only within them.']}
+];
+const EXCL=new Set(['Roman','Romans','Rome','The','This','That','These','Then','When','While','Although','However','Because','Also','Some','Many','Both','Such','After','Before','During','With','Without','Their','They','Which','Ultimately','Overall','Finally','First','Second']);
+function analyse(text,type){
+  const words=(text.trim().match(/\S+/g)||[]).length;
+  const sents=text.match(/[^.!?]+[.!?]*/g)||[];
+  const names=new Set();
+  sents.forEach(s=>{const w=s.trim().split(/\s+/).slice(1).join(' ');(w.match(/\b[A-Z][a-z]{3,}\b/g)||[]).forEach(n=>{if(!EXCL.has(n))names.add(n);});});
+  const nums=(text.match(/\b(AD|BC)\s?\d+|\b\d[\d,]*\s?(BC|AD)?\b/g)||[]).length;
+  const ev=names.size+nums;
+  const c=re=>(text.match(re)||[]).length;
+  const sw=c(/\b(this suggests|this reveals|this shows|this indicates|this implies|this demonstrates|underlying this|this meant|which meant|it shows that)\b/gi);
+  const link=c(/\b(as a result|as a direct result|which meant|made worse|led to|in turn|therefore|because of this|combined with|so that|this meant)\b/gi);
+  const judge=c(/\b(ultimately|most significant|most important|mattered (more|most)|more important than|greatest impact|the main reason|largely agree|mostly agree|on balance)\b/gi);
+  const both=c(/\b(however|although|on the other hand|in contrast|whereas|some argue|others argue|yes, but|but)\b/gi);
+  const T={PEEL:{ev:2,sw:1},'4':{ev:2,sw:0},'12':{ev:6,sw:2,link:2,judge:1},'16':{ev:8,sw:3,link:2,judge:1,both:2}}[type];
+  const out=[];
+  out.push([`Specific evidence: ${ev} names, dates or numbers found (aim for ${T.ev}+)`,ev>=T.ev]);
+  if(T.sw) out.push([`“So what?” explanations: ${sw} found (aim for ${T.sw}+)`,sw>=T.sw]);
+  if(T.link) out.push([`Linking words: ${link} found (aim for ${T.link}+)`,link>=T.link]);
+  if(T.judge) out.push([`A clear judgement: ${judge?'found':'not found yet'}`,judge>=1]);
+  if(T.both) out.push([`Both sides argued (“however”, “but”, “although”…): ${both} found (aim for ${T.both}+)`,both>=T.both]);
+  return {words,out};
+}
+const MARKER={
+ PEEL:'Look for a Point that answers the question, one specific piece of evidence, an Explain sentence that says WHY (not just repeats the evidence), and a Link back to the question.',
+ '4':'Two different features, each supported by a specific detail. Full marks for two supported features. No explanation is needed, so don’t reward padding.',
+ '12':'Level 1: general statements, little evidence. Level 2: some explanation, evidence partly generic. Level 3: developed explanation with specific evidence for each cause. Level 4: causes linked to each other AND ranked by importance. Cap: retelling the story, or only one cause.',
+ '16':'Level 2: support for one side only. Level 3: both sides argued with evidence but a thin judgement. Level 4: sustained, balanced argument ending in a clear, justified judgement. Cap: 90% on one side, or no real judgement.'
+};
+let qid='peel1', timerT=null;
+function openQ(id){qid=id;renderWrite();}
+function renderWrite(){
+  $('#qlist').innerHTML=QS.map(q=>`<button class="qbtn" data-q="${q.id}" aria-pressed="${q.id===qid}"><b>${q.label}</b>${q.q}${(S.drafts[q.id]||'').trim()?'<span class="dot">● started</span>':''}</button>`).join('');
+  const q=QS.find(x=>x.id===qid);
+  const ws=$('#workspace');
+  clearInterval(timerT);
+  ws.innerHTML=`<div class="card"><h3>${q.q}</h3>
+    <p class="small muted">${q.label}. Aim for roughly ${q.aim[0]}–${q.aim[1]} words in about ${q.mins} minutes.</p>
+    <p class="small"><b>Think about:</b> ${q.think.join(' · ')}</p>
+    <div class="row"><span class="timer" id="tm">0:00</span><button class="btn mini" id="tgo">Start timer</button></div>
+    <textarea id="ta" rows="${q.type==='16'?16:q.type==='12'?12:6}" placeholder="Write here without notes…">${esc(S.drafts[q.id]||'')}</textarea>
+    <p class="small muted" id="wc"></p>
+    <h3>Word-check</h3>
+    <ul class="checks" id="chk"></ul>
+    <p class="small muted">This only counts words and phrases. It can’t tell if your reasoning is good. Have someone read it against the marker’s guide.</p>
+    <div class="row"><button class="btn ghost mini" id="cp">Copy my answer</button></div>
+    <details class="fact" style="margin-top:12px"><summary>Marker’s guide</summary><div class="so">${MARKER[q.type]}</div></details>
+    <details class="fact"><summary>Model plan with evidence (open after you’ve written)</summary><div class="so"><ul class="tight">${q.model.map(m=>`<li>${m}</li>`).join('')}</ul></div></details>
+  </div>`;
+  const ta=$('#ta');
+  function upd(){
+    const r=analyse(ta.value,q.type);
+    $('#wc').textContent=`${r.words} words`;
+    $('#chk').innerHTML=r.out.map(([t,ok])=>`<li class="${ok?'ok':''}">${t}</li>`).join('');
+  }
+  ta.addEventListener('input',()=>{S.drafts[q.id]=ta.value;save();upd();});
+  upd();
+  let secs=0,running=false;
+  $('#tgo').onclick=()=>{
+    if(running){clearInterval(timerT);running=false;$('#tgo').textContent='Resume timer';return;}
+    running=true;$('#tgo').textContent='Pause timer';
+    timerT=setInterval(()=>{secs++;$('#tm').textContent=Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0');},1000);
+  };
+  $('#cp').onclick=()=>{try{navigator.clipboard.writeText(ta.value);$('#cp').textContent='Copied';}catch(e){ta.select();}};
+}
+$('#qlist').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b){openQ(b.dataset.q);$('#workspace').scrollIntoView({behavior:'smooth',block:'start'});}});
+
+/* ---------- init ---------- */
+renderPlan(); renderLearn(); renderDrill(); quiz(); renderWrite();
+</script>
+<script src="../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>

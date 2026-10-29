@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Language: Week 1</title>
+<style>
+:root{
+  --paper:#F6F7FB; --card:#FFFFFF; --ink:#1B2440; --muted:#5B6482; --line:#D9DDEA;
+  --hl:#FFE066; --teal:#1F7A8C; --rose:#C2415B; --good:#2E7D4F; --bad:#B4532A;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"Avenir Next","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55}
+main{max-width:46rem;margin:0 auto;padding:1.5rem 1.1rem 4rem}
+h1,h2,h3{font-family:var(--serif);line-height:1.2;margin:0}
+h1{font-size:2rem;margin-bottom:.4rem}
+h2{font-size:1.45rem;margin-bottom:.3rem}
+h3{font-size:1.1rem}
+p{margin:.5rem 0}
+.lede{color:var(--muted);max-width:36rem}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.3rem 1.2rem;margin-top:1.4rem}
+.when{color:var(--muted);font-size:.92rem;margin-bottom:.8rem}
+.chain{display:flex;flex-wrap:wrap;gap:.4rem;margin:.9rem 0 0;padding:0;list-style:none;font-size:.95rem}
+.chain li{padding:.25rem .7rem;border-radius:99px;border:1px solid var(--line);background:var(--card)}
+.chain li.q{background:var(--hl);border-color:var(--hl)}
+.chain li.e{border-color:var(--teal);color:var(--teal)}
+.chain li.s{border-color:var(--rose);color:var(--rose)}
+details{border:1px dashed var(--line);border-radius:8px;padding:.5rem .8rem;margin:.8rem 0;background:var(--paper)}
+summary{cursor:pointer;font-weight:600}
+blockquote{margin:.5rem 0;padding-left:.8rem;border-left:3px solid var(--line);font-family:var(--serif)}
+button,.btn{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+
+/* warm-up */
+.q-item{border-top:1px solid var(--line);padding:.9rem 0}
+.q-item:first-of-type{border-top:0}
+.q-text{font-family:var(--serif);font-size:1.05rem}
+.choices{display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap}
+.choices button{padding:.45rem 1rem;border-radius:8px;border:1px solid var(--ink);background:var(--card);color:var(--ink);min-height:44px}
+.choices button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.fb{margin-top:.5rem;font-size:.95rem}
+.fb.ok{color:var(--good)} .fb.no{color:var(--bad)}
+.score{margin-top:.8rem;font-weight:600}
+
+/* passage */
+.passage{font-family:var(--serif);font-size:1.2rem;line-height:1.9;background:var(--paper);border-radius:8px;padding:1rem 1.1rem;margin:.8rem 0}
+.w{cursor:pointer;border-radius:3px;padding:0 1px}
+.w:hover{background:#FFF3B8}
+.w.on{background:var(--hl);box-shadow:0 2px 0 var(--ink)}
+.hint{font-size:.92rem;color:var(--muted)}
+.msg{font-size:.92rem;color:var(--bad);min-height:1.3em}
+.cards{display:grid;gap:1rem;margin-top:.6rem}
+.card{border:1px solid var(--line);border-radius:10px;padding:1rem;background:var(--card)}
+.card .quote{display:inline-block;background:var(--hl);font-family:var(--serif);font-size:1.1rem;padding:.1rem .5rem;border-radius:4px;margin:.2rem 0 .6rem}
+.field{margin-top:.7rem}
+.field label{display:block;font-weight:600;font-size:.95rem;margin-bottom:.25rem}
+.field.e label{color:var(--teal)} .field.s label{color:var(--rose)}
+textarea,input[type=text]{width:100%;font:inherit;font-family:var(--serif);font-size:1.02rem;padding:.55rem .7rem;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+.field.e textarea{border-left:4px solid var(--teal)}
+.field.s textarea{border-left:4px solid var(--rose)}
+textarea{min-height:5.2rem;resize:vertical}
+.starters{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
+.starters button{font-size:.85rem;padding:.3rem .65rem;border-radius:99px;border:1px solid var(--line);background:var(--paper);color:var(--muted);min-height:36px}
+.starters button:hover{border-color:var(--ink);color:var(--ink)}
+.checks{margin-top:.8rem;display:grid;gap:.3rem;font-size:.95rem}
+.checks label{display:flex;gap:.5rem;align-items:flex-start}
+.checks input{margin-top:.35rem;width:1.1rem;height:1.1rem}
+.done{color:var(--good);font-weight:600;font-size:.92rem;margin-top:.5rem}
+.row{display:grid;gap:.8rem}
+.log-grid{display:grid;gap:.7rem;grid-template-columns:1fr}
+@media(min-width:34rem){.log-grid.three{grid-template-columns:repeat(3,1fr)}}
+.pdf{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:.65rem 1.2rem;background:var(--ink);color:#fff;border-radius:8px;text-decoration:none;min-height:44px}
+.reset{margin-top:1.6rem;text-align:center}
+.reset button{background:none;border:0;color:var(--muted);text-decoration:underline;padding:.6rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Week 1: say what words do</h1>
+    <p class="lede">This week has one job: stop naming techniques and start saying what words make a reader think or feel. Every sentence you write follows this chain.</p>
+    <ul class="chain" aria-label="The analysis chain">
+      <li class="q">1. Quote (1 to 4 words)</li>
+      <li class="e">2. Effect on the reader</li>
+      <li class="s">3. So What? Why did the writer choose it?</li>
+    </ul>
+    <details>
+      <summary>See a worked example first</summary>
+      <p><strong>Line:</strong> <em>The sea swallowed the last of the light.</em></p>
+      <p><strong>Quote:</strong> "swallowed"</p>
+      <p><strong>Effect:</strong> This makes the sea seem like a hungry animal, so the reader feels the darkness is dangerous.</p>
+      <p><strong>So What:</strong> This suggests the writer wants us to see nature as a powerful force that people cannot control.</p>
+      <p class="hint">Notice there is no technique name. Naming "personification" earns very little. The effect and the So What earn the marks.</p>
+    </details>
+  </header>
+
+  <section id="warm" aria-labelledby="warm-h">
+    <h2 id="warm-h">Warm-up: naming or analysing?</h2>
+    <p class="when">Monday, 5 minutes</p>
+    <p>Read each comment on the passage below. Is it only <strong>naming</strong> a technique, or is it <strong>analysing</strong> what the words do?</p>
+    <div id="warm-items"></div>
+    <p class="score" id="warm-score" aria-live="polite"></p>
+  </section>
+
+  <section id="mon" aria-labelledby="mon-h">
+    <h2 id="mon-h">Fiction drill: pick three, analyse three</h2>
+    <p class="when">Monday, 15 minutes</p>
+    <p>Read the passage once for the story. Then tap <strong>up to three</strong> words or short phrases that did something to you. Tap again to unselect. A phrase can be up to four words long.</p>
+    <div class="passage" id="mon-text" role="group" aria-label="Fiction passage"></div>
+    <p class="msg" id="mon-msg" aria-live="polite"></p>
+    <p class="hint">Choose your words first, then write. Changing a choice later can clear what you wrote under it.</p>
+    <div class="cards" id="mon-cards"></div>
+  </section>
+
+  <section id="tue" aria-labelledby="tue-h">
+    <h2 id="tue-h">Active reading log</h2>
+    <p class="when">Tuesday, 15 minutes</p>
+    <p>Read a short story, a poem, or a magazine or newspaper article of your choice. Read it once for the story or argument. Then reread and underline three words or phrases that did something to you (on paper, or write them here).</p>
+    <div class="field"><label for="log-what">What did you read?</label><input type="text" id="log-what" data-save="log.what"></div>
+    <div class="log-grid three">
+      <div class="field"><label for="log-1">Underlined 1</label><input type="text" id="log-1" data-save="log.u1"></div>
+      <div class="field"><label for="log-2">Underlined 2</label><input type="text" id="log-2" data-save="log.u2"></div>
+      <div class="field"><label for="log-3">Underlined 3</label><input type="text" id="log-3" data-save="log.u3"></div>
+    </div>
+    <p class="hint" style="margin-top:.8rem">Now choose your favourite of the three and run the chain on it.</p>
+    <div class="field e"><label for="log-e">Effect: this makes the reader…</label><textarea id="log-e" data-save="log.e"></textarea></div>
+    <div class="field s"><label for="log-s">So What: this suggests the writer wants us to…</label><textarea id="log-s" data-save="log.s"></textarea></div>
+  </section>
+
+  <section id="wed" aria-labelledby="wed-h">
+    <h2 id="wed-h">Non-fiction drill: same chain, new text</h2>
+    <p class="when">Wednesday, 15 minutes</p>
+    <p>This writer is arguing a point. Tap up to three words or short phrases that show what the writer wants you to believe or feel.</p>
+    <div class="passage" id="wed-text" role="group" aria-label="Non-fiction passage"></div>
+    <p class="msg" id="wed-msg" aria-live="polite"></p>
+    <div class="cards" id="wed-cards"></div>
+  </section>
+
+  <section id="write" aria-labelledby="write-h">
+    <h2 id="write-h">Thursday and Friday: the writing sheet</h2>
+    <p>Writing by hand is its own skill, so these days are on paper. Print the writing sheet. It has a short handwritten analysis, a plan, a descriptive piece, and a Friday improvement task.</p>
+    <div class="pdf"><a class="btn" href="week1-writing-sheet.pdf" download>Open the writing sheet (PDF)</a><span class="hint">Keep the PDF in the same folder as this page.</span></div>
+  </section>
+
+  <div class="reset"><button type="button" id="reset">Start this week again</button></div>
+</main>
+
+<script>
+(function(){
+  // ---------- storage (private to this page, guarded) ----------
+  var KEY = "ember.english.week1";
+  var state = { warm:{}, mon:{sel:[],n:{}}, wed:{sel:[],n:{}}, log:{} };
+  try { var saved = localStorage.getItem(KEY); if (saved) state = Object.assign(state, JSON.parse(saved)); } catch(e){}
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+
+  // ---------- content ----------
+  var WARM_TEXT = "Passage: \"The house at the end of Harrow Lane had been empty for eleven winters. Its windows were black and blind. Margaret stood very still.\"";
+  var warm = [
+    {t:"The writer uses personification: \"windows were black and blind\".", a:"naming",
+     why:"This only names a technique. It does not say what \"blind\" makes the reader think."},
+    {t:"\"Blind\" makes the house seem lifeless and unable to see out, which suggests it has been cut off from the village for a very long time.", a:"analysing",
+     why:"It says what the word makes the reader think and what that suggests."},
+    {t:"The writer uses a short sentence: \"Margaret stood very still.\"", a:"naming",
+     why:"It points out the sentence length but says nothing about its effect."},
+    {t:"The short sentence \"Margaret stood very still\" slows the pace, so the reader holds their breath with her. This suggests she is frozen by fear before anything has happened.", a:"analysing",
+     why:"It gives the effect on the reader and a reasoned So What."}
+  ];
+  var MON = "The house at the end of Harrow Lane had been empty for eleven winters, and the village had learned to walk past it quickly. Its windows were black and blind. A single iron gate hung from one hinge, groaning whenever the wind passed through it, as though the house were clearing its throat. Behind the glass of the upper window, something pale moved, or the curtain did. Margaret stood very still. The lane behind her was silent; the lane ahead led only to the door. She counted her heartbeats, and found that she had lost count at forty.";
+  var WED = "Every Saturday morning, the town library used to smell of dust, paper and possibility. Now it smells of nothing, because it is locked. The council calls this closure \"a difficult but necessary efficiency\". I call it a theft. Nobody asked the children who learned to read there, or the pensioners who came for warmth and the company of strangers. A library is not a building full of books. It is the one place in town where no one is asked to pay for the right to think.";
+  var EFFECT = ["This makes the reader feel…","This makes the reader picture…","This creates a sense of… because…"];
+  var SOWHAT = ["This suggests the writer wants us to…","Underlying this is the idea that…","By choosing this rather than a plainer word, the writer…"];
+
+  // ---------- warm-up ----------
+  var wi = document.getElementById("warm-items");
+  var intro = document.createElement("p"); intro.className="hint"; intro.textContent = WARM_TEXT; wi.appendChild(intro);
+  warm.forEach(function(item, i){
+    var d = document.createElement("div"); d.className="q-item";
+    var p = document.createElement("p"); p.className="q-text"; p.textContent = item.t; d.appendChild(p);
+    var c = document.createElement("div"); c.className="choices";
+    var fb = document.createElement("p"); fb.className="fb"; fb.setAttribute("aria-live","polite");
+    ["naming","analysing"].forEach(function(opt){
+      var b = document.createElement("button"); b.type="button"; b.textContent = opt==="naming"?"Only naming":"Analysing";
+      b.setAttribute("aria-pressed","false");
+      b.addEventListener("click", function(){ state.warm[i]=opt; save(); paint(); });
+      b.dataset.opt = opt; c.appendChild(b);
+    });
+    d.appendChild(c); d.appendChild(fb); wi.appendChild(d);
+    item._c = c; item._fb = fb;
+  });
+  function paint(){
+    var right = 0, answered = 0;
+    warm.forEach(function(item,i){
+      var a = state.warm[i];
+      Array.prototype.forEach.call(item._c.children, function(b){ b.setAttribute("aria-pressed", a===b.dataset.opt ? "true":"false"); });
+      if(a){ answered++; var ok = a===item.a; if(ok) right++;
+        item._fb.className = "fb " + (ok?"ok":"no");
+        item._fb.textContent = (ok?"Yes. ":"Not quite. ") + item.why;
+      } else { item._fb.textContent=""; item._fb.className="fb"; }
+    });
+    var s = document.getElementById("warm-score");
+    s.textContent = answered===warm.length ? ("You got " + right + " of " + warm.length + ". Aim to write the analysing kind every time.") : "";
+  }
+  paint();
+
+  // ---------- passage tool ----------
+  function tool(key, text, textId, cardsId, msgId){
+    var words = text.split(/\s+/);
+    var box = document.getElementById(textId), cards = document.getElementById(cardsId), msg = document.getElementById(msgId);
+    var st = state[key];
+    function groups(sel){
+      var s = sel.slice().sort(function(a,b){return a-b;}), g=[];
+      s.forEach(function(i){ if(g.length && g[g.length-1][g[g.length-1].length-1]===i-1) g[g.length-1].push(i); else g.push([i]); });
+      return g;
+    }
+    function valid(sel){ var g = groups(sel); if(g.length>3) return "Three choices is the limit. Unselect one first."; for(var k=0;k<g.length;k++) if(g[k].length>4) return "Keep each quote to four words or fewer. Shorter is stronger."; return ""; }
+    words.forEach(function(w,i){
+      var sp = document.createElement("span"); sp.className="w"; sp.textContent=w; sp.tabIndex=0; sp.setAttribute("role","button");
+      sp.setAttribute("aria-pressed", st.sel.indexOf(i)>-1?"true":"false");
+      if(st.sel.indexOf(i)>-1) sp.classList.add("on");
+      function toggle(){
+        var sel = st.sel.slice(), at = sel.indexOf(i);
+        if(at>-1) sel.splice(at,1); else sel.push(i);
+        var err = valid(sel); msg.textContent = err; if(err) return;
+        st.sel = sel; save(); refresh();
+      }
+      sp.addEventListener("click", toggle);
+      sp.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); toggle(); }});
+      box.appendChild(sp); box.appendChild(document.createTextNode(" "));
+    });
+    function refresh(){
+      Array.prototype.forEach.call(box.querySelectorAll(".w"), function(sp,i){
+        var on = st.sel.indexOf(i)>-1; sp.classList.toggle("on",on); sp.setAttribute("aria-pressed", on?"true":"false");
+      });
+      renderCards();
+    }
+    function field(cls, label, id, starters, nkey, prop){
+      var f = document.createElement("div"); f.className="field "+cls;
+      var l = document.createElement("label"); l.setAttribute("for", id); l.textContent=label; f.appendChild(l);
+      var ta = document.createElement("textarea"); ta.id=id; ta.value = (st.n[nkey]&&st.n[nkey][prop])||"";
+      ta.addEventListener("input", function(){ st.n[nkey]=st.n[nkey]||{}; st.n[nkey][prop]=ta.value; save(); });
+      f.appendChild(ta);
+      var sd = document.createElement("div"); sd.className="starters";
+      starters.forEach(function(s){
+        var b = document.createElement("button"); b.type="button"; b.textContent=s;
+        b.addEventListener("click", function(){ ta.value = ta.value ? ta.value.replace(/\s*$/," ")+s : s; ta.dispatchEvent(new Event("input")); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); });
+        sd.appendChild(b);
+      });
+      f.appendChild(sd); return f;
+    }
+    function renderCards(){
+      cards.innerHTML="";
+      groups(st.sel).forEach(function(g, gi){
+        var nkey = "g"+g[0];
+        var card = document.createElement("div"); card.className="card";
+        var h = document.createElement("h3"); h.textContent="Choice "+(gi+1); card.appendChild(h);
+        var q = document.createElement("span"); q.className="quote";
+        q.textContent = "\u201C" + g.map(function(i){return words[i].replace(/^[^\w]+|[^\w]+$/g,"");}).join(" ") + "\u201D"; card.appendChild(q);
+        card.appendChild(field("e","Effect on the reader", key+"-e"+gi, EFFECT, nkey, "e"));
+        card.appendChild(field("s","So What? Why did the writer choose it?", key+"-s"+gi, SOWHAT, nkey, "s"));
+        var ck = document.createElement("div"); ck.className="checks";
+        ["My quote is one to four words","I said what it makes the reader think or feel","My So What follows from the quote, not from nowhere"].forEach(function(t,ci){
+          var lab = document.createElement("label"); var cb = document.createElement("input"); cb.type="checkbox";
+          cb.checked = !!(st.n[nkey]&&st.n[nkey]["c"+ci]);
+          cb.addEventListener("change", function(){ st.n[nkey]=st.n[nkey]||{}; st.n[nkey]["c"+ci]=cb.checked; save(); doneMark(); });
+          lab.appendChild(cb); lab.appendChild(document.createTextNode(t)); ck.appendChild(lab);
+        });
+        card.appendChild(ck);
+        var dm = document.createElement("p"); dm.className="done"; dm.setAttribute("aria-live","polite"); card.appendChild(dm);
+        function doneMark(){ var n=st.n[nkey]||{}; dm.textContent = (n.c0&&n.c1&&n.c2) ? "Checked. Read it aloud once, then say the So What to a parent." : ""; }
+        doneMark();
+        cards.appendChild(card);
+      });
+    }
+    renderCards();
+  }
+  tool("mon", MON, "mon-text", "mon-cards", "mon-msg");
+  tool("wed", WED, "wed-text", "wed-cards", "wed-msg");
+
+  // ---------- reading log ----------
+  Array.prototype.forEach.call(document.querySelectorAll("[data-save]"), function(el){
+    var k = el.getAttribute("data-save").split(".")[1];
+    el.value = state.log[k] || "";
+    el.addEventListener("input", function(){ state.log[k]=el.value; save(); });
+  });
+
+  // ---------- reset ----------
+  document.getElementById("reset").addEventListener("click", function(){
+    if(!window.confirm("This clears everything you wrote this week. Start again?")) return;
+    try { localStorage.removeItem(KEY); } catch(e){}
+    location.reload();
+  });
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Match &amp; Blast: 3s &amp; 4s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #170F2B;
+    --bg-panel: #241A3D;
+    --bg-card: #2E2350;
+    --three: #4CC9F0;
+    --four: #A78BFA;
+    --gold: #FFD166;
+    --pink: #FF5D8F;
+    --mint: #2EC4B6;
+    --ink: #F5F0FF;
+    --ink-soft: #B3A9D6;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    min-height: 100%;
+    background:
+      radial-gradient(1.5px 1.5px at 15% 20%, #ffffff77 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 80% 15%, #ffffff55 50%, transparent 51%),
+      radial-gradient(2px 2px at 65% 75%, #ffffff66 50%, transparent 51%),
+      radial-gradient(1px 1px at 30% 85%, #ffffff44 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 92% 55%, #ffffff55 50%, transparent 51%),
+      linear-gradient(180deg, #170F2B 0%, #1E1438 100%);
+    color: var(--ink);
+    font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 12px 40px;
+  }
+
+  .stage { width: 100%; max-width: 480px; }
+
+  h1.title {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 0 0 4px;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    margin: 0 0 16px;
+  }
+
+  /* trophies */
+  .trophies {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .trophy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .trophy-ring {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: conic-gradient(var(--gold) calc(var(--pct,0) * 1%), var(--bg-card) 0);
+    position: relative;
+  }
+  .trophy-ring::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: var(--bg-panel);
+  }
+  .trophy-face {
+    position: relative;
+    z-index: 1;
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: var(--ink-soft);
+    font-family: 'Fredoka', sans-serif;
+  }
+  .trophy.mastered .trophy-face { color: var(--gold); }
+  .trophy.mastered .trophy-ring { box-shadow: 0 0 10px 1px #FFD16688; }
+  .trophy.t3 .trophy-face { color: var(--three); }
+  .trophy.t4 .trophy-face { color: var(--four); }
+  .trophy.mastered.t3 .trophy-face,
+  .trophy.mastered.t4 .trophy-face { color: var(--gold); }
+
+  /* stats bar */
+  .stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-panel);
+    border-radius: 12px;
+    padding: 8px 14px;
+    margin-bottom: 14px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+  .stats-bar span b { color: var(--ink); font-family: 'Fredoka', sans-serif; }
+
+  /* board */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .slot { perspective: 700px; aspect-ratio: 3 / 4; }
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.35s cubic-bezier(.2,.8,.3,1.1);
+    cursor: pointer;
+  }
+  .slot.flipped .card-inner { transform: rotateY(180deg); }
+  .slot.matched .card-inner { cursor: default; }
+  .face {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+  }
+  .face-back {
+    background: linear-gradient(135deg, var(--three), var(--four));
+    font-size: 1.3rem;
+  }
+  .face-front {
+    background: var(--bg-card);
+    transform: rotateY(180deg);
+    flex-direction: column;
+    border: 2px solid transparent;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+  }
+  .face-front .val { font-size: 1.15rem; }
+  .face-front .tag {
+    font-size: 0.55rem;
+    color: var(--ink-soft);
+    margin-top: 2px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+  }
+  .slot[data-table="3"] .face-front { border-color: var(--three); }
+  .slot[data-table="4"] .face-front { border-color: var(--four); }
+  .slot.matched .face-front { background: #1B3A34; border-color: var(--mint); }
+  .slot.matched .face-front .val,
+  .slot.matched .face-front .tag { color: var(--mint); }
+  .slot.wrong .face-front { background: #3A1B2A; border-color: var(--pink); }
+
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  .slot.matched .card-inner { animation: pulse 0.35s ease; }
+
+  .toast {
+    text-align: center;
+    min-height: 1.6em;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    margin: 10px 0 4px;
+  }
+  .toast strong { color: var(--gold); }
+
+  .overlay {
+    background: var(--bg-panel);
+    border-radius: 20px;
+    padding: 32px 22px;
+    text-align: center;
+    border: 1px solid #362a54;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  .overlay .big { font-size: 3rem; display: block; margin-bottom: 8px; }
+  .overlay h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    margin: 0 0 8px;
+    font-size: 1.3rem;
+  }
+  .overlay p { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 18px; line-height: 1.5; }
+  .primary-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1.02rem;
+    background: linear-gradient(90deg, var(--three), var(--four));
+    color: #1B1030;
+    border: none;
+    border-radius: 14px;
+    padding: 13px 26px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .hidden { display: none !important; }
+
+  .confetti-wrap { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 5; }
+  .confetti { position: absolute; top: -10px; font-size: 1.3rem; animation: fall linear forwards; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0.9; } }
+
+  footer.note { text-align: center; color: #5C5487; font-size: 0.7rem; margin-top: 12px; }
+
+  @media (max-width: 360px) {
+    .face-front .val { font-size: 1rem; }
+    .trophy-ring { width: 32px; height: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <h1 class="title">🎴 Match &amp; Blast: 3s &amp; 4s</h1>
+  <p class="subtitle">Flip two cards to pair each sum with its answer</p>
+
+  <div class="trophies" id="trophies"></div>
+
+  <div class="stats-bar">
+    <span>Moves: <b id="moves">0</b></span>
+    <span>Time: <b id="timer">0:00</b></span>
+    <span>Best: <b id="best">–</b></span>
+  </div>
+
+  <div class="board" id="board"></div>
+  <div class="toast" id="toast"></div>
+
+  <div class="overlay hidden" id="roundComplete">
+    <span class="big">🎉</span>
+    <h2>Round complete!</h2>
+    <p id="roundStats"></p>
+    <button class="primary-btn" id="playAgainBtn">Deal a New Round</button>
+  </div>
+
+  <div class="overlay hidden" id="allStarScreen">
+    <span class="big">🏆</span>
+    <h2>All-Star!</h2>
+    <p>Every tricky fact — 3×6, 3×7, 3×8, 4×6, 4×7, 4×8 — matched three times over. That's real mastery.</p>
+    <button class="primary-btn" id="allStarContinueBtn">Keep Playing</button>
+  </div>
+
+  <footer class="note">Cyan cards are 3s facts · violet cards are 4s facts</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var TARGETS = [[3,6],[3,7],[3,8],[4,6],[4,7],[4,8]];
+  var MASTERY_NEEDED = 3;
+  var EXTRA_POOL = [[3,2],[3,3],[3,4],[3,5],[3,9],[3,10],[4,2],[4,3],[4,4],[4,5],[4,9],[4,10]];
+
+  var mastery = {};
+  var allStarShown = false;
+  var best = null;
+
+  function factKey(t,f){ return t + 'x' + f; }
+  TARGETS.forEach(function(p){ mastery[factKey(p[0],p[1])] = 0; });
+
+  function loadStorage(){
+    try {
+      var raw = localStorage.getItem('bingo:maths:match-and-blast:mastery');
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        TARGETS.forEach(function(p){
+          var k = factKey(p[0],p[1]);
+          if (typeof parsed[k] === 'number') mastery[k] = Math.min(MASTERY_NEEDED, parsed[k]);
+        });
+      }
+      allStarShown = localStorage.getItem('bingo:maths:match-and-blast:allstar') === '1';
+      var b = localStorage.getItem('bingo:maths:match-and-blast:best');
+      if (b) best = JSON.parse(b);
+    } catch(e) { /* storage unavailable */ }
+  }
+  function saveMastery(){
+    try { localStorage.setItem('bingo:maths:match-and-blast:mastery', JSON.stringify(mastery)); } catch(e){}
+  }
+  function saveAllStar(){
+    try { localStorage.setItem('bingo:maths:match-and-blast:allstar', '1'); } catch(e){}
+  }
+  function saveBest(){
+    try { localStorage.setItem('bingo:maths:match-and-blast:best', JSON.stringify(best)); } catch(e){}
+  }
+
+  var boardEl = document.getElementById('board');
+  var trophiesEl = document.getElementById('trophies');
+  var movesEl = document.getElementById('moves');
+  var timerEl = document.getElementById('timer');
+  var bestEl = document.getElementById('best');
+  var toastEl = document.getElementById('toast');
+  var roundComplete = document.getElementById('roundComplete');
+  var roundStats = document.getElementById('roundStats');
+  var allStarScreen = document.getElementById('allStarScreen');
+
+  var moves = 0, seconds = 0, timerHandle = null, timerStarted = false;
+  var flippedSlots = [];
+  var matchedCount = 0;
+  var totalPairs = 0;
+  var lock = false;
+
+  function fmtTime(s){
+    var m = Math.floor(s/60), r = s%60;
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  function renderTrophies(){
+    trophiesEl.innerHTML = '';
+    TARGETS.forEach(function(p){
+      var k = factKey(p[0],p[1]);
+      var pct = Math.round((mastery[k] / MASTERY_NEEDED) * 100);
+      var div = document.createElement('div');
+      div.className = 'trophy t' + p[0] + (mastery[k] >= MASTERY_NEEDED ? ' mastered' : '');
+      div.innerHTML = '<div class="trophy-ring" style="--pct:' + pct + '"><span class="trophy-face">' + p[0] + '·' + p[1] + '</span></div>';
+      trophiesEl.appendChild(div);
+    });
+  }
+
+  function renderStats(){
+    movesEl.textContent = moves;
+    timerEl.textContent = fmtTime(seconds);
+    bestEl.textContent = best ? (best.moves + ' mv / ' + fmtTime(best.time)) : '–';
+  }
+
+  function startTimer(){
+    if (timerStarted) return;
+    timerStarted = true;
+    timerHandle = setInterval(function(){
+      seconds++;
+      renderStats();
+    }, 1000);
+  }
+  function stopTimer(){
+    timerStarted = false;
+    if (timerHandle) clearInterval(timerHandle);
+  }
+
+  function buildDeck(){
+    var extras = EXTRA_POOL.slice().sort(function(){ return Math.random()-0.5; }).slice(0,2);
+    var facts = TARGETS.concat(extras);
+    var deck = [];
+    facts.forEach(function(p, idx){
+      var table = p[0], factor = p[1], answer = table*factor;
+      var pairId = 'p' + idx;
+      deck.push({pairId: pairId, kind:'q', table: table, answer: answer, label: table + '×' + factor, factKey: factKey(table,factor)});
+      deck.push({pairId: pairId, kind:'a', table: table, answer: answer, label: String(answer), factKey: factKey(table,factor)});
+    });
+    deck.sort(function(){ return Math.random()-0.5; });
+    return deck;
+  }
+
+  function renderBoard(){
+    boardEl.innerHTML = '';
+    var deck = buildDeck();
+    totalPairs = deck.length / 2;
+    matchedCount = 0;
+    deck.forEach(function(card){
+      var slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.setAttribute('data-table', card.table);
+      slot.dataset.pairId = card.pairId;
+      slot.dataset.factKey = card.factKey;
+      slot.dataset.kind = card.kind;
+      slot.dataset.answer = card.answer;
+      slot.innerHTML =
+        '<div class="card-inner">' +
+          '<div class="face face-back">✦</div>' +
+          '<div class="face face-front"><span class="val">' + card.label + '</span>' +
+          '<span class="tag">' + (card.table===3?'3s':'4s') + '</span></div>' +
+        '</div>';
+      slot.addEventListener('click', function(){ onFlip(slot); });
+      boardEl.appendChild(slot);
+    });
+  }
+
+  function resetToast(msg){ toastEl.innerHTML = msg || ''; }
+
+  function onFlip(slot){
+    if (lock) return;
+    if (slot.classList.contains('flipped') || slot.classList.contains('matched')) return;
+    if (flippedSlots.length === 2) return;
+
+    startTimer();
+    slot.classList.add('flipped');
+    flippedSlots.push(slot);
+
+    if (flippedSlots.length === 2) {
+      moves++;
+      renderStats();
+      var a = flippedSlots[0], b = flippedSlots[1];
+      // Any sum matches any answer card with the same value (3×8 and 4×6 are both 24).
+      if (a.dataset.kind !== b.dataset.kind && a.dataset.answer === b.dataset.answer) {
+        lock = true;
+        setTimeout(function(){
+          a.classList.add('matched');
+          b.classList.add('matched');
+          flippedSlots = [];
+          matchedCount++;
+          lock = false;
+
+          var fk = (a.dataset.kind === 'q' ? a : b).dataset.factKey;
+          if (mastery.hasOwnProperty(fk) && mastery[fk] < MASTERY_NEEDED) {
+            mastery[fk]++;
+            saveMastery();
+            renderTrophies();
+          }
+          var val = a.querySelector('.val').textContent + (a.classList.contains('q')?'':'');
+          var qLabel = a.querySelector('.tag') ? null : null;
+          resetToast('Matched <strong>' + labelFor(a,b) + '</strong> ✓');
+
+          checkAllStar();
+
+          if (matchedCount === totalPairs) {
+            finishRound();
+          }
+        }, 450);
+      } else {
+        lock = true;
+        a.classList.add('wrong');
+        b.classList.add('wrong');
+        resetToast('Not a pair — keep going!');
+        setTimeout(function(){
+          a.classList.remove('flipped','wrong');
+          b.classList.remove('flipped','wrong');
+          flippedSlots = [];
+          lock = false;
+        }, 850);
+      }
+    }
+  }
+
+  function labelFor(a,b){
+    var qSlot = a.querySelector('.val').textContent.indexOf('×') !== -1 ? a : b;
+    var ansSlot = qSlot === a ? b : a;
+    return qSlot.querySelector('.val').textContent + ' = ' + ansSlot.querySelector('.val').textContent;
+  }
+
+  function checkAllStar(){
+    if (allStarShown) return;
+    var all = TARGETS.every(function(p){ return mastery[factKey(p[0],p[1])] >= MASTERY_NEEDED; });
+    if (all) {
+      allStarShown = true;
+      saveAllStar();
+      setTimeout(function(){
+        allStarScreen.classList.remove('hidden');
+        launchConfetti();
+      }, 500);
+    }
+  }
+
+  function finishRound(){
+    stopTimer();
+    if (!best || moves < best.moves || (moves === best.moves && seconds < best.time)) {
+      best = {moves: moves, time: seconds};
+      saveBest();
+    }
+    renderStats();
+    roundStats.textContent = 'Finished in ' + moves + ' moves and ' + fmtTime(seconds) + '.';
+    setTimeout(function(){
+      roundComplete.classList.remove('hidden');
+      launchConfetti();
+    }, 400);
+  }
+
+  function launchConfetti(){
+    var wrap = document.createElement('div');
+    wrap.className = 'confetti-wrap';
+    document.body.appendChild(wrap);
+    var emojis = ['⭐','✨','🎉','🎴'];
+    for (var i=0;i<18;i++){
+      var span = document.createElement('span');
+      span.className = 'confetti';
+      span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      span.style.left = Math.random()*100 + 'vw';
+      span.style.animationDuration = (1.6+Math.random()*1.2) + 's';
+      span.style.fontSize = (1+Math.random()*0.8) + 'rem';
+      wrap.appendChild(span);
+    }
+    setTimeout(function(){ wrap.remove(); }, 3000);
+  }
+
+  function newRound(){
+    moves = 0; seconds = 0; flippedSlots = []; lock = false;
+    stopTimer();
+    resetToast('');
+    renderStats();
+    renderBoard();
+  }
+
+  document.getElementById('playAgainBtn').addEventListener('click', function(){
+    roundComplete.classList.add('hidden');
+    newRound();
+  });
+  document.getElementById('allStarContinueBtn').addEventListener('click', function(){
+    allStarScreen.classList.add('hidden');
+  });
+
+  loadStorage();
+  renderTrophies();
+  renderStats();
+  newRound();
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>History coaching: from facts to explanation</title>
+<style>
+:root{--ink:#1e2430;--muted:#586070;--bg:#f5f6f8;--panel:#fff;--line:#d9dce3;--accent:#6a1b4d;--accent-soft:#f1e4ec;--ok:#25664a;--ok-soft:#e1f1e9;--bad:#a4470b;--bad-soft:#fbeadb}
+@media (prefers-color-scheme:dark){:root{--ink:#e8eaf0;--muted:#a2a9b8;--bg:#14171e;--panel:#1d212b;--line:#333949;--accent:#d58ab6;--accent-soft:#35212d;--ok:#7fd1a8;--ok-soft:#1b3328;--bad:#f0a56a;--bad-soft:#3a2a1b}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 80px}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;line-height:1.25;margin:0 0 .4em}
+h1{font-size:1.8rem;color:var(--accent)}h2{font-size:1.4rem}h3{font-size:1.1rem}
+p{margin:.4em 0 .8em}.sub{color:var(--muted);margin-top:0}.hint{color:var(--muted);font-size:.93rem}
+.steps{display:flex;gap:6px;margin:18px 0 22px;flex-wrap:wrap}
+.pill{font-size:.85rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--panel)}
+.pill.on{background:var(--accent);color:#fff;border-color:var(--accent)}.pill.done{border-color:var(--ok);color:var(--ok)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+.lead{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0 12px}
+.q{font-weight:600;margin-bottom:8px}
+button{font:inherit;cursor:pointer}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{padding:8px 14px;border-radius:8px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--accent)}.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.97rem}
+.fb.right{background:var(--ok-soft);border:1px solid var(--ok)}.fb.wrong{background:var(--bad-soft);border:1px solid var(--bad)}.fb.info{background:var(--accent-soft);border:1px solid var(--accent)}
+.primary{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:11px 20px;font-weight:600}
+.primary[disabled]{opacity:.45;cursor:default}
+.ghost{background:transparent;border:1.5px solid var(--accent);color:var(--accent);border-radius:8px;padding:9px 16px;font-weight:600}
+.ghost[disabled]{opacity:.45;cursor:default}
+textarea{width:100%;min-height:90px;font:inherit;padding:10px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+.stack{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+label.chk{display:flex;gap:10px;align-items:flex-start;margin:6px 0}
+label.chk input{margin-top:6px;width:18px;height:18px}
+.words{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 10px}
+.w{padding:2px 7px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:.97rem}
+.w.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+.rung{margin:6px 0;padding:8px 12px;border-radius:8px;background:var(--accent-soft)}
+.scoreline{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);gap:10px}
+pre.summary{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font:.88rem/1.5 ui-monospace,Menlo,monospace}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>From facts to explanation</h1>
+<p class="sub">History coaching, built on your own essay &ldquo;Was life fair in Ancient Rome?&rdquo;. About 25 minutes.</p>
+<div class="steps" id="steps" aria-label="Progress"></div>
+<div id="stage"></div>
+</div>
+<script>
+/* =====================  CONTENT (edit this block for a new essay)  ===================== */
+const CONTENT = {
+  question: "Was life fair in Ancient Rome?",
+  essayClaim: "Overall, Roman life was only fair depending on who you were and your status in society.",
+  storageKey: "ember:history:coaching-so-what:summary",
+  filter: [
+    {t:"Wealthier girls were educated alongside their brothers.", k:"check", why:"Your reference page says girls were educated at home, in more limited subjects. A claim to fix before you use it."},
+    {t:"Girls were married young, and their father chose the husband.", k:"yes", why:"It shows how little say girls had, which is about fairness."},
+    {t:"Livia, the wife of Augustus, advised how to rule.", k:"if", why:"Only as an <em>exception</em>: it was rare, and it came through her husband. (Your essay said &lsquo;approval&rsquo;. Check which word your notes support.)"},
+    {t:"Slaves were captured and forced to do their masters' work.", k:"yes", why:"Slaves were legally property. This is the clearest unfairness."},
+    {t:"Claudius led the invasion of Britain.", k:"no", why:"True, but it has nothing to do with whether life was fair."},
+    {t:"Christians believed in one god and were persecuted.", k:"yes", why:"It shows tolerance depended on fitting in with Roman beliefs."},
+    {t:"Constantine made Christianity the main religion, and it still is today.", k:"no", why:"It is off the question, and not quite right: he ended the persecution, and it became the official religion later."},
+    {t:"Babies often died young, and life expectancy was low.", k:"if", why:"Hard is not the same as unfair. It only helps if you show who suffered most."},
+    {t:"Parents gave their children a bulla for protection.", k:"yes", why:"It shows parents cared about their children."},
+    {t:"The elderly spoke first in the senate.", k:"yes", why:"Age was respected, but you can ask: for whom?"}
+  ],
+  rounds: [
+    {fact:"Slaves were captured and forced to do their masters' work. (Your reference page adds: slaves were legally considered property, with almost no rights.)",
+     model:"Slaves were legally property, which suggests that Roman society did not expect fairness for those at the bottom, because their lives and work belonged to someone else.",
+     para:"Slaves had the least fair lives in Rome. They were captured and forced to work for their masters, and they were legally considered property with almost no rights. This suggests that Roman society did not expect fairness for those at the bottom, because their lives and work belonged to someone else. So for slaves, status meant life was almost never fair."},
+    {fact:"Christians believed in one god and the Romans believed in many, so Christians were persecuted.",
+     model:"This suggests that the Romans were only tolerant of religions that fitted in with their own, so fair treatment depended on not challenging Roman beliefs.",
+     para:"Religious minorities were treated fairly only if they fitted in. The Romans welcomed religions that fitted alongside their own gods and sometimes borrowed parts of them, but Christians, who believed in one god, were persecuted. This suggests that Roman tolerance had limits, because a religion that challenged Roman beliefs was treated as a threat. So fairness depended on whether you matched what the Romans believed."},
+    {fact:"Parents gave their children a bulla to wear round their necks for protection, even though many babies died young.",
+     note:"You already wrote a So What for this one in your essay. Can you say it a different way, or add what it tells us about Roman society?",
+     model:"This suggests that parents valued their children and tried to protect them, even in a world where many did not survive infancy.",
+     para:"Children's lives were hard, but parents tried to protect them. Many babies died young and life expectancy was low, yet parents gave their children a bulla to wear round the neck for protection. This shows that children were cared about even in a dangerous world, which suggests that Romans valued their children despite the hardship. So children's lives were unfair in how risky they were, but not in how much they were cared for."},
+    {bonus:true, fact:"Livia, the wife of Augustus, was one of his advisers.",
+     note:"Bonus round: this is an <em>exception</em>. One person does not prove it for everyone. Try starting with: <em>&ldquo;This was rare, which suggests that&hellip;&rdquo;</em>",
+     model:"Livia advised Augustus, but this was rare, which suggests that real power for women usually came only through marrying a powerful man.",
+     para:""}
+  ],
+  hints:[
+    "So what does that tell us?",
+    "What does it tell us about what the Romans valued, feared or believed?",
+    "So who is it fair for, and who is it not fair for?",
+    "Try starting with: <em>This suggests that&hellip;</em>"
+  ]
+};
+/* ================================================================================== */
+const $=s=>document.querySelector(s);
+const names=["Your answer","The filter","So What","Paragraph","Reflect"];
+const st={i:0,t0:null,t:{},stepStart:null,claim:"",filter:[],rounds:[],para:"",paraChoice:0,refl:["","",""]};
+const mins=s=>s==null?"?":(s<60?s+"s":Math.floor(s/60)+"m "+(s%60)+"s");
+function pills(){$("#steps").innerHTML=names.map((n,k)=>{const c=(st.i-1===k)?"on":(st.i-1>k?"done":"");return `<span class="pill ${c}">${k+1}. ${n}</span>`;}).join("");}
+function go(n){const now=Date.now();if(st.stepStart&&st.i>=1&&st.i<=5)st.t[st.i]=Math.round((now-st.stepStart)/1000);st.i=n;st.stepStart=now;pills();window.scrollTo({top:0});[intro,step1,step2,step3,step4,step5,done][n]();}
+function el(html,cls){const d=document.createElement("div");if(cls)d.className=cls;d.innerHTML=html;return d;}
+function stage(){const s=$("#stage");s.innerHTML="";return s;}
+function nextBtn(label,fn,disabled){const w=el(`<button class="primary" id="nextBtn" ${disabled?"disabled":""}>${label}</button>`,"stack");w.querySelector("button").onclick=fn;return w;}
+
+function intro(){
+  const s=stage();
+  s.appendChild(el(`<h2>Before you start</h2>
+   <p>You already know a lot of facts about Rome. That is a real strength. This session is about <strong>using</strong> them.</p>
+   <p>One question to ask after every fact: <strong>&ldquo;So what does that tell us about the question?&rdquo;</strong> You will practise saying it out loud in your head, then writing it down.</p>
+   <p class="hint">Close your essay for the first step. There are no trick questions, and lots of answers can be right. What matters is your thinking.</p>
+   <div class="stack"><button class="primary" id="go">Start</button></div>`,"card"));
+  $("#go").onclick=()=>{st.t0=Date.now();go(1);};
+}
+
+function step1(){
+  const s=stage();
+  s.appendChild(el(`<h2>1. Your answer, in one sentence</h2>
+   <p class="sub">Close your essay. Without looking, answer the question in <strong>one sentence</strong>.</p>`));
+  const c=el(`<div class="lead"><strong>${CONTENT.question}</strong></div>
+   <label class="q" for="claim">My answer:</label>
+   <textarea id="claim" placeholder="One sentence that answers the question"></textarea>
+   <div class="stack"><button class="ghost" id="seeBtn" disabled>Compare with my essay</button></div><div id="cmp"></div>`,"card");
+  s.appendChild(c);
+  const nb=nextBtn("Next: the filter",()=>go(2),true);s.appendChild(nb);
+  const ta=$("#claim"),sb=$("#seeBtn");
+  ta.addEventListener("input",()=>{sb.disabled=ta.value.trim().length<15;});
+  sb.onclick=()=>{
+    st.claim=ta.value.trim();ta.readOnly=true;sb.disabled=true;
+    $("#cmp").innerHTML=`<div class="fb info"><strong>The last sentence of your essay said:</strong><br>&ldquo;${CONTENT.essayClaim}&rdquo;<br><br>That is your <strong>real argument</strong>, and it was hidden at the end. Every fact in your essay should prove it. Check your sentence above:</div>
+     <label class="chk"><input type="checkbox" class="cc"><span>It <strong>answers</strong> the question (fair, unfair, or fair for some).</span></label>
+     <label class="chk"><input type="checkbox" class="cc"><span>It says <strong>what decided</strong> the answer (for example, status or class).</span></label>
+     <label class="chk"><input type="checkbox" class="cc"><span>It is <strong>one</strong> sentence.</span></label>
+     <p class="hint">Next time, put this sentence first. Then pick facts that prove it.</p>`;
+    st.claimTicks=0;
+    document.querySelectorAll(".cc").forEach(x=>x.addEventListener("change",()=>{st.claimTicks=document.querySelectorAll(".cc:checked").length;}));
+    nb.querySelector("button").disabled=false;
+  };
+}
+
+function step2(){
+  const s=stage();let answered=0;st.filter=[];
+  s.appendChild(el(`<h2>2. The filter</h2>
+   <p class="sub">These are ten facts from your essay. For each, decide: does it help prove your answer to <strong>&ldquo;${CONTENT.question}&rdquo;</strong>?</p>
+   <p class="hint"><strong>Yes</strong> = helps prove it. <strong>No</strong> = true, but doesn't help. <strong>Only if</strong> = helps if you explain how. <strong>Check first</strong> = I'm not sure it's right.</p>`));
+  const labels={yes:"Yes",no:"No",if:"Only if",check:"Check first"};
+  const nb=nextBtn("Next: So What",()=>go(3),true);
+  CONTENT.filter.forEach((f,i)=>{
+    const c=el(`<div class="q">${i+1}. ${f.t}</div><div class="opts">${Object.keys(labels).map(k=>`<button class="opt" data-k="${k}">${labels[k]}</button>`).join("")}</div><div class="fb" hidden aria-live="polite"></div>`,"card");
+    s.appendChild(c);
+    c.querySelector(".opts").addEventListener("click",e=>{
+      const b=e.target.closest(".opt");if(!b||b.disabled)return;
+      const ok=b.dataset.k===f.k,fb=c.querySelector(".fb");
+      c.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(x.dataset.k===f.k)x.classList.add("right");});
+      if(!ok)b.classList.add("wrong");
+      fb.hidden=false;fb.className="fb "+(ok?"right":"wrong");
+      fb.innerHTML=ok?`<strong>Yes, that matches.</strong> ${f.why}`:`<strong>The key says &ldquo;${labels[f.k]}&rdquo;.</strong> ${f.why} <em>If you chose differently, be ready to say why. A good reason is worth more than matching the key.</em>`;
+      st.filter[i]={chosen:b.dataset.k,key:f.k,ok};
+      if(++answered===CONTENT.filter.length){nb.querySelector("button").disabled=false;
+        const sc=st.filter.filter(x=>x&&x.ok).length;
+        s.insertBefore(el(`<div class="fb info"><strong>${sc} of ${CONTENT.filter.length} matched.</strong> In your essay, you used almost every one of these. In an exam, the question tells you which to keep. Fewer facts, each with a So What, earns more marks.</div>`),nb);}
+    });
+  });
+  s.appendChild(nb);
+}
+
+function step3(){
+  const s=stage();st.rounds=[];
+  s.appendChild(el(`<h2>3. So What?</h2>
+   <p class="sub">For each fact, write a sentence that says <strong>what it tells us</strong> about whether life was fair. Then test it. Try on your own first, and use a hint only if you're stuck.</p>`));
+  const nb=nextBtn("Next: write a paragraph",()=>go(4),true);
+  let doneCount=0;const req=CONTENT.rounds.filter(r=>!r.bonus).length;
+  CONTENT.rounds.forEach((r,i)=>{
+    const words=r.fact.split(/\s+/).map((w,j)=>`<button class="w" data-j="${j}" aria-pressed="false">${w}</button>`).join("");
+    const c=el(`<h3>${r.bonus?"Bonus (optional)":"Fact "+(i+1)} </h3>
+     <div class="lead">${r.fact}</div>${r.note?`<p class="hint">${r.note}</p>`:""}
+     <label class="q" for="sw${i}">So what does this tell us?</label>
+     <textarea id="sw${i}" placeholder="Write one sentence"></textarea>
+     <div class="stack"><button class="ghost hintBtn">I'm stuck: give me a hint</button><button class="primary doneBtn" disabled>I've written it: test it</button></div>
+     <div class="hints"></div>
+     <div class="test" hidden>
+       <p class="q" style="margin-top:14px">The grounded test</p>
+       <p class="hint">Tap the words in the fact that your sentence comes from. If you can't find any, your sentence may be a guess.</p>
+       <div class="words">${words}</div>
+       <p class="q">What does my sentence do?</p>
+       <label class="chk"><input type="radio" name="cl${i}" value="tells"><span>It says what the fact <strong>tells us</strong>.</span></label>
+       <label class="chk"><input type="radio" name="cl${i}" value="repeats"><span>It <strong>repeats</strong> the fact in different words.</span></label>
+       <label class="chk"><input type="radio" name="cl${i}" value="beyond"><span>It goes <strong>beyond</strong> what the fact shows.</span></label>
+       <div class="stack"><button class="primary chkBtn" disabled>Check my sentence</button></div>
+     </div>
+     <div class="fb" hidden aria-live="polite"></div><div class="mdl"></div>`,"card");
+    s.appendChild(c);
+    const ta=c.querySelector("textarea"),hb=c.querySelector(".hintBtn"),db=c.querySelector(".doneBtn"),test=c.querySelector(".test"),cb=c.querySelector(".chkBtn"),fb=c.querySelector(".fb");
+    const rec={fact:r.fact,bonus:!!r.bonus,rung:0,text:"",cls:"",tapped:0,model:false,checked:false};st.rounds[i]=rec;
+    ta.addEventListener("input",()=>{db.disabled=ta.value.trim().length<20;});
+    hb.onclick=()=>{
+      if(rec.rung>=CONTENT.hints.length)return;
+      const h=c.querySelector(".hints");h.appendChild(el(`<strong>Hint ${rec.rung+1} of ${CONTENT.hints.length}:</strong> ${CONTENT.hints[rec.rung]}`,"rung"));
+      rec.rung++;if(rec.rung>=CONTENT.hints.length){hb.disabled=true;hb.textContent="No more hints. Try the model after you've tested it.";}else hb.textContent=`Another hint (${rec.rung+1}/${CONTENT.hints.length})`;
+    };
+    db.onclick=()=>{rec.text=ta.value.trim();test.hidden=false;db.disabled=true;};
+    c.querySelectorAll(".w").forEach(w=>w.onclick=()=>{w.classList.toggle("sel");w.setAttribute("aria-pressed",w.classList.contains("sel"));rec.tapped=c.querySelectorAll(".w.sel").length;});
+    c.querySelectorAll("input[type=radio]").forEach(x=>x.onchange=()=>{cb.disabled=false;});
+    cb.onclick=()=>{
+      rec.cls=c.querySelector("input[type=radio]:checked").value;rec.text=ta.value.trim();fb.hidden=false;
+      let msg,cls="info";
+      if(rec.cls==="tells"&&rec.tapped>0){cls="right";msg=`<strong>Grounded.</strong> You can point at the words it comes from. That is a So What.`;}
+      else if(rec.cls==="tells"&&rec.tapped===0){cls="wrong";msg=`<strong>Tap the evidence.</strong> You say it tells us something, but you haven't pointed at any words in the fact. If you can't find words that support it, it may be a guess. Tap them above, then press Check again.`;}
+      else if(rec.cls==="repeats"){cls="wrong";msg=`<strong>That's the fact again.</strong> Ask: what does it <em>tell</em> us about the question? Edit your sentence above (try the hints), then press Check again.`;}
+      else{cls="wrong";msg=`<strong>Interesting idea, but check it.</strong> Is there anything in the fact that shows it? If not, shrink the claim until it fits the fact. Edit your sentence and check again.`;}
+      fb.className="fb "+cls;fb.innerHTML=msg;
+      if(!rec.checked){rec.checked=true;}
+      ta.readOnly=false;
+      if(!c.querySelector(".mdlBtn")){const m=el(`<div class="stack"><button class="ghost mdlBtn">Show a model sentence</button></div>`);c.querySelector(".mdl").appendChild(m);
+        m.querySelector("button").onclick=e=>{rec.model=true;e.target.disabled=true;c.querySelector(".mdl").appendChild(el(`<div class="fb info"><strong>One model:</strong> ${r.model}<br><span class="hint">Yours doesn't need to match it. It needs to be grounded.</span></div>`));};}
+      recount();
+    };
+  });
+  function recount(){const n=st.rounds.filter((x,i)=>x&&x.checked&&!CONTENT.rounds[i].bonus).length;if(n>=req)nb.querySelector("button").disabled=false;}
+  s.appendChild(nb);
+}
+
+function step4(){
+  const s=stage();
+  const eligible=CONTENT.rounds.map((r,i)=>({r,i})).filter(x=>x.r.para);
+  s.appendChild(el(`<h2>4. One paragraph</h2>
+   <p class="sub">Now turn one of your So Whats into a paragraph. One claim, one paragraph. This is how your essay becomes easier to follow.</p>`));
+  const c=el(`<div class="q">Which group will you write about?</div>
+   <div class="opts" id="pick">${eligible.map(x=>`<button class="opt" data-i="${x.i}">${x.r.fact.split(".")[0].split("(")[0].trim().slice(0,60)}&hellip;</button>`).join("")}</div>
+   <div id="pbox" hidden>
+     <div class="lead" id="ref"></div>
+     <p class="hint"><strong>Shape:</strong> 1. a claim sentence that answers the question for this group &rarr; 2. the fact &rarr; 3. your So What &rarr; 4. a last sentence linking back to &ldquo;fair&rdquo;.</p>
+     <label class="q" for="para">My paragraph:</label><textarea id="para" style="min-height:140px" placeholder="Write your paragraph"></textarea>
+     <div class="stack"><button class="ghost" id="mdlP" disabled>Show a model paragraph</button></div>
+     <div id="pOut"></div></div>`,"card");
+  s.appendChild(c);const nb=nextBtn("Next: reflect",()=>go(5),true);s.appendChild(nb);
+  $("#pick").addEventListener("click",e=>{
+    const b=e.target.closest(".opt");if(!b)return;
+    document.querySelectorAll("#pick .opt").forEach(x=>x.classList.remove("right"));b.classList.add("right");
+    const i=+b.dataset.i;st.paraChoice=i;$("#pbox").hidden=false;
+    $("#ref").innerHTML=`<strong>Fact:</strong> ${CONTENT.rounds[i].fact}<br><strong>My So What:</strong> ${st.rounds[i]&&st.rounds[i].text?st.rounds[i].text:"(none written)"}`;
+  });
+  const ta=()=>$("#para");
+  document.addEventListener("input",function h(e){if(e.target&&e.target.id==="para"){$("#mdlP").disabled=e.target.value.trim().length<60;}});
+  c.addEventListener("click",e=>{
+    if(e.target.id!=="mdlP")return;
+    e.target.disabled=true;st.para=ta().value.trim();ta().readOnly=true;
+    $("#pOut").innerHTML=`<div class="fb info"><strong>A model paragraph:</strong><br>${CONTENT.rounds[st.paraChoice].para}</div>
+     <p class="q" style="margin-top:12px">Check your own:</p>
+     <label class="chk"><input type="checkbox"><span>It begins with a <strong>claim</strong>, not a fact.</span></label>
+     <label class="chk"><input type="checkbox"><span>It has one fact, with a <strong>So What</strong> after it.</span></label>
+     <label class="chk"><input type="checkbox"><span>It ends by <strong>linking back</strong> to fairness.</span></label>
+     <label class="chk"><input type="checkbox"><span>It is about <strong>one group</strong> only.</span></label>`;
+    nb.querySelector("button").disabled=false;
+  });
+}
+
+function step5(){
+  const s=stage();
+  s.appendChild(el(`<h2>5. Reflect</h2><p class="sub">One or two sentences each. There are no wrong answers.</p>`));
+  const qs=["What did you do just now that you didn't do when you wrote the essay?","What question will you ask yourself after every fact next time?","Which fact was hardest to add a So What to? Why?"];
+  const c=el(qs.map((q,i)=>`<label class="q" for="rf${i}">${i+1}. ${q}</label><textarea id="rf${i}" style="min-height:70px"></textarea>`).join(""),"card");
+  s.appendChild(c);
+  const nb=nextBtn("See my summary",()=>{st.refl=[0,1,2].map(i=>$("#rf"+i).value.trim());go(6);},true);s.appendChild(nb);
+  c.addEventListener("input",()=>{nb.querySelector("button").disabled=[0,1,2].some(i=>$("#rf"+i).value.trim().length<5);});
+}
+
+function done(){
+  const s=stage();
+  const total=Math.round((Date.now()-st.t0)/1000);
+  const fs=st.filter.filter(x=>x&&x.ok).length;
+  const lines=[];
+  lines.push("History coaching: "+CONTENT.question);
+  lines.push("Date: "+new Date().toLocaleDateString("en-GB"));
+  lines.push("");lines.push("1. My answer: "+(st.claim||"(none)")+"  [claim checks ticked: "+(st.claimTicks||0)+"/3]");
+  lines.push("2. Filter: "+fs+" / "+CONTENT.filter.length+" matched the key");
+  st.rounds.forEach((r,i)=>{ if(!r||!r.text)return;
+    lines.push("3."+(i+1)+(r.bonus?" (bonus)":"")+" So What: "+r.text);
+    lines.push("    hints used: "+r.rung+" of "+CONTENT.hints.length+"; words tapped: "+r.tapped+"; self-label: "+r.cls+"; model viewed: "+(r.model?"yes":"no"));});
+  lines.push("4. Paragraph: "+(st.para||"(none)"));
+  lines.push("5. Reflection:");
+  ["What I did differently","Question to ask next time","Hardest fact"].forEach((l,i)=>lines.push("    "+l+": "+(st.refl[i]||"")));
+  lines.push("");lines.push("Time: "+mins(total));
+  const text=lines.join("\n");
+  const hintTotal=st.rounds.reduce((a,r)=>a+(r?r.rung:0),0);
+  s.appendChild(el(`<h2>Done. Well worked.</h2>
+   <div class="card">
+    <div class="scoreline"><span>Filter</span><strong>${fs} / ${CONTENT.filter.length}</strong></div>
+    <div class="scoreline"><span>So Whats written</span><strong>${st.rounds.filter(r=>r&&r.text).length}</strong></div>
+    <div class="scoreline"><span>Hints used in total</span><strong>${hintTotal}</strong></div>
+    <div class="scoreline"><span>Time</span><strong>${mins(total)}</strong></div>
+   </div>
+   <div class="card"><h3>What to carry into your next piece</h3>
+    <p><strong>After every fact, ask: &ldquo;So what does that tell us about the question?&rdquo;</strong></p>
+    <p class="hint">And start with your answer, not with the facts.</p></div>
+   <div class="card"><h3>Copy for the weekly review</h3><pre class="summary" id="summary"></pre>
+    <div class="stack"><button class="ghost" id="copyBtn">Copy summary</button><span class="hint" id="copied"></span></div></div>`));
+  $("#summary").textContent=text;
+  try{localStorage.setItem(CONTENT.storageKey,JSON.stringify({text,date:new Date().toISOString()}));}catch(e){}
+  $("#copyBtn").onclick=async()=>{try{await navigator.clipboard.writeText(text);$("#copied").textContent="Copied.";}catch(e){$("#copied").textContent="Select the text above and copy it.";}};
+}
+go(0);
+</script>
+<script src="../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>

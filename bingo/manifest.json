@@ -1,0 +1,109 @@
+{
+  "subjects": [
+    {
+      "slug": "english",
+      "label": "English"
+    },
+    {
+      "slug": "maths",
+      "label": "Maths"
+    }
+  ],
+  "items": [
+    {
+      "title": "Times Table Blast Off: 3s",
+      "path": "maths/times-tables-3s/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
+    },
+    {
+      "title": "Times Table Blast Off: 4s",
+      "path": "maths/times-tables-4s/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
+    },
+    {
+      "title": "Match & Blast: 3s & 4s",
+      "path": "maths/match-and-blast/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
+    },
+    {
+      "title": "Say it, then flip it: 3×6, 3×7, 3×8",
+      "path": "maths/threes-flip-pack/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
+    },
+    {
+      "title": "Climb the threes: the whole table",
+      "path": "maths/climb-the-threes-full/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
+    },
+    {
+      "title": "Climb the fours: the whole table",
+      "path": "maths/climb-the-fours-full/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
+    },
+    {
+      "title": "Threes Bakery",
+      "path": "maths/threes-bakery/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Times tables",
+      "term": "Autumn"
+    },
+    {
+      "title": "Times tables: 2s and 5s",
+      "path": "maths/times-tables-2s-5s/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Times tables"
+    },
+    {
+      "title": "Times tables 1 to 10",
+      "path": "maths/times-tables-1-to-10/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Times tables"
+    },
+    {
+      "title": "Grammar and Writing Pack",
+      "path": "english/grammar-writing-pack/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Grammar and writing"
+    },
+    {
+      "title": "English Quest: Grammar and Writing",
+      "path": "english/english-quest/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Grammar and writing"
+    }
+  ]
+}

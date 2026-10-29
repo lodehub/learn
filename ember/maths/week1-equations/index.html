@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maths Week 1: Solving equations, with working and a check</title>
+<style>
+:root{
+  --ink:#1e2430; --muted:#586070; --bg:#f5f6f8; --panel:#ffffff; --line:#d9dce3;
+  --accent:#3a4fb5; --accent-soft:#e6e9f8;
+  --ok:#25664a; --ok-soft:#e1f1e9; --bad:#a4470b; --bad-soft:#fbeadb;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --ink:#e8eaf0; --muted:#a2a9b8; --bg:#14171e; --panel:#1d212b; --line:#333949;
+  --accent:#9fb0ff; --accent-soft:#222845;
+  --ok:#7fd1a8; --ok-soft:#1b3328; --bad:#f0a56a; --bad-soft:#3a2a1b; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 80px}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;line-height:1.25;margin:0 0 .4em}
+h1{font-size:1.9rem;color:var(--accent)} h2{font-size:1.4rem} h3{font-size:1.1rem}
+p{margin:.4em 0 .8em} .sub{color:var(--muted);margin-top:0}
+.steps{display:flex;gap:6px;margin:18px 0 22px;flex-wrap:wrap}
+.pill{font-size:.85rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--panel)}
+.pill.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pill.done{border-color:var(--ok);color:var(--ok)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+.lead{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0 12px}
+.lead .ln{display:block;font-family:ui-monospace,Menlo,monospace;font-size:.98rem}
+.q{font-weight:600;margin-bottom:8px}
+.opts{display:grid;gap:8px}
+button{font:inherit;cursor:pointer}
+.opt{text-align:left;padding:10px 14px;border-radius:8px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.97rem}
+.fb.right{background:var(--ok-soft);border:1px solid var(--ok)}
+.fb.wrong{background:var(--bad-soft);border:1px solid var(--bad)}
+.primary{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:11px 20px;font-weight:600}
+.primary[disabled]{opacity:.45;cursor:default}
+.ghost{background:transparent;border:1.5px solid var(--accent);color:var(--accent);border-radius:8px;padding:9px 16px;font-weight:600}
+.ghost[disabled]{opacity:.45;cursor:default}
+textarea,input[type=text]{width:100%;font:inherit;padding:10px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0}
+.row label{font-size:.9rem;color:var(--muted);display:block}
+label.chk{display:flex;gap:10px;align-items:flex-start;margin:6px 0}
+label.chk input{margin-top:6px;width:18px;height:18px}
+.hint{color:var(--muted);font-size:.93rem}
+.stack{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.scoreline{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
+pre.summary{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font:.9rem/1.5 ui-monospace,Menlo,monospace}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+section[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1 id="title"></h1>
+<p class="sub" id="subtitle"></p>
+<div class="steps" id="steps" aria-label="Progress"></div>
+<div id="stage"></div>
+</div>
+<script>
+const CONTENT={"title": "Maths Week 1: Solving equations, with working and a check", "subtitle": "Skill of the week: <strong>written method and checking</strong>. About 20 minutes on screen, then the paper sheet.", "accent": "#3a4fb5", "accentSoft": "#e6e9f8", "accentDark": "#9fb0ff", "accentSoftDark": "#222845", "storageKey": "ember:maths:week1-equations:result", "intro": "<p>Paper and pencil next to you. Equations are one of the biggest sources of lost marks in Maths: not because the idea is hard, but because working is skipped and answers are never checked.</p><p>This week: every answer gets a <strong>check</strong> by putting your x back into the equation. If both sides match, you're right. If they don't, the check has just saved you a mark.</p>", "startLabel": "Start the warm-up", "doneHeading": "Done. Now the paper sheet.", "afterDone": "Next: the written equations on paper (20 to 30 min), the self-check, then the oral check with a parent.", "steps": [{"name": "Warm-up", "type": "mcq", "heading": "Warm-up: from last year (5 min)", "intro": "Quick ones. For each, type the answer into box 1. Boxes 2 and 3 are for the check: for these, put the same value in both, so the boxes are just practice.", "next": "Next: spot the first error", "items": [{"q": "Work out: &minus;3 + 7", "o": ["&minus;10", "4", "10"], "a": 1, "f": "Start at &minus;3 and move 7 up the number line: 4."}, {"q": "Work out: (&minus;5) &times; (&minus;4)", "o": ["&minus;20", "20", "&minus;9"], "a": 1, "f": "Negative times negative is positive: 20."}, {"q": "Work out: 2 + 3 &times; 4", "o": ["14", "20", "24"], "a": 0, "f": "Multiply first (BIDMAS): 3 &times; 4 = 12, then 2 + 12 = 14."}, {"q": "Simplify: 3x + 5x &minus; 2x", "o": ["6x", "10x", "6"], "a": 0, "f": "3 + 5 &minus; 2 = 6, so 6x."}, {"q": "Expand: 3(x + 4)", "o": ["3x + 4", "3x + 12", "x + 12"], "a": 1, "f": "The 3 multiplies both terms: 3x + 12."}, {"q": "Work out 2x&sup2; when x = 3", "o": ["12", "18", "36"], "a": 1, "f": "x&sup2; = 9 first, then 2 &times; 9 = 18. (36 would be squaring the 6.)"}]}, {"name": "Spot the error", "type": "mcq", "heading": "Find the first wrong line", "intro": "Each worked solution may contain a mistake. Find the <strong>first</strong> line that is wrong, or say there is none.", "next": "Next: solve and check", "items": [{"lead": "<span class='ln'>Line 1: 3x + 5 = 20</span><span class='ln'>Line 2: 3x = 25</span><span class='ln'>Line 3: x = 25 &divide; 3</span>", "q": "Where does the first mistake appear?", "o": ["Line 2", "Line 3", "No mistake"], "a": 0, "f": "Line 2. To undo +5 you subtract 5 from both sides, so 3x = 15 and x = 5."}, {"lead": "<span class='ln'>Line 1: 2(x &minus; 3) = 10</span><span class='ln'>Line 2: 2x &minus; 3 = 10</span><span class='ln'>Line 3: 2x = 13</span><span class='ln'>Line 4: x = 6.5</span>", "q": "Where does the first mistake appear?", "o": ["Line 2", "Line 3", "Line 4", "No mistake"], "a": 0, "f": "Line 2. The 2 multiplies both terms, so 2x &minus; 6 = 10, then 2x = 16 and x = 8."}, {"lead": "<span class='ln'>Line 1: 5x &minus; 4 = 2x + 11</span><span class='ln'>Line 2: 3x &minus; 4 = 11</span><span class='ln'>Line 3: 3x = 15</span><span class='ln'>Line 4: x = 5</span>", "q": "Where does the first mistake appear?", "o": ["Line 2", "Line 3", "Line 4", "No mistake"], "a": 3, "f": "No mistake. Check: 5(5) &minus; 4 = 21 and 2(5) + 11 = 21. Sometimes the right move is to trust the working, and the check proves it."}, {"lead": "<span class='ln'>Line 1: x &divide; 4 + 2 = 7</span><span class='ln'>Line 2: x &divide; 4 = 9</span><span class='ln'>Line 3: x = 36</span>", "q": "Where does the first mistake appear?", "o": ["Line 2", "Line 3", "No mistake"], "a": 0, "f": "Line 2. Subtract 2 from both sides to get x &divide; 4 = 5, then multiply by 4 to get x = 20."}]}, {"name": "Solve and check", "type": "solve", "heading": "Solve, then check (10 min)", "intro": "Work each one on paper first. Box 1: your x. Boxes 2 and 3: put your x back in and work out the left side and the right side.", "next": "See my results", "items": [{"eq": "4x &minus; 7 = 21", "lhs": "4*x-7", "rhs": "21", "ans": 7, "method": "4x &minus; 7 = 21<br>Add 7 to both sides: 4x = 28<br>Divide both sides by 4: x = 7<br>Check: 4(7) &minus; 7 = 21 &#10003;"}, {"eq": "3(x + 2) = 24", "lhs": "3*(x+2)", "rhs": "24", "ans": 6, "method": "3(x + 2) = 24<br>Expand: 3x + 6 = 24<br>Subtract 6: 3x = 18<br>Divide by 3: x = 6<br>Check: 3(6 + 2) = 24 &#10003;"}, {"eq": "7x + 3 = 4x + 18", "lhs": "7*x+3", "rhs": "4*x+18", "ans": 5, "method": "7x + 3 = 4x + 18<br>Subtract 4x from both sides: 3x + 3 = 18<br>Subtract 3: 3x = 15<br>Divide by 3: x = 5<br>Check: 7(5) + 3 = 38 and 4(5) + 18 = 38 &#10003;"}, {"eq": "x &divide; 3 &minus; 5 = 2", "lhs": "x/3-5", "rhs": "2", "ans": 21, "method": "x &divide; 3 &minus; 5 = 2<br>Add 5: x &divide; 3 = 7<br>Multiply by 3: x = 21<br>Check: 21 &divide; 3 &minus; 5 = 2 &#10003;"}]}]};
+const $=s=>document.querySelector(s);
+const st={i:-1,t0:null,t:{},score:[],tick:[],stepStart:null};
+const mins=s=>s==null?"?":(s<60?s+"s":Math.floor(s/60)+"m "+(s%60)+"s");
+const steps=CONTENT.steps;
+
+function pills(){
+  $("#steps").innerHTML=steps.map((s,k)=>{
+    const c=st.i===k?"on":(st.i>k?"done":"");
+    return `<span class="pill ${c}">${k+1}. ${s.name}</span>`;}).join("");
+}
+function go(k){
+  const now=Date.now();
+  if(st.stepStart!==null && st.i>=0) st.t[st.i]=Math.round((now-st.stepStart)/1000);
+  st.i=k; st.stepStart=now; pills(); window.scrollTo({top:0});
+  if(k===-1) return renderIntro();
+  if(k>=steps.length) return renderDone();
+  const s=steps[k]; const stage=$("#stage"); stage.innerHTML="";
+  const h=document.createElement("div");
+  h.innerHTML=`<h2>${k+1}. ${s.heading}</h2><p class="sub">${s.intro||""}</p>`; stage.appendChild(h);
+  const box=document.createElement("div"); stage.appendChild(box);
+  const nb=document.createElement("div"); nb.className="stack";
+  nb.innerHTML=`<button class="primary" id="nextBtn" disabled>${s.next||"Next"}</button>`; stage.appendChild(nb);
+  const next=$("#nextBtn"); next.onclick=()=>go(k+1);
+  st.score[k]={got:0,max:0}; st.tick[k]={got:0,max:0};
+  ({mcq:buildMcq,write:buildWrite,solve:buildSolve})[s.type](s,k,box,next);
+}
+function renderIntro(){
+  $("#stage").innerHTML=`<div class="card"><h2>Before you start</h2>${CONTENT.intro}
+  <p class="hint">Timings are recorded so your weekly review has real numbers.</p>
+  <div class="stack"><button class="primary" id="startBtn">${CONTENT.startLabel||"Start"}</button></div></div>`;
+  $("#startBtn").onclick=()=>{st.t0=Date.now();go(0);};
+}
+function buildMcq(s,k,box,next){
+  let done=0; st.score[k].max=s.items.length;
+  s.items.forEach((it,qi)=>{
+    const c=document.createElement("div"); c.className="card";
+    c.innerHTML=(it.lead?`<div class="lead">${it.lead}</div>`:"")+`<div class="q">${s.items.length>1&&!it.lead?(qi+1)+". ":""}${it.q}</div>
+      <div class="opts">${it.o.map((o,oi)=>`<button class="opt" data-oi="${oi}">${o}</button>`).join("")}</div><div class="fb" hidden></div>`;
+    box.appendChild(c);
+    c.addEventListener("click",e=>{
+      const b=e.target.closest(".opt"); if(!b||b.disabled) return;
+      const oi=+b.dataset.oi, ok=oi===it.a, fb=c.querySelector(".fb"), bs=c.querySelectorAll(".opt");
+      bs.forEach(x=>x.disabled=true); b.classList.add(ok?"right":"wrong"); if(!ok) bs[it.a].classList.add("right");
+      fb.hidden=false; fb.className="fb "+(ok?"right":"wrong");
+      if(it.of){ fb.innerHTML= ok? `<strong>Yes.</strong> ${it.of[it.a]}` : `${it.of[oi]}<br><br><strong>Best answer:</strong> ${it.of[it.a]}`; }
+      else fb.innerHTML=(ok?"<strong>Yes.</strong> ":"<strong>Not quite.</strong> ")+it.f;
+      if(ok) st.score[k].got++;
+      if(++done===s.items.length) next.disabled=false;
+    });
+  });
+}
+function buildWrite(s,k,box,next){
+  let shown=0;
+  s.items.forEach((it,i)=>{
+    const c=document.createElement("div"); c.className="card";
+    c.innerHTML=(it.lead?`<div class="lead">${it.lead}</div>`:"")+`<label class="q" for="w${k}_${i}">${it.q}</label>
+      <textarea id="w${k}_${i}" placeholder="${it.ph||"Write your answer"}"></textarea>
+      <div class="stack"><button class="ghost" disabled>${it.reveal||"Show a model"}</button></div><div class="fb right" hidden></div>`;
+    box.appendChild(c);
+    const ta=c.querySelector("textarea"), rb=c.querySelector("button"), fb=c.querySelector(".fb");
+    ta.addEventListener("input",()=>{rb.disabled=ta.value.trim().length<(it.min||20);});
+    rb.addEventListener("click",()=>{
+      rb.disabled=true; ta.readOnly=true; fb.hidden=false;
+      fb.innerHTML=`${it.model?`<strong>A model:</strong> ${it.model}`:""}<div style="margin-top:10px"><strong>Mark your own, honestly:</strong></div>`+
+        (s.checks||[]).map(x=>`<label class="chk"><input type="checkbox"><span>${x}</span></label>`).join("");
+      st.tick[k].max+=(s.checks||[]).length;
+      fb.addEventListener("change",()=>{st.tick[k].got=box.querySelectorAll("input[type=checkbox]:checked").length;});
+      if(++shown===s.items.length) next.disabled=false;
+    });
+  });
+}
+function buildSolve(s,k,box,next){
+  let done=0; st.score[k].max=s.items.length;
+  const ev=(ex,x)=>Function("x","return "+ex)(x);
+  const close=(a,b)=>Math.abs(a-b)<1e-6;
+  s.items.forEach((it,i)=>{
+    const c=document.createElement("div"); c.className="card";
+    c.innerHTML=`<div class="lead"><span class="ln" style="font-size:1.15rem">${it.eq}</span></div>
+      <div class="row">
+        <div><label for="x${i}">1. My answer: x =</label><input type="text" inputmode="decimal" id="x${i}" autocomplete="off"></div>
+        <div><label for="l${i}">2. Check: left side with my x</label><input type="text" inputmode="decimal" id="l${i}" autocomplete="off"></div>
+        <div><label for="r${i}">3. Check: right side with my x</label><input type="text" inputmode="decimal" id="r${i}" autocomplete="off"></div>
+      </div>
+      <div class="stack"><button class="primary">Check my working</button></div><div class="fb" hidden></div>`;
+    box.appendChild(c);
+    const btn=c.querySelector("button"), fb=c.querySelector(".fb");
+    btn.addEventListener("click",()=>{
+      const num=id=>parseFloat(c.querySelector("#"+id+i).value.replace(",","."));
+      const x=num("x"),l=num("l"),r=num("r");
+      if([x,l,r].some(isNaN)){fb.hidden=false;fb.className="fb wrong";fb.innerHTML="Fill in all three boxes. The check is part of the answer.";return;}
+      const tl=ev(it.lhs,x), tr=ev(it.rhs,x), xr=close(x,it.ans), checkOk=close(l,tl)&&close(r,tr), balanced=close(tl,tr);
+      let ok=false, msg="";
+      if(xr&&checkOk){ok=true;msg=`<strong>Solved and checked.</strong> Both sides come to ${tl}.`;}
+      else if(xr&&!checkOk){msg=`<strong>x is right, but your check is off.</strong> With x = ${x}, the left side is ${tl} and the right side is ${tr}. Redo the substitution slowly.`;}
+      else if(!xr&&checkOk&&!balanced){msg=`<strong>Your check caught it.</strong> With your x the sides are ${tl} and ${tr}, which don't match, so x can't be right. That's exactly what checking is for. Try again from the first line.`;}
+      else if(!xr&&checkOk&&balanced){msg=`<strong>Both sides match for your x, but this equation has a different solution.</strong> Re-read the equation.`;}
+      else{msg=`<strong>Not yet.</strong> Both your x and your check need work. With your x the sides would be ${tl} and ${tr}.`;}
+      fb.hidden=false; fb.className="fb "+(ok?"right":"wrong");
+      fb.innerHTML=msg+(ok?"":"")+`<br><br><strong>Worked method:</strong><br>${it.method}`;
+      if(!it.done){ it.done=true; if(ok) st.score[k].got++; if(++done===s.items.length) next.disabled=false; }
+      if(!ok && it.retry!==false){ /* allow another go, scored once */ }
+    });
+  });
+}
+function renderDone(){
+  const total=Math.round((Date.now()-st.t0)/1000);
+  const rows=steps.map((s,k)=>{
+    let sc = s.type==="write" ? `${st.tick[k].got} / ${st.tick[k].max} self-checks` : `${st.score[k].got} / ${st.score[k].max}`;
+    return [s.name, sc, mins(st.t[k])];
+  });
+  $("#stage").innerHTML=`<h2>${CONTENT.doneHeading}</h2>
+   <div class="card">${rows.map(r=>`<div class="scoreline"><span>${r[0]}</span><span><strong>${r[1]}</strong> &nbsp; <span class="hint">${r[2]}</span></span></div>`).join("")}
+   <div class="scoreline"><span>Total screen time</span><strong>${mins(total)}</strong></div></div>
+   <div class="card"><h3>Copy for the weekly review</h3><pre class="summary" id="summary"></pre>
+   <div class="stack"><button class="ghost" id="copyBtn">Copy summary</button><span class="hint" id="copied"></span></div></div>
+   <p class="hint">${CONTENT.afterDone}</p>`;
+  const text=CONTENT.title+"\n"+rows.map(r=>`${r[0]}: ${r[1]} (${r[2]})`).join("\n")+`\nTotal time: ${mins(total)}`;
+  $("#summary").textContent=text;
+  try{localStorage.setItem(CONTENT.storageKey,JSON.stringify({text,date:new Date().toISOString()}));}catch(e){}
+  $("#copyBtn").onclick=async()=>{try{await navigator.clipboard.writeText(text);$("#copied").textContent="Copied.";}catch(e){$("#copied").textContent="Select the text above and copy it.";}};
+}
+$("#title").textContent=CONTENT.title; $("#subtitle").innerHTML=CONTENT.subtitle;
+go(-1);
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

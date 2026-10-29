@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roman life and equality: 4-day consolidation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEFF3; --surface:#FFFFFF; --ink:#1D1A2B; --muted:#5B5870;
+  --tyrian:#5E2350; --tyrian-soft:#F0E3EE; --laurel:#3F6B4F; --laurel-soft:#E1EEE5;
+  --bronze:#A9772B; --bronze-soft:#F5EAD6; --line:#D5D8E0; --warn:#9B2C2C; --warn-soft:#F8E2E2; --onacc:#FFFFFF;
+  --head:"Cinzel","Trajan Pro",Georgia,serif; --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#14121D; --surface:#1F1C2C; --ink:#EEEAF6; --muted:#A9A5BD;
+    --tyrian:#D79BC8; --tyrian-soft:#3A2136; --laurel:#8CC7A0; --laurel-soft:#1F3327;
+    --bronze:#DDB067; --bronze-soft:#3A2F1A; --line:#3A3650; --warn:#F0A0A0; --warn-soft:#3F2323; --onacc:#14121D;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14121D; --surface:#1F1C2C; --ink:#EEEAF6; --muted:#A9A5BD;
+  --tyrian:#D79BC8; --tyrian-soft:#3A2136; --laurel:#8CC7A0; --laurel-soft:#1F3327;
+  --bronze:#DDB067; --bronze-soft:#3A2F1A; --line:#3A3650; --warn:#F0A0A0; --warn-soft:#3F2323; --onacc:#14121D;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
+h1,h2,h3{font-family:var(--head);font-weight:700;line-height:1.25;margin:0 0 .5em;letter-spacing:.01em}
+h1{font-size:clamp(1.5rem,5vw,2.2rem)} h2{font-size:1.3rem} h3{font-size:1.05rem}
+p{margin:.4em 0 .8em}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+header.top{padding:26px 0 12px}
+header.top p{color:var(--muted);margin:0;max-width:62ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:8px}
+nav.tabs button{font:600 .95rem var(--head);border:0;background:none;color:var(--muted);padding:10px 14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--tyrian);border-bottom-color:var(--tyrian)}
+main{padding:20px 0 60px}
+section.view{display:none} section.view.on{display:block}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0 0 14px}
+.card.soft{background:var(--tyrian-soft);border-color:transparent}
+.note{background:var(--bronze-soft);border-left:4px solid var(--bronze);padding:10px 14px;border-radius:0 8px 8px 0;margin:0 0 16px;font-size:.98rem}
+.muted{color:var(--muted)} .small{font-size:.9rem}
+button{font:600 .95rem var(--body)}
+.btn{background:var(--tyrian);color:var(--onacc);border:0;border-radius:8px;padding:9px 16px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--tyrian);border:1.5px solid var(--tyrian)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.mini{padding:5px 10px;font-size:.85rem}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+:focus-visible{outline:3px solid var(--bronze);outline-offset:2px}
+.road{display:flex;flex-wrap:wrap;gap:10px 10px;padding:18px 4px 14px;border-bottom:6px dashed var(--line);margin-bottom:18px}
+.stone{width:60px;height:72px;border:2px solid var(--muted);background:var(--surface);color:var(--muted);border-radius:30px 30px 4px 4px;font:700 .9rem var(--head);cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:9px}
+.stone.done{background:var(--tyrian);border-color:var(--tyrian);color:var(--onacc)}
+.stone.next{border-color:var(--bronze);color:var(--bronze);box-shadow:0 0 0 3px var(--bronze-soft)}
+.day{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start}
+.day input[type=checkbox]{width:22px;height:22px;margin-top:4px;accent-color:var(--tyrian)}
+.day h3{margin:0} .day ul{margin:.3em 0 .5em;padding-left:1.1em}
+.day.done h3{text-decoration:line-through;text-decoration-color:var(--laurel)}
+.golinks{display:flex;flex-wrap:wrap;gap:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{font:600 .92rem var(--body);background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;text-align:left}
+.chip[aria-pressed="true"]{background:var(--tyrian);border-color:var(--tyrian);color:var(--onacc)}
+details.fact{border:1px solid var(--line);border-radius:8px;background:var(--surface);margin:0 0 8px}
+details.fact summary{cursor:pointer;padding:11px 14px;font-weight:600;list-style:none}
+details.fact summary::-webkit-details-marker{display:none}
+details.fact summary::before{content:"▸ ";color:var(--tyrian)}
+details.fact[open] summary::before{content:"▾ "}
+details.fact .so{padding:0 14px 12px}
+details.fact .so b{color:var(--laurel)}
+.rowlab{font-family:var(--head);color:var(--tyrian);font-size:.9rem;margin-right:6px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table.grid{border-collapse:collapse;min-width:900px;width:100%;font-size:.92rem}
+table.grid th,table.grid td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+table.grid thead th{font-family:var(--head);color:var(--tyrian);background:var(--tyrian-soft);position:sticky;top:0}
+table.grid th[scope=row]{font-family:var(--head);color:var(--tyrian);background:var(--surface);position:sticky;left:0;min-width:90px}
+.opt{display:block;width:100%;text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:11px 14px;margin:8px 0;cursor:pointer;font:400 1rem var(--body)}
+.opt:hover:not(:disabled){border-color:var(--tyrian)}
+.opt.good{border-color:var(--laurel);background:var(--laurel-soft)}
+.opt.bad{border-color:var(--warn);background:var(--warn-soft)}
+.progress{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:8px 0 14px}
+.progress i{display:block;height:100%;background:var(--tyrian)}
+textarea{width:100%;font:1rem/1.55 var(--body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:8px;padding:12px;resize:vertical;min-height:100px}
+input[type=text]{width:100%;font:1rem var(--body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:8px;padding:9px 12px}
+.ok{color:var(--laurel);font-weight:600} .no{color:var(--warn);font-weight:600}
+.checks{list-style:none;padding:0;margin:8px 0} .checks li{padding:4px 0}
+.checks li::before{content:"○ ";color:var(--muted)} .checks li.ok::before{content:"● ";color:var(--laurel)}
+.checks li.ok{font-weight:400;color:var(--ink)}
+.timer{font:700 1.2rem var(--head);color:var(--tyrian);min-width:4.5ch}
+.qlist{display:grid;gap:8px}
+.qbtn{text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;font:400 1rem var(--body)}
+.qbtn[aria-pressed="true"]{border-color:var(--tyrian);background:var(--tyrian-soft)}
+.qbtn b{font-family:var(--head);color:var(--tyrian);margin-right:8px}
+.qbtn .dot{float:right;color:var(--laurel)}
+ul.tight{margin:.3em 0;padding-left:1.2em} ul.tight li{margin:.2em 0}
+.btnrow3{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.btnrow3 .opt{margin:0;text-align:center}
+.tag{display:block;font-weight:600;font-size:.88rem;margin-top:4px}
+footer{color:var(--muted);font-size:.85rem;padding:0 0 30px}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <h1>Roman life and equality</h1>
+  <p>Four short days to turn “they had a different way of life” into specific evidence you can explain.</p>
+</div></header>
+
+<nav class="tabs" aria-label="Sections"><div class="wrap" role="tablist">
+  <button role="tab" data-view="plan" aria-selected="true">Plan</button>
+  <button role="tab" data-view="lives" aria-selected="false">Six lives</button>
+  <button role="tab" data-view="practise" aria-selected="false">Practise</button>
+  <button role="tab" data-view="recall" aria-selected="false">Recall</button>
+  <button role="tab" data-view="write" aria-selected="false">Write</button>
+</div></nav>
+
+<main class="wrap">
+
+<section class="view on" id="v-plan">
+  <div class="note"><b>The aim:</b> she remembers there was “something about equality and their way of life”, but not the detail. The cure is to attach a <em>person</em> to every fact: who lived like this, and why was it different for someone else?</div>
+  <div class="card">
+    <label for="unitq"><b>What was the unit’s question?</b> <span class="muted small">(check Classroom or ask her; it may be worded differently, e.g. “How equal was Roman society?”)</span></label>
+    <input type="text" id="unitq" placeholder="Type it here so it stays on this page">
+  </div>
+  <h2>Four days</h2>
+  <div class="road" id="road"></div>
+  <div id="days"></div>
+</section>
+
+<section class="view" id="v-lives">
+  <h2>Six lives in Rome</h2>
+  <div class="card soft"><b>How to use this.</b> Read a life, then press “Cover all” and try to say each row from memory. Open a row to check. The last line, “So what?”, is the bit that earns marks.</div>
+  <div class="chips" id="lifeChips" role="group" aria-label="Choose a life"></div>
+  <div id="lifeBody"></div>
+</section>
+
+<section class="view" id="v-practise">
+  <h2>Practise</h2>
+  <div class="chips" id="drillChips" role="group" aria-label="Drills">
+    <button class="chip" data-drill="who" aria-pressed="true">Who am I?</button>
+    <button class="chip" data-drill="says" aria-pressed="false">Make it specific</button>
+    <button class="chip" data-drill="fair" aria-pressed="false">Fair or not?</button>
+  </div>
+  <div id="drillBody"></div>
+</section>
+
+<section class="view" id="v-recall">
+  <h2>Recall quiz</h2>
+  <p class="muted">Ten questions a round. Misses come back first next time.</p>
+  <div id="quizBody"></div>
+</section>
+
+<section class="view" id="v-write">
+  <h2>Write it like an exam</h2>
+  <p class="muted">Write without notes, then check. Your writing saves on this device as you type.</p>
+  <div class="qlist" id="qlist"></div>
+  <div id="workspace" style="margin-top:16px"></div>
+</section>
+
+</main>
+<footer><div class="wrap">Progress and drafts are stored only in this browser.</div></footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const KEY='rome-life-equality-v1';
+let S={days:{},best:0,seen:{},drafts:{},unitq:''};
+try{const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(S,JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const roman=n=>['','I','II','III','IV','V'][n];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function show(view,arg){
+  $$('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+view));
+  $$('nav.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.view===view));
+  if(view==='lives'&&arg) openLife(arg);
+  if(view==='practise'&&arg) openDrill(arg);
+  if(view==='write'&&arg) openQ(arg);
+  window.scrollTo({top:0});
+}
+$$('nav.tabs button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(!g)return;const[v,a]=g.dataset.go.split(':');show(v,a);});
+
+/* ---------- PLAN ---------- */
+const DAYS=[
+ {t:'Who was who?',m:25,tasks:['Read the six lives, one at a time. For each, cover the rows and say what you remember.','Play “Who am I?” until you get 15 or more out of 18.','One round of the Recall quiz.'],go:[['lives','Six lives'],['practise:who','Who am I?'],['recall','Recall quiz']]},
+ {t:'Way of life, in detail',m:25,tasks:['Open the side-by-side table and pick the row you know least. Learn it.','Do “Make it specific”: turn vague sentences into ones with a name, date or number.','Write two 4-mark answers.'],go:[['lives:grid','Side-by-side'],['practise:says','Make it specific'],['write:d1','4-mark 1'],['write:d2','4-mark 2']]},
+ {t:'How equal was it?',m:30,tasks:['Play “Fair or not?”. Think about the “Both” cards: they are where the best marks are.','Write the PEEL paragraph: why was life so different for rich and poor?','Quiz round: retry your misses.'],go:[['practise:fair','Fair or not?'],['write:peel1','PEEL paragraph'],['recall','Recall quiz']]},
+ {t:'Write the big answers',m:35,tasks:['Write one 12-mark answer (18 minutes).','Write the 16-mark: “Roman society was fair to everyone.” Argue the other side fairly before you judge.','Read your answer aloud: does the judgement come from the evidence?'],go:[['write:e1','12-mark'],['write:h1','16-mark']]}
+];
+function renderPlan(){
+  const firstOpen=DAYS.findIndex((_,i)=>!S.days[i+1]);
+  $('#road').innerHTML=DAYS.map((_,i)=>`<button class="stone ${S.days[i+1]?'done':''} ${i===firstOpen?'next':''}" data-day="${i+1}" aria-label="Day ${i+1}${S.days[i+1]?', done':''}">${roman(i+1)}</button>`).join('');
+  $('#days').innerHTML=DAYS.map((d,i)=>`
+   <div class="card day ${S.days[i+1]?'done':''}">
+     <input type="checkbox" id="d${i+1}" data-day="${i+1}" ${S.days[i+1]?'checked':''} aria-label="Day ${i+1} done">
+     <div><h3><label for="d${i+1}">Day ${i+1}: ${d.t}</label> <span class="muted small">(about ${d.m} min)</span></h3>
+       <ul>${d.tasks.map(t=>`<li>${t}</li>`).join('')}</ul>
+       <div class="golinks">${d.go.map(([g,l])=>`<button class="btn ghost mini" data-go="${g}">${l}</button>`).join('')}</div></div></div>`).join('');
+}
+$('#v-plan').addEventListener('click',e=>{
+  const d=e.target.closest('[data-day]'); if(!d) return;
+  const n=d.dataset.day;
+  if(d.type==='checkbox') S.days[n]=d.checked; else S.days[n]=!S.days[n];
+  save(); renderPlan();
+});
+$('#unitq').value=S.unitq||'';
+$('#unitq').addEventListener('input',e=>{S.unitq=e.target.value;save();});
+
+/* ---------- SIX LIVES ---------- */
+const DIM=[['home','Home'],['food','Food & daily life'],['work','Work'],['child','Childhood'],['rights','Rights & law'],['fun','Leisure']];
+const LIVES=[
+ {id:'elite',name:'Wealthy man',
+  home:'A domus built around an atrium, with mosaic floors, painted walls and a private garden. Some had hypocaust underfloor heating.',
+  food:'Dinner parties, reclining on couches in the triclinium. Clients called at dawn to greet him (the salutatio).',
+  work:'Politics, law and running his estates, which were worked by slaves.',
+  child:'A private tutor (paedagogus) and rhetoric, to prepare for public life.',
+  rights:'Could vote and hold office. As father he held patria potestas over his family.',
+  fun:'The baths, banquets, and seats near the front at the games, arranged by rank.',
+  so:'Wealth and citizenship together gave him comfort, power and a voice. Nothing was closed to him.'},
+ {id:'woman',name:'Wealthy woman',
+  home:'The same domus, where she ran the household and its slaves.',
+  food:'Shared her family’s comfortable way of life. Wealth meant good food, servants and leisure.',
+  work:'Managed the household. Could own property, but could not hold public office.',
+  child:'Educated at home in fewer subjects than her brothers, and could be married in her early teens.',
+  rights:'Could not vote or hold office.',
+  fun:'Visits, festivals, the baths and the games.',
+  so:'Wealth bought comfort but not political power, so gender limited her rights even at the top.'},
+ {id:'poor',name:'Poor citizen',
+  home:'A cramped room in an insula. Higher floors were cheaper and worse, with fire a constant danger.',
+  food:'Bread and porridge. Many flats had no kitchen, so he bought hot food from street stalls (thermopolia). Poorer citizens in Rome could get free grain.',
+  work:'Craftsman, trader or labourer. Children helped in the family trade.',
+  child:'No formal schooling. Children worked young.',
+  rights:'A citizen with legal rights and a vote, but little influence.',
+  fun:'Free shows at the Colosseum, cheap public baths.',
+  so:'Citizenship gave him rights and entertainment, but poverty limited his comfort, safety and chances.'},
+ {id:'freed',name:'Freedman',
+  home:'Varied hugely: some freedmen stayed poor, some grew wealthy.',
+  food:'Depended on how well his business did.',
+  work:'Ran businesses, traded, or worked as clerks and secretaries. Some became very rich.',
+  child:'His children were born free.',
+  rights:'Free, but barred from high office such as the Senate.',
+  fun:'The same baths and shows as other citizens.',
+  so:'Freedom offered a way up, but a former slave was never fully equal to a freeborn Roman.'},
+ {id:'slave',name:'Slave',
+  home:'Wherever his owner decided: a corner of the house, a workshop, a farm or a mine.',
+  food:'Basic rations provided by the owner.',
+  work:'Household service, farming, mining, teaching (educated Greeks), or fighting as gladiators.',
+  child:'Children of slaves were born slaves.',
+  rights:'Legally property. No legal marriage. Some were freed (manumission) as a reward.',
+  fun:'Little free time. The owner decided.',
+  so:'Everything depended on one owner’s will, with no legal protection at all.'},
+ {id:'prov',name:'Conquered provincial',
+  home:'From tribal roundhouses to Roman-style town houses and villas, as British elites adopted Roman ways.',
+  food:'Local food, plus Roman goods such as wine and olive oil brought in by trade.',
+  work:'Farming, trade and labour, paying taxes to Rome.',
+  child:'Sons of elites might learn Latin and Roman ways.',
+  rights:'Not a citizen. Could earn citizenship by serving 25 years as an auxiliary, until AD 212 when Caracalla extended it.',
+  fun:'Roman towns across the provinces built baths and amphitheatres.',
+  so:'Rome ruled conquered peoples, but rewarded those who adopted its ways: that was how it kept control.'}
+];
+let lifeId='elite';
+function openLife(id){lifeId=id;renderLives();}
+function renderLives(){
+  $('#lifeChips').innerHTML=LIVES.map(l=>`<button class="chip" data-l="${l.id}" aria-pressed="${l.id===lifeId}">${l.name}</button>`).join('')+`<button class="chip" data-l="grid" aria-pressed="${lifeId==='grid'}">Side by side</button>`;
+  const body=$('#lifeBody');
+  if(lifeId==='grid'){
+    body.innerHTML=`<p class="muted small">Scroll sideways. Pick the row you know least and learn it.</p><div class="tablewrap"><table class="grid"><thead><tr><th></th>${LIVES.map(l=>`<th scope="col">${l.name}</th>`).join('')}</tr></thead><tbody>`+
+      DIM.map(([k,n])=>`<tr><th scope="row">${n}</th>${LIVES.map(l=>`<td>${l[k]}</td>`).join('')}</tr>`).join('')+
+      `<tr><th scope="row">So what?</th>${LIVES.map(l=>`<td><b>${l.so}</b></td>`).join('')}</tr></tbody></table></div>`;
+    return;
+  }
+  const l=LIVES.find(x=>x.id===lifeId);
+  body.innerHTML=`<h3>${l.name}</h3><div class="row"><button class="btn ghost mini" data-cv="close">Cover all</button><button class="btn ghost mini" data-cv="open">Show all</button></div>`+
+   DIM.map(([k,n])=>`<details class="fact" open><summary>${n}</summary><div class="so">${l[k]}</div></details>`).join('')+
+   `<div class="card soft"><b>So what?</b> ${l.so}</div>`+
+   `<div class="row"><button class="btn" data-go="practise:who">Test me: Who am I?</button></div>`;
+}
+$('#lifeChips').addEventListener('click',e=>{const b=e.target.closest('[data-l]');if(b)openLife(b.dataset.l);});
+$('#lifeBody').addEventListener('click',e=>{
+  const c=e.target.closest('[data-cv]');if(!c)return;
+  $$('#lifeBody details.fact').forEach(d=>d.open=c.dataset.cv==='open');
+});
+
+/* ---------- PRACTISE ---------- */
+const WHO=[
+ ['elite','I greet my visitors at dawn in the atrium of my domus, then walk to the Forum to talk politics.','He is a wealthy man: clients visiting at dawn (salutatio) and public politics belong to the elite.'],
+ ['elite','I can vote and hold office, and my sons will learn rhetoric to follow me.','Rhetoric and public office were for wealthy citizen men.'],
+ ['elite','At the games I sit near the front with the other senators.','Seats at shows were arranged by rank, with senators nearest the front.'],
+ ['woman','I was married in my early teens to a man my family chose.','Wealthy girls could be married in their early teens, often for family alliances.'],
+ ['woman','I manage the household and own property, but I cannot vote.','Wealthy women ran households and could own property, but could not vote or hold office.'],
+ ['woman','I was taught at home, though not the rhetoric my brothers learned.','Girls were educated at home in fewer subjects.'],
+ ['poor','I live on a high floor of an insula and I am always afraid of fire.','Poor citizens lived in insulae, where upper floors were cheaper and riskier.'],
+ ['poor','My flat has no kitchen, so I buy hot food from a street stall and queue for free grain.','Street stalls (thermopolia) and grain handouts were part of poorer citizens’ lives in Rome.'],
+ ['poor','I am a baker’s son. I never went to school; I work in the family bakery.','Poor children usually had no formal schooling and worked from a young age.'],
+ ['freed','I was a slave, but my owner freed me, and now I run my own workshop.','Manumission turned slaves into freedmen, and some set up businesses.'],
+ ['freed','I am free, but I can never become a senator.','Freedmen were barred from high office, which shows freedom was not full equality.'],
+ ['freed','I was born a slave, but my children will be born free.','Children of freedmen were born free.'],
+ ['slave','By law I am my owner’s property.','Slaves were legally property.'],
+ ['slave','I am an educated Greek and I teach my master’s son, but I am owned and cannot marry legally.','Educated Greek slaves often worked as tutors, but had no legal rights or legal marriage.'],
+ ['slave','I was captured in war, and now I work wherever my owner sends me.','Many slaves were prisoners of war. Their lives depended on their owner’s will.'],
+ ['prov','I pay Roman taxes, but I am not a citizen.','Provincials paid taxes but lacked citizenship until later.'],
+ ['prov','I joined the auxiliaries, and after 25 years I will become a citizen.','Auxiliaries were non-citizen soldiers who earned citizenship after 25 years.'],
+ ['prov','Our elders now speak Latin and live in Roman-style town houses, and Rome rewards them for it.','This is Romanisation: local elites who adopted Roman ways were rewarded.']
+];
+const SAYS=[
+ ['Rome was very unequal.','A senator lived in a domus with mosaic floors and a garden, a poor citizen rented a cramped room on a high floor of an insula, and a slave was legally his owner’s property.'],
+ ['Rich people had a better life.','Wealthy Romans dined reclining on couches in a triclinium and had tutors for their sons, while poor families bought hot food from street stalls and sent children to work.'],
+ ['Women had fewer rights.','Roman women could not vote or hold office, and wealthy girls could be married in their early teens, though they could own property and run the household.'],
+ ['Slaves were treated badly.','Slaves were legally property with no right to a legal marriage. Some were freed as a reward, but many worked in households, farms and mines at their owner’s will.'],
+ ['Poor people lived in bad houses.','The poor lived in insulae: cramped rooms, often no kitchen, with fire a constant danger. The higher up you lived, the cheaper and worse it got.'],
+ ['Some people could move up.','A freed slave could run a business and his children were born free, and an auxiliary soldier could earn citizenship after 25 years.'],
+ ['Children’s lives were different.','Wealthy boys learnt rhetoric from a paedagogus, while poor children had no formal schooling and worked in the family trade.'],
+ ['Everyone enjoyed the games.','The Colosseum was free to enter, so poor citizens could go, but seats were arranged by rank, with senators nearest the front.']
+];
+const FAIR=[
+ ['Slaves were legally property with almost no rights.','u','It shows a whole group had no legal protection, and that the economy rested on people with no rights.'],
+ ['Women could not vote or hold office, however rich they were.','u','Half the population was shut out of politics by law, so wealth could not fix it.'],
+ ['The rich lived in a domus; the poor lived on upper floors of insulae.','u','Wealth decided how safe and comfortable your home was.'],
+ ['Wealthy boys had tutors and learnt rhetoric; poor children worked.','u','Unequal education kept power inside wealthy families.'],
+ ['Seats at the games were arranged by rank.','u','Even entertainment put status on public display.'],
+ ['A father had patria potestas, total legal power over his children.','u','Inequality existed inside the family too, not just between classes.'],
+ ['Provincials paid taxes but were not citizens.','u','Rome’s rule benefited Rome at the expense of conquered peoples.'],
+ ['Slaves could be freed, and their children were born free.','o','Birth was not always permanent. But freedom still depended on the owner’s choice.'],
+ ['Auxiliary soldiers gained citizenship after 25 years.','o','The army offered a route up to non-citizens, if they survived the service.'],
+ ['In AD 212 Caracalla gave citizenship to almost all free people in the empire.','o','The legal gap between Roman and non-Roman closed, though slaves were still excluded.'],
+ ['Some freedmen became very wealthy.','o','Success was possible, but they still could not hold high office.'],
+ ['Free grain and free shows for poorer citizens in Rome.','b','The state did look after the poor, but partly to keep the crowd content. Both fair and controlling.'],
+ ['Rich and poor shared the public baths.','b','They shared a space, but wealthy Romans brought slaves to carry their things. Mixed, but still unequal.'],
+ ['Poor citizens could vote, but the richest voters had the most weight in some assemblies.','b','The vote was real, but it was weighted towards wealth. Equal in name, unequal in effect.'],
+ ['The Twelve Tables (450 BC) put Roman law on public display after pressure from ordinary Romans.','o','Plebeians won a real concession: law could not be kept secret by the elite.']
+];
+const GL={u:'Unequal',o:'Some equality or opportunity',b:'Both'};
+
+let drill='who';
+function openDrill(d){drill=d;renderDrill();}
+$('#drillChips').addEventListener('click',e=>{const b=e.target.closest('[data-drill]');if(b)openDrill(b.dataset.drill);});
+function renderDrill(){
+  $$('#drillChips .chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.drill===drill));
+  const host=$('#drillBody');
+  if(drill==='who') who(host);
+  if(drill==='says') says(host);
+  if(drill==='fair') fair(host);
+}
+function who(host){
+  const order=shuffle(WHO); let i=0,right=0;
+  function draw(){
+    if(i>=order.length){
+      host.innerHTML=`<div class="card"><h3>Round complete</h3><p>You got <b>${right} of ${order.length}</b>.</p><p class="muted small">${right>=15?'Strong. Next, make a few of these into full sentences with “This shows that…”.':'Go back to Six lives, cover the rows, then try again.'}</p><button class="btn" data-a="again">Go again</button></div>`;
+      host.onclick=e=>{if(e.target.closest('[data-a]'))who(host);};return;
+    }
+    const q=order[i];
+    host.innerHTML=`<div class="progress"><i style="width:${i/order.length*100}%"></i></div>
+      <div class="card soft"><b>“${q[1]}”</b></div><p>Who is speaking?</p>
+      <div class="btnrow3">${LIVES.map(l=>`<button class="opt" data-k="${l.id}">${l.name}</button>`).join('')}</div><div class="fb"></div>`;
+    host.onclick=e=>{
+      const b=e.target.closest('.opt');
+      if(b&&!b.disabled){
+        const ok=b.dataset.k===q[0]; if(ok)right++;
+        $$('.opt',host).forEach(o=>{o.disabled=true;if(o.dataset.k===q[0])o.classList.add('good');});
+        if(!ok)b.classList.add('bad');
+        $('.fb',host).innerHTML=`<p class="${ok?'ok':'no'}">${ok?'Correct.':'It was the '+LIVES.find(l=>l.id===q[0]).name.toLowerCase()+'.'} ${q[2]}</p><button class="btn" data-a="next">${i+1<order.length?'Next':'Finish'}</button>`;
+        return;
+      }
+      if(e.target.closest('[data-a="next"]')){i++;draw();}
+    };
+  }
+  draw();
+}
+function says(host){
+  const order=shuffle(SAYS); let i=0;
+  function draw(){
+    if(i>=order.length){
+      host.innerHTML=`<div class="card"><h3>All eight done</h3><p>The habit: before you write any sentence, ask “Could I add a name, a number, or who exactly it applies to?”</p><button class="btn" data-a="again">Go again</button></div>`;
+      host.onclick=e=>{if(e.target.closest('[data-a]'))says(host);};return;
+    }
+    const [v,m]=order[i];
+    host.innerHTML=`<div class="progress"><i style="width:${i/order.length*100}%"></i></div>
+      <div class="card soft"><b>Vague:</b> ${v}</div>
+      <p>Rewrite it with a specific group, fact or number. Use your memory first.</p>
+      <textarea rows="3" aria-label="Your rewrite"></textarea>
+      <div class="row"><button class="btn" data-a="rev">Show model</button></div><div class="fb"></div>`;
+    host.onclick=e=>{
+      const a=e.target.closest('[data-a]'); if(!a) return;
+      if(a.dataset.a==='rev'){
+        $('.fb',host).innerHTML=`<div class="card"><b>Model:</b> ${m}<p class="small muted">Did yours name who it applied to and add a real detail? Different correct details are fine.</p></div><button class="btn" data-a="next">${i+1<order.length?'Next':'Finish'}</button>`;
+        a.disabled=true;
+      } else if(a.dataset.a==='next'){i++;draw();}
+    };
+  }
+  draw();
+}
+function fair(host){
+  const order=shuffle(FAIR); let i=0,right=0;
+  function draw(){
+    if(i>=order.length){
+      host.innerHTML=`<div class="card"><h3>Round complete</h3><p>You matched <b>${right} of ${order.length}</b>.</p><p>Now the judgement. Try saying this aloud: “Roman society was mostly unequal because…, but… shows there was some opportunity, so overall…”</p><div class="row"><button class="btn" data-go="write:h1">Write the 16-marker</button><button class="btn ghost" data-a="again">Go again</button></div></div>`;
+      host.onclick=e=>{if(e.target.closest('[data-a="again"]'))fair(host);};return;
+    }
+    const q=order[i];
+    host.innerHTML=`<div class="progress"><i style="width:${i/order.length*100}%"></i></div>
+      <div class="card soft"><b>${q[0]}</b></div><p>What does this show about equality?</p>
+      <div class="btnrow3">${Object.entries(GL).map(([k,t])=>`<button class="opt" data-k="${k}">${t}</button>`).join('')}</div><div class="fb"></div>`;
+    host.onclick=e=>{
+      const b=e.target.closest('.opt');
+      if(b&&!b.disabled){
+        const ok=b.dataset.k===q[1]; if(ok)right++;
+        $$('.opt',host).forEach(o=>{o.disabled=true;if(o.dataset.k===q[1])o.classList.add('good');});
+        if(!ok)b.classList.add('bad');
+        $('.fb',host).innerHTML=`<p class="${ok?'ok':'no'}">${ok?'Yes.':'Better answer: '+GL[q[1]]+'.'}</p><p><b>So what?</b> ${q[2]}</p><button class="btn" data-a="next">${i+1<order.length?'Next':'Finish'}</button>`;
+        return;
+      }
+      if(e.target.closest('[data-a="next"]')){i++;draw();}
+    };
+  }
+  draw();
+}
+
+/* ---------- RECALL ---------- */
+const QZ=[
+ ['q1','What was the salutatio?','Clients visiting their patron at dawn',['A gladiator show','A school lesson','A religious festival']],
+ ['q2','What was a triclinium?','A dining room with three couches',['A public bath','A type of apartment block','A market stall']],
+ ['q3','What were thermopolia?','Street food and drink shops',['Public baths','Slave markets','Temples']],
+ ['q4','What is manumission?','Freeing a slave',['Buying a slave','Marrying a citizen','Becoming a senator']],
+ ['q5','Who could not vote or hold office?','Women',['Plebeians','Freedmen who were rich','Soldiers']],
+ ['q6','At the games, who sat near the front?','Senators',['Slaves','Freedmen','Provincials']],
+ ['q7','Spartacus led a slave revolt in which years?','73–71 BC',['218–202 BC','AD 60–61','27 BC–AD 14']],
+ ['q8','Who gained citizenship after 25 years’ service?','Auxiliaries',['Legionaries only','Senators','Slaves']],
+ ['q9','Who extended citizenship to almost all free people in AD 212?','Caracalla',['Augustus','Claudius','Nero']],
+ ['q10','In law, a slave was…','Property',['A citizen','A plebeian','A freedman']],
+ ['q11','Ordinary free Roman citizens were called…','Plebeians',['Patricians','Senators','Equestrians']],
+ ['q12','What was a paedagogus?','A tutor, often an educated Greek slave',['A general','A priest','A gladiator trainer']],
+ ['q13','What is patria potestas?','A father’s legal power over his children',['The Senate’s power','A slave owner’s tax','The emperor’s army']],
+ ['q14','The Twelve Tables (450 BC) were…','Written laws put on public display',['A set of army orders','A list of senators','Rules for the games']],
+ ['q15','Why do we know more about rich Romans than poor ones?','Most surviving writing was by wealthy men',['Poor Romans did not exist in cities','The poor were never mentioned anywhere','Rich Romans wrote more truthfully']],
+ ['q16','What did Roman boys wear until they became adult citizens?','A bulla (charm)',['A toga virilis','A gladius','A laurel crown']],
+ ['q17','Which type of Roman home might have underfloor heating (a hypocaust)?','A wealthy domus',['An insula','A thermopolium','A barracks']],
+ ['q18','In an insula, the cheapest rooms were…','On the top floors',['On the ground floor','In the basement','Next to the atrium']],
+ ['q19','Freedmen’s children were…','Born free',['Born slaves','Not allowed to marry','Always senators']],
+ ['q20','Freedmen could not become…','Senators',['Traders','Free citizens','Business owners']],
+ ['q21','What was Romanisation?','Local people adopting Roman ways',['A Roman army reform','A Roman tax','A type of road']],
+ ['q22','Educated Greek slaves often worked as…','Tutors',['Legionaries','Consuls','Senators']]
+];
+function quiz(){
+  const host=$('#quizBody');
+  host.innerHTML=`<div class="card"><p>Best score so far: <b>${S.best||0}/10</b></p><button class="btn" data-a="go">Start a round</button></div>`;
+  host.onclick=e=>{if(e.target.closest('[data-a="go"]'))startRound();};
+}
+function startRound(){
+  const missed=QZ.filter(q=>S.seen[q[0]]===false), rest=shuffle(QZ.filter(q=>S.seen[q[0]]!==false));
+  const set=shuffle(missed).concat(rest).slice(0,10);
+  let i=0,score=0,miss=[];
+  const host=$('#quizBody');
+  function draw(){
+    if(i>=set.length){
+      S.best=Math.max(S.best||0,score);save();
+      host.innerHTML=`<div class="card"><h3>${score} out of ${set.length}</h3>${miss.length?`<p>Missed:</p><ul class="tight">${miss.map(q=>`<li>${q[1]} <b>${q[2]}</b></li>`).join('')}</ul><p class="muted small">These come back first next round.</p>`:'<p class="ok">Perfect round.</p>'}<button class="btn" data-a="again">Another round</button></div>`;
+      host.onclick=e=>{if(e.target.closest('[data-a="again"]'))startRound();};return;
+    }
+    const q=set[i], opts=shuffle([q[2],...q[3]]);
+    host.innerHTML=`<div class="progress"><i style="width:${i/set.length*100}%"></i></div><div class="card"><b>${i+1}. ${q[1]}</b></div>
+      <div>${opts.map(o=>`<button class="opt" data-v="${esc(o)}">${o}</button>`).join('')}</div><div class="fb"></div>`;
+    host.onclick=e=>{
+      const b=e.target.closest('.opt');
+      if(b&&!b.disabled){
+        const ok=b.dataset.v===q[2];
+        $$('.opt',host).forEach(o=>{o.disabled=true;if(o.dataset.v===q[2])o.classList.add('good');});
+        if(!ok)b.classList.add('bad');
+        if(ok)score++;else miss.push(q);
+        S.seen[q[0]]=ok;save();
+        $('.fb',host).innerHTML=`<p class="${ok?'ok':'no'}">${ok?'Correct.':'The answer is '+q[2]+'.'}</p><button class="btn" data-a="next">${i+1<set.length?'Next':'See score'}</button>`;
+        return;
+      }
+      if(e.target.closest('[data-a="next"]')){i++;draw();}
+    };
+  }
+  draw();
+}
+
+/* ---------- WRITE ---------- */
+const QS=[
+ {id:'peel1',type:'PEEL',label:'PEEL',q:'Why was life so different for a rich Roman and a poor Roman?',mins:10,aim:[60,110],
+  think:['Home','Education and childhood','Rights and power'],
+  model:['Point: Wealth shaped almost every part of a Roman’s life, from his home to his future.','Evidence: A wealthy man lived in a domus with mosaics and a garden and had a tutor for his sons, while a poor citizen rented a cramped room on a high floor of an insula and his children worked.','Explain: This suggests that comfort, safety and education were treated as privileges that came with wealth, not as rights everyone shared.','Link: So life for rich and poor Romans differed because wealth decided who had comfort, education and chances.']},
+ {id:'d1',type:'4',label:'4 marks',q:'Describe two features of the way of life of a poor Roman citizen.',mins:5,aim:[40,80],
+  think:['Home','Food','Work and childhood'],
+  model:['A poor citizen lived in a cramped room in an insula, where the higher floors were cheaper and fire was a constant danger.','Many flats had no kitchen, so he bought hot food from street stalls (thermopolia). Poorer citizens in Rome could also get free grain.','(Also fine: worked as a craftsman or labourer; children worked, no formal school.)']},
+ {id:'d2',type:'4',label:'4 marks',q:'Describe two features of the lives of Roman slaves.',mins:5,aim:[40,80],
+  think:['Legal status','Work','How slaves could be freed'],
+  model:['Slaves were legally their owner’s property and had no legal marriage.','They worked in households, farms and mines; educated Greeks could be tutors, and some were gladiators. Some were freed (manumission), becoming freedmen.']},
+ {id:'e1',type:'12',label:'12 marks',q:'Explain why life was so unequal in Roman society.',mins:18,aim:[250,380],
+  think:['Wealth','Legal status: citizen, freedman, slave','Gender','Birth and family power'],
+  model:['Wealth: a senator lived in a domus with a garden; a poor citizen in an insula. Wealthy boys had tutors and rhetoric; poor children worked.','Legal status: slaves were property; freedmen could not hold high office; provincials paid taxes without citizenship until AD 212. Domino: more conquest meant more slaves and more provincials, widening the gap.','Gender: women could not vote or hold office even when rich; patria potestas gave fathers legal power for life.','Judgement: legal status mattered most, because it decided what rights you had before wealth could help. Compared to what? A rich freedman still could not be a senator; a poor citizen could still vote.']},
+ {id:'e2',type:'12',label:'12 marks',q:'Explain why some Romans were able to improve their position in society.',mins:18,aim:[250,380],
+  think:['Being freed','The army','Business and wealth','Law changing'],
+  model:['Manumission: slaves could be freed, and their children were born free.','Army: auxiliaries gained citizenship after 25 years.','Business: freedmen who traded or worked as clerks could grow rich.','Law: Caracalla’s AD 212 decision gave citizenship to almost all free people.','Judgement: the army and manumission mattered most because they changed an individual’s legal status. But all depended on someone else’s decision, so chances were limited.']},
+ {id:'h1',type:'16',label:'16 marks',q:'“Roman society was fair to everyone.” How far do you agree?',mins:25,aim:[400,600],
+  think:['For: citizens’ rights, routes up, free grain and shows','Against: slaves, women, provincials, housing, education','Judgement: how fair, and for whom?'],
+  model:['For: citizens had legal rights and could vote; the Twelve Tables (450 BC) put law on public display; slaves could be freed; auxiliaries earned citizenship; poorer citizens got free grain and shows.','Yes, but: slaves were property; women could not vote; freedmen were barred from high office; the rich lived in a domus and the poor in insulae; seats at shows were arranged by rank.','Judgement: disagree. Fairness depended on who you were: citizens had some rights, but the system was built on slavery and rank. Opportunity existed, but only as exceptions. Who’s talking? Most evidence comes from wealthy men, so poorer voices are missing.']},
+ {id:'h2',type:'16',label:'16 marks',q:'“Wealth mattered more than legal status in deciding how a Roman lived.” How far do you agree?',mins:25,aim:[400,600],
+  think:['For wealth','For legal status','Which set the limits?'],
+  model:['For wealth: domus versus insula; tutors versus work; some freedmen became rich; wealthy provincials adopted Roman ways and were rewarded.','For legal status: slaves were property however skilled; women could not vote however rich; freedmen could not hold high office; citizens could vote; provincials were not citizens.','Judgement: legal status set the limits, and wealth decided comfort within them. A rich woman or freedman still lacked rights; a poor citizen still had a vote. Compared to what? Status decided what you could do; wealth decided how well you lived.']}
+];
+const EXCL=new Set(['Roman','Romans','Rome','The','This','That','These','Then','When','While','Although','However','Because','Also','Some','Many','Both','Such','After','Before','During','With','Without','Their','They','Which','Ultimately','Overall','Finally','First','Second']);
+function analyse(text,type){
+  const words=(text.trim().match(/\S+/g)||[]).length;
+  const sents=text.match(/[^.!?]+[.!?]*/g)||[];
+  const names=new Set();
+  sents.forEach(s=>{const w=s.trim().split(/\s+/).slice(1).join(' ');(w.match(/\b[A-Z][a-z]{3,}\b/g)||[]).forEach(n=>{if(!EXCL.has(n))names.add(n);});});
+  const nums=(text.match(/\b(AD|BC)\s?\d+|\b\d[\d,]*\s?(BC|AD)?\b/g)||[]).length;
+  const ev=names.size+nums;
+  const c=re=>(text.match(re)||[]).length;
+  const sw=c(/\b(this suggests|this reveals|this shows|this indicates|this implies|this demonstrates|underlying this|this meant|which meant|it shows that)\b/gi);
+  const link=c(/\b(as a result|as a direct result|which meant|made worse|led to|in turn|therefore|because of this|combined with|so that|this meant)\b/gi);
+  const judge=c(/\b(ultimately|most significant|most important|mattered (more|most)|more important than|greatest impact|the main reason|largely agree|mostly agree|on balance|overall)\b/gi);
+  const both=c(/\b(however|although|on the other hand|in contrast|whereas|some argue|others argue|yes, but|but)\b/gi);
+  const T={PEEL:{ev:2,sw:1},'4':{ev:2,sw:0},'12':{ev:6,sw:2,link:2,judge:1},'16':{ev:8,sw:3,link:2,judge:1,both:2}}[type];
+  const out=[];
+  out.push([`Specific evidence: ${ev} names, numbers or dates found (aim for ${T.ev}+)`,ev>=T.ev]);
+  if(T.sw) out.push([`“So what?” explanations: ${sw} found (aim for ${T.sw}+)`,sw>=T.sw]);
+  if(T.link) out.push([`Linking words: ${link} found (aim for ${T.link}+)`,link>=T.link]);
+  if(T.judge) out.push([`A clear judgement: ${judge?'found':'not found yet'}`,judge>=1]);
+  if(T.both) out.push([`Both sides argued: ${both} found (aim for ${T.both}+)`,both>=T.both]);
+  return {words,out};
+}
+const MARKER={
+ PEEL:'Look for a Point that answers the question, one specific piece of evidence, an Explain sentence that says WHY (not just repeats the evidence), and a Link back to the question.',
+ '4':'Two different features, each with a specific detail. Full marks for two supported features. No explanation is needed.',
+ '12':'Level 1: general statements, little evidence. Level 2: some explanation, evidence partly generic. Level 3: developed explanation with specific evidence for each cause. Level 4: causes linked to each other AND ranked by importance. Cap: retelling, or only one cause.',
+ '16':'Level 2: support for one side only. Level 3: both sides argued with evidence but a thin judgement. Level 4: sustained, balanced argument ending in a clear, justified judgement. Cap: 90% on one side, or no real judgement.'
+};
+let qid='peel1', timerT=null;
+function openQ(id){qid=id;renderWrite();}
+function renderWrite(){
+  $('#qlist').innerHTML=QS.map(q=>`<button class="qbtn" data-q="${q.id}" aria-pressed="${q.id===qid}"><b>${q.label}</b>${q.q}${(S.drafts[q.id]||'').trim()?'<span class="dot">● started</span>':''}</button>`).join('');
+  const q=QS.find(x=>x.id===qid);
+  const ws=$('#workspace');
+  clearInterval(timerT);
+  ws.innerHTML=`<div class="card"><h3>${q.q}</h3>
+    <p class="small muted">${q.label}. Aim for roughly ${q.aim[0]}–${q.aim[1]} words in about ${q.mins} minutes.</p>
+    <p class="small"><b>Think about:</b> ${q.think.join(' · ')}</p>
+    <div class="row"><span class="timer" data-r="tm">0:00</span><button class="btn mini" data-r="tgo">Start timer</button></div>
+    <textarea data-r="ta" rows="${q.type==='16'?16:q.type==='12'?12:6}" placeholder="Write here without notes…">${esc(S.drafts[q.id]||'')}</textarea>
+    <p class="small muted" data-r="wc"></p>
+    <h3>Word-check</h3>
+    <ul class="checks" data-r="chk"></ul>
+    <p class="small muted">This only counts words and phrases. It can’t tell if your reasoning is good. Have someone read it against the marker’s guide.</p>
+    <div class="row"><button class="btn ghost mini" data-r="cp">Copy my answer</button></div>
+    <details class="fact" style="margin-top:12px"><summary>Marker’s guide</summary><div class="so">${MARKER[q.type]}</div></details>
+    <details class="fact"><summary>Model plan with evidence (open after you’ve written)</summary><div class="so"><ul class="tight">${q.model.map(m=>`<li>${m}</li>`).join('')}</ul></div></details>
+  </div>`;
+  const r=k=>ws.querySelector(`[data-r="${k}"]`);
+  const ta=r('ta');
+  function upd(){const a=analyse(ta.value,q.type);r('wc').textContent=`${a.words} words`;r('chk').innerHTML=a.out.map(([t,ok])=>`<li class="${ok?'ok':''}">${t}</li>`).join('');}
+  ta.addEventListener('input',()=>{S.drafts[q.id]=ta.value;save();upd();});
+  upd();
+  let secs=0,running=false;
+  r('tgo').onclick=()=>{
+    if(running){clearInterval(timerT);running=false;r('tgo').textContent='Resume timer';return;}
+    running=true;r('tgo').textContent='Pause timer';
+    timerT=setInterval(()=>{secs++;r('tm').textContent=Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0');},1000);
+  };
+  r('cp').onclick=()=>{try{navigator.clipboard.writeText(ta.value);r('cp').textContent='Copied';}catch(e){ta.select();}};
+}
+$('#qlist').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b){openQ(b.dataset.q);$('#workspace').scrollIntoView({behavior:'smooth',block:'start'});}});
+
+renderPlan(); renderLives(); renderDrill(); quiz(); renderWrite();
+</script>
+<script src="../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>

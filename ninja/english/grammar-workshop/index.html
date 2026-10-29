@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grammar Workshop – Year 5 &amp; 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#e9f0f4; --panel:#ffffff; --ink:#14213d; --muted:#51607a; --line:#cfd9e3;
+  --teal:#0f8b8d; --teal-ink:#ffffff; --gold:#f4b942; --good:#1f8a4c; --good-bg:#dff3e6; --bad:#c0392f; --bad-bg:#fbe3e0;
+  --c-noun:#2f63c9; --c-verb:#c9384f; --c-adj:#c27a00; --c-adv:#228a55; --c-pron:#7d4cc4; --c-prep:#0f8b8d; --c-det:#5f6f86; --c-conj:#b0488f;
+  --head:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1a2c; --panel:#172439; --ink:#eaf1f8; --muted:#a2b1c7; --line:#2b3b57;
+    --teal:#36c2c4; --teal-ink:#0b1626; --good:#5fd08e; --good-bg:#17382a; --bad:#ff8b7f; --bad-bg:#3d1f21;
+    --c-noun:#7aa5ff; --c-verb:#ff8195; --c-adj:#f0b44a; --c-adv:#5fd08e; --c-pron:#b995f2; --c-prep:#43c9cb; --c-det:#9fb0c8; --c-conj:#ee86cc;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1a2c; --panel:#172439; --ink:#eaf1f8; --muted:#a2b1c7; --line:#2b3b57;
+  --teal:#36c2c4; --teal-ink:#0b1626; --good:#5fd08e; --good-bg:#17382a; --bad:#ff8b7f; --bad-bg:#3d1f21;
+  --c-noun:#7aa5ff; --c-verb:#ff8195; --c-adj:#f0b44a; --c-adv:#5fd08e; --c-pron:#b995f2; --c-prep:#43c9cb; --c-det:#9fb0c8; --c-conj:#ee86cc;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.5}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:20px 16px 56px}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+.brand{font-family:var(--head);font-weight:800;font-size:1.15rem}
+.link{background:none;border:0;color:var(--teal);font-weight:700;cursor:pointer;padding:8px 4px;text-decoration:underline;text-underline-offset:3px}
+.btn{background:var(--teal);color:var(--teal-ink);border:0;border-radius:14px;padding:12px 22px;font-weight:700;cursor:pointer;font-size:1rem;min-height:48px}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.hero{background:var(--panel);border-radius:26px;padding:26px 22px;margin:8px 0 28px;border:2px solid var(--line)}
+.hero h1{font-size:clamp(2rem,6vw,3rem);font-weight:800}
+.hero p{color:var(--muted);margin:10px 0 18px;max-width:56ch}
+.sentence{display:flex;flex-wrap:wrap;gap:8px 6px;font-size:clamp(1.15rem,3.6vw,1.5rem);margin-bottom:14px}
+.w{border:0;background:transparent;padding:2px 4px 6px;border-bottom:4px solid var(--line);cursor:pointer;border-radius:4px 4px 0 0;font-weight:700}
+.w[data-on="1"]{border-bottom-color:var(--wc);color:var(--wc)}
+.w small{display:block;font-size:.62rem;font-weight:700;line-height:1;min-height:.7em;color:var(--wc);opacity:0;text-align:center}
+.w[data-on="1"] small{opacity:1}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sec-title{font-size:1.5rem;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.topic{display:flex;flex-direction:column;text-align:left;background:var(--panel);border:2px solid var(--line);border-left:10px solid var(--tc);border-radius:16px;padding:14px 16px;cursor:pointer;gap:4px}
+.topic:hover{border-color:var(--tc)}
+.topic h3{font-size:1.15rem}
+.topic span{color:var(--muted);font-size:.9rem}
+.stars{font-size:1.05rem;letter-spacing:2px;color:var(--gold);margin-top:4px}
+.stars i{font-style:normal;color:var(--line)}
+.mixed{margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:22px;padding:22px}
+.lesson h2{font-size:2rem;border-left:10px solid var(--tc);padding-left:12px;margin-bottom:6px}
+.lesson .lead{color:var(--muted);margin:0 0 16px}
+.rule{padding:12px 0;border-top:1px dashed var(--line)}
+.rule b{font-family:var(--head);font-size:1.1rem}
+.rule p{margin:2px 0}
+.ex{display:inline-block;background:var(--bg);border-radius:8px;padding:2px 10px;margin:4px 6px 0 0;font-weight:700}
+.bar{height:12px;background:var(--line);border-radius:999px;overflow:hidden;margin:6px 0 18px}
+.bar div{height:100%;background:var(--teal);transition:width .3s}
+.meta{display:flex;justify-content:space-between;color:var(--muted);font-weight:700;font-size:.95rem}
+.q{font-family:var(--head);font-size:1.5rem;font-weight:700;margin:6px 0 16px}
+.tapline{display:flex;flex-wrap:wrap;gap:8px;font-size:1.3rem;margin-bottom:6px}
+.tok{background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:6px 12px;cursor:pointer;font-weight:700}
+.tok:hover:not(:disabled){border-color:var(--teal)}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:12px 16px;cursor:pointer;font-weight:700;min-height:52px}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt.right,.tok.right{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.opt.wrong,.tok.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.fillrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.fillrow input{border:2px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 14px;min-width:180px;flex:1}
+.fb{margin-top:16px;padding:14px 16px;border-radius:14px;font-weight:400}
+.fb.good{background:var(--good-bg);border-left:8px solid var(--good)}
+.fb.bad{background:var(--bad-bg);border-left:8px solid var(--bad)}
+.fb strong{display:block;font-family:var(--head);font-size:1.2rem}
+.next{margin-top:16px}
+.result{text-align:center}
+.result .big{font-family:var(--head);font-size:4rem;font-weight:800;line-height:1}
+.result .stars{font-size:2.2rem;margin:10px 0}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:14px;font-size:.85rem;font-weight:700}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--lc);margin-right:6px;vertical-align:-1px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){body{font-size:17px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+
+<script>
+/* ---------- DATA ---------- */
+var TOPICS=[
+{id:"classes",name:"Word classes",color:"#2f63c9",blurb:"Nouns, verbs, adjectives, adverbs and more.",
+ lead:"Every word does a job in a sentence. The job is its word class.",
+ rules:[
+ ["Noun","Names a person, place, thing or idea.","dog","Cambridge","freedom"],
+ ["Verb","An action, state or event.","sprint","is","happened"],
+ ["Adjective","Describes a noun.","tiny","ancient","delicious"],
+ ["Adverb","Tells you how, when or where something happens. It often describes a verb.","quickly","tomorrow","outside"],
+ ["Pronoun","Takes the place of a noun.","she","they","it"],
+ ["Preposition","Shows where or when something is in relation to another word.","under","after","beside"],
+ ["Determiner","Goes before a noun to say which one or how many.","the","some","my"]],
+ qs:[
+ {t:"tap",q:"Tap the adjective.",s:"The tired dog slept under the table.",a:["tired"],e:"“Tired” describes the noun “dog”."},
+ {t:"tap",q:"Tap the adverb.",s:"She quickly closed the heavy door.",a:["quickly"],e:"“Quickly” tells us how she closed the door."},
+ {t:"mc",q:"In “Pip hid behind the sofa”, what is “behind”?",o:["a preposition","a verb","an adverb","a noun"],a:0,e:"“Behind” shows where Pip hid in relation to the sofa, so it is a preposition."},
+ {t:"tap",q:"Tap the pronoun.",s:"The girls were hungry, so they ate lunch.",a:["they"],e:"“They” replaces “the girls”."},
+ {t:"mc",q:"Which word is a noun?",o:["bravely","brave","braver","bravery"],a:3,e:"“Bravery” is an abstract noun – it names an idea."},
+ {t:"mc",q:"What is “several” in “several birds landed”?",o:["a verb","a determiner","a pronoun","an adverb"],a:1,e:"“Several” goes before the noun “birds” and tells us how many."}
+ ]},
+{id:"nouns",name:"Nouns and noun phrases",color:"#228a55",blurb:"Expanded noun phrases, collective and abstract nouns.",
+ lead:"A noun phrase is a noun plus the words that describe it.",
+ rules:[
+ ["Expanded noun phrase","Add adjectives or other detail before or after the noun.","the old wooden boat","a girl with a red umbrella"],
+ ["Collective noun","One word for a group.","a pack of wolves","a flock of sheep"],
+ ["Abstract noun","Names an idea or feeling you cannot touch.","kindness","courage","freedom"],
+ ["Proper noun","Names a particular person, place or date. It needs a capital letter.","Cambridge","August","Mrs Patel"]],
+ qs:[
+ {t:"mc",q:"Which is an expanded noun phrase?",o:["ran quickly home","the old wooden boat","because it rained","was singing"],a:1,e:"“The old wooden boat” is a noun (boat) with extra describing words."},
+ {t:"mc",q:"A ___ of wolves.",o:["pack","herd","swarm","bunch"],a:0,e:"A group of wolves is a pack."},
+ {t:"tap",q:"Tap the abstract noun.",s:"Her kindness made everyone smile.",a:["kindness"],e:"You cannot see or touch kindness, so it is an abstract noun."},
+ {t:"mc",q:"Which sentence uses capital letters correctly?",o:["We visited cambridge in august.","We visited Cambridge in August.","we visited Cambridge in August.","We Visited Cambridge in August."],a:1,e:"Proper nouns (Cambridge, August) need capitals."},
+ {t:"fill",q:"Type the plural of “child”.",a:["children"],e:"“Child” has an irregular plural: children."},
+ {t:"mc",q:"Which noun phrase adds detail AFTER the noun?",o:["the shiny red car","a tall, quiet boy","the dog with floppy ears","three small cats"],a:2,e:"“With floppy ears” comes after the noun “dog”."}
+ ]},
+{id:"verbs",name:"Verbs and tenses",color:"#c9384f",blurb:"Past, present, present perfect and progressive.",
+ lead:"Verbs change form to show when something happens.",
+ rules:[
+ ["Simple past","Finished action.","She walked home.","We went out."],
+ ["Present perfect","has / have + past participle. Links the past to now.","He has finished.","I have eaten."],
+ ["Past progressive","was / were + -ing. An action that was in progress.","She was reading when the phone rang."],
+ ["Standard English","Match the verb to the subject.","We were late.","They did it."]],
+ qs:[
+ {t:"mc",q:"Which tense is “I have eaten”?",o:["simple past","present perfect","past progressive","simple present"],a:1,e:"has/have + past participle makes the present perfect."},
+ {t:"mc",q:"We ___ to the park yesterday.",o:["goed","gone","went","go"],a:2,e:"The past tense of “go” is “went”."},
+ {t:"mc",q:"“She was reading when the phone rang.” What tense is “was reading”?",o:["present perfect","simple past","past progressive","future"],a:2,e:"was + -ing is the past progressive."},
+ {t:"fill",q:"Type the past tense of “swim”.",a:["swam"],e:"Swim → swam (past), swum (past participle)."},
+ {t:"mc",q:"Which sentence is in Standard English?",o:["They was late.","They were late.","They is late.","They been late."],a:1,e:"“They” goes with “were”."},
+ {t:"mc",q:"Which sentence uses the present perfect?",o:["He finished his homework.","He is finishing his homework.","He has finished his homework.","He will finish his homework."],a:2,e:"“Has finished” is the present perfect."}
+ ]},
+{id:"modals",name:"Modal verbs and the subjunctive",color:"#7d4cc4",blurb:"How certain are we? Might, must, will, were.",
+ lead:"Modal verbs show how likely, possible or necessary something is.",
+ rules:[
+ ["Modal verbs","can, could, may, might, shall, should, will, would, must","It might rain.","You must wear a coat."],
+ ["Certainty","will and must are strong. might and could are weaker.","It will rain. (certain)","It might rain. (possible)"],
+ ["Subjunctive","A formal form used for wishes, demands and things that are not real.","If I were you, I would apologise.","I suggest that he leave early."]],
+ qs:[
+ {t:"tap",q:"Tap the modal verb.",s:"You must wear your coat.",a:["must"],e:"“Must” is a modal verb showing something is necessary."},
+ {t:"mc",q:"Which sentence is the MOST certain?",o:["It might rain tomorrow.","It could rain tomorrow.","It may rain tomorrow.","It will rain tomorrow."],a:3,e:"“Will” shows certainty. The others show possibility."},
+ {t:"mc",q:"If I ___ you, I would say sorry.",o:["was","were","am","be"],a:1,e:"“If I were” is the subjunctive for something that is not real."},
+ {t:"mc",q:"I suggest that he ___ early.",o:["leaves","leaving","leave","left"],a:2,e:"After “suggest that”, formal English uses the base verb: leave."},
+ {t:"mc",q:"Which sentence uses a modal verb to show possibility?",o:["It is snowing tonight.","It might snow tonight.","It snowed tonight.","It snows tonight."],a:1,e:"“Might” shows that snow is possible, not certain."}
+ ]},
+{id:"adverbials",name:"Adverbs and adverbials",color:"#c27a00",blurb:"Fronted adverbials and where the comma goes.",
+ lead:"An adverbial tells you how, when, where or how likely. It can be one word or a whole phrase.",
+ rules:[
+ ["Adverbial","A word or phrase that adds detail to a verb or clause.","carefully","in the garden","after lunch"],
+ ["Fronted adverbial","An adverbial at the start of a sentence. Put a comma after it.","Before sunrise, the farmer fed the cows."],
+ ["Adverbs of possibility","Show how likely something is.","perhaps","surely","certainly"]],
+ qs:[
+ {t:"mc",q:"What is the fronted adverbial? “Before sunrise, the farmer fed the cows.”",o:["the farmer","fed the cows","Before sunrise","the cows"],a:2,e:"“Before sunrise” opens the sentence and says when."},
+ {t:"mc",q:"Which sentence is punctuated correctly?",o:["After the storm the sky cleared.","After, the storm the sky cleared.","After the storm, the sky cleared.","After the storm the sky, cleared."],a:2,e:"Put a comma after a fronted adverbial."},
+ {t:"tap",q:"Tap the adverb of time.",s:"We will leave tomorrow.",a:["tomorrow"],e:"“Tomorrow” tells us when."},
+ {t:"mc",q:"Which word is an adverb?",o:["gentle","gently","gentleness","gentler"],a:1,e:"Many adverbs end in -ly. “Gently” describes how."},
+ {t:"mc",q:"___, we could go swimming. (shows possibility)",o:["Quickly","Perhaps","Yesterday","Loudly"],a:1,e:"“Perhaps” is an adverb of possibility."}
+ ]},
+{id:"clauses",name:"Conjunctions and clauses",color:"#b0488f",blurb:"Main clauses, subordinate clauses, sentence types.",
+ lead:"Conjunctions join words and clauses. A clause has a verb and a subject.",
+ rules:[
+ ["Coordinating conjunction","Joins two equal clauses.","and","but","or","so"],
+ ["Subordinating conjunction","Starts a clause that depends on a main clause.","because","although","while","until"],
+ ["Main clause","Makes sense on its own.","We went swimming."],
+ ["Subordinate clause","Cannot stand alone.","Although it was cold, ..."],
+ ["Complex sentence","A main clause plus at least one subordinate clause."]],
+ qs:[
+ {t:"mc",q:"Which is a coordinating conjunction?",o:["because","although","but","while"],a:2,e:"“But” joins two equal clauses."},
+ {t:"tap",q:"Tap the subordinating conjunction.",s:"I stayed inside because it was raining.",a:["because"],e:"“Because” begins the subordinate clause."},
+ {t:"mc",q:"Find the main clause: “Although it was cold, we went swimming.”",o:["Although it was cold","we went swimming","it was cold","Although"],a:1,e:"“We went swimming” makes sense on its own."},
+ {t:"mc",q:"I wanted to play outside, ___ it was too wet.",o:["but","because of","if","until"],a:0,e:"“But” links two ideas that contrast."},
+ {t:"mc",q:"“She sang while she cooked.” What type of sentence is this?",o:["simple","compound","complex","a question"],a:2,e:"“While she cooked” is a subordinate clause, so the sentence is complex."}
+ ]},
+{id:"relative",name:"Relative clauses",color:"#0f8b8d",blurb:"who, which, that, whose, where.",
+ lead:"A relative clause gives extra information about a noun. It starts with a relative pronoun.",
+ rules:[
+ ["Relative pronouns","who (people), which (things), that (people or things), whose (belonging to), where (places)"],
+ ["Example","The boy who won the race is my cousin."],
+ ["Commas","Extra information that is not essential goes between commas.","My bike, which is blue, needs fixing."]],
+ qs:[
+ {t:"mc",q:"The boy ___ won the race is my cousin.",o:["which","who","whose","where"],a:1,e:"Use “who” for a person."},
+ {t:"mc",q:"The girl ___ bike was stolen called the police.",o:["who","which","whose","that"],a:2,e:"“Whose” shows that the bike belongs to the girl."},
+ {t:"tap",q:"Tap the relative pronoun.",s:"The book, which I borrowed, was long.",a:["which"],e:"“Which” introduces the relative clause."},
+ {t:"mc",q:"Which is the relative clause? “The cat that lives next door is friendly.”",o:["The cat","that lives next door","is friendly","next door is"],a:1,e:"“That lives next door” tells us more about the cat."},
+ {t:"mc",q:"Which sentence has the commas in the right place?",o:["My bike which is blue, needs fixing.","My bike, which is blue, needs fixing.","My bike, which is blue needs fixing.","My, bike which is blue needs fixing."],a:1,e:"Extra information goes between a pair of commas."}
+ ]},
+{id:"punctuation",name:"Punctuation",color:"#5f6f86",blurb:"Apostrophes, speech, colons, brackets and hyphens.",
+ lead:"Punctuation tells the reader how to read your sentence.",
+ rules:[
+ ["Apostrophe for possession","one owner: the girl’s coat. Plural ending in s: the girls’ coats. Plural not ending in s: the children’s toys."],
+ ["Its / it’s","its = belonging to it. it’s = it is or it has."],
+ ["Direct speech","“Come here,” said Mum.","Put the speech marks around the spoken words, with a comma before the closing marks."],
+ ["Colon","Introduces a list or explanation.","I have three pets: a cat, a dog and a fish."],
+ ["Parenthesis","Extra information in brackets, dashes or commas.","My sister (who is ten) loves art."],
+ ["Hyphen","Joins words to avoid confusion.","a man-eating shark","re-cover the sofa"]],
+ qs:[
+ {t:"mc",q:"Which is correct?",o:["The childrens toys","The children’s toys","The childrens’ toys","The child’s’ toys"],a:1,e:"“Children” is already plural, so add ’s."},
+ {t:"mc",q:"The dog wagged ___ tail.",o:["it’s","its","its’","it"],a:1,e:"“Its” (no apostrophe) shows belonging."},
+ {t:"mc",q:"Which sentence is punctuated correctly?",o:["“Come here” said Mum.","“Come here,” said Mum.","“Come here, said Mum.”","Come here, “said Mum.”"],a:1,e:"The comma goes inside the speech marks."},
+ {t:"mc",q:"I have three pets ___ a cat, a dog and a fish.",o:[",",":","?","’"],a:1,e:"A colon introduces the list."},
+ {t:"mc",q:"Which pair of punctuation can NOT be used for parenthesis?",o:["brackets","dashes","commas","colons"],a:3,e:"Brackets, dashes and commas can all wrap extra information."},
+ {t:"mc",q:"Which sentence uses a hyphen to make the meaning clear?",o:["a man eating shark","a man-eating shark","a man eating-shark","a-man eating shark"],a:1,e:"“Man-eating” describes the shark. Without the hyphen it could mean a man is eating a shark!"}
+ ]},
+{id:"voice",name:"Active and passive voice",color:"#2f63c9",blurb:"Who does what, and who gets it done to them.",
+ lead:"In an active sentence the doer comes first. In a passive sentence the thing receiving the action comes first.",
+ rules:[
+ ["Active","The chef cooked the meal."],
+ ["Passive","The meal was cooked by the chef. (was + past participle)"],
+ ["Why use passive?","When the doer is unknown or unimportant.","My bike was stolen."]],
+ qs:[
+ {t:"mc",q:"Which sentence is passive?",o:["Sam broke the window.","The window was broken by Sam.","Sam is breaking the window.","Sam will break the window."],a:1,e:"The window (receiver) comes first, with was + broken."},
+ {t:"mc",q:"Change to active: “The cake was eaten by Leo.”",o:["Leo ate the cake.","The cake ate Leo.","Leo was eating the cake.","Leo has eaten by the cake."],a:0,e:"Put the doer (Leo) first."},
+ {t:"mc",q:"Which sentence is active?",o:["The meal was cooked.","The chef cooked the meal.","The meal was cooked by the chef.","The meal is being cooked."],a:1,e:"The chef (doer) is the subject."},
+ {t:"mc",q:"Rewrite as passive: “The Romans built the road.”",o:["The Romans were built by the road.","The road was built by the Romans.","The road built the Romans.","The road is building by the Romans."],a:1,e:"The road (receiver) becomes the subject: was built by."},
+ {t:"mc",q:"When is the passive most useful?",o:["When the doer is unknown","When you want a question","When you want a list","When you want a command"],a:0,e:"“My bike was stolen” – we do not know who did it."}
+ ]},
+{id:"words",name:"Building words",color:"#228a55",blurb:"Prefixes, suffixes, synonyms, antonyms, homophones.",
+ lead:"Prefixes go at the start of a word, suffixes at the end. Both change meaning.",
+ rules:[
+ ["Prefix","un-, dis-, re-, im-, in-, mis-, pre-","unhappy","rewrite","impossible"],
+ ["Suffix","-ful, -less, -ness, -ment, -able","hopeful","hopeless","kindness"],
+ ["Synonym / antonym","Synonyms mean nearly the same. Antonyms are opposites.","big – huge","ancient – modern"],
+ ["Homophones","Sound the same, different spelling and meaning.","their / there / they’re","to / too / two","affect / effect"]],
+ qs:[
+ {t:"mc",q:"Which prefix makes the opposite of “possible”?",o:["un-","dis-","im-","re-"],a:2,e:"Impossible. Words starting with p usually take im-."},
+ {t:"mc",q:"Add a suffix to “hope” to mean “without hope”.",o:["hopeful","hopeless","hopement","hopeness"],a:1,e:"-less means “without”."},
+ {t:"mc",q:"Which is a synonym for “enormous”?",o:["tiny","huge","gentle","quick"],a:1,e:"Enormous and huge mean nearly the same."},
+ {t:"mc",q:"Which is an antonym of “ancient”?",o:["old","modern","ruined","dusty"],a:1,e:"Ancient means very old; modern is the opposite."},
+ {t:"mc",q:"___ going to be late.",o:["Their","There","They’re","Thair"],a:2,e:"“They’re” = “they are”."},
+ {t:"fill",q:"I am ___ tired to walk. (to, too or two)",a:["too"],e:"“Too” means “very” or “also”."},
+ {t:"mc",q:"The weather will ___ our plans.",o:["affect","effect"],a:0,e:"“Affect” is usually the verb. “Effect” is usually the noun."}
+ ]},
+{id:"cohesion",name:"Linking ideas",color:"#c27a00",blurb:"Cohesion, paragraphs and formal or informal style.",
+ lead:"Cohesive devices tie sentences and paragraphs together so writing flows.",
+ rules:[
+ ["Linking words","Firstly, Next, Meanwhile, However, As a result, Finally"],
+ ["Pronouns and repetition","Use pronouns so you do not repeat a noun again and again."],
+ ["Formal and informal","Formal: Could you please help me? Informal: Gimme a hand!"]],
+ qs:[
+ {t:"mc",q:"Which word shows something happening at the same time?",o:["Meanwhile","However","Therefore","Firstly"],a:0,e:"“Meanwhile” links events that happen at the same time."},
+ {t:"mc",q:"Which word shows a contrast?",o:["Next","Finally","However","Also"],a:2,e:"“However” introduces a different or opposite idea."},
+ {t:"mc",q:"Improve: “Tom picked up the ball. Tom threw the ball.”",o:["Tom picked up the ball. He threw it.","Tom picked up the ball. Tom threw it.","Tom picked up it. He threw ball.","He picked up Tom. He threw the ball."],a:0,e:"Pronouns (he, it) stop the repetition."},
+ {t:"mc",q:"Which sentence is formal?",o:["Gimme a hand!","Can you help, mate?","Could you please assist me?","Help me out, yeah?"],a:2,e:"“Could you please assist me?” uses polite, formal language."},
+ {t:"mc",q:"Which linking word shows a result?",o:["As a result","Meanwhile","For example","On the other hand"],a:0,e:"“As a result” links a cause to its effect."}
+ ]}
+];
+
+var HERO=[["The","determiner","c-det"],["tiny","adjective","c-adj"],["robot","noun","c-noun"],["quickly","adverb","c-adv"],["painted","verb","c-verb"],["a","determiner","c-det"],["bright","adjective","c-adj"],["mural","noun","c-noun"],["on","preposition","c-prep"],["the","determiner","c-det"],["wall","noun","c-noun"],["because","conjunction","c-conj"],["it","pronoun","c-pron"],["felt","verb","c-verb"],["proud","adjective","c-adj"]];
+var LEGEND=[["noun","c-noun"],["verb","c-verb"],["adjective","c-adj"],["adverb","c-adv"],["pronoun","c-pron"],["preposition","c-prep"],["determiner","c-det"],["conjunction","c-conj"]];
+
+/* ---------- STATE ---------- */
+var app=document.getElementById("app");
+var best={};
+try{best=JSON.parse(localStorage.getItem("ninja:english:grammar-workshop:best")||"{}")||{};}catch(e){best={};}
+function save(){try{localStorage.setItem("ninja:english:grammar-workshop:best",JSON.stringify(best));}catch(e){}}
+var run=null;
+
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function stars(p){var n=p>=.9?3:p>=.7?2:p>=.4?1:0;return n;}
+function starHtml(n){var s="";for(var i=0;i<3;i++)s+=i<n?"★":"<i>★</i>";return s;}
+function topicById(id){for(var i=0;i<TOPICS.length;i++)if(TOPICS[i].id===id)return TOPICS[i];}
+function norm(s){return s.toLowerCase().replace(/[’‘]/g,"'").replace(/[.,!?;:"“”]/g,"").trim();}
+
+/* ---------- HOME ---------- */
+function home(){
+  var h='<div class="top"><div class="brand">Grammar Workshop</div><button class="link" id="theme">Light / dark</button></div>';
+  h+='<section class="hero"><h1>Year 5 and 6 grammar</h1><p>Tap each word to see which job it does in the sentence. Then pick a topic and practise.</p><div class="sentence" id="sent">';
+  HERO.forEach(function(w,i){h+='<button class="w" data-i="'+i+'" style="--wc:var(--'+w[2]+')">'+w[0]+'<small>'+w[1]+'</small></button>';});
+  h+='</div><div class="hero-actions"><button class="btn alt" id="reveal">Show all word classes</button></div><div class="legend">';
+  LEGEND.forEach(function(l){h+='<span style="--lc:var(--'+l[1]+')">'+l[0]+'</span>';});
+  h+='</div></section><h2 class="sec-title">Choose a topic</h2><div class="grid">';
+  TOPICS.forEach(function(t){
+    var b=best[t.id];var n=b==null?0:stars(b);
+    h+='<button class="topic" data-id="'+t.id+'" style="--tc:'+t.color+'"><h3>'+t.name+'</h3><span>'+t.blurb+'</span><div class="stars" aria-label="'+n+' of 3 stars">'+starHtml(n)+'</div></button>';
+  });
+  h+='</div><div class="mixed"><button class="btn" id="mix">Mixed challenge: 10 questions</button><span style="color:var(--muted)">Questions from every topic, shuffled.</span></div>';
+  app.innerHTML=h;
+  var shown=0;
+  app.querySelectorAll(".w").forEach(function(b){b.onclick=function(){b.dataset.on=b.dataset.on==="1"?"0":"1";};});
+  document.getElementById("reveal").onclick=function(){shown=!shown;app.querySelectorAll(".w").forEach(function(b){b.dataset.on=shown?"1":"0";});this.textContent=shown?"Hide word classes":"Show all word classes";};
+  app.querySelectorAll(".topic").forEach(function(b){b.onclick=function(){lesson(b.dataset.id);};});
+  document.getElementById("mix").onclick=function(){var all=[];TOPICS.forEach(function(t){t.qs.forEach(function(q){all.push({q:q,topic:t.id});});});start("mix",shuffle(all).slice(0,10));};
+  document.getElementById("theme").onclick=toggleTheme;
+  window.scrollTo(0,0);
+}
+function toggleTheme(){
+  var r=document.documentElement;var dark=r.dataset.theme?r.dataset.theme==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme=dark?"light":"dark";
+}
+
+/* ---------- LESSON ---------- */
+function lesson(id){
+  var t=topicById(id);
+  var h='<div class="top"><button class="link" id="back">← All topics</button></div><div class="card lesson" style="--tc:'+t.color+'"><h2>'+t.name+'</h2><p class="lead">'+t.lead+'</p>';
+  t.rules.forEach(function(r){
+    h+='<div class="rule"><b>'+r[0]+'</b>';
+    if(r[1])h+='<p>'+r[1]+'</p>';
+    for(var i=2;i<r.length;i++)h+='<span class="ex">'+r[i]+'</span>';
+    h+='</div>';
+  });
+  h+='<div style="margin-top:18px"><button class="btn" id="go">Start practice ('+t.qs.length+' questions)</button></div></div>';
+  app.innerHTML=h;
+  document.getElementById("back").onclick=home;
+  document.getElementById("go").onclick=function(){start(id,shuffle(t.qs).map(function(q){return{q:q,topic:id};}));};
+  window.scrollTo(0,0);
+}
+
+/* ---------- QUIZ ---------- */
+function start(id,items){run={id:id,items:items,i:0,score:0,done:false};ask();}
+function ask(){
+  var it=run.items[run.i],q=it.q,t=topicById(it.topic),n=run.items.length;
+  var h='<div class="top"><button class="link" id="quit">Quit</button><span class="meta">'+t.name+'</span></div><div class="card" style="border-top:10px solid '+t.color+'">';
+  h+='<div class="meta"><span>Question '+(run.i+1)+' of '+n+'</span><span>Score '+run.score+'</span></div><div class="bar"><div style="width:'+(run.i/n*100)+'%"></div></div>';
+  h+='<div class="q">'+q.q+'</div><div id="ans"></div><div id="fb" aria-live="polite"></div></div>';
+  app.innerHTML=h;
+  document.getElementById("quit").onclick=home;
+  var box=document.getElementById("ans"),locked=false;
+
+  function finish(ok,btn){
+    if(locked)return;locked=true;
+    if(ok)run.score++;
+    var fb=document.getElementById("fb");
+    fb.innerHTML='<div class="fb '+(ok?"good":"bad")+'"><strong>'+(ok?"Correct!":"Not quite.")+'</strong>'+q.e+'</div><div class="next"><button class="btn" id="nx">'+(run.i+1<n?"Next question":"See results")+'</button></div>';
+    var nx=document.getElementById("nx");nx.focus();
+    nx.onclick=function(){run.i++;if(run.i<n)ask();else results();};
+  }
+
+  if(q.t==="mc"){
+    var order=shuffle(q.o.map(function(_,i){return i;}));
+    var wrap=document.createElement("div");wrap.className="opts";
+    order.forEach(function(oi){
+      var b=document.createElement("button");b.className="opt";b.textContent=q.o[oi];
+      b.onclick=function(){
+        if(locked)return;
+        var ok=oi===q.a;b.classList.add(ok?"right":"wrong");
+        if(!ok){wrap.querySelectorAll(".opt").forEach(function(x){if(x.textContent===q.o[q.a])x.classList.add("right");});}
+        wrap.querySelectorAll(".opt").forEach(function(x){x.disabled=true;});
+        finish(ok);
+      };
+      wrap.appendChild(b);
+    });
+    box.appendChild(wrap);
+  } else if(q.t==="tap"){
+    var line=document.createElement("div");line.className="tapline";
+    q.s.split(" ").forEach(function(tok){
+      var b=document.createElement("button");b.className="tok";b.textContent=tok;
+      b.onclick=function(){
+        if(locked)return;
+        var ok=q.a.indexOf(norm(tok))>-1;b.classList.add(ok?"right":"wrong");
+        line.querySelectorAll(".tok").forEach(function(x){x.disabled=true;if(q.a.indexOf(norm(x.textContent))>-1)x.classList.add("right");});
+        finish(ok);
+      };
+      line.appendChild(b);
+    });
+    box.appendChild(line);
+  } else {
+    var row=document.createElement("div");row.className="fillrow";
+    row.innerHTML='<input type="text" id="fi" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Your answer"><button class="btn" id="ck">Check</button>';
+    box.appendChild(row);
+    var inp=document.getElementById("fi"),ck=document.getElementById("ck");inp.focus();
+    function check(){
+      if(locked||!inp.value.trim())return;
+      var ok=q.a.indexOf(norm(inp.value))>-1;
+      inp.disabled=true;ck.disabled=true;inp.style.borderColor=ok?"var(--good)":"var(--bad)";
+      finish(ok);
+    }
+    ck.onclick=check;inp.onkeydown=function(e){if(e.key==="Enter")check();};
+  }
+  window.scrollTo(0,0);
+}
+
+/* ---------- RESULTS ---------- */
+function results(){
+  var n=run.items.length,p=run.score/n,s=stars(p);
+  if(run.id!=="mix"){if(best[run.id]==null||p>best[run.id]){best[run.id]=p;save();}}
+  var msg=p>=.9?"Brilliant work!":p>=.7?"Really good. Nearly there.":p>=.4?"A good start. Read the lesson again and have another go.":"Keep going. Read the lesson, then try again.";
+  var h='<div class="card result"><div class="meta" style="justify-content:center">'+(run.id==="mix"?"Mixed challenge":topicById(run.id).name)+'</div><div class="big">'+run.score+' / '+n+'</div><div class="stars" aria-label="'+s+' of 3 stars">'+starHtml(s)+'</div><p>'+msg+'</p><div class="hero-actions" style="justify-content:center">';
+  h+='<button class="btn" id="again">Try again</button>';
+  if(run.id!=="mix")h+='<button class="btn alt" id="les">Read the lesson</button>';
+  h+='<button class="btn alt" id="hm">All topics</button></div></div>';
+  app.innerHTML=h;
+  var id=run.id;
+  document.getElementById("again").onclick=function(){
+    if(id==="mix"){var all=[];TOPICS.forEach(function(t){t.qs.forEach(function(q){all.push({q:q,topic:t.id});});});start("mix",shuffle(all).slice(0,10));}
+    else start(id,shuffle(topicById(id).qs).map(function(q){return{q:q,topic:id};}));
+  };
+  var l=document.getElementById("les");if(l)l.onclick=function(){lesson(id);};
+  document.getElementById("hm").onclick=home;
+  window.scrollTo(0,0);
+}
+
+home();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

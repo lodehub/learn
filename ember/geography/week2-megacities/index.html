@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geography Week 2: Megacities, and developing a point</title>
+<style>
+:root{
+  --ink:#1e2430; --muted:#586070; --bg:#f5f6f8; --panel:#ffffff; --line:#d9dce3;
+  --accent:#b8661a; --accent-soft:#fbeedd;
+  --ok:#25664a; --ok-soft:#e1f1e9; --bad:#a4470b; --bad-soft:#fbeadb;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --ink:#e8eaf0; --muted:#a2a9b8; --bg:#14171e; --panel:#1d212b; --line:#333949;
+  --accent:#f0b070; --accent-soft:#3b2a18;
+  --ok:#7fd1a8; --ok-soft:#1b3328; --bad:#f0a56a; --bad-soft:#3a2a1b; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 90px}
+h1{font-size:1.45rem;line-height:1.25;margin:.2em 0 .3em;color:var(--accent)}
+h2{font-size:1.15rem;margin:.2em 0 .4em}
+.sub{color:var(--muted);margin:0 0 14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 16px;margin:14px 0}
+.lead{background:var(--accent-soft);border-radius:10px;padding:10px 12px;margin:0 0 10px}
+.lead .ln{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem}
+.q{font-weight:600;margin:6px 0 8px}
+.bar{display:flex;gap:6px;margin:6px 0 4px}
+.bar span{flex:1;height:7px;border-radius:4px;background:var(--line)}
+.bar span.on{background:var(--accent)}
+.bar span.done{background:var(--ok)}
+.stepname{font-size:.85rem;color:var(--muted);margin-bottom:8px}
+button{font:inherit;cursor:pointer}
+.opt{display:block;width:100%;text-align:left;background:var(--panel);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin:7px 0}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin:8px 0 2px;padding:9px 12px;border-radius:10px;font-size:.96rem}
+.fb.ok{background:var(--ok-soft);border-left:4px solid var(--ok)}
+.fb.no{background:var(--bad-soft);border-left:4px solid var(--bad)}
+.primary{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px 18px;font-weight:600}
+@media (prefers-color-scheme:dark){.primary{color:#111}}
+.primary[disabled]{opacity:.4;cursor:default}
+.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent);border-radius:10px;padding:8px 14px}
+textarea,input[type=text]{width:100%;font:inherit;color:var(--ink);background:var(--panel);border:1.5px solid var(--line);border-radius:10px;padding:10px}
+textarea{min-height:110px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{background:var(--panel);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:8px 13px;font-size:.95rem}
+.chip.used{opacity:.35}
+.seq{counter-reset:s;margin:8px 0;padding:0;list-style:none}
+.seq li{counter-increment:s;background:var(--ok-soft);border-left:4px solid var(--ok);border-radius:8px;padding:7px 10px;margin:5px 0}
+.seq li::before{content:counter(s) ". ";font-weight:700}
+.starters{font-size:.92rem;color:var(--muted);margin:2px 0 8px}
+.model{background:var(--accent-soft);border-radius:10px;padding:10px 12px;margin:10px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.field{display:flex;gap:8px;align-items:center;margin:6px 0}
+.field label{min-width:90px;font-weight:600}
+.checks label{display:block;margin:6px 0}
+.small{font-size:.88rem;color:var(--muted)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.hide{display:none}
+pre.res{white-space:pre-wrap;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+const C = {"title": "Geography Week 2: Megacities, and developing a point", "subtitle": "Skill of the week: <strong>develop it<\/strong> (specific evidence, then “which means…”). About 18 minutes on screen, then the paper sheet.", "accent": "#b8661a", "accentSoft": "#fbeedd", "accentDark": "#f0b070", "accentSoftDark": "#3b2a18", "storageKey": "ember:geography:week2-megacities:result", "intro": "<p>Last week: <strong>specific evidence<\/strong>, a named place, a number or a named scheme, instead of “lots of people”. This week we add one move.<\/p><p>A Geography point earns more marks when it is <strong>developed<\/strong>: say what happens, give the evidence, then say <strong>which means…<\/strong> what difference it makes to <em>people<\/em>.<\/p><p><em>Point:<\/em> Tokyo's rail network reduces traffic.<br><em>Evidence:<\/em> millions travel by train each day.<br><em>Which means…<\/em> fewer cars on the roads, so less congestion and less air pollution.<\/p>", "startLabel": "Start the warm-up", "note": "I could not see which megacities the class has covered beyond Shanghai. The cities used here (Lagos, São Paulo, Tokyo, Mexico City, Mumbai) are my guesses at likely ones. The written part uses the class notes, so nothing there can be wrong.", "doneHeading": "Done. Now the paper sheet.", "afterDone": "Next: the written 4-mark question on paper (20 to 30 min) using your own notes, then the self-check and the oral check with a parent.", "steps": [{"name": "Warm-up", "type": "mcq", "heading": "Last week's skill, cold (4 min)", "intro": "Which sentence is the <strong>specific<\/strong> one?", "next": "Next: develop the point", "items": [{"q": "Traffic", "o": ["Lagos is famous for “go-slow” traffic jams that can keep people stuck in their cars for hours.", "Some megacities have a lot of traffic."], "a": 0, "f": "The first names a place and a named feature of it. The second could be about any city."}, {"q": "Housing", "o": ["Many people live in poor housing.", "Many people in São Paulo live in favelas, informal neighbourhoods built without planning permission."], "a": 1, "f": "The second names a city and a type of housing."}, {"q": "Transport", "o": ["Tokyo has good transport.", "Tokyo's dense rail network carries millions of commuters every day."], "a": 1, "f": "“Good” could mean anything. “Dense rail network” and “millions every day” can be checked."}]}, {"name": "Develop it", "type": "mcq", "heading": "Which “which means…” develops the point best? (6 min)", "intro": "Each point has its evidence. Choose the extension that says what difference it makes to <strong>people<\/strong>. The others repeat, drift, or go too far.", "next": "Next: build the chains", "items": [{"lead": "<strong>Point:<\/strong> Mexico City is slowly sinking.<br><strong>Evidence:<\/strong> Water is pumped out of the ground under the city faster than rainfall can replace it.", "q": "…which means…", "o": ["Mexico City is a big city.", "the ground loses support and sinks, so buildings tilt and pipes crack, and repairs cost the city a lot of money.", "everyone will have to leave the city.", "water is important."], "a": 1, "f": "The second follows from the evidence and says what it does to people and the city. Option 1 drifts, option 3 goes too far, option 4 is vague."}, {"lead": "<strong>Point:<\/strong> Tokyo's rail network reduces road traffic.<br><strong>Evidence:<\/strong> Millions of people travel by train each day instead of by car.", "q": "…which means…", "o": ["trains are fast.", "nobody in Tokyo owns a car.", "there are fewer cars on the roads, so there is less congestion and less air pollution from traffic.", "Tokyo is in Japan."], "a": 2, "f": "The third is the effect on people: less congestion and cleaner air. Option 2 goes too far."}, {"lead": "<strong>Point:<\/strong> Many people in Mumbai live in informal settlements such as Dharavi.<br><strong>Evidence:<\/strong> These settlements are often self-built and very crowded.", "q": "…which means…", "o": ["Mumbai has no wealthy people.", "people in Dharavi do not work.", "Mumbai is in India.", "homes can lack safe water and sanitation, so there is a higher risk of disease spreading."], "a": 3, "f": "The last follows from “crowded” and “self-built” and says what it means for people's health. The others go too far or repeat."}, {"lead": "<strong>Point:<\/strong> Lagos is growing very quickly.<br><strong>Evidence:<\/strong> Large numbers of people move there from rural areas looking for work.", "q": "…which means…", "o": ["demand for housing and transport is greater than the city can supply, so informal settlements and traffic congestion increase.", "Lagos will soon be the biggest city on Earth.", "Lagos is in Nigeria.", "people like cities."], "a": 0, "f": "The first links the evidence to the problems that follow. Option 2 is a guess about the future."}]}, {"name": "Build the chains", "type": "order", "heading": "Put the chain in order (4 min)", "intro": "Tap the links in the order they happen. Each one <strong>causes<\/strong> the next.", "next": "Next: your own Shanghai point", "items": [{"q": "<strong>Mexico City sinking.<\/strong> Build the chain.", "items": ["Millions of people need water, so it is pumped from underground", "Water is taken out faster than it is replaced", "The ground under the city slowly sinks", "Buildings tilt and pipes crack, so repairs are costly"], "f": "Need for water, over-pumping, sinking ground, damage and cost."}, {"q": "<strong>Rapid growth.<\/strong> Build the chain.", "items": ["People move from the countryside looking for work", "The city's population grows very quickly", "Demand for housing is greater than the supply", "Informal settlements grow on the edges of the city"], "f": "Migration, growth, a housing shortage, informal settlements."}]}, {"name": "Your Shanghai point", "type": "write", "heading": "Develop one point from your own notes (4 min)", "intro": "Use <strong>your Shanghai notes<\/strong>. Write a point, one specific piece of evidence from your notes, then a “which means…” that says what it does to <em>people<\/em>.", "next": "Finish", "items": [{"q": "Write your point, evidence, and extension.", "starters": ["Point… The evidence is… which means…", "…so…"], "min": 20, "model": "This is the <em>shape<\/em>, not the facts to copy (it uses Tokyo): Tokyo's rail network helps manage congestion. Millions of commuters use it every day, which means fewer people need cars, so there is less traffic and less air pollution.", "check": ["My evidence is specific (a name, a number, a named scheme), not “lots” or “many”.", "My “which means…” follows from the evidence.", "It says what difference it makes to <strong>people<\/strong>.", "I used only facts I can find in my notes."]}]}]};
+const app = document.getElementById('app');
+const KEY = C.storageKey;
+let state = {step:-1, results:{}};          // results[stepIdx] = {score,total,notes:[]}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify({done:state.step>=C.steps.length, results:state.results, t:Date.now()})); }catch(e){} }
+function esc(s){ return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+function norm(s){ return String(s).toLowerCase().replace(/\s+/g,'').replace(/[−–]/g,'-').replace(/,/g,''); }
+
+function bar(){
+  let h='<div class="bar">';
+  C.steps.forEach((s,i)=>{ h+='<span class="'+(i<state.step?'done':(i===state.step?'on':''))+'"></span>'; });
+  return h+'</div>';
+}
+
+function renderIntro(){
+  app.innerHTML='<h1>'+C.title+'</h1><p class="sub">'+C.subtitle+'</p><div class="card">'+C.intro+
+   '<div class="row"><button class="primary" id="go">'+C.startLabel+'</button></div></div>'+
+   (C.note?'<p class="small">'+C.note+'</p>':'');
+  document.getElementById('go').onclick=()=>{state.step=0;renderStep();};
+}
+
+function renderStep(){
+  if(state.step>=C.steps.length){ return renderDone(); }
+  const S=C.steps[state.step];
+  app.innerHTML=bar()+'<div class="stepname">Part '+(state.step+1)+' of '+C.steps.length+' · '+S.name+'</div><h2>'+S.heading+'</h2>'+(S.intro?'<p>'+S.intro+'</p>':'')+'<div id="items"></div>'+
+   '<div class="nav"><span></span><button class="primary" id="next" disabled>'+(S.next||'Next')+'</button></div>';
+  const res={score:0,total:0,notes:[]}; state.results[state.step]=res;
+  const need=S.items.length; let answered=0;
+  const nextBtn=document.getElementById('next');
+  function itemDone(){ answered++; if(answered>=need){ nextBtn.disabled=false; save(); } }
+  nextBtn.onclick=()=>{ state.step++; save(); renderStep(); window.scrollTo(0,0); };
+  const box=document.getElementById('items');
+  S.items.forEach((it,idx)=>{
+    const card=document.createElement('div'); card.className='card'; box.appendChild(card);
+    if(it.lead) { const l=document.createElement('div'); l.className='lead'; l.innerHTML=it.lead; card.appendChild(l); }
+    const q=document.createElement('div'); q.className='q'; q.innerHTML=(idx+1)+'. '+it.q; card.appendChild(q);
+    ({mcq:mkMcq,order:mkOrder,write:mkWrite,solve:mkSolve})[S.type](card,it,res,itemDone,idx);
+  });
+}
+
+function mkMcq(card,it,res,done,idx){
+  res.total++; const wrap=document.createElement('div'); card.appendChild(wrap);
+  const fb=document.createElement('div'); let locked=false;
+  it.o.forEach((o,i)=>{
+    const b=document.createElement('button'); b.className='opt'; b.innerHTML=o; wrap.appendChild(b);
+    b.onclick=()=>{ if(locked) return; locked=true;
+      const ok=(i===it.a); if(ok) res.score++; else res.notes.push('Q'+(idx+1)+' chose "'+b.textContent.slice(0,60)+'"');
+      [...wrap.children].forEach((x,j)=>{ x.disabled=true; if(j===it.a) x.classList.add('right'); else if(j===i) x.classList.add('wrong'); });
+      fb.className='fb '+(ok?'ok':'no'); fb.innerHTML=(ok?'<strong>Yes.</strong> ':'<strong>Not quite.</strong> ')+it.f; card.appendChild(fb); done(); };
+  });
+}
+
+function mkOrder(card,it,res,done,idx){
+  res.total++; const correct=it.items; let pool=shuffle(correct); if(pool.join()===correct.join()) pool=pool.reverse();
+  const seq=document.createElement('ol'); seq.className='seq'; const chips=document.createElement('div'); chips.className='chips';
+  const fb=document.createElement('div'); let pos=0, slips=0;
+  card.appendChild(seq); card.appendChild(chips);
+  pool.forEach(t=>{
+    const c=document.createElement('button'); c.className='chip'; c.innerHTML=t; chips.appendChild(c);
+    c.onclick=()=>{ if(c.classList.contains('used')) return;
+      if(t===correct[pos]){ const li=document.createElement('li'); li.innerHTML=t; seq.appendChild(li); c.classList.add('used'); pos++;
+        if(pos===correct.length){ if(slips===0) res.score++; else res.notes.push('Q'+(idx+1)+' order needed '+slips+' retries');
+          fb.className='fb ok'; fb.innerHTML='<strong>Chain complete.</strong> '+it.f; card.appendChild(fb); done(); } }
+      else { slips++; c.style.borderColor='var(--bad)'; setTimeout(()=>c.style.borderColor='',500); }
+    };
+  });
+  const hint=document.createElement('div'); hint.className='small'; hint.textContent='Tap the links in the order they happen. First link first.'; card.appendChild(hint);
+}
+
+function mkSolve(card,it,res,done,idx){
+  res.total++; let tries=0; const inputs=[];
+  if(it.helper){ const h=document.createElement('div'); h.className='small'; h.innerHTML=it.helper; card.appendChild(h); }
+  it.fields.forEach(f=>{ const d=document.createElement('div'); d.className='field'; d.innerHTML='<label>'+f.label+'</label>'; const i=document.createElement('input'); i.type='text'; i.autocomplete='off'; i.inputMode='text'; d.appendChild(i); card.appendChild(d); inputs.push(i); });
+  const row=document.createElement('div'); row.className='row'; const b=document.createElement('button'); b.className='ghost'; b.textContent='Check'; row.appendChild(b); card.appendChild(row);
+  const fb=document.createElement('div'); card.appendChild(fb); let finished=false;
+  b.onclick=()=>{ if(finished) return; tries++;
+    const ok=it.fields.every((f,k)=>f.ans.some(a=>norm(a)===norm(inputs[k].value)));
+    if(ok){ finished=true; if(tries===1) res.score++; else res.notes.push('Q'+(idx+1)+' needed '+tries+' tries'); fb.className='fb ok'; fb.innerHTML='<strong>Correct.</strong> '+it.f; inputs.forEach(i=>i.disabled=true); b.disabled=true; done(); }
+    else if(tries>=2){ finished=true; res.notes.push('Q'+(idx+1)+' not solved'); fb.className='fb no'; fb.innerHTML='<strong>Not yet.</strong> Answer: '+it.fields.map(f=>f.label+(/=\s*$/.test(f.label)?' ':' = ')+f.ans[0]).join(', ')+'. '+it.f; inputs.forEach(i=>i.disabled=true); b.disabled=true; done(); }
+    else { fb.className='fb no'; fb.innerHTML='Not quite. '+(it.hint||'Look at your working and try once more.'); } };
+}
+
+function mkWrite(card,it,res,done,idx){
+  if(it.starters){ const s=document.createElement('div'); s.className='starters'; s.innerHTML='Starters you can use: '+it.starters.join(' · '); card.appendChild(s); }
+  const ta=document.createElement('textarea'); ta.placeholder=it.placeholder||'Type your answer here…'; card.appendChild(ta);
+  const row=document.createElement('div'); row.className='row'; const b=document.createElement('button'); b.className='ghost'; b.textContent='I\u2019ve written it. Show me the checks'; row.appendChild(b); card.appendChild(row);
+  const out=document.createElement('div'); card.appendChild(out); let shown=false;
+  b.onclick=()=>{ if(shown) return; const words=ta.value.trim().split(/\s+/).filter(Boolean).length;
+    if(words<(it.min||8)){ out.innerHTML='<div class="fb no">Write a little more first (about '+(it.min||8)+' words or more). Your own attempt matters more than the model.</div>'; return; }
+    shown=true; ta.disabled=true; b.disabled=true;
+    let h='<div class="model"><strong>A model, to compare (not to copy):</strong><br>'+it.model+'</div><div class="checks"><strong>Check your own sentence:</strong>';
+    (it.check||[]).forEach((c,k)=>{ h+='<label><input type="checkbox" data-k="'+k+'"> '+c+'</label>'; });
+    h+='</div><div class="row"><button class="primary" id="sd'+idx+'">Done with this one</button></div>';
+    out.innerHTML=h;
+    document.getElementById('sd'+idx).onclick=function(){ const ticks=[...out.querySelectorAll('input:checked')].length; res.notes.push('Q'+(idx+1)+' self-check '+ticks+'/'+(it.check||[]).length+'; my answer: '+ta.value.trim().replace(/\s+/g,' ').slice(0,400)); this.disabled=true; done(); };
+  };
+}
+
+function renderDone(){
+  let tot=0,sc=0, lines=[];
+  C.steps.forEach((S,i)=>{ const r=state.results[i]||{score:0,total:0,notes:[]}; tot+=r.total; sc+=r.score;
+    lines.push(S.name+': '+(r.total?(r.score+'/'+r.total):'written')+(r.notes.length?'\n  - '+r.notes.join('\n  - '):'')); });
+  const txt=C.title+'\nScore: '+sc+'/'+tot+'\n'+lines.join('\n');
+  app.innerHTML=bar()+'<h1>'+C.doneHeading+'</h1><div class="card"><p><strong>Score on the checked questions: '+sc+' / '+tot+'.</strong> Written answers are marked by you, not by the page.</p><p>'+C.afterDone+'</p>'+
+   '<div class="row"><button class="ghost" id="cp">Copy my results</button><button class="ghost" id="rs">Start again</button></div>'+
+   '<p class="small">“Copy my results” makes a short summary to paste to Claude for the weekly review. Nothing is sent anywhere automatically.</p><pre class="res hide" id="rt"></pre></div>';
+  document.getElementById('cp').onclick=()=>{ const p=document.getElementById('rt'); p.textContent=txt; p.classList.remove('hide'); try{ navigator.clipboard.writeText(txt); }catch(e){} };
+  document.getElementById('rs').onclick=()=>{ state={step:-1,results:{}}; renderIntro(); };
+  save();
+}
+renderIntro();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

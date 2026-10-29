@@ -1,0 +1,71 @@
+{
+  "subjects": [
+    {
+      "slug": "english",
+      "label": "English"
+    },
+    {
+      "slug": "maths",
+      "label": "Maths"
+    }
+  ],
+  "items": [
+    {
+      "title": "Football stats: mean, median and mode",
+      "path": "maths/football-stats/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Statistics",
+      "term": "Autumn"
+    },
+    {
+      "title": "Football stats quiz",
+      "path": "maths/football-stats-quiz/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Statistics",
+      "term": "Autumn"
+    },
+    {
+      "title": "Mean, median, mode and area",
+      "path": "maths/mean-median-mode-area/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Statistics"
+    },
+    {
+      "title": "Shape Up: area formulas",
+      "path": "maths/area-formulas/",
+      "type": "html",
+      "year": 2026,
+      "status": "archived",
+      "topic": "Area and shape",
+      "term": "Autumn"
+    },
+    {
+      "title": "Cancelling: percentages and ratios",
+      "path": "maths/cancelling/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Percentages and ratios"
+    },
+    {
+      "title": "Answer it the way the question asks",
+      "path": "english/answer-it-right/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "Grammar Workshop: Year 5 and 6",
+      "path": "english/grammar-workshop/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    }
+  ]
+}

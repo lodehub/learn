@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>History: tie it back to the question</title>
+<style>
+:root{
+  --ink:#1e2430; --muted:#586070; --bg:#f5f6f8; --panel:#ffffff; --line:#d9dce3;
+  --accent:#6a1b4d; --accent-soft:#f1e4ec;
+  --ok:#25664a; --ok-soft:#e1f1e9; --bad:#a4470b; --bad-soft:#fbeadb;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --ink:#e8eaf0; --muted:#a2a9b8; --bg:#14171e; --panel:#1d212b; --line:#333949;
+  --accent:#d58ab6; --accent-soft:#35212d;
+  --ok:#7fd1a8; --ok-soft:#1b3328; --bad:#f0a56a; --bad-soft:#3a2a1b; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 80px}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;line-height:1.25;margin:0 0 .4em}
+h1{font-size:1.9rem;color:var(--accent)} h2{font-size:1.4rem} h3{font-size:1.1rem}
+p{margin:.4em 0 .8em} .sub{color:var(--muted);margin-top:0}
+.steps{display:flex;gap:6px;margin:18px 0 22px;flex-wrap:wrap}
+.pill{font-size:.85rem;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--panel)}
+.pill.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pill.done{border-color:var(--ok);color:var(--ok)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+.lead{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0 12px}
+.lead .ln{display:block;font-family:ui-monospace,Menlo,monospace;font-size:.98rem}
+.q{font-weight:600;margin-bottom:8px}
+.opts{display:grid;gap:8px}
+button{font:inherit;cursor:pointer}
+.opt{text-align:left;padding:10px 14px;border-radius:8px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.97rem}
+.fb.right{background:var(--ok-soft);border:1px solid var(--ok)}
+.fb.wrong{background:var(--bad-soft);border:1px solid var(--bad)}
+.primary{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:11px 20px;font-weight:600}
+.primary[disabled]{opacity:.45;cursor:default}
+.ghost{background:transparent;border:1.5px solid var(--accent);color:var(--accent);border-radius:8px;padding:9px 16px;font-weight:600}
+.ghost[disabled]{opacity:.45;cursor:default}
+textarea,input[type=text]{width:100%;font:inherit;padding:10px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0}
+.row label{font-size:.9rem;color:var(--muted);display:block}
+label.chk{display:flex;gap:10px;align-items:flex-start;margin:6px 0}
+label.chk input{margin-top:6px;width:18px;height:18px}
+.hint{color:var(--muted);font-size:.93rem}
+.stack{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.scoreline{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
+pre.summary{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font:.9rem/1.5 ui-monospace,Menlo,monospace}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+section[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1 id="title"></h1>
+<p class="sub" id="subtitle"></p>
+<div class="steps" id="steps" aria-label="Progress"></div>
+<div id="stage"></div>
+</div>
+<script>
+const CONTENT={"title": "History: tie it back to the question", "subtitle": "Trainer built from sentences in <strong>your own Task 2 essay</strong>. About 20 minutes. Skills: a So What that answers the question, claims you can stand behind, and an opening and ending that match.", "accent": "#6a1b4d", "accentSoft": "#f1e4ec", "accentDark": "#d58ab6", "accentSoftDark": "#35212d", "storageKey": "ember:history:tie-it-back:summary", "intro": "<p>In your Task 2 essay you did something good: you wrote paragraphs, you picked three themes, and you spotted that <em>&ldquo;class did not really matter here&rdquo;</em> for marriage.</p><p>This trainer works on three things that would move your answer up a level:</p><ul><li>A So What that <strong>answers the question</strong>, not just says something interesting.</li><li>Claims you can <strong>stand behind</strong>. If you only remember it from class, say so.</li><li>An opening and an ending that <strong>match</strong>.</li></ul><p class=\"hint\">The sentences marked as yours come from your essay. They are used because they are good starting points.</p>", "startLabel": "Start", "doneHeading": "Done. Now try the real thing again.", "afterDone": "Next: rewrite just your education paragraph from Task 2, with a So What that ties back to <em>family</em>, and an opening sentence that answers the question.", "steps": [{"name": "Fact, So What or guess?", "type": "mcq", "heading": "Fact, grounded So What, or guess?", "intro": "Sort each sentence. A <strong>grounded So What</strong> says what a fact tells us and you can point back at the fact. A <strong>guess</strong> says something the fact doesn't show.", "next": "Next: tie it back", "items": [{"q": "Poor children usually had no formal schooling and worked from a young age.", "o": ["Fact", "Grounded So What", "Guess"], "a": 0, "of": ["Right. It says what was true.", "It says what was true. It doesn't yet say what that tells us.", "It is a fact from the reference page."]}, {"q": "This suggests that a good education was something a family's wealth could buy.", "o": ["Fact", "Grounded So What", "Guess"], "a": 1, "of": ["It isn't just what was true.", "Right. You can point back at &lsquo;wealthy boys had tutors, poor children had no school&rsquo;.", "It follows from the facts about tutors and schooling."]}, {"q": "Poor children were unhappy because they could not go to school.", "o": ["Fact", "Grounded So What", "Guess"], "a": 2, "of": ["No source says this.", "Nothing in the fact says how they felt.", "Right. It is a guess: the fact doesn't say how children felt."]}, {"q": "(Yours) The slaves in a domus lived in a small room that was nicer than the rooms of the poor.", "o": ["Fact", "Grounded So What", "Guess"], "a": 2, "of": ["It is not on the reference page and you weren't sure of it.", "It claims a comparison (nicer than the poor) that the fact does not show.", "Right. &lsquo;Small room&rsquo; doesn't show it was nicer than a poor family's home. The comparison is a guess."]}, {"q": "(Yours) This applied even to the wealthy class, so class did not really matter here.", "o": ["Fact", "Grounded So What", "Guess"], "a": 1, "of": ["It says what the fact <em>tells us</em>.", "Right. It takes the fact (a father's power applied to wealthy families too) and says what it means for the question. This is your best sentence.", "It follows from the fact."]}, {"q": "Wealthy Romans lived in a domus built around an open courtyard.", "o": ["Fact", "Grounded So What", "Guess"], "a": 0, "of": ["Right.", "It says what was true, not what it tells us.", "It is on the reference page."]}]}, {"name": "Tie it back", "type": "mcq", "heading": "Tie it back to the question", "intro": "The question is: <strong>How far did a Roman child's life depend on the family they were born into?</strong> A So What has to answer <em>that</em>. Each sentence below is yours or close to yours. Pick the rewrite that ties it to <strong>family</strong>.", "next": "Next: safe claims", "items": [{"lead": "<strong>Your sentence:</strong> &ldquo;Their educators would normally be slaves, which shows that slaves could be better educated than some people higher up in the hierarchy.&rdquo;<br><span class=\"hint\">Interesting, but it is about slaves, not about the child's family.</span>", "q": "Which rewrite ties it to the question?", "o": ["Slaves were treated very badly in Rome.", "Wealthy families could buy the best teachers, even educated slaves, while poor children got no schooling at all, so a child's education depended on their family.", "Slaves and free people could be equally educated."], "a": 1, "of": ["True, perhaps, but off the question.", "Right. It keeps your idea (educated slave tutors) and links it to family and wealth.", "Not what the fact shows, and not about family."]}, {"lead": "<strong>Your sentence:</strong> &ldquo;The poor and average lived in an insula, with the slightly wealthier living on the first floor as there would be minimal stairs to climb.&rdquo;<br><span class=\"hint\">A good thought: higher floors were cheaper and worse. But it stops at the fact.</span>", "q": "Which rewrite adds a So What that ties to family?", "o": ["Even inside an insula, wealthier families could pay for the better lower floors, so a child's home depended on their family's wealth right down to which floor they lived on.", "Children on the higher floors were unhappier.", "Insulae were tall buildings in Rome."], "a": 0, "of": ["Right. It turns your stairs idea into a So What about family.", "A guess. The fact doesn't say how children felt.", "Just a fact again."]}, {"lead": "<strong>Your sentence:</strong> &ldquo;Girls would normally marry at 12 to mid teens and boys at 14, which shows boys grew up slower.&rdquo;<br><span class=\"hint\">Both halves wander: the claim about boys is a guess, and it isn't about family.</span>", "q": "Which rewrite is grounded and ties to family?", "o": ["Boys grew up slower than girls in Rome.", "Many wealthy girls were married by their early teens, which suggests that a girl's future was decided by her family rather than by herself.", "Marriage was important."], "a": 1, "of": ["Still a guess, and not about family.", "Right. It uses what the reference page says, and ties it to family.", "Too vague to earn marks."]}]}, {"name": "Safe claims", "type": "mcq", "heading": "Keep your claims safe", "intro": "You have no textbook, so many facts come from what you remember from class. That's fine, but a So What can't be stronger than its fact. If you're not sure, <strong>flag it</strong> (&ldquo;from class, not sure&rdquo;) and build your So What on what you are sure of.", "next": "Next: openings and endings", "items": [{"lead": "<strong>Fact (from class, not sure):</strong> slaves in a wealthy house lived in a small room inside the domus.", "q": "Which So What is safe to build on that fact?", "o": ["So slaves lived better than the poor.", "So even a slave's home depended on the household they belonged to, not on themselves.", "So slaves were happy."], "a": 1, "of": ["The fact doesn't compare with the poor, so this is a guess.", "Right. It uses only what the fact says (slaves lived inside the household) and ties to the idea that home depended on circumstances of birth.", "No evidence for feelings."]}, {"lead": "<strong>Fact (from class, not sure):</strong> boys married at 14.", "q": "What should you do?", "o": ["Build on it: &ldquo;so boys grew up slower&rdquo;.", "Flag it &ldquo;(from class, not sure: ask the teacher)&rdquo; and build your So What on a fact you're sure of instead.", "Delete the whole marriage paragraph."], "a": 1, "of": ["It's a guess stacked on an uncertain fact.", "Right. Flagging is the habit of a good historian, and you can ask the teacher. Your reference page backs up what to use instead: many wealthy girls were married by their early teens, and fathers had total authority over their children.", "You don't need to give up the paragraph, only the shaky fact."]}, {"lead": "<strong>Fact (on your reference page):</strong> fathers held patria potestas, total legal authority over their children, throughout the father's life.", "q": "Which claim is safe?", "o": ["Fathers in every Roman family had power over their children, so a girl's marriage depended on her father whatever her family's wealth.", "All Roman girls were married at 12.", "Roman fathers were cruel."], "a": 0, "of": ["Right. It uses the fact and ties to the question (family wealth didn't change a father's power). This is your 'class did not really matter' idea, made stronger.", "Not on the page, and too absolute (&lsquo;all&rsquo;).", "A feeling, not a fact."]}]}, {"name": "Match", "type": "mcq", "heading": "Make your opening and ending match", "intro": "In your essay, your plan said <strong>&ldquo;Very far&rdquo;</strong> but your ending said <strong>&ldquo;to some extent&rdquo;</strong>. Your opinion probably changed while you wrote, which is fine, but the essay should say so clearly and agree with itself.", "next": "Next: write your own", "items": [{"q": "Which is the best <strong>first sentence</strong>?", "o": ["The education for children in Ancient Rome depended on your class.", "A Roman child's life depended very far on their family, because it decided their schooling and their home, although marriage was controlled by fathers in every class.", "Rome had many classes."], "a": 1, "of": ["A topic sentence. It doesn't answer &lsquo;how far&rsquo; and gives no reason.", "Right. It answers (very far), says why (schooling and home) and even names an exception (marriage).", "True but it doesn't answer the question."]}, {"lead": "If your opening says <em>&ldquo;very far, because family decided schooling and home&rdquo;</em>…", "q": "Which <strong>ending</strong> matches it?", "o": ["The conclusion is that class mattered to some extent.", "Overall, a child's life depended very far on their family, although marriage was one area where being rich made no difference.", "It depended a bit."], "a": 1, "of": ["It changes the answer without saying why (very far became some extent).", "Right. Same answer as the opening, with the exception stated. A good judgement says the answer and what limits it.", "Too vague, and contradicts the opening."]}]}, {"name": "Write", "type": "write", "heading": "Now you write", "intro": "Two short tasks. Take your time. Then see a model and mark your own.", "next": "See my results", "checks": ["It answers or ties back to the question about <strong>family</strong>.", "I could point back at the fact (or I know it is true) and show how my sentence follows.", "It doesn't claim anything the fact doesn't show, and anything I'm unsure of is flagged."], "items": [{"lead": "<strong>Fact (reference page):</strong> Wealthy boys were taught reading, writing, rhetoric and maths, often by a paedagogus. Poor children usually had no formal schooling.", "q": "Write one So What that ties back to the question.", "min": 30, "model": "This suggests that a good education was something a family's wealth could buy, so a child's schooling depended heavily on the family they were born into."}, {"lead": "<strong>Your task:</strong> Write a first sentence for the essay that answers the question, says why, and names an exception.", "q": "Write your opening sentence.", "min": 40, "model": "A Roman child's life depended very far on their family, because it decided their schooling and their home, although marriage was controlled by fathers in every class."}]}]};
+const $=s=>document.querySelector(s);
+const st={i:-1,t0:null,t:{},score:[],tick:[],stepStart:null};
+const mins=s=>s==null?"?":(s<60?s+"s":Math.floor(s/60)+"m "+(s%60)+"s");
+const steps=CONTENT.steps;
+
+function pills(){
+  $("#steps").innerHTML=steps.map((s,k)=>{
+    const c=st.i===k?"on":(st.i>k?"done":"");
+    return `<span class="pill ${c}">${k+1}. ${s.name}</span>`;}).join("");
+}
+function go(k){
+  const now=Date.now();
+  if(st.stepStart!==null && st.i>=0) st.t[st.i]=Math.round((now-st.stepStart)/1000);
+  st.i=k; st.stepStart=now; pills(); window.scrollTo({top:0});
+  if(k===-1) return renderIntro();
+  if(k>=steps.length) return renderDone();
+  const s=steps[k]; const stage=$("#stage"); stage.innerHTML="";
+  const h=document.createElement("div");
+  h.innerHTML=`<h2>${k+1}. ${s.heading}</h2><p class="sub">${s.intro||""}</p>`; stage.appendChild(h);
+  const box=document.createElement("div"); stage.appendChild(box);
+  const nb=document.createElement("div"); nb.className="stack";
+  nb.innerHTML=`<button class="primary" id="nextBtn" disabled>${s.next||"Next"}</button>`; stage.appendChild(nb);
+  const next=$("#nextBtn"); next.onclick=()=>go(k+1);
+  st.score[k]={got:0,max:0}; st.tick[k]={got:0,max:0};
+  ({mcq:buildMcq,write:buildWrite,solve:buildSolve})[s.type](s,k,box,next);
+}
+function renderIntro(){
+  $("#stage").innerHTML=`<div class="card"><h2>Before you start</h2>${CONTENT.intro}
+  <p class="hint">Timings are recorded so your weekly review has real numbers.</p>
+  <div class="stack"><button class="primary" id="startBtn">${CONTENT.startLabel||"Start"}</button></div></div>`;
+  $("#startBtn").onclick=()=>{st.t0=Date.now();go(0);};
+}
+function buildMcq(s,k,box,next){
+  let done=0; st.score[k].max=s.items.length;
+  s.items.forEach((it,qi)=>{
+    const c=document.createElement("div"); c.className="card";
+    c.innerHTML=(it.lead?`<div class="lead">${it.lead}</div>`:"")+`<div class="q">${s.items.length>1&&!it.lead?(qi+1)+". ":""}${it.q}</div>
+      <div class="opts">${it.o.map((o,oi)=>`<button class="opt" data-oi="${oi}">${o}</button>`).join("")}</div><div class="fb" hidden></div>`;
+    box.appendChild(c);
+    c.addEventListener("click",e=>{
+      const b=e.target.closest(".opt"); if(!b||b.disabled) return;
+      const oi=+b.dataset.oi, ok=oi===it.a, fb=c.querySelector(".fb"), bs=c.querySelectorAll(".opt");
+      bs.forEach(x=>x.disabled=true); b.classList.add(ok?"right":"wrong"); if(!ok) bs[it.a].classList.add("right");
+      fb.hidden=false; fb.className="fb "+(ok?"right":"wrong");
+      if(it.of){ fb.innerHTML= ok? `<strong>Yes.</strong> ${it.of[it.a]}` : `${it.of[oi]}<br><br><strong>Best answer:</strong> ${it.of[it.a]}`; }
+      else fb.innerHTML=(ok?"<strong>Yes.</strong> ":"<strong>Not quite.</strong> ")+it.f;
+      if(ok) st.score[k].got++;
+      if(++done===s.items.length) next.disabled=false;
+    });
+  });
+}
+function buildWrite(s,k,box,next){
+  let shown=0;
+  s.items.forEach((it,i)=>{
+    const c=document.createElement("div"); c.className="card";
+    c.innerHTML=(it.lead?`<div class="lead">${it.lead}</div>`:"")+`<label class="q" for="w${k}_${i}">${it.q}</label>
+      <textarea id="w${k}_${i}" placeholder="${it.ph||"Write your answer"}"></textarea>
+      <div class="stack"><button class="ghost" disabled>${it.reveal||"Show a model"}</button></div><div class="fb right" hidden></div>`;
+    box.appendChild(c);
+    const ta=c.querySelector("textarea"), rb=c.querySelector("button"), fb=c.querySelector(".fb");
+    ta.addEventListener("input",()=>{rb.disabled=ta.value.trim().length<(it.min||20);});
+    rb.addEventListener("click",()=>{
+      rb.disabled=true; ta.readOnly=true; fb.hidden=false;
+      fb.innerHTML=`${it.model?`<strong>A model:</strong> ${it.model}`:""}<div style="margin-top:10px"><strong>Mark your own, honestly:</strong></div>`+
+        (s.checks||[]).map(x=>`<label class="chk"><input type="checkbox"><span>${x}</span></label>`).join("");
+      st.tick[k].max+=(s.checks||[]).length;
+      fb.addEventListener("change",()=>{st.tick[k].got=box.querySelectorAll("input[type=checkbox]:checked").length;});
+      if(++shown===s.items.length) next.disabled=false;
+    });
+  });
+}
+function buildSolve(s,k,box,next){
+  let done=0; st.score[k].max=s.items.length;
+  const ev=(ex,x)=>Function("x","return "+ex)(x);
+  const close=(a,b)=>Math.abs(a-b)<1e-6;
+  s.items.forEach((it,i)=>{
+    const c=document.createElement("div"); c.className="card";
+    c.innerHTML=`<div class="lead"><span class="ln" style="font-size:1.15rem">${it.eq}</span></div>
+      <div class="row">
+        <div><label for="x${i}">1. My answer: x =</label><input type="text" inputmode="decimal" id="x${i}" autocomplete="off"></div>
+        <div><label for="l${i}">2. Check: left side with my x</label><input type="text" inputmode="decimal" id="l${i}" autocomplete="off"></div>
+        <div><label for="r${i}">3. Check: right side with my x</label><input type="text" inputmode="decimal" id="r${i}" autocomplete="off"></div>
+      </div>
+      <div class="stack"><button class="primary">Check my working</button></div><div class="fb" hidden></div>`;
+    box.appendChild(c);
+    const btn=c.querySelector("button"), fb=c.querySelector(".fb");
+    btn.addEventListener("click",()=>{
+      const num=id=>parseFloat(c.querySelector("#"+id+i).value.replace(",","."));
+      const x=num("x"),l=num("l"),r=num("r");
+      if([x,l,r].some(isNaN)){fb.hidden=false;fb.className="fb wrong";fb.innerHTML="Fill in all three boxes. The check is part of the answer.";return;}
+      const tl=ev(it.lhs,x), tr=ev(it.rhs,x), xr=close(x,it.ans), checkOk=close(l,tl)&&close(r,tr), balanced=close(tl,tr);
+      let ok=false, msg="";
+      if(xr&&checkOk){ok=true;msg=`<strong>Solved and checked.</strong> Both sides come to ${tl}.`;}
+      else if(xr&&!checkOk){msg=`<strong>x is right, but your check is off.</strong> With x = ${x}, the left side is ${tl} and the right side is ${tr}. Redo the substitution slowly.`;}
+      else if(!xr&&checkOk&&!balanced){msg=`<strong>Your check caught it.</strong> With your x the sides are ${tl} and ${tr}, which don't match, so x can't be right. That's exactly what checking is for. Try again from the first line.`;}
+      else if(!xr&&checkOk&&balanced){msg=`<strong>Both sides match for your x, but this equation has a different solution.</strong> Re-read the equation.`;}
+      else{msg=`<strong>Not yet.</strong> Both your x and your check need work. With your x the sides would be ${tl} and ${tr}.`;}
+      fb.hidden=false; fb.className="fb "+(ok?"right":"wrong");
+      fb.innerHTML=msg+(ok?"":"")+`<br><br><strong>Worked method:</strong><br>${it.method}`;
+      if(!it.done){ it.done=true; if(ok) st.score[k].got++; if(++done===s.items.length) next.disabled=false; }
+      if(!ok && it.retry!==false){ /* allow another go, scored once */ }
+    });
+  });
+}
+function renderDone(){
+  const total=Math.round((Date.now()-st.t0)/1000);
+  const rows=steps.map((s,k)=>{
+    let sc = s.type==="write" ? `${st.tick[k].got} / ${st.tick[k].max} self-checks` : `${st.score[k].got} / ${st.score[k].max}`;
+    return [s.name, sc, mins(st.t[k])];
+  });
+  $("#stage").innerHTML=`<h2>${CONTENT.doneHeading}</h2>
+   <div class="card">${rows.map(r=>`<div class="scoreline"><span>${r[0]}</span><span><strong>${r[1]}</strong> &nbsp; <span class="hint">${r[2]}</span></span></div>`).join("")}
+   <div class="scoreline"><span>Total screen time</span><strong>${mins(total)}</strong></div></div>
+   <div class="card"><h3>Copy for the weekly review</h3><pre class="summary" id="summary"></pre>
+   <div class="stack"><button class="ghost" id="copyBtn">Copy summary</button><span class="hint" id="copied"></span></div></div>
+   <p class="hint">${CONTENT.afterDone}</p>`;
+  const text=CONTENT.title+"\n"+rows.map(r=>`${r[0]}: ${r[1]} (${r[2]})`).join("\n")+`\nTotal time: ${mins(total)}`;
+  $("#summary").textContent=text;
+  try{localStorage.setItem(CONTENT.storageKey,JSON.stringify({text,date:new Date().toISOString()}));}catch(e){}
+  $("#copyBtn").onclick=async()=>{try{await navigator.clipboard.writeText(text);$("#copied").textContent="Copied.";}catch(e){$("#copied").textContent="Select the text above and copy it.";}};
+}
+$("#title").textContent=CONTENT.title; $("#subtitle").innerHTML=CONTENT.subtitle;
+go(-1);
+</script>
+<script src="../../../assets/back.js" data-corner="bottom"></script>
+</body>
+</html>
