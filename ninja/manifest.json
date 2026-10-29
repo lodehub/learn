@@ -15,16 +15,18 @@
       "path": "maths/football-stats/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Statistics"
+      "status": "archived",
+      "topic": "Statistics",
+      "term": "Autumn"
     },
     {
       "title": "Football stats quiz",
       "path": "maths/football-stats-quiz/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Statistics"
+      "status": "archived",
+      "topic": "Statistics",
+      "term": "Autumn"
     },
     {
       "title": "Mean, median, mode and area",
@@ -39,8 +41,9 @@
       "path": "maths/area-formulas/",
       "type": "html",
       "year": 2026,
-      "status": "current",
-      "topic": "Area and shape"
+      "status": "archived",
+      "topic": "Area and shape",
+      "term": "Autumn"
     },
     {
       "title": "Cancelling: percentages and ratios",
