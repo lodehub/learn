@@ -7,6 +7,14 @@
     {
       "slug": "maths",
       "label": "Maths"
+    },
+    {
+      "slug": "french",
+      "label": "French"
+    },
+    {
+      "slug": "mandarin",
+      "label": "Mandarin"
     }
   ],
   "items": [
@@ -63,6 +71,20 @@
     {
       "title": "Grammar Workshop: Year 5 and 6",
       "path": "english/grammar-workshop/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "French Lab: build French one sentence pattern at a time",
+      "path": "french/french-lab/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "Mandarin Lab: build Mandarin one sentence pattern at a time",
+      "path": "mandarin/mandarin-lab/",
       "type": "html",
       "year": 2026,
       "status": "current"

@@ -14,6 +14,7 @@ Owner account: ceejay77 (anonymous by design).
 ## Structure
 - `/index.html`: "Who's learning?" child picker, reads `/children.json`
 - `/assets/`: shared style.css and ui.js used by every page
+- `/assets/lab/`: the Language Lab engine (French Lab, Mandarin Lab), shared by every child. Content lives in its JSON files; each child has a thin wrapper page. See assets/lab/README.md.
 - `/<slug>/index.html`: subject picker, reads that child's `manifest.json`
 - `/<slug>/<subject>/<tool>/`: HTML tools to practise on screen
 - `/<slug>/<subject>/pdfs/`: that subject's PDF shelf (printables). A worksheet that belongs to one tool can stay in the tool's folder instead.

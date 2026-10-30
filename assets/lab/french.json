@@ -1,0 +1,206 @@
+{
+  "code": "fr",
+  "name": "French",
+  "lab": "French Lab",
+  "words": {
+    "who": "qui", "what": "quoi / qu'est-ce que", "where": "où", "when": "quand", "why": "pourquoi",
+    "how": "comment", "which": "quel / quelle", "howmany": "combien",
+    "hello": "bonjour", "bye": "au revoir", "please": "s'il te plaît", "thanks": "merci",
+    "yes": "oui", "no": "non", "sorry": "pardon",
+
+    "dog":   { "w": "chien", "g": "m" },
+    "cat":   { "w": "chat", "g": "m" },
+    "ball":  { "w": "ballon", "g": "m" },
+    "book":  { "w": "livre", "g": "m" },
+    "car":   { "w": "voiture", "g": "f" },
+    "bike":  { "w": "vélo", "g": "m" },
+    "bag":   { "w": "sac", "g": "m" },
+    "phone": { "w": "téléphone", "g": "m" },
+    "itis": "c'est", "a": "un / une", "not": "ne … pas",
+
+    "table": { "w": "table", "g": "f" },
+    "chair": { "w": "chaise", "g": "f" },
+    "bed":   { "w": "lit", "g": "m" },
+    "box":   { "w": "boîte", "g": "f" },
+    "sofa":  { "w": "canapé", "g": "m" },
+    "on":     { "w": "sur", "mode": "le" },
+    "in":     { "w": "dans", "mode": "le" },
+    "under":  { "w": "sous", "mode": "le" },
+    "nextto": { "w": "à côté", "mode": "dele", "show": "à côté de" },
+    "the": "le / la / l' / les", "isat": "est",
+
+    "apple":  { "w": "pomme", "g": "f" },
+    "banana": { "w": "banane", "g": "f" },
+    "cake":   { "w": "gâteau", "g": "m", "pl": "gâteaux" },
+    "bread":  { "w": "pain", "g": "m", "mass": true },
+    "rice":   { "w": "riz", "g": "m", "mass": true },
+    "water":  { "w": "eau", "g": "f", "mass": true },
+    "milk":   { "w": "lait", "g": "m", "mass": true },
+    "juice":  { "w": "jus", "g": "m", "mass": true },
+    "eat_a":  { "inf": "manger", "je": "je mange", "il": "mange", "nous": "mangeons", "pc": "j'ai mangé" },
+    "sleep":  { "inf": "dormir", "je": "je dors", "il": "dort", "nous": "dormons", "pc": "j'ai dormi" },
+    "play":   { "inf": "jouer", "je": "je joue", "il": "joue", "nous": "jouons", "pc": "j'ai joué" },
+    "toilet": { "inf": "aller aux toilettes", "je": "je vais aux toilettes", "il": "va aux toilettes", "nous": "allons aux toilettes", "pc": "je suis allé(e) aux toilettes" },
+    "gohome": { "inf": "rentrer à la maison", "je": "je rentre à la maison", "il": "rentre à la maison", "nous": "rentrons à la maison", "pc": "je suis rentré(e) à la maison" },
+    "i": "je", "you": "tu",
+    "want": { "inf": "vouloir", "je": "je veux", "il": "veut", "nous": "voulons" },
+
+    "bird":    { "w": "oiseau", "g": "m", "pl": "oiseaux" },
+    "fish":    { "w": "poisson", "g": "m" },
+    "horse":   { "w": "cheval", "g": "m", "pl": "chevaux" },
+    "rabbit":  { "w": "lapin", "g": "m" },
+    "brother": { "w": "petit frère", "g": "m" },
+    "sister":  { "w": "grande sœur", "g": "f" },
+    "choc":    { "w": "chocolat", "g": "m", "mass": true },
+    "icecream":{ "w": "glace", "g": "f" },
+    "swim":     { "inf": "nager", "je": "je nage", "il": "nage", "nous": "nageons", "pc": "j'ai nagé" },
+    "read":     { "inf": "lire", "je": "je lis", "il": "lit", "nous": "lisons", "pc": "j'ai lu" },
+    "football": { "inf": "jouer au foot", "je": "je joue au foot", "il": "joue au foot", "nous": "jouons au foot", "pc": "j'ai joué au foot" },
+    "tv":       { "inf": "regarder la télé", "je": "je regarde la télé", "il": "regarde la télé", "nous": "regardons la télé", "pc": "j'ai regardé la télé" },
+    "draw":     { "inf": "dessiner", "je": "je dessine", "il": "dessine", "nous": "dessinons", "pc": "j'ai dessiné" },
+    "sing":     { "inf": "chanter", "je": "je chante", "il": "chante", "nous": "chantons", "pc": "j'ai chanté" },
+    "like":     { "inf": "aimer", "je": "j'aime", "il": "aime", "nous": "aimons" },
+    "have":     { "inf": "avoir", "je": "j'ai", "il": "a", "nous": "avons" },
+
+    "red":    { "m": "rouge" },
+    "blue":   { "m": "bleu", "f": "bleue" },
+    "green":  { "m": "vert", "f": "verte" },
+    "yellow": { "m": "jaune" },
+    "black":  { "m": "noir", "f": "noire" },
+    "white":  { "m": "blanc", "f": "blanche" },
+    "big":    { "m": "grand", "f": "grande" },
+    "small":  { "m": "petit", "f": "petite" },
+    "fast":   { "m": "rapide" },
+    "slow":   { "m": "lent", "f": "lente" },
+    "pretty": { "m": "joli", "f": "jolie" },
+    "see":    { "inf": "voir", "je": "je vois", "il": "voit", "nous": "voyons" },
+    "very": "très",
+
+    "school": { "w": "école", "g": "f" },
+    "park":   { "w": "parc", "g": "m" },
+    "beach":  { "w": "plage", "g": "f" },
+    "shop":   { "w": "magasin", "g": "m" },
+    "pool":   { "w": "piscine", "g": "f" },
+    "cinema": { "w": "cinéma", "g": "m" },
+    "go":     { "inf": "aller", "je": "je vais", "il": "va", "nous": "allons" },
+    "eat":    { "inf": "manger", "je": "je mange", "il": "mange", "nous": "mangeons" },
+    "drink":  { "inf": "boire", "je": "je bois", "il": "boit", "nous": "buvons" },
+    "everyday": "tous les jours",
+
+    "he":  { "w": "il", "per": "il" },
+    "she": { "w": "elle", "per": "il" },
+    "we":  { "w": "nous", "per": "nous" },
+    "mum": { "w": "maman", "per": "il" },
+    "dad": { "w": "papa", "per": "il" },
+
+    "yesterday": "hier", "today": "aujourd'hui", "tomorrow": "demain", "went": "je suis allé(e)",
+
+    "and": "et", "but": "mais", "because": "parce que",
+    "hungry": "j'ai faim", "thirsty": "j'ai soif", "tired": "fatigué(e)", "fun": "amusant"
+  },
+
+  "phrases": {
+    "p_who": "C'est qui ?",
+    "p_what": "Qu'est-ce que c'est ?",
+    "p_where": "C'est où ?",
+    "p_when": "C'est quand ?",
+    "p_why": "Pourquoi ?",
+    "p_how": "Comment on dit ça ?",
+    "p_which": "Lequel ?",
+    "p_howmuch": "C'est combien ?",
+    "p_name": "Comment tu t'appelles ?",
+    "p_age": "Tu as quel âge ?",
+    "p_howru": "Ça va ?",
+    "p_fine": "Ça va bien, merci.",
+    "p_toilet": "Où sont les toilettes ?"
+  },
+
+  "frames": {
+    "this_is": "C'est {n.un}.",
+    "is_it": "C'est {n.un} ?",
+    "not_it": "Ce n'est pas {n.un}.",
+    "where_is": "Où est {n.le} ?",
+    "is_on": "{n.le} est {p@m}.",
+    "want_food": "Je veux {n.un}.",
+    "want_act": "Je veux {a.inf}.",
+    "dont_want": "Je ne veux pas {a.inf}.",
+    "you_want": "Tu veux {n.un} ?",
+    "like_n": "J'aime {n.gen}.",
+    "dislike_n": "Je n'aime pas {n.gen}.",
+    "like_a": "J'aime {a.inf}.",
+    "have": "J'ai {n.un}.",
+    "not_have": "Je n'ai pas {n.de}.",
+    "you_have": "Tu as {n.un} ?",
+    "see": "Je vois {n.un} {c~n}.",
+    "is_adj": "{n.le} est {j~n}.",
+    "is_colour": "{n.le} est {c~n}.",
+    "go_place": "Je vais {l.a}.",
+    "want_go": "Je veux aller {l.a}.",
+    "every_day": "Tous les jours, {a.je}.",
+    "i_eat": "Je mange {n.un}.",
+    "i_drink": "Je bois {n.un}.",
+    "he_does": "{w} {a~w}.",
+    "he_likes": "{w} {=like~w} {n.gen}.",
+    "he_has": "{w} {=have~w} {n.un}.",
+    "he_wants": "{w} {=want~w} {a.inf}.",
+    "yesterday": "Hier, {a.pc}.",
+    "tomorrow": "Demain, je vais {a.inf}.",
+    "went": "Hier, je suis allé(e) {l.a}.",
+    "today_go": "Aujourd'hui, je vais {l.a}.",
+    "but": "J'aime {n.gen}, mais je n'aime pas {m.gen}.",
+    "and": "J'ai {n.un} et {m.un}.",
+    "because": "Je veux {a.inf} parce que c'est amusant.",
+    "hungry": "J'ai faim, je veux {n.un}.",
+    "thirsty": "J'ai soif, je veux {n.un}.",
+    "tired": "Je suis fatigué(e), je veux {a.inf}."
+  },
+
+  "tips": {
+    "ask": [
+      "The easiest French question: say an ordinary sentence and let your voice go up at the end. C'est où ? = It's where?",
+      "In everyday French the question word often goes at the end: Tu t'appelles comment ? C'est quand ?",
+      "s'il te plaît is for a friend or family. Say s'il vous plaît to a grown-up you don't know."
+    ],
+    "name": [
+      "Every French noun is masculine or feminine. Learn the little word with it: un chien, une voiture.",
+      "ne … pas wraps around the verb like a sandwich: Ce n'est pas un chat."
+    ],
+    "where": [
+      "The: le (masculine), la (feminine), l' (before a vowel sound), les (more than one).",
+      "de + le squashes into du: à côté du lit. But à côté de la table."
+    ],
+    "want": [
+      "Je veux + a thing, or Je veux + an action. The action stays in its dictionary form: Je veux manger.",
+      "Some = du / de la / de l': du pain, de l'eau. For one thing, use un / une: une pomme.",
+      "Politer version for shops and grown-ups: Je voudrais… (I would like…)."
+    ],
+    "like": [
+      "French says 'the' when you mean things in general: J'aime les chats (I like cats).",
+      "After a 'not', un / une turn into de: J'ai un chien → Je n'ai pas de chien.",
+      "J'aime + an action works just like Je veux: J'aime nager."
+    ],
+    "describe": [
+      "Colours go after the noun: une voiture rouge, un chat noir.",
+      "Describing words match the noun. Feminine usually adds -e: le chat est petit, la voiture est petite."
+    ],
+    "do": [
+      "à + le squashes into au: au parc. But à la plage, à l'école.",
+      "The je form of most verbs ending in -er ends in -e: je joue, je nage, je chante.",
+      "Je vais = I go. You'll use it again later for the future."
+    ],
+    "people": [
+      "For most verbs, il / elle sounds exactly like je: je joue, il joue, elle joue.",
+      "nous ends in -ons: nous jouons, nous nageons.",
+      "A few verbs are special and worth learning by heart: il a, il veut, nous avons, nous voulons."
+    ],
+    "time": [
+      "Past: j'ai + the past form (-é for -er verbs): j'ai joué, j'ai nagé.",
+      "Going places uses je suis instead: je suis allé (a girl writes allée).",
+      "Future: je vais + action. You already know both halves! Demain, je vais nager."
+    ],
+    "join": [
+      "et = and, mais = but, parce que = because. Glue two sentences you already know.",
+      "Feelings with avoir: j'ai faim (I have hunger), j'ai soif (I have thirst)."
+    ]
+  }
+}
