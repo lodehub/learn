@@ -1,0 +1,14 @@
+{
+  "about": "One book at a time, one passage a week. Read it, dig into it, find the principle, live it, and hide it in your heart.",
+  "people": [
+    { "slug": "grownups", "label": "Grown-ups", "colour": "gold" }
+  ],
+  "seasons": [
+    { "id": "james", "title": "James", "tagline": "Faith that works", "weeks": 12, "path": "james/season.json" }
+  ],
+  "next": [
+    { "title": "The Sermon on the Mount", "ref": "Matthew 5–7", "blurb": "The teaching James keeps echoing, from the one who first said it." },
+    { "title": "Philippians", "ref": "4 chapters", "blurb": "Joy that doesn't depend on circumstances, written from prison." },
+    { "title": "Joseph", "ref": "Genesis 37–50", "blurb": "Trusting God when life is unfair: a story that runs over years." }
+  ]
+}

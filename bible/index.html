@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f5f0">
+  <title>Bible Lab · Learn</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/lab/lab.css">
+  <link rel="stylesheet" href="../assets/bible/bible.css">
+</head>
+<body>
+  <!-- Bible Lab: one page, hash-routed. Engine in assets/bible/bible.js, content in bible/<season>/season.json.
+       See assets/bible/README.md. -->
+  <main class="page lab bible" id="app"><p class="muted">Loading…</p></main>
+  <script src="../assets/bible/bible.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
+  </script>
+</body>
+</html>
