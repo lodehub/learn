@@ -137,3 +137,49 @@ body:not([class*="c-"]) { --accent: var(--green); --accent-soft: var(--green-sof
 .prose p { margin: 10px 0; }
 .ladder { padding-left: 22px; }
 .ladder li { margin: 6px 0; }
+
+/* Verb Dials */
+.dialrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 16px; }
+.dial {
+  padding: 6px 14px; border-radius: 999px; border: 2px dashed var(--line); color: var(--muted);
+  font-size: 15px; font-weight: 700;
+}
+.dial.on { border: 2px solid var(--accent); background: var(--accent-soft); color: var(--text); }
+.verbchips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.verbchips .chip { display: inline-flex; align-items: center; text-decoration: none; }
+.verbchips .chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tablewrap { overflow-x: auto; }
+table.conj { border-collapse: collapse; width: 100%; font-size: 16px; }
+table.conj th { text-align: left; font-size: 15px; padding: 6px 10px; vertical-align: bottom; }
+table.conj td { padding: 8px 10px; border-top: 1px solid var(--line); white-space: nowrap; font-weight: 600; }
+input.type {
+  width: 100%; min-height: 56px; padding: 10px 16px; border-radius: 16px; border: 2px solid var(--line);
+  background: var(--surface); color: var(--text); font: inherit; font-size: 20px;
+}
+input.type:focus { outline: none; border-color: var(--accent); }
+
+/* Mainland Mandarin */
+.zhline { display: inline-flex; flex-direction: column; }
+.zhline .h { font-size: 22px; font-weight: 600; line-height: 1.3; }
+.zhline .p { font-size: 14px; color: var(--muted); }
+.zhline.big .h { font-size: 30px; }
+.zhline.big .p { font-size: 16px; }
+.vocab .note { flex-basis: 100%; font-size: 14px; color: var(--muted); }
+.swaps .my { font-size: 18px; color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+.swaps .arrow { color: var(--accent); font-weight: 700; }
+.swaps li { justify-content: flex-start; }
+.toggle .tab {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px;
+  color: var(--muted); text-decoration: none; font-size: 16px; font-weight: 600;
+}
+.toggle .tab[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.dlg { display: grid; gap: 10px; margin-top: 12px; }
+.dlg .line { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.dlg .line.me { background: var(--accent-soft); border-color: var(--accent); }
+.dlg .who { flex: none; width: 3.2em; font-size: 14px; font-weight: 700; color: var(--muted); padding-top: 4px; }
+.dlg .say { display: flex; flex-direction: column; }
+.dlg .say .h { font-size: 20px; font-weight: 600; }
+.dlg .say .en { font-size: 15px; color: var(--muted); }
+.dlg.turn .line.me:not(.shown) .h { visibility: hidden; height: 0; }
+.dlg.turn .line.me:not(.shown)::after { content: "tap to check"; margin-left: auto; font-size: 13px; color: var(--accent); align-self: center; }
+.dlg.turn .line.me:not(.shown) { cursor: pointer; }

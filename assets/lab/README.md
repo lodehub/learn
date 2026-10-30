@@ -37,3 +37,12 @@ Mandarin text is written as `汉字|pinyin` pairs separated by spaces; each pair
 - **A language**: copy `french.json`, translate, and add a wrapper page with `data-lang="<file name>"`.
   A language whose grammar works differently (cases, measure words...) may need a few lines in `lab.js` next to the
   French and Mandarin renderers.
+
+## Beyond the starter pack
+- **Verb Dials** (`dials.js` + `french-dials.json`, level 4): every sentence has dials (person, tense, negative,
+  question). The engine conjugates any verb in six tenses from the rules plus the irregular forms listed in the JSON,
+  and drills Transform (turn a dial, type the result; accents optional), Pick the form (near-miss options such as
+  *j'ai allé*) and a 60-second speed round. Page: `heeler/french/verb-dials/`.
+- **Mainland Mandarin** (`mainland.js` + `mainland.json`): for a fluent Malaysian Chinese speaker. Habits to swap
+  (Malaysian → mainland), conversation moves (reusable chunks), and themes (word swaps, vocab, a model conversation).
+  Add a theme by adding an object to `themes`. Page: `heeler/mandarin/mainland/`.
