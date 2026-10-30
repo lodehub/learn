@@ -158,8 +158,6 @@
   .grades .primary small { color: rgba(255, 255, 255, .85); }
   .grades .again { border-color: var(--bad); color: var(--bad); }
 
-  .big-listen { width: 100%; min-height: 96px; font-size: 1.3rem; border-radius: 20px; }
-
   .chips { display: flex; flex-wrap: wrap; gap: 8px; min-height: 56px; padding: 10px; border-radius: 14px; }
   .chips.answer-line { background: var(--bg); border: 2px dashed var(--line); }
   .chip {
@@ -181,7 +179,6 @@
   .bubble.me .who { color: var(--me-ink); }
   .bubble .fr { font-weight: 600; }
   .bubble .en { color: var(--muted); font-size: .92rem; }
-  .bubble.playing { outline: 3px solid var(--accent); }
   .bubble .hiddenline { color: var(--me-ink); font-style: italic; }
   .bubble .line-row { display: flex; gap: 8px; align-items: flex-start; }
   .bubble .line-row > div { flex: 1; }
@@ -272,44 +269,7 @@
   function plural(n, w) { return n + ' ' + w + (n === 1 ? '' : 's'); }
   function on(sel, ev, fn) { var el = typeof sel === 'string' ? document.querySelector(sel) : sel; if (el) el.addEventListener(ev, fn); }
 
-  // ---------- Speech ----------
-  var voices = [];
-  function pickVoices() {
-    if (!('speechSynthesis' in window)) return;
-    var all = speechSynthesis.getVoices();
-    var fr = all.filter(function (v) { return /^fr[-_]FR/i.test(v.lang); });
-    if (!fr.length) fr = all.filter(function (v) { return /^fr/i.test(v.lang); });
-    voices = fr;
-  }
-  if ('speechSynthesis' in window) { pickVoices(); speechSynthesis.onvoiceschanged = pickVoices; }
   function clean(text) { return String(text).split(' / ')[0].replace(/\([^)]*\)/g, '').replace(/[«»]/g, ''); }
-  function utter(text, opts) {
-    opts = opts || {};
-    var u = new SpeechSynthesisUtterance(clean(text));
-    u.lang = 'fr-FR';
-    var v = voices[(opts.voice || 0) % (voices.length || 1)];
-    if (v) u.voice = v;
-    u.rate = opts.slow ? 0.7 : 0.95;
-    if (opts.pitch) u.pitch = opts.pitch;
-    return u;
-  }
-  function say(text, slow) {
-    if (!('speechSynthesis' in window)) { toast('Speech is not available on this device'); return; }
-    speechSynthesis.cancel();
-    speechSynthesis.speak(utter(text, { slow: slow }));
-  }
-  function speakBtn(text, lang) {
-    if (lang === 'mg') return '';
-    return '<button type="button" class="speak" data-say="' + esc(text) + '" aria-label="Listen">🔊</button>';
-  }
-  document.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-say]');
-    if (!b) return;
-    // A second tap within 3 seconds plays it slowly.
-    var slow = b._last && Date.now() - b._last < 3000;
-    b._last = slow ? 0 : Date.now();
-    say(b.getAttribute('data-say'), slow);
-  });
 
   // ---------- Content ----------
   function patterns() { return Object.keys(PAT).map(function (k) { return PAT[k]; }).concat(state.mine); }
@@ -350,15 +310,14 @@
 
   // ---------- Units and steps ----------
   function stepsOf(u) {
-    var s = [{ key: 'phrases', kind: 'phrases', title: 'Key phrases', blurb: 'Read, listen and repeat ' + u.flat.length + ' phrases.' }];
+    var s = [{ key: 'phrases', kind: 'phrases', title: 'Key phrases', blurb: 'Read and say out loud ' + u.flat.length + ' phrases.' }];
     u.patterns.forEach(function (id) {
       var p = patById(id);
       if (p) s.push({ key: 'pat:' + id, kind: 'pattern', id: id, title: 'Pattern: ' + p.title, blurb: p.meaning });
     });
     s.push(
-      { key: 'listen', kind: 'listen', title: 'Listen and understand', blurb: 'Hear a phrase, understand it, then check.' },
       { key: 'build', kind: 'build', title: 'Build the sentence', blurb: 'Put the words in the right order.' },
-      { key: 'dialogue', kind: 'dialogue', title: 'Conversation', blurb: 'Listen, then take your part.' },
+      { key: 'dialogue', kind: 'dialogue', title: 'Conversation', blurb: 'Read it, then take your part.' },
       { key: 'replies', kind: 'replies', title: 'What would you say?', blurb: 'Pick the natural reply.' },
       { key: 'translate', kind: 'translate', title: 'Say it in French', blurb: 'English to French, from memory.' },
       { key: 'talk', kind: 'talk', title: 'Role-play with ChatGPT or Gemini', blurb: 'A ready-made prompt for this situation.' }
@@ -440,14 +399,13 @@
         r === 'diff' ? '<div class="verdict near">Compare with the model. Small differences can still be right.</div>' : '';
       el.querySelector('#reveal').disabled = true;
       el.querySelector('#result').innerHTML = '<div class="answer">' + verdict +
-        '<div class="ex" style="border:0;padding:0">' + speakBtn(c.fr, c.lang) + '<div><div class="fr" lang="fr">' + esc(c.fr) + '</div>' +
+        '<div class="ex" style="border:0;padding:0">' + '<div><div class="fr" lang="fr">' + esc(c.fr) + '</div>' +
         (c.note ? '<div class="note">' + esc(c.note) + '</div>' : '') + '</div></div>' +
         (input.trim() && r !== 'ok' ? '<div class="yours">You wrote: <span lang="fr">' + esc(input) + '</span></div>' : '') +
         '</div><div class="grades">' +
         '<button type="button" class="again" data-g="again">Again<small>today</small></button>' +
         '<button type="button" data-g="hard">Nearly<small>soon</small></button>' +
         '<button type="button" class="primary" data-g="good">Got it<small>later</small></button></div>';
-      if (c.lang !== 'mg') say(c.fr);
       Array.prototype.forEach.call(el.querySelectorAll('[data-g]'), function (b) {
         on(b, 'click', function () {
           var g = b.getAttribute('data-g');
@@ -456,30 +414,6 @@
       });
     }
     show();
-  }
-
-  // Hear it first, then see it.
-  function runListen(el, items, onEnd) {
-    var i = 0, got = 0;
-    function show() {
-      if (i >= items.length) return finish(el, '<p>You understood <strong>' + got + ' of ' + items.length + '</strong> by ear.</p>', onEnd);
-      var p = items[i];
-      el.innerHTML = '<div class="card">' + progressHead(i, items.length) +
-        '<button type="button" class="primary big-listen" id="play">▶ Écouter</button>' +
-        '<div class="row"><button type="button" id="slow">🐢 Slowly</button><button type="button" id="see">Show me</button></div>' +
-        '<div id="res"></div></div>';
-      on('#play', 'click', function () { say(p.fr); });
-      on('#slow', 'click', function () { say(p.fr, true); });
-      on('#see', 'click', function () {
-        this.disabled = true;
-        el.querySelector('#res').innerHTML = '<div class="answer"><div class="fr" lang="fr">' + esc(p.fr) + '</div><div class="muted">' + esc(p.en) + '</div></div>' +
-          '<div class="row"><button type="button" id="no">Didn\'t get it</button><button type="button" class="primary" id="yes">Understood</button></div>';
-        on('#yes', 'click', function () { got++; i++; show(); say(items[i] ? items[i].fr : ''); });
-        on('#no', 'click', function () { i++; show(); say(items[i] ? items[i].fr : ''); });
-      });
-    }
-    show();
-    say(items[0].fr);
   }
 
   // Tap the words into order.
@@ -523,7 +457,6 @@
         var ok = placed.map(function (b) { return b.w; }).join(' ') === target.join(' ');
         if (ok && first) right++;
         first = false;
-        say(p.fr);
         draw(ok ? '<div class="answer"><div class="verdict ok">Parfait !</div></div>'
           : '<div class="answer"><div class="verdict near">Not quite. The model:</div><div class="fr" lang="fr">' + esc(p.fr) + '</div></div>');
       }
@@ -540,12 +473,11 @@
       var r = items[i], opts = shuffle(r.options.map(function (o, k) { return { o: o, k: k }; }));
       el.innerHTML = '<div class="card">' + progressHead(i, items.length, r.unitTitle) +
         '<p class="muted small" style="margin-top:10px">Someone says:</p>' +
-        '<div class="say-line">' + speakBtn(r.say) + '<span lang="fr">' + esc(r.say) + '</span></div>' +
+        '<div class="say-line">' + '<span lang="fr">' + esc(r.say) + '</span></div>' +
         '<p class="muted small">What\'s the best reply?</p>' +
         '<div class="options">' + opts.map(function (x) {
           return '<button type="button" data-k="' + x.k + '" lang="fr">' + esc(x.o) + '</button>';
         }).join('') + '</div><div id="why"></div></div>';
-      say(r.say);
       Array.prototype.forEach.call(el.querySelectorAll('[data-k]'), function (b) {
         on(b, 'click', function () {
           var k = +b.getAttribute('data-k');
@@ -555,7 +487,6 @@
             if (+x.getAttribute('data-k') === 0) x.classList.add('right');
             else if (x === b) x.classList.add('wrong');
           });
-          say(r.options[0]);
           el.querySelector('#why').innerHTML = '<div class="answer"><div class="verdict ' + (k === 0 ? 'ok">Yes!' : 'bad">Not that one.') + '</div>' +
             (r.why ? '<div>' + esc(r.why) + '</div>' : '') + '</div><div class="row"><button type="button" class="primary" id="next">Next</button></div>';
           on('#next', 'click', function () { i++; show(); });
@@ -567,61 +498,30 @@
 
   function dialogueHTML(u) {
     return '<p class="muted">' + esc(u.dialogue.setting) + '</p>' +
-      '<div class="toggles"><button type="button" id="playall" class="primary">▶ Play all</button>' +
-      '<button type="button" id="mode" aria-pressed="false">Your turn: hide my lines</button>' +
+      '<div class="toggles"><button type="button" id="mode" aria-pressed="false">Your turn: hide my lines</button>' +
       '<button type="button" id="english" aria-pressed="true">English</button></div>' +
       '<div class="chat" id="chat"></div>';
   }
   function runDialogue(u) {
-    var lines = u.dialogue.lines, practice = false, english = true, hidden = {}, token = 0;
-    var speakers = [];
-    lines.forEach(function (l) { if (l[0] !== 'Vous' && speakers.indexOf(l[0]) < 0) speakers.push(l[0]); });
-    function draw(playing) {
+    var lines = u.dialogue.lines, practice = false, english = true, hidden = {};
+    function draw() {
       document.getElementById('chat').innerHTML = lines.map(function (l, n) {
         var me = l[0] === 'Vous', hide = practice && me && hidden[n] !== false;
-        return '<div class="bubble' + (me ? ' me' : '') + (playing === n ? ' playing' : '') + '" id="b' + n + '">' +
+        return '<div class="bubble' + (me ? ' me' : '') + '">' +
           '<div class="who">' + esc(me ? 'You' : l[0]) + '</div>' +
           (hide
             ? '<div class="hiddenline">' + esc(l[2]) + '</div><button type="button" class="speak" data-show="' + n + '" style="margin-top:6px">Show</button>'
-            : '<div class="line-row">' + speakBtn(l[1]) + '<div><div class="fr" lang="fr">' + esc(l[1]) + '</div>' +
+            : '<div class="line-row">' + '<div><div class="fr" lang="fr">' + esc(l[1]) + '</div>' +
               (english ? '<div class="en">' + esc(l[2]) + '</div>' : '') + '</div></div>') +
           '</div>';
       }).join('');
       Array.prototype.forEach.call(document.querySelectorAll('[data-show]'), function (b) {
-        on(b, 'click', function () { hidden[+b.getAttribute('data-show')] = false; draw(); say(lines[+b.getAttribute('data-show')][1]); });
+        on(b, 'click', function () { hidden[+b.getAttribute('data-show')] = false; draw(); });
       });
     }
-    function playFrom(n, t) {
-      if (t !== token || n >= lines.length) { if (t === token) stop(); return; }
-      var l = lines[n], me = l[0] === 'Vous';
-      draw(n);
-      var b = document.getElementById('b' + n); if (b) b.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      function speakIt() {
-        var u2 = utter(l[1], { voice: me ? 0 : speakers.indexOf(l[0]) + 1, pitch: me ? 1 : (speakers.indexOf(l[0]) % 2 ? 0.85 : 1.15) });
-        u2.onend = function () { setTimeout(function () { playFrom(n + 1, t); }, 350); };
-        speechSynthesis.speak(u2);
-      }
-      if (practice && me) {
-        // Your turn: time to say it yourself, then hear the model.
-        setTimeout(function () { if (t !== token) return; hidden[n] = false; draw(n); speakIt(); }, 2000 + l[1].split(' ').length * 450);
-      } else speakIt();
-    }
-    function stop() {
-      token++;
-      if ('speechSynthesis' in window) speechSynthesis.cancel();
-      var p = document.getElementById('playall'); if (p) p.textContent = '▶ Play all';
-      draw();
-    }
-    on('#playall', 'click', function () {
-      if (this.textContent.indexOf('Stop') >= 0) return stop();
-      if (!('speechSynthesis' in window)) return toast('Speech is not available on this device');
-      speechSynthesis.cancel(); token++; hidden = {};
-      this.textContent = '⏹ Stop';
-      playFrom(0, token);
-    });
     on('#mode', 'click', function () {
       practice = !practice; hidden = {}; this.setAttribute('aria-pressed', practice);
-      if (practice) toast('Your lines are hidden. Press Play: say each one in the pause.');
+      if (practice) toast('Your lines are hidden. Say each one out loud, then tap Show.');
       draw();
     });
     on('#english', 'click', function () { english = !english; this.setAttribute('aria-pressed', english); draw(); });
@@ -634,9 +534,9 @@
       html += '<h3>How it works</h3><ul class="notes">' + s.notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul>';
     }
     if (s.examples && s.examples.length) {
-      html += '<h3>Examples <span class="muted small">(tap 🔊 to hear, twice for slow)</span></h3><div>' +
+      html += '<h3>Examples</h3><div>' +
         s.examples.map(function (e) {
-          return '<div class="ex">' + speakBtn(e[0]) + '<div><div class="fr" lang="fr">' + esc(e[0]) + '</div><div class="en">' + esc(e[1]) + '</div></div></div>';
+          return '<div class="ex">' + '<div><div class="fr" lang="fr">' + esc(e[0]) + '</div><div class="en">' + esc(e[1]) + '</div></div></div>';
         }).join('') + '</div>';
     }
     return html;
@@ -660,7 +560,7 @@
     }).join('');
   }
   function phraseRow(p) {
-    return '<div class="ex">' + speakBtn(p.fr, p.lang) + '<div><div class="fr" lang="' + (p.lang || 'fr') + '">' + esc(p.fr) + '</div>' +
+    return '<div class="ex">' + '<div><div class="fr" lang="' + (p.lang || 'fr') + '">' + esc(p.fr) + '</div>' +
       '<div class="en">' + esc(p.en) + '</div>' + (p.note ? '<div class="note">' + esc(p.note) + '</div>' : '') + '</div></div>';
   }
 
@@ -732,13 +632,13 @@
       (due ? '<p><strong>' + plural(due, 'sentence') + '</strong> due. Do these every day: it\'s what makes phrases stick.</p><div class="row"><a class="btn primary" href="#review">Review now</a></div>'
         : '<p class="muted">Nothing due. Sentences you practise come back here just before you\'d forget them.</p>') + '</div>';
     html += '<div class="card"><div class="eyebrow">Quick practice · 5 minutes</div><p class="muted small">Mixed from the situations you\'ve started.</p>' +
-      '<div class="row"><a class="btn" href="#quick/replies">💬 What would you say?</a><a class="btn" href="#quick/listen">🎧 Listening</a><a class="btn" href="#quick/build">🧩 Word order</a></div></div>';
+      '<div class="row"><a class="btn" href="#quick/replies">💬 What would you say?</a><a class="btn" href="#quick/build">🧩 Word order</a></div></div>';
     html += '<div class="card"><div class="eyebrow">In the wild</div><p>When you meet one of your phrases in your novel, the Bible, a sermon, a song or a podcast, note it under <a href="#mine">Mine</a>.</p></div>';
     app.innerHTML = html;
   }
 
   function viewUnits() {
-    var html = '<h1>Situations</h1><p class="muted">Work through them in order, or jump to whatever you need next. Each has key phrases, patterns, listening, word order, a conversation, quick replies, translation and a role-play.</p><div class="units">';
+    var html = '<h1>Situations</h1><p class="muted">Work through them in order, or jump to whatever you need next. Each has key phrases, patterns, word order, a conversation, quick replies, translation and a role-play.</p><div class="units">';
     html += UNITS.map(function (u) {
       var p = unitProgress(u), complete = p.done === p.total;
       return '<a href="#u/' + u.id + '"' + (complete ? ' class="complete"' : '') + '><span class="emo">' + u.emoji + '</span><span class="t"><b>' + esc(u.title) + '</b>' +
@@ -772,7 +672,7 @@
     var flatFr = u.flat.filter(function (p) { return p.lang !== 'mg'; });
 
     if (st.kind === 'phrases') {
-      html += '<p class="muted">Tap 🔊 to hear each phrase (twice for slow). Say every one out loud, copying the rhythm. Then cover the French and try to say it from the English.</p>' +
+      html += '<p class="muted">Say every phrase out loud. Then cover the French and try to say it from the English.</p>' +
         phrasesHTML(u) + doneBtn;
       app.innerHTML = html;
     } else if (st.kind === 'pattern') {
@@ -782,11 +682,6 @@
       app.innerHTML = html;
       runDeck(document.getElementById('deck'), patCards(s), reveal);
       skipLink();
-    } else if (st.kind === 'listen') {
-      html += '<p class="muted">Listen first and try to understand before you look. Tap Écouter to hear it again.</p><div id="deck"></div><div id="after" hidden>' + doneBtn + '</div>';
-      app.innerHTML = html;
-      runListen(document.getElementById('deck'), shuffle(flatFr).slice(0, 10), reveal);
-      skipLink();
     } else if (st.kind === 'build') {
       var buildable = flatFr.filter(function (p) { var n = tokens(p.fr).length; return n >= 4 && n <= 14 && p.fr.indexOf('…') < 0 && p.fr.indexOf(' / ') < 0; });
       html += '<p class="muted">Tap the words in the right order. Tap a word in your answer to send it back.</p><div id="deck"></div><div id="after" hidden>' + doneBtn + '</div>';
@@ -794,7 +689,7 @@
       runBuild(document.getElementById('deck'), shuffle(buildable).slice(0, 8), reveal);
       skipLink();
     } else if (st.kind === 'dialogue') {
-      html += dialogueHTML(u) + '<p class="muted small">Try it three ways: listen with English on, then with English off, then switch on "Your turn" and say your lines in the pauses.</p>' + doneBtn;
+      html += dialogueHTML(u) + '<p class="muted small">Read it with English on, then with English off. Then switch on "Your turn": say each of your lines out loud before you tap Show.</p>' + doneBtn;
       app.innerHTML = html;
       runDialogue(u);
     } else if (st.kind === 'replies') {
@@ -843,7 +738,7 @@
   }
   function viewQuick(kind) {
     var pool = quickPool(), html = '<p class="small"><a href="#today">← Today</a></p>';
-    if (kind === 'replies') {
+    if (kind !== 'build') {
       html += '<h1>What would you say?</h1><div id="deck"></div>';
       app.innerHTML = html;
       var rs = [];
@@ -852,16 +747,10 @@
     } else {
       var ph = [];
       pool.forEach(function (u) { ph = ph.concat(u.flat.filter(function (p) { return p.lang !== 'mg'; })); });
-      if (kind === 'build') {
-        ph = ph.filter(function (p) { var n = tokens(p.fr).length; return n >= 4 && n <= 14 && p.fr.indexOf('…') < 0 && p.fr.indexOf(' / ') < 0; });
-        html += '<h1>Word order</h1><div id="deck"></div>';
-        app.innerHTML = html;
-        runBuild(document.getElementById('deck'), shuffle(ph).slice(0, 8), againBtn);
-      } else {
-        html += '<h1>Listening</h1><div id="deck"></div>';
-        app.innerHTML = html;
-        runListen(document.getElementById('deck'), shuffle(ph).slice(0, 10), againBtn);
-      }
+      ph = ph.filter(function (p) { var n = tokens(p.fr).length; return n >= 4 && n <= 14 && p.fr.indexOf('…') < 0 && p.fr.indexOf(' / ') < 0; });
+      html += '<h1>Word order</h1><div id="deck"></div>';
+      app.innerHTML = html;
+      runBuild(document.getElementById('deck'), shuffle(ph).slice(0, 8), againBtn);
     }
     function againBtn() {
       document.getElementById('deck').insertAdjacentHTML('beforeend', '<div class="row"><button type="button" id="again">Another round</button><a class="btn primary" href="#today">Done</a></div>');
@@ -953,7 +842,7 @@
       '<div class="row"><button type="button" id="sp-add">Save it</button></div>';
     if (state.spotted.length) {
       html += '<div style="margin-top:12px">' + state.spotted.slice().reverse().map(function (x) {
-        return '<div class="ex">' + speakBtn(x.text) + '<div><div class="fr" lang="fr">' + esc(x.text) + '</div><div class="en">' +
+        return '<div class="ex">' + '<div><div class="fr" lang="fr">' + esc(x.text) + '</div><div class="en">' +
           esc(x.where) + ' · ' + new Date(x.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) + '</div></div></div>';
       }).join('') + '</div>';
     }
@@ -1014,7 +903,6 @@
     });
   }
   function route() {
-    if ('speechSynthesis' in window) speechSynthesis.cancel();
     var parts = location.hash.slice(1).split('/').map(decodeURIComponent);
     var r = parts[0] || 'today';
     if (r === 'u') {
