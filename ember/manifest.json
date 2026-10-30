@@ -27,6 +27,10 @@
     {
       "slug": "weekly",
       "label": "Weekly packs"
+    },
+    {
+      "slug": "mandarin",
+      "label": "Mandarin"
     }
   ],
   "items": [
@@ -281,6 +285,20 @@
       "title": "Week 3 homework pack (full, with parent answers)",
       "path": "weekly/pdfs/week3-homework-pack.pdf",
       "type": "pdf",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "French Lab: build French one sentence pattern at a time",
+      "path": "french/french-lab/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "Mandarin Lab: build Mandarin one sentence pattern at a time",
+      "path": "mandarin/mandarin-lab/",
+      "type": "html",
       "year": 2026,
       "status": "current"
     }

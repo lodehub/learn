@@ -1,0 +1,207 @@
+{
+  "code": "zh",
+  "name": "Mandarin",
+  "lab": "Mandarin Lab",
+  "note": "Chinese is written as 汉字|pinyin pairs separated by spaces; each pair is one word tile.",
+  "words": {
+    "who": "谁|shéi", "what": "什么|shénme", "where": "哪儿|nǎr", "when": "什么时候|shénme shíhou",
+    "why": "为什么|wèishénme", "how": "怎么|zěnme", "which": "哪个|nǎge", "howmany": "多少|duōshao",
+    "hello": "你好|nǐ hǎo", "bye": "再见|zàijiàn", "please": "请|qǐng", "thanks": "谢谢|xièxie",
+    "yes": "对|duì", "no": "不|bù", "sorry": "对不起|duìbuqǐ",
+
+    "dog":   { "s": "狗|gǒu", "mw": "只|zhī" },
+    "cat":   { "s": "猫|māo", "mw": "只|zhī" },
+    "ball":  { "s": "球|qiú", "mw": "个|gè" },
+    "book":  { "s": "书|shū", "mw": "本|běn" },
+    "car":   { "s": "车|chē", "mw": "辆|liàng" },
+    "bike":  { "s": "自行车|zìxíngchē", "mw": "辆|liàng" },
+    "bag":   { "s": "包|bāo", "mw": "个|gè" },
+    "phone": { "s": "手机|shǒujī", "mw": "个|gè" },
+    "itis": "这是|zhè shì",
+    "a": { "s": "一|yī", "show": "一 + 只/个/本…|yī + measure word" },
+    "not": "不|bù",
+
+    "table": { "s": "桌子|zhuōzi", "mw": "张|zhāng" },
+    "chair": { "s": "椅子|yǐzi", "mw": "把|bǎ" },
+    "bed":   { "s": "床|chuáng", "mw": "张|zhāng" },
+    "box":   { "s": "盒子|hézi", "mw": "个|gè" },
+    "sofa":  { "s": "沙发|shāfā", "mw": "个|gè" },
+    "on":     { "post": "上|shàng" },
+    "in":     { "post": "里|lǐ" },
+    "under":  { "post": "下面|xiàmiàn" },
+    "nextto": { "post": "旁边|pángbiān" },
+    "isat": "在|zài",
+
+    "apple":  { "s": "苹果|píngguǒ", "mw": "个|gè" },
+    "banana": { "s": "香蕉|xiāngjiāo", "mw": "根|gēn" },
+    "cake":   { "s": "蛋糕|dàngāo", "mw": "块|kuài" },
+    "bread":  { "s": "面包|miànbāo" },
+    "rice":   { "s": "米饭|mǐfàn" },
+    "water":  { "s": "水|shuǐ" },
+    "milk":   { "s": "牛奶|niúnǎi" },
+    "juice":  { "s": "果汁|guǒzhī" },
+    "eat_a":  "吃饭|chīfàn",
+    "sleep":  "睡觉|shuìjiào",
+    "play":   "玩|wán",
+    "toilet": "上|shàng 厕所|cèsuǒ",
+    "gohome": "回|huí 家|jiā",
+    "i": "我|wǒ", "you": "你|nǐ",
+    "want": { "s": "要|yào", "show": "要 / 想|yào / xiǎng" },
+
+    "bird":    { "s": "鸟|niǎo", "mw": "只|zhī" },
+    "fish":    { "s": "鱼|yú", "mw": "条|tiáo" },
+    "horse":   { "s": "马|mǎ", "mw": "匹|pǐ" },
+    "rabbit":  { "s": "兔子|tùzi", "mw": "只|zhī" },
+    "brother": { "s": "弟弟|dìdi", "mw": "个|gè" },
+    "sister":  { "s": "姐姐|jiějie", "mw": "个|gè" },
+    "choc":    { "s": "巧克力|qiǎokèlì" },
+    "icecream":{ "s": "冰淇淋|bīngqílín" },
+    "swim":     "游泳|yóuyǒng",
+    "read":     "看|kàn 书|shū",
+    "football": "踢|tī 足球|zúqiú",
+    "tv":       "看|kàn 电视|diànshì",
+    "draw":     "画画|huàhuà",
+    "sing":     "唱歌|chànggē",
+    "like":     "喜欢|xǐhuan",
+    "have":     "有|yǒu",
+
+    "red":    "红色|hóngsè",
+    "blue":   "蓝色|lánsè",
+    "green":  "绿色|lǜsè",
+    "yellow": "黄色|huángsè",
+    "black":  "黑色|hēisè",
+    "white":  "白色|báisè",
+    "big":    "大|dà",
+    "small":  "小|xiǎo",
+    "fast":   "快|kuài",
+    "slow":   "慢|màn",
+    "pretty": "漂亮|piàoliang",
+    "see":    "看见|kànjiàn",
+    "very":   "很|hěn",
+
+    "school": "学校|xuéxiào",
+    "park":   "公园|gōngyuán",
+    "beach":  "海滩|hǎitān",
+    "shop":   "商店|shāngdiàn",
+    "pool":   "游泳池|yóuyǒngchí",
+    "cinema": "电影院|diànyǐngyuàn",
+    "go":     "去|qù",
+    "eat":    "吃|chī",
+    "drink":  "喝|hē",
+    "everyday": "每天|měitiān",
+
+    "he":  "他|tā",
+    "she": "她|tā",
+    "we":  "我们|wǒmen",
+    "mum": "妈妈|māma",
+    "dad": "爸爸|bàba",
+
+    "yesterday": "昨天|zuótiān", "today": "今天|jīntiān", "tomorrow": "明天|míngtiān", "went": "去了|qù le",
+
+    "and": "和|hé", "but": "但是|dànshì", "because": "因为|yīnwèi",
+    "hungry": "饿|è", "thirsty": "渴|kě", "tired": "累|lèi", "fun": "好玩|hǎowán"
+  },
+
+  "phrases": {
+    "p_who": "是|shì 谁|shéi ？",
+    "p_what": "这|zhè 是|shì 什么|shénme ？",
+    "p_where": "在|zài 哪儿|nǎr ？",
+    "p_when": "什么时候|shénme shíhou ？",
+    "p_why": "为什么|wèishénme ？",
+    "p_how": "怎么|zěnme 说|shuō ？",
+    "p_which": "哪个|nǎge ？",
+    "p_howmuch": "多少|duōshao 钱|qián ？",
+    "p_name": "你|nǐ 叫|jiào 什么|shénme 名字|míngzi ？",
+    "p_age": "你|nǐ 几|jǐ 岁|suì ？",
+    "p_howru": "你|nǐ 好|hǎo 吗|ma ？",
+    "p_fine": "我|wǒ 很|hěn 好|hǎo ， 谢谢|xièxie 。",
+    "p_toilet": "厕所|cèsuǒ 在|zài 哪儿|nǎr ？"
+  },
+
+  "frames": {
+    "this_is": "这|zhè 是|shì {n.one} {n} 。",
+    "is_it": "这|zhè 是|shì {n} 吗|ma ？",
+    "not_it": "这|zhè 不|bú 是|shì {n} 。",
+    "where_is": "{n} 在|zài 哪儿|nǎr ？",
+    "is_on": "{n} 在|zài {p@m} 。",
+    "want_food": "我|wǒ 要|yào {n} 。",
+    "want_act": "我|wǒ 想|xiǎng {a} 。",
+    "dont_want": "我|wǒ 不|bù 想|xiǎng {a} 。",
+    "you_want": "你|nǐ 要|yào {n} 吗|ma ？",
+    "like_n": "我|wǒ 喜欢|xǐhuan {n} 。",
+    "dislike_n": "我|wǒ 不|bù 喜欢|xǐhuan {n} 。",
+    "like_a": "我|wǒ 喜欢|xǐhuan {a} 。",
+    "have": "我|wǒ 有|yǒu {n.one} {n} 。",
+    "not_have": "我|wǒ 没有|méiyǒu {n} 。",
+    "you_have": "你|nǐ 有|yǒu {n} 吗|ma ？",
+    "see": "我|wǒ 看见|kànjiàn {n.one} {c} 的|de {n} 。",
+    "is_adj": "{n} 很|hěn {j} 。",
+    "is_colour": "{n} 是|shì {c} 的|de 。",
+    "go_place": "我|wǒ 去|qù {l} 。",
+    "want_go": "我|wǒ 想|xiǎng 去|qù {l} 。",
+    "every_day": "我|wǒ 每天|měitiān {a} 。",
+    "i_eat": "我|wǒ 吃|chī {n} 。",
+    "i_drink": "我|wǒ 喝|hē {n} 。",
+    "he_does": "{w} {a} 。",
+    "he_likes": "{w} 喜欢|xǐhuan {n} 。",
+    "he_has": "{w} 有|yǒu {n.one} {n} 。",
+    "he_wants": "{w} 想|xiǎng {a} 。",
+    "yesterday": "昨天|zuótiān 我|wǒ {a} 了|le 。",
+    "tomorrow": "明天|míngtiān 我|wǒ 要|yào {a} 。",
+    "went": "昨天|zuótiān 我|wǒ 去|qù {l} 了|le 。",
+    "today_go": "今天|jīntiān 我|wǒ 去|qù {l} 。",
+    "but": "我|wǒ 喜欢|xǐhuan {n} ， 但是|dànshì 我|wǒ 不|bù 喜欢|xǐhuan {m} 。",
+    "and": "我|wǒ 有|yǒu {n.one} {n} 和|hé {m.one} {m} 。",
+    "because": "我|wǒ 想|xiǎng {a} ， 因为|yīnwèi 很|hěn 好玩|hǎowán 。",
+    "hungry": "我|wǒ 饿|è 了|le ， 我|wǒ 要|yào {n} 。",
+    "thirsty": "我|wǒ 渴|kě 了|le ， 我|wǒ 要|yào {n} 。",
+    "tired": "我|wǒ 很|hěn 累|lèi ， 我|wǒ 想|xiǎng {a} 。"
+  },
+
+  "tips": {
+    "ask": [
+      "The question word sits where the answer goes: 你叫什么名字？ is literally 'You are called what name?'",
+      "Tones matter. The mark over the pinyin shows the tone: mā high and flat, má rising, mǎ dipping, mà falling.",
+      "For yes, people often say 对 duì (right) or repeat the verb. 不 bù is no / not."
+    ],
+    "name": [
+      "To turn any sentence into a yes/no question, add 吗 ma at the end: 这是狗吗？",
+      "You can't say 一狗 (one dog). You need a measure word: 一只狗, 一本书, 一辆车. 个 gè works for lots of things.",
+      "There's no word for 'the', and verbs never change. Less to learn!"
+    ],
+    "where": [
+      "Word order: thing + 在 zài + place + position. 猫在桌子上 = cat at table on-top.",
+      "The position word (上, 里, 下面, 旁边) comes after the place, not before."
+    ],
+    "want": [
+      "要 yào = want (a thing). 想 xiǎng = would like to (do something). 我要水. 我想睡觉.",
+      "The verb is the same for everyone: 我要, 你要, 他要."
+    ],
+    "like": [
+      "Don't have is 没有 méiyǒu, never 不有.",
+      "喜欢 + an action: 我喜欢游泳 = I like swimming.",
+      "Brothers and sisters are older or younger: 弟弟 little brother, 姐姐 big sister."
+    ],
+    "describe": [
+      "Use 很 hěn to join a thing and a describing word: 车很大 (car very big). Don't use 是 here.",
+      "Describing a noun: colour + 的 + noun: 红色的车 (red car)."
+    ],
+    "do": [
+      "Time words go before the verb: 我每天游泳 (I every day swim).",
+      "去 qù + place. No word for 'to' needed: 我去学校."
+    ],
+    "people": [
+      "Verbs never change! 我吃, 他吃, 我们吃.",
+      "他 (he) and 她 (she) sound exactly the same: tā. Only the writing is different."
+    ],
+    "time": [
+      "There are no tenses. Add a time word (昨天 yesterday, 明天 tomorrow) and the meaning changes.",
+      "Add 了 le at the end when something is finished: 昨天我游泳了.",
+      "要 yào before an action means 'going to': 明天我要游泳."
+    ],
+    "join": [
+      "因为 yīnwèi = because, 但是 dànshì = but.",
+      "和 hé = and, but only between two nouns (a dog and a cat), not between two sentences."
+    ]
+  }
+}

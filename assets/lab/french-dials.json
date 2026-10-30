@@ -1,0 +1,172 @@
+{
+  "title": "Verb Dials",
+  "about": "Level 4 of the Language Lab: every sentence has dials (who, when, yes/no, statement/question). Learn each dial, then turn it on sentences you know.",
+  "persons": [
+    { "id": "je",    "fr": "je",    "p": 0, "agr": "(e)" },
+    { "id": "tu",    "fr": "tu",    "p": 1, "agr": "(e)" },
+    { "id": "il",    "fr": "il",    "p": 2, "agr": "" },
+    { "id": "elle",  "fr": "elle",  "p": 2, "agr": "e" },
+    { "id": "nous",  "fr": "nous",  "p": 3, "agr": "(e)s" },
+    { "id": "vous",  "fr": "vous",  "p": 4, "agr": "(e)(s)" },
+    { "id": "ils",   "fr": "ils",   "p": 5, "agr": "s" },
+    { "id": "elles", "fr": "elles", "p": 5, "agr": "es" }
+  ],
+  "tenses": [
+    { "id": "pres", "name": "présent",       "en": "I do / I'm doing" },
+    { "id": "pc",   "name": "passé composé", "en": "I did / I've done" },
+    { "id": "fp",   "name": "futur proche",  "en": "I'm going to do" },
+    { "id": "fut",  "name": "futur simple",  "en": "I will do" },
+    { "id": "imp",  "name": "imparfait",     "en": "I was doing / I used to do" },
+    { "id": "cond", "name": "conditionnel",  "en": "I would do" }
+  ],
+  "verbs": [
+    { "inf": "parler",    "g": "er", "set": 1, "c": "français", "en": "speak French" },
+    { "inf": "travailler","g": "er", "set": 1, "c": "à la maison", "en": "work from home" },
+    { "inf": "regarder",  "g": "er", "set": 1, "c": "un film", "cn": "de film", "en": "watch a film" },
+    { "inf": "écouter",   "g": "er", "set": 1, "c": "de la musique", "cn": "de musique", "en": "listen to music" },
+    { "inf": "aimer",     "g": "er", "set": 1, "c": "voyager", "en": "like travelling" },
+    { "inf": "habiter",   "g": "er", "set": 1, "c": "en ville", "en": "live in town" },
+    { "inf": "chercher",  "g": "er", "set": 1, "c": "un appartement", "cn": "d'appartement", "en": "look for a flat" },
+    { "inf": "préparer",  "g": "er", "set": 1, "c": "le dîner", "en": "make dinner" },
+    { "inf": "manger",    "g": "er", "set": 1, "c": "au restaurant", "en": "eat out",
+      "pres": ["mange", "manges", "mange", "mangeons", "mangez", "mangent"],
+      "imp": ["mangeais", "mangeais", "mangeait", "mangions", "mangiez", "mangeaient"] },
+    { "inf": "arriver",   "g": "er", "set": 1, "aux": "être", "c": "à l'heure", "en": "arrive on time" },
+    { "inf": "rester",    "g": "er", "set": 1, "aux": "être", "c": "à la maison", "en": "stay at home" },
+    { "inf": "entrer",    "g": "er", "set": 1, "aux": "être", "c": "dans le magasin", "en": "go into the shop" },
+    { "inf": "rentrer",   "g": "er", "set": 1, "aux": "être", "c": "tard", "en": "get home late" },
+    { "inf": "finir",     "g": "ir", "set": 1, "c": "le travail", "en": "finish work" },
+    { "inf": "choisir",   "g": "ir", "set": 1, "c": "un plat", "cn": "de plat", "en": "choose a dish" },
+
+    { "inf": "être",    "set": 2, "c": "en retard", "en": "be late",
+      "pres": ["suis", "es", "est", "sommes", "êtes", "sont"], "pp": "été", "fs": "ser", "is": "ét" },
+    { "inf": "avoir",   "set": 2, "c": "faim", "en": "be hungry",
+      "pres": ["ai", "as", "a", "avons", "avez", "ont"], "pp": "eu", "fs": "aur" },
+    { "inf": "aller",   "set": 2, "aux": "être", "c": "au marché", "en": "go to the market",
+      "pres": ["vais", "vas", "va", "allons", "allez", "vont"], "pp": "allé", "fs": "ir" },
+    { "inf": "faire",   "set": 2, "c": "les courses", "en": "do the shopping",
+      "pres": ["fais", "fais", "fait", "faisons", "faites", "font"], "pp": "fait", "fs": "fer" },
+    { "inf": "pouvoir", "set": 2, "c": "conduire", "en": "be able to drive",
+      "pres": ["peux", "peux", "peut", "pouvons", "pouvez", "peuvent"], "pp": "pu", "fs": "pourr" },
+    { "inf": "vouloir", "set": 2, "c": "partir", "en": "want to leave",
+      "pres": ["veux", "veux", "veut", "voulons", "voulez", "veulent"], "pp": "voulu", "fs": "voudr" },
+    { "inf": "devoir",  "set": 2, "c": "travailler", "en": "have to work",
+      "pres": ["dois", "dois", "doit", "devons", "devez", "doivent"], "pp": "dû", "fs": "devr" },
+    { "inf": "savoir",  "set": 2, "c": "nager", "en": "know how to swim",
+      "pres": ["sais", "sais", "sait", "savons", "savez", "savent"], "pp": "su", "fs": "saur" },
+    { "inf": "venir",   "set": 2, "aux": "être", "c": "à la fête", "en": "come to the party",
+      "pres": ["viens", "viens", "vient", "venons", "venez", "viennent"], "pp": "venu", "fs": "viendr" },
+    { "inf": "prendre", "set": 2, "c": "le bus", "en": "take the bus",
+      "pres": ["prends", "prends", "prend", "prenons", "prenez", "prennent"], "pp": "pris" },
+
+    { "inf": "voir",    "set": 3, "c": "la mer", "en": "see the sea",
+      "pres": ["vois", "vois", "voit", "voyons", "voyez", "voient"], "pp": "vu", "fs": "verr" },
+    { "inf": "dire",    "set": 3, "c": "la vérité", "en": "tell the truth",
+      "pres": ["dis", "dis", "dit", "disons", "dites", "disent"], "pp": "dit" },
+    { "inf": "mettre",  "set": 3, "c": "la table", "en": "set the table",
+      "pres": ["mets", "mets", "met", "mettons", "mettez", "mettent"], "pp": "mis" },
+    { "inf": "partir",  "set": 3, "aux": "être", "c": "en vacances", "en": "go on holiday",
+      "pres": ["pars", "pars", "part", "partons", "partez", "partent"], "pp": "parti" },
+    { "inf": "sortir",  "set": 3, "aux": "être", "c": "avec des amis", "en": "go out with friends",
+      "pres": ["sors", "sors", "sort", "sortons", "sortez", "sortent"], "pp": "sorti" },
+    { "inf": "lire",    "set": 3, "c": "le journal", "en": "read the paper",
+      "pres": ["lis", "lis", "lit", "lisons", "lisez", "lisent"], "pp": "lu" },
+    { "inf": "écrire",  "set": 3, "c": "un message", "cn": "de message", "en": "write a message",
+      "pres": ["écris", "écris", "écrit", "écrivons", "écrivez", "écrivent"], "pp": "écrit" },
+    { "inf": "boire",   "set": 3, "c": "du café", "cn": "de café", "en": "drink coffee",
+      "pres": ["bois", "bois", "boit", "buvons", "buvez", "boivent"], "pp": "bu" },
+    { "inf": "dormir",  "set": 3, "c": "chez des amis", "en": "sleep at friends'",
+      "pres": ["dors", "dors", "dort", "dormons", "dormez", "dorment"], "pp": "dormi" },
+    { "inf": "connaître", "set": 3, "c": "le quartier", "en": "know the area",
+      "pres": ["connais", "connais", "connaît", "connaissons", "connaissez", "connaissent"], "pp": "connu" },
+    { "inf": "attendre",  "set": 3, "c": "le bus", "en": "wait for the bus",
+      "pres": ["attends", "attends", "attend", "attendons", "attendez", "attendent"], "pp": "attendu" },
+    { "inf": "comprendre","set": 3, "c": "la question", "en": "understand the question",
+      "pres": ["comprends", "comprends", "comprend", "comprenons", "comprenez", "comprennent"], "pp": "compris" }
+  ],
+  "stages": [
+    { "id": "s1", "title": "Present: the regular pattern", "emoji": "1️⃣",
+      "sets": [1], "tenses": ["pres"], "dials": ["person"],
+      "intro": "Most verbs end in -er and all follow one pattern. Turn the person dial and only the ending changes.",
+      "tips": [
+        "-er verbs: je parle, tu parles, il parle, nous parlons, vous parlez, ils parlent. Four of the six sound identical.",
+        "-ir verbs like finir: je finis, tu finis, il finit, nous finissons, vous finissez, ils finissent.",
+        "je becomes j' before a vowel or a silent h: j'aime, j'habite, j'écoute.",
+        "Spelling quirk: manger keeps an e before -o and -a: nous mangeons, je mangeais."
+      ] },
+    { "id": "s2", "title": "Present: the big irregulars", "emoji": "2️⃣",
+      "sets": [2], "tenses": ["pres"], "dials": ["person"],
+      "intro": "The most used verbs are irregular. Learn these eleven by heart: everything else leans on them.",
+      "tips": [
+        "être, avoir, aller and faire are the engine of the whole language: they build the past and the future.",
+        "pouvoir, vouloir, devoir and savoir are followed by a verb in the infinitive: je peux conduire, je dois travailler.",
+        "Pattern in the irregulars: je / tu end in -s or -x, il ends in -t or -d, ils often changes the stem (veulent, viennent, prennent)."
+      ] },
+    { "id": "s3", "title": "Present: the rest", "emoji": "3️⃣",
+      "sets": [3], "tenses": ["pres"], "dials": ["person"],
+      "intro": "The next tier of common irregulars. Most follow the -s, -s, -t pattern with a longer nous / vous / ils stem.",
+      "tips": [
+        "partir, sortir, dormir: drop the last consonant in the singular (je pars, je sors, je dors), keep it in the plural (nous partons).",
+        "-re verbs like attendre: je attends → j'attends, il attend (no t: the d does the job).",
+        "dire has a strange vous form: vous dites (like vous faites, vous êtes)."
+      ] },
+    { "id": "s4", "title": "No, and questions", "emoji": "❔",
+      "sets": [1, 2, 3], "tenses": ["pres"], "dials": ["person", "neg", "q"],
+      "intro": "Two more dials. Negative: ne … pas around the verb. Question: put est-ce que in front.",
+      "tips": [
+        "ne … pas wraps the conjugated verb only: je ne veux pas partir, not je ne veux partir pas.",
+        "After a negative, un / une / du / de la / des become de (d'): je bois du café → je ne bois pas de café. le / la / les stay.",
+        "Est-ce que + any statement = a question. Before il / elle / ils / elles it becomes est-ce qu'.",
+        "In speech you can also just raise your voice: Tu fais les courses ? Both are accepted here."
+      ] },
+    { "id": "s5", "title": "Passé composé with avoir", "emoji": "⏪",
+      "sets": [1, 2, 3], "verbAux": "avoir", "tenses": ["pres", "pc"], "dials": ["person", "tense", "neg"],
+      "intro": "The everyday past: avoir in the present + the past participle. j'ai parlé, nous avons pris.",
+      "tips": [
+        "Past participles: -er → -é (parlé), -ir → -i (fini). Irregulars to know: été, eu, fait, pu, voulu, dû, su, pris, vu, dit, mis, lu, écrit, bu, connu, attendu, compris.",
+        "Negative wraps the avoir part only: je n'ai pas fini.",
+        "In English this can be 'I did' or 'I have done'. French uses it for both."
+      ] },
+    { "id": "s6", "title": "Passé composé with être", "emoji": "🚪",
+      "sets": [1, 2, 3], "verbAux": "être", "tenses": ["pres", "pc"], "dials": ["person", "tense", "neg"],
+      "intro": "A small group of movement verbs use être instead: je suis allé, elle est partie, nous sommes rentrés.",
+      "tips": [
+        "The être verbs here: aller, venir, partir, sortir, arriver, rester, entrer, rentrer. (Also: monter, descendre, tomber, naître, mourir, retourner, devenir.)",
+        "With être the participle agrees like an adjective: elle est allée, ils sont allés, elles sont allées.",
+        "je / tu / nous / vous could be male or female, so the answers write allé(e), allé(e)s. Type either form.",
+        "Classic mistake to avoid: j'ai allé. It's always je suis allé(e)."
+      ] },
+    { "id": "s7", "title": "The future: two ways", "emoji": "⏩",
+      "sets": [1, 2, 3], "tenses": ["pres", "fp", "fut"], "dials": ["person", "tense", "neg"],
+      "intro": "Futur proche (aller + infinitive) is what people say most. Futur simple (one word) is for plans, promises and writing.",
+      "tips": [
+        "Futur proche: je vais partir, on va voir. Negative: je ne vais pas partir.",
+        "Futur simple = infinitive + -ai, -as, -a, -ons, -ez, -ont: je parlerai, nous finirons. -re verbs drop the e: je prendrai.",
+        "Irregular future stems: ser- (être), aur- (avoir), ir- (aller), fer- (faire), pourr-, voudr-, devr-, saur-, viendr-, verr-."
+      ] },
+    { "id": "s8", "title": "Imparfait: the background past", "emoji": "🎞️",
+      "sets": [1, 2, 3], "tenses": ["pres", "pc", "imp"], "dials": ["person", "tense", "neg"],
+      "intro": "Passé composé is for events. Imparfait is for the background: what used to happen, what was going on.",
+      "tips": [
+        "Take the nous form of the present, drop -ons, add -ais, -ais, -ait, -ions, -iez, -aient: nous buvons → je buvais.",
+        "Only être is irregular: j'étais.",
+        "Rule of thumb: Quand j'étais petit (background), je suis tombé (event).",
+        "'used to' and 'was …ing' in English are almost always imparfait."
+      ] },
+    { "id": "s9", "title": "Conditionnel: would", "emoji": "🤔",
+      "sets": [1, 2, 3], "tenses": ["pres", "fut", "cond"], "dials": ["person", "tense", "neg"],
+      "intro": "Future stem + imparfait endings: je voudrais, je pourrais, je devrais. The polite, wishful and 'if' form.",
+      "tips": [
+        "Same stem as the future (voudr-, pourr-, ser-), with the imparfait endings (-ais, -ait, -ions…).",
+        "The three to use every day: je voudrais (I'd like), je pourrais (I could), je devrais (I should).",
+        "Si + imparfait, then conditionnel: Si j'avais le temps, je partirais en vacances."
+      ] },
+    { "id": "s10", "title": "All the dials", "emoji": "🎛️",
+      "sets": [1, 2, 3], "tenses": ["pres", "pc", "fp", "fut", "imp", "cond"], "dials": ["person", "tense", "neg", "q"], "multi": true,
+      "intro": "Everything at once, sometimes two dials in one go. This is the level to keep coming back to.",
+      "tips": [
+        "Do the dials one at a time in your head: first the tense, then the person, then ne … pas.",
+        "Say the answer out loud before you type it."
+      ] }
+  ]
+}

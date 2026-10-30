@@ -3,12 +3,30 @@
     {
       "slug": "french",
       "label": "French"
+    },
+    {
+      "slug": "mandarin",
+      "label": "Mandarin"
     }
   ],
   "items": [
     {
       "title": "Phrase Lab: 12 weeks of everyday structures",
       "path": "french/phrase-lab/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "Verb Dials (Language Lab level 4): turn any sentence through person, tense, no and question",
+      "path": "french/verb-dials/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "Mainland Mandarin: habits, conversation moves and themes",
+      "path": "mandarin/mainland/",
       "type": "html",
       "year": 2026,
       "status": "current"
