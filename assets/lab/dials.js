@@ -10,9 +10,8 @@
   var BASE = script.src.replace(/[^/]*$/, '');
   var DATA = script.getAttribute('data-data');
   var app = document.getElementById('app');
-  var parts = location.pathname.replace(/[^/]*\.html$/, '').split('/').filter(Boolean);
-  var SLUG = parts[parts.length - 3] || 'guest';
-  var KEY = parts.slice(-3).join(':') + ':state';
+  var SLUG = Learner.slug;
+  var KEY = Learner.key('state');
 
   var D, S = load(), session = null;
 
@@ -185,7 +184,7 @@
 
   function home() {
     var next = D.stages.filter(function (s) { return stars(s.id) < 3; })[0];
-    var html = bar(D.title, '../../#' + encodeURIComponent(parts[parts.length - 2] || ''));
+    var html = bar(D.title, Learner.back);
     html += '<p class="lead">' + esc(D.about) + '</p>';
     html += '<div class="dialrow"><span class="dial">who</span><span class="dial">when</span><span class="dial">yes / no</span><span class="dial">statement / question</span></div>';
     html += '<ul class="stages">' + D.stages.map(function (s, i) {

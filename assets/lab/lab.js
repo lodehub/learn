@@ -12,10 +12,9 @@
   var BASE = script.src.replace(/[^/]*$/, '');
   var app = document.getElementById('app');
 
-  // Progress lives under "<slug>:<subject>:<tool>:" like every other tool.
-  var parts = location.pathname.replace(/[^/]*\.html$/, '').split('/').filter(Boolean);
-  var SLUG = parts[parts.length - 3] || 'guest';
-  var KEY = parts.slice(-3).join(':') + ':state';
+  // Progress lives under "<slug>:<subject>:<tool>:" (see learner.js).
+  var SLUG = Learner.slug;
+  var KEY = Learner.key('state');
 
   var D;                // prepared data
   var S = load();       // saved progress
@@ -410,7 +409,7 @@
     }).length;
     var any = D.stages.some(function (s) { return started(s.id); });
     var knownN = D.words.filter(function (w) { return known('w:' + w.id); }).length;
-    var html = bar(D.lang.lab, '../../#' + encodeURIComponent(parts[parts.length - 2] || ''));
+    var html = bar(D.lang.lab, Learner.back);
     html += '<p class="lead">Learn ' + esc(D.lang.name) + ' one sentence pattern at a time. Each stage adds a frame and a handful of words; old frames keep coming back with your new words.</p>';
     html += '<div class="cards">';
     if (any) html += '<a class="card go" href="#/review"><span class="big-emoji">🔁</span><span><b>Review</b><br><span class="muted">' +

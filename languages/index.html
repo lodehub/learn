@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f5f0">
+  <title>Languages · Learn</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/lab/lab.css">
+</head>
+<body>
+  <!-- The language hub: lists languages/languages.json. Tools live in languages/<subject>/<tool>/ and
+       share their engines and progress with the copies on each child's page (assets/lab/learner.js). -->
+  <main class="page lab" id="app"><p class="muted">Loading…</p></main>
+  <script>
+  (function () {
+    'use strict';
+    var app = document.getElementById('app');
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+    function get(url) { return fetch(url, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(url); return r.json(); }); }
+    function who() { try { return localStorage.getItem('languages:who'); } catch (e) { return null; } }
+    function setWho(s) { try { localStorage.setItem('languages:who', s); } catch (e) { /* private mode */ } }
+    function saved(slug, lang, t) {
+      try { return JSON.parse(localStorage.getItem([slug, lang.id, t.path.split('/')[1], t.save].join(':'))); } catch (e) { return null; }
+    }
+    // A short line of progress from whatever the tool saved.
+    function progress(s) {
+      if (!s) return 'Not started';
+      if (s.stages) {
+        var n = Object.keys(s.stages).length;
+        if (n) return n + ' stage' + (n === 1 ? '' : 's') + ' started';
+      }
+      var boxes = s.sr || s.cards;
+      if (boxes) {
+        var k = Object.keys(boxes).filter(function (id) { var b = boxes[id]; return (b.b != null ? b.b : b.box) >= 2; }).length;
+        if (k) return k + ' known';
+      }
+      return 'Started';
+    }
+
+    Promise.all([get('../children.json'), get('languages.json')]).then(function (res) {
+      var kids = res[0].children, data = res[1];
+      function draw() {
+        var me = who(), child = kids.filter(function (c) { return c.slug === me; })[0];
+        document.body.className = child ? 'c-' + child.colour : '';
+        var html = '<div class="bar"><a class="back" href="../" aria-label="Back to everyone">&#8592;</a><h1>Languages</h1></div>';
+        html += '<p class="lead">' + esc(data.about) + '</p>';
+        html += '<h2 id="who">Who\'s learning?</h2><div class="verbchips">' + kids.map(function (c) {
+          return '<button type="button" class="chip' + (c.slug === me ? ' on' : '') + '" data-who="' + esc(c.slug) + '">' + esc(c.label) + '</button>';
+        }).join('') + '</div>';
+        if (!child) html += '<p class="muted">Pick a name to start.</p>';
+        data.languages.forEach(function (lang) {
+          html += '<h2 class="lvl" id="' + lang.id + '">' + lang.emoji + ' ' + esc(lang.name) + '</h2><ul class="stages">' + lang.tools.map(function (t) {
+            var line = child ? progress(saved(me, lang, t)) : '';
+            return '<li><a class="stage tool' + (child ? '' : ' off') + '" href="' + esc(t.path) + '"><span class="name">' +
+              '<span class="muted small">' + esc(t.level) + ' · ' + esc(t.for) + '</span><br>' + esc(t.title) +
+              '<span class="blurb">' + esc(t.blurb) + '</span></span>' + (line ? '<span class="badge">' + esc(line) + '</span>' : '') + '</a></li>';
+          }).join('') + '</ul>';
+        });
+        app.innerHTML = html;
+        Array.prototype.forEach.call(app.querySelectorAll('[data-who]'), function (b) {
+          b.onclick = function () { setWho(b.getAttribute('data-who')); draw(); };
+        });
+        Array.prototype.forEach.call(app.querySelectorAll('.tool'), function (a) {
+          a.onclick = function (e) { if (!who()) { e.preventDefault(); document.getElementById('who').scrollIntoView({ behavior: 'smooth' }); } };
+        });
+        var h = location.hash.slice(1), el = h && document.getElementById(h);
+        if (el) el.scrollIntoView();
+      }
+      draw();
+    }).catch(function (e) {
+      app.innerHTML = '<p class="empty">Could not load this page. Check your connection and try again.</p>';
+      console.error(e);
+    });
+  })();
+  </script>
+</body>
+</html>
