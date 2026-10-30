@@ -183,3 +183,14 @@ input.type:focus { outline: none; border-color: var(--accent); }
 .dlg.turn .line.me:not(.shown) .h { visibility: hidden; height: 0; }
 .dlg.turn .line.me:not(.shown)::after { content: "tap to check"; margin-left: auto; font-size: 13px; color: var(--accent); align-self: center; }
 .dlg.turn .line.me:not(.shown) { cursor: pointer; }
+
+/* Language hub */
+.verbchips button.chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.stage.tool { align-items: flex-start; }
+.stage.tool.off { opacity: .55; }
+.stage .blurb { display: block; margin-top: 4px; font-size: 15px; font-weight: 500; color: var(--muted); line-height: 1.35; }
+.stage .badge {
+  flex: none; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft);
+  color: var(--accent); font-size: 13px; font-weight: 700; white-space: nowrap;
+}
+.hub-link { margin-top: var(--gap); }

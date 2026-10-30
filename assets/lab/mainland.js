@@ -7,9 +7,8 @@
 
   var BASE = document.currentScript.src.replace(/[^/]*$/, '');
   var app = document.getElementById('app');
-  var parts = location.pathname.replace(/[^/]*\.html$/, '').split('/').filter(Boolean);
-  var SLUG = parts[parts.length - 3] || 'guest';
-  var KEY = parts.slice(-3).join(':') + ':state';
+  var SLUG = Learner.slug;
+  var KEY = Learner.key('state');
   var D, S = load(), session = null;
 
   function esc(s) {
@@ -85,7 +84,7 @@
   function home() {
     var all = items(), t = today();
     var due = all.filter(function (it) { var r = S.sr[it.id]; return r && r.d <= t; }).length;
-    var html = bar(D.title, '../../#' + encodeURIComponent(parts[parts.length - 2] || ''));
+    var html = bar(D.title, Learner.back);
     html += '<p class="lead">' + esc(D.about) + '</p>';
     html += '<div class="cards">';
     html += '<a class="card go" href="#/review"><span class="big-emoji">🔁</span><span><b>Review</b><br><span class="muted">' +

@@ -1,0 +1,21 @@
+{
+  "about": "Every language tool in one place, in order of level. Pick who's learning: progress is saved for each person, and it's the same progress as on their own page.",
+  "languages": [
+    { "id": "french", "name": "French", "emoji": "🇫🇷",
+      "tools": [
+        { "level": "Levels 1–3", "for": "Beginners", "title": "French Lab", "path": "french/french-lab/", "save": "state",
+          "blurb": "One sentence pattern at a time: ask questions, name things, I want, I like, describe, actions, then he / she / we, past and future. About 110 words in 10 stages." },
+        { "level": "Level 4", "for": "After French Lab", "title": "Verb Dials", "path": "french/verb-dials/", "save": "state",
+          "blurb": "Turn any sentence through person, tense, negative and question. 37 verbs, six tenses, typed answers and a speed round." },
+        { "level": "Level 5", "for": "Confident speakers", "title": "Phrase Lab", "path": "french/phrase-lab/", "save": "v2",
+          "blurb": "Real situations and the structures for them, with conversations to take part in and spaced review." }
+      ] },
+    { "id": "mandarin", "name": "Mandarin", "emoji": "🇨🇳",
+      "tools": [
+        { "level": "Levels 1–3", "for": "Beginners", "title": "Mandarin Lab", "path": "mandarin/mandarin-lab/", "save": "state",
+          "blurb": "The same 10-stage ladder as French Lab, with pinyin and measure words: build sentences tile by tile." },
+        { "level": "Fluent", "for": "Malaysian Chinese speakers", "title": "Mainland Mandarin", "path": "mandarin/mainland/", "save": "state",
+          "blurb": "Sound like the mainland: habits to swap, conversation moves, and themes with the words people in China actually use." }
+      ] }
+  ]
+}
