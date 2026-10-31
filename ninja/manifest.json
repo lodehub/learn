@@ -62,6 +62,15 @@
       "topic": "Percentages and ratios"
     },
     {
+      "title": "Letters that stand for numbers: algebra from scratch",
+      "path": "maths/explore-algebra/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "strand": "explore",
+      "topic": "Algebra"
+    },
+    {
       "title": "Answer it the way the question asks",
       "path": "english/answer-it-right/",
       "type": "html",
