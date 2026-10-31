@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4fc">
+<title>Algebra from scratch</title>
+<style>
+:root{--bg:#f7f4fc;--card:#ffffff;--ink:#2b2a28;--mute:#6f6b64;--acc:#7a4fc2;--accsoft:#f1ebfa;--two:#d9682a;--twosoft:#fdeee4;--ok:#1b7f4b;--oksoft:#e2f4ea;--bad:#b3261e;--badsoft:#fbe7e5;--line:#e2dcec;--grid:#ece6f4;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1b1e;--card:#27252b;--ink:#f1eee9;--mute:#aaa49b;--acc:#b597ea;--accsoft:#2e2638;--two:#f0935a;--twosoft:#3a2a20;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3740;--grid:#312e36;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b1e;--card:#27252b;--ink:#f1eee9;--mute:#aaa49b;--acc:#b597ea;--accsoft:#2e2638;--two:#f0935a;--twosoft:#3a2a20;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3740;--grid:#312e36;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(26px,6vw,34px);margin:2px 0 6px;line-height:1.2}
+.lede{color:var(--mute);margin:0 0 14px}
+.rooms{display:flex;gap:6px;overflow-x:auto;padding:4px 0 10px;margin:0 0 6px;scrollbar-width:none}
+.rooms::-webkit-scrollbar{display:none}
+.rooms button{flex:none;min-width:48px;height:48px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:16px;font-weight:600;cursor:pointer}
+.rooms button.done{background:var(--oksoft);border-color:var(--ok);color:var(--ok)}
+.rooms button[aria-current="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+section.room{display:none}section.room.on{display:block}
+h2{font-size:clamp(23px,5.5vw,29px);margin:6px 0 10px;line-height:1.25}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
+.card h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+.big{background:var(--accsoft);border-left:5px solid var(--acc);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.big b:first-child{color:var(--acc)}
+.aside{font-size:16px;color:var(--mute);border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;min-height:52px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:12px 14px;border-radius:12px;font:inherit;font-size:17px;cursor:pointer}
+.opt.right{background:var(--oksoft);border-color:var(--ok)}
+.opt.wrong{background:var(--badsoft);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.why{display:none;margin-top:10px}
+.why.show{display:block}
+.g{color:var(--ok)}.r{color:var(--bad)}
+svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
+svg text{font-family:inherit;fill:var(--ink)}
+.ctl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:10px 0 0}
+.ctl label{font-size:16px;color:var(--mute);min-width:70px}
+.ctl output{font-variant-numeric:tabular-nums;font-weight:700;min-width:40px;text-align:right}
+input[type=range]{width:100%;height:40px;accent-color:var(--acc)}
+.read{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px}
+.read div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:16px}
+.read b{display:block;font-size:22px;font-variant-numeric:tabular-nums;color:var(--acc)}
+.ans{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.ans input{font:inherit;font-size:20px;padding:10px 12px;width:110px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.btn{min-height:52px;border:1px solid var(--acc);background:var(--acc);color:#fff;padding:10px 18px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btn:disabled{opacity:.4;cursor:default}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.btns .btn{flex:1 1 200px}
+textarea{width:100%;min-height:96px;font:inherit;font-size:17px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+.saved{font-size:13px;color:var(--mute);margin-top:4px;min-height:18px}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:18px;flex-wrap:wrap}
+.nav .btn{flex:1;min-width:140px}
+.eq{font-size:clamp(24px,6vw,32px);font-weight:700;text-align:center;margin:8px 0;font-variant-numeric:tabular-nums}
+.eq .x{color:var(--acc)}
+.box{display:inline-block;width:1.1em;height:1.1em;border:3px solid var(--acc);border-radius:6px;vertical-align:-.15em}
+.msg{text-align:center;min-height:28px;font-weight:600}
+.trick{font-size:22px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center;padding:10px}
+.steps{display:flex;flex-direction:column;gap:8px}
+.step{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.step .say{flex:1 1 180px}
+.bag{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px 10px 14px 14px;background:var(--acc);color:#fff;font-weight:700;font-style:italic}
+.blk{display:inline-block;width:14px;height:14px;border-radius:3px;background:var(--two);margin:1px}
+.pics{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.end{text-align:center;padding:10px 0}
+@media print{
+  .rooms,.nav,.btn,svg,.ctl,.read,.opts,.btns,.ans{display:none!important}
+  section.room{display:block!important;page-break-inside:avoid}
+  section.room > *:not(h2):not(.kick):not(.note-card){display:none!important}
+  textarea{border:none;min-height:0}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Explore · Maths · from first principles</p>
+  <h1>Letters that stand for numbers</h1>
+  <p class="lede">Algebra from scratch: the big new idea in secondary school maths. You already know more of it than you think.</p>
+</header>
+<nav class="rooms" id="rooms" aria-label="Rooms"></nav>
+
+<!-- ROOM 0 -->
+<section class="room" id="r0" data-title="Mind reading">
+  <p class="kick">Room 1 of 7</p>
+  <h2>I can read your mind</h2>
+  <p>Get a pencil, or do it in your head. Don't tell me your number. Tap <b>Done</b> after each step.</p>
+  <div class="card">
+    <div class="trick" id="trick">Think of a whole number. Any number you like.</div>
+    <div class="btns"><button class="btn" type="button" id="trickGo">Done</button><button class="btn ghost" type="button" id="trickAgain">Start again</button></div>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Try it again with a <i>really</i> different number, like 1000. What do you think will happen?</p>
+    <div class="opts" data-answer="1" data-why="It's always 5, whatever number you pick. It isn't magic and it isn't luck. By the end of this journey you'll be able to <b>prove</b> it always works, and invent tricks of your own. The tool that does it is called <b>algebra</b>.">
+      <button class="opt" type="button">I'll get a different answer this time</button>
+      <button class="opt" type="button">I'll get 5 again</button>
+      <button class="opt" type="button">It only works for small numbers</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Why do you think the trick always lands on 5? Have a guess before you find out.</p><textarea data-note="r0" placeholder="I think…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 1 -->
+<section class="room" id="r1" data-title="Mystery boxes">
+  <p class="kick">Room 2 of 7</p>
+  <h2>You've been doing algebra already</h2>
+  <p>You've solved puzzles like this loads of times:</p>
+  <p class="eq"><span class="box"></span> + 4 = 11</p>
+  <p>The box is hiding a number. You can work out which one: 7.</p>
+  <p>In secondary school, the box gets a <b>letter</b> instead. That's the whole change:</p>
+  <p class="eq"><span class="x">n</span> + 4 = 11</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Why use a letter instead of a box?</p>
+    <div class="opts" data-answer="2" data-why="Exactly. With two hidden numbers, two boxes look identical and you'd mix them up. Letters give each mystery number its own <b>name</b>: <i>a</i> and <i>b</i>, or <i>w</i> for wins and <i>d</i> for draws. A letter is just a box with a name tag.">
+      <button class="opt" type="button">Because letters are harder</button>
+      <button class="opt" type="button">Because the letter is always a secret code for its place in the alphabet</button>
+      <button class="opt" type="button">So you can have more than one mystery number and tell them apart</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: find the hidden number</h3>
+    <p class="eq" style="font-size:24px"><span class="x">a</span> + 7 = 15</p>
+    <div class="ans"><span><i>a</i> =</span><input id="q1" type="text" inputmode="numeric" autocomplete="off" aria-label="a equals"><button class="btn" type="button" id="q1Go">Check</button></div>
+    <div class="why" id="q1Fb"></div>
+    <p class="eq" style="font-size:24px;margin-top:16px">4<span class="x">b</span> = 28</p>
+    <p class="aside" style="margin-top:0">New rule: a number stuck to a letter means <b>times</b>. 4<i>b</i> means 4 × <i>b</i>. Mathematicians are lazy and skip the × sign (it also looks too much like <i>x</i>).</p>
+    <div class="ans"><span><i>b</i> =</span><input id="q2" type="text" inputmode="numeric" autocomplete="off" aria-label="b equals"><button class="btn" type="button" id="q2Go">Check</button></div>
+    <div class="why" id="q2Fb"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> A letter in maths is a number you don't know yet. Everything you know about numbers still works on it.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Make up your own mystery-number puzzle using a letter. Write the answer underneath.</p><textarea data-note="r1" placeholder="My puzzle: …"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 2 -->
+<section class="room" id="r2" data-title="The balance">
+  <p class="kick">Room 3 of 7</p>
+  <h2>The balance: how to find any hidden number</h2>
+  <p>Easy puzzles you can just see. Harder ones need a method. Here's the one secondary schools use. Think of an equals sign as a <b>balance</b>: both sides weigh the same.</p>
+  <p>Each <span class="bag">x</span> bag has the same secret number of blocks inside. Each <span class="blk"></span> is one loose block. Find out how many blocks are in a bag, without opening it.</p>
+  <div class="card">
+    <h3>Try it</h3>
+    <svg id="scale" viewBox="0 0 360 240" role="img" aria-label="A balance scale"></svg>
+    <p class="eq" id="balEq"></p>
+    <p class="msg" id="balMsg"></p>
+    <div class="btns">
+      <button class="btn" type="button" id="balBoth">Take 1 block off <b>both</b> sides</button>
+      <button class="btn ghost" type="button" id="balOne">Take 1 block off the left only</button>
+      <button class="btn" type="button" id="balShare">Share each side out between the bags</button>
+    </div>
+    <div class="btns"><button class="btn ghost" type="button" id="balNext">Next puzzle</button></div>
+  </div>
+  <div class="card">
+    <h3>Predict</h3>
+    <p>What happened when you took a block off just one side?</p>
+    <div class="opts" data-answer="0" data-why="It tipped. The balance only stays level if you do <b>the same thing to both sides</b>. That one rule is how you solve almost every equation you'll meet up to GCSE.">
+      <button class="opt" type="button">It tipped, so it wasn't fair any more</button>
+      <button class="opt" type="button">Nothing, it stayed level</button>
+      <button class="opt" type="button">The bags changed size</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> Do the same to both sides and the equation stays true. Peel away everything that isn't the letter, and you're left with what it equals.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Write the steps for solving 3<i>x</i> + 2 = 14 in words, like instructions for a friend.</p><textarea data-note="r2" placeholder="First take…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 3 -->
+<section class="room" id="r3" data-title="Rules">
+  <p class="kick">Room 4 of 7</p>
+  <h2>Letters that make rules</h2>
+  <p>Letters aren't only for puzzles. They let you write a rule that works for <i>every</i> number at once. You've used one already:</p>
+  <p class="eq">A = <span class="x">l</span> × <span class="x">w</span></p>
+  <p>That's the area of any rectangle. One short line covers billions of rectangles. That's algebra.</p>
+  <p>Here's another. In the league, a win gets 3 points, a draw gets 1, and a loss gets 0. If <i>w</i> is the number of wins and <i>d</i> the number of draws:</p>
+  <p class="eq">points = 3<span class="x">w</span> + <span class="x">d</span></p>
+  <div class="card">
+    <h3>Try it: run the league table</h3>
+    <div class="ctl"><label for="lgW">Wins <i>w</i></label><input id="lgW" type="range" min="0" max="20" value="9"><output id="lgWo"></output></div>
+    <div class="ctl"><label for="lgD">Draws <i>d</i></label><input id="lgD" type="range" min="0" max="12" value="4"><output id="lgDo"></output></div>
+    <div class="read"><div>3 × <i>w</i> + <i>d</i><b id="lgP"></b></div></div>
+  </div>
+  <div class="card">
+    <h3>Use the rule backwards</h3>
+    <p>A team has <b>22 points</b> and <b>4 draws</b>. How many wins? (Hint: 3<i>w</i> + 4 = 22. That's a balance puzzle.)</p>
+    <div class="ans"><span><i>w</i> =</span><input id="q3" type="text" inputmode="numeric" autocomplete="off" aria-label="wins"><button class="btn" type="button" id="q3Go">Check</button></div>
+    <div class="why" id="q3Fb"></div>
+  </div>
+  <div class="card">
+    <h3>Careful: order matters</h3>
+    <p>Which one means "think of a number, <b>add 5</b>, then <b>double</b> it"?</p>
+    <div class="opts" data-answer="1" data-why="Brackets say <i>do this bit first</i>. 2(<i>n</i> + 5) means add 5, then double. 2<i>n</i> + 5 means double first, then add 5. Try <i>n</i> = 1: you get 12 and 7. Different!">
+      <button class="opt" type="button">2<i>n</i> + 5</button>
+      <button class="opt" type="button">2(<i>n</i> + 5)</button>
+      <button class="opt" type="button">They mean the same thing</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Invent a rule with a letter for something you like (game scores, pocket money, goals). Explain what the letter stands for.</p><textarea data-note="r3" placeholder="My rule: …"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 4 -->
+<section class="room" id="r4" data-title="Patterns">
+  <p class="kick">Room 5 of 7</p>
+  <h2>Patterns that grow</h2>
+  <p>Build squares in a row out of matchsticks. How many sticks do you need?</p>
+  <div class="card">
+    <h3>Try it</h3>
+    <svg id="match" viewBox="0 0 340 120" role="img" aria-label="Squares made of matchsticks"></svg>
+    <div class="ctl"><label for="mN">Squares</label><input id="mN" type="range" min="1" max="10" value="3"><output id="mNo"></output></div>
+    <div class="read"><div>matchsticks<b id="mS"></b></div></div>
+    <div class="btns"><button class="btn ghost" type="button" id="mColour" aria-pressed="false">Show me a clever way to count</button></div>
+    <p class="aside" id="mHow" hidden>Start with <b style="color:var(--mute)">1 grey stick</b>. Every square then adds <b style="color:var(--acc)">3 more</b>: a top, a bottom and a right side. So with <i>n</i> squares you need <b>3<i>n</i> + 1</b> sticks.</p>
+  </div>
+  <div class="card">
+    <h3>Too big to draw</h3>
+    <p>How many sticks for <b>20</b> squares?</p>
+    <div class="ans"><input id="q4" type="text" inputmode="numeric" autocomplete="off" aria-label="Sticks for 20 squares"><button class="btn" type="button" id="q4Go">Check</button></div>
+    <div class="why" id="q4Fb"></div>
+    <p style="margin-top:14px">And for <b>100</b> squares?</p>
+    <div class="ans"><input id="q5" type="text" inputmode="numeric" autocomplete="off" aria-label="Sticks for 100 squares"><button class="btn" type="button" id="q5Go">Check</button></div>
+    <div class="why" id="q5Fb"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> The 11+ asks for the "next term". Secondary school asks for the <b>rule</b>: 3<i>n</i> + 1. With the rule, you can jump straight to the 100th term without drawing 99 others. And the best rules come from <i>seeing why</i> the pattern grows, not just spotting that it does.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>What if you made triangles in a row instead of squares? Find a rule. (Draw a few on paper first.)</p><textarea data-note="r4" placeholder="Triangles need…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 5 -->
+<section class="room" id="r5" data-title="The trick">
+  <p class="kick">Room 6 of 7</p>
+  <h2>The mind-reading trick, explained</h2>
+  <p>Now we can prove it. Call your secret number <i>n</i>: one <span class="bag">n</span> bag. Follow it through.</p>
+  <div class="card">
+    <div class="steps" id="trickSteps"></div>
+    <div class="btns"><button class="btn" type="button" id="tsGo">Next step</button><button class="btn ghost" type="button" id="tsReset">Start again</button></div>
+  </div>
+  <div class="card">
+    <h3>Predict</h3>
+    <p>At the last step, why did your number disappear?</p>
+    <div class="opts" data-answer="0" data-why="You took away the very bag you started with. Whatever was inside it, it's gone, and only the blocks that <i>I</i> added are left. That's why I could 'read your mind': the answer never depended on your number. You've just done a <b>proof</b>: it works for every number, not just the ones you tried.">
+      <button class="opt" type="button">Because I took away the number I first thought of, so only the added blocks were left</button>
+      <button class="opt" type="button">Because halving makes things disappear</button>
+      <button class="opt" type="button">It only disappears for some numbers</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Invent your own trick that always ends on 7. Try it on someone at home. (Hint: change the "add" step.)</p><textarea data-note="r5" placeholder="Think of a number…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 6 -->
+<section class="room" id="r6" data-title="Look back">
+  <p class="kick">Room 7 of 7</p>
+  <h2>Look back</h2>
+  <p>The whole story: <b>a letter is a number in disguise → the balance finds it → letters can write rules for every number at once → and rules let you prove things are always true.</b></p>
+  <p>When you meet algebra in Year 7, it'll be this, with more practice.</p>
+  <div class="card">
+    <h3>Your first guess about the trick</h3>
+    <p id="firstGuess" class="aside" style="border:0;padding:0">You didn't write a guess in Room 1. That's fine.</p>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Explain to a grown-up what algebra is, in two sentences.</p><textarea data-note="r6a" placeholder="Algebra is…"></textarea><div class="saved"></div></div>
+  <div class="card note-card"><h3>Notebook</h3><p>What was the most surprising thing? What do you want to explore next?</p><textarea data-note="r6b" placeholder="I was surprised…"></textarea><div class="saved"></div></div>
+  <div class="end"><button class="btn ghost" type="button" onclick="window.print()">Print my notebook</button></div>
+</section>
+
+<div class="nav"><button class="btn ghost" type="button" id="prev">← Back</button><button class="btn" type="button" id="next">Next room →</button></div>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY="ninja:maths:explore-algebra:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+var $=function(id){return document.getElementById(id)};
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+
+/* ---------- rooms + navigation ---------- */
+var rooms=[].slice.call(document.querySelectorAll("section.room"));
+var done=load("done",{}),nav=$("rooms"),cur=0;
+rooms.forEach(function(r,i){
+  var b=document.createElement("button");b.type="button";b.textContent=i+1;
+  b.setAttribute("aria-label","Room "+(i+1)+": "+r.getAttribute("data-title"));
+  b.onclick=function(){go(i)};nav.appendChild(b);
+});
+function paint(){[].forEach.call(nav.children,function(b,i){b.setAttribute("aria-current",i===cur?"true":"false");b.classList.toggle("done",!!done[i])})}
+function go(i){
+  cur=Math.max(0,Math.min(rooms.length-1,i));
+  rooms.forEach(function(r,k){r.classList.toggle("on",k===cur)});
+  $("prev").style.visibility=cur===0?"hidden":"visible";
+  $("next").textContent=cur===rooms.length-1?"Finished ✓":"Next room →";
+  if(cur===rooms.length-1){var g=load("note:r0","");if(g)$("firstGuess").textContent="“"+g+"”"}
+  save("room",cur);paint();
+  nav.children[cur].scrollIntoView({block:"nearest",inline:"center"});
+  window.scrollTo(0,0);
+}
+$("prev").onclick=function(){go(cur-1)};
+$("next").onclick=function(){done[cur]=true;save("done",done);if(cur<rooms.length-1)go(cur+1);else paint()};
+
+/* ---------- predict-first questions ---------- */
+[].forEach.call(document.querySelectorAll(".opts[data-answer]"),function(o){
+  var ans=+o.getAttribute("data-answer"),why=o.nextElementSibling;
+  [].forEach.call(o.children,function(b,i){
+    b.onclick=function(){
+      [].forEach.call(o.children,function(x,k){x.disabled=true;if(k===ans)x.classList.add("right")});
+      if(i!==ans)b.classList.add("wrong");
+      why.innerHTML=(i===ans?"<b class='g'>Yes!</b> ":"<b class='r'>Good guess, but no.</b> ")+o.getAttribute("data-why");
+      why.classList.add("show");
+    };
+  });
+});
+
+/* ---------- notebook ---------- */
+[].forEach.call(document.querySelectorAll("textarea[data-note]"),function(t){
+  var k="note:"+t.getAttribute("data-note"),s=t.parentNode.querySelector(".saved"),timer;
+  t.value=load(k,"");
+  t.addEventListener("input",function(){clearTimeout(timer);timer=setTimeout(function(){save(k,t.value);s.textContent="Saved on this device"},400)});
+});
+
+/* ---------- number answers ---------- */
+function checker(inp,btn,fb,truth,explain){
+  function run(){
+    var v=parseFloat(String($(inp).value).trim()),el=$(fb);
+    if(isNaN(v)){el.innerHTML="<b class='r'>Type a number.</b>";el.classList.add("show");return}
+    var ok=v===truth;
+    el.innerHTML=(ok?"<b class='g'>Yes!</b> ":"<b class='r'>Not quite.</b> ")+explain(ok);el.classList.add("show");
+  }
+  $(btn).onclick=run;$(inp).addEventListener("keydown",function(e){if(e.key==="Enter")run()});
+}
+checker("q1","q1Go","q1Fb",8,function(ok){return "<i>a</i> = 8, because 8 + 7 = 15."+(ok?"":" What do you add to 7 to make 15?")});
+checker("q2","q2Go","q2Fb",7,function(ok){return "<i>b</i> = 7, because 4 × 7 = 28."+(ok?"":" Which number times 4 makes 28?")});
+checker("q3","q3Go","q3Fb",6,function(ok){return "Take the 4 draw points off both sides: 3<i>w</i> = 18. Share between 3: <i>w</i> = 6 wins. Check: 3 × 6 + 4 = 22."+(ok?" You just solved an equation like a Year 7.":"")});
+checker("q4","q4Go","q4Fb",61,function(ok){return "3 × 20 + 1 = 61."+(ok?"":" Use the clever counting: 1 stick to start, then 3 for every square.")});
+checker("q5","q5Go","q5Fb",301,function(ok){return "3 × 100 + 1 = 301."+(ok?" Imagine counting those one by one!":"")});
+
+/* ---------- Room 1: the trick ---------- */
+var TRICK=["Think of a whole number. Any number you like.","Double it.","Add 10.","Halve it.","Take away the number you first thought of.","Your answer is… <b style='font-size:40px;color:var(--acc)'>5</b>"];
+var ts=0;
+function trickShow(){$("trick").innerHTML=TRICK[ts];$("trickGo").disabled=ts===TRICK.length-1}
+$("trickGo").onclick=function(){if(ts<TRICK.length-1)ts++;trickShow()};
+$("trickAgain").onclick=function(){ts=0;trickShow()};
+trickShow();
+
+/* ---------- Room 3: the balance ---------- */
+var PUZ=[{bags:3,l:2,r:14},{bags:2,l:5,r:13},{bags:4,l:3,r:23},{bags:5,l:1,r:16}];
+var pi=0,st,tipped=false,tipTimer;
+function newPuz(){var p=PUZ[pi%PUZ.length];st={bags:p.bags,l:p.l,r:p.r,solved:false};tipped=false;$("balMsg").textContent="";drawScale()}
+function blocksSVG(n,cx,baseY,col){
+  var s="",per=6,sz=12,gap=2;
+  for(var i=0;i<n;i++){var row=Math.floor(i/per),c=i%per,inRow=Math.min(per,n-row*per);
+    var x=cx-(inRow*(sz+gap))/2+c*(sz+gap),y=baseY-(row+1)*(sz+gap);
+    s+='<rect x="'+x+'" y="'+y+'" width="'+sz+'" height="'+sz+'" rx="2" fill="'+col+'"/>'}
+  return s;
+}
+function drawScale(){
+  var acc=css("--acc"),two=css("--two"),ink=css("--ink"),mute=css("--mute"),bad=css("--bad");
+  var tilt=tipped?14:0,px=180,py=60,L=110;
+  var ly=py-tilt,ry=py+tilt,lx=px-L,rx=px+L,panY=150;
+  function pan(x,y,content){
+    return '<line x1="'+x+'" y1="'+y+'" x2="'+(x-50)+'" y2="'+(y+panY-py)+'" stroke="'+mute+'" stroke-width="1.5"/>'+
+      '<line x1="'+x+'" y1="'+y+'" x2="'+(x+50)+'" y2="'+(y+panY-py)+'" stroke="'+mute+'" stroke-width="1.5"/>'+
+      '<path d="M'+(x-58)+','+(y+panY-py)+' h116 l-10,10 h-96 z" fill="'+mute+'"/>'+content;
+  }
+  var lb=y0(ly),rb=y0(ry);
+  function y0(y){return y+panY-py-1}
+  var bagW=26,bags="";
+  var bagsW=st.bags*(bagW+4),blocksW=st.l>0?Math.min(6,st.l)*14:0,start=lx-(bagsW+blocksW+(st.l>0?6:0))/2;
+  for(var i=0;i<st.bags;i++){var bx=start+i*(bagW+4);
+    bags+='<rect x="'+bx+'" y="'+(lb-30)+'" width="'+bagW+'" height="30" rx="8" fill="'+acc+'"/>'+
+      '<text x="'+(bx+bagW/2)+'" y="'+(lb-12)+'" font-size="15" font-style="italic" font-weight="700" text-anchor="middle" style="fill:#fff">x</text>'}
+  var leftBlocks=blocksSVG(st.l,start+bagsW+6+blocksW/2,lb,two);
+  var rightBlocks=st.solved?'':blocksSVG(st.r,rx,rb,two);
+  var solved="";
+  if(st.solved){var each=st.r/st.bags;
+    for(var k=0;k<st.bags;k++){var gx=rx-((st.bags-1)*30)/2+k*30;
+      solved+='<rect x="'+(gx-12)+'" y="'+(rb-22)+'" width="24" height="22" rx="4" fill="none" stroke="'+acc+'" stroke-dasharray="3 2"/>'+
+        '<text x="'+gx+'" y="'+(rb-6)+'" font-size="14" font-weight="700" text-anchor="middle" style="fill:'+two+'">'+each+'</text>'}}
+  $("scale").innerHTML=
+    '<path d="M'+(px-30)+',225 h60 l-22,-160 h-16 z" fill="'+mute+'" opacity=".5"/>'+
+    '<line x1="'+lx+'" y1="'+ly+'" x2="'+rx+'" y2="'+ry+'" stroke="'+ink+'" stroke-width="6" stroke-linecap="round"/>'+
+    '<circle cx="'+px+'" cy="'+py+'" r="7" fill="'+(tipped?bad:ink)+'"/>'+
+    pan(lx,ly,bags+leftBlocks)+pan(rx,ry,rightBlocks+solved);
+  var lhs=(st.bags>1?st.bags:"")+"<span class='x'>x</span>"+(st.l>0?" + "+st.l:"");
+  if(st.solved)$("balEq").innerHTML="<span class='x'>x</span> = "+(st.r/st.bags);
+  else $("balEq").innerHTML=lhs+(tipped?" ≠ ":" = ")+st.r;
+  $("balBoth").disabled=st.solved||st.l===0||tipped;
+  $("balOne").disabled=st.solved||st.l===0||tipped;
+  $("balShare").disabled=st.solved||st.l>0||tipped;
+}
+$("balBoth").onclick=function(){st.l--;st.r--;$("balMsg").innerHTML=st.l===0?"Only bags left on the left. Now share!":"Still balanced. Keep going.";drawScale()};
+$("balOne").onclick=function(){
+  tipped=true;st.l--;$("balMsg").innerHTML="<span class='r'>It tipped! The left is lighter now, so the two sides aren't equal.</span>";drawScale();
+  clearTimeout(tipTimer);tipTimer=setTimeout(function(){tipped=false;st.l++;$("balMsg").textContent="Put back. Try doing the same to both sides.";drawScale()},1800);
+};
+$("balShare").onclick=function(){
+  var each=st.r/st.bags,b=st.bags;st.solved=true;
+  $("balMsg").innerHTML="<span class='g'>Solved! Each bag holds "+each+".</span> Check: "+b+" × "+each+" + "+PUZ[pi%PUZ.length].l+" = "+PUZ[pi%PUZ.length].r+" ✓";drawScale()};
+$("balNext").onclick=function(){pi++;newPuz()};
+
+/* ---------- Room 4: league ---------- */
+function league(){var w=+$("lgW").value,d=+$("lgD").value;$("lgWo").textContent=w;$("lgDo").textContent=d;$("lgP").textContent="3 × "+w+" + "+d+" = "+(3*w+d)}
+$("lgW").oninput=league;$("lgD").oninput=league;
+
+/* ---------- Room 5: matchsticks ---------- */
+var mColour=false;
+function drawMatch(){
+  var n=+$("mN").value,s=30,ox=(340-n*s)/2,oy=40,acc=css("--acc"),ink=css("--ink"),mute=css("--mute");
+  function stick(x1,y1,x2,y2,c){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+c+'" stroke-width="5" stroke-linecap="round"/>'}
+  var out=stick(ox,oy,ox,oy+s,mColour?mute:ink);
+  for(var i=0;i<n;i++){var x=ox+i*s,c=mColour?(i%2?css("--two"):acc):ink;
+    out+=stick(x+3,oy,x+s-3,oy,c)+stick(x+3,oy+s,x+s-3,oy+s,c)+stick(x+s,oy+3,x+s,oy+s-3,c)}
+  out+='<text x="170" y="'+(oy+s+34)+'" font-size="14" text-anchor="middle" style="fill:'+mute+'">'+n+' square'+(n>1?'s':'')+'</text>';
+  $("match").innerHTML=out;$("mNo").textContent=n;$("mS").textContent=mColour?("1 + 3 × "+n+" = "+(3*n+1)):(3*n+1);
+}
+$("mN").oninput=drawMatch;
+$("mColour").onclick=function(){mColour=!mColour;this.setAttribute("aria-pressed",mColour);this.textContent=mColour?"Hide the counting":"Show me a clever way to count";$("mHow").hidden=!mColour;drawMatch()};
+
+/* ---------- Room 6: the trick, proved ---------- */
+function bags(n){var s="";for(var i=0;i<n;i++)s+="<span class='bag'>n</span>";return s}
+function blks(n){var s="";for(var i=0;i<n;i++)s+="<span class='blk'></span>";return s}
+var PROOF=[
+  ["Think of a number.",bags(1),"<i>n</i>"],
+  ["Double it.",bags(2),"2<i>n</i>"],
+  ["Add 10.",bags(2)+"&nbsp;"+blks(10),"2<i>n</i> + 10"],
+  ["Halve it. Half of each pile.",bags(1)+"&nbsp;"+blks(5),"<i>n</i> + 5"],
+  ["Take away the number you first thought of.",blks(5),"5"]
+];
+var ps=0;
+function proofShow(){
+  $("trickSteps").innerHTML=PROOF.slice(0,ps+1).map(function(p){
+    return "<div class='step'><span class='say'>"+p[0]+"</span><span class='pics'>"+p[1]+"</span><b style='min-width:90px;text-align:right'>"+p[2]+"</b></div>"}).join("");
+  $("tsGo").disabled=ps===PROOF.length-1;
+}
+$("tsGo").onclick=function(){if(ps<PROOF.length-1)ps++;proofShow()};
+$("tsReset").onclick=function(){ps=0;proofShow()};
+
+function all(){drawScale();league();drawMatch()}
+newPuz();league();drawMatch();proofShow();
+if(window.matchMedia)window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",all);
+go(+load("room",0)||0);
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>
