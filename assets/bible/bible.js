@@ -1,5 +1,5 @@
 /* Bible Lab engine. One page (bible/index.html), routed by the hash:
-     #                     home: this week, today's verse practice, how it works
+     #                     home: this month's book and week, today's verse practice, the year's plan
      #<season>             season overview, context, weeks, principles wall
      #<season>/<n>[/<s>]   week n, session s (1 Read, 2 Dig, 3 Principle, 4 Live it, 5 Check-in)
      #card/<season>/<n>    printable fridge card
@@ -159,26 +159,38 @@
   }
   function passage(j, w) { return w.passage ? passageHtml(w.passage, w) : readLink(j, w.ref); }
 
+  // ---------- the monthly plan ----------
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  function monthName(ym) { var p = ym.split('-'); return MONTHS[+p[1] - 1] + ' ' + p[0]; }
+  function seasonMeta(id) { return data.seasons.filter(function (s) { return s.id === id; })[0]; }
+  // This month's entry; before the plan starts, the first month; after it ends, the last.
+  function thisMonth() {
+    var ym = today().slice(0, 7), plan = data.plan, i;
+    for (i = 0; i < plan.length; i++) if (plan[i].month >= ym) return { i: i, early: plan[i].month > ym };
+    return { i: plan.length - 1, early: false };
+  }
+
   // ---------- views ----------
   function home() {
     document.body.className = '';
-    var f = fam(), html = bar('../', 'Bible Lab');
+    var f = fam(), html = bar('../', 'Bible Lab'), tm = thisMonth(), entry = data.plan[tm.i];
     html += '<p class="lead">' + esc(data.about) + '</p>';
-    var active = f.active && data.seasons.filter(function (s) { return s.id === f.active; })[0];
-    if (active && seasons[active.id]) {
-      var j = seasons[active.id], fs = famSeason(f, active.id), n = currentWeek(fs, j.weeks.length);
+    var j = entry.season && seasons[entry.season];
+    var label = (tm.early ? 'Starts in ' : 'This month · ') + monthName(entry.month);
+    if (!j) {
+      html += '<div class="card"><span class="vlabel">' + label + '</span><h2>' + esc(entry.title) + '</h2><p class="muted">Not written yet. Keep up the verse practice in the meantime.</p></div>';
+    } else {
+      var fs = f.seasons[entry.season] || { done: [], sessions: {}, commit: {} }, n = currentWeek(fs, j.weeks.length);
       if (n <= j.weeks.length) {
         var w = j.weeks[n - 1], did = fs.sessions[n] || [];
-        html += '<a class="thisweek" href="#' + active.id + '/' + n + '"><span class="vlabel">This week · ' + esc(j.title) + ' · week ' + n + ' of ' + j.weeks.length + '</span>' +
+        html += '<a class="thisweek" href="#' + j.id + '/' + n + '"><span class="vlabel">' + label + ' · ' + esc(j.title) + ' · week ' + n + ' of ' + j.weeks.length + '</span>' +
           '<span class="tw-title">' + esc(w.title) + '</span><span class="muted">' + esc(w.big) + '</span>' +
-          dots(did) + '<span class="btn">' + (did.length ? 'Carry on' : 'Start this week') + '</span></a>';
+          dots(did) + '<span class="btn">' + (did.length ? 'Carry on' : n === 1 ? 'Start ' + esc(j.title) : 'Start this week') + '</span></a>';
         if (fs.commit[n]) html += '<p class="commit"><b>This week we will:</b> ' + esc(fs.commit[n]) + '</p>';
       } else {
-        html += '<div class="card"><b>You finished ' + esc(j.title) + '.</b> Keep reviewing the verses below, and pick what comes next.</div>';
+        html += '<div class="thisweek"><span class="vlabel">' + label + '</span><span class="tw-title">' + esc(j.title) + ' finished ✓</span>' +
+          '<span>Finish the month well: read the whole of ' + esc(j.title) + ' aloud in one sitting, and keep up the verse practice.</span></div>';
       }
-    } else {
-      html += '<div class="card start"><h2>Start here</h2><p>Each week has five short sessions (about 10 minutes, at the same time each day: after dinner works well) and one verse to learn by heart.</p>' +
-        '<a class="btn" href="#' + data.seasons[0].id + '">Start with ' + esc(data.seasons[0].title) + '</a></div>';
     }
     // Verse practice
     var me = who();
@@ -189,26 +201,24 @@
     }).join('') + '</div><p class="muted small">The number is how many verses are waiting for that person today.</p>';
     // How it works
     html += '<details class="how"><summary>How Bible Lab works</summary><div class="prose">' +
-      '<p><b>One book, one passage a week.</b> Small enough to finish, deep enough to matter. You stay with a few verses all week instead of skimming.</p>' +
+      '<p><b>One book a month, about a chapter a week.</b> Small enough to finish, deep enough to matter. Each month is a fresh start.</p>' +
       '<ol class="ladder">' + SESSIONS.map(function (s, i) { return '<li><b>' + s + ':</b> ' + SESSION_BLURB[i] + '</li>'; }).join('') + '</ol>' +
       '<p><b>Same time, same place.</b> Attach it to something you already do every day (a meal, bedtime). Every session opens by saying the verse together, so the whole family hears it five times a week before anyone practises alone.</p>' +
       '<p><b>One thing to do.</b> Each week ends with a "This week we will…" that goes on the fridge card. Check-in day asks how it went.</p>' +
-      '<p><b>Verses keep coming back.</b> Each person practises for 2 minutes a day. Old verses come back for review just before they would be forgotten, so twelve weeks means twelve verses kept, not twelve verses lost.</p>' +
-      '<p><b>Missed a day?</b> Just carry on from where you are. Weeks don\'t have dates; a week can stretch to two. The only rule is: don\'t stop.</p>' +
+      '<p><b>Verses keep coming back.</b> Each person practises for 2 minutes a day. Old verses come back for review just before they would be forgotten, so a year of books means a year of verses kept, not lost.</p>' +
+      '<p><b>Four weeks a month.</b> Spare days at the end of a month? Read the whole book aloud in one sitting and catch up on verses. Fell behind? When the new month comes, start the new book anyway: the old weeks stay open to finish later. The only rule is: don\'t stop.</p>' +
       '<p class="muted small">Leading it: nothing to prepare. Each question has a guide answer behind a button: ask first, let everyone answer, then open it.</p></div></details>';
-    // Seasons
-    html += '<h2>Books</h2><ul class="stages">' + data.seasons.map(function (s) {
-      var fs = f.seasons[s.id], badge = '';
-      if (fs) { var c = fs.done.length; badge = c >= s.weeks ? 'Finished' : 'Week ' + Math.min(c + 1, s.weeks) + ' of ' + s.weeks; }
-      return '<li><a class="stage tool' + (f.active === s.id ? ' next' : '') + '" href="#' + s.id + '"><span class="name">' + esc(s.title) +
-        '<span class="blurb">' + esc(s.tagline) + ' · ' + s.weeks + ' weeks</span></span>' + (badge ? '<span class="badge">' + badge + '</span>' : '') + '</a></li>';
+    // The year
+    html += '<h2>The year</h2><ul class="stages">' + data.plan.map(function (e, i) {
+      var meta = e.season && seasonMeta(e.season), fs = meta && f.seasons[meta.id], badge = '';
+      if (fs && fs.done.length >= meta.weeks) badge = 'Done ✓';
+      else if (i === tm.i) badge = tm.early ? 'Next' : 'This month';
+      else if (fs && fs.done.length) badge = fs.done.length + ' / ' + meta.weeks;
+      var inner = '<span class="name"><span class="muted small">' + monthName(e.month) + '</span><br>' + esc(meta ? meta.title : e.title) +
+        '<span class="blurb">' + esc(meta ? meta.tagline : e.blurb) + (meta ? '' : ' · not written yet') + '</span></span>' + (badge ? '<span class="badge">' + badge + '</span>' : '');
+      return '<li>' + (meta ? '<a class="stage tool' + (i === tm.i ? ' next' : '') + '" href="#' + meta.id + '">' + inner + '</a>'
+        : '<div class="stage tool off">' + inner + '</div>') + '</li>';
     }).join('') + '</ul>';
-    if (data.next && data.next.length) {
-      html += '<h2>Coming next <span class="muted small">ideas</span></h2><ul class="stages">' + data.next.map(function (s) {
-        return '<li><div class="stage tool off"><span class="name">' + esc(s.title) + ' <span class="muted small">' + esc(s.ref) + '</span>' +
-          '<span class="blurb">' + esc(s.blurb) + '</span></span></div></li>';
-      }).join('') + '</ul>';
-    }
     if (data.credits) html += data.credits.map(function (c) { return '<p class="muted small credit">' + esc(c) + '</p>'; }).join('');
     app.innerHTML = html;
     each('[data-who]', function (b) {
@@ -594,7 +604,8 @@
     kids = res[0].children; data = res[1];
     // Load every season the family has started, so home and verse practice know their verses.
     var f = fam();
-    return Promise.all(data.seasons.filter(function (s) { return f.seasons[s.id]; }).map(function (s) { return season(s.id); }));
+    var cur = data.plan[thisMonth().i].season;
+    return Promise.all(data.seasons.filter(function (s) { return f.seasons[s.id] || s.id === cur; }).map(function (s) { return season(s.id); }));
   }).then(function () {
     window.addEventListener('hashchange', route);
     route();

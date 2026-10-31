@@ -1,6 +1,6 @@
 # Bible Lab
 
-A family Bible study that works through one book, one passage a week. Lives at `/bible/` (linked from the home page).
+A family Bible study: one book a month, about a chapter a week (four weeks per book). Lives at `/bible/` (linked from the home page).
 
 ## The weekly rhythm
 Five short sessions (about 10 minutes, same time each day), each opening by saying the week's verse together:
@@ -15,7 +15,9 @@ and spaced review (Leitner boxes: 1, 2, 4, 7, 14, 30, 60 days), so old verses ke
 
 ## Files
 - `bible/index.html`: the page (hash-routed; see the comment at the top of `bible.js`).
-- `bible/bible.json`: seasons (books) available, extra people besides the children (e.g. Grown-ups), "coming next" ideas.
+- `bible/bible.json`: `seasons` (books that are written), `plan` (which book each month: `{ month: "2027-02", season: "jonah" }`,
+  or `{ month, title, blurb }` for a month not written yet), extra people besides the children (e.g. Grown-ups), NIV `credits`.
+  The home page shows the plan entry for the current month.
 - `bible/<season>/season.json`: everything for one book: background, and per week the passage text, context, words,
   questions with guide answers, principle, cross-references, scenarios, commitments, prayer, anchor and stretch verses.
 - `assets/bible/bible.js`, `bible.css`: the engine.
@@ -26,12 +28,12 @@ and spaced review (Leitner boxes: 1, 2, 4, 7, 14, 30, 60 days), so old verses ke
 
 ## Adding a book
 Write `bible/<id>/season.json` in the same shape as `philippians/season.json` and add an entry to `seasons` in `bible.json`
-(the first entry is the one "Start here" points to).
+and point that month's `plan` entry at it. Four weeks, about a chapter each. Write each book well before its month.
 
 ## Translations and copyright
 - The family uses the **NIV (Anglicised)**. Biblica allows up to 500 NIV verses on a site without permission, as long as
   they never make up a whole book and are under 25% of the work, with the copyright notice shown (`credits` in `bible.json`,
   `translation` in each season). So an NIV season holds only memory verses and cross-references (`"version": "NIVUK"`),
   and each week's passage is read from the family's own Bibles, with a link to BibleGateway. Keep a running total:
-  Philippians uses 42 quotations.
-- A public-domain season (James, World English Bible) can embed the whole passage as `passage` rows instead.
+  Philippians, Ruth and James use 53 between them.
+- A public-domain translation could embed the whole passage as `passage` rows instead (the engine supports it).
