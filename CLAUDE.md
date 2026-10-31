@@ -6,7 +6,7 @@ Update Part 2 whenever something is added, archived or planned.
 # Part 1: Rules and conventions
 
 Static site on GitHub Pages (no build step, no framework), served from the repo root on main.
-Owner account: ceejay77 (anonymous by design).
+Owner account: lodehub (anonymous by design).
 
 ## Children (slugs are folder names; labels can change freely)
 | slug  | label | colour | icon        |
@@ -20,6 +20,7 @@ Owner account: ceejay77 (anonymous by design).
 - `/index.html`: "Who's learning?" child picker, reads `/children.json`
 - `/assets/`: shared style.css and ui.js used by every page
 - `/assets/lab/`: the Language Lab engine (French Lab, Mandarin Lab), shared by every child. Content lives in its JSON files; each child has a thin wrapper page. See assets/lab/README.md.
+- `/assets/practice/`: the Practice engine (real exam questions, instant feedback, self-marking against the mark scheme, and a `?print` paper from the same content file). Each tool is a thin wrapper plus `content.json`. See assets/practice/README.md.
 - `/bible/`: Bible Lab, a family Bible study (one book, one passage a week, verse memory per person). Engine in `/assets/bible/`, content in `bible/<book>/season.json`. See assets/bible/README.md.
 - `/<slug>/index.html`: subject picker, reads that child's `manifest.json`
 - `/<slug>/<subject>/<tool>/`: HTML tools to practise on screen
@@ -27,11 +28,11 @@ Owner account: ceejay77 (anonymous by design).
 
 ## Privacy rules (important)
 - Never use real names, initials, schools, dates of birth or any personal data anywhere: slugs and labels only.
-- Git identity for this repo must be the ceejay77 no-reply email. Check `git config user.email` before every commit.
+- Git identity for this repo must be `lodehub <107417864+lodehub@users.noreply.github.com>` (set in the repo-local git config). Check `git config user.email` before every commit.
 - Do not commit anything that links to any other personal account or website.
 
 ## Rules
-- ALL links relative, so the site works at ceejay77.github.io/learn/ and later at a custom domain.
+- ALL links relative, so the site works at lodehub.github.io/learn/ and later at a custom domain.
 - Each tool stores its own progress in localStorage under a key prefixed `<slug>:<subject>:<tool>:`. No shared save file.
 - Adding material = put files in the subject folder + add one entry to that child's manifest.json. Never hand-edit picker HTML.
 - manifest entry: { title, path, type: "html"|"pdf", year, status: "current"|"archived", strand?, topic?, term?, print?, printTitle? }.
@@ -66,7 +67,7 @@ All links are relative, so it works at `/learn/` on GitHub Pages and later on a 
 | bingo | blue / paw | English, Maths, French, Mandarin |
 | heeler | green / star | French, Mandarin (was "Bandit", renamed) |
 
-Privacy: slugs and labels only, never real names, schools or personal data. Commit with the ceejay77 no-reply email.
+Privacy: slugs and labels only, never real names, schools or personal data. Commit as lodehub with its no-reply email.
 
 ## Site features (shared engine: `assets/style.css`, `assets/ui.js`, `assets/back.js`)
 
@@ -88,6 +89,7 @@ Current (Week 3):
 - Geography Week 3: megacities, evidence and a judgement (+ PDF)
 - Week 3 homework pack, full, with parent answers (PDF, `weekly/pdfs/`)
 - Half-term check-in: how is each subject going? (`weekly/check-in/`)
+- **Week 3 plus** (optional extra, tagged week 3): English, Maths, Science, History and Geography rebuilt on real AQA past-paper questions with the Practice engine, each with a `?print` written paper (`<subject>/week3plus-*/`).
 
 Also current: French Week 2 (verbs and extending a sentence), French Lab, Mandarin Lab, and **Explore: "Why triangles know things", trigonometry from scratch**.
 
@@ -119,6 +121,9 @@ One engine for any language: a language-neutral `blueprint.json` (10 stages, ~11
 
 **Languages hub** at `/languages/` (driven by `languages/languages.json`): every language tool in level order, pick a person, same saved progress as their own page.
 
+## Practice engine (`assets/practice/`, see its README.md)
+Real exam questions (exact wording, source label, cropped figures) with instant marking, step-by-step methods, tap-in-order chains and level ladders, and on-screen writing the learner marks against the real mark scheme. One `content.json` per tool drives both the page and the printable paper (open with `?print`, print to A4 PDF). First used for Ember's Week 3 plus.
+
 ## Bible Lab (`/bible/`, engine in `assets/bible/`, see its README.md)
 Family Bible study: one book a month, about a chapter a week, five ~10-minute sessions per week (Read, Dig, Principle, Live it, Check-in), plus per-person verse memory with spaced review.
 - Written: **Philippians** (Nov 2026), **Ruth** (Dec 2026), **James** (Jan 2027), each `bible/<book>/season.json`.
@@ -140,7 +145,7 @@ PRs #1–#29 all merged to `main`. Rough order: initial hub and conventions → 
 git clone https://github.com/lodehub/learn.git && cd learn
 ```
 ```bash
-git config user.email   # must be the ceejay77 GitHub no-reply address
+git config user.email   # must be 107417864+lodehub@users.noreply.github.com
 ```
 ```bash
 python3 -m http.server 8000   # then open http://localhost:8000/

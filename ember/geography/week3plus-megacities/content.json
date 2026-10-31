@@ -1,0 +1,83 @@
+{
+  "kicker": "Ember · Geography · Week 3 plus",
+  "title": "Megacities: real AQA questions",
+  "sub": "An optional extra for Week 3. Every question below is from a real AQA GCSE Geography paper (Paper 2, Urban issues and challenges). About 20 minutes on screen, then the written paper.",
+  "skill": "Use the figure, add a named example, then make a judgement.",
+  "target": "AQA caps many answers at a lower level if you ignore the figure. Quote a number or a detail from it, then add your own case-study fact.",
+  "print": "week3plus-megacities-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up", "time": "5 min", "sub": "Week 3, from memory.",
+      "blocks": [
+        { "type": "mc", "id": "w1", "h": "Two causes", "q": "A city grows because more babies are born than people die there. What is this called?", "o": ["Rural-urban migration", "Natural increase", "Urban sprawl"], "c": 1, "why": "Natural increase = births minus deaths. The other main cause of city growth is rural-urban migration." },
+        { "type": "mc", "id": "w2", "h": "Push or pull?", "q": "“Better-paid jobs in factories in the city.” Is this a push or a pull factor?", "o": ["Push: it drives people away from the countryside", "Pull: it attracts people to the city"], "c": 1, "why": "Pull factors attract people to the city. Push factors drive them out of rural areas (e.g. drought, few jobs)." },
+        { "type": "mc", "id": "w3", "h": "Judgement words", "q": "Which sentence is a judgement?", "o": ["Lagos has a population of over 15 million.", "Overall, the opportunities matter more than the problems, because jobs are what bring people to the city in the first place.", "There is a lot of traffic in megacities."], "c": 1, "why": "A judgement compares and decides, and gives a reason (<i>overall… because…</i>)." }
+      ]
+    },
+    {
+      "h": "2. Real AQA questions", "time": "15 min", "sub": "Study each figure before answering. Open the mark scheme after each one.",
+      "blocks": [
+        { "type": "mc", "id": "q1", "source": "AQA Geography 8035/2, November 2020, Q01.1", "marks": 1,
+          "q": "Which statement completes the following sentence? A megacity is a city with at least…", "o": ["500 000 people.", "1 million people.", "5 million people.", "10 million people."], "c": 3,
+          "why": "A megacity has at least 10 million people." },
+        { "type": "write", "id": "q2", "source": "AQA Geography 8035/2, June 2025, Q01.1", "marks": 1, "rows": 2,
+          "q": "What is urbanisation?",
+          "mark": { "points": [ { "t": "The increasing proportion / percentage of the population living in towns and cities <i>(accept ‘in urban areas’)</i>", "m": 1 } ], "note": "AQA: <b>no credit</b> for “an increasing number or size of cities” or “the population growing”. The key word is <b>proportion</b>: a bigger <i>share</i> of people live in towns and cities." } },
+        { "type": "mc", "id": "q3", "source": "AQA Geography 8035/2, June 2025, Q01.2", "marks": 1,
+          "stem": "Study Figure 1, a world map showing cities expected to become megacities by 2050.",
+          "fig": { "src": "fig/2025_P2_Fig1.png", "alt": "World map of emerging megacities with 2022 and projected 2050 populations in millions: Chicago 8.9 to 10.8; London 9.6 to 10.8; Baghdad 7.6 to 13.0; Tehran 9.4 to 10.6; Khartoum 6.2 to 11.2; Ahmedabad 8.5 to 13.0; Surat 7.9 to 12.0; Pune 7.0 to 10.8; Chengdu 9.5 to 10.6; Nanjing 9.5 to 10.4; Ho Chi Minh City 9.1 to 13.0; Nairobi 5.2 to 10.4; Dar es Salaam 7.5 to 16.4; Luanda 9.0 to 14.6.", "label": "June 2025, Paper 2, Figure 1" },
+          "q": "Which continent is expected to have the most new megacities in 2050? Shade one circle only.", "o": ["A &nbsp; Africa", "B &nbsp; Asia", "C &nbsp; Europe", "D &nbsp; North America"], "c": 1,
+          "why": "Count them. Asia: Baghdad, Tehran, Ahmedabad, Surat, Pune, Chengdu, Nanjing, Ho Chi Minh City = 8. Africa: Khartoum, Nairobi, Dar es Salaam, Luanda = 4.",
+          "ms": "B Asia <b>[1]</b>" },
+        { "type": "mc", "id": "q4", "source": "AQA Geography 8035/2, June 2025, Q01.3", "marks": 1,
+          "stem": "(Use Figure 1 above.)",
+          "q": "What is the expected percentage growth of Nairobi 2022–2050? Shade one circle only.", "o": ["A &nbsp; 50%", "B &nbsp; 100%", "C &nbsp; 150%", "D &nbsp; 200%"], "c": 1,
+          "why": "Nairobi goes from 5.2 to 10.4 million. The increase is 5.2 million, which is the same as the starting size, so it is a 100% increase (it doubles). 200% would mean it trebles.",
+          "ms": "B 100% <b>[1]</b>" },
+        { "type": "write", "id": "q5", "source": "AQA Geography 8035/2, June 2023, Q01.1", "marks": 1, "rows": 2,
+          "q": "Give one reason for the growth of megacities in LIC/NEEs.",
+          "mark": { "points": [ { "t": "Any one of: (high rates of) rural-urban migration · (high rates of) natural increase · urban and industrial development concentrated in one or two large cities · primate cities that grow into megacities", "m": 1 } ] } },
+        { "type": "write", "id": "q6", "source": "AQA Geography 8035/2, June 2025, Q01.4", "marks": 4, "rows": 7,
+          "stem": "Study Figure 2, some data about three of the cities shown in Figure 1.",
+          "table": { "title": "Figure 2", "head": ["City", "Median age", "Additional population per week"], "rows": [["Baghdad, Iraq", "21", "3850"], ["Ho Chi Minh City, Vietnam", "30", "3270"], ["Khartoum, Sudan", "20", "2885"]], "label": "June 2025, Paper 2, Figure 2" },
+          "q": "Suggest how natural increase and migration affect the growth of LIC/NEE cities. Use Figure 2 and your own understanding.",
+          "starters": ["Figure 2 shows…", "A median age of 20 means…", "so…", "Migrants also…"], "minWords": 60,
+          "mark": { "levels": [
+            { "l": "Level 1 (basic)", "m": "1–2", "mark": 2, "d": "Limited understanding of how natural increase and/or migration affect growth. Limited use of Figure 2." },
+            { "l": "Level 2 (clear)", "m": "3–4", "mark": 4, "d": "Clear understanding of how natural increase and migration affect urban growth, with some reference to Figure 2." }
+          ], "note": "<b>AQA: maximum Level 1 if you do not refer to Figure 2.</b><br>What examiners look for: a <b>low median age</b> means many young people of child-bearing age, so many children are born (natural increase); thousands more people <b>per week</b> shows very fast growth (you can turn 3850 a week into about 550 a day, or 200 000 a year); a young population supplies workers but puts pressure on housing and services; growth of informal settlements." } }
+      ]
+    },
+    {
+      "h": "3. Written paper", "time": "20 min",
+      "blocks": [
+        { "type": "info", "tone": "big", "html": "Print the written paper. It has a real 6-mark “to what extent” question with a photograph. You need your <b>Week 3 case-study card</b> (your megacity and its facts). The mark scheme is on the last page." }
+      ]
+    },
+    {
+      "h": "4. Check yourself", "time": "5 min",
+      "blocks": [
+        { "type": "checklist", "id": "sc", "h": "Self-check", "items": ["I used a number or detail from the figure in every longer answer.", "I wrote <b>proportion</b> for urbanisation, not just “more people”.", "I explained <i>how</i> (…so…), not only <i>what</i>.", "I named a real city with a specific fact.", "My longer answer ends with a judgement: overall… because…"] },
+        { "type": "oral", "q": "“Khartoum’s median age is 20. Why does that make the city grow faster?”", "note": "For the parent: listen for “lots of young adults → lots of babies → natural increase”." }
+      ]
+    }
+  ],
+  "paper": {
+    "title": "Geography Week 3 plus: megacities (written)",
+    "sub": "Ember · Real AQA GCSE Geography question (Paper 2) · about 20 minutes · have your Week 3 case-study card ready",
+    "intro": "<b>Skill: figure + named example + judgement.</b> AQA’s mark scheme gives a maximum of Level 2 if you use only the photo <i>or</i> only your example. Use both, then decide how far.",
+    "blocks": [
+      { "source": "AQA Geography 8035/2, June 2023, Q01.6", "marks": 6,
+        "stem": "Study Figure 3, a photograph of a street class run by volunteers in Mexico City.",
+        "fig": { "src": "fig/2023_P2_Fig3.jpg", "alt": "A street class in Mexico City: children sit at small desks on a pavement next to parked cars and a lorry, with volunteers helping them and a pile of books.", "label": "June 2023, Paper 2, Figure 3" },
+        "q": "To what extent has urban growth created social opportunities? Use Figure 3 and a LIC/NEE example you have studied." },
+      { "type": "table", "h": "Plan (5 min)", "cols": ["What Figure 3 shows (one detail)", "My case study: city and one specific fact", "A limit: who misses out?", "Judgement: to what extent?"], "rows": [["", "", "", ""]] },
+      { "lines": 14, "pageBreak": true }
+    ],
+    "selfcheck": ["I used a detail from the photo (e.g. the class is on the street, run by volunteers).", "I named my case-study city and gave a specific fact (a number, a place, a project).", "I explained how urban growth creates the opportunity (education, health, jobs).", "I showed a limit: not everyone gets it, or it is informal.", "I finished with a judgement: “to a large extent / to some extent… because…”."],
+    "marking": [
+      { "h": "AQA mark scheme: June 2023, Q01.6 (6 marks)", "html": "<ul><li><b>Level 3 (5–6, detailed):</b> detailed understanding of the relationship between urban growth and the opportunities offered; thorough analysis of the figure and another example.</li><li><b>Level 2 (3–4, clear):</b> clear understanding of the relationship; some analysis of the figure and/or another example.</li><li><b>Level 1 (1–2, basic):</b> limited understanding; limited analysis of the figure and/or another example.</li></ul><b>Max Level 2 if you used only Figure 3, or only your own example.</b><br><br><b>What examiners credit:</b> the informal nature of some education and the existence of schooling even if small (from the photo); volunteer teachers; children can attend school where none were available in the rural areas they migrated from (e.g. 68% secondary education in Lagos versus 60% primary in rural northern Nigeria); projects with an education element (e.g. the floating school in Makoko, Lagos); job training (e.g. the Favela Bairro scheme); better water supply in cities (e.g. 75% in Lagos versus 42% in rural Nigeria), so fewer water-borne diseases; strong sense of community (e.g. Dharavi, Mumbai); jobs, even informal ones, <i>only if</i> linked to better food, housing or education.<br><br>My level: ______" }
+    ],
+    "footer": "Questions, figures and mark scheme wording © AQA and the original rights holders, from published GCSE Geography 8035/2 papers (June 2023, June 2025). Used for private practice."
+  }
+}

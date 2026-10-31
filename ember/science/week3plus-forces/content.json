@@ -1,0 +1,112 @@
+{
+  "kicker": "Ember · Science · Week 3 plus",
+  "title": "Forces: real AQA questions",
+  "sub": "An optional extra for Week 3. Every question below is from a real AQA GCSE Physics paper. About 25 minutes on screen, then the written paper.",
+  "skill": "The Because Chain: cause → effect → consequence.",
+  "target": "AQA gives one mark for each link in the chain. A list of facts gets the first mark only. A chain where each sentence causes the next gets them all.",
+  "print": "week3plus-forces-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up", "time": "5 min", "sub": "Week 3, from memory. No notes.",
+      "blocks": [
+        { "type": "mc", "id": "w1", "h": "Resultant force", "q": "A trolley is pushed forwards with a force of 25 N. Friction of 8 N acts backwards. What is the resultant force?", "o": ["33 N forwards", "17 N forwards", "17 N backwards"], "c": 1, "why": "Opposite directions, so subtract: 25 − 8 = 17 N, in the direction of the bigger force." },
+        { "type": "mc", "id": "w2", "h": "Balanced forces", "q": "A lorry moves at a steady speed in a straight line. What must be true?", "o": ["The driving force is bigger than the resistive forces", "There are no forces acting on it", "The forces are balanced, so the resultant force is zero"], "c": 2, "why": "No change in speed or direction means no resultant force. Forces still act, but they cancel." },
+        { "type": "mc", "id": "w3", "h": "Mass and weight", "q": "Which one changes when you go to the Moon?", "o": ["Your mass", "Your weight", "Neither"], "c": 1, "why": "Weight = mass × gravitational field strength. The Moon’s field is weaker, so weight falls. Mass stays the same." }
+      ]
+    },
+    {
+      "h": "2. Real AQA questions", "time": "15 min", "sub": "Answer, then open the AQA mark scheme to see exactly what earns the mark.",
+      "blocks": [
+        { "type": "num", "id": "q1", "source": "AQA Physics 8463/2H, June 2023, Q02.2", "marks": 1,
+          "stem": "Figure 4 shows the direction of the horizontal forces acting on the aeroplane as it moves in a straight line towards the runway.",
+          "fig": { "src": "fig/2023_P2_Q02.2.png", "alt": "An aeroplane with three horizontal forces: air resistance 4500 N backwards, friction 9500 N backwards, thrust from the engines 14 000 N forwards.", "label": "June 2023, Paper 2, Figure 4" },
+          "q": "Determine the magnitude of the resultant horizontal force on the aeroplane.",
+          "answer": "0", "unit": "N", "decimal": true,
+          "traps": [
+            { "value": "28000", "msg": "You added all three. Forces in opposite directions cancel: add up each direction first, then subtract." },
+            { "value": "4500", "msg": "You took away only the friction. Air resistance acts backwards too." },
+            { "value": "9500", "msg": "You took away only the air resistance. Friction acts backwards too." }
+          ],
+          "why": "Backwards: 4500 + 9500 = 14 000 N. Forwards: 14 000 N. They cancel, so the resultant force is 0 N.",
+          "ms": "0 (N) <b>[1]</b>" },
+        { "type": "write", "id": "q2", "source": "AQA Physics 8463/2H, June 2023, Q02.3", "marks": 1, "rows": 2,
+          "q": "Describe the motion of the aeroplane as it moves towards the runway.",
+          "placeholder": "Use your answer to the last question.",
+          "mark": { "points": [ { "t": "constant velocity <i>(allow: constant speed in a straight line)</i>", "m": 1 } ], "note": "AQA: do <b>not</b> accept “stationary”. Zero resultant force does not mean it stops. It means it keeps doing what it is already doing." } },
+        { "type": "write", "id": "q3", "source": "AQA Physics 8463/2H, June 2023, Q02.4", "marks": 1, "rows": 2,
+          "q": "Air resistance and friction are contact forces. Give one other example of a contact force.",
+          "mark": { "points": [ { "t": "any one of: tension · normal contact force (normal reaction) · upthrust <i>(also allowed: lift, thrust, water resistance)</i>", "m": 1 } ], "note": "AQA ignores “drag”, because drag is another name for air resistance or water resistance." } },
+        { "type": "write", "id": "q4", "source": "AQA Physics 8463/2H, June 2024, Q02.1", "marks": 2, "rows": 3,
+          "stem": "Figure 5 shows a young child using a baby walker.",
+          "fig": { "src": "fig/2024_P2_Q02.png", "alt": "A young child standing and holding the handle of a wheeled baby walker.", "label": "June 2024, Paper 2, Figure 5" },
+          "q": "The child is standing still. What is the resultant vertical force on the child? Give a reason for your answer.",
+          "mark": { "points": [ { "t": "0 (N)", "m": 1 }, { "t": "the child isn’t accelerating (vertically) <b>or</b> upwards forces are equal to the downwards forces <i>(allow: forces are balanced)</i>", "m": 1 } ], "note": "AQA: the reason only scores if you said 0 N first." } },
+        { "type": "mc", "id": "q5", "source": "AQA Physics 8463/2H, June 2022, Q04.3", "marks": 1,
+          "stem": "Hailstones are small balls of ice. A scientist investigated how the mass of hailstones affects their terminal velocity. Figure 8 shows the results.",
+          "fig": { "src": "fig/2022_P2_Q04.3.png", "alt": "Graph of terminal velocity in metres per second against mass of hailstone in grams. The curve rises from about 0.5 m/s at 5 g to about 32 m/s at 20 g, getting steeper.", "label": "June 2022, Paper 2, Figure 8" },
+          "q": "Why does terminal velocity increase with mass?",
+          "o": ["As mass increases the cross-sectional surface area of a hailstone increases.", "As mass increases the volume of a hailstone increases.", "As mass increases the weight of a hailstone increases."], "c": 2,
+          "why": "More mass means more weight. A heavier hailstone has to fall faster before air resistance grows big enough to balance its weight.",
+          "ms": "as mass increases the weight of a hailstone increases <b>[1]</b>" },
+        { "type": "order", "id": "q6chain", "h": "Build the chain first",
+          "q": "The next question asks why a hailstone reaches terminal velocity. Tap the links in order. Each one causes the next.",
+          "items": ["The hailstone falls, so its velocity increases.", "As its velocity increases, the air resistance increases.", "The air resistance keeps increasing until it is equal to the weight of the hailstone.", "So the resultant force is zero.", "So the hailstone stops accelerating: it falls at a constant (terminal) velocity."],
+          "doneTitle": "Chain complete.", "done": "Notice the joining words: <i>as, until, so</i>. Now write it as sentences." },
+        { "type": "write", "id": "q6", "source": "AQA Physics 8463/2H, June 2022, Q04.2", "marks": 3, "rows": 5,
+          "stem": "A hailstone falls from a cloud and accelerates.",
+          "q": "The hailstone stops accelerating and reaches terminal velocity. Explain why the hailstone reaches terminal velocity.",
+          "starters": ["As the velocity increases…", "until…", "so the resultant force…"], "minWords": 35,
+          "mark": { "points": [ { "t": "as the velocity of the hailstone increases, air resistance increases <i>(allow speed for velocity)</i>", "m": 1 }, { "t": "until air resistance becomes equal to the weight of the hailstone", "m": 1 }, { "t": "so the resultant force is (equal to) zero", "m": 1 } ], "note": "The second and third marks are links. If you wrote “air resistance and weight” without saying they become <b>equal</b>, that mark is not there yet." } },
+        { "type": "write", "id": "q7", "source": "AQA Physics 8463/2H, June 2024, Q02.4", "marks": 2, "rows": 4,
+          "q": "The child pushed the baby walker from a carpet onto a hard floor. The child applied the same horizontal force to the baby walker. Explain why the speed of the baby walker increased.",
+          "starters": ["On the hard floor…", "so the resultant force…"],
+          "mark": { "points": [ { "t": "the resistive force has decreased <i>(allow: friction between the wheels and the floor has decreased)</i>", "m": 1 }, { "t": "so the resultant force increases", "m": 1 } ], "note": "Two marks, two links: cause (less friction) → effect (bigger resultant force). Saying only “the floor is smoother” does not name a force." } },
+        { "type": "steps", "id": "q8", "source": "AQA Physics 8463/2H, June 2022, Q05.2 (stretch)", "marks": 3,
+          "stem": "Figure 9 shows a balance used to measure the mass of five tomatoes.",
+          "fig": { "src": "fig/2022_P2_Q05.2.png", "alt": "Five tomatoes on a kitchen balance. The dial is marked in grams from 0 to 900 and the pointer is at 425 g.", "label": "June 2022, Paper 2, Figure 9" },
+          "q": "Calculate the mean weight of a tomato in Figure 9. Use the Physics Equations Sheet. gravitational field strength = 9.8 N/kg",
+          "steps": [
+            { "p": "Read the dial. What is the mass of the five tomatoes, in <b>kilograms</b>?", "answer": "0.425", "unit": "kg", "decimal": true, "mark": "1 mark", "hint": "Each small mark is 25 g. Then 1000 g = 1 kg.", "traps": [ { "value": "425", "msg": "That is in grams. Weight = mass × g needs the mass in kilograms." } ] },
+            { "p": "What is the mass of one tomato, in kg?", "answer": "0.085", "unit": "kg", "decimal": true, "mark": "1 mark", "hint": "Share the mass between 5." },
+            { "p": "Weight = mass × gravitational field strength. What is the mean weight of one tomato?", "answer": ["0.833", "0.83"], "unit": "N", "decimal": true, "mark": "1 mark", "hint": "0.085 × 9.8" }
+          ],
+          "why": "W = m g = 0.085 × 9.8 = 0.833 N.",
+          "ms": "mass of 5 tomatoes = 0.425 (kg) <b>[1]</b><br>mass of 1 tomato = 0.085 (kg) <b>[1]</b><br>W = (0.085 × 9.8) = 0.833 (N) <b>[1]</b><br><i>AQA still gives the later marks if you misread the dial but then divide and multiply correctly.</i>" }
+      ]
+    },
+    {
+      "h": "3. Written paper", "time": "15 min",
+      "blocks": [
+        { "type": "info", "tone": "big", "html": "Print the written paper and do it by hand. It has two more real AQA questions about a world-record skydive, with the mark scheme on the last page so you can mark your own answer." }
+      ]
+    },
+    {
+      "h": "4. Check yourself", "time": "5 min",
+      "blocks": [
+        { "type": "checklist", "id": "sc", "h": "Self-check", "items": ["I used the words <b>resultant force</b>.", "Every explanation sentence links to the one before (as, so, until, which means).", "I said the forces become <b>equal</b>, not just that they exist.", "I included units (N, kg).", "I opened the mark scheme after each answer and fixed what I missed."] },
+        { "type": "oral", "q": "“Why does a falling object stop speeding up?” Say the whole chain out loud without looking.", "note": "For the parent: listen for <i>air resistance increases → until it equals the weight → resultant force zero → no acceleration</i>. One link missing = ask “and so…?”" }
+      ]
+    }
+  ],
+  "paper": {
+    "title": "Science Week 3 plus: forces (written)",
+    "sub": "Ember · Real AQA GCSE Physics questions · about 15 minutes · pencil and ruler",
+    "intro": "<b>Skill: the Because Chain.</b> One mark per link. Plan the chain in the boxes first, then write it as joined-up sentences using <i>as, until, so, which means</i>.",
+    "blocks": [
+      { "type": "info", "html": "<b>The context for both questions.</b> In a world record attempt, a skydiver jumped from a height of 40 km above the Earth." },
+      { "source": "AQA Physics 8463/2H, June 2025, Q05.1", "marks": 2,
+        "stem": "(Draw your answer on Figure 6.)",
+        "q": "Figure 6 shows an incomplete free-body diagram for the skydiver a few seconds after the start of the jump. The skydiver has not reached terminal velocity. Complete the free-body diagram in Figure 6.",
+        "fig": { "src": "fig/2025_P2_Q05.1.png", "alt": "A dot with one arrow pointing down labelled Weight.", "label": "June 2025, Paper 2, Figure 6" } },
+      { "type": "plan", "h": "Plan the chain for the next question (one short phrase per box)", "cols": ["Cause", "Effect", "Until…", "So…", "So…"] },
+      { "source": "AQA Physics 8463/2H, June 2025, Q05.3", "marks": 4,
+        "q": "The skydiver accelerated until reaching terminal velocity. Explain why the skydiver reached terminal velocity.", "lines": 8 }
+    ],
+    "selfcheck": ["My free-body arrow starts at the dot, points up, and is shorter than the weight arrow.", "I labelled it.", "My explanation has four links, each joined to the last.", "I said air resistance becomes <b>equal</b> to the weight.", "I finished with what happens to the acceleration."],
+    "marking": [
+      { "h": "AQA mark scheme: Q05.1 (2 marks)", "html": "<ul><li>a single arrow starting from the dot, pointing vertically upwards <b>and</b> shorter than the weight arrow <b>[1]</b></li><li>labelled air resistance (allow drag) <b>[1]</b></li></ul>Why shorter? The skydiver has not reached terminal velocity yet, so the forces are not balanced: weight is still bigger." },
+      { "h": "AQA mark scheme: Q05.3 (4 marks)", "html": "<ul><li>(as the skydiver’s velocity / speed increased) the air resistance increased <b>[1]</b></li><li>until the air resistance was equal to the weight of the skydiver (and in the opposite direction) <b>[1]</b></li><li>(so) the resultant force was zero <b>[1]</b></li><li>(so) the acceleration was zero (so the velocity was constant) <b>[1]</b></li></ul>Allow “drag” for air resistance throughout. Score yourself: ____ / 4. Which link did you miss? Write it in now, in a different colour." }
+    ],
+    "footer": "Questions and mark scheme wording © AQA, from published GCSE Physics 8463 papers (June 2025). Used for private practice."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "kicker": "Ember · English · Week 3 plus",
+  "title": "A house that means more: real AQA Question 2",
+  "sub": "An optional extra for Week 3. The extract, question and level examples are from a real AQA GCSE English Language paper (Paper 1, November 2024). About 20 minutes on screen, then the written paper, which links back to Tsunami Girl.",
+  "skill": "Quote, effect, So What.",
+  "target": "Pick a few words, say what they make us picture or feel, then say what that tells us. Here the house stands for something bigger. That bigger meaning is the So What.",
+  "print": "week3plus-symbolism-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up", "time": "5 min", "sub": "Week 3, from memory.",
+      "blocks": [
+        { "type": "mc", "id": "w1", "h": "Symbols", "q": "What makes an object a symbol in a story?", "o": ["It is described in a lot of detail", "It stands for an idea or feeling bigger than itself", "It appears on the first page"], "c": 1, "why": "A symbol carries a bigger meaning, such as loss, hope or decline, as well as being a real thing in the story." },
+        { "type": "mc", "id": "w2", "h": "Quote, effect, So What", "q": "Which of these is the <b>So What</b>?", "o": ["The writer uses the word ‘crumbling’.", "‘Crumbling’ makes us picture the walls breaking apart bit by bit.", "This suggests the family’s power is slowly falling apart too."], "c": 2, "why": "Quote → effect (what we picture) → So What (what it tells us about the bigger idea)." }
+      ]
+    },
+    {
+      "h": "2. The real question", "time": "15 min",
+      "blocks": [
+        { "type": "info", "html": "<div class=\"pr-src\"><span>AQA English Language 8700/1, November 2024, Q02</span><span>[8 marks]</span></div><p>Look in detail at this extract, from lines 8 to 14 of the source:</p><blockquote class=\"pr-extract\">Behind a tall, rusting gate, Foxcote Manor erupts from the undergrowth, as if a geological heave has lifted it from the woodland floor. A wrecked beauty, the old house’s windows blink drunkenly in the evening sunlight. Colossal trees overhang a sweep of red-tiled roof that sags in the middle, like a snapped spine, so the chimneys tilt at odd angles. Ivy suckers up the timber and brick-gabled façade, dense, bristling, alive with dozens of tiny darting birds, a billowing veil of bees. It’s as far from the Harringtons’ elegant London townhouse as Rita could possibly imagine.</blockquote><p class=\"pr-q\">How does the writer use language here to describe Foxcote Manor?</p><p>You could include the writer’s choice of:<br>• words and phrases<br>• language features and techniques<br>• sentence forms.</p>" },
+        { "type": "mc", "id": "t1", "h": "Name the technique", "q": "‘the old house’s windows blink drunkenly’", "o": ["Simile", "Personification", "Alliteration"], "c": 1, "why": "Windows cannot blink or be drunk: the house is given human actions. AQA’s mark scheme: personification, “suggesting a lack of balance”.", "ms": "personification: ‘windows blink drunkenly’, suggesting a lack of balance" },
+        { "type": "mc", "id": "t2", "h": "Name the technique", "q": "‘A wrecked beauty’", "o": ["Juxtaposition: two opposite ideas side by side", "Onomatopoeia", "A rhetorical question"], "c": 0, "why": "‘Wrecked’ and ‘beauty’ pull against each other. It was beautiful once and is ruined now.", "ms": "juxtaposition: ‘wrecked beauty’, to suggest the house’s decline" },
+        { "type": "mc", "id": "t3", "h": "Effect", "q": "What effect does the verb ‘erupts’ create?", "o": ["The house seems calm and welcoming", "The house seems sudden, violent and intimidating, like a volcano", "The house seems small and hidden"], "c": 1, "why": "Volcanoes erupt. The house bursts out of the ground with force, so it feels threatening before we even reach the door.", "ms": "verbs: ‘erupts’, ‘lifted’, to introduce the intimidating presence of the house" },
+        { "type": "mc", "id": "t4", "h": "Effect", "q": "‘dense, bristling, alive’: what does this list of three do?", "o": ["Emphasises how completely nature has taken over the house", "Shows the house is being looked after", "Makes the description shorter"], "c": 0, "why": "Three words piled up make the ivy feel overwhelming. Nature is winning.", "ms": "listing/tripling: ‘dense, bristling, alive’ to emphasise how nature has taken over" },
+        { "type": "order", "id": "ladder", "h": "Climb the levels",
+          "q": "All four of these are AQA’s own examples about the same quote, ‘sags in the middle, like a snapped spine’. Tap them from weakest (Level 1) to strongest (Level 4).",
+          "items": [
+            "The writer describes Foxcote Manor in a bad way. It says that the roof ‘sags in the middle, like a snapped spine’. This shows that the roof is not very good and you wouldn't want to live somewhere like that.",
+            "The writer describes Foxcote Manor as badly damaged. There is a simile to describe the roof when it says ‘sags in the middle, like a snapped spine’. By comparing the house to a part of the body the writer is suggesting that the house is broken and damaged because it has not been looked after very well. The word ‘sags’ suggests it could be about to fall down.",
+            "The writer presents Foxcote Manor as having a serious problem with its structure. The simile ‘sags in the middle, like a snapped spine’ personifies the roof as a badly injured person. A spine keeps a skeleton upright, so the roof’s central part being ‘snapped’ implies that the roof cannot support the chimneys and its strength is gone. The verb ‘sags’ suggests that the broken roof pulls down everything around it.",
+            "The writer develops the image of a rundown and neglected house by focusing on a key part of its structure, the roof. By personifying this using the simile ‘sags in the middle, like a snapped spine’, it suggests that the fundamental backbone of the house is drastically weakened, causing instability and a loss of control all around it. The writer also uses the verb ‘sags’, which not only has connotations of drooping or sinking, as the roof is, but also suggests decline, further emphasising that the house as a whole is deteriorating."
+          ],
+          "labels": ["L1", "L2", "L3", "L4"],
+          "doneTitle": "That is the AQA ladder.", "done": "Level 1 reacts (“not very good”). Level 2 names the technique and attempts an effect. Level 3 explains <i>how</i> it works (a spine keeps a skeleton upright, <i>so</i>…). Level 4 finds the bigger meaning: ‘sags’ also suggests <b>decline</b>, so the roof stands for the whole house falling apart. That last step is symbolism." },
+        { "type": "mc", "id": "lift", "h": "What lifted it?", "q": "What does the Level 4 answer do that Level 3 does not?", "o": ["Uses more technical terms", "Shows that one word carries two meanings: the roof drooping <b>and</b> the whole house declining", "Quotes more of the extract"], "c": 1, "why": "AQA: “perceptive, detailed”. Unpacking a word’s connotations until it points to the big idea is exactly the skill from Week 3." },
+        { "type": "write", "id": "para", "marks": 8, "rows": 8, "h": "Your turn",
+          "q": "Write one paragraph on a <b>different</b> quote: ‘windows blink drunkenly’ or ‘Ivy suckers up the timber’. Quote, effect, then So What: what does the house come to stand for?",
+          "starters": ["The writer uses…", "This makes the reader picture…", "This suggests that the house…", "which could also suggest…"], "minWords": 60,
+          "mark": { "levels": [
+            { "l": "Level 1: simple, limited", "m": "1–2", "mark": 2, "d": "Simple comment on the effect; simple references; subject terminology not always appropriate.", "eg": "The writer describes Foxcote Manor in a bad way. It says that the roof ‘sags in the middle, like a snapped spine’. This shows that the roof is not very good and you wouldn't want to live somewhere like that." },
+            { "l": "Level 2: some, attempts", "m": "3–4", "mark": 4, "d": "Attempts to comment on the effect of language; some appropriate textual detail; some use of subject terminology, mainly appropriately.", "eg": "The writer describes Foxcote Manor as badly damaged. There is a simile to describe the roof when it says ‘sags in the middle, like a snapped spine’. By comparing the house to a part of the body the writer is suggesting that the house is broken and damaged because it has not been looked after very well. The word ‘sags’ suggests it could be about to fall down." },
+            { "l": "Level 3: clear, relevant", "m": "5–6", "mark": 6, "d": "Explains clearly the effects of the writer’s choices; a range of relevant textual detail; clear and accurate subject terminology.", "eg": "The writer presents Foxcote Manor as having a serious problem with its structure. The simile ‘sags in the middle, like a snapped spine’ personifies the roof as a badly injured person. A spine keeps a skeleton upright, so the roof’s central part being ‘snapped’ implies that the roof cannot support the chimneys and its strength is gone. The verb ‘sags’ suggests that the broken roof pulls down everything around it." },
+            { "l": "Level 4: perceptive, detailed", "m": "7–8", "mark": 8, "d": "Analyses the effects of the writer’s choices; a range of judicious textual detail; sophisticated and accurate subject terminology.", "eg": "The writer develops the image of a rundown and neglected house by focusing on a key part of its structure, the roof. By personifying this using the simile ‘sags in the middle, like a snapped spine’, it suggests that the fundamental backbone of the house is drastically weakened, causing instability and a loss of control all around it. The writer also uses the verb ‘sags’, which not only has connotations of drooping or sinking, as the roof is, but also suggests decline, further emphasising that the house as a whole is deteriorating." }
+          ], "note": "A full exam answer covers several quotes. One paragraph at Level 3 quality is a strong result for today. AQA: “It is not the number of references, but the quality of the comments that will determine the level.”" } }
+      ]
+    },
+    {
+      "h": "3. Written paper", "time": "20 min",
+      "blocks": [
+        { "type": "info", "tone": "big", "html": "Print the written paper. Part A: answer the real Question 2 in full by hand (about 12 minutes, the time you would have in the exam). Part B: use the same question on a symbol from <i>Tsunami Girl</i>, with a quote from your notes." }
+      ]
+    },
+    {
+      "h": "4. Check yourself", "time": "5 min",
+      "blocks": [
+        { "type": "checklist", "id": "sc", "h": "Self-check", "items": ["Each point has a short quote (a few words, not a whole sentence).", "I named a technique only when it helped explain the effect.", "I explained <b>how</b> the words create the effect (…so…).", "I reached a So What: what the house stands for.", "I wrote about the given lines only."] },
+        { "type": "oral", "q": "“Why does the roof matter more than any other part of the house?”", "note": "For the parent: listen for the spine idea (it holds everything up) and the bigger meaning (the whole house is in decline)." }
+      ]
+    }
+  ],
+  "paper": {
+    "title": "English Week 3 plus: language and symbolism (written)",
+    "sub": "Ember · Real AQA GCSE English Language question (Paper 1, Q2) · about 20 minutes",
+    "intro": "<b>Skill: Quote, effect, So What.</b> Short quotes. Say what the words make us picture or feel, explain <i>how</i>, then say what the thing comes to stand for.",
+    "blocks": [
+      { "source": "AQA English Language 8700/1, November 2024, Q02", "marks": 8,
+        "stem": "<b>Part A (about 12 minutes).</b> Look in detail at this extract, from lines 8 to 14 of the source:",
+        "extract": "Behind a tall, rusting gate, Foxcote Manor erupts from the undergrowth, as if a geological heave has lifted it from the woodland floor. A wrecked beauty, the old house’s windows blink drunkenly in the evening sunlight. Colossal trees overhang a sweep of red-tiled roof that sags in the middle, like a snapped spine, so the chimneys tilt at odd angles. Ivy suckers up the timber and brick-gabled façade, dense, bristling, alive with dozens of tiny darting birds, a billowing veil of bees. It’s as far from the Harringtons’ elegant London townhouse as Rita could possibly imagine.",
+        "q": "How does the writer use language here to describe Foxcote Manor?<br><span style=\"font-weight:400\">You could include the writer’s choice of: • words and phrases • language features and techniques • sentence forms.</span>",
+        "lines": 14 },
+      { "type": "info", "pageBreak": true, "h": "Part B: the same question, your book (about 8 minutes)", "html": "Pick one object or place in <i>Tsunami Girl</i> that you decided was a symbol in Week 3. Copy one short quote about it from your notes or the book.<br><br>Symbol: ____________________ &nbsp; Quote: “_____________________________________________”<br><br><b>Question:</b> How does the writer use language to describe the ____________________?" },
+      { "lines": 9 }
+    ],
+    "selfcheck": ["Part A covers at least three different quotes.", "Each quote is a few words, and each has an effect and a <b>how</b> (…so…).", "At least one point reaches a So What: what the house stands for.", "Part B uses a real quote from Tsunami Girl, not a summary.", "Reflection: which quote was hardest to explain, and why?"],
+    "marking": [
+      { "h": "AQA mark scheme: November 2024, Paper 1, Q02 (8 marks)", "html": "<ul><li><b>Level 4 (7–8): perceptive, detailed.</b> Analyses the effects of the writer’s choices of language; selects a range of judicious textual detail; makes sophisticated and accurate use of subject terminology.</li><li><b>Level 3 (5–6): clear, relevant.</b> Explains clearly the effects of the writer’s choices of language; selects a range of relevant textual detail; makes clear and accurate use of subject terminology.</li><li><b>Level 2 (3–4): some, attempts.</b> Attempts to comment on the effect of language; selects some appropriate textual detail; makes some use of subject terminology, mainly appropriately.</li><li><b>Level 1 (1–2): simple, limited.</b> Offers simple comment on the effect of language; selects simple references or textual details; makes simple use of subject terminology, not always appropriately.</li></ul><b>AQA’s list of what students may write about:</b> verbs ‘erupts’, ‘lifted’ (intimidating presence) · juxtaposition ‘wrecked beauty’ (decline) · personification ‘windows blink drunkenly’ (lack of balance) · natural imagery ‘colossal trees’, ‘ivy suckers up’ (neglect, nature taking control) · simile ‘sags in the middle, like a snapped spine’ (extent of the damage) · listing ‘dense, bristling, alive’ (nature has taken over) · contrast ‘elegant’ and ‘wrecked’ (London townhouse versus Foxcote Manor).<br><br>Part A level: ______ &nbsp; Part B level: ______" }
+    ],
+    "footer": "Extract, question and mark scheme wording © AQA and the original rights holders, from the published GCSE English Language 8700/1 paper (November 2024). Used for private practice."
+  }
+}

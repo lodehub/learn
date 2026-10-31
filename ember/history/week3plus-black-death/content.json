@@ -1,0 +1,71 @@
+{
+  "kicker": "Ember · History · Week 3 plus",
+  "title": "Medieval medicine: climbing the AQA levels",
+  "sub": "An optional extra for Week 3. The question and the four level examples are from a real AQA GCSE History paper (Britain: Health and the people). About 20 minutes on screen, then the written answer.",
+  "skill": "So What? (developed explanation).",
+  "target": "Evidence says what happened. So What says what it reveals: what people valued, feared, wanted or believed. In AQA’s mark scheme, that one extra sentence is the jump from Level 2 to Level 3.",
+  "print": "week3plus-black-death-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up", "time": "5 min", "sub": "Week 3, from memory.",
+      "blocks": [
+        { "type": "mc", "id": "w1", "h": "Describe or explain?", "q": "“During the Black Death, some people walked through towns whipping themselves in public.”", "o": ["Describes (Evidence)", "Explains (So What)"], "c": 0, "why": "It says what happened. It does not yet say what it reveals." },
+        { "type": "mc", "id": "w2", "h": "Describe or explain?", "q": "“This suggests that many people saw the plague as a punishment from God, so the cure had to be spiritual, not medical.”", "o": ["Describes (Evidence)", "Explains (So What)"], "c": 1, "why": "It reads meaning into the evidence: what people believed. Starters like <i>this suggests</i> are a clue, but the test is whether it says what the evidence reveals." },
+        { "type": "mc", "id": "w3", "h": "Claim check", "q": "A pupil writes: “Everyone in the Middle Ages thought the plague came from God.” What is the problem?", "o": ["Nothing, it is correct", "“Everyone” is too strong. Some blamed bad air (miasma) or the position of the planets. A claim must match the evidence."], "c": 1, "why": "One belief, even a common one, is not proof that everyone held it. Check the claim against your notes and soften it: <i>many people…</i>" }
+      ]
+    },
+    {
+      "h": "2. The real question, and how AQA marks it", "time": "10 min",
+      "blocks": [
+        { "type": "info", "html": "<div class=\"pr-src\"><span>AQA History 8145/2A/A, June 2023, Q02</span><span>[8 marks]</span></div><p class=\"pr-q\">Explain the significance of the treatments used by medieval doctors.</p><p><b>Significance</b> asks: what did it show, what did it lead to, and how long did it last? Facts about the treatments are only the start.</p>" },
+        { "type": "order", "id": "ladder", "h": "Climb the levels",
+          "q": "These are AQA’s own example answers, one from each level. Tap them from weakest (Level 1) to strongest (Level 4).",
+          "items": [
+            "For example, medieval doctors would bleed patients.",
+            "For example, the medieval doctors bled patients because they thought you were healthy if your humours were in balance. There was black bile and yellow bile and phlegm. This was an Ancient Greek idea.",
+            "For example, Medieval doctors bled patients because they followed the ideas of the Ancient Greeks like Hippocrates to balance the humours. If the humours were balanced you were healthy. The significance of the treatment was that it showed the power of the church and how long the old ideas lasted. The old Greek ideas were approved of by the Christian church and were part of a physician’s training in medieval universities.",
+            "For example, the significance of medieval treatment was that they were not wholly scientific. Some observation was done but conclusions were not to be challenged by experimentation. A physician learned medicine at university controlled by the Christian church and in the later middle ages might gain some Islamic medical knowledge. The 13th century English monk Roger Bacon was disciplined for suggesting doctors should do original research. Prayer was an important treatment because so much was unknown and a doctor’s function was often to predict the course of illness not cure it. In the Renaissance the medieval knowledge was challenged by people like Vesalius and new methods suggested by Paré."
+          ],
+          "labels": ["L1", "L2", "L3", "L4"],
+          "doneTitle": "That is the AQA ladder.", "done": "Level 1 names a treatment. Level 2 adds a reason. Level 3 adds a <b>So What</b>: what the treatment showed. Level 4 links several So Whats together, over time." },
+        { "type": "mc", "id": "lift1", "h": "What lifted it?", "q": "What does the Level 2 answer add to the Level 1 answer?", "o": ["A reason: why doctors bled patients (to balance the humours)", "More treatments", "Longer sentences"], "c": 0, "why": "AQA calls Level 2 “simple explanation of one aspect”. It explains <i>why</i>, but stops at what happened." },
+        { "type": "mc", "id": "lift2", "h": "What lifted it?", "q": "Which sentence moves the Level 3 answer above Level 2?", "o": ["“If the humours were balanced you were healthy.”", "“The significance of the treatment was that it showed the power of the church and how long the old ideas lasted.”", "“Medieval doctors bled patients.”"], "c": 1, "why": "That is the So What. It says what the treatment <b>reveals</b> about medieval society: the Church’s power and how long old ideas survived." },
+        { "type": "mc", "id": "lift3", "h": "What lifted it?", "q": "What makes Level 4 “complex”?", "o": ["It uses harder words", "It links aspects together: treatments were not tested, the Church controlled training, so ideas went unchallenged until the Renaissance", "It is the longest"], "c": 1, "why": "AQA: “explaining the relationship between aspects of significance, for example over time”. That is the Domino habit, which comes later. For now, aim for Level 3." },
+        { "type": "mc", "id": "g1", "h": "Grounded or guessing?", "q": "Evidence: medieval doctors bled patients to balance the four humours. Which So What follows from it?", "o": ["This suggests that medieval medicine trusted the ideas of ancient writers more than testing what actually worked.", "This shows that medieval doctors were stupid and did not care about their patients."], "c": 0, "why": "The second judges the past by modern knowledge, and nothing in the evidence says they did not care. Ask: would a medieval doctor have seen it that way?" },
+        { "type": "write", "id": "pairs", "marks": 3, "rows": 9, "h": "Your turn: three So Whats",
+          "q": "From your Week 3 notes, pick three treatments or reactions to the Black Death. For each, write one Evidence sentence, then one So What sentence.",
+          "starters": ["This suggests that…", "This reveals a society in which…", "Underlying this was the idea that…"],
+          "placeholder": "1. Evidence: …  So What: …\n2. Evidence: …  So What: …\n3. Evidence: …  So What: …",
+          "mark": { "points": [ { "t": "Pair 1: the evidence is from my notes, and the So What follows from it (no new fact)", "m": 1 }, { "t": "Pair 2: the evidence is from my notes, and the So What follows from it", "m": 1 }, { "t": "Pair 3: the evidence is from my notes, and the So What follows from it", "m": 1 } ], "note": "A So What that adds a new fact is not a So What. Read it aloud: does it feel like “obviously, once you think about it”? If a fact is not in your notes, write <i>source needed</i>." } }
+      ]
+    },
+    {
+      "h": "3. Written answer", "time": "20 min",
+      "blocks": [
+        { "type": "info", "tone": "big", "html": "Print the written paper and answer the real 8-mark question by hand, using your notes and the reference page. Use your three So Whats from above. The AQA level descriptors are on the last page." }
+      ]
+    },
+    {
+      "h": "4. Check yourself", "time": "5 min",
+      "blocks": [
+        { "type": "checklist", "id": "sc", "h": "Self-check", "items": ["Every Evidence sentence is followed by a So What.", "Each So What says what people valued, feared, wanted or believed.", "No So What adds a new fact.", "Each claim is traced to my notes or the reference page.", "No modern labels for medieval people (would a medieval doctor have said this?)."] },
+        { "type": "oral", "q": "“Doctors bled patients. So what does that tell us?”", "note": "For the parent: she should answer without reading. Listen for what it reveals (trust in ancient ideas, the Church’s control of training), not another fact." }
+      ]
+    }
+  ],
+  "paper": {
+    "title": "History Week 3 plus: medieval medicine (written)",
+    "sub": "Ember · Real AQA GCSE History question (Paper 2A) · about 20 minutes",
+    "intro": "<b>Skill: So What?</b> After every Evidence sentence, ask “So what does this tell us about what these people valued, feared, wanted or believed?” and write one more sentence. Evidence must come from your notes or the reference page.",
+    "blocks": [
+      { "type": "info", "h": "Reference page (for checking claims, not for copying)", "html": "<ul><li>Physicians trained at universities run by the Christian Church. They studied the Ancient Greek writers Hippocrates and Galen.</li><li>The theory of the <b>four humours</b>: blood, phlegm, yellow bile, black bile. Illness meant the humours were out of balance.</li><li>Treatments included bleeding (bloodletting), purging, herbal remedies, prayer and pilgrimage.</li><li>During the Black Death (1348–49) people also tried carrying sweet-smelling herbs against “bad air” (miasma), and some walked in processions whipping themselves (flagellants).</li><li>These ideas were not seriously challenged until the Renaissance (1500s).</li></ul>" },
+      { "type": "table", "h": "Plan (5 min): one row per treatment", "cols": ["Treatment (from my notes)", "Why doctors used it", "So what? What does it show?", "Claim check: supported / check / source needed"], "rows": [["", "", "", ""], ["", "", "", ""], ["", "", "", ""]] },
+      { "source": "AQA History 8145/2A/A, June 2023, Q02", "marks": 8, "q": "Explain the significance of the treatments used by medieval doctors.", "lines": 18 }
+    ],
+    "selfcheck": ["Every Evidence sentence has a So What after it.", "At least one So What says what the treatment <b>showed</b> about medieval society.", "Every claim is in my notes or the reference page (I ticked the claim check column).", "No modern labels for the past.", "Reflection: which So What was easiest to write? Which claim was hardest to back up?"],
+    "marking": [
+      { "h": "AQA mark scheme: June 2023, Q02 (8 marks), levels", "html": "<ul><li><b>Level 4 (7–8): complex explanation of aspects of significance.</b> Explains the relationship between aspects of significance, for example over time.</li><li><b>Level 3 (5–6): developed explanation of aspects of significance.</b> Developed reasoning considering two or more aspects of significance, supported by factual knowledge.</li><li><b>Level 2 (3–4): simple explanation of one aspect of significance.</b> Simple reasoning of one aspect, supported by factual knowledge.</li><li><b>Level 1 (1–2): basic explanation of aspect(s) of significance.</b> Explanation is likely to be implicit or by assertion.</li></ul>Which level did you reach? ______ &nbsp; Underline every So What sentence in your answer. How many are there? ______" }
+    ],
+    "footer": "Question and mark scheme wording © AQA, from the published GCSE History 8145/2A/A paper (June 2023). Used for private practice."
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "kicker": "Ember · Maths · Week 3 plus",
+  "title": "Fractions: real AQA questions",
+  "sub": "An optional extra for Week 3. Every question below is from a real AQA GCSE Maths Higher paper (non-calculator). About 25 minutes on screen, then the written paper.",
+  "skill": "Written method and checking.",
+  "target": "AQA gives method marks (M1) for working you write down, even if the final answer slips. Show every step, and give the answer in the form the question asks for.",
+  "print": "week3plus-fractions-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up", "time": "5 min", "sub": "Week 3, from memory. Cancel first if you can, and simplify fully.",
+      "blocks": [
+        { "type": "num", "id": "w1", "h": "Multiply", "q": "Work out [[2/3]] × [[9/10]]", "answer": "3/5", "simplest": true, "why": "Cancel first: 3 goes into 9, so [[2/3]] × [[9/10]] becomes [[2/1]] × [[3/10]] = [[6/10]] = [[3/5]]. Or multiply then simplify: [[18/30]] = [[3/5]]." },
+        { "type": "num", "id": "w2", "h": "Fraction of an amount", "q": "Work out [[3/4]] of 28", "answer": "21", "why": "28 ÷ 4 = 7, then 7 × 3 = 21." },
+        { "type": "num", "id": "w3", "h": "Mixed numbers", "q": "Work out [[1 1/2]] × [[2/3]]", "answer": "1", "why": "1½ = 3/2. Then 3/2 × 2/3 = 6/6 = 1." }
+      ]
+    },
+    {
+      "h": "2. Real AQA questions", "time": "15 min", "sub": "Do the working on paper, type the answer. Open the mark scheme to see where the marks are.",
+      "blocks": [
+        { "type": "num", "id": "q1", "source": "AQA Maths 8300/1H, June 2023, Q1(b)", "marks": 1,
+          "q": "Work out [[5/6]] ÷ 3", "answer": "5/18", "simplest": true,
+          "traps": [ { "value": "5/2", "msg": "You multiplied by 3. Dividing by 3 is the same as multiplying by [[1/3]]." }, { "value": "15/6", "msg": "You multiplied by 3. Dividing by 3 is the same as multiplying by [[1/3]]." } ],
+          "why": "÷ 3 is the same as × [[1/3]]: [[5/6]] × [[1/3]] = [[5/18]].",
+          "ms": "[[5/18]] <b>B1</b> <i>(allow 0.27… recurring)</i>" },
+        { "type": "num", "id": "q2", "source": "AQA Maths 8300/1H, June 2023, Q3", "marks": 1,
+          "q": "Work out the value of ([[3/2]])² <br>Give your answer as a mixed number.", "answer": "9/4", "form": "mixed",
+          "formMsg": "9/4 is the right value, but the question asks for a <b>mixed number</b>. AQA gave 0 marks for 9/4 here.",
+          "why": "Squared means × itself: [[3/2]] × [[3/2]] = [[9/4]] = [[2 1/4]].",
+          "ms": "[[2 1/4]] <b>B1</b><br><i>Writing two answers on the answer line (e.g. 2¼ and 9/4, or 2¼ and 2.25) scores 0. Pick one.</i>" },
+        { "type": "mc", "id": "q3", "source": "AQA Maths 8300/1H, June 2019, Q2", "marks": 1,
+          "q": "Work out the value of ([[1 2/3]])² <br>Circle your answer.", "o": ["[[1 4/9]]", "[[3 1/3]]", "[[2 4/9]]", "[[2 7/9]]"], "c": 3,
+          "why": "Change to an improper fraction first: [[1 2/3]] = [[5/3]]. Then [[5/3]] × [[5/3]] = [[25/9]] = [[2 7/9]]. (1 4/9 comes from squaring the whole and the fraction separately. That never works.)",
+          "ms": "[[2 7/9]] <b>B1</b>" },
+        { "type": "steps", "id": "q4", "source": "AQA Maths 8300/1H, June 2017, Q7", "marks": 2,
+          "q": "[[3/5]] of a number is 162 <br>Work out the number.",
+          "steps": [
+            { "p": "If 3 fifths are 162, what is <b>one</b> fifth?", "answer": "54", "mark": "M1", "marks": 1, "hint": "162 ÷ 3" },
+            { "p": "So what is the whole number (five fifths)?", "answer": "270", "mark": "A1", "marks": 1, "hint": "54 × 5", "traps": [ { "value": "97.2", "msg": "That is [[3/5]] <i>of</i> 162. Here 162 is the part, not the whole. AQA gave 0 marks for 97.2." } ] }
+          ],
+          "why": "Check: [[3/5]] of 270 = 270 ÷ 5 × 3 = 54 × 3 = 162 ✓",
+          "ms": "162 ÷ 3 × 5 <i>or</i> 162 × [[5/3]] (or 162 ÷ 3, or 54) <b>M1</b><br>270 <b>A1</b><br><i>97.2 scores M0 A0.</i>" },
+        { "type": "product", "id": "q5", "source": "AQA Maths 8300/1H, June 2022, Q9(a)", "marks": 1,
+          "q": "In each box, write a fraction <b>less</b> than 1 to make a correct calculation.", "target": "3/10", "n": 2,
+          "why": "There are many answers: [[1/2]] × [[3/5]], [[3/4]] × [[2/5]], [[1/3]] × [[9/10]]… Multiply the tops to get 3 (or a multiple) and the bottoms to get 10 (or the same multiple).",
+          "ms": "Two fractions less than 1 with product [[3/10]], e.g. [[1/2]] and [[3/5]] <b>B1</b><br><i>Decimals inside the fractions (e.g. 0.6/1) score B0.</i>" },
+        { "type": "steps", "id": "q6", "source": "AQA Maths 8300/1H, November 2018, Q5", "marks": 4,
+          "q": "Work out [[8 1/2]] ÷ [[2 2/3]] <br>Give your answer as a mixed number.",
+          "steps": [
+            { "p": "Write [[8 1/2]] as an improper fraction.", "answer": "17/2", "marks": 0, "hint": "8 × 2 + 1 halves." },
+            { "p": "Write [[2 2/3]] as an improper fraction.", "answer": "8/3", "mark": "M1", "marks": 1, "hint": "2 × 3 + 2 thirds." },
+            { "p": "Dividing by [[8/3]] is the same as multiplying by…?", "answer": "3/8", "marks": 0, "hint": "Flip it: the reciprocal." },
+            { "p": "Work out [[17/2]] × [[3/8]]", "answer": "51/16", "mark": "M1 A1", "marks": 2, "hint": "Tops times tops, bottoms times bottoms." },
+            { "p": "Write it as a mixed number.", "answer": "51/16", "form": "mixed", "mark": "B1", "marks": 1, "hint": "How many 16s go into 51? What is left over?" }
+          ],
+          "why": "[[8 1/2]] ÷ [[2 2/3]] = [[17/2]] × [[3/8]] = [[51/16]] = [[3 3/16]]. Check by estimating: 8½ ÷ 2⅔ is roughly 9 ÷ 3 = 3 ✓",
+          "ms": "Convert both mixed numbers to improper fractions ([[17/2]] or [[8/3]]) <b>M1</b><br>[[17/2]] × [[3/8]] (multiply by the reciprocal) <b>M1</b><br>[[51/16]] <b>A1</b><br>[[3 3/16]] <b>B1ft</b> <i>(ft: a correct conversion of your own improper fraction still gets this mark)</i>" }
+      ]
+    },
+    {
+      "h": "3. Written paper", "time": "15 min",
+      "blocks": [
+        { "type": "info", "tone": "big", "html": "Print the written paper. Two more real AQA questions, each mixing two operations. The trap is the <b>order</b>: brackets first, then ÷ or ×, then + or −. Mark scheme on the last page." }
+      ]
+    },
+    {
+      "h": "4. Check yourself", "time": "5 min",
+      "blocks": [
+        { "type": "checklist", "id": "sc", "h": "Self-check", "items": ["I changed mixed numbers to improper fractions <b>before</b> multiplying or squaring.", "To divide, I multiplied by the reciprocal.", "I gave the answer in the form asked (mixed number / fraction).", "I wrote one answer only on the answer line.", "I checked one answer by estimating or working backwards."] },
+        { "type": "oral", "q": "“What is [[1 2/3]] squared, and why isn’t it [[1 4/9]]?”", "note": "For the parent: listen for “change it to 5/3 first, then 5/3 × 5/3 = 25/9”." }
+      ]
+    }
+  ],
+  "paper": {
+    "title": "Maths Week 3 plus: fractions (written)",
+    "sub": "Ember · Real AQA GCSE Maths Higher questions (non-calculator) · about 15 minutes",
+    "intro": "<b>Skill: written method and checking.</b> Write every step. Method marks (M1) are for working you can see. Under each answer, write a <b>check</b>: an estimate, or work backwards.",
+    "blocks": [
+      { "source": "AQA Maths 8300/1H, November 2022, Q8", "marks": 3,
+        "q": "Work out &nbsp; ([[7/10]] − [[4/15]]) ÷ [[2/3]] <br>Give your answer as a fraction.", "workBox": 55, "answerLine": "____________" },
+      { "type": "info", "html": "Check: ________________________________________________" },
+      { "source": "AQA Maths 8300/1H, June 2025, Q8", "marks": 3,
+        "q": "Work out &nbsp; [[4/15]] + [[1/5]] ÷ [[1/2]] <br>Give your answer as a fraction.", "workBox": 55, "answerLine": "____________" },
+      { "type": "info", "html": "Check: ________________________________________________<br><br><b>Before you mark:</b> in the second question, which did you do first, the + or the ÷? Why?" }
+    ],
+    "selfcheck": ["I did the bracket first in the first question.", "I did the ÷ before the + in the second question.", "I found a common denominator before adding or subtracting.", "To divide, I multiplied by the reciprocal.", "My answers are fractions (not decimals), and I wrote a check under each."],
+    "marking": [
+      { "h": "AQA mark scheme: November 2022, Q8 (3 marks)", "html": "<ul><li>Valid common denominator for the subtraction, with at least one numerator correct, e.g. [[21/30]] − [[8/30]] or [[13/30]] <b>M1</b></li><li>their [[13/30]] × [[3/2]] <b>M1</b></li><li>[[13/20]] or [[39/60]] (or an equivalent fraction) <b>A1</b></li></ul>A correct fraction in your working but a decimal on the answer line scores M2 A0. Score: ____ / 3" },
+      { "h": "AQA mark scheme: June 2025, Q8 (3 marks)", "html": "<ul><li>Correct method to divide by [[1/2]] (implied by [[2/5]] or 0.4) <b>M1</b></li><li>Correct method to add two fractions with different denominators <b>M1</b></li><li>[[2/3]] (or an equivalent fraction, e.g. [[10/15]]) <b>A1</b></li></ul>Division comes before addition, so [[1/5]] ÷ [[1/2]] = [[2/5]] first, then [[4/15]] + [[6/15]] = [[10/15]] = [[2/3]]. Score: ____ / 3" }
+    ],
+    "footer": "Questions and mark scheme wording © AQA, from published GCSE Mathematics 8300 papers (November 2022, June 2025). Used for private practice."
+  }
+}
