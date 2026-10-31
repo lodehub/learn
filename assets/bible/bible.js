@@ -16,7 +16,7 @@
   var SESSION_BLURB = [
     'Where are we? Read the passage aloud and notice what it says.',
     'What did it mean to them? Questions with guide answers.',
-    'The timeless truth, and where Jesus said it first.',
+    'The timeless truth, and what Jesus said about it.',
     'Where does this show up for us? Choose what we will do.',
     'Say the verse, see how it went, finish the week.'
   ];
@@ -136,7 +136,7 @@
     var hi = {};
     [w.anchor, w.stretch].forEach(function (v) {
       if (!v) return;
-      var m = /(\d+):(\d+)(?:-(\d+))?$/.exec(v.ref);
+      var m = /(\d+):(\d+)[ab]?(?:-(\d+)[ab]?)?$/.exec(v.ref);
       for (var x = +m[2]; x <= +(m[3] || m[2]); x++) hi[m[1] + ':' + x] = 1;
     });
     var html = '<div class="passage"><p>', lastC = null;
@@ -148,6 +148,16 @@
     });
     return html + '</p></div>';
   }
+
+  // Copyrighted translations can't be published whole: read the passage from a Bible, or online.
+  function readLink(j, ref) {
+    var q = j.title + ' ' + ref;
+    return '<div class="openbible"><p class="bigref">' + esc(q) + '</p>' +
+      '<p class="muted small">Open your Bibles here. Everyone following along in their own copy is best.</p>' +
+      '<a class="btn ghost" target="_blank" rel="noopener" href="https://www.biblegateway.com/passage/?search=' + encodeURIComponent(q) +
+      '&version=' + encodeURIComponent(j.version || 'NIVUK') + '">Read it online (' + esc((j.version || 'NIVUK').replace('UK', '')) + ')</a></div>';
+  }
+  function passage(j, w) { return w.passage ? passageHtml(w.passage, w) : readLink(j, w.ref); }
 
   // ---------- views ----------
   function home() {
@@ -167,7 +177,8 @@
         html += '<div class="card"><b>You finished ' + esc(j.title) + '.</b> Keep reviewing the verses below, and pick what comes next.</div>';
       }
     } else {
-      html += '<div class="card start"><h2>Start here</h2><p>Pick a book below. Each week has five short sessions (about 10 minutes, at the same time each day: after dinner works well) and one verse to learn by heart.</p></div>';
+      html += '<div class="card start"><h2>Start here</h2><p>Each week has five short sessions (about 10 minutes, at the same time each day: after dinner works well) and one verse to learn by heart.</p>' +
+        '<a class="btn" href="#' + data.seasons[0].id + '">Start with ' + esc(data.seasons[0].title) + '</a></div>';
     }
     // Verse practice
     var me = who();
@@ -198,6 +209,7 @@
           '<span class="blurb">' + esc(s.blurb) + '</span></span></div></li>';
       }).join('') + '</ul>';
     }
+    if (data.credits) html += data.credits.map(function (c) { return '<p class="muted small credit">' + esc(c) + '</p>'; }).join('');
     app.innerHTML = html;
     each('[data-who]', function (b) {
       b.onclick = function () { save('bible:who', b.getAttribute('data-who')); location.hash = 'memory'; };
@@ -229,7 +241,7 @@
         (done ? '<span class="badge">Done ✓</span>' : did.length ? '<span class="badge">' + did.length + ' / 5</span>' : '') + '</a></li>';
     }).join('') + '</ul>';
     if (fs && fs.done.length) html += wall(j, fs) + '<p><a class="chip" href="#wall/' + id + '">Print the principles wall</a></p>';
-    html += '<p class="muted small">Bible text: ' + esc(j.translation) + '.</p>';
+    html += '<p class="muted small credit">' + esc(j.translation) + '</p>';
     if (fs) html += '<details class="how"><summary>Start again</summary><p class="small">Clears this book\'s family progress (sessions, commitments, notes) on this device. Everyone\'s verse practice is kept.</p>' +
       '<button class="btn ghost" id="reset">Clear and start again</button></details>';
     app.innerHTML = html;
@@ -293,15 +305,15 @@
       html += '<p class="bigq">' + esc(w.big) + '</p>';
       html += '<h2>Where are we?</h2><div class="prose">' + w.context.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + '</div>';
       html += '<h2>Read it aloud <span class="muted small">twice: once by one reader, then a verse each</span></h2>';
-      html += w.review ? j.weeks.filter(function (x) { return x.passage; }).map(function (x) {
+      html += w.review && j.weeks[0].passage ? j.weeks.filter(function (x) { return x.passage; }).map(function (x) {
         return '<h3 class="small muted">' + esc(x.ref) + ' · ' + esc(x.title) + '</h3>' + passageHtml(x.passage, x);
-      }).join('') : passageHtml(w.passage, w);
+      }).join('') : passage(j, w);
       if (w.words.length) html += '<h2>Words to know</h2><ul class="vocab">' + w.words.map(function (x) {
         return '<li><b>' + esc(x[0]) + '</b><span class="en">' + esc(x[1]) + '</span></li>';
       }).join('') + '</ul>';
       html += '<h2>What did you notice?</h2><ul class="qs">' + w.notice.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ul>';
     } else if (s === 2) {
-      if (w.passage) html += '<details class="how"><summary>The passage</summary>' + passageHtml(w.passage, w) + '</details>';
+      html += '<details class="how"><summary>The passage</summary>' + passage(j, w) + '</details>';
       html += '<p class="muted small">Ask, let everyone answer (youngest first), then open the guide answer.</p><ol class="dig">' + w.dig.map(function (d) {
         return '<li><p class="q">' + esc(d.q) + '</p><details class="guide"><summary>Guide answer</summary><p>' + esc(d.a) + '</p></details></li>';
       }).join('') + '</ol>';
@@ -310,7 +322,7 @@
       html += '<div class="principle"><div class="vlabel">The principle</div><p>' + esc(w.principle) + '</p></div>';
       html += '<p>' + esc(w.why) + '</p>';
       html += '<p class="muted small">Can each person say the principle in their own words? Then try: where did you see this today?</p>';
-      html += '<h2>Jesus said it first</h2>' + xref(w.jesus);
+      html += '<h2>' + esc(j.jesusLabel || 'Jesus said it first') + '</h2>' + xref(w.jesus);
       if (w.also.length) html += '<h2>Elsewhere in the Bible</h2>' + w.also.map(xref).join('');
     } else if (s === 4) {
       if (w.scenarios.length) html += '<h2>Where would this show up?</h2><p class="muted small">Talk through each one: what would living this week\'s principle look like?</p><ul class="qs">' +
@@ -363,11 +375,13 @@
       '<div class="actions"><button class="btn" onclick="window.print()">Print</button></div></div>';
     html += '<section class="fridge"><div class="fc-top"><span>' + esc(j.title) + ' · Week ' + n + '</span><span>Bible Lab</span></div>' +
       '<h2>' + esc(w.title) + '</h2>';
-    if (w.anchor) html += '<p class="verse">' + esc(w.anchor.text) + '</p><p class="vref">' + esc(w.anchor.ref) + '</p>';
+    var tag = j.version ? ' (' + j.version.replace('UK', '') + ')' : '';
+    if (w.anchor) html += '<p class="verse">' + esc(w.anchor.text) + '</p><p class="vref">' + esc(w.anchor.ref + tag) + '</p>';
     html += '<p class="fc-pr"><b>Principle:</b> ' + esc(w.principle) + '</p>' +
       '<p><b>Big question:</b> ' + esc(w.big) + '</p>' +
       '<p><b>This week we will:</b> ' + (fs.commit[n] ? esc(fs.commit[n]) : '<span class="lines"></span><span class="lines"></span>') + '</p>' +
-      '<p class="fc-ticks">' + SESSIONS.map(function (s) { return '<span>☐ ' + s + '</span>'; }).join('') + '</p></section>';
+      '<p class="fc-ticks">' + SESSIONS.map(function (s) { return '<span>☐ ' + s + '</span>'; }).join('') + '</p>' +
+      (j.version ? '<p class="fc-credit">' + esc(j.translation) + '</p>' : '') + '</section>';
     app.innerHTML = html;
   }
 
@@ -376,7 +390,7 @@
     var j = seasons[id], fs = famSeason(fam(), id);
     app.innerHTML = '<div class="noprint">' + bar('#' + id, 'Principles wall') +
       '<div class="actions"><button class="btn" onclick="window.print()">Print</button></div></div>' +
-      '<section class="wallprint"><h1>' + esc(j.title) + ': ' + esc(j.tagline) + '</h1>' + (wall(j, fs) || '<p class="empty">Finish a week to add its principle.</p>') + '</section>';
+      '<section class="wallprint"><h1>' + esc(j.title) + ': ' + esc(j.tagline) + '</h1>' + (wall(j, fs) || '<p class="empty">Finish a week to add its principle.</p>') + (j.version ? '<p class="fc-credit">' + esc(j.translation) + '</p>' : '') + '</section>';
   }
 
   // ---------- verse practice ----------

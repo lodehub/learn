@@ -104,3 +104,8 @@ textarea.type { min-height: 96px; resize: vertical; font-size: 18px; }
 }
 .bible .vocab .en { text-align: left; }
 .bible .tile-w { font-weight: 500; }
+.openbible { padding: 18px 20px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+.openbible .bigref { margin: 0; font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--accent); }
+.openbible .btn { flex: none; margin-top: 4px; }
+.credit { margin-top: 28px; font-size: 12px; }
+.fc-credit { font-size: 9px; color: var(--muted); margin-top: 14px !important; }

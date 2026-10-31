@@ -25,5 +25,13 @@ and spaced review (Leitner boxes: 1, 2, 4, 7, 14, 30, 60 days), so old verses ke
 - Each person's verse memory: `<slug>:bible:lab:mem`. Who's practising: `bible:who`.
 
 ## Adding a book
-Write `bible/<id>/season.json` in the same shape as `james/season.json` and add an entry to `seasons` in `bible.json`.
-Bible text is the World English Bible (public domain), so it can be published freely.
+Write `bible/<id>/season.json` in the same shape as `philippians/season.json` and add an entry to `seasons` in `bible.json`
+(the first entry is the one "Start here" points to).
+
+## Translations and copyright
+- The family uses the **NIV (Anglicised)**. Biblica allows up to 500 NIV verses on a site without permission, as long as
+  they never make up a whole book and are under 25% of the work, with the copyright notice shown (`credits` in `bible.json`,
+  `translation` in each season). So an NIV season holds only memory verses and cross-references (`"version": "NIVUK"`),
+  and each week's passage is read from the family's own Bibles, with a link to BibleGateway. Keep a running total:
+  Philippians uses 42 quotations.
+- A public-domain season (James, World English Bible) can embed the whole passage as `passage` rows instead.
