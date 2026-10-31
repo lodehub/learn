@@ -97,6 +97,15 @@
       "type": "html",
       "year": 2026,
       "status": "current"
+    },
+    {
+      "title": "Detective and Machine: logic and pattern puzzles",
+      "path": "maths/explore-logic-puzzles/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "strand": "explore",
+      "topic": "Logic and patterns"
     }
   ]
 }
