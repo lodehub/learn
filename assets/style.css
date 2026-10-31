@@ -182,6 +182,17 @@ h1 {
 .section h2 span { font-size: 16px; font-weight: 500; color: var(--muted); margin-left: 6px; }
 .section .topic:first-of-type { margin-top: 0; }
 
+/* Explore strand: first-principles journeys, set apart from exam practice */
+.explore {
+  margin: 8px 0 28px;
+  padding: 18px 16px 4px;
+  border-radius: var(--radius);
+  border: 2px dashed var(--accent);
+  background: var(--accent-soft);
+}
+.explore .section { margin: 0 0 16px; }
+.explore .row .badge { background: var(--accent); color: #fff; }
+
 /* A tool with its own worksheet: play row plus a print button */
 .pair { display: flex; gap: 10px; }
 .pair .row:first-child { flex: 1; min-width: 0; }

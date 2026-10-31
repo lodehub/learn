@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbf6f1">
+<title>Trigonometry from scratch</title>
+<style>
+:root{--bg:#fbf6f1;--card:#ffffff;--ink:#2b2a28;--mute:#6f6b64;--acc:#d9682a;--accsoft:#fdeee4;--two:#2f74c0;--twosoft:#e6f0fb;--ok:#1b7f4b;--oksoft:#e2f4ea;--bad:#b3261e;--badsoft:#fbe7e5;--line:#e4dcd2;--grid:#efe8df;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--two:#7fb0e3;--twosoft:#1f2c3b;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3835;--grid:#302e2b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--two:#7fb0e3;--twosoft:#1f2c3b;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3835;--grid:#302e2b;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(24px,5.5vw,32px);margin:2px 0 6px;line-height:1.2}
+.lede{color:var(--mute);margin:0 0 14px}
+.rooms{display:flex;gap:6px;overflow-x:auto;padding:4px 0 10px;margin:0 0 6px;scrollbar-width:none}
+.rooms::-webkit-scrollbar{display:none}
+.rooms button{flex:none;min-width:44px;height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.rooms button.done{background:var(--oksoft);border-color:var(--ok);color:var(--ok)}
+.rooms button[aria-current="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+section.room{display:none}section.room.on{display:block}
+h2{font-size:clamp(22px,5vw,28px);margin:6px 0 10px;line-height:1.25}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
+.card h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+.big{background:var(--accsoft);border-left:5px solid var(--acc);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.big b:first-child{color:var(--acc)}
+.aside{font-size:15px;color:var(--mute);border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;min-height:48px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:11px 14px;border-radius:12px;font:inherit;font-size:16px;cursor:pointer}
+.opt.right{background:var(--oksoft);border-color:var(--ok)}
+.opt.wrong{background:var(--badsoft);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.why{display:none;margin-top:10px;font-size:16px}
+.why.show{display:block}
+.g{color:var(--ok)}.r{color:var(--bad)}
+svg{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none}
+svg text{font-family:inherit;fill:var(--ink)}
+.ctl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:10px 0 0}
+.ctl label{font-size:15px;color:var(--mute);min-width:76px}
+.ctl output{font-variant-numeric:tabular-nums;font-weight:700;min-width:64px;text-align:right}
+input[type=range]{width:100%;height:36px;accent-color:var(--acc)}
+.read{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px}
+.read div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:15px}
+.read b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.read .o b{color:var(--acc)}.read .t b{color:var(--two)}
+.ans{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.ans input{font:inherit;font-size:18px;padding:10px 12px;width:150px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.btn{min-height:48px;border:1px solid var(--acc);background:var(--acc);color:#fff;padding:10px 18px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+textarea{width:100%;min-height:96px;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+.saved{font-size:13px;color:var(--mute);margin-top:4px;min-height:18px}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:18px;flex-wrap:wrap}
+.nav .btn{flex:1;min-width:140px}
+.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:16px}
+.tbl th,.tbl td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl td.hide{color:transparent;background:var(--accsoft);border-radius:6px;cursor:pointer}
+.tbl td.hide::after{content:"tap";color:var(--acc);font-size:13px;font-weight:700}
+.toggle{display:inline-flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--line);background:var(--bg);margin-top:10px}
+.toggle button{min-height:40px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--mute);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.mono{font-variant-numeric:tabular-nums}
+.end{text-align:center;padding:10px 0}
+@media print{
+  .rooms,.nav,.btn,svg,.ctl,.read,.opts,.toggle{display:none!important}
+  section.room{display:block!important;page-break-inside:avoid}
+  section.room:not(#r8) > *:not(h2):not(.kick):not(.note-card){display:none!important}
+  textarea{border:none;min-height:0;height:auto}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Explore · Maths · from first principles</p>
+  <h1>Why triangles know things</h1>
+  <p class="lede">Trigonometry from scratch. No test at the end. Just the ideas, where they come from, and why they work.</p>
+</header>
+<nav class="rooms" id="rooms" aria-label="Rooms"></nav>
+
+<!-- ROOM 0 -->
+<section class="room" id="r0" data-title="The puzzle">
+  <p class="kick">Room 1 of 9</p>
+  <h2>The puzzle: measure something you can't reach</h2>
+  <p>There is a tall tree in the park. You want its height. You can't climb it, you have no drone, and the tape measure is only 5&nbsp;metres long.</p>
+  <p>People had exactly this problem for thousands of years, with things much bigger than trees: the height of a pyramid, the width of a river, the distance to the Moon. Trigonometry is what they built to solve it.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>You can walk along the ground and measure that. You can also hold up a protractor and measure the angle up to the top of the tree. Is that enough to work out the height?</p>
+    <div class="opts" data-answer="1" data-why="Yes, and the rest of this journey is about <i>why</i>. Here's the hint: the distance and the angle together fix the <b>shape and size</b> of a triangle. Once a triangle is fixed, every side is fixed, including the one you can't reach.">
+      <button class="opt" type="button">No, you need to measure the tree itself somehow</button>
+      <button class="opt" type="button">Yes: the distance plus the angle is enough</button>
+      <button class="opt" type="button">Only if it's a sunny day</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <p>You may already know <b>SOH CAH TOA</b>. That's the label on the box. In here we're opening the box to see what's inside, and building it ourselves.</p>
+  <div class="card note-card"><h3>Notebook</h3><p>Before we start: what do you think sin, cos and tan actually <i>are</i>? A guess is fine. You'll come back to this at the end.</p><textarea data-note="r0" placeholder="My guess…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 1 -->
+<section class="room" id="r1" data-title="Same shape">
+  <p class="kick">Room 2 of 9</p>
+  <h2>Same shape, any size</h2>
+  <p>Here's a right-angled triangle. You control the angle at the bottom-left and the size. The side lengths are what a ruler would measure.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Keep the angle the same and make the triangle bigger. What happens to <b>opposite ÷ hypotenuse</b>?</p>
+    <div class="opts" data-answer="1" data-why="It stays the same. Make the triangle twice as big and <i>both</i> sides double, so dividing one by the other cancels the doubling out. Try it with the size slider below and watch the orange number.">
+      <button class="opt" type="button">It gets bigger, because the sides get bigger</button>
+      <button class="opt" type="button">It stays exactly the same</button>
+      <button class="opt" type="button">It gets smaller</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it</h3>
+    <svg id="tri" viewBox="0 0 340 290" role="img" aria-label="A right-angled triangle that changes with the sliders"></svg>
+    <div class="ctl"><label for="triA">Angle</label><input id="triA" type="range" min="10" max="60" value="35"><output id="triAo"></output></div>
+    <div class="ctl"><label for="triS">Size</label><input id="triS" type="range" min="3" max="10" step="0.1" value="7"><output id="triSo"></output></div>
+    <div class="read">
+      <div class="o">opposite ÷ hypotenuse<b id="rSin"></b></div>
+      <div class="t">adjacent ÷ hypotenuse<b id="rCos"></b></div>
+      <div>opposite ÷ adjacent<b id="rTan"></b></div>
+    </div>
+  </div>
+  <div class="big"><b>Big idea.</b> In a right-angled triangle, the angle decides the <i>shape</i>. The size doesn't change the shape. So each angle has its own fixed ratios, like a fingerprint.</div>
+  <p>Those three fingerprints were useful enough to get names:</p>
+  <div class="card">
+    <p style="margin:0 0 6px"><b style="color:var(--acc)">sine</b> of the angle = opposite ÷ hypotenuse</p>
+    <p style="margin:0 0 6px"><b style="color:var(--two)">cosine</b> of the angle = adjacent ÷ hypotenuse</p>
+    <p style="margin:0"><b>tangent</b> of the angle = opposite ÷ adjacent</p>
+    <p class="aside">So when your calculator says sin 35° = 0.574, it's telling you: <i>in every right-angled triangle with a 35° angle, the opposite side is 0.574 of the hypotenuse.</i> Check it against the slider.</p>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Explain to a Year&nbsp;7 why a tiny triangle and a huge triangle with the same angles have the same sine.</p><textarea data-note="r1" placeholder="Because…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 2 -->
+<section class="room" id="r2" data-title="The tree">
+  <p class="kick">Room 3 of 9</p>
+  <h2>Back to the tree</h2>
+  <p>You stand some distance from the tree. Your eyes are 1.5&nbsp;m off the ground. Tilt your line of sight with the slider until it just touches the top of the tree.</p>
+  <div class="card">
+    <h3>Measure it</h3>
+    <svg id="park" viewBox="0 0 360 260" role="img" aria-label="A person looking up at the top of a tree"></svg>
+    <div class="ctl"><label for="parkA">Angle up</label><input id="parkA" type="range" min="5" max="70" step="0.5" value="20"><output id="parkAo"></output></div>
+    <p class="aside" id="parkD"></p>
+  </div>
+  <div class="card">
+    <h3>Now work it out</h3>
+    <p>The distance along the ground is the <b>adjacent</b> side. The height above your eyes is the <b>opposite</b>. Which fingerprint links those two?</p>
+    <div class="opts" data-answer="2" data-why="Tangent = opposite ÷ adjacent. Flip it round: <b>opposite = adjacent × tan(angle)</b>. Then add your eye height, because the triangle starts at your eyes, not the ground.">
+      <button class="opt" type="button">sine</button>
+      <button class="opt" type="button">cosine</button>
+      <button class="opt" type="button">tangent</button>
+    </div>
+    <div class="why"></div>
+    <p style="margin-top:14px">Use your angle and a calculator. How tall is the tree, in metres?</p>
+    <div class="ans"><input id="parkIn" type="text" inputmode="decimal" autocomplete="off" aria-label="Tree height in metres"><button class="btn" type="button" id="parkGo">Check</button><button class="btn ghost" type="button" id="parkNew">New tree</button></div>
+    <div class="why" id="parkFb"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> You measured something you couldn't touch by measuring a <i>triangle</i> that you could. That's the whole trick, and it's how surveyors, astronomers and sat-navs still work.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Pick something real (a building, a lamp post, your house). How would you measure its height using this idea? What would you need?</p><textarea data-note="r2" placeholder="I would…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 3 -->
+<section class="room" id="r3" data-title="The circle">
+  <p class="kick">Room 4 of 9</p>
+  <h2>Where do the numbers come from?</h2>
+  <p>Before calculators, people wrote tables of these fingerprints by hand. The first known ones were made by Hipparchus, a Greek astronomer, around 140&nbsp;BC. How would you make one?</p>
+  <p>Here's a neat move: since size doesn't matter, pick the easiest size. Make the hypotenuse exactly <b>1</b>. Then sine = opposite ÷ 1 = just the <b>height</b>. And cosine is just the <b>distance across</b>.</p>
+  <p>Now spin that hypotenuse of length 1 around a point. Its tip draws a circle.</p>
+  <div class="card">
+    <h3>Try it: drag the dot, or use the slider</h3>
+    <svg id="uc" viewBox="0 0 300 300" role="img" aria-label="A circle of radius 1 with a point on it"></svg>
+    <div class="ctl"><label for="ucA">Angle</label><input id="ucA" type="range" min="0" max="360" value="40"><output id="ucAo"></output></div>
+    <div class="read">
+      <div class="o">height = sine<b id="ucS"></b></div>
+      <div class="t">across = cosine<b id="ucC"></b></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Predict, then check with the dot</h3>
+    <p>What is sin 90°?</p>
+    <div class="opts" data-answer="1" data-why="At 90° the arm points straight up, so its height is the whole radius: 1. And it's gone no distance across, so cos 90° = 0.">
+      <button class="opt" type="button">0</button>
+      <button class="opt" type="button">1</button>
+      <button class="opt" type="button">90</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Something strange</h3>
+    <p>Move the dot past 90°. No right-angled triangle has a 150° angle in it, yet the circle still gives sin 150° a value. What happens to cosine?</p>
+    <div class="opts" data-answer="0" data-why="It goes negative, because the dot is now to the <i>left</i> of the centre. The circle has quietly <b>stretched the definition</b>: sine and cosine aren't really about triangles any more, they're about <i>where you are on a circle</i>. Triangles were just how we found them.">
+      <button class="opt" type="button">It becomes negative</button>
+      <button class="opt" type="button">It stops existing</button>
+      <button class="opt" type="button">It stays the same as at 30°</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Without a calculator, using only the circle: what's sin 0°? cos 0°? sin 180°? sin 270°? Explain how you know.</p><textarea data-note="r3" placeholder="sin 0° is … because…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 4 -->
+<section class="room" id="r4" data-title="A free rule">
+  <p class="kick">Room 5 of 9</p>
+  <h2>A rule you get for free</h2>
+  <p>Look at the triangle inside the circle again: height = sin, across = cos, slanted side = 1. It's a right-angled triangle. Which famous rule do right-angled triangles obey?</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>So what must <b>(sin θ)² + (cos θ)²</b> always equal? (θ is the Greek letter <i>theta</i>, the usual name for an angle.)</p>
+    <div class="opts" data-answer="2" data-why="Pythagoras: across² + up² = slanted side². The slanted side is 1, so sin²θ + cos²θ = 1. For <i>every</i> angle. Check it below.">
+      <button class="opt" type="button">It depends on the angle</button>
+      <button class="opt" type="button">2</button>
+      <button class="opt" type="button">1</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Test it on any angle</h3>
+    <div class="ctl"><label for="pyA">Angle</label><input id="pyA" type="range" min="0" max="360" value="123"><output id="pyAo"></output></div>
+    <div class="read">
+      <div class="o">(sin θ)²<b id="pyS"></b></div>
+      <div class="t">(cos θ)²<b id="pyC"></b></div>
+      <div>add them<b id="pyT"></b></div>
+    </div>
+  </div>
+  <div class="big"><b>Big idea.</b> You didn't memorise that. You <i>derived</i> it from two things you already knew: the circle picture and Pythagoras. That's what "first principles" means. Most of trigonometry's formulas can be rebuilt this way.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>If sin θ = 0.6, what could cos θ be? (Hint: there are two answers.)</p><textarea data-note="r4" placeholder="cos θ could be…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 5 -->
+<section class="room" id="r5" data-title="Waves">
+  <p class="kick">Room 6 of 9</p>
+  <h2>Unroll the circle and you get a wave</h2>
+  <p>Let the dot keep going round. Every moment, write down its height. Plot those heights one after another.</p>
+  <div class="card">
+    <h3>Watch</h3>
+    <svg id="wave" viewBox="0 0 520 220" role="img" aria-label="A point going round a circle traces out a sine wave"></svg>
+    <div class="ans"><button class="btn" type="button" id="wPlay">Play</button><button class="btn ghost" type="button" id="wReset">Start again</button></div>
+  </div>
+  <p>That shape is the <b>sine wave</b>. Anything that goes round and round, or back and forth, makes one: a Ferris wheel seat, a swing, the tide, a guitar string, the electricity in your wall socket, the sound of your voice.</p>
+  <div class="card">
+    <h3>Try it: the Ferris wheel</h3>
+    <p>A Ferris wheel has radius 10&nbsp;m and its centre is 12&nbsp;m above the ground. Your seat starts level with the centre and goes anticlockwise. When the wheel has turned through angle θ, your height is</p>
+    <p class="mono" style="font-size:20px;text-align:center"><b>height = 12 + 10 × sin θ</b></p>
+    <p>Why does that make sense? (Centre, plus how far up the circle you are.) How high are you after 30°?</p>
+    <div class="ans"><input id="fw1" type="text" inputmode="decimal" autocomplete="off" aria-label="Height after 30 degrees"><button class="btn" type="button" id="fw1Go">Check</button></div>
+    <div class="why" id="fw1Fb"></div>
+    <p style="margin-top:14px">And after 270°?</p>
+    <div class="ans"><input id="fw2" type="text" inputmode="decimal" autocomplete="off" aria-label="Height after 270 degrees"><button class="btn" type="button" id="fw2Go">Check</button></div>
+    <div class="why" id="fw2Fb"></div>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Sketch the Ferris wheel's height graph for one full turn. Where is it highest? Lowest? What would change if the wheel were bigger?</p><textarea data-note="r5" placeholder="Highest at…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 6 -->
+<section class="room" id="r6" data-title="Radians">
+  <p class="kick">Room 7 of 9</p>
+  <h2>A better way to measure angles</h2>
+  <p>Why are there 360° in a full turn? No deep reason. The Babylonians liked the number 360 (it splits nicely, and it's close to the days in a year). It's a human choice, like inches.</p>
+  <p>Here's a choice that comes from the circle itself: <b>measure an angle by how far you walk around the edge</b> of a circle with radius 1. Walk 1 unit of arc and you've turned <b>1 radian</b>.</p>
+  <div class="card">
+    <h3>Walk the edge</h3>
+    <svg id="rad" viewBox="0 0 300 300" role="img" aria-label="Walking around the edge of a circle of radius 1"></svg>
+    <div class="ctl"><label for="radA">Walked</label><input id="radA" type="range" min="0" max="6.283" step="0.01" value="1"><output id="radAo"></output></div>
+    <div class="read">
+      <div class="o">distance walked = angle in radians<b id="radR"></b></div>
+      <div class="t">same angle in degrees<b id="radD"></b></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>How far do you walk to go all the way round? (Circumference of a circle = 2πr, and r = 1.)</p>
+    <div class="opts" data-answer="1" data-why="2π ≈ 6.28. So a full turn is 2π radians, a half turn is π, and a right angle is π/2. One radian is about 57.3°.">
+      <button class="opt" type="button">360</button>
+      <button class="opt" type="button">2π, about 6.28</button>
+      <button class="opt" type="button">1</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <h2 style="font-size:22px">The reward: tiny angles</h2>
+  <p>For a very small angle, the arc you walked and the height you climbed are almost the same thing (zoom into the circle near the start and the edge is nearly straight up). Tap the grey cells to reveal sin x.</p>
+  <div class="card">
+    <table class="tbl" id="smallT"><thead><tr><th>angle x (radians)</th><th>sin x</th></tr></thead><tbody></tbody></table>
+    <p class="aside">For small angles, <b>sin x ≈ x</b>, but only in radians. In degrees you'd get sin 1° ≈ 0.01745, nowhere near 1. Engineers use this every day, and it's why physics uses radians.</p>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>In your own words: what is a radian, and why is it a more "natural" unit than a degree?</p><textarea data-note="r6" placeholder="A radian is…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 7 -->
+<section class="room" id="r7" data-title="Calculus link">
+  <p class="kick">Room 8 of 9 · bonus, links to calculus</p>
+  <h2>How steep is a wave?</h2>
+  <p>You've met differentiation: the gradient of a curve at a point. Let's ask it of the sine wave. You don't need any rules for this, just your eyes.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Where is the sine wave climbing most steeply?</p>
+    <div class="opts" data-answer="0" data-why="At x = 0 (and again at 2π). At the very top, x = π/2, it's momentarily flat: gradient 0. At x = π it's falling as fast as it ever does.">
+      <button class="opt" type="button">At x = 0, where it crosses the middle</button>
+      <button class="opt" type="button">At the top of the hump, x = π/2</button>
+      <button class="opt" type="button">At x = π</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Slide along the wave</h3>
+    <svg id="slope" viewBox="0 0 360 230" role="img" aria-label="The sine wave with its tangent line"></svg>
+    <div class="ctl"><label for="slX">x</label><input id="slX" type="range" min="0" max="6.283" step="0.01" value="0.6"><output id="slXo"></output></div>
+    <div class="read">
+      <div class="o">gradient of sin at x<b id="slG"></b></div>
+      <div class="t">cos x<b id="slC"></b></div>
+    </div>
+    <div class="toggle" role="group" aria-label="Show cos curve"><button type="button" id="slShow" aria-pressed="false">Show the cos x curve</button></div>
+  </div>
+  <div class="big"><b>Big idea.</b> The gradient of sin x is cos x, everywhere. Look back at the circle and it makes sense: when the dot is at the side (cos = 1) it's moving straight up, fastest; when it's at the top (cos = 0) it's moving sideways, not climbing at all.</div>
+  <p class="aside">And this is why mathematicians insist on radians. In degrees the gradient comes out as 0.01745 × cos x, with that ugly number from the last room tagging along. In radians it's simply cos x. The "natural" unit gives the clean answer.</p>
+  <div class="card note-card"><h3>Notebook</h3><p>Using the slider, what do you think the gradient of cos x is? (Look at where cos is steepest, and which way.)</p><textarea data-note="r7" placeholder="I think the gradient of cos x is…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 8 -->
+<section class="room" id="r8" data-title="Look back">
+  <p class="kick">Room 9 of 9</p>
+  <h2>Look back</h2>
+  <p>Here's the whole story in one line: <b>angles fix shapes → shapes have fixed ratios → those ratios live on a circle → circles unroll into waves → waves have slopes, which are waves too.</b></p>
+  <div class="card">
+    <h3>Your first guess</h3>
+    <p id="firstGuess" class="aside" style="border:0;padding:0">You didn't write a guess in Room 1. That's fine.</p>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Now, what <i>are</i> sin, cos and tan? Explain without saying "SOH CAH TOA".</p><textarea data-note="r8a" placeholder="Sine is…"></textarea><div class="saved"></div></div>
+  <div class="card note-card"><h3>Notebook</h3><p>What surprised you? What would you like to explore next?</p><textarea data-note="r8b" placeholder="I was surprised that…"></textarea><div class="saved"></div></div>
+  <div class="end"><button class="btn ghost" type="button" onclick="window.print()">Print my notebook</button></div>
+</section>
+
+<div class="nav"><button class="btn ghost" type="button" id="prev">← Back</button><button class="btn" type="button" id="next">Next room →</button></div>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY="ember:maths:explore-trigonometry:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+var $=function(id){return document.getElementById(id)};
+var NS="http://www.w3.org/2000/svg";
+var D=Math.PI/180;
+function f(x,n){return (Math.abs(x)<0.0005&&n>=3?0:x).toFixed(n)}
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+function svgEl(svg,html){svg.innerHTML=html}
+
+/* ---------- rooms + navigation ---------- */
+var rooms=[].slice.call(document.querySelectorAll("section.room"));
+var done=load("done",{});
+var nav=$("rooms");
+rooms.forEach(function(r,i){
+  var b=document.createElement("button");b.type="button";b.textContent=i+1;b.title=r.getAttribute("data-title");
+  b.setAttribute("aria-label","Room "+(i+1)+": "+r.getAttribute("data-title"));
+  b.onclick=function(){go(i)};nav.appendChild(b);
+});
+var cur=0;
+function paint(){
+  [].forEach.call(nav.children,function(b,i){b.setAttribute("aria-current",i===cur?"true":"false");b.classList.toggle("done",!!done[i])});
+}
+function go(i){
+  cur=Math.max(0,Math.min(rooms.length-1,i));
+  rooms.forEach(function(r,k){r.classList.toggle("on",k===cur)});
+  $("prev").style.visibility=cur===0?"hidden":"visible";
+  $("next").textContent=cur===rooms.length-1?"Finished ✓":"Next room →";
+  if(cur===rooms.length-1){var g=load("note:r0","");if(g)$("firstGuess").textContent="“"+g+"”"}
+  save("room",cur);paint();
+  nav.children[cur].scrollIntoView({block:"nearest",inline:"center"});
+  window.scrollTo(0,0);
+  if(cur===5)wave.draw();
+}
+$("prev").onclick=function(){go(cur-1)};
+$("next").onclick=function(){done[cur]=true;save("done",done);if(cur<rooms.length-1)go(cur+1);else paint()};
+
+/* ---------- predict-first questions ---------- */
+[].forEach.call(document.querySelectorAll(".opts[data-answer]"),function(o){
+  var ans=+o.getAttribute("data-answer"),why=o.nextElementSibling;
+  [].forEach.call(o.children,function(b,i){
+    b.onclick=function(){
+      [].forEach.call(o.children,function(x,k){x.disabled=true;if(k===ans)x.classList.add("right")});
+      if(i!==ans)b.classList.add("wrong");
+      why.innerHTML=(i===ans?"<b class='g'>Yes.</b> ":"<b class='r'>Good guess, but no.</b> ")+o.getAttribute("data-why");
+      why.classList.add("show");
+    };
+  });
+});
+
+/* ---------- notebook ---------- */
+[].forEach.call(document.querySelectorAll("textarea[data-note]"),function(t){
+  var k="note:"+t.getAttribute("data-note"),s=t.parentNode.querySelector(".saved"),timer;
+  t.value=load(k,"");
+  t.addEventListener("input",function(){clearTimeout(timer);timer=setTimeout(function(){save(k,t.value);s.textContent="Saved on this device"},400)});
+});
+
+/* ---------- number answers ---------- */
+function checker(inp,btn,fb,getTrue,tol,explain){
+  function run(){
+    var v=parseFloat(String($(inp).value).replace(",","."));var t=getTrue();var el=$(fb);
+    if(isNaN(v)){el.innerHTML="<b class='r'>Type a number.</b>";el.classList.add("show");return}
+    var ok=Math.abs(v-t)<=tol(t);
+    el.innerHTML=(ok?"<b class='g'>Yes.</b> ":"<b class='r'>Not quite.</b> ")+explain(t,ok);el.classList.add("show");
+  }
+  $(btn).onclick=run;$(inp).addEventListener("keydown",function(e){if(e.key==="Enter")run()});
+}
+
+/* ---------- Room 2: similar triangles ---------- */
+function drawTri(){
+  var a=+$("triA").value,s=+$("triS").value,sc=28,ox=30,oy=262;
+  var H=s*sc,adj=H*Math.cos(a*D),opp=H*Math.sin(a*D);
+  var bx=ox+adj,ty=oy-opp,acc=css("--acc"),two=css("--two"),ink=css("--ink"),mute=css("--mute");
+  var arc=34,ax=ox+arc*Math.cos(a*D),ay=oy-arc*Math.sin(a*D);
+  svgEl($("tri"),
+    '<polygon points="'+ox+','+oy+' '+bx+','+oy+' '+bx+','+ty+'" fill="'+css("--accsoft")+'" stroke="none"/>'+
+    '<line x1="'+ox+'" y1="'+oy+'" x2="'+bx+'" y2="'+oy+'" stroke="'+two+'" stroke-width="5" stroke-linecap="round"/>'+
+    '<line x1="'+bx+'" y1="'+oy+'" x2="'+bx+'" y2="'+ty+'" stroke="'+acc+'" stroke-width="5" stroke-linecap="round"/>'+
+    '<line x1="'+ox+'" y1="'+oy+'" x2="'+bx+'" y2="'+ty+'" stroke="'+ink+'" stroke-width="3" stroke-linecap="round"/>'+
+    '<path d="M'+(bx-14)+','+oy+' v-14 h14" fill="none" stroke="'+mute+'" stroke-width="1.5"/>'+
+    '<path d="M'+(ox+arc)+','+oy+' A'+arc+','+arc+' 0 0 0 '+ax+','+ay+'" fill="none" stroke="'+ink+'" stroke-width="1.5"/>'+
+    '<text x="'+(ox+arc+6)+'" y="'+(oy-6)+'" font-size="14">'+a+'°</text>'+
+    '<text x="'+((ox+bx)/2)+'" y="'+(oy+22)+'" font-size="14" text-anchor="middle" style="fill:'+two+'">adjacent '+(s*Math.cos(a*D)).toFixed(1)+' cm</text>'+
+    '<text x="'+(bx+6)+'" y="'+((oy+ty)/2)+'" font-size="14" style="fill:'+acc+'" transform="rotate(-90 '+(bx+18)+' '+((oy+ty)/2)+')" text-anchor="middle">opposite '+(s*Math.sin(a*D)).toFixed(1)+'</text>'+
+    '<text x="'+((ox+bx)/2-10)+'" y="'+((oy+ty)/2-10)+'" font-size="14" text-anchor="end">hyp '+s.toFixed(1)+' cm</text>');
+  $("triAo").textContent=a+"°";$("triSo").textContent=s.toFixed(1)+" cm";
+  $("rSin").textContent=Math.sin(a*D).toFixed(3);$("rCos").textContent=Math.cos(a*D).toFixed(3);$("rTan").textContent=Math.tan(a*D).toFixed(3);
+}
+$("triA").oninput=drawTri;$("triS").oninput=drawTri;
+
+/* ---------- Room 3: the tree ---------- */
+var park={d:24,h:15};
+function newTree(){park.d=Math.round(15+Math.random()*20);park.h=Math.round((8+Math.random()*15)*10)/10;$("parkA").value=15;$("parkIn").value="";$("parkFb").classList.remove("show");drawPark()}
+function drawPark(){
+  var a=+$("parkA").value,k=7,g=240,px=24,tx=px+park.d*k,eye=1.5,ey=g-eye*k,top=g-park.h*k;
+  var reach=(tx-px)*Math.tan(a*D),ly=ey-reach,ex=tx+30,ey2=ey-(ex-px)*Math.tan(a*D);
+  var hit=Math.abs(a-Math.atan((park.h-eye)/park.d)/D)<=0.5;
+  var acc=css("--acc"),ink=css("--ink"),mute=css("--mute"),ok=css("--ok"),two=css("--two");
+  svgEl($("park"),
+    '<line x1="0" y1="'+g+'" x2="360" y2="'+g+'" stroke="'+mute+'" stroke-width="2"/>'+
+    '<rect x="'+(tx-4)+'" y="'+(top+park.h*k*0.35)+'" width="8" height="'+(park.h*k*0.65)+'" fill="#8a5a3b" rx="2"/>'+
+    '<ellipse cx="'+tx+'" cy="'+(top+park.h*k*0.3)+'" rx="'+Math.max(16,park.h*k*0.22)+'" ry="'+(park.h*k*0.3)+'" fill="#4c9a5b"/>'+
+    '<circle cx="'+px+'" cy="'+(ey-3)+'" r="5" fill="'+ink+'"/><line x1="'+px+'" y1="'+(ey+2)+'" x2="'+px+'" y2="'+g+'" stroke="'+ink+'" stroke-width="3"/>'+
+    '<line x1="'+px+'" y1="'+ey+'" x2="'+ex+'" y2="'+ey2+'" stroke="'+(hit?ok:acc)+'" stroke-width="2.5" stroke-dasharray="6 5"/>'+
+    '<line x1="'+px+'" y1="'+ey+'" x2="'+tx+'" y2="'+ey+'" stroke="'+two+'" stroke-width="1.5" stroke-dasharray="3 4"/>'+
+    '<circle cx="'+tx+'" cy="'+top+'" r="4" fill="'+(hit?ok:mute)+'"/>'+
+    '<text x="'+((px+tx)/2)+'" y="'+(g+16)+'" font-size="13" text-anchor="middle" style="fill:'+two+'">'+park.d+' m</text>'+
+    '<text x="'+(px+30)+'" y="'+(ey-6)+'" font-size="13">'+a+'°</text>'+
+    (hit?'<text x="'+(tx-10)+'" y="'+(top-10)+'" font-size="13" text-anchor="end" style="fill:'+ok+'">touching the top</text>':''));
+  $("parkAo").textContent=a+"°";
+  $("parkD").innerHTML="You measured <b>"+park.d+" m</b> along the ground. Eye height <b>1.5 m</b>. "+(hit?"<b class='g'>Your line touches the top: that angle is your measurement.</b>":"Keep adjusting until the line goes green.");
+}
+$("parkA").oninput=drawPark;$("parkNew").onclick=newTree;
+checker("parkIn","parkGo","parkFb",function(){return park.h},function(t){return Math.max(0.6,t*0.05)},function(t,ok){
+  var a=Math.atan((park.h-1.5)/park.d)/D;
+  return "The tree is "+t.toFixed(1)+" m. Working: "+park.d+" × tan "+a.toFixed(1)+"° ≈ "+(park.h-1.5).toFixed(1)+" m above your eyes, plus 1.5 m = "+t.toFixed(1)+" m."+(ok?" Real surveyors do exactly this, just with better protractors.":" Did you add your eye height? Is your calculator in degrees?");
+});
+
+/* ---------- circle widget (Rooms 4 and 7) ---------- */
+function circleDrag(svg,cx,cy,set){
+  var dragging=false;
+  function at(e){var r=svg.getBoundingClientRect(),vb=svg.viewBox.baseVal;var x=(e.clientX-r.left)*vb.width/r.width,y=(e.clientY-r.top)*vb.height/r.height;
+    var t=Math.atan2(cy-y,x-cx);if(t<0)t+=2*Math.PI;set(t)}
+  svg.addEventListener("pointerdown",function(e){dragging=true;svg.setPointerCapture(e.pointerId);at(e)});
+  svg.addEventListener("pointermove",function(e){if(dragging)at(e)});
+  svg.addEventListener("pointerup",function(){dragging=false});svg.addEventListener("pointercancel",function(){dragging=false});
+}
+function axes(cx,cy,R,mute,grid){
+  return '<line x1="'+(cx-R-20)+'" y1="'+cy+'" x2="'+(cx+R+20)+'" y2="'+cy+'" stroke="'+grid+'" stroke-width="2"/>'+
+    '<line x1="'+cx+'" y1="'+(cy-R-20)+'" x2="'+cx+'" y2="'+(cy+R+20)+'" stroke="'+grid+'" stroke-width="2"/>'+
+    '<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="none" stroke="'+mute+'" stroke-width="1.5"/>';
+}
+function drawUC(){
+  var deg=+$("ucA").value,t=deg*D,cx=150,cy=150,R=110,x=cx+R*Math.cos(t),y=cy-R*Math.sin(t);
+  var acc=css("--acc"),two=css("--two"),ink=css("--ink"),mute=css("--mute"),grid=css("--grid");
+  var big=deg>180?1:0;
+  svgEl($("uc"),axes(cx,cy,R,mute,grid)+
+    '<text x="'+(cx+R+4)+'" y="'+(cy+16)+'" font-size="12" style="fill:'+mute+'">1</text>'+
+    (deg>0&&deg<360?'<path d="M'+(cx+26)+','+cy+' A26,26 0 '+big+' 0 '+(cx+26*Math.cos(t))+','+(cy-26*Math.sin(t))+'" fill="none" stroke="'+ink+'" stroke-width="1.5"/>':'')+
+    '<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+cy+'" stroke="'+two+'" stroke-width="5" stroke-linecap="round"/>'+
+    '<line x1="'+x+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="'+acc+'" stroke-width="5" stroke-linecap="round"/>'+
+    '<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="'+ink+'" stroke-width="2.5"/>'+
+    '<circle cx="'+x+'" cy="'+y+'" r="13" fill="'+acc+'" stroke="'+css("--card")+'" stroke-width="3"/>');
+  $("ucAo").textContent=deg+"°";$("ucS").textContent=f(Math.sin(t),3);$("ucC").textContent=f(Math.cos(t),3);
+}
+$("ucA").oninput=drawUC;
+circleDrag($("uc"),150,150,function(t){$("ucA").value=Math.round(t/D)%360;drawUC()});
+
+/* ---------- Room 5: Pythagoras ---------- */
+function drawPy(){var t=+$("pyA").value*D,s=Math.sin(t),c=Math.cos(t);
+  $("pyAo").textContent=$("pyA").value+"°";$("pyS").textContent=f(s*s,4);$("pyC").textContent=f(c*c,4);$("pyT").textContent=(s*s+c*c).toFixed(4)}
+$("pyA").oninput=drawPy;
+
+/* ---------- Room 6: wave ---------- */
+var wave=(function(){
+  var t=0,playing=false,raf=null,last=0,cx=90,cy=110,R=70,gx=180,gw=320;
+  function draw(){
+    var acc=css("--acc"),ink=css("--ink"),mute=css("--mute"),grid=css("--grid");
+    var x=cx+R*Math.cos(t),y=cy-R*Math.sin(t),wx=gx+gw*t/(2*Math.PI);
+    var pts=[],n=Math.max(2,Math.round(120*t/(2*Math.PI)));
+    for(var i=0;i<=n;i++){var u=t*i/n;pts.push((gx+gw*u/(2*Math.PI)).toFixed(1)+","+(cy-R*Math.sin(u)).toFixed(1))}
+    var ticks="";[0,90,180,270,360].forEach(function(d){var X=gx+gw*d/360;ticks+='<line x1="'+X+'" y1="'+(cy-4)+'" x2="'+X+'" y2="'+(cy+4)+'" stroke="'+mute+'"/><text x="'+X+'" y="'+(cy+R+28)+'" font-size="12" text-anchor="middle" style="fill:'+mute+'">'+d+'°</text>'});
+    svgEl($("wave"),axes(cx,cy,R,mute,grid)+
+      '<line x1="'+gx+'" y1="'+cy+'" x2="'+(gx+gw)+'" y2="'+cy+'" stroke="'+grid+'" stroke-width="2"/>'+ticks+
+      '<line x1="'+gx+'" y1="'+(cy-R)+'" x2="'+(gx+gw)+'" y2="'+(cy-R)+'" stroke="'+grid+'" stroke-dasharray="3 4"/>'+
+      '<line x1="'+gx+'" y1="'+(cy+R)+'" x2="'+(gx+gw)+'" y2="'+(cy+R)+'" stroke="'+grid+'" stroke-dasharray="3 4"/>'+
+      '<text x="'+(gx-6)+'" y="'+(cy-R+4)+'" font-size="12" text-anchor="end" style="fill:'+mute+'">1</text>'+
+      '<text x="'+(gx-6)+'" y="'+(cy+R+4)+'" font-size="12" text-anchor="end" style="fill:'+mute+'">−1</text>'+
+      '<polyline points="'+pts.join(" ")+'" fill="none" stroke="'+acc+'" stroke-width="3" stroke-linejoin="round"/>'+
+      '<line x1="'+x+'" y1="'+y+'" x2="'+wx+'" y2="'+y+'" stroke="'+mute+'" stroke-dasharray="4 4"/>'+
+      '<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="'+ink+'" stroke-width="2"/>'+
+      '<line x1="'+x+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="'+acc+'" stroke-width="4"/>'+
+      '<circle cx="'+x+'" cy="'+y+'" r="8" fill="'+acc+'"/><circle cx="'+wx+'" cy="'+y+'" r="6" fill="'+acc+'"/>');
+  }
+  function step(ts){if(!playing)return;if(last)t+=Math.min(0.05,(ts-last)/1000*0.9);last=ts;
+    if(t>=2*Math.PI){t=2*Math.PI;playing=false;$("wPlay").textContent="Play";draw();return}
+    draw();raf=requestAnimationFrame(step)}
+  $("wPlay").onclick=function(){
+    if(playing){playing=false;$("wPlay").textContent="Play";return}
+    if(t>=2*Math.PI)t=0;
+    var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(reduce){t=2*Math.PI;draw();return}
+    playing=true;last=0;$("wPlay").textContent="Pause";raf=requestAnimationFrame(step)};
+  $("wReset").onclick=function(){playing=false;t=0;$("wPlay").textContent="Play";draw()};
+  return {draw:draw};
+})();
+checker("fw1","fw1Go","fw1Fb",function(){return 17},function(){return 0.05},function(t,ok){return "sin 30° = 0.5, so 12 + 10 × 0.5 = 17 m."+(ok?" You're a third of the way up the top half.":"")});
+checker("fw2","fw2Go","fw2Fb",function(){return 2},function(){return 0.05},function(t,ok){return "At 270° the dot is at the very bottom, so sin 270° = −1. 12 + 10 × (−1) = 2 m: the lowest point, where you get on."+(ok?" The negative sine did the work.":"")});
+
+/* ---------- Room 7: radians ---------- */
+function drawRad(){
+  var t=+$("radA").value,cx=150,cy=150,R=110,x=cx+R*Math.cos(t),y=cy-R*Math.sin(t);
+  var acc=css("--acc"),ink=css("--ink"),mute=css("--mute"),grid=css("--grid"),two=css("--two");
+  var marks="";for(var k=1;k<=6;k++){var mx=cx+R*Math.cos(k),my=cy-R*Math.sin(k),lx=cx+(R+16)*Math.cos(k),ly=cy-(R+16)*Math.sin(k);
+    marks+='<circle cx="'+mx+'" cy="'+my+'" r="3" fill="'+mute+'"/><text x="'+lx+'" y="'+(ly+4)+'" font-size="12" text-anchor="middle" style="fill:'+mute+'">'+k+'</text>'}
+  var big=t>Math.PI?1:0;
+  svgEl($("rad"),axes(cx,cy,R,mute,grid)+marks+
+    '<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+R)+'" y2="'+cy+'" stroke="'+two+'" stroke-width="3"/>'+
+    '<text x="'+(cx+R/2)+'" y="'+(cy+18)+'" font-size="12" text-anchor="middle" style="fill:'+two+'">radius 1</text>'+
+    (t>0.005?'<path d="M'+(cx+R)+','+cy+' A'+R+','+R+' 0 '+big+' 0 '+x+','+y+'" fill="none" stroke="'+acc+'" stroke-width="6" stroke-linecap="round"/>':'')+
+    '<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="'+ink+'" stroke-width="2"/>'+
+    '<circle cx="'+x+'" cy="'+y+'" r="11" fill="'+acc+'" stroke="'+css("--card")+'" stroke-width="3"/>');
+  $("radAo").textContent=t.toFixed(2);$("radR").textContent=t.toFixed(2);$("radD").textContent=(t/D).toFixed(1)+"°";
+}
+$("radA").oninput=drawRad;
+circleDrag($("rad"),150,150,function(t){$("radA").value=t.toFixed(2);drawRad()});
+(function(){var tb=$("smallT").querySelector("tbody");[1,0.5,0.2,0.1,0.01].forEach(function(x){
+  var tr=document.createElement("tr");tr.innerHTML="<td>"+x+"</td><td class='hide' tabindex='0' role='button' aria-label='Reveal sin "+x+"'>"+Math.sin(x).toFixed(5)+"</td>";
+  var c=tr.lastChild;function rv(){c.classList.remove("hide");c.removeAttribute("role");c.removeAttribute("aria-label")}
+  c.onclick=rv;c.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();rv()}};tb.appendChild(tr)})})();
+
+/* ---------- Room 8: gradient of sin ---------- */
+var showCos=false;
+function drawSlope(){
+  var x0=+$("slX").value,L=30,Rr=345,cy=115,A=80,W=Rr-L;
+  function X(x){return L+W*x/(2*Math.PI)}function Y(v){return cy-A*v}
+  var acc=css("--acc"),ink=css("--ink"),mute=css("--mute"),grid=css("--grid"),two=css("--two");
+  var s="",c="";for(var i=0;i<=160;i++){var u=2*Math.PI*i/160;s+=X(u).toFixed(1)+","+Y(Math.sin(u)).toFixed(1)+" ";c+=X(u).toFixed(1)+","+Y(Math.cos(u)).toFixed(1)+" "}
+  var h=1e-4,g=(Math.sin(x0+h)-Math.sin(x0-h))/(2*h);
+  var span=0.9,ax=x0-span,bx=x0+span;
+  var ticks="";[["0",0],["π/2",Math.PI/2],["π",Math.PI],["3π/2",3*Math.PI/2],["2π",2*Math.PI]].forEach(function(p){ticks+='<text x="'+X(p[1])+'" y="'+(cy+A+24)+'" font-size="12" text-anchor="middle" style="fill:'+mute+'">'+p[0]+'</text><line x1="'+X(p[1])+'" y1="'+(cy-4)+'" x2="'+X(p[1])+'" y2="'+(cy+4)+'" stroke="'+mute+'"/>'});
+  svgEl($("slope"),
+    '<line x1="'+L+'" y1="'+cy+'" x2="'+Rr+'" y2="'+cy+'" stroke="'+grid+'" stroke-width="2"/>'+ticks+
+    (showCos?'<polyline points="'+c+'" fill="none" stroke="'+two+'" stroke-width="2.5" stroke-dasharray="6 5"/><circle cx="'+X(x0)+'" cy="'+Y(Math.cos(x0))+'" r="6" fill="'+two+'"/>':'')+
+    '<polyline points="'+s+'" fill="none" stroke="'+acc+'" stroke-width="3"/>'+
+    '<line x1="'+X(ax)+'" y1="'+Y(Math.sin(x0)+g*(ax-x0))+'" x2="'+X(bx)+'" y2="'+Y(Math.sin(x0)+g*(bx-x0))+'" stroke="'+ink+'" stroke-width="2.5"/>'+
+    '<circle cx="'+X(x0)+'" cy="'+Y(Math.sin(x0))+'" r="7" fill="'+acc+'"/>'+
+    '<text x="'+(Rr)+'" y="'+(cy-A-6)+'" font-size="12" text-anchor="end" style="fill:'+acc+'">y = sin x</text>'+
+    (showCos?'<text x="'+(Rr)+'" y="'+(cy-A+10)+'" font-size="12" text-anchor="end" style="fill:'+two+'">y = cos x</text>':''));
+  $("slXo").textContent=x0.toFixed(2);$("slG").textContent=f(g,3);$("slC").textContent=f(Math.cos(x0),3);
+}
+$("slX").oninput=drawSlope;
+$("slShow").onclick=function(){showCos=!showCos;this.setAttribute("aria-pressed",showCos);this.textContent=showCos?"Hide the cos x curve":"Show the cos x curve";drawSlope()};
+
+function all(){drawTri();drawPark();drawUC();drawPy();wave.draw();drawRad();drawSlope()}
+newTree();all();
+if(window.matchMedia)window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",all);
+go(+load("room",0)||0);
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

@@ -113,7 +113,8 @@
       }
 
       function counts(list) {
-        var p = list.filter(isPractise).length, q = printsOf(list).length, out = [];
+        var e = list.filter(isExplore).length, p = list.filter(isPractise).length, q = printsOf(list).length, out = [];
+        if (e) out.push(e + ' to explore');
         if (p) out.push(p + ' to practise');
         if (q) out.push(q + ' to print');
         return out.join(' · ') || 'Empty';
@@ -143,14 +144,16 @@
         bindToggle();
       }
 
-      // One subject: "Practise" (HTML tools) then "Print" (PDFs, including worksheets attached to a tool).
+      // One subject: "Explore" (first-principles journeys, not exam prep), "Practise" (HTML tools),
+      // then "Print" (PDFs, including worksheets attached to a tool).
       function drawSubject(s) {
         var list = items.filter(function (it) { return subjectOf(it) === s.slug && visible(it); });
         var html = bar(s.label, '#', 'Back to subjects') + toggleHTML();
-        var practise = list.filter(isPractise), prints = printsOf(list);
-        if (!practise.length && !prints.length) {
+        var explore = list.filter(isExplore), practise = list.filter(isPractise), prints = printsOf(list);
+        if (!explore.length && !practise.length && !prints.length) {
           html += '<p class="empty">' + (showArchived ? 'Nothing archived here yet.' : 'Nothing here yet.') + '</p>';
         } else {
+          if (explore.length) html += '<div class="explore">' + section('Explore', 'From first principles, just for curiosity', explore, exploreRowHTML) + '</div>';
           if (practise.length) html += section('Practise', 'On screen', practise, practiseRowHTML);
           if (prints.length) html += section('Print', 'Worksheets to print out', prints, printRowHTML);
         }
@@ -206,7 +209,9 @@
 
   var PRINTABLES = 'printables';
 
-  function isPractise(it) { return it.type !== 'pdf'; }
+  // "strand": "explore" marks a first-principles journey: same subject, but no tests, no deadlines.
+  function isExplore(it) { return it.type !== 'pdf' && it.strand === 'explore'; }
+  function isPractise(it) { return it.type !== 'pdf' && !isExplore(it); }
 
   // Every PDF in a list: standalone PDF items, plus the "print" worksheet attached to an HTML tool.
   function printsOf(list) {
@@ -229,6 +234,14 @@
     if (!it.print) return '<li>' + row + '</li>';
     return '<li class="pair">' + row + '<a class="row print" href="' + esc(it.print) + '" target="_blank" rel="noopener" ' +
       'aria-label="Print the worksheet for ' + esc(it.title) + '">' + icon('print') + '</a></li>';
+  }
+
+  function exploreRowHTML(it) {
+    var row = '<a class="row" href="' + esc(it.path) + '"><span class="badge">Explore</span>' +
+      '<span class="title">' + esc(it.title) + '</span>' + metaHTML(it) + '</a>';
+    if (!it.print) return '<li>' + row + '</li>';
+    return '<li class="pair">' + row + '<a class="row print" href="' + esc(it.print) + '" target="_blank" rel="noopener" ' +
+      'aria-label="Print the notebook for ' + esc(it.title) + '">' + icon('print') + '</a></li>';
   }
 
   function printRowHTML(it) {

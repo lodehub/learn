@@ -124,6 +124,15 @@
       "printTitle": "Week 3 written multiplying fractions"
     },
     {
+      "title": "Why triangles know things: trigonometry from scratch",
+      "path": "maths/explore-trigonometry/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "strand": "explore",
+      "topic": "Trigonometry"
+    },
+    {
       "title": "Lungs and gas exchange",
       "path": "science/lungs-gas-exchange/",
       "type": "html",
