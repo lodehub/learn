@@ -121,7 +121,7 @@
       }
 
       function drawSubjects() {
-        var html = bar(child.label, '../', 'Back to everyone') + toggleHTML();
+        var html = bar(child.label, '../', 'Back to everyone') + toggleHTML() + (showArchived ? '' : thisWeekHTML());
         var shown = subjects.filter(function (s) {
           // In the archive, only subjects that have archived material.
           return !showArchived || items.some(function (it) { return subjectOf(it) === s.slug && visible(it); });
@@ -142,6 +142,47 @@
         }
         el.innerHTML = html;
         bindToggle();
+        bindWeek();
+      }
+
+      // "This week": every item tagged with the manifest's currentWeek, across subjects, with a tick each.
+      // Ticks are saved on this device under <slug>:home:this-week:w<N>.
+      var week = manifest.currentWeek;
+      var weekKey = slug + ':home:this-week:w' + week;
+      function weekItems() {
+        return week ? items.filter(function (it) { return it.week === week && it.status !== 'archived'; }) : [];
+      }
+      function ticked() {
+        try { return JSON.parse(localStorage.getItem(weekKey)) || []; } catch (e) { return []; }
+      }
+      function thisWeekHTML() {
+        var list = weekItems();
+        if (!list.length && !manifest.checkin) return '';
+        var done = ticked(), n = list.filter(function (it) { return done.indexOf(it.path) >= 0; }).length;
+        var html = '<section class="week"><div class="week-head"><h2>This week' + (week ? ' <span>Week ' + esc(week) + '</span>' : '') + '</h2>' +
+          (list.length ? '<span class="week-count">' + (n === list.length ? 'All done ✓' : n + ' of ' + list.length + ' done') + '</span>' : '') + '</div>';
+        if (list.length) html += '<ul class="list">' + list.map(function (it) {
+          var on = done.indexOf(it.path) >= 0, pdf = it.type === 'pdf';
+          var s = subjects.filter(function (x) { return x.slug === subjectOf(it); })[0];
+          return '<li class="pair' + (on ? ' is-done' : '') + '"><button type="button" class="row tick" data-path="' + esc(it.path) + '" aria-pressed="' + on + '" ' +
+            'aria-label="Mark ' + esc(it.title) + ' as done">' + (on ? '✓' : '') + '</button>' +
+            '<a class="row" href="' + esc(it.path) + '"' + (pdf ? ' target="_blank" rel="noopener"' : '') + '><span class="badge">' + esc(s ? s.label : 'Task') + '</span>' +
+            '<span class="title">' + esc(it.title) + '</span></a>' +
+            (it.print ? '<a class="row print" href="' + esc(it.print) + '" target="_blank" rel="noopener" aria-label="Print the worksheet for ' + esc(it.title) + '">' + icon('print') + '</a>' : '') +
+            '</li>';
+        }).join('') + '</ul>';
+        if (manifest.checkin) html += '<a class="row checkin" href="' + esc(manifest.checkin) + '"><span class="badge">Check-in</span><span class="title">How is each subject going? Half-term check-in</span></a>';
+        return html + '</section>';
+      }
+      function bindWeek() {
+        Array.prototype.forEach.call(el.querySelectorAll('.week .tick'), function (b) {
+          b.addEventListener('click', function () {
+            var done = ticked(), p = b.getAttribute('data-path'), i = done.indexOf(p);
+            if (i >= 0) done.splice(i, 1); else done.push(p);
+            try { localStorage.setItem(weekKey, JSON.stringify(done)); } catch (e) {}
+            draw();
+          });
+        });
       }
 
       // One subject: "Explore" (first-principles journeys, not exam prep), "Practise" (HTML tools),

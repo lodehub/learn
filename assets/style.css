@@ -182,6 +182,34 @@ h1 {
 .section h2 span { font-size: 16px; font-weight: 500; color: var(--muted); margin-left: 6px; }
 .section .topic:first-of-type { margin-top: 0; }
 
+/* "This week" box on a child's page: this week's tasks from every subject, with ticks */
+.week {
+  margin: 0 0 28px;
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 2px solid var(--accent);
+  background: var(--surface);
+}
+.week-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.week h2 { margin: 0; font-size: 26px; }
+.week h2 span { font-size: 17px; font-weight: 600; color: var(--accent); margin-left: 6px; }
+.week-count { font-size: 16px; font-weight: 600; color: var(--muted); }
+.week .pair .row.tick { flex: none; }
+.week .pair .row:nth-child(2) { flex: 1; min-width: 0; }
+.row.tick { flex: none; justify-content: center; width: 72px; padding: 0; font: inherit; font-size: 30px; color: #fff; cursor: pointer; }
+.row.tick[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); }
+.week .is-done .title { text-decoration: line-through; color: var(--muted); }
+.week .row .badge { min-width: 96px; }
+.row.checkin { margin-top: 12px; background: var(--accent-soft); border-color: transparent; }
+@media (max-width: 520px) {
+  .week { padding: 12px; }
+  .week .pair { gap: 6px; }
+  .week .row { min-height: 60px; padding: 10px 12px; font-size: 17px; }
+  .week .row .badge { display: none; }
+  .week .row.tick, .week .row.print { width: 48px; padding: 0; }
+  .week .row.print .icon { width: 24px; height: 24px; }
+}
+
 /* Explore strand: first-principles journeys, set apart from exam practice */
 .explore {
   margin: 8px 0 28px;

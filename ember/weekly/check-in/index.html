@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbf6f1">
+<title>Half-term check-in</title>
+<style>
+:root{--bg:#fbf6f1;--card:#ffffff;--ink:#2b2a28;--mute:#6f6b64;--acc:#d9682a;--accsoft:#fdeee4;--line:#e4dcd2;
+--gr:#1b7f4b;--grs:#e2f4ea;--am:#b26a00;--ams:#fff1d6;--rd:#b3261e;--rds:#fbe7e5;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--line:#3a3835;--gr:#6fd49b;--grs:#16352a;--am:#f5c35b;--ams:#3a2f16;--rd:#ff8a80;--rds:#3b1f1d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--line:#3a3835;--gr:#6fd49b;--grs:#16352a;--am:#f5c35b;--ams:#3a2f16;--rd:#ff8a80;--rds:#3b1f1d;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:780px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(26px,6vw,34px);margin:2px 0 6px;line-height:1.2}
+h2{font-size:22px;margin:24px 0 10px}
+.lede{color:var(--mute);margin:0 0 14px}
+p{margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
+.term{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 16px}
+select,input[type=text],textarea{font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);width:100%}
+select{width:auto;min-height:48px}
+textarea{min-height:64px;resize:vertical}
+label.f{display:block;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute);margin:12px 0 6px}
+.subj{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.subj h3{margin:0;font-size:22px}
+.prev{font-size:14px;color:var(--mute)}
+.rag{display:grid;grid-template-columns:1fr;gap:4px;margin-top:12px}
+.rag .who{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute);margin-top:6px}
+.lights{display:flex;gap:6px;flex-wrap:wrap}
+.lights{flex-wrap:nowrap}.lights button{flex:1 1 0;min-height:48px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer;padding:6px 8px}
+.lights button[data-v="g"][aria-pressed="true"]{background:var(--grs);border-color:var(--gr);color:var(--gr)}
+.lights button[data-v="a"][aria-pressed="true"]{background:var(--ams);border-color:var(--am);color:var(--am)}
+.lights button[data-v="r"][aria-pressed="true"]{background:var(--rds);border-color:var(--rd);color:var(--rd)}
+.gap{display:none;margin-top:10px;padding:8px 12px;border-radius:10px;background:var(--accsoft);font-size:15px}
+.gap.show{display:block}
+.good{font-size:15px;color:var(--mute);background:var(--bg);border-radius:12px;padding:10px 12px;border:1px dashed var(--line)}
+.summary{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.chip{border-radius:12px;padding:8px 10px;border:1px solid var(--line);background:var(--card);font-size:15px}
+.chip b{display:block;font-size:16px}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--line);vertical-align:-2px;margin-right:4px}
+.dot.g{background:var(--gr)}.dot.a{background:var(--am)}.dot.r{background:var(--rd)}
+.ctl{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+input[type=range]{width:100%;height:36px;accent-color:var(--acc)}
+.btn{min-height:50px;border:1px solid var(--acc);background:var(--acc);color:#fff;padding:10px 18px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.saved{font-size:13px;color:var(--mute);min-height:18px;margin-top:6px}
+.how{font-size:15px;color:var(--mute)}
+.how li{margin-bottom:4px}
+@media print{.btns,.term select,.how,.back{display:none!important}body{background:#fff}.card{break-inside:avoid}textarea,input{border:none;padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Weekly · Year 8</p>
+  <h1>Half-term check-in</h1>
+  <p class="lede">Fifteen minutes, once a half-term, together. You rate each subject first, then a grown-up does. Where your views differ is the useful bit: talk about it.</p>
+</header>
+
+<div class="term"><label for="ht" style="font-weight:700">Half-term</label><select id="ht"></select><span class="saved" id="saved"></span></div>
+
+<h2 style="margin-top:0">At a glance</h2>
+<div class="summary" id="summary"></div>
+
+<h2>Subject by subject</h2>
+<div id="subjects"></div>
+
+<h2>Our agreement for this half-term</h2>
+<div class="card">
+  <label class="f" for="hours">Homework time each week</label>
+  <div class="ctl"><input id="hours" type="range" min="1" max="8" step="0.5" value="3.5"><b id="hoursO"></b></div>
+  <label class="f" for="focus">The one amber subject I'll give extra attention</label>
+  <select id="focus" style="width:100%"></select>
+  <label class="f" for="mine">What I want from this half-term (in my words)</label>
+  <textarea id="mine" placeholder="I want to…"></textarea>
+  <label class="f" for="yours">What the grown-up wants (and will do to help)</label>
+  <textarea id="yours" placeholder="I'd like… I'll help by…"></textarea>
+  <label class="f" for="agreed">Agreed on</label>
+  <input id="agreed" type="text" placeholder="date">
+  <div class="btns"><button class="btn ghost" type="button" onclick="window.print()">Print this check-in</button></div>
+</div>
+
+<div class="card how">
+  <b>How the four views fit together</b>
+  <ul>
+    <li><b>School</b> sets the <i>order</i>: the weekly pack follows whatever topic is happening in class.</li>
+    <li><b>The syllabus</b> sets the <i>depth</i>: in Year 8 that means the skills GCSE will need (explaining, linking, judging), not GCSE content yet.</li>
+    <li><b>The grown-up</b> sets the <i>routine</i>: time each week and the skills that keep coming back.</li>
+    <li><b>You</b> set the <i>priorities</i>: your ambers and reds decide what gets extra attention.</li>
+  </ul>
+  Explore journeys (like trigonometry from scratch) are never part of this deal.
+  <p style="margin-top:8px">Saved on this device only, so fill it in together on the same iPad.</p>
+</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY="ember:weekly:check-in:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function store(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v));return true}catch(e){return false}}
+var $=function(id){return document.getElementById(id)};
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+
+// What "good" looks like in Year 8: the skills each weekly pack already trains, which GCSE builds on.
+var SUBJECTS=[
+  {slug:"english",label:"English",good:"Pick the smallest quote that proves your point. Name what one word does, then why the writer chose it and the effect on the reader."},
+  {slug:"maths",label:"Maths",good:"Show every step in order, say in a few words what you did, and check the answer by putting it back in."},
+  {slug:"science",label:"Science",good:"Explain with a Because Chain: each step causes the next. 6-mark answers go in a logical order and use key words correctly."},
+  {slug:"history",label:"History",good:"Give a fact, explain it, then answer So What? by tying it back to the question. Reach a judgement."},
+  {slug:"geography",label:"Geography",good:"Make a point, back it with case-study evidence (names, numbers), develop it, then reach a judgement."},
+  {slug:"french",label:"French",good:"Extend sentences with connectives, opinions and reasons. Use more than one tense. Learn vocabulary little and often."}
+];
+var LIGHTS=[["g","Got this"],["a","Getting there"],["r","Need help"]];
+
+function halfTerm(d){var y=d.getFullYear(),m=d.getMonth()+1,day=d.getDate(),ay=m>=9?y:y-1,n;
+  if(m>=9&&(m<10||(m===10&&day<24)))n="Autumn 1";else if(m>=9)n="Autumn 2";
+  else if(m<=2&&!(m===2&&day>=17))n="Spring 1";else if(m<=3)n="Spring 2";
+  else if(m<=5&&!(m===5&&day>=26))n="Summer 1";else n="Summer 2";
+  return ay+"-"+String(ay+1).slice(2)+" "+n}
+function allTerms(){var t=[],cur=new Date(),start=new Date(cur.getFullYear()-1,8,1);
+  for(var d=new Date(start);d<=new Date(cur.getFullYear()+1,7,31);d.setDate(d.getDate()+7)){var h=halfTerm(d);if(t.indexOf(h)<0)t.push(h)}return t}
+
+var current=halfTerm(new Date()),ht=load("last",current),data,topics={};
+var sel=$("ht");allTerms().forEach(function(h){var o=document.createElement("option");o.value=o.textContent=h;sel.appendChild(o)});
+sel.value=ht;if(sel.value!==ht){sel.value=current;ht=current}
+sel.onchange=function(){ht=sel.value;store("last",ht);render()};
+
+function prevTerm(){var o=[].map.call(sel.options,function(x){return x.value}),i=o.indexOf(ht);
+  for(var k=i-1;k>=0;k--){var d=load("ht:"+o[k],null);if(d)return {name:o[k],d:d}}return null}
+
+var timer;
+function save(){clearTimeout(timer);timer=setTimeout(function(){$("saved").textContent=store("ht:"+ht,data)?"Saved on this device":"Could not save on this device"},300)}
+
+function render(){
+  data=load("ht:"+ht,{s:{},hours:3.5,focus:"",mine:"",yours:"",agreed:""});
+  var prev=prevTerm();
+  $("subjects").innerHTML=SUBJECTS.map(function(s){
+    var d=data.s[s.slug]||{},p=prev&&prev.d.s[s.slug];
+    return "<div class='card' data-s='"+s.slug+"'><div class='subj'><h3>"+s.label+"</h3>"+
+      (p&&(p.me||p.adult)?"<span class='prev'>Last time ("+esc(prev.name.split(' ').slice(1).join(' '))+"): you <span class='dot "+(p.me||"")+"'></span>grown-up <span class='dot "+(p.adult||"")+"'></span></span>":"")+"</div>"+
+      "<label class='f'>At school this half-term</label><input type='text' data-k='topic' value='"+esc(d.topic||"")+"' placeholder='"+esc(topics[s.slug]||"What topic is the class doing?")+"'>"+
+      "<label class='f'>What good looks like (Year 8)</label><div class='good'>"+s.good+"</div>"+
+      "<div class='rag'><span class='who'>Me</span><div class='lights' data-k='me'>"+lights(d.me)+"</div>"+
+      "<span class='who'>Grown-up</span><div class='lights' data-k='adult'>"+lights(d.adult)+"</div></div>"+
+      "<div class='gap"+(d.me&&d.adult&&d.me!==d.adult?" show":"")+"'>You see this one differently. Talk about why: what does each of you notice that the other doesn't?</div>"+
+      "<label class='f'>One thing I want to get better at</label><input type='text' data-k='goal' value='"+esc(d.goal||"")+"' placeholder='e.g. finishing 6-mark answers in time'></div>";
+  }).join("");
+  [].forEach.call(document.querySelectorAll("#subjects .card"),function(card){
+    var slug=card.getAttribute("data-s");
+    function rec(){return data.s[slug]||(data.s[slug]={})}
+    [].forEach.call(card.querySelectorAll("input[data-k]"),function(i){i.oninput=function(){rec()[i.getAttribute("data-k")]=i.value;save()}});
+    [].forEach.call(card.querySelectorAll(".lights"),function(g){var k=g.getAttribute("data-k");
+      [].forEach.call(g.children,function(b){b.onclick=function(){var r=rec();r[k]=r[k]===b.dataset.v?"":b.dataset.v;
+        [].forEach.call(g.children,function(x){x.setAttribute("aria-pressed",x.dataset.v===r[k])});
+        card.querySelector(".gap").classList.toggle("show",!!(r.me&&r.adult&&r.me!==r.adult));save();summary();focusOpts()}})});
+  });
+  $("hours").value=data.hours;$("hoursO").textContent=data.hours+" h";
+  ["mine","yours","agreed"].forEach(function(k){$(k).value=data[k]||""});
+  summary();focusOpts();$("saved").textContent="";
+}
+function lights(v){return LIGHTS.map(function(l){return "<button type='button' data-v='"+l[0]+"' aria-pressed='"+(v===l[0])+"'>"+l[1]+"</button>"}).join("")}
+function summary(){
+  $("summary").innerHTML=SUBJECTS.map(function(s){var d=data.s[s.slug]||{};
+    return "<div class='chip'><b>"+s.label+"</b>Me <span class='dot "+(d.me||"")+"'></span> Grown-up <span class='dot "+(d.adult||"")+"'></span>"+
+      (d.me&&d.adult&&d.me!==d.adult?"<br><span style='color:var(--acc);font-weight:700'>talk about this</span>":"")+"</div>"}).join("");
+}
+function focusOpts(){
+  var f=$("focus"),amb=SUBJECTS.filter(function(s){var d=data.s[s.slug]||{};return d.me==="a"||d.me==="r"});
+  var list=amb.length?amb:SUBJECTS;
+  f.innerHTML="<option value=''>"+(amb.length?"Choose from your ambers and reds":"Rate the subjects first, or choose any")+"</option>"+
+    list.map(function(s){return "<option value='"+s.slug+"'"+(data.focus===s.slug?" selected":"")+">"+s.label+"</option>"}).join("");
+  if(data.focus&&!list.some(function(s){return s.slug===data.focus})){var o=document.createElement("option");o.value=data.focus;o.textContent=data.focus;o.selected=true;f.appendChild(o)}
+}
+$("hours").oninput=function(){data.hours=+this.value;$("hoursO").textContent=data.hours+" h";save()};
+$("focus").onchange=function(){data.focus=this.value;save()};
+["mine","yours","agreed"].forEach(function(k){$(k).oninput=function(){data[k]=this.value;save()}});
+
+// Suggest this half-term's school topics from the current items in the manifest.
+fetch("../../manifest.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(m){
+  (m.items||[]).forEach(function(it){if(it.status==="archived"||it.strand==="explore"||it.type==="pdf")return;var s=String(it.path).split("/")[0];
+    var t=it.topic||it.title.replace(/^[A-Za-z ]*Week \d+:\s*/,"");if(!topics[s])topics[s]=t;else if(topics[s].indexOf(t)<0&&topics[s].length<60)topics[s]+=", "+t});
+  [].forEach.call(document.querySelectorAll("#subjects input[data-k='topic']"),function(i){var s=i.closest(".card").getAttribute("data-s");if(topics[s])i.placeholder=topics[s]});
+}).catch(function(){});
+render();
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>
