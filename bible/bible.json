@@ -1,0 +1,95 @@
+{
+  "about": "One book a month, about a chapter a week. Read it, dig into it, find the principle, live it, and hide it in your heart.",
+  "people": [
+    {
+      "slug": "grownups",
+      "label": "Grown-ups",
+      "colour": "gold"
+    }
+  ],
+  "seasons": [
+    {
+      "id": "philippians",
+      "title": "Philippians",
+      "tagline": "Joy in every circumstance",
+      "weeks": 4,
+      "path": "philippians/season.json"
+    },
+    {
+      "id": "ruth",
+      "title": "Ruth",
+      "tagline": "Loyal love in hard times",
+      "weeks": 4,
+      "path": "ruth/season.json"
+    },
+    {
+      "id": "james",
+      "title": "James",
+      "tagline": "Faith that works",
+      "weeks": 4,
+      "path": "james/season.json"
+    }
+  ],
+  "credits": [
+    "Scripture quotations marked NIV taken from the Holy Bible, New International Version (Anglicised edition). Copyright © 1979, 1984, 2011 by Biblica. Used by permission of Hodder & Stoughton Publishers, an Hachette UK company. All rights reserved. 'NIV' is a registered trademark of Biblica. UK trademark number 1448790."
+  ],
+  "plan": [
+    {
+      "month": "2026-11",
+      "season": "philippians"
+    },
+    {
+      "month": "2026-12",
+      "season": "ruth"
+    },
+    {
+      "month": "2027-01",
+      "season": "james"
+    },
+    {
+      "month": "2027-02",
+      "title": "Jonah",
+      "blurb": "Running from God, and the God who runs after people"
+    },
+    {
+      "month": "2027-03",
+      "title": "1 Peter",
+      "blurb": "Living hope for Easter"
+    },
+    {
+      "month": "2027-04",
+      "title": "Colossians",
+      "blurb": "Jesus over everything"
+    },
+    {
+      "month": "2027-05",
+      "title": "Ephesians",
+      "blurb": "Who we are in Christ, and how God's family lives"
+    },
+    {
+      "month": "2027-06",
+      "title": "1 John",
+      "blurb": "Walk in the light, love one another"
+    },
+    {
+      "month": "2027-07",
+      "title": "Habakkuk",
+      "blurb": "Honest questions, and trusting God anyway"
+    },
+    {
+      "month": "2027-08",
+      "title": "Titus",
+      "blurb": "Grace that teaches us to do good"
+    },
+    {
+      "month": "2027-09",
+      "title": "Galatians",
+      "blurb": "Free in Christ: grace, not rules"
+    },
+    {
+      "month": "2027-10",
+      "title": "1 Thessalonians",
+      "blurb": "Living ready for Jesus's return"
+    }
+  ]
+}

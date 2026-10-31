@@ -1,0 +1,439 @@
+{
+ "id": "james",
+ "title": "James",
+ "tagline": "Faith that works",
+ "version": "NIVUK",
+ "translation": "Scripture quotations taken from the Holy Bible, New International Version (Anglicised edition). Copyright © 1979, 1984, 2011 by Biblica. Used by permission of Hodder & Stoughton Publishers, an Hachette UK company. All rights reserved. 'NIV' is a registered trademark of Biblica. UK trademark number 1448790.",
+ "oneLine": "Real faith shows up in real life.",
+ "intro": [
+  "James is short and intensely practical: about 50 commands in 108 verses. It reads like Proverbs: punchy sections on trials, words, money, fights, plans and prayer. Ideal for a family learning to turn what they read into what they do."
+ ],
+ "context": [
+  {
+   "h": "Who wrote it?",
+   "p": "James, a younger brother of Jesus (Mark 6:3; Galatians 1:19). While Jesus was teaching, his brothers didn't believe in him (John 7:5). Then the risen Jesus appeared to James (1 Corinthians 15:7), and he became the leader of the church in Jerusalem (Acts 15). Yet he introduces himself only as 'a servant of God and of the Lord Jesus Christ'."
+  },
+  {
+   "h": "Who was it for?",
+   "p": "'The twelve tribes scattered among the nations': Jewish Christians scattered away from Jerusalem, many after persecution broke out there (Acts 8:1; 11:19). Most were poor, far from home and pushed around by rich landowners. Their church gatherings had problems: favouritism, quarrels, sharp tongues, and people who said they believed but didn't live like it."
+  },
+  {
+   "h": "When?",
+   "p": "Probably the mid-40s AD, which may make it the earliest letter in the New Testament: written within about 15 years of Jesus's death and resurrection. James was killed for his faith in AD 62."
+  },
+  {
+   "h": "Listen for Jesus",
+   "p": "James never quotes Jesus directly, but he echoes the Sermon on the Mount (Matthew 5–7) again and again: joy in trials, asking and receiving, hearing and doing, mercy, words, treasure that rusts, yes meaning yes. James had heard his brother teach. Each week has a 'Jesus said it first' link."
+  }
+ ],
+ "threads": [
+  "Trials and endurance",
+  "Wisdom from God",
+  "Hearing and doing",
+  "Words and the tongue",
+  "Rich and poor",
+  "Humility and pride",
+  "Prayer"
+ ],
+ "weeks": [
+  {
+   "n": 1,
+   "title": "Don't just listen. Do it.",
+   "ref": "1:1-27",
+   "big": "What's the point of hearing something if nothing changes?",
+   "context": [
+    "James was one of Jesus's younger brothers. Growing up, he didn't believe Jesus was the Messiah (John 7:5). Then the risen Jesus appeared to him (1 Corinthians 15:7) and everything changed. Notice how he introduces himself: not 'the brother of Jesus' but 'a servant'.",
+    "He writes to believers scattered far from home, many of them poor and pushed around by powerful people. Life was hard. That's exactly where James starts.",
+    "James uses one Greek word (peirasmos) in two ways: 'trials' that grow you (verse 2) and being 'tempted' to do wrong (verse 13). The same hard situation can be a test that grows you or a temptation that trips you.",
+    "Christians in James's day mostly heard Scripture read aloud rather than reading it themselves. So it was easy to listen, nod along and go home unchanged.",
+    "Mirrors were polished bronze: a dim, wobbly reflection. You glanced, then forgot. James says hearing God's word without doing it is like that glance: you saw yourself, but nothing happened."
+   ],
+   "words": [
+    [
+     "Scattered among the nations",
+     "God's people living away from their homeland."
+    ],
+    [
+     "Perseverance",
+     "Keeping going while carrying a heavy load."
+    ],
+    [
+     "Double-minded",
+     "Two minds pulling in opposite directions: trusting God and not trusting him at the same time."
+    ],
+    [
+     "Evil desire",
+     "Wanting something wrong so much that it drags you away."
+    ],
+    [
+     "Deceive yourselves",
+     "Fool yourselves."
+    ]
+   ],
+   "notice": [
+    "How does James tell them to feel about hard times? Is that what you'd expect?",
+    "Find the chain in verses 14–15: desire → … → …",
+    "What happens to the man with the mirror?"
+   ],
+   "dig": [
+    {
+     "q": "James doesn't say trials ARE joy. He says CONSIDER them pure joy. What's the difference?",
+     "a": "Considering is a decision, not a feeling. We don't pretend hard things are nice. We decide to look at them in the light of what God is doing through them. The joy is in where they lead."
+    },
+    {
+     "q": "Why does James jump from trials (verses 2–4) straight to wisdom (verse 5)?",
+     "a": "Because in hard times the thing we need most is to know what to do and how to see it. God doesn't promise to remove every trial, but he does promise wisdom, generously, and without telling us off for asking."
+    },
+    {
+     "q": "Why do we blame God or other people when we do wrong? Can you think of the first time it happened in the Bible?",
+     "a": "It's as old as Eden. Adam blamed Eve and even God ('the woman you gave me'); Eve blamed the serpent (Genesis 3:12–13). Blaming feels safer than owning it. James says the source is inside us: our own desires."
+    },
+    {
+     "q": "Why does James say hearing without doing is deceiving YOURSELF?",
+     "a": "Because hearing feels like progress. You understand it, you agree, you feel good, so you think you've changed. But nothing in your life is different. The danger isn't fooling others; it's fooling ourselves."
+    },
+    {
+     "q": "James's test of real religion is: your tongue, care for the vulnerable, and purity. Why those three?",
+     "a": "All three are visible. They're about what you say, who you help and how you live, not how religious you sound. They're also exactly what James talks about in the rest of the letter."
+    }
+   ],
+   "young": "If you only listened to your swimming teacher but never got in the pool, could you swim?",
+   "principle": "God grows us through hard things, and his word is meant to be done, not just heard.",
+   "why": "This is the hinge of the letter and of this whole lab. Every week the question isn't 'Did we understand it?' but 'What are we doing about it?'",
+   "jesus": {
+    "ref": "Matthew 7:24",
+    "text": "Therefore everyone who hears these words of mine and puts them into practice is like a wise man who built his house on the rock.",
+    "note": "Jesus ended his greatest sermon with this: the wise builder hears AND does."
+   },
+   "also": [
+    {
+     "ref": "Romans 5:3-4",
+     "text": "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope.",
+     "note": "Paul describes the same chain."
+    }
+   ],
+   "scenarios": [
+    "A test or match goes badly.",
+    "You snap at your brother or sister and want to say 'they started it'.",
+    "Someone at school or church is lonely or left out."
+   ],
+   "tryThis": [
+    "Listening rule at meals: before you answer anyone, say back what they said.",
+    "As a family, do one practical thing for someone who is alone or struggling: a card, a visit, a meal.",
+    "Practise owning it: when something goes wrong, say 'I chose to…' instead of 'They made me…'"
+   ],
+   "pray": "Pray for someone you know who is lonely or struggling. Ask God to show you how to help them, then do it.",
+   "anchor": {
+    "ref": "James 1:22",
+    "text": "Do not merely listen to the word, and so deceive yourselves. Do what it says."
+   },
+   "stretch": {
+    "ref": "James 1:2-3",
+    "text": "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance."
+   }
+  },
+  {
+   "n": 2,
+   "title": "No favourites; faith that works",
+   "ref": "2:1-26",
+   "big": "Can you have real faith that doesn't change anything?",
+   "context": [
+    "Seating showed status. The best seats went to important people. Rich visitors could bring money, protection and connections, so making a fuss of them was completely normal in that culture.",
+    "'The royal law' is 'Love your neighbour as yourself' (Leviticus 19:18). Jesus called it the second greatest commandment. It's royal because it's the King's law and it rules over all the others.",
+    "Is James arguing with Paul? Paul says we're saved by faith, not works (Ephesians 2:8–9). James says faith without works is dead. They're fighting different problems. Paul is against trying to earn God's love; James is against fake faith that never shows. Paul's very next sentence agrees with James: we are created 'for good works' (Ephesians 2:10). We are saved by faith alone, but saving faith is never alone.",
+    "James's two examples are as different as possible: Abraham, the respected father of the nation (Genesis 22), and Rahab, a foreign woman with a bad reputation (Joshua 2). Both showed they trusted God by what they did when it was costly."
+   ],
+   "words": [
+    [
+     "Favouritism",
+     "Treating people differently because of how they look or what they have."
+    ],
+    [
+     "Mercy",
+     "Kindness to someone who doesn't deserve it."
+    ],
+    [
+     "Deeds",
+     "Actions; what you actually do."
+    ],
+    [
+     "Royal law",
+     "'Love your neighbour as yourself': the King's law, which rules over the rest."
+    ],
+    [
+     "'There is one God'",
+     "The most basic Jewish statement of belief, said every day."
+    ]
+   ],
+   "notice": [
+    "Describe the two people who walk in. How is each treated?",
+    "What does the person in verse 16 say? What do they actually do?",
+    "Who are James's two examples?"
+   ],
+   "dig": [
+    {
+     "q": "Why is favouritism such a big deal to James? It's only seats!",
+     "a": "Because it shows what we really value. Favouritism treats people by how useful or impressive they are, not by their worth to God. Every person is made in God's image, and God himself chose the poor and overlooked."
+    },
+    {
+     "q": "Who might be the 'poor man in filthy old clothes' in our world? In our house?",
+     "a": "The new kid, the awkward one, someone with a disability, someone poorer or from a different background, the unpopular one. At home: who gets our attention, and who gets ignored?"
+    },
+    {
+     "q": "What does 'mercy triumphs over judgment' mean?",
+     "a": "People who have received God's mercy should be merciful. If we judge others harshly by appearances, we've forgotten how much mercy we've been shown. Mercy wins."
+    },
+    {
+     "q": "Why mention that demons believe God is one?",
+     "a": "Because simply agreeing with facts isn't the faith James means. Demons know the facts perfectly. Real faith is trust, and trust always shows in what you do."
+    },
+    {
+     "q": "Paul says 'not by works'. James says 'faith without works is dead'. How can both be true?",
+     "a": "Think of a tree: faith is the roots, works are the fruit. The fruit doesn't make the tree alive, but a living tree will grow fruit. Works are the evidence of faith, not the cause of salvation."
+    }
+   ],
+   "young": "If I said I loved you but never hugged you, helped you or spent time with you, how would you know I meant it?",
+   "principle": "Every person matters equally to God, and real faith shows up in how we treat them.",
+   "why": "Favouritism and fake faith are two sides of one coin: both say the right things without loving the people in front of us.",
+   "jesus": {
+    "ref": "Matthew 7:21",
+    "text": "Not everyone who says to me, 'Lord, Lord,' will enter the kingdom of heaven, but only the one who does the will of my Father who is in heaven.",
+    "note": "Saying the right words isn't the same as doing the Father's will."
+   },
+   "also": [
+    {
+     "ref": "Ephesians 2:8-9",
+     "text": "For it is by grace you have been saved, through faith – and this is not from yourselves, it is the gift of God – not by works, so that no one can boast.",
+     "note": "Paul: saved by grace, not earned."
+    },
+    {
+     "ref": "1 Samuel 16:7",
+     "text": "But the LORD said to Samuel, 'Do not consider his appearance or his height, for I have rejected him. The LORD does not look at the things people look at. People look at the outward appearance, but the LORD looks at the heart.'",
+     "note": "God doesn't play favourites by appearance."
+    }
+   ],
+   "scenarios": [
+    "A new kid sits alone at lunch.",
+    "A friend is having a hard time and you say 'I'll pray for you'.",
+    "There's a food bank collection at school or church."
+   ],
+   "tryThis": [
+    "Each person notices one 'overlooked' person this week and does something kind for them.",
+    "As a family, give something practical: a food bank bag, a meal for someone, clothes you no longer need.",
+    "Turn one 'I'll pray for you' into a prayer AND an action this week."
+   ],
+   "pray": "Ask God to help you see people the way he sees them. Pray by name for someone who is often left out.",
+   "anchor": {
+    "ref": "James 2:17",
+    "text": "In the same way, faith by itself, if it is not accompanied by action, is dead."
+   },
+   "stretch": {
+    "ref": "James 2:8",
+    "text": "If you really keep the royal law found in Scripture, 'Love your neighbour as yourself,' you are doing right."
+   }
+  },
+  {
+   "n": 3,
+   "title": "Words and wisdom",
+   "ref": "3:1-18",
+   "big": "Can words really do as much damage as actions?",
+   "context": [
+    "Teachers in the early church had huge influence, and teaching is mostly talking. So James starts there: anyone who speaks a lot carries more responsibility for what they say.",
+    "James uses pictures his readers knew: a small bit steering a strong horse, a small rudder turning a big ship in a gale, a spark setting a dry hillside on fire. Wildfires were common in the hot, dry summers around Israel.",
+    "The word for 'hell' in verse 6 is Gehenna: a valley outside Jerusalem where rubbish was burned. James is saying cruel words have their source in evil itself.",
+    "In the ancient world 'wise' people were known for clever speeches and winning arguments. Teachers competed for followers. James says real wisdom shows in how you live, especially in how gently you treat people.",
+    "Wisdom 'from heaven' (verse 17) sounds a lot like the fruit of the Spirit (Galatians 5:22–23), and a lot like Jesus. Read verse 17 again and put Jesus's name in."
+   ],
+   "words": [
+    [
+     "Bit",
+     "The metal piece in a horse's mouth used to steer it."
+    ],
+    [
+     "Rudder",
+     "The small blade at the back of a ship that steers it."
+    ],
+    [
+     "God's likeness",
+     "Every person reflects God, so cursing them is serious."
+    ],
+    [
+     "Selfish ambition",
+     "Wanting to get ahead, whatever it costs other people."
+    ],
+    [
+     "Considerate, submissive",
+     "Thoughtful of others; willing to listen and give way."
+    ]
+   ],
+   "notice": [
+    "Find the three pictures of small things that control or destroy big things.",
+    "What two things come out of the same mouth?",
+    "Count the qualities of wisdom from above (verse 17)."
+   ],
+   "dig": [
+    {
+     "q": "Why is the tongue like a rudder? Like a fire?",
+     "a": "Rudder: your words set the direction of your life and relationships. Fire: one spiteful comment, rumour or message can spread far beyond what you meant, and it can't be taken back."
+    },
+    {
+     "q": "James says no one can tame the tongue. Is that hopeless?",
+     "a": "No human can do it by willpower alone. That's why we need God. Jesus said words come from the heart (Matthew 12:34), so God changes our words by changing our hearts."
+    },
+    {
+     "q": "Why is it so wrong to praise God and then speak badly about a person?",
+     "a": "Because that person is made in God's image. It's like praising an artist and then slashing their painting. How we talk about people shows what we really think of God."
+    },
+    {
+     "q": "How does this apply to messages, group chats and posts?",
+     "a": "Typing is still the tongue. Online it's often worse: faster, wider, permanent, and easier to be cruel when you can't see someone's face."
+    },
+    {
+     "q": "Verse 16: how do envy and selfish ambition lead to 'disorder and every evil practice'?",
+     "a": "When everyone's trying to get ahead, teams split, friends compete, families argue. Selfish ambition always needs someone else to lose."
+    }
+   ],
+   "young": "Squeeze some toothpaste out of the tube. Now try to put it back in. What does that teach us about words?",
+   "principle": "Words have power to build up or tear down, and true wisdom shows in a gentle, peace-loving life.",
+   "why": "Most of the wrong we do in a day is probably spoken. A family that changes how it speaks to each other changes everything.",
+   "jesus": {
+    "ref": "Luke 6:45",
+    "text": "A good man brings good things out of the good stored up in his heart, and an evil man brings evil things out of the evil stored up in his heart. For the mouth speaks what the heart is full of.",
+    "note": "Jesus: the mouth speaks what fills the heart."
+   },
+   "also": [
+    {
+     "ref": "Proverbs 18:21",
+     "text": "The tongue has the power of life and death, and those who love it will eat its fruit.",
+     "note": "Life and death in a small body part."
+    },
+    {
+     "ref": "Matthew 5:9",
+     "text": "Blessed are the peacemakers, for they will be called children of God.",
+     "note": "Jesus on the wisdom that sows peace."
+    }
+   ],
+   "scenarios": [
+    "Your sibling messes up and you want to mock them.",
+    "Someone in the group chat starts making fun of someone.",
+    "You're jealous of a friend's success."
+   ],
+   "tryThis": [
+    "Toothpaste challenge: leave a tube on the table all week as a reminder.",
+    "Family rule: every unkind word must be followed by an apology and two kind ones.",
+    "Each day, encourage one person by name, with a specific reason."
+   ],
+   "pray": "Ask God to make your mouth a spring of fresh water this week. Say sorry for any words that have hurt someone in the family.",
+   "anchor": {
+    "ref": "James 3:10",
+    "text": "Out of the same mouth come praise and cursing. My brothers and sisters, this should not be."
+   },
+   "stretch": {
+    "ref": "James 3:17",
+    "text": "But the wisdom that comes from heaven is first of all pure; then peace-loving, considerate, submissive, full of mercy and good fruit, impartial and sincere."
+   }
+  },
+  {
+   "n": 4,
+   "title": "Humble, patient, praying",
+   "ref": "4:1-5:20",
+   "big": "What do we do with our fights, our plans and our troubles?",
+   "context": [
+    "The churches James wrote to were full of quarrels: rich against poor, teachers competing, people speaking against each other. James goes beneath the surface to the root.",
+    "Merchants in the Roman world travelled from city to city trading goods. James pictures a businessman with a confident plan: which city, how long, how much profit. Planning isn't wrong. Planning as if God weren't there is.",
+    "A 'mist' (4:14) is like your breath on a cold morning: here, then gone. James says it not to scare us but to wake us up.",
+    "Farmers in Israel sowed seed and then depended on two rains: the early rain in autumn to soften the ground, and the late rain in spring to swell the crop. After sowing there was nothing to do but wait and trust.",
+    "Elijah's story is in 1 Kings 17–18: he prayed and there was no rain for three and a half years; he prayed again and the rain came. James's point is that Elijah was 'a human being, even as we are'. Ordinary people's prayers matter."
+   ],
+   "words": [
+    [
+     "Covet",
+     "Want what belongs to someone else."
+    ],
+    [
+     "Humble",
+     "Honest about how much we need God."
+    ],
+    [
+     "Mist",
+     "Breath on a cold morning: visible for a moment, then gone."
+    ],
+    [
+     "Grumble",
+     "Complain about other people."
+    ],
+    [
+     "Confess",
+     "Admit what you've done wrong."
+    ]
+   ],
+   "notice": [
+    "Where do fights come from, according to verse 1?",
+    "What should we say when we make plans (4:15)?",
+    "What should you do if you're suffering? Cheerful? Sick?"
+   ],
+   "dig": [
+    {
+     "q": "Think of the last argument in our house. What did each person want?",
+     "a": "Let people answer honestly. Usually it's control, attention, a turn, to be right, or comfort. The fight outside starts with a fight inside."
+    },
+    {
+     "q": "What does it mean to 'come near to God'?",
+     "a": "Turning towards him: praying, reading his word, saying sorry, trusting him. And the promise is wonderful: he comes near too. He isn't far away waiting for us to be good enough."
+    },
+    {
+     "q": "Is James against making plans?",
+     "a": "No. He's against plans that leave God out, as if we control tomorrow. 'If it is the Lord's will' isn't a magic phrase; it's an attitude: holding our plans with open hands."
+    },
+    {
+     "q": "Why is a farmer a good picture of patience?",
+     "a": "A farmer does his part (ploughing, sowing), then waits for what only God can do (rain, growth). He doesn't dig up the seeds every day to check! Patience is trusting God with the part we can't control."
+    },
+    {
+     "q": "Why confess to one another, and not only to God?",
+     "a": "Hidden wrongs break relationships. Saying them out loud to someone you trust brings things into the light, and then they can pray for you. In a family it sounds like 'I was wrong, I'm sorry' and 'I forgive you'."
+    }
+   ],
+   "young": "When two people both want the same toy, what's going on inside them? What could they do instead of fighting?",
+   "principle": "Humble yourself before God: in fights, in plans and in waiting, bring everything to him in prayer.",
+   "why": "Chapters 4–5 cover a lot, but one thread runs through: pride says 'I'm in charge'; humility says 'God is', and it shows in how we fight, plan, wait and pray.",
+   "jesus": {
+    "ref": "Matthew 7:3",
+    "text": "Why do you look at the speck of sawdust in your brother's eye and pay no attention to the plank in your own eye?",
+    "note": "Jesus: deal with your own heart first."
+   },
+   "also": [
+    {
+     "ref": "1 Peter 5:6",
+     "text": "Humble yourselves, therefore, under God's mighty hand, that he may lift you up in due time.",
+     "note": "Peter says the same as James 4:10."
+    }
+   ],
+   "scenarios": [
+    "Two siblings arguing over the remote, a seat or a turn.",
+    "You know you should help with something but keep putting it off.",
+    "Someone in the family is ill."
+   ],
+   "tryThis": [
+    "Say sorry first, even if you think it's 50/50.",
+    "Plan the family week together, then pray over the plans: 'If it is the Lord's will…'",
+    "Start a family prayer list on the fridge: add requests and tick off answers."
+   ],
+   "pray": "Pray for each other by name, one by one round the table.",
+   "anchor": {
+    "ref": "James 4:10",
+    "text": "Humble yourselves before the Lord, and he will lift you up."
+   },
+   "stretch": {
+    "ref": "James 5:16",
+    "text": "Therefore confess your sins to each other and pray for each other so that you may be healed. The prayer of a righteous person is powerful and effective."
+   }
+  }
+ ],
+ "checkin": [
+  "Say this week's verse together from memory. Who can say it alone?",
+  "How did our 'This week we will' go? Where did we actually see it happen?",
+  "What is one thing from this passage you want to keep doing?",
+  "Read the Principles wall aloud: every principle so far this month."
+ ]
+}

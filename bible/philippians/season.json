@@ -1,0 +1,442 @@
+{
+ "id": "philippians",
+ "title": "Philippians",
+ "tagline": "Joy in every circumstance",
+ "oneLine": "Joy comes from knowing Jesus, not from how things are going.",
+ "version": "NIVUK",
+ "jesusLabel": "In Jesus's words",
+ "translation": "Scripture quotations taken from the Holy Bible, New International Version (Anglicised edition). Copyright © 1979, 1984, 2011 by Biblica. Used by permission of Hodder & Stoughton Publishers, an Hachette UK company. All rights reserved. 'NIV' is a registered trademark of Biblica. UK trademark number 1448790.",
+ "intro": [
+  "Philippians is a thank-you letter written from prison, and it is full of joy: 'joy' and 'rejoice' come up about 16 times in 104 verses. One chapter a week: joy in hard times, the humility of Jesus, pressing on, and peace instead of worry."
+ ],
+ "context": [
+  {
+   "h": "Who wrote it?",
+   "p": "Paul, once a strict Pharisee who hunted down Christians, until the risen Jesus met him on the road to Damascus (Acts 9). He became the great missionary to non-Jewish people. Timothy, his young helper, is with him as he writes."
+  },
+  {
+   "h": "Who was it for?",
+   "p": "The church in Philippi, a Roman colony in northern Greece. Paul started it about ten years earlier (Acts 16): Lydia the cloth-seller, a freed slave girl and a jailer whose prison was shaken open by an earthquake while Paul and Silas sang at midnight. Read Acts 16:11–40 before you begin."
+  },
+  {
+   "h": "Where was Paul?",
+   "p": "In chains, probably under house arrest in Rome around AD 60–62, guarded by the emperor's soldiers and waiting to hear if he would be executed. The Philippians had sent him a gift with their friend Epaphroditus."
+  },
+  {
+   "h": "Why did he write?",
+   "p": "To say thank you for the gift, to send news of Epaphroditus (who nearly died), to urge two women who had fallen out to make peace, to warn against false teachers, and above all to show that joy in Jesus doesn't depend on circumstances."
+  }
+ ],
+ "threads": [
+  "Joy",
+  "Partnership",
+  "Humility: the mind of Christ",
+  "Pressing on",
+  "Peace instead of worry",
+  "Contentment"
+ ],
+ "weeks": [
+  {
+   "n": 1,
+   "title": "Joy in chains",
+   "ref": "1:1-30",
+   "big": "Can you be joyful when life is hard?",
+   "context": [
+    "About ten years earlier, Paul had started this church on his first visit to Europe (Acts 16). Its first members were an unlikely mix: Lydia, a businesswoman who sold expensive purple cloth; a slave girl Paul set free from an evil spirit; and the jailer who locked Paul and Silas up. That night, beaten and in the stocks, they sang hymns at midnight. An earthquake shook the prison open, and the jailer and his whole household believed.",
+    "Now Paul is a prisoner again, chained to Roman soldiers and not knowing whether he will live or die. Yet the first thing he does is thank God for his friends, with joy.",
+    "Paul's chains were real. Under Roman guard, he was probably chained to a soldier day and night, with the guards changing shifts. That meant a steady stream of the emperor's elite soldiers hearing about Jesus, whether they liked it or not!",
+    "Some preachers in Rome were jealous of Paul and preached to make his life harder. Paul's response is astonishing: what does it matter? Christ is being preached.",
+    "If you have time, read Acts 16:11–40 first. It's one of the most exciting stories in the Bible."
+   ],
+   "words": [
+    [
+     "Partnership",
+     "Sharing a work together, all-in."
+    ],
+    [
+     "Completion",
+     "Finished, all the way to the end."
+    ],
+    [
+     "Palace guard",
+     "The Praetorian Guard: the emperor's elite soldiers."
+    ],
+    [
+     "Gain",
+     "A profit; a win."
+    ],
+    [
+     "Worthy",
+     "Matching the value of something."
+    ]
+   ],
+   "notice": [
+    "How does Paul feel when he thinks of the Philippians?",
+    "What has Paul's imprisonment actually done (verses 12–14)?",
+    "What is Paul sure of in verse 6? And what does he say in verse 21?"
+   ],
+   "dig": [
+    {
+     "q": "Paul is in chains, but his first words are thanks and joy. How?",
+     "a": "His joy doesn't come from his circumstances but from God and from people he loves. He's thinking about what God is doing in them, not about his own trouble. Being thankful for people lifts us out of ourselves."
+    },
+    {
+     "q": "Verse 6: who started the 'good work' in the Philippians? Who will finish it?",
+     "a": "God started it and God will finish it. Our growth doesn't depend on us holding it all together. When we fail, God hasn't given up on his project. He finishes what he starts."
+    },
+    {
+     "q": "How did Paul's chains 'advance the gospel'?",
+     "a": "Soldiers heard about Jesus, and other Christians became braver. What looked like a disaster opened doors no free preacher could have walked through. God often works through things we would never choose."
+    },
+    {
+     "q": "'To live is Christ.' What do you think that means?",
+     "a": "Jesus is the centre of everything for Paul: his reason for getting up, the purpose of his work, the one he loves most. Try finishing the sentence honestly: 'For me, to live is ___.' Football? Friends? Being liked? Whatever fills that gap is what we live for."
+    },
+    {
+     "q": "What does it mean to live 'worthy of the gospel'?",
+     "a": "The gospel is the news that Jesus gave everything for us. Living worthy of it means our lives match that message: generous, humble, together. Not to earn it, but because of it."
+    }
+   ],
+   "young": "Can you remember something that seemed bad at first but turned out good?",
+   "principle": "God finishes what he starts and can use even hard things, so put Jesus at the centre of your life.",
+   "why": "When life goes wrong, or we keep failing, it's easy to think God has given up. Chapter 1 says the opposite: God is still at work, and a life centred on Jesus can have joy even in chains.",
+   "jesus": {
+    "ref": "John 15:5",
+    "text": "I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.",
+    "note": "Fruit grows by staying connected to Jesus, not by trying harder."
+   },
+   "also": [
+    {
+     "ref": "Romans 8:28",
+     "text": "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+     "note": "Paul wrote this years before his own chains proved it."
+    }
+   ],
+   "scenarios": [
+    "You keep making the same mistake and feel like giving up.",
+    "Something you were looking forward to is cancelled.",
+    "You're stuck at home ill."
+   ],
+   "tryThis": [
+    "Each person writes a 'thank God for you' note to someone in the family or a friend.",
+    "Each person finishes 'For me, to live is…' honestly, and talks about it.",
+    "When anyone says 'I'll never get this', the family answers: 'God finishes what he starts.'"
+   ],
+   "pray": "Pray verses 9–11 for each other, using names.",
+   "anchor": {
+    "ref": "Philippians 1:6",
+    "text": "being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus."
+   },
+   "stretch": {
+    "ref": "Philippians 1:21",
+    "text": "For to me, to live is Christ and to die is gain."
+   }
+  },
+  {
+   "n": 2,
+   "title": "Others first, like Jesus",
+   "ref": "2:1-30",
+   "big": "What would our home be like if everyone put others first?",
+   "context": [
+    "In Roman culture humility was seen as weakness, something for slaves. Pushing yourself forward was normal and admired. Paul turns that upside down.",
+    "It's shaped like a V: down, then up. Jesus, who was God, goes down: becoming human, becoming a servant, and dying on a cross. Then God lifts him to the highest place.",
+    "Crucifixion was the most shameful death Rome had, kept for slaves and rebels. Roman citizens (like many in Philippi) could not legally be crucified. That Jesus went 'even' there would have shocked them.",
+    "'Work out your salvation' doesn't mean work FOR it. It's like a workout: building up and living out what you've already been given. And the very next verse says it's God who is at work inside us.",
+    "Paul introduces two real people who show what 'others first' looks like. Timothy was a young man Paul had mentored since he was a teenager (Acts 16:1–3). He was there when the Philippian church began.",
+    "Epaphroditus came from Philippi. The church sent him with money for Paul in prison. He became so ill he nearly died, and his biggest worry was that his friends back home would be upset about him."
+   ],
+   "words": [
+    [
+     "Humility",
+     "Seeing yourself truly, and putting others first."
+    ],
+    [
+     "Vain conceit",
+     "Empty pride: thinking you're more important than you are."
+    ],
+    [
+     "Made himself nothing",
+     "Emptied himself: gave up his rights and glory."
+    ],
+    [
+     "Grumbling",
+     "Muttering complaints."
+    ],
+    [
+     "Proved himself",
+     "Shown to be trustworthy over time."
+    ]
+   ],
+   "notice": [
+    "What two things should we NOT do (2:3)? What should we do instead?",
+    "Find the steps going DOWN in verses 6–8, then UP in verses 9–11.",
+    "What two things should we do everything without?",
+    "What is special about Timothy and Epaphroditus?"
+   ],
+   "dig": [
+    {
+     "q": "What's the difference between humility and thinking you're rubbish?",
+     "a": "Humility isn't thinking less of yourself; it's thinking of yourself less. A humble person knows they're loved by God, so they don't need to prove themselves, and they're free to look after others."
+    },
+    {
+     "q": "Jesus 'did not consider equality with God something to be used to his own advantage'. What does that mean?",
+     "a": "He had every right and every power, but he didn't use them for himself. He used them for us. Real power, in God's eyes, is used to serve."
+    },
+    {
+     "q": "Why does Paul put this poem in the middle of a section about getting on with each other?",
+     "a": "Because the way to become humble isn't to try harder; it's to look at Jesus. When we see what he gave up for us, putting others first starts to make sense."
+    },
+    {
+     "q": "Of all the things Paul could pick, why grumbling and arguing?",
+     "a": "They're the everyday sins that spoil families and churches. They seem small but spread like mould. And grumbling quietly says God hasn't given me enough."
+    },
+    {
+     "q": "Paul says 'everyone looks out for their own interests' (verse 21). Is that still true today?",
+     "a": "Yes. It's the default setting for all of us. That's why people like Timothy stand out. Someone who genuinely cares about others is rare and precious."
+    }
+   ],
+   "young": "Imagine a king who leaves his palace to become a servant and wash people's feet. How would people react? That's what Jesus did.",
+   "principle": "Jesus gave up his rights to serve us, so we put others first: humbly, and without grumbling.",
+   "why": "This is the heart of Philippians and of the gospel. Our humility isn't just a rule; it's our response to a Saviour who stooped down for us.",
+   "jesus": {
+    "ref": "Mark 10:45",
+    "text": "For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.",
+    "note": "Jesus said greatness means serving, and then showed it himself."
+   },
+   "also": [
+    {
+     "ref": "John 13:14-15",
+     "text": "Now that I, your Lord and Teacher, have washed your feet, you also should wash one another's feet. I have set you an example that you should do as I have done for you.",
+     "note": "After washing his disciples' feet, Jesus told them to do the same."
+    }
+   ],
+   "scenarios": [
+    "Choosing what to watch, play or eat.",
+    "You think a job is 'beneath you': washing up, tidying someone else's mess.",
+    "You're asked to do a chore you don't want to do."
+   ],
+   "tryThis": [
+    "Others-first challenge: each day, quietly serve someone in the family without being asked.",
+    "Grumble jar: whoever grumbles puts in a coin (or does a kind job). Give the money away at the end of the week.",
+    "Draw the V of verses 6–11 and stick it on the fridge."
+   ],
+   "pray": "Thank Jesus, step by step down the V, for what he gave up for you. Then praise him as Lord.",
+   "anchor": {
+    "ref": "Philippians 2:3-4",
+    "text": "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves, not looking to your own interests but each of you to the interests of the others."
+   },
+   "stretch": {
+    "ref": "Philippians 2:10-11",
+    "text": "that at the name of Jesus every knee should bow, in heaven and on earth and under the earth, and every tongue acknowledge that Jesus Christ is Lord, to the glory of God the Father."
+   }
+  },
+  {
+   "n": 3,
+   "title": "Worth more than everything",
+   "ref": "3:1-4:1",
+   "big": "What's the most valuable thing in the world?",
+   "context": [
+    "Paul lists his own CV: born into the right family and tribe, part of the strictest religious group, so zealous he hunted down Christians. If anyone could boast about being good enough for God, it was Paul.",
+    "Then he does some accounting. He moves everything from the 'profit' column to the 'loss' column. Compared with knowing Jesus, all of it is worthless.",
+    "Greek cities loved athletics. Paul pictures a runner straining forward, eyes on the finish line, not glancing over his shoulder (which loses races).",
+    "'Forgetting what is behind' includes past successes (his CV in verses 4–6) and past failures (he had persecuted Christians). Neither gets to hold him back.",
+    "Philippi was a Roman colony: its people were Roman citizens living far from Rome, with Roman law, dress and pride. Paul says Christians are like that: citizens of heaven, living here as a colony of heaven."
+   ],
+   "words": [
+    [
+     "Confidence in the flesh",
+     "Trusting in your own background and achievements."
+    ],
+    [
+     "Righteousness",
+     "Being right with God."
+    ],
+    [
+     "Surpassing worth",
+     "Worth more than anything else."
+    ],
+    [
+     "Straining",
+     "Pushing as hard as you can."
+    ],
+    [
+     "Citizenship",
+     "Belonging to a country, with its rights and duties."
+    ]
+   ],
+   "notice": [
+    "What does Paul list that he could have boasted about?",
+    "What does he think of all of it now?",
+    "What does Paul forget, and what does he strain towards?"
+   ],
+   "dig": [
+    {
+     "q": "Why would good things like being religious or keeping rules count as 'loss'?",
+     "a": "Not because they're bad, but because Paul had been trusting in them to make him right with God. Anything we trust instead of Jesus becomes a rival to him."
+    },
+    {
+     "q": "What might we be tempted to trust in to feel 'good enough'?",
+     "a": "Being well-behaved, going to church, grades, sport, being liked, being a 'good family'. None of these is bad, but none can make us right with God."
+    },
+    {
+     "q": "Paul wants a righteousness 'from God', not 'of my own'. What's the difference?",
+     "a": "One is earned by trying; the other is a gift received by faith. Like the difference between paying off a huge debt yourself and having someone else pay it for you."
+    },
+    {
+     "q": "Paul is one of the greatest Christians ever, and he says he's not there yet. Why is that encouraging?",
+     "a": "Because nobody has arrived. The Christian life is a journey of growing, not a test you pass. It's fine not to be finished; it's not fine to stop running."
+    },
+    {
+     "q": "Why do we need to forget both past failures and past successes?",
+     "a": "Failures can make us give up ('I'm hopeless'). Successes can make us coast ('I'm fine'). Both stop us running forward."
+    }
+   ],
+   "young": "In a race, what happens if you keep looking back over your shoulder?",
+   "principle": "Knowing Jesus is worth more than everything, so forget what's behind and keep pressing on towards him.",
+   "why": "We all have things we're proud of and things we regret. Neither gets to hold us back: Jesus is the prize.",
+   "jesus": {
+    "ref": "Matthew 13:44",
+    "text": "The kingdom of heaven is like treasure hidden in a field. When a man found it, he hid it again, and then in his joy went and sold all he had and bought that field.",
+    "note": "Jesus told of a man so happy with what he'd found that he gave up everything for it."
+   },
+   "also": [
+    {
+     "ref": "1 Corinthians 9:24",
+     "text": "Do you not know that in a race all the runners run, but only one gets the prize? Run in such a way as to get the prize.",
+     "note": "Paul's favourite picture again."
+    },
+    {
+     "ref": "Galatians 2:20",
+     "text": "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+     "note": "Paul's life after he met Jesus, in one verse."
+    }
+   ],
+   "scenarios": [
+    "You feel better than someone because you behave well.",
+    "You failed at something and keep replaying it.",
+    "Someone keeps bringing up a mistake you made."
+   ],
+   "tryThis": [
+    "Profit and loss: each person draws two columns and lists what they're tempted to trust in. Then write 'Jesus' across the top.",
+    "No old scores: this week nobody brings up a past mistake in an argument.",
+    "Each person names one area where they want to press on, and the family checks in at the end of the week."
+   ],
+   "pray": "Let go of one thing from the past (a failure or a hurt) in prayer, and ask God to help you press on.",
+   "anchor": {
+    "ref": "Philippians 3:13b-14",
+    "text": "But one thing I do: forgetting what is behind and straining towards what is ahead, I press on towards the goal to win the prize for which God has called me heavenwards in Christ Jesus."
+   },
+   "stretch": {
+    "ref": "Philippians 3:7",
+    "text": "But whatever were gains to me I now consider loss for the sake of Christ."
+   }
+  },
+  {
+   "n": 4,
+   "title": "Peace and contentment",
+   "ref": "4:2-23",
+   "big": "What do you do with your worries and your wants?",
+   "context": [
+    "Euodia and Syntyche were two women who had worked alongside Paul. They had fallen out, and the whole church knew it. Paul names them gently and asks a friend to help them make peace. Even good, faithful people fall out.",
+    "'Guard' is a military word. Philippi had Roman soldiers stationed in it. Paul pictures God's peace standing guard like a soldier at the door of our hearts and minds.",
+    "'Think about' means more than a passing thought: dwell on it, let it shape you. What we feed our minds on shapes who we become.",
+    "He's careful: he's grateful, but he wasn't desperate. He has 'learned the secret' of being content. 'Learned' matters: it didn't come naturally, even to Paul.",
+    "Verse 13 is one of the most quoted verses in the Bible, often printed on sports shirts as if it means 'I can win anything'. In context it means: whether I have plenty or nothing, I can be content and keep going because Christ gives me strength."
+   ],
+   "words": [
+    [
+     "Anxious",
+     "Worried, stressed."
+    ],
+    [
+     "Transcends",
+     "Goes beyond."
+    ],
+    [
+     "Noble",
+     "Honourable; worthy of respect."
+    ],
+    [
+     "Content",
+     "Satisfied; at peace with what you have."
+    ],
+    [
+     "Fragrant offering",
+     "A gift that pleases God, like sweet-smelling incense."
+    ]
+   ],
+   "notice": [
+    "What should we do instead of being anxious? And what will God do?",
+    "Count the 'whatever's in verse 8.",
+    "What has Paul learned?"
+   ],
+   "dig": [
+    {
+     "q": "How can you rejoice 'always', even when things are bad?",
+     "a": "It's rejoicing 'in the Lord', not in circumstances. Even on a terrible day, God is still good, still with us, still ours. That's always a reason for joy."
+    },
+    {
+     "q": "Paul says pray 'with thanksgiving'. Why is thanks part of handling worry?",
+     "a": "Thanks reminds us of what God has already done. It moves our focus from the problem to the one who is bigger than it."
+    },
+    {
+     "q": "Does God promise to fix everything we pray about?",
+     "a": "He promises peace, not always the answer we want. That peace guards our hearts even when the situation hasn't changed yet. It's a peace that doesn't make sense to the world."
+    },
+    {
+     "q": "Why does what we think about matter so much?",
+     "a": "Thoughts become words, words become actions, actions become habits, and habits become character. A mind is like a garden: whatever we plant grows."
+    },
+    {
+     "q": "How do people misuse verse 13? What does it really mean?",
+     "a": "It's often used to mean 'Jesus will help me win'. Paul means: hungry or full, succeeding or failing, I can be content and keep going because Christ strengthens me. It's about enduring, not winning."
+    }
+   ],
+   "young": "What worries you? Let's turn each worry into a prayer.",
+   "principle": "Pray instead of worrying, fill your mind with what is good, and learn to be content in Christ.",
+   "why": "Worry and wanting more are two of the biggest thieves of joy. Chapter 4 gives a practical habit for each.",
+   "jesus": {
+    "ref": "Matthew 6:34",
+    "text": "Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.",
+    "note": "Jesus told his followers not to worry about tomorrow."
+   },
+   "also": [
+    {
+     "ref": "1 Peter 5:7",
+     "text": "Cast all your anxiety on him because he cares for you.",
+     "note": "Peter says the same thing in eleven words."
+    },
+    {
+     "ref": "1 Timothy 6:6",
+     "text": "But godliness with contentment is great gain.",
+     "note": "Paul again, to Timothy."
+    }
+   ],
+   "scenarios": [
+    "You're worried about a test, a friendship or something at home.",
+    "Choosing a game, show, song or video.",
+    "A friend gets something you really want."
+   ],
+   "tryThis": [
+    "Worry box: write worries on slips of paper, pray over them together, and put them in a box: 'given to God'.",
+    "Each day, share one thing you saw that was excellent or praiseworthy.",
+    "Each person gives something to someone in need: money, toys or time."
+   ],
+   "pray": "Each person names one worry. Pray about each one with thanks, then sit quietly together for a moment.",
+   "anchor": {
+    "ref": "Philippians 4:6-7",
+    "text": "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus."
+   },
+   "stretch": {
+    "ref": "Philippians 4:8",
+    "text": "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable – if anything is excellent or praiseworthy – think about such things."
+   }
+  }
+ ],
+ "checkin": [
+  "Say this week's verse together from memory. Who can say it alone?",
+  "How did our 'This week we will' go? Where did we actually see it happen?",
+  "What is one thing from this passage you want to keep doing?",
+  "Read the Principles wall aloud: every principle so far this month."
+ ]
+}
