@@ -1,4 +1,6 @@
 {
+  "currentWeek": 3,
+  "checkin": "weekly/check-in/",
   "subjects": [
     {
       "slug": "english",
@@ -50,10 +52,11 @@
       "path": "english/week2-smallest-quote/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Language analysis",
       "print": "english/week2-smallest-quote/week2-written.pdf",
-      "printTitle": "Week 2 written: London (Blake)"
+      "printTitle": "Week 2 written: London (Blake)",
+      "term": "Autumn"
     },
     {
       "title": "English Week 3: symbolism in Tsunami Girl",
@@ -63,7 +66,8 @@
       "status": "current",
       "topic": "Language analysis",
       "print": "english/week3-symbolism/week3-written.pdf",
-      "printTitle": "Week 3 written: symbol paragraph"
+      "printTitle": "Week 3 written: symbol paragraph",
+      "week": 3
     },
     {
       "title": "Algebra Quest",
@@ -108,10 +112,11 @@
       "path": "maths/week2-brackets/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Algebra",
       "print": "maths/week2-brackets/week2-written.pdf",
-      "printTitle": "Week 2 written brackets and equations"
+      "printTitle": "Week 2 written brackets and equations",
+      "term": "Autumn"
     },
     {
       "title": "Maths Week 3: multiplying fractions, with working and a check",
@@ -121,7 +126,8 @@
       "status": "current",
       "topic": "Fractions",
       "print": "maths/week3-fractions/week3-written.pdf",
-      "printTitle": "Week 3 written multiplying fractions"
+      "printTitle": "Week 3 written multiplying fractions",
+      "week": 3
     },
     {
       "title": "Why triangles know things: trigonometry from scratch",
@@ -184,10 +190,11 @@
       "path": "science/week2-breathing/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "B4 Organisms",
       "print": "science/week2-breathing/week2-written.pdf",
-      "printTitle": "Week 2 written chain, bell jar and 6-mark answer"
+      "printTitle": "Week 2 written chain, bell jar and 6-mark answer",
+      "term": "Autumn"
     },
     {
       "title": "Science Week 3: forces and the Because Chain",
@@ -197,7 +204,8 @@
       "status": "current",
       "topic": "Forces",
       "print": "science/week3-forces/week3-written.pdf",
-      "printTitle": "Week 3 written forces and 6-mark answer"
+      "printTitle": "Week 3 written forces and 6-mark answer",
+      "week": 3
     },
     {
       "title": "Rome: the 14-day revision road",
@@ -244,7 +252,8 @@
       "path": "history/pdfs/so-what-week2-written.pdf",
       "type": "pdf",
       "year": 2026,
-      "status": "current"
+      "status": "archived",
+      "term": "Autumn"
     },
     {
       "title": "History Week 3: the Black Death (So What?)",
@@ -253,7 +262,8 @@
       "year": 2026,
       "status": "current",
       "print": "history/week3-black-death/week3-written.pdf",
-      "printTitle": "Week 3 written: Black Death So What paragraphs"
+      "printTitle": "Week 3 written: Black Death So What paragraphs",
+      "week": 3
     },
     {
       "title": "Geography Week 1: megacities and case-study evidence",
@@ -268,9 +278,10 @@
       "path": "geography/week2-megacities/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "print": "geography/week2-megacities/week2-written.pdf",
-      "printTitle": "Week 2 written megacities"
+      "printTitle": "Week 2 written megacities",
+      "term": "Autumn"
     },
     {
       "title": "Geography Week 3: megacities, evidence and a judgement",
@@ -279,7 +290,8 @@
       "year": 2026,
       "status": "current",
       "print": "geography/week3-megacities/week3-written.pdf",
-      "printTitle": "Week 3 written megacities judgement"
+      "printTitle": "Week 3 written megacities judgement",
+      "week": 3
     },
     {
       "title": "French Week 2: verbs and extending a sentence",
@@ -295,7 +307,8 @@
       "path": "weekly/pdfs/week3-homework-pack.pdf",
       "type": "pdf",
       "year": 2026,
-      "status": "current"
+      "status": "current",
+      "week": 3
     },
     {
       "title": "French Lab: build French one sentence pattern at a time",
@@ -307,6 +320,13 @@
     {
       "title": "Mandarin Lab: build Mandarin one sentence pattern at a time",
       "path": "mandarin/mandarin-lab/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    },
+    {
+      "title": "Half-term check-in: how is each subject going?",
+      "path": "weekly/check-in/",
       "type": "html",
       "year": 2026,
       "status": "current"
