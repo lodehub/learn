@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4fc">
+<title>Detective and Machine</title>
+<style>
+:root{--bg:#f7f4fc;--card:#ffffff;--ink:#2b2a28;--mute:#6f6b64;--acc:#7a4fc2;--accsoft:#f1ebfa;--two:#d9682a;--twosoft:#fdeee4;--ok:#1b7f4b;--oksoft:#e2f4ea;--bad:#b3261e;--badsoft:#fbe7e5;--line:#e2dcec;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1b1e;--card:#27252b;--ink:#f1eee9;--mute:#aaa49b;--acc:#b597ea;--accsoft:#2e2638;--two:#f0935a;--twosoft:#3a2a20;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3740;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b1e;--card:#27252b;--ink:#f1eee9;--mute:#aaa49b;--acc:#b597ea;--accsoft:#2e2638;--two:#f0935a;--twosoft:#3a2a20;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3740;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(26px,6vw,34px);margin:2px 0 6px;line-height:1.2}
+.lede{color:var(--mute);margin:0 0 14px}
+.tabs{display:flex;gap:6px;padding:4px;border-radius:999px;border:1px solid var(--line);background:var(--card);margin:0 0 14px}
+.tabs button{flex:1;min-height:48px;border:0;border-radius:999px;background:transparent;color:var(--mute);font:inherit;font-size:17px;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--acc);color:#fff}
+.panel{display:none}.panel.on{display:block}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
+.card h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+.big{background:var(--accsoft);border-left:5px solid var(--acc);border-radius:12px;padding:12px 14px;margin:0 0 14px;font-size:16px}
+.big b:first-child{color:var(--acc)}
+.btn{min-height:50px;border:1px solid var(--acc);background:var(--acc);color:#fff;padding:10px 18px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btn:disabled{opacity:.4;cursor:default}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.btns .btn{flex:1 1 160px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.seg button{min-height:40px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--mute);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.count{font-size:15px;color:var(--mute)}
+/* detective */
+.clues{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.clues li{display:flex;gap:10px;align-items:baseline;padding:8px 10px;border-radius:10px;background:var(--bg);border:1px solid var(--line)}
+.clues li b{color:var(--acc);min-width:22px}
+.clues li.flag{border-color:var(--two);background:var(--twosoft)}
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;touch-action:none;user-select:none;-webkit-user-select:none;margin-top:12px}
+.cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--bg);border:1px solid var(--line);font-size:clamp(13px,3.4vw,18px);font-weight:600;font-variant-numeric:tabular-nums;cursor:pointer;position:relative}
+.cell.x{color:var(--mute);opacity:.35;background:transparent}
+.cell.x::after{content:"";position:absolute;left:18%;right:18%;top:50%;height:2px;background:var(--bad);transform:rotate(-35deg)}
+.cell.hint{outline:3px solid var(--two);outline-offset:-1px;opacity:1}
+.cell.win{background:var(--ok);color:#fff;border-color:var(--ok);opacity:1}
+.msg{min-height:26px;margin-top:10px;font-weight:600}
+.g{color:var(--ok)}.r{color:var(--bad)}.o{color:var(--two)}
+/* machine */
+.machine{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.machine .box{background:var(--acc);color:#fff;border-radius:16px;padding:16px 20px;font-weight:800;font-size:20px;text-align:center;min-width:140px;position:relative}
+.machine .box small{display:block;font-weight:500;font-size:13px;opacity:.85}
+.machine .box.whirr{animation:whirr .35s ease}
+@keyframes whirr{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+@media (prefers-reduced-motion: reduce){.machine .box.whirr{animation:none}}
+.machine input{font:inherit;font-size:22px;width:90px;text-align:center;padding:10px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.machine .out{font-size:26px;font-weight:800;min-width:90px;text-align:center;padding:10px;border:2px dashed var(--line);border-radius:12px;font-variant-numeric:tabular-nums;color:var(--two)}
+.arrow{font-size:26px;color:var(--mute)}
+table.log{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+table.log th,table.log td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:center}
+table.log th{font-size:13px;color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
+.test{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0}
+.test input{font:inherit;font-size:20px;width:110px;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;min-height:50px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:11px 14px;border-radius:12px;font:inherit;font-size:17px;cursor:pointer}
+.opt.right{background:var(--oksoft);border-color:var(--ok)}
+.opt.wrong{background:var(--badsoft);border-color:var(--bad)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Explore · Maths · logic and patterns</p>
+  <h1>Detective and Machine</h1>
+  <p class="lede">Two kinds of puzzle. In one you find a number using clues. In the other you crack a secret rule. Endless puzzles, no timer.</p>
+</header>
+<div class="tabs" role="tablist">
+  <button type="button" role="tab" id="tabD" aria-selected="true">🔎 Number Detective</button>
+  <button type="button" role="tab" id="tabM" aria-selected="false">⚙️ Rule Machine</button>
+</div>
+
+<!-- DETECTIVE -->
+<div class="panel on" id="pD">
+  <div class="top">
+    <div class="seg" role="group" aria-label="Grid size"><button type="button" data-max="50" aria-pressed="true">1 to 50</button><button type="button" data-max="100" aria-pressed="false">1 to 100</button></div>
+    <span class="count" id="dCount"></span>
+  </div>
+  <div class="card">
+    <h3>I'm thinking of a number…</h3>
+    <ol class="clues" id="clues"></ol>
+    <div class="grid" id="grid" aria-label="Number grid. Tap or drag to cross numbers out."></div>
+    <p class="msg" id="dMsg"></p>
+    <div class="btns">
+      <button class="btn" type="button" id="dCheck">Check my thinking</button>
+      <button class="btn ghost" type="button" id="dNew">New case</button>
+    </div>
+  </div>
+  <div class="big"><b>How to play.</b> Tap a number to cross it out (tap again to bring it back). Drag your finger to cross out lots at once. Cross out every number that breaks a clue until only one is left. <b>Detective tip:</b> start with the clue that rules out the most numbers. And look at the grid's patterns: multiples of 10 make a column, multiples of 9 make a diagonal.</div>
+</div>
+
+<!-- MACHINE -->
+<div class="panel" id="pM">
+  <div class="top">
+    <div class="seg" role="group" aria-label="Difficulty"><button type="button" data-lvl="1" aria-pressed="true">One step</button><button type="button" data-lvl="2" aria-pressed="false">Two steps</button></div>
+    <span class="count" id="mCount"></span>
+  </div>
+  <div class="card">
+    <h3>Feed the machine</h3>
+    <p>The machine does something secret to every number you put in. Test it until you know what it does.</p>
+    <div class="machine">
+      <input id="mIn" type="text" inputmode="numeric" autocomplete="off" aria-label="Number to put in" placeholder="in">
+      <span class="arrow">→</span>
+      <div class="box" id="mBox">? ? ?<small>secret rule</small></div>
+      <span class="arrow">→</span>
+      <div class="out" id="mOut" aria-live="polite">–</div>
+    </div>
+    <div class="btns"><button class="btn" type="button" id="mRun">Put it in</button></div>
+    <p class="msg" id="mMsg"></p>
+    <table class="log" id="mLog" hidden><thead><tr><th>In</th><th>Out</th></tr></thead><tbody></tbody></table>
+    <div class="btns">
+      <button class="btn" type="button" id="mCrack" disabled>I've cracked it!</button>
+      <button class="btn ghost" type="button" id="mHint">Hint</button>
+    </div>
+  </div>
+  <div class="card" id="mTest" hidden>
+    <h3>Prove it</h3>
+    <p>No more testing! Predict what comes out.</p>
+    <div id="mTests"></div>
+    <div class="btns"><button class="btn" type="button" id="mTestGo">Check my predictions</button></div>
+    <p class="msg" id="mTestMsg"></p>
+  </div>
+  <div class="card" id="mName" hidden>
+    <h3>Name the rule</h3>
+    <div class="opts" id="mOpts"></div>
+    <p class="msg" id="mNameMsg"></p>
+    <div class="btns"><button class="btn" type="button" id="mNew" hidden>New machine</button></div>
+  </div>
+  <div class="big"><b>Scientist tip.</b> Don't put in random numbers. Try 1, then 2, then 3. How much does the answer jump each time? That jump tells you what the machine multiplies by. Then work out what else it adds or takes away.</div>
+</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY="ninja:maths:explore-logic-puzzles:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+var $=function(id){return document.getElementById(id)};
+function ri(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=ri(0,i),t=a[i];a[i]=a[j];a[j]=t}return a}
+
+/* ---------- tabs ---------- */
+function tab(which){
+  $("tabD").setAttribute("aria-selected",which==="D");$("tabM").setAttribute("aria-selected",which==="M");
+  $("pD").classList.toggle("on",which==="D");$("pM").classList.toggle("on",which==="M");save("tab",which);
+}
+$("tabD").onclick=function(){tab("D")};$("tabM").onclick=function(){tab("M")};
+
+/* ================= NUMBER DETECTIVE ================= */
+var solvedD=load("solvedD",0),maxN=load("maxN",50),cs;
+function isPrime(n){if(n<2)return false;for(var i=2;i*i<=n;i++)if(n%i===0)return false;return true}
+function isSq(n){var r=Math.round(Math.sqrt(n));return r*r===n}
+function dsum(n){return String(n).split("").reduce(function(a,c){return a+ +c},0)}
+// Every clue that is TRUE for the secret number t.
+function trueClues(t,max){
+  var c=[];
+  c.push(t%2?{s:"I am odd.",f:function(n){return n%2===1}}:{s:"I am even.",f:function(n){return n%2===0}});
+  [3,4,5,6,7,8,9].forEach(function(k){
+    if(t%k===0)c.push({s:"I am a multiple of "+k+".",f:function(n){return n%k===0}});
+    else if(k===3||k===5)c.push({s:"I am not a multiple of "+k+".",f:function(n){return n%k!==0}});
+  });
+  if(isPrime(t))c.push({s:"I am a prime number.",f:isPrime},{s:"I am a prime number.",f:isPrime});
+  else if(t>1)c.push({s:"I am not a prime number.",f:function(n){return n>1&&!isPrime(n)}});
+  if(isSq(t))c.push({s:"I am a square number.",f:isSq},{s:"I am a square number.",f:isSq});
+  [24,36,48,60,72,100].forEach(function(N){if(N<=max*1.5&&N%t===0&&t>1)c.push({s:"I am a factor of "+N+".",f:function(n){return N%n===0}})});
+  if(t>=10){
+    var s=dsum(t);c.push({s:"My digits add up to "+s+".",f:function(n){return n>=10&&dsum(n)===s}});
+    var a=Math.floor(t/10),b=t%10;
+    if(t<100){
+      if(a>b)c.push({s:"My tens digit is bigger than my ones digit.",f:function(n){return n>=10&&n<100&&Math.floor(n/10)>n%10}});
+      else if(a<b)c.push({s:"My ones digit is bigger than my tens digit.",f:function(n){return n>=10&&n<100&&n%10>Math.floor(n/10)}});
+      else c.push({s:"My two digits are the same.",f:function(n){return n>=10&&n<100&&Math.floor(n/10)===n%10}});
+    }
+    c.push({s:"I have two digits.",f:function(n){return n>=10&&n<100}});
+  } else c.push({s:"I have only one digit.",f:function(n){return n<10}});
+  var lo=Math.max(0,t-ri(5,Math.floor(max/3))),hi=Math.min(max+1,t+ri(5,Math.floor(max/3)));
+  if(lo>0)c.push({s:"I am bigger than "+lo+".",f:function(n){return n>lo}});
+  if(hi<=max)c.push({s:"I am smaller than "+hi+".",f:function(n){return n<hi}});
+  var r=t%5;if(r)c.push({s:"I am "+r+" more than a multiple of 5.",f:function(n){return n%5===r}});
+  return c;
+}
+function makeCase(max){
+  for(var tries=0;tries<400;tries++){
+    var t=ri(2,max),pool=shuffle(trueClues(t,max)),cand=[],picked=[],i,n;
+    for(n=1;n<=max;n++)cand.push(n);
+    for(i=0;i<pool.length&&cand.length>1;i++){
+      var next=cand.filter(pool[i].f);
+      if(next.length<cand.length&&!picked.some(function(p){return p.s===pool[i].s})){picked.push(pool[i]);cand=next}
+    }
+    if(cand.length===1&&picked.length>=3&&picked.length<=(max>50?5:4))return {t:t,clues:picked,max:max,x:{}};
+  }
+  return makeCase(max);
+}
+function breaks(n){for(var i=0;i<cs.clues.length;i++)if(!cs.clues[i].f(n))return i;return -1}
+function drawCase(){
+  $("clues").innerHTML=cs.clues.map(function(c,i){return "<li id='cl"+i+"'><b>"+(i+1)+".</b><span>"+c.s+"</span></li>"}).join("");
+  var g=$("grid");g.innerHTML="";
+  for(var n=1;n<=cs.max;n++){var d=document.createElement("div");d.className="cell";d.textContent=n;d.dataset.n=n;g.appendChild(d)}
+  $("dMsg").textContent="";cs.done=false;$("dCount").textContent=solvedD?"Cases solved: "+solvedD:"";
+}
+function setX(n,on){if(cs.done)return;cs.x[n]=on;var el=$("grid").children[n-1];el.classList.toggle("x",on);el.classList.remove("hint")}
+function left(){var a=[];for(var n=1;n<=cs.max;n++)if(!cs.x[n])a.push(n);return a}
+function afterChange(){
+  var l=left();
+  if(l.length===1&&l[0]===cs.t)win();
+}
+function win(){
+  cs.done=true;solvedD++;save("solvedD",solvedD);
+  $("grid").children[cs.t-1].classList.add("win");
+  $("dMsg").innerHTML="<span class='g'>Case closed! The number is "+cs.t+". It's the only number that fits every clue.</span>";
+  $("dCount").textContent="Cases solved: "+solvedD;
+}
+(function(){ // tap and drag to cross out
+  var g=$("grid"),mode=null,last=null;
+  function cellAt(e){var el=document.elementFromPoint(e.clientX,e.clientY);return el&&el.classList&&el.classList.contains("cell")?el:null}
+  g.addEventListener("pointerdown",function(e){var c=cellAt(e);if(!c||cs.done)return;e.preventDefault();var n=+c.dataset.n;mode=!cs.x[n];setX(n,mode);last=c;g.setPointerCapture(e.pointerId)});
+  g.addEventListener("pointermove",function(e){if(mode===null)return;var c=cellAt(e);if(c&&c!==last){setX(+c.dataset.n,mode);last=c}});
+  function end(){if(mode!==null){mode=null;last=null;afterChange()}}
+  g.addEventListener("pointerup",end);g.addEventListener("pointercancel",end);
+})();
+$("dCheck").onclick=function(){
+  if(cs.done)return;
+  [].forEach.call(document.querySelectorAll(".cell.hint"),function(c){c.classList.remove("hint")});
+  [].forEach.call(document.querySelectorAll(".clues li"),function(c){c.classList.remove("flag")});
+  if(cs.x[cs.t]){$("dMsg").innerHTML="<span class='r'>Careful! You've crossed out a number that fits every single clue.</span> Check your crossings again.";return}
+  var l=left(),bad=l.filter(function(n){return breaks(n)>=0});
+  if(!bad.length){win();return}
+  var ex=bad[ri(0,bad.length-1)],ci=breaks(ex);
+  $("grid").children[ex-1].classList.add("hint");$("cl"+ci).classList.add("flag");
+  $("dMsg").innerHTML="<span class='o'>Good so far.</span> "+bad.length+" number"+(bad.length>1?"s":"")+" left still break"+(bad.length>1?"":"s")+" a clue. Here's one: <b>"+ex+"</b> breaks clue "+(ci+1)+".";
+};
+$("dNew").onclick=function(){cs=makeCase(maxN);drawCase()};
+[].forEach.call(document.querySelectorAll("[data-max]"),function(b){
+  b.setAttribute("aria-pressed",+b.dataset.max===maxN);
+  b.onclick=function(){maxN=+b.dataset.max;save("maxN",maxN);[].forEach.call(document.querySelectorAll("[data-max]"),function(x){x.setAttribute("aria-pressed",x===b)});cs=makeCase(maxN);drawCase()};
+});
+
+/* ================= RULE MACHINE ================= */
+var RULES={
+  1:[["add 6","n + 6",function(n){return n+6}],["add 11","n + 11",function(n){return n+11}],["add 9","n + 9",function(n){return n+9}],
+     ["times 3","3n",function(n){return 3*n}],["times 4","4n",function(n){return 4*n}],["times 7","7n",function(n){return 7*n}],
+     ["times 10","10n",function(n){return 10*n}],["times itself","n × n",function(n){return n*n}],["double","2n",function(n){return 2*n}]],
+  2:[["double, then add 1","2n + 1",function(n){return 2*n+1}],["times 3, then take away 2","3n − 2",function(n){return 3*n-2}],
+     ["times 5, then add 3","5n + 3",function(n){return 5*n+3}],["times 4, then take away 1","4n − 1",function(n){return 4*n-1}],
+     ["add 2, then double","2(n + 2)",function(n){return 2*(n+2)}],["times 10, then take away 5","10n − 5",function(n){return 10*n-5}],
+     ["times itself, then add 1","n × n + 1",function(n){return n*n+1}],["double, then add 7","2n + 7",function(n){return 2*n+7}]]
+};
+var solvedM=load("solvedM",0),lvl=load("lvl",1),mc;
+function newMachine(){
+  var list=RULES[lvl],prev=mc&&mc.rule,r;
+  do{r=list[ri(0,list.length-1)]}while(r===prev&&list.length>1);
+  mc={rule:r,tries:[],tests:[]};
+  $("mIn").value="";$("mOut").textContent="–";$("mMsg").textContent="";
+  $("mLog").hidden=true;$("mLog").querySelector("tbody").innerHTML="";
+  $("mCrack").disabled=true;$("mTest").hidden=true;$("mName").hidden=true;$("mNew").hidden=true;
+  $("mCount").textContent=solvedM?"Machines cracked: "+solvedM:"";
+}
+function run(){
+  var v=$("mIn").value.trim();
+  if(!/^\d+$/.test(v)||+v<1||+v>20){$("mMsg").innerHTML="<span class='r'>Put in a whole number from 1 to 20.</span>";return}
+  var n=+v,out=mc.rule[2](n);$("mMsg").textContent="";
+  var box=$("mBox");box.classList.remove("whirr");void box.offsetWidth;box.classList.add("whirr");
+  $("mOut").textContent=out;
+  if(mc.tries.indexOf(n)<0){
+    mc.tries.push(n);
+    var rows=mc.tries.slice().sort(function(a,b){return a-b}).map(function(k){return "<tr><td>"+k+"</td><td>"+mc.rule[2](k)+"</td></tr>"}).join("");
+    $("mLog").querySelector("tbody").innerHTML=rows;$("mLog").hidden=false;
+  }
+  $("mCrack").disabled=mc.tries.length<3||!$("mTest").hidden;
+  if(mc.tries.length<3)$("mMsg").textContent="Try "+(3-mc.tries.length)+" more before you guess.";
+  $("mIn").value="";$("mIn").focus();
+}
+$("mRun").onclick=run;$("mIn").addEventListener("keydown",function(e){if(e.key==="Enter")run()});
+$("mHint").onclick=function(){
+  var s=mc.tries.slice().sort(function(a,b){return a-b}),pair=null;
+  for(var i=1;i<s.length;i++)if(s[i]===s[i-1]+1){pair=[s[i-1],s[i]];break}
+  if(!pair){$("mMsg").innerHTML="Put in two numbers next to each other, like 4 and 5. Then compare the outputs.";return}
+  var a=mc.rule[2](pair[0]),b=mc.rule[2](pair[1]);
+  $("mMsg").innerHTML="When the input went up by 1 (from "+pair[0]+" to "+pair[1]+"), the output went from "+a+" to "+b+". "+
+    (b-a===2*pair[0]+1?"The jump keeps changing! Try 1, 2, 3, 4: what do you notice?":(b-a===1?"It jumped by <b>1</b>, the same as the input. So the machine isn't multiplying. How much is it adding?":"It jumped by <b>"+(b-a)+"</b>. So the machine is doing something with ×"+(b-a)+". Is there anything else added or taken away?"));
+};
+$("mCrack").onclick=function(){
+  var pool=[ri(21,30),ri(31,50),100];mc.tests=pool;
+  $("mTests").innerHTML=pool.map(function(n,i){return "<div class='test'><span>"+n+" → </span><input id='mt"+i+"' type='text' inputmode='numeric' autocomplete='off' aria-label='Output for "+n+"'><span id='mtr"+i+"'></span></div>"}).join("");
+  $("mTest").hidden=false;$("mTestMsg").textContent="";$("mCrack").disabled=true;$("mTestGo").disabled=false;
+  $("mt0").focus();
+};
+$("mTestGo").onclick=function(){
+  var right=0;
+  mc.tests.forEach(function(n,i){var v=+$("mt"+i).value.trim(),ans=mc.rule[2](n),ok=$("mt"+i).value.trim()!==""&&v===ans;if(ok)right++;
+    $("mtr"+i).innerHTML=ok?"<span class='g'>✓</span>":"<span class='r'>✗ it's "+ans+"</span>";$("mt"+i).disabled=true});
+  $("mTestGo").disabled=true;
+  if(right===3){$("mTestMsg").innerHTML="<span class='g'>All three! You knew the rule, even for 100, which you never tested.</span> That's the power of finding the rule.";showNames()}
+  else{$("mTestMsg").innerHTML="<span class='o'>Not quite yet.</span> Those answers are in your table now. Test some more numbers, then try again.";
+    mc.tests.forEach(function(n){if(mc.tries.indexOf(n)<0)mc.tries.push(n)});
+    $("mLog").querySelector("tbody").innerHTML=mc.tries.slice().sort(function(a,b){return a-b}).map(function(k){return "<tr><td>"+k+"</td><td>"+mc.rule[2](k)+"</td></tr>"}).join("");
+    $("mCrack").disabled=false;}
+};
+function showNames(){
+  var others=shuffle(RULES[1].concat(RULES[2]).filter(function(r){return r!==mc.rule})).slice(0,3),opts=shuffle(others.concat([mc.rule]));
+  var box=$("mOpts");box.innerHTML="";$("mNameMsg").textContent="";
+  opts.forEach(function(r){var b=document.createElement("button");b.type="button";b.className="opt";b.innerHTML=r[0]+" &nbsp;<b style='color:var(--acc)'>"+r[1]+"</b>";
+    b.onclick=function(){
+      if(r===mc.rule){b.classList.add("right");[].forEach.call(box.children,function(x){x.disabled=true});
+        solvedM++;save("solvedM",solvedM);$("mCount").textContent="Machines cracked: "+solvedM;
+        $("mNameMsg").innerHTML="<span class='g'>Cracked!</span> In algebra, with <i>n</i> for the number going in, the rule is <b>"+r[1]+"</b>.";$("mNew").hidden=false;$("mBox").innerHTML=r[1]+"<small>cracked</small>"}
+      else{b.classList.add("wrong");b.disabled=true;$("mNameMsg").innerHTML="Test that one against your table. Does it work for every row?"}
+    };box.appendChild(b)});
+  $("mName").hidden=false;
+}
+$("mNew").onclick=function(){$("mBox").innerHTML="? ? ?<small>secret rule</small>";newMachine();window.scrollTo(0,0)};
+[].forEach.call(document.querySelectorAll("[data-lvl]"),function(b){
+  b.setAttribute("aria-pressed",+b.dataset.lvl===lvl);
+  b.onclick=function(){lvl=+b.dataset.lvl;save("lvl",lvl);[].forEach.call(document.querySelectorAll("[data-lvl]"),function(x){x.setAttribute("aria-pressed",x===b)});$("mBox").innerHTML="? ? ?<small>secret rule</small>";newMachine()};
+});
+
+cs=makeCase(maxN);drawCase();newMachine();tab(load("tab","D"));
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3f7fc">
+<title>Secret Number and Pattern Train</title>
+<style>
+:root{--bg:#f3f7fc;--card:#ffffff;--ink:#2b2a28;--mute:#6a6f78;--acc:#2f74c0;--accsoft:#e6f0fb;--two:#d9682a;--twosoft:#fdeee4;--ok:#1b7f4b;--oksoft:#e2f4ea;--bad:#b3261e;--badsoft:#fbe7e5;--line:#dbe4ef;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#181c21;--card:#232930;--ink:#f1eee9;--mute:#a3abb6;--acc:#7fb0e3;--accsoft:#1f2c3b;--two:#f0935a;--twosoft:#3a2a20;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#34404d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#181c21;--card:#232930;--ink:#f1eee9;--mute:#a3abb6;--acc:#7fb0e3;--accsoft:#1f2c3b;--two:#f0935a;--twosoft:#3a2a20;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#34404d;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(26px,6.5vw,36px);margin:2px 0 6px;line-height:1.2}
+.lede{color:var(--mute);margin:0 0 14px;font-size:18px}
+.tabs{display:flex;gap:6px;padding:4px;border-radius:999px;border:1px solid var(--line);background:var(--card);margin:0 0 14px}
+.tabs button{flex:1;min-height:54px;border:0;border-radius:999px;background:transparent;color:var(--mute);font:inherit;font-size:18px;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--acc);color:#fff}
+.panel{display:none}.panel.on{display:block}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin:0 0 14px}
+.card h3{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+.big{background:var(--accsoft);border-left:5px solid var(--acc);border-radius:12px;padding:12px 14px;margin:0 0 14px;font-size:17px}
+.big b:first-child{color:var(--acc)}
+.btn{min-height:56px;border:1px solid var(--acc);background:var(--acc);color:#fff;padding:10px 18px;border-radius:14px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btns .btn{flex:1 1 160px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.seg button{min-height:44px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--mute);font:inherit;font-size:16px;font-weight:600;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.count{font-size:16px;color:var(--mute)}
+.g{color:var(--ok)}.r{color:var(--bad)}.o{color:var(--two)}
+.msg{min-height:30px;margin-top:12px;font-weight:600}
+/* secret number */
+.clues{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.clues li{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font-size:20px}
+.clues li .ic{font-size:22px}
+.clues li.flag{border-color:var(--two);background:var(--twosoft)}
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;touch-action:none;user-select:none;-webkit-user-select:none;margin-top:14px}
+.cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:10px;background:var(--bg);border:1px solid var(--line);font-size:clamp(15px,4vw,22px);font-weight:700;font-variant-numeric:tabular-nums;cursor:pointer;position:relative}
+.cell.x{opacity:.3;background:transparent}
+.cell.x::after{content:"";position:absolute;left:15%;right:15%;top:50%;height:3px;border-radius:2px;background:var(--bad);transform:rotate(-35deg)}
+.cell.hint{outline:3px solid var(--two);outline-offset:-1px;opacity:1}
+.cell.win{background:var(--ok);color:#fff;border-color:var(--ok);opacity:1;transform:scale(1.12);transition:transform .2s}
+/* train */
+.train{display:flex;flex-wrap:wrap;gap:8px 6px;align-items:flex-end;justify-content:center;padding:6px 0 4px}
+.car{width:clamp(50px,12vw,70px);height:clamp(50px,12vw,70px);border-radius:12px;background:var(--accsoft);border:2px solid var(--acc);display:flex;align-items:center;justify-content:center;font-size:clamp(20px,5vw,28px);font-weight:800;position:relative;font-variant-numeric:tabular-nums}
+.car::before,.car::after{content:"";position:absolute;bottom:-9px;width:13px;height:13px;border-radius:50%;background:var(--ink)}
+.car::before{left:8px}.car::after{right:8px}
+.car.gap{background:var(--twosoft);border:3px dashed var(--two);color:var(--two)}
+.car.fixed{background:var(--oksoft);border-color:var(--ok)}
+.engine{font-size:clamp(40px,10vw,56px);line-height:1}
+.car svg{width:70%;height:70%}
+.choices{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.choice{width:clamp(76px,22vw,100px);height:clamp(76px,22vw,100px);border-radius:18px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:clamp(26px,7vw,34px);font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.choice svg{width:60%;height:60%}
+.choice.wrong{border-color:var(--bad);background:var(--badsoft);animation:shake .3s}
+.choice.right{border-color:var(--ok);background:var(--oksoft)}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@media (prefers-reduced-motion: reduce){.choice.wrong{animation:none}.cell.win{transition:none}}
+.stars{font-size:22px;letter-spacing:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Explore · Maths · thinking puzzles</p>
+  <h1>Secret Number and Pattern Train</h1>
+  <p class="lede">Puzzles for your brain. Take your time. There's no clock.</p>
+</header>
+<div class="tabs" role="tablist">
+  <button type="button" role="tab" id="tabS" aria-selected="true">🔍 Secret Number</button>
+  <button type="button" role="tab" id="tabT" aria-selected="false">🚂 Pattern Train</button>
+</div>
+
+<!-- SECRET NUMBER -->
+<div class="panel on" id="pS">
+  <div class="top">
+    <div class="seg" role="group" aria-label="How many numbers"><button type="button" data-max="30" aria-pressed="true">1 to 30</button><button type="button" data-max="50" aria-pressed="false">1 to 50</button></div>
+    <span class="count" id="sCount"></span>
+  </div>
+  <div class="card">
+    <h3>Can you find my secret number?</h3>
+    <ul class="clues" id="clues"></ul>
+    <div class="grid" id="grid" aria-label="Number grid. Tap a number to cross it out."></div>
+    <p class="msg" id="sMsg"></p>
+    <div class="btns">
+      <button class="btn" type="button" id="sCheck">Am I right so far?</button>
+      <button class="btn ghost" type="button" id="sNew">New secret number</button>
+    </div>
+  </div>
+  <div class="big"><b>How to play.</b> Read a clue. Tap every number that <i>doesn't</i> match it, to cross it out. You can slide your finger to cross out lots. Keep going until only one number is left. That's the secret number!</div>
+</div>
+
+<!-- PATTERN TRAIN -->
+<div class="panel" id="pT">
+  <div class="top">
+    <div class="seg" role="group" aria-label="Level"><button type="button" data-lv="1" aria-pressed="true">Easy</button><button type="button" data-lv="2" aria-pressed="false">Tricky</button><button type="button" data-lv="3" aria-pressed="false">Super</button></div>
+    <span class="count" id="tCount"></span>
+  </div>
+  <div class="card">
+    <h3>One carriage is missing. Which one goes in the gap?</h3>
+    <div class="train" id="train"></div>
+    <div class="choices" id="choices"></div>
+    <p class="msg" id="tMsg"></p>
+    <div class="btns"><button class="btn" type="button" id="tNext" hidden>Next train →</button></div>
+  </div>
+  <div class="big"><b>Pattern tip.</b> Look at one carriage, then the next. What changed? Does the pattern repeat, or does it grow by the same amount each time?</div>
+</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY="bingo:maths:explore-puzzles:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+var $=function(id){return document.getElementById(id)};
+function ri(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=ri(0,i),t=a[i];a[i]=a[j];a[j]=t}return a}
+
+function tab(w){$("tabS").setAttribute("aria-selected",w==="S");$("tabT").setAttribute("aria-selected",w==="T");
+  $("pS").classList.toggle("on",w==="S");$("pT").classList.toggle("on",w==="T");save("tab",w)}
+$("tabS").onclick=function(){tab("S")};$("tabT").onclick=function(){tab("T")};
+
+/* ================= SECRET NUMBER ================= */
+var found=load("found",0),maxN=load("maxN",30),cs;
+function dsum(n){return Math.floor(n/10)+n%10}
+function trueClues(t,max){
+  var c=[];
+  c.push(t%2?{s:"I am odd.",i:"🧦",f:function(n){return n%2===1}}:{s:"I am even.",i:"👟",f:function(n){return n%2===0}});
+  [3,4,5,10].forEach(function(k){if(t%k===0)c.push({s:"I am in the "+k+" times table.",i:"✖️",f:function(n){return n%k===0}})});
+  if(t%10!==0&&t%5!==0)c.push({s:"I am not in the 5 times table.",i:"🚫",f:function(n){return n%5!==0}});
+  var lo=Math.max(0,t-ri(3,10)),hi=Math.min(max+1,t+ri(3,10));
+  if(lo>0)c.push({s:"I am bigger than "+lo+".",i:"⬆️",f:function(n){return n>lo}});
+  if(hi<=max)c.push({s:"I am smaller than "+hi+".",i:"⬇️",f:function(n){return n<hi}});
+  if(t<10)c.push({s:"I only have one digit.",i:"1️⃣",f:function(n){return n<10}});
+  else{
+    var d=Math.floor(t/10)*10;
+    c.push({s:"I am between "+d+" and "+(d+9)+".",i:"📦",f:function(n){return n>=d&&n<=d+9}});
+    var o=t%10;c.push({s:"My last digit is "+o+".",i:"🎯",f:function(n){return n%10===o}});
+    if(max>30)c.push({s:"My two digits add up to "+dsum(t)+".",i:"➕",f:function(n){return n>=10&&dsum(n)===dsum(t)}});
+  }
+  return c;
+}
+function makeCase(max){
+  for(var tries=0;tries<400;tries++){
+    var t=ri(1,max),pool=shuffle(trueClues(t,max)),cand=[],picked=[],n,i;
+    for(n=1;n<=max;n++)cand.push(n);
+    for(i=0;i<pool.length&&cand.length>1;i++){var nx=cand.filter(pool[i].f);if(nx.length<cand.length){picked.push(pool[i]);cand=nx}}
+    if(cand.length===1&&picked.length>=2&&picked.length<=4)return {t:t,clues:picked,max:max,x:{}};
+  }
+  return makeCase(max);
+}
+function breaks(n){for(var i=0;i<cs.clues.length;i++)if(!cs.clues[i].f(n))return i;return -1}
+function drawCase(){
+  $("clues").innerHTML=cs.clues.map(function(c,i){return "<li id='cl"+i+"'><span class='ic' aria-hidden='true'>"+c.i+"</span><span>"+c.s+"</span></li>"}).join("");
+  var g=$("grid");g.innerHTML="";
+  for(var n=1;n<=cs.max;n++){var d=document.createElement("div");d.className="cell";d.textContent=n;d.dataset.n=n;g.appendChild(d)}
+  $("sMsg").textContent="";cs.done=false;$("sCount").textContent=found?"Found: "+found:"";
+}
+function setX(n,on){if(cs.done)return;cs.x[n]=on;var el=$("grid").children[n-1];el.classList.toggle("x",on);el.classList.remove("hint")}
+function left(){var a=[];for(var n=1;n<=cs.max;n++)if(!cs.x[n])a.push(n);return a}
+function win(){cs.done=true;found++;save("found",found);$("grid").children[cs.t-1].classList.add("win");
+  $("sMsg").innerHTML="<span class='g'>You found it! My secret number is "+cs.t+". 🎉</span>";$("sCount").textContent="Found: "+found}
+(function(){
+  var g=$("grid"),mode=null,last=null;
+  function cellAt(e){var el=document.elementFromPoint(e.clientX,e.clientY);return el&&el.classList&&el.classList.contains("cell")?el:null}
+  g.addEventListener("pointerdown",function(e){var c=cellAt(e);if(!c||cs.done)return;e.preventDefault();var n=+c.dataset.n;mode=!cs.x[n];setX(n,mode);last=c;g.setPointerCapture(e.pointerId)});
+  g.addEventListener("pointermove",function(e){if(mode===null)return;var c=cellAt(e);if(c&&c!==last){setX(+c.dataset.n,mode);last=c}});
+  function end(){if(mode===null)return;mode=null;last=null;var l=left();if(l.length===1&&l[0]===cs.t)win()}
+  g.addEventListener("pointerup",end);g.addEventListener("pointercancel",end);
+})();
+$("sCheck").onclick=function(){
+  if(cs.done)return;
+  [].forEach.call(document.querySelectorAll(".cell.hint"),function(c){c.classList.remove("hint")});
+  [].forEach.call(document.querySelectorAll(".clues li"),function(c){c.classList.remove("flag")});
+  if(cs.x[cs.t]){$("sMsg").innerHTML="<span class='r'>Oops! You crossed out a number that matches every clue.</span> Tap your crossed-out numbers to check them again.";return}
+  var bad=left().filter(function(n){return breaks(n)>=0});
+  if(!bad.length){win();return}
+  var ex=bad[ri(0,bad.length-1)],ci=breaks(ex);
+  $("grid").children[ex-1].classList.add("hint");$("cl"+ci).classList.add("flag");
+  $("sMsg").innerHTML="<span class='o'>Good so far!</span> Look at <b>"+ex+"</b>. Does it match the orange clue?";
+};
+$("sNew").onclick=function(){cs=makeCase(maxN);drawCase()};
+[].forEach.call(document.querySelectorAll("[data-max]"),function(b){
+  b.setAttribute("aria-pressed",+b.dataset.max===maxN);
+  b.onclick=function(){maxN=+b.dataset.max;save("maxN",maxN);[].forEach.call(document.querySelectorAll("[data-max]"),function(x){x.setAttribute("aria-pressed",x===b)});cs=makeCase(maxN);drawCase()};
+});
+
+/* ================= PATTERN TRAIN ================= */
+var SHAPES={
+  c:'<svg viewBox="0 0 40 40" aria-label="red circle"><circle cx="20" cy="20" r="15" fill="#e5484d"/></svg>',
+  s:'<svg viewBox="0 0 40 40" aria-label="blue square"><rect x="6" y="6" width="28" height="28" rx="3" fill="#3f86d6"/></svg>',
+  t:'<svg viewBox="0 0 40 40" aria-label="yellow triangle"><polygon points="20,4 37,35 3,35" fill="#f5a524"/></svg>',
+  d:'<svg viewBox="0 0 40 40" aria-label="green diamond"><polygon points="20,3 37,20 20,37 3,20" fill="#3a9e6a"/></svg>',
+  st:'<svg viewBox="0 0 40 40" aria-label="purple star"><polygon points="20,3 25,15 38,15 28,23 32,36 20,28 8,36 12,23 2,15 15,15" fill="#8a63c9"/></svg>'
+};
+var NAMES={c:"circle",s:"square",t:"triangle",d:"diamond",st:"star"};
+var lv=load("lv",1),fixed=load("fixed",0),streak=0,tr;
+function shapeTrain(units){
+  var keys=shuffle(Object.keys(SHAPES)),u=units[ri(0,units.length-1)];
+  var map={},letters="ABCD";for(var i=0;i<4;i++)map[letters[i]]=keys[i];
+  var cars=[];for(var k=0;k<8;k++)cars.push(map[u[k%u.length]]);
+  var gap=ri(u.length,7),ans=cars[gap];
+  var used=[];u.split("").forEach(function(L){if(used.indexOf(map[L])<0)used.push(map[L])});
+  var others=used.filter(function(x){return x!==ans});
+  keys.forEach(function(x){if(others.length<2&&x!==ans&&others.indexOf(x)<0)others.push(x)});
+  return {kind:"shape",cars:cars,gap:gap,ans:ans,opts:shuffle([ans].concat(shuffle(others).slice(0,2))),
+    why:"The pattern repeats every "+u.length+" carriages: "+u.split("").map(function(L){return NAMES[map[L]]}).join(", ")+", then again."};
+}
+function numTrain(steps,down,anyStart){
+  var d=steps[ri(0,steps.length-1)],len=6,start;
+  if(down){start=d*ri(len,10)+(anyStart?ri(0,d-1):0)}
+  else start=anyStart?ri(1,9):d*ri(0,3);
+  var cars=[];for(var k=0;k<len;k++)cars.push(down?start-k*d:start+k*d);
+  var gap=ri(1,len-1),ans=cars[gap];
+  var opts=shuffle([ans,ans+(Math.random()<.5?1:-1),ans+(down?-d:d)].filter(function(v,i,a){return v>=0&&a.indexOf(v)===i}));
+  while(opts.length<3){var v=ans+ri(2,4);if(opts.indexOf(v)<0)opts.push(v)}
+  var table=!anyStart&&start%d===0;
+  return {kind:"num",cars:cars,gap:gap,ans:ans,opts:shuffle(opts),
+    why:"It goes "+(down?"down":"up")+" by "+d+" every time."+(table?" Those are numbers in the "+d+" times table!":"")};
+}
+function growTrain(){
+  var a=ri(1,3),cars=[a],k;for(k=1;k<6;k++)cars.push(cars[k-1]+k);
+  var gap=ri(2,5),ans=cars[gap],opts=shuffle([ans,ans+1,cars[gap-1]+(cars[gap-1]-cars[gap-2])]).filter(function(v,i,a){return a.indexOf(v)===i});
+  while(opts.length<3)opts.push(ans+2);
+  return {kind:"num",cars:cars,gap:gap,ans:ans,opts:shuffle(opts),why:"The jump gets bigger each time: +1, +2, +3, +4, +5. A growing pattern!"};
+}
+function makeTrain(){
+  var r=Math.random();
+  if(lv===1)return r<.5?shapeTrain(["AB","ABC"]):numTrain([2,5,10],false,false);
+  if(lv===2)return r<.35?shapeTrain(["AAB","ABB","ABC","AABB"]):r<.7?numTrain([3,4],false,false):numTrain([2,5,10],true,false);
+  return r<.25?shapeTrain(["ABCD","AABC","ABCB"]):r<.5?numTrain([3,4],true,false):r<.75?numTrain([2,3,5],false,true):growTrain();
+}
+function show(v){return tr.kind==="shape"?SHAPES[v]:v}
+function drawTrain(){
+  tr=makeTrain();tr.done=false;
+  $("train").innerHTML="<span class='engine' aria-hidden='true'>🚂</span>"+tr.cars.map(function(v,i){
+    return i===tr.gap?"<div class='car gap' id='gapCar' aria-label='missing carriage'>?</div>":"<div class='car'>"+show(v)+"</div>"}).join("");
+  var ch=$("choices");ch.innerHTML="";
+  tr.opts.forEach(function(v){var b=document.createElement("button");b.type="button";b.className="choice";b.innerHTML=show(v);
+    b.setAttribute("aria-label",tr.kind==="shape"?NAMES[v]:String(v));
+    b.onclick=function(){
+      if(tr.done)return;
+      if(v===tr.ans){tr.done=true;b.classList.add("right");var g=$("gapCar");g.classList.remove("gap");g.classList.add("fixed");g.innerHTML=show(v);
+        fixed++;streak++;save("fixed",fixed);
+        var msg="<span class='g'>Yes! "+(tr.firstTry?"":"You got there. ")+"</span>"+tr.why;
+        if(streak===5&&lv<3){msg+="<br><span class='o'>Five in a row! Try the next level up when you're ready.</span>"}
+        $("tMsg").innerHTML=msg;$("tNext").hidden=false;$("tCount").textContent="Trains fixed: "+fixed}
+      else{tr.firstTry=false;streak=0;b.classList.add("wrong");b.disabled=true;
+        $("tMsg").innerHTML="<span class='r'>Not that one.</span> Look at how it changes from one carriage to the next."}
+    };ch.appendChild(b)});
+  tr.firstTry=true;$("tMsg").textContent="";$("tNext").hidden=true;$("tCount").textContent=fixed?"Trains fixed: "+fixed:"";
+}
+$("tNext").onclick=drawTrain;
+[].forEach.call(document.querySelectorAll("[data-lv]"),function(b){
+  b.setAttribute("aria-pressed",+b.dataset.lv===lv);
+  b.onclick=function(){lv=+b.dataset.lv;save("lv",lv);streak=0;[].forEach.call(document.querySelectorAll("[data-lv]"),function(x){x.setAttribute("aria-pressed",x===b)});drawTrain()};
+});
+
+cs=makeCase(maxN);drawCase();drawTrain();tab(load("tab","S"));
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

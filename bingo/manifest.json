@@ -126,6 +126,15 @@
       "type": "html",
       "year": 2026,
       "status": "current"
+    },
+    {
+      "title": "Secret Number and Pattern Train: thinking puzzles",
+      "path": "maths/explore-puzzles/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "strand": "explore",
+      "topic": "Logic and patterns"
     }
   ]
 }
