@@ -37,7 +37,14 @@
   function bar(title, back, extra) {
     return '<div class="bar"><a class="back" href="' + back + '" aria-label="Back">&#8592;</a><h1>' + esc(title) + '</h1>' + (extra || '') + '</div>';
   }
-  function tl(s) { return '<span class="h" lang="' + esc(D.code) + '">' + esc(s) + '</span>'; }
+  // Target-language text. "汉字|pinyin" (as in the Lab) shows the characters with pinyin underneath.
+  function tl(s, more, big) {
+    var p = String(s).split('|'), lang = D.code === 'zh' ? 'zh-Hans' : D.code;
+    if (p.length < 2) return '<span class="h" lang="' + esc(lang) + '">' + esc(p[0] + (more || '')) + '</span>';
+    return '<span class="zhline' + (big ? ' big' : '') + '"><span class="h" lang="' + esc(lang) + '">' + esc(p[0] + (more || '')) + '</span>' +
+      '<span class="p">' + esc(p[1] + (more || '')) + '</span></span>';
+  }
+  function say(l) { return l.say || l.fr; }
 
   /* ---------- pages ---------- */
   function home() {
@@ -80,7 +87,7 @@
   function scriptHTML(s) {
     return '<div class="dlg rp">' + s.lines.map(function (l) {
       return '<div class="line' + (l.who === 'A' ? ' me' : '') + '"><span class="who">' + esc(s.roles[l.who]) + '</span>' +
-        '<span class="say">' + tl(l.fr) + '<span class="en">' + esc(l.en) + '</span></span></div>';
+        '<span class="say">' + tl(say(l)) + '<span class="en">' + esc(l.en) + '</span></span></div>';
     }).join('') + '</div>';
   }
   function scriptPage(id) {
@@ -99,7 +106,7 @@
     D.scenes.forEach(function (s) {
       html += '<section class="rp-print"><h2>' + s.emoji + ' ' + esc(s.title) + '</h2><p class="muted small">' + esc(s.setting) + '</p>' +
         '<table class="rp-table"><tbody>' + s.lines.map(function (l) {
-          return '<tr><th>' + esc(s.roles[l.who]) + '</th><td class="en">' + esc(l.cue) + '</td><td>' + tl(l.fr) + '</td></tr>';
+          return '<tr><th>' + esc(s.roles[l.who]) + '</th><td class="en">' + esc(l.cue) + '</td><td>' + tl(say(l)) + '</td></tr>';
         }).join('') + '</tbody></table></section>';
     });
     app.innerHTML = html;
@@ -124,7 +131,7 @@
       var l = x.l;
       return '<div class="line' + (x.partner ? '' : ' me') + '"><span class="who">' + esc(s.roles[l.who]) + '</span>' +
         '<span class="say">' + (l.surprise && x.partner ? '<span class="rp-surprise">❗ Unexpected question</span>' : '') +
-        tl(l.fr) + '<span class="en">' + esc(l.en) + '</span>' + (x.ok === false ? '<span class="rp-again">↻ practise this one</span>' : '') + '</span></div>';
+        tl(say(l)) + '<span class="en">' + esc(l.en) + '</span>' + (x.ok === false ? '<span class="rp-again">↻ practise this one</span>' : '') + '</span></div>';
     }).join('') + '</div>';
 
     if (run.i >= s.lines.length) return finish(html);
@@ -132,13 +139,13 @@
     var l = s.lines[run.i];
     html += '<div class="card rp-turn" id="turn"><p class="ask">Your turn, ' + esc(s.roles[role].toLowerCase()) + '. Say it out loud:</p>' +
       '<p class="prompt">' + esc(l.cue) + '</p>';
-    if (run.hint && l.hint) html += '<p class="rp-hint">Starts with: ' + tl(l.hint + '…') + '</p>';
+    if (run.hint && l.hint) html += '<p class="rp-hint">Starts with: ' + tl(l.hint, '…') + '</p>';
     if (!run.shown) {
       html += '<div class="actions">' + (l.hint && !run.hint ? '<button type="button" class="btn ghost" id="hint">Hint</button>' : '') +
         '<button type="button" class="btn" id="show">I\'ve said it: show me</button></div>';
     } else {
-      html += '<div class="fb plain"><div class="tl big">' + tl(l.fr) + '</div><div class="muted">' + esc(l.en) + '</div>' +
-        (l.alt && l.alt.length ? '<div class="small">Also fine: ' + l.alt.map(function (a) { return '<i lang="' + esc(D.code) + '">' + esc(a) + '</i>'; }).join(' · ') + '</div>' : '') +
+      html += '<div class="fb plain"><div class="tl big">' + tl(say(l), '', true) + '</div><div class="muted">' + esc(l.en) + '</div>' +
+        (l.alt && l.alt.length ? '<div class="small">Also fine: ' + l.alt.map(function (a) { return tl(a); }).join(' · ') + '</div>' : '') +
         '</div><p class="ask">Did you say something like that?</p><div class="actions">' +
         '<button type="button" class="btn ghost" id="nope">Not yet</button><button type="button" class="btn" id="yes">Got it ✓</button></div>';
     }
@@ -170,7 +177,7 @@
     save();
     var got = run.mine - run.misses;
     html += '<div class="card done"><p class="score">' + got + ' / ' + run.mine + '</p><p>' +
-      (!run.misses ? 'Every line first time. Bravo !' : run.misses === 1 ? 'Nearly all of it. Go again for the one marked ↻.' : 'Good going. Run it again and the marked lines get easier.') + '</p>' +
+      (!run.misses ? 'Every line first time. Brilliant!' : run.misses === 1 ? 'Nearly all of it. Go again for the one marked ↻.' : 'Good going. Run it again and the marked lines get easier.') + '</p>' +
       (stars(s.id) > before ? '<p class="star-win">⭐ New star!</p>' : '') + '</div>';
     html += '<div class="actions"><button type="button" class="btn ghost" id="again">Go again</button>' +
       '<a class="btn" href="#/play/' + s.id + '/' + other(role) + '">Swap roles ⇄</a></div>';

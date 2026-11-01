@@ -215,3 +215,8 @@ input.type:focus { outline: none; border-color: var(--accent); }
 }
 .dlg.rp .line { flex-direction: column; gap: 2px; }
 .dlg.rp .who { width: auto; padding: 0; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+.dlg.rp .zhline .h { font-size: 20px; }
+.rp-table .zhline .h { font-size: 18px; }
+.fb .small .zhline { display: inline-flex; vertical-align: top; margin-right: 6px; }
+.fb .small .zhline .h { font-size: 16px; font-weight: 500; }
+.fb .small .zhline .p { font-size: 13px; }

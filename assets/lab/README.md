@@ -52,5 +52,8 @@ Mandarin text is written as `汉字|pinyin` pairs separated by spaces; each pair
   then reveal the French (plus `alt` ways to say it) and self-mark. Stars: played as A, played as B, a run with every line right.
   `#/print` gives all scripts as a table (role, prompt, French) to fold and practise on paper.
   Scene: `{ id, level, emoji, title, roles: {A, B}, setting, tip?, lines: [{ who: "A"|"B", cue, fr, en, hint?, alt?, surprise? }] }`
-  (`surprise: true` marks an exam-style unexpected question). Add a scene by adding an object to `scenes`; another language
-  needs a `<lang>-roleplay.json` and `data-lang="<lang>"`. Pages: `<slug>/french/role-play/` for ember, ninja and bingo, and the Languages hub.
+  (`surprise: true` marks an exam-style unexpected question). The spoken line can be `say` (or `fr`); any target-language
+  string (`say`, `hint`, `alt`) written `汉字|pinyin` shows the characters with pinyin underneath.
+  Languages: `french-roleplay.json` and `mandarin-roleplay.json` (10 scenes each, the Mandarin ones set in China). Add a scene
+  by adding an object to `scenes`; another language needs a `<lang>-roleplay.json` and `data-lang="<lang>"`.
+  Pages: `<slug>/french/role-play/` and `<slug>/mandarin/role-play/` for ember, ninja and bingo, and both on the Languages hub.

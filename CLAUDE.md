@@ -91,7 +91,7 @@ Current (Week 3):
 - Half-term check-in: how is each subject going? (`weekly/check-in/`)
 - **Week 3 plus** (optional extra, tagged week 3): English, Maths, Science, History and Geography rebuilt on real AQA past-paper questions with the Practice engine, each with a `?print` written paper (`<subject>/week3plus-*/`).
 
-Also current: French Week 2 (verbs and extending a sentence), French Lab, French Role-play, Mandarin Lab, and **Explore: "Why triangles know things", trigonometry from scratch**.
+Also current: French Week 2 (verbs and extending a sentence), French Lab, French Role-play, Mandarin Lab, Mandarin Role-play, and **Explore: "Why triangles know things", trigonometry from scratch**.
 
 Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squad, Forming and solving equations, Weeks 1–2; Science B4 Organisms (lungs and gas exchange, breathing, drugs/alcohol/smoking, nutrients and food tests, Weeks 1–2); History Rome 14-day revision road, Roman life and equality, So What? coaching, writing task 2 (Roman childhood), Tie it back to the question, Week 2 PDF; Geography megacities Weeks 1–2.
 
@@ -99,13 +99,13 @@ Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squ
 - Maths: Mean, median, mode and area; Cancelling: percentages and ratios. Archived: Football stats (+ quiz), Shape Up: area formulas.
 - Explore: "Letters that stand for numbers", algebra from scratch; "Detective and Machine", logic and pattern puzzles.
 - English: Answer it the way the question asks; Grammar Workshop (Year 5 and 6).
-- French Lab, French Role-play, Mandarin Lab.
+- French Lab, French Role-play, Mandarin Lab, Mandarin Role-play.
 
 ### Bingo (lower primary, Year 3)
 - Maths: Times tables 2s and 5s; Times tables 1 to 10. Archived: Times Table Blast Off 3s and 4s, Match & Blast, Say it then flip it, Climb the threes/fours, Threes Bakery.
 - Explore: "Secret Number and Pattern Train", thinking puzzles.
 - English: Grammar and Writing Pack; English Quest.
-- French Lab, French Role-play, Mandarin Lab.
+- French Lab, French Role-play, Mandarin Lab, Mandarin Role-play.
 
 ### Heeler (adult / fluent speaker)
 - French **Phrase Lab**: 12 weeks of everyday structures, rebuilt around real situations in Madagascar (audio removed).
@@ -118,7 +118,7 @@ One engine for any language: a language-neutral `blueprint.json` (10 stages, ~11
 - `dials.js` + `french-dials.json`: Verb Dials (37 verbs, six tenses, transform / pick the form / 60-second speed round).
 - `mainland.js` + `mainland.json`: Mainland Mandarin.
 - `phrase-lab/`: Phrase Lab engine and content (`units.json`, `structures.json`).
-- `roleplay.js` + `french-roleplay.json`: **Role-play**, speaking practice with a partner. 10 scenes over levels 1–3 (bakery, café, directions, school, hotel...): an English prompt, say it aloud, reveal the French, self-mark. Printable scripts at `#/print`. On ember, ninja and bingo's French pages and the Languages hub.
+- `roleplay.js` + `french-roleplay.json` / `mandarin-roleplay.json`: **Role-play**, speaking practice with a partner. 10 scenes per language over levels 1–3 (shop, café or noodle bar, directions, school, hotel...): an English prompt, say it aloud, reveal the answer (Mandarin as characters with pinyin), self-mark. Printable scripts at `#/print`. On ember, ninja and bingo's French and Mandarin pages and the Languages hub.
 
 **Languages hub** at `/languages/` (driven by `languages/languages.json`): every language tool in level order, pick a person, same saved progress as their own page.
 
