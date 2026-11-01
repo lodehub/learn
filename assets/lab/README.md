@@ -46,3 +46,11 @@ Mandarin text is written as `汉字|pinyin` pairs separated by spaces; each pair
 - **Mainland Mandarin** (`mainland.js` + `mainland.json`): for a fluent Malaysian Chinese speaker. Habits to swap
   (Malaysian → mainland), conversation moves (reusable chunks), and themes (word swaps, vocab, a model conversation).
   Add a theme by adding an object to `themes`. Page: `heeler/mandarin/mainland/`.
+- **Role-play** (`roleplay.js` + `french-roleplay.json`, levels 1–3): speaking practice with a partner. Each scene is a short
+  script with two roles. The learner picks a role; the partner's lines are shown in full to read aloud, and the learner's own
+  lines appear as an English prompt ("Ask for a croissant"). They say it out loud, optionally tap Hint (the first few words),
+  then reveal the French (plus `alt` ways to say it) and self-mark. Stars: played as A, played as B, a run with every line right.
+  `#/print` gives all scripts as a table (role, prompt, French) to fold and practise on paper.
+  Scene: `{ id, level, emoji, title, roles: {A, B}, setting, tip?, lines: [{ who: "A"|"B", cue, fr, en, hint?, alt?, surprise? }] }`
+  (`surprise: true` marks an exam-style unexpected question). Add a scene by adding an object to `scenes`; another language
+  needs a `<lang>-roleplay.json` and `data-lang="<lang>"`. Pages: `<slug>/french/role-play/` for ember, ninja and bingo, and the Languages hub.

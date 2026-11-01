@@ -194,3 +194,24 @@ input.type:focus { outline: none; border-color: var(--accent); }
   color: var(--accent); font-size: 13px; font-weight: 700; white-space: nowrap;
 }
 .hub-link { margin-top: var(--gap); }
+
+/* Role-play (roleplay.js) */
+.rp-role { flex: none; padding: 6px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 14px; font-weight: 700; }
+.rp-turn { border: 2px solid var(--accent); margin-top: 16px; }
+.rp-turn .prompt { margin-bottom: 4px; }
+.rp-hint { font-size: 18px; margin: 8px 0 0; }
+.rp-surprise { font-size: 13px; font-weight: 700; color: var(--no); }
+.rp-again { font-size: 13px; font-weight: 700; color: var(--no); }
+.fb .tl.big .h { font-size: 24px; }
+.rp-table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.rp-table th { text-align: left; width: 7em; font-size: 14px; color: var(--muted); vertical-align: top; padding: 8px 8px 8px 0; }
+.rp-table td { border-top: 1px solid var(--line); padding: 8px; vertical-align: top; }
+.rp-table td.en { width: 45%; color: var(--muted); }
+@media print {
+  .no-print, .back { display: none !important; }
+  .lab { max-width: none; padding: 0; }
+  .rp-print { break-inside: avoid; }
+  .dlg .line { break-inside: avoid; }
+}
+.dlg.rp .line { flex-direction: column; gap: 2px; }
+.dlg.rp .who { width: auto; padding: 0; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
