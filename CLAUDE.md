@@ -110,6 +110,7 @@ Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squ
 ### Heeler (adult / fluent speaker)
 - French **Phrase Lab**: 12 weeks of everyday structures, rebuilt around real situations in Madagascar (audio removed).
 - French **Verb Dials** (Language Lab level 4).
+- French **Role-play: work in Madagascar** (`french-roleplay-madagascar.json`): arriving, first day at the hospital, teaching nurse anaesthetists (skills, debrief, theatre supervision, a quiet trainee), a planning meeting, a conference talk and networking.
 - **Mainland Mandarin**: for a fluent Malaysian Chinese speaker; habits to swap, conversation moves, themes.
 
 ## Language Lab (`assets/lab/`, see its README.md)
@@ -118,7 +119,7 @@ One engine for any language: a language-neutral `blueprint.json` (10 stages, ~11
 - `dials.js` + `french-dials.json`: Verb Dials (37 verbs, six tenses, transform / pick the form / 60-second speed round).
 - `mainland.js` + `mainland.json`: Mainland Mandarin.
 - `phrase-lab/`: Phrase Lab engine and content (`units.json`, `structures.json`).
-- `roleplay.js` + `french-roleplay.json` / `mandarin-roleplay.json`: **Role-play**, speaking practice with a partner. 10 scenes per language over levels 1–3 (shop, café or noodle bar, directions, school, hotel...): an English prompt, say it aloud, reveal the answer (Mandarin as characters with pinyin), self-mark. Printable scripts at `#/print`. On ember, ninja and bingo's French and Mandarin pages and the Languages hub.
+- `roleplay.js` + `french-roleplay.json` / `mandarin-roleplay.json`: **Role-play**, speaking practice with a partner. 10 scenes per language over levels 1–3 (shop, café or noodle bar, directions, school, hotel...): an English prompt, say it aloud, reveal the answer (Mandarin as characters with pinyin), self-mark. Printable scripts at `#/print`. On ember, ninja and bingo's French and Mandarin pages and the Languages hub. A wrapper can pick its own scenes file with `data-content` (Heeler's work-in-Madagascar set).
 
 **Languages hub** at `/languages/` (driven by `languages/languages.json`): every language tool in level order, pick a person, same saved progress as their own page.
 
@@ -139,7 +140,7 @@ Family Bible study: one book a month, about a chapter a week, five ~10-minute se
 - **New language**: copy `french.json`, translate, add a wrapper page.
 
 ## Git history in brief
-PRs #1–#29 all merged (Role-play added after) to `main`. Rough order: initial hub and conventions → first maths/science/English tools → Practise/Print split, printables shelf and archive (#2) → Ember Weeks 1–3 and history coaching (#3–#14) → Ninja/Bingo maths and English (#9–#16) → archive tidy-up (#17) → site restore after an accidental merge of an old local commit (#18) → Heeler added and language tools (#19–#23) → Languages hub (#24) → Bible Lab (#25) → Explore strand (#26–#28) → This-week box and half-term check-in (#29).
+PRs #1–#30 all merged to `main`. Rough order: initial hub and conventions → first maths/science/English tools → Practise/Print split, printables shelf and archive (#2) → Ember Weeks 1–3 and history coaching (#3–#14) → Ninja/Bingo maths and English (#9–#16) → archive tidy-up (#17) → site restore after an accidental merge of an old local commit (#18) → Heeler added and language tools (#19–#23) → Languages hub (#24) → Bible Lab (#25) → Explore strand (#26–#28) → This-week box and half-term check-in (#29) → French and Mandarin Role-play (#30).
 
 ## Working locally
 ```bash

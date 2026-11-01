@@ -10,6 +10,8 @@
   var me = document.currentScript;
   var LANG = me.getAttribute('data-lang') || 'french';
   var BASE = me.src.replace(/[^/]*$/, '');
+  // Optional data-content picks another scenes file, e.g. a set for one learner (default <lang>-roleplay.json).
+  var FILE = me.getAttribute('data-content') || LANG + '-roleplay';
   var app = document.getElementById('app');
   var KEY = Learner.key('state');
   var D, S, run;
@@ -75,7 +77,7 @@
     html += '<h2>Who are you?</h2><ul class="modes">';
     ['A', 'B'].forEach(function (role) {
       html += '<li><a class="mode" href="#/play/' + id + '/' + role + '"><span class="big-emoji">' + (role === 'A' ? '🙋' : '🧑‍💼') + '</span>' +
-        '<span class="name">I\'m the ' + esc(s.roles[role].toLowerCase()) + '<br><span class="small muted">Partner plays the ' + esc(s.roles[other(role)].toLowerCase()) + '</span></span>' +
+        '<span class="name">Play as: ' + esc(s.roles[role]) + '<br><span class="small muted">Partner plays: ' + esc(s.roles[other(role)]) + '</span></span>' +
         (r[role] ? '<span class="badge">done ✓</span>' : '') + '</a></li>';
     });
     html += '</ul>';
@@ -137,7 +139,7 @@
     if (run.i >= s.lines.length) return finish(html);
 
     var l = s.lines[run.i];
-    html += '<div class="card rp-turn" id="turn"><p class="ask">Your turn, ' + esc(s.roles[role].toLowerCase()) + '. Say it out loud:</p>' +
+    html += '<div class="card rp-turn" id="turn"><p class="ask">Your turn. Say it out loud:</p>' +
       '<p class="prompt">' + esc(l.cue) + '</p>';
     if (run.hint && l.hint) html += '<p class="rp-hint">Starts with: ' + tl(l.hint, '…') + '</p>';
     if (!run.shown) {
@@ -200,7 +202,7 @@
     window.scrollTo(0, 0);
   }
 
-  fetch(BASE + LANG + '-roleplay.json', { cache: 'no-cache' }).then(function (r) {
+  fetch(BASE + FILE + '.json', { cache: 'no-cache' }).then(function (r) {
     if (!r.ok) throw new Error(r.status);
     return r.json();
   }).then(function (d) {
