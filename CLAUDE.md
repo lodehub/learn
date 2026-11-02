@@ -47,7 +47,7 @@ Owner account: lodehub (anonymous by design).
 - Mobile-first, big tap targets, works on iPad Safari. Add a web manifest and service worker per child folder so each can be installed as a PWA (scoped to that folder).
 - Before pushing: open each page locally, check for broken links, then commit with a clear message.
 
-# Part 2: What exists (state as of 31 Oct 2026)
+# Part 2: What exists (state as of 2 Nov 2026)
 
 ## What it is
 
@@ -97,7 +97,7 @@ Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squ
 
 ### Ninja (upper primary, Year 5/6)
 - Maths: Mean, median, mode and area; Cancelling: percentages and ratios. Archived: Football stats (+ quiz), Shape Up: area formulas.
-- Explore: "Letters that stand for numbers", algebra from scratch; "Detective and Machine", logic and pattern puzzles.
+- Explore: "Letters that stand for numbers", algebra from scratch; "Detective and Machine", logic and pattern puzzles; "How much space?", volume from scratch (builds on perimeter and area: counting cubes, area of the floor × height, cm³ and litres, same volume vs surface area, the doubling trap, prisms).
 - English: Answer it the way the question asks; Grammar Workshop (Year 5 and 6).
 - French Lab, French Role-play, Mandarin Lab, Mandarin Role-play.
 
@@ -140,7 +140,7 @@ Family Bible study: one book a month, about a chapter a week, five ~10-minute se
 - **New language**: copy `french.json`, translate, add a wrapper page.
 
 ## Git history in brief
-PRs #1–#30 all merged to `main`. Rough order: initial hub and conventions → first maths/science/English tools → Practise/Print split, printables shelf and archive (#2) → Ember Weeks 1–3 and history coaching (#3–#14) → Ninja/Bingo maths and English (#9–#16) → archive tidy-up (#17) → site restore after an accidental merge of an old local commit (#18) → Heeler added and language tools (#19–#23) → Languages hub (#24) → Bible Lab (#25) → Explore strand (#26–#28) → This-week box and half-term check-in (#29) → French and Mandarin Role-play (#30).
+PRs #1–#30 all merged to `main`. Rough order: initial hub and conventions → first maths/science/English tools → Practise/Print split, printables shelf and archive (#2) → Ember Weeks 1–3 and history coaching (#3–#14) → Ninja/Bingo maths and English (#9–#16) → archive tidy-up (#17) → site restore after an accidental merge of an old local commit (#18) → Heeler added and language tools (#19–#23) → Languages hub (#24) → Bible Lab (#25) → Explore strand (#26–#28) → This-week box and half-term check-in (#29) → French and Mandarin Role-play (#30) → Heeler's work-in-Madagascar role-play (#31) → Ninja's volume Explore journey.
 
 ## Working locally
 ```bash
