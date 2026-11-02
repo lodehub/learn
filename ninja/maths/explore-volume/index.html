@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4fc">
+<title>Volume from scratch</title>
+<style>
+:root{--bg:#f7f4fc;--card:#ffffff;--ink:#2b2a28;--mute:#6f6b64;--acc:#7a4fc2;--accsoft:#f1ebfa;--two:#d9682a;--twosoft:#fdeee4;--ok:#1b7f4b;--oksoft:#e2f4ea;--bad:#b3261e;--badsoft:#fbe7e5;--line:#e2dcec;--grid:#ece6f4;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1b1e;--card:#27252b;--ink:#f1eee9;--mute:#aaa49b;--acc:#b597ea;--accsoft:#2e2638;--two:#f0935a;--twosoft:#3a2a20;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3740;--grid:#312e36;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b1e;--card:#27252b;--ink:#f1eee9;--mute:#aaa49b;--acc:#b597ea;--accsoft:#2e2638;--two:#f0935a;--twosoft:#3a2a20;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3740;--grid:#312e36;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(26px,6vw,34px);margin:2px 0 6px;line-height:1.2}
+.lede{color:var(--mute);margin:0 0 14px}
+.rooms{display:flex;gap:6px;overflow-x:auto;padding:4px 0 10px;margin:0 0 6px;scrollbar-width:none}
+.rooms::-webkit-scrollbar{display:none}
+.rooms button{flex:none;min-width:48px;height:48px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:16px;font-weight:600;cursor:pointer}
+.rooms button.done{background:var(--oksoft);border-color:var(--ok);color:var(--ok)}
+.rooms button[aria-current="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+section.room{display:none}section.room.on{display:block}
+h2{font-size:clamp(23px,5.5vw,29px);margin:6px 0 10px;line-height:1.25}
+p{margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
+.card h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+.big{background:var(--accsoft);border-left:5px solid var(--acc);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.big b:first-child{color:var(--acc)}
+.aside{font-size:16px;color:var(--mute);border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;min-height:52px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:12px 14px;border-radius:12px;font:inherit;font-size:17px;cursor:pointer}
+.opt.right{background:var(--oksoft);border-color:var(--ok)}
+.opt.wrong{background:var(--badsoft);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.why{display:none;margin-top:10px}
+.why.show{display:block}
+.g{color:var(--ok)}.r{color:var(--bad)}
+svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
+svg text{font-family:inherit;fill:var(--ink)}
+.ctl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:10px 0 0}
+.ctl label{font-size:16px;color:var(--mute);min-width:70px}
+.ctl output{font-variant-numeric:tabular-nums;font-weight:700;min-width:40px;text-align:right}
+input[type=range]{width:100%;height:40px;accent-color:var(--acc)}
+.read{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px}
+.read div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:16px}
+.read b{display:block;font-size:22px;font-variant-numeric:tabular-nums;color:var(--acc)}
+.ans{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.ans input{font:inherit;font-size:20px;padding:10px 12px;width:110px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.btn{min-height:52px;border:1px solid var(--acc);background:var(--acc);color:#fff;padding:10px 18px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btn:disabled{opacity:.4;cursor:default}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.btns .btn{flex:1 1 200px}
+textarea{width:100%;min-height:96px;font:inherit;font-size:17px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+.saved{font-size:13px;color:var(--mute);margin-top:4px;min-height:18px}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:18px;flex-wrap:wrap}
+.nav .btn{flex:1;min-width:140px}
+.eq{font-size:clamp(24px,6vw,32px);font-weight:700;text-align:center;margin:8px 0;font-variant-numeric:tabular-nums}
+.eq .x{color:var(--acc)}
+.box{display:inline-block;width:1.1em;height:1.1em;border:3px solid var(--acc);border-radius:6px;vertical-align:-.15em}
+.msg{text-align:center;min-height:28px;font-weight:600}
+.trick{font-size:22px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center;padding:10px}
+.steps{display:flex;flex-direction:column;gap:8px}
+.step{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.step .say{flex:1 1 180px}
+.bag{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px 10px 14px 14px;background:var(--acc);color:#fff;font-weight:700;font-style:italic}
+.blk{display:inline-block;width:14px;height:14px;border-radius:3px;background:var(--two);margin:1px}
+.pics{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.end{text-align:center;padding:10px 0}
+.sort{display:flex;flex-direction:column;gap:10px}
+.sort .row{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.sort .row p{margin:0 0 8px;font-weight:600}
+.pick{display:flex;gap:6px;flex-wrap:wrap}
+.pick .opt{flex:1 1 90px;min-height:46px;text-align:center;font-size:16px;padding:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips .opt{flex:0 1 auto;min-height:46px;text-align:center;font-size:16px;padding:8px 12px}
+.chips .opt[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+table.t{width:100%;border-collapse:collapse;font-size:16px;margin-top:10px;font-variant-numeric:tabular-nums}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left}
+table.t td b{color:var(--acc)}
+@media print{
+  .rooms,.nav,.btn,svg,.ctl,.read,.opts,.btns,.ans{display:none!important}
+  section.room{display:block!important;page-break-inside:avoid}
+  section.room > *:not(h2):not(.kick):not(.note-card){display:none!important}
+  textarea{border:none;min-height:0}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Explore · Maths · from first principles</p>
+  <h1>How much space?</h1>
+  <p class="lede">Volume from scratch. You already know perimeter and area. Volume is the same idea, one step further.</p>
+</header>
+<nav class="rooms" id="rooms" aria-label="Rooms"></nav>
+
+<!-- ROOM 0 -->
+<section class="room" id="r0" data-title="Line, flat, solid">
+  <p class="kick">Room 1 of 8</p>
+  <h2>Line, flat, solid</h2>
+  <p>You already know two ways to measure a shape:</p>
+  <div class="card">
+    <p><b>Perimeter</b> is the distance <i>around</i> the outside. You measure it with a ruler: a <b>line</b>. Units: cm.</p>
+    <p><b>Area</b> is how much <i>flat</i> space it covers. You measure it by counting squares. Units: cm², "square centimetres".</p>
+    <p style="margin:0">But a box, a fish tank or a swimming pool isn't flat. It has <b>length, width and height</b>. How much <i>space is inside</i>? That's <b>volume</b>.</p>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Perimeter uses lines. Area uses squares. What do you think we'll count to measure volume?</p>
+    <div class="opts" data-answer="2" data-why="Each step adds one more direction. A line has length. A square has length and width. A <b>cube</b> has length, width and height. So volume is counted in cubes. One cube 1 cm on every side is <b>1 cubic centimetre</b>, written <b>1 cm³</b>.">
+      <button class="opt" type="button">Longer lines</button>
+      <button class="opt" type="button">Bigger squares</button>
+      <button class="opt" type="button">Cubes</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: which one is it?</h3>
+    <p>For each job, are you measuring perimeter, area or volume?</p>
+    <div class="sort" id="sort"></div>
+    <p class="msg" id="sortMsg"></p>
+  </div>
+  <div class="big"><b>Big idea.</b> Perimeter is a line (cm). Area is flat squares (cm²). Volume is solid cubes (cm³). The little 2 and 3 tell you how many directions you're measuring in.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Before you find out: how would <i>you</i> work out how many cubes fit in a shoebox?</p><textarea data-note="r0" placeholder="I think I would…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 1 -->
+<section class="room" id="r1" data-title="Count the cubes">
+  <p class="kick">Room 2 of 8</p>
+  <h2>Count the cubes</h2>
+  <p>This box is built from 1 cm cubes. It is <b>4</b> cubes long, <b>3</b> cubes wide and <b>2</b> cubes tall.</p>
+  <div class="card">
+    <svg id="b0" viewBox="0 0 340 200" role="img" aria-label="A box 4 cubes long, 3 wide and 2 tall"></svg>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>How many cubes is it made of? Careful: some are hidden inside, where you can't see them.</p>
+    <div class="opts" data-answer="1" data-why="24. Look at the top: 4 × 3 = <b>12</b> cubes. That's one layer. There are <b>2</b> layers, so 12 × 2 = 24. If you said 9, you added the edges: 4 + 3 + 2. That's perimeter thinking, not volume. If you said 12, you counted only the top layer.">
+      <button class="opt" type="button">9</button>
+      <button class="opt" type="button">24</button>
+      <button class="opt" type="button">12</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: build a box</h3>
+    <svg id="b1" viewBox="0 0 340 230" role="img" aria-label="A box of cubes you can change"></svg>
+    <div class="ctl"><label for="b1l">Long</label><input id="b1l" type="range" min="1" max="6" value="3"><output id="b1lo"></output></div>
+    <div class="ctl"><label for="b1w">Wide</label><input id="b1w" type="range" min="1" max="6" value="2"><output id="b1wo"></output></div>
+    <div class="ctl"><label for="b1h">Tall</label><input id="b1h" type="range" min="1" max="6" value="2"><output id="b1ho"></output></div>
+    <div class="read"><div>cubes inside<b id="b1n"></b></div></div>
+    <p class="aside"><b>Challenge:</b> build a box of exactly <b>30</b> cubes. Then find a different one.</p>
+    <p class="msg" id="b1msg"></p>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Write down every box of 30 cubes you found. What do they have in common?</p><textarea data-note="r1" placeholder="5 long, 3 wide, 2 tall…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 2 -->
+<section class="room" id="r2" data-title="Layers">
+  <p class="kick">Room 3 of 8</p>
+  <h2>Area, then stack it</h2>
+  <p>Counting every cube is slow. Here's the shortcut, and it uses what you already know.</p>
+  <div class="card">
+    <h3>Try it: stack the layers</h3>
+    <svg id="b2" viewBox="0 0 340 240" role="img" aria-label="A box built up in layers"></svg>
+    <div class="ctl"><label for="b2l">Long</label><input id="b2l" type="range" min="1" max="6" value="4"><output id="b2lo"></output></div>
+    <div class="ctl"><label for="b2w">Wide</label><input id="b2w" type="range" min="1" max="6" value="3"><output id="b2wo"></output></div>
+    <div class="btns"><button class="btn" type="button" id="b2up">Add a layer</button><button class="btn ghost" type="button" id="b2dn">Take a layer off</button></div>
+    <div class="read">
+      <div>one layer (area of the floor)<b id="b2a"></b></div>
+      <div>number of layers (height)<b id="b2h"></b></div>
+      <div>volume<b id="b2v"></b></div>
+    </div>
+  </div>
+  <div class="big"><b>Big idea.</b> The floor of a box is a rectangle, and you know its area: length × width. That's how many cubes fit in one layer. Then times by the number of layers, the height.<br><span class="eq" style="display:block;font-size:22px;margin:8px 0 0">Volume = length × width × height</span></div>
+  <div class="card">
+    <h3>Use it</h3>
+    <p>A box is 5 cm long, 4 cm wide and 3 cm tall. What is its volume, in cm³?</p>
+    <div class="ans"><input id="q1" type="text" inputmode="numeric" autocomplete="off" aria-label="Volume"><span>cm³</span><button class="btn" type="button" id="q1Go">Check</button></div>
+    <div class="why" id="q1Fb"></div>
+    <p style="margin-top:16px">A box has a floor with an area of <b>20 cm²</b>. It is <b>7 cm</b> tall. Volume?</p>
+    <div class="ans"><input id="q2" type="text" inputmode="numeric" autocomplete="off" aria-label="Volume"><span>cm³</span><button class="btn" type="button" id="q2Go">Check</button></div>
+    <div class="why" id="q2Fb"></div>
+    <p style="margin-top:16px"><b>Backwards:</b> a box holds <b>48</b> cubes. Its floor is 4 long and 3 wide. How tall is it?</p>
+    <div class="ans"><input id="q3" type="text" inputmode="numeric" autocomplete="off" aria-label="Height"><span>cm</span><button class="btn" type="button" id="q3Go">Check</button></div>
+    <div class="why" id="q3Fb"></div>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Explain to a friend why volume is "area of the floor × height". Use the word <i>layer</i>.</p><textarea data-note="r2" placeholder="Each layer…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 3 -->
+<section class="room" id="r3" data-title="cm³ and litres">
+  <p class="kick">Room 4 of 8</p>
+  <h2>cm³, m³ and litres</h2>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Picture a giant cube, <b>1 metre</b> on every side (about as tall as your chest). How many little 1 cm cubes would fill it?</p>
+    <div class="opts" data-answer="2" data-why="A million! 1 m = 100 cm, so the floor is 100 × 100 = 10 000 cubes in one layer, and there are 100 layers: 10 000 × 100 = <b>1 000 000</b>. Lengths grow by 100, but volume grows by 100 × 100 × 100. That's why big things are measured in <b>m³</b>, cubic metres.">
+      <button class="opt" type="button">100</button>
+      <button class="opt" type="button">10 000</button>
+      <button class="opt" type="button">1 000 000</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <p>Volume also tells you how much a container <b>holds</b>. A cube 10 cm on every side holds 10 × 10 × 10 = <b>1000 cm³</b>, and that's exactly <b>1 litre</b>, a big carton of juice. So <b>1 cm³ is the same as 1 ml</b>.</p>
+  <div class="card">
+    <h3>Try it: design a fish tank</h3>
+    <svg id="b3" viewBox="0 0 340 220" role="img" aria-label="A fish tank"></svg>
+    <div class="ctl"><label for="b3l">Long</label><input id="b3l" type="range" min="10" max="100" step="10" value="60"><output id="b3lo"></output></div>
+    <div class="ctl"><label for="b3w">Wide</label><input id="b3w" type="range" min="10" max="50" step="10" value="30"><output id="b3wo"></output></div>
+    <div class="ctl"><label for="b3h">Tall</label><input id="b3h" type="range" min="10" max="50" step="10" value="30"><output id="b3ho"></output></div>
+    <div class="read"><div>volume<b id="b3v"></b></div><div>water it holds<b id="b3L"></b></div></div>
+    <p class="aside">To turn cm³ into litres, divide by 1000.</p>
+  </div>
+  <div class="card">
+    <h3>Use it</h3>
+    <p>A tank is 50 cm long, 30 cm wide and 40 cm tall. How many <b>litres</b> of water does it hold when full?</p>
+    <div class="ans"><input id="q4" type="text" inputmode="numeric" autocomplete="off" aria-label="Litres"><span>litres</span><button class="btn" type="button" id="q4Go">Check</button></div>
+    <div class="why" id="q4Fb"></div>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Find a box or container at home. Measure it with a ruler and work out how many litres it would hold.</p><textarea data-note="r3" placeholder="My container is…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 4 -->
+<section class="room" id="r4" data-title="Same volume?">
+  <p class="kick">Room 5 of 8</p>
+  <h2>Same volume, different box</h2>
+  <p>You have <b>24</b> cubes and you're going to gift-wrap them in a box. There are six different boxes that hold exactly 24.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>They all hold the same. Do they all need the same amount of wrapping paper?</p>
+    <div class="opts" data-answer="2" data-why="No! Wrapping paper covers the <i>outside</i>: that's the area of all six faces, called the <b>surface area</b>. The long thin box needs 98 cm², the chunky 2 × 3 × 4 box only 52 cm². Same inside, very different outside. The closer to a cube, the less paper. (That's why animals curl into a ball to keep warm: less outside to lose heat from.)">
+      <button class="opt" type="button">Yes, same cubes means same paper</button>
+      <button class="opt" type="button">No, the long thin one needs least</button>
+      <button class="opt" type="button">No, the chunkiest one needs least</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: pick a box</h3>
+    <div class="chips" id="b4pick"></div>
+    <svg id="b4" viewBox="0 0 340 240" role="img" aria-label="A box of 24 cubes"></svg>
+    <div class="read"><div>volume (inside)<b id="b4v"></b></div><div>wrapping paper (outside)<b id="b4s"></b></div></div>
+    <p class="aside" id="b4how"></p>
+  </div>
+  <div class="big"><b>Big idea.</b> Volume is the space <i>inside</i> (cm³). Surface area is the area of the <i>outside</i> (cm²). Two boxes can have the same volume and completely different surface areas.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>A cereal company wants to use less cardboard. What shape of box should they use? Why don't they?</p><textarea data-note="r4" placeholder="They should…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 5 -->
+<section class="room" id="r5" data-title="The doubling trap">
+  <p class="kick">Room 6 of 8</p>
+  <h2>The doubling trap</h2>
+  <p>Here's a cube with sides of <b>2 cm</b>. Its volume is 2 × 2 × 2 = 8 cm³.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Make every side <b>twice</b> as long: 4 cm. What happens to the volume?</p>
+    <div class="opts" data-answer="2" data-why="It's 4 × 4 × 4 = 64 cm³: <b>8 times</b> bigger, not 2! You doubled the length, <i>and</i> the width, <i>and</i> the height: 2 × 2 × 2 = 8. Slide the dial below to see it.">
+      <button class="opt" type="button">It doubles (16 cm³)</button>
+      <button class="opt" type="button">It goes up 4 times (32 cm³)</button>
+      <button class="opt" type="button">It goes up 8 times (64 cm³)</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: grow the cube</h3>
+    <svg id="b5" viewBox="0 0 340 230" role="img" aria-label="A small cube next to a scaled-up cube"></svg>
+    <div class="ctl"><label for="b5k">Make it</label><input id="b5k" type="range" min="1" max="3" value="2"><output id="b5ko"></output></div>
+    <table class="t" id="b5t"></table>
+  </div>
+  <div class="big"><b>Big idea.</b> Make a shape twice as big and the <b>perimeter</b> doubles (× 2), the <b>area</b> goes up 4 times (× 2 × 2), and the <b>volume</b> goes up 8 times (× 2 × 2 × 2). One direction, two directions, three directions.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>A giant in a story is 10 times as tall, wide and deep as you. How many times as heavy is he? Why might his legs have a problem?</p><textarea data-note="r5" placeholder="He would be…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 6 -->
+<section class="room" id="r6" data-title="Beyond boxes">
+  <p class="kick">Room 7 of 8</p>
+  <h2>Beyond boxes: the loaf of bread</h2>
+  <p>Not everything is a box. But lots of shapes are the <b>same all the way through</b>, like a loaf of bread: every slice is the same shape. These shapes are called <b>prisms</b>.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>A loaf is <b>10 cm</b> long. Every slice has the same face, with an area of <b>80 cm²</b>. What's the volume of the loaf?</p>
+    <div class="opts" data-answer="1" data-why="Think of 10 slices, each 1 cm thick. Each slice is 80 cm² and 1 cm thick, so 80 cm³. Ten of them: <b>800 cm³</b>. It's the layers idea again, just stacked sideways: <b>area of the end face × length</b>. A box is simply a prism whose end face is a rectangle.">
+      <button class="opt" type="button">90 cm³</button>
+      <button class="opt" type="button">800 cm³</button>
+      <button class="opt" type="button">You can't tell unless it's a box</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: a tent (a triangular prism)</h3>
+    <svg id="b6" viewBox="0 0 340 230" role="img" aria-label="A triangular prism"></svg>
+    <div class="ctl"><label for="b6b">Base</label><input id="b6b" type="range" min="2" max="8" value="6"><output id="b6bo"></output></div>
+    <div class="ctl"><label for="b6h">Height</label><input id="b6h" type="range" min="2" max="8" value="4"><output id="b6ho"></output></div>
+    <div class="ctl"><label for="b6L">Length</label><input id="b6L" type="range" min="2" max="12" value="8"><output id="b6Lo"></output></div>
+    <div class="read"><div>area of the triangle end<b id="b6a"></b></div><div>volume<b id="b6v"></b></div></div>
+    <p class="aside">Triangle area is ½ × base × height, the formula you already know. Then × length.</p>
+  </div>
+  <div class="card">
+    <h3>Use it: an L-shaped prism</h3>
+    <p>This is the end face of a 10 cm long step block. Use your area skills: split the L into two rectangles.</p>
+    <svg id="lsh" viewBox="0 0 340 210" role="img" aria-label="An L shape: 5 cm along the bottom, 4 cm up the left side, 2 cm up the right side, 2 cm across the top, with a step of 3 cm across and 2 cm up"></svg>
+    <p>Area of the L?</p>
+    <div class="ans"><input id="q5" type="text" inputmode="numeric" autocomplete="off" aria-label="Area"><span>cm²</span><button class="btn" type="button" id="q5Go">Check</button></div>
+    <div class="why" id="q5Fb"></div>
+    <p style="margin-top:16px">Volume of the 10 cm long block?</p>
+    <div class="ans"><input id="q6" type="text" inputmode="numeric" autocomplete="off" aria-label="Volume"><span>cm³</span><button class="btn" type="button" id="q6Go">Check</button></div>
+    <div class="why" id="q6Fb"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> Any prism: <b>volume = area of the end face × length</b>. All your area skills (rectangles, triangles, L-shapes) now work for volume too.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Find three prisms in your house (a Toblerone, a pencil, a tin…). What shape is each end face?</p><textarea data-note="r6" placeholder="1. …"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 7 -->
+<section class="room" id="r7" data-title="Look back">
+  <p class="kick">Room 8 of 8</p>
+  <h2>Look back</h2>
+  <p>The whole story: <b>perimeter is a line → area is flat squares → volume is solid cubes → one layer is the area of the floor, so volume = area × height → that works for any prism.</b></p>
+  <div class="card">
+    <h3>Your first idea about the shoebox</h3>
+    <p id="firstGuess" class="aside" style="border:0;padding:0">You didn't write an idea in Room 1. That's fine.</p>
+    <p style="margin:8px 0 0">Were you right? What would you add now?</p>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Explain the difference between perimeter, area and volume to a grown-up, using one object (like a swimming pool).</p><textarea data-note="r7a" placeholder="The perimeter of the pool is…"></textarea><div class="saved"></div></div>
+  <div class="card note-card"><h3>Notebook</h3><p>What surprised you most? What do you want to explore next?</p><textarea data-note="r7b" placeholder="I was surprised…"></textarea><div class="saved"></div></div>
+  <div class="end"><button class="btn ghost" type="button" onclick="window.print()">Print my notebook</button></div>
+</section>
+
+<div class="nav"><button class="btn ghost" type="button" id="prev">← Back</button><button class="btn" type="button" id="next">Next room →</button></div>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY="ninja:maths:explore-volume:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+var $=function(id){return document.getElementById(id)};
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+
+/* ---------- rooms + navigation ---------- */
+var rooms=[].slice.call(document.querySelectorAll("section.room"));
+var done=load("done",{}),nav=$("rooms"),cur=0;
+rooms.forEach(function(r,i){
+  var b=document.createElement("button");b.type="button";b.textContent=i+1;
+  b.setAttribute("aria-label","Room "+(i+1)+": "+r.getAttribute("data-title"));
+  b.onclick=function(){go(i)};nav.appendChild(b);
+});
+function paint(){[].forEach.call(nav.children,function(b,i){b.setAttribute("aria-current",i===cur?"true":"false");b.classList.toggle("done",!!done[i])})}
+function go(i){
+  cur=Math.max(0,Math.min(rooms.length-1,i));
+  rooms.forEach(function(r,k){r.classList.toggle("on",k===cur)});
+  $("prev").style.visibility=cur===0?"hidden":"visible";
+  $("next").textContent=cur===rooms.length-1?"Finished ✓":"Next room →";
+  if(cur===rooms.length-1){var g=load("note:r0","");if(g)$("firstGuess").textContent="“"+g+"”"}
+  save("room",cur);paint();
+  nav.children[cur].scrollIntoView({block:"nearest",inline:"center"});
+  window.scrollTo(0,0);
+}
+$("prev").onclick=function(){go(cur-1)};
+$("next").onclick=function(){done[cur]=true;save("done",done);if(cur<rooms.length-1)go(cur+1);else paint()};
+
+/* ---------- predict-first questions ---------- */
+[].forEach.call(document.querySelectorAll(".opts[data-answer]"),function(o){
+  var ans=+o.getAttribute("data-answer"),why=o.nextElementSibling;
+  [].forEach.call(o.children,function(b,i){
+    b.onclick=function(){
+      [].forEach.call(o.children,function(x,k){x.disabled=true;if(k===ans)x.classList.add("right")});
+      if(i!==ans)b.classList.add("wrong");
+      why.innerHTML=(i===ans?"<b class='g'>Yes!</b> ":"<b class='r'>Good guess, but no.</b> ")+o.getAttribute("data-why");
+      why.classList.add("show");
+    };
+  });
+});
+
+/* ---------- notebook ---------- */
+[].forEach.call(document.querySelectorAll("textarea[data-note]"),function(t){
+  var k="note:"+t.getAttribute("data-note"),s=t.parentNode.querySelector(".saved"),timer;
+  t.value=load(k,"");
+  t.addEventListener("input",function(){clearTimeout(timer);timer=setTimeout(function(){save(k,t.value);s.textContent="Saved on this device"},400)});
+});
+
+/* ---------- number answers ---------- */
+function checker(inp,btn,fb,truth,explain){
+  function run(){
+    var v=parseFloat(String($(inp).value).trim()),el=$(fb);
+    if(isNaN(v)){el.innerHTML="<b class='r'>Type a number.</b>";el.classList.add("show");return}
+    var ok=v===truth;
+    el.innerHTML=(ok?"<b class='g'>Yes!</b> ":"<b class='r'>Not quite.</b> ")+explain(ok);el.classList.add("show");
+  }
+  $(btn).onclick=run;$(inp).addEventListener("keydown",function(e){if(e.key==="Enter")run()});
+}
+checker("q1","q1Go","q1Fb",60,function(ok){return "5 × 4 = 20 cubes in a layer, × 3 layers = 60 cm³."+(ok?"":" Find the floor first, then stack it.")});
+checker("q2","q2Go","q2Fb",140,function(ok){return "20 cubes in each layer, 7 layers: 20 × 7 = 140 cm³."+(ok?" You didn't even need the length and width.":"")});
+checker("q3","q3Go","q3Fb",4,function(ok){return "One layer is 4 × 3 = 12 cubes. How many layers of 12 make 48? 48 ÷ 12 = 4 cm."+(ok?"":"")});
+checker("q4","q4Go","q4Fb",60,function(ok){return "50 × 30 × 40 = 60 000 cm³. Divide by 1000: 60 litres."+(ok?" That's about 60 big juice cartons.":" Work out cm³ first, then divide by 1000.")});
+checker("q5","q5Go","q5Fb",14,function(ok){return "Split it: a bottom strip 5 × 2 = 10, plus the tall bit on the left 2 × 2 = 4. Total 14 cm². (Or: big rectangle 5 × 4 = 20, take away the missing corner 3 × 2 = 6.)"});
+checker("q6","q6Go","q6Fb",140,function(ok){return "End face 14 cm² × 10 cm long = 140 cm³."+(ok?" That's a GCSE-style question, done.":"")});
+
+/* ---------- drawing: isometric boxes ---------- */
+var C=Math.cos(Math.PI/6);
+function proj(p){return [(p[0]-p[1])*C,(p[0]+p[1])*0.5-p[2]]}
+function fit(pts,W,H,max,pad){
+  var xs=[],ys=[];pts.forEach(function(p){var q=proj(p);xs.push(q[0]);ys.push(q[1])});
+  var x0=Math.min.apply(0,xs),x1=Math.max.apply(0,xs),y0=Math.min.apply(0,ys),y1=Math.max.apply(0,ys);
+  pad=pad||14;var s=Math.min((W-2*pad)/(x1-x0||1),(H-2*pad)/(y1-y0||1),max||40);
+  return {s:s,ox:(W-(x1-x0)*s)/2-x0*s,oy:(H-(y1-y0)*s)/2-y0*s};
+}
+function poly(f,pts,fill,op,stroke){
+  return '<polygon points="'+pts.map(function(p){var q=proj(p);return (f.ox+q[0]*f.s).toFixed(1)+","+(f.oy+q[1]*f.s).toFixed(1)}).join(" ")+
+    '" fill="'+fill+'" fill-opacity="'+op+'" stroke="'+(stroke||css("--card"))+'" stroke-width="1.5" stroke-linejoin="round"/>';
+}
+/* a cuboid l × w × h of unit cubes; o.layers colours alternate layers */
+function box(f,l,w,h,o){
+  o=o||{};var a=css("--acc"),t=css("--two"),out="",X=o.x||0,Y=o.y||0;
+  function col(k){return o.layers&&k%2?t:a}
+  var g=o.grid===false;
+  if(g){
+    out+=poly(f,[[X+l,Y,0],[X+l,Y+w,0],[X+l,Y+w,h],[X+l,Y,h]],a,.95);
+    out+=poly(f,[[X,Y+w,0],[X+l,Y+w,0],[X+l,Y+w,h],[X,Y+w,h]],a,.7);
+    out+=poly(f,[[X,Y,h],[X+l,Y,h],[X+l,Y+w,h],[X,Y+w,h]],a,.4);
+    return out;
+  }
+  for(var j=0;j<w;j++)for(var k=0;k<h;k++)out+=poly(f,[[X+l,Y+j,k],[X+l,Y+j+1,k],[X+l,Y+j+1,k+1],[X+l,Y+j,k+1]],col(k),.95);
+  for(var i=0;i<l;i++)for(k=0;k<h;k++)out+=poly(f,[[X+i,Y+w,k],[X+i+1,Y+w,k],[X+i+1,Y+w,k+1],[X+i,Y+w,k+1]],col(k),.7);
+  for(i=0;i<l;i++)for(j=0;j<w;j++)out+=poly(f,[[X+i,Y+j,h],[X+i+1,Y+j,h],[X+i+1,Y+j+1,h],[X+i,Y+j+1,h]],col(h-1),.4);
+  return out;
+}
+function corners(l,w,h,x,y){x=x||0;y=y||0;return [[x,y,0],[x+l,y,0],[x,y+w,0],[x+l,y+w,0],[x,y,h],[x+l,y,h],[x,y+w,h],[x+l,y+w,h]]}
+function drawBox(id,l,w,h,o){var sv=$(id),vb=sv.viewBox.baseVal;var f=fit(corners(l,w,h),vb.width,vb.height,(o&&o.max)||38);sv.innerHTML=box(f,l,w,h,o);return f}
+function lbl(f,p,txt,anchor){var q=proj(p);return '<text x="'+(f.ox+q[0]*f.s).toFixed(1)+'" y="'+(f.oy+q[1]*f.s).toFixed(1)+'" font-size="14" text-anchor="'+(anchor||"middle")+'" style="fill:'+css("--mute")+'">'+txt+'</text>'}
+
+/* ---------- Room 1: sort the jobs ---------- */
+var JOBS=[["A fence all the way round a field",0],["Carpet for a bedroom floor",1],["Water to fill a fish tank",2],["Ribbon round the edge of a card",0],["Sand to fill a sandpit",2],["Paint for a wall",1]];
+var NAMES=["Perimeter","Area","Volume"],sorted=0;
+$("sort").innerHTML=JOBS.map(function(j,i){return '<div class="row"><p>'+j[0]+'</p><div class="pick" data-i="'+i+'">'+NAMES.map(function(n){return '<button class="opt" type="button">'+n+'</button>'}).join("")+'</div></div>'}).join("");
+[].forEach.call($("sort").querySelectorAll(".pick"),function(p){
+  var ans=JOBS[+p.getAttribute("data-i")][1];
+  [].forEach.call(p.children,function(b,i){b.onclick=function(){
+    if(i===ans){[].forEach.call(p.children,function(x){x.disabled=true});b.classList.add("right");sorted++;
+      $("sortMsg").innerHTML=sorted===JOBS.length?"<span class='g'>All six! Volume is the one where you <i>fill</i> something up.</span>":"";}
+    else{b.classList.add("wrong");b.disabled=true}
+  }});
+});
+
+/* ---------- Room 2: count the cubes ---------- */
+function r1(){
+  var l=+$("b1l").value,w=+$("b1w").value,h=+$("b1h").value,n=l*w*h;
+  $("b1lo").textContent=l;$("b1wo").textContent=w;$("b1ho").textContent=h;$("b1n").textContent=n;
+  drawBox("b1",l,w,h,{max:30});
+  $("b1msg").innerHTML=n===30?"<span class='g'>30 cubes! "+l+" × "+w+" × "+h+" = 30.</span> Can you find another?":"";
+}
+["b1l","b1w","b1h"].forEach(function(id){$(id).oninput=r1});
+
+/* ---------- Room 3: layers ---------- */
+var lay=2;
+function r2(){
+  var l=+$("b2l").value,w=+$("b2w").value;
+  $("b2lo").textContent=l;$("b2wo").textContent=w;
+  /* keep the picture the same scale as layers grow */
+  var sv=$("b2"),f=fit(corners(l,w,6),340,240,30);sv.innerHTML=box(f,l,w,lay,{layers:true});
+  $("b2a").textContent=l+" × "+w+" = "+l*w;$("b2h").textContent=lay;$("b2v").innerHTML=(l*w)+" × "+lay+" = "+(l*w*lay)+" cm³";
+  $("b2up").disabled=lay>=6;$("b2dn").disabled=lay<=1;
+}
+["b2l","b2w"].forEach(function(id){$(id).oninput=r2});
+$("b2up").onclick=function(){lay=Math.min(6,lay+1);r2()};
+$("b2dn").onclick=function(){lay=Math.max(1,lay-1);r2()};
+
+/* ---------- Room 4: fish tank (each grid cube is 10 cm, so 1 litre) ---------- */
+function r3(){
+  var l=+$("b3l").value,w=+$("b3w").value,h=+$("b3h").value,v=l*w*h;
+  $("b3lo").textContent=l+" cm";$("b3wo").textContent=w+" cm";$("b3ho").textContent=h+" cm";
+  var f=fit(corners(10,5,5),340,220,30),L=l/10,W=w/10,H=h/10;
+  $("b3").innerHTML=box(f,L,W,H)+lbl(f,[L,W,0],"each small cube = 10 × 10 × 10 cm = 1 litre","middle").replace('y="','dy="22" y="');
+  $("b3v").textContent=v.toLocaleString("en-GB")+" cm³";$("b3L").textContent=(v/1000).toLocaleString("en-GB")+" litres";
+}
+["b3l","b3w","b3h"].forEach(function(id){$(id).oninput=r3});
+
+/* ---------- Room 5: 24 cubes ---------- */
+var B24=[[24,1,1],[12,2,1],[8,3,1],[6,4,1],[6,2,2],[4,3,2]],b24=0;
+$("b4pick").innerHTML=B24.map(function(d){return '<button class="opt" type="button">'+d.join(" × ")+'</button>'}).join("");
+function r4(){
+  var d=B24[b24],l=d[0],w=d[1],h=d[2],s=2*(l*w+l*h+w*h);
+  [].forEach.call($("b4pick").children,function(b,i){b.setAttribute("aria-pressed",i===b24?"true":"false")});
+  drawBox("b4",l,w,h,{max:34});
+  $("b4v").textContent=l*w*h+" cm³";$("b4s").textContent=s+" cm²";
+  $("b4how").innerHTML="Paper: top and bottom 2 × "+l+" × "+w+" = "+2*l*w+", front and back 2 × "+l+" × "+h+" = "+2*l*h+", two ends 2 × "+w+" × "+h+" = "+2*w*h+". Total "+s+" cm².";
+}
+[].forEach.call($("b4pick").children,function(b,i){b.onclick=function(){b24=i;r4()}});
+
+/* ---------- Room 6: doubling ---------- */
+function r5(){
+  var k=+$("b5k").value,e=2*k;$("b5ko").textContent="× "+k;
+  /* big cube shifted along (1,-1,0), which is straight right on screen, so they sit side by side */
+  var D=5.5,f=fit(corners(2,2,2,0,0).concat(corners(6,6,6,D,-D)),340,230,40);
+  $("b5").innerHTML=box(f,2,2,2,{})+box(f,e,e,e,{x:D,y:-D})+lbl(f,[1,2,0],"2 cm").replace('y="','dy="20" y="')+lbl(f,[D+e/2,e-D,0],e+" cm").replace('y="','dy="20" y="');
+  function m(n){return k===1?"":" <b>(× "+n+")</b>"}
+  $("b5t").innerHTML="<tr><th></th><th>2 cm cube</th><th>"+e+" cm cube</th></tr>"+
+    "<tr><td>side</td><td>2 cm</td><td>"+e+" cm"+m(k)+"</td></tr>"+
+    "<tr><td>perimeter of a face</td><td>8 cm</td><td>"+4*e+" cm"+m(k)+"</td></tr>"+
+    "<tr><td>area of a face</td><td>4 cm²</td><td>"+e*e+" cm²"+m(k*k)+"</td></tr>"+
+    "<tr><td>volume</td><td>8 cm³</td><td>"+e*e*e+" cm³"+m(k*k*k)+"</td></tr>";
+}
+$("b5k").oninput=r5;
+
+/* ---------- Room 7: triangular prism ---------- */
+function r6(){
+  var b=+$("b6b").value,h=+$("b6h").value,L=+$("b6L").value,a=b*h/2,acc=css("--acc"),two=css("--two");
+  $("b6bo").textContent=b+" cm";$("b6ho").textContent=h+" cm";$("b6Lo").textContent=L+" cm";
+  /* end face in the y-z plane, stretched along x from 0 to L */
+  var tri=[[0,0],[b,0],[b/2,h]],pts=[];
+  tri.forEach(function(p){pts.push([0,p[0],p[1]],[L,p[0],p[1]])});
+  var f=fit(corners(12,8,8),340,230,30),out="";
+  for(var i=0;i<3;i++){var p=tri[i],q=tri[(i+1)%3],ny=q[1]-p[1],nz=p[0]-q[0];
+    if(ny+nz>0)out+=poly(f,[[0,p[0],p[1]],[L,p[0],p[1]],[L,q[0],q[1]],[0,q[0],q[1]]],acc,.55)}
+  out+=poly(f,tri.map(function(p){return [L,p[0],p[1]]}),two,.9);
+  out+=lbl(f,[L,b/2,0],"base "+b,"start").replace('y="','dx="10" dy="16" y="')+lbl(f,[L/2,b,0],"length "+L,"end").replace('y="','dx="-6" dy="16" y="');
+  $("b6").innerHTML=out;
+  $("b6a").textContent="½ × "+b+" × "+h+" = "+a+" cm²";$("b6v").textContent=a+" × "+L+" = "+(a*L)+" cm³";
+}
+["b6b","b6h","b6L"].forEach(function(id){$(id).oninput=r6});
+
+/* ---------- Room 7: L-shape (flat drawing) ---------- */
+function drawL(){
+  var u=34,ox=85,oy=180,acc=css("--acc"),mute=css("--mute");
+  function P(x,y){return (ox+x*u)+","+(oy-y*u)}
+  function T(x,y,t,a){return '<text x="'+(ox+x*u)+'" y="'+(oy-y*u)+'" font-size="15" text-anchor="'+(a||"middle")+'" style="fill:'+mute+'">'+t+'</text>'}
+  $("lsh").innerHTML='<polygon points="'+[P(0,0),P(5,0),P(5,2),P(2,2),P(2,4),P(0,4)].join(" ")+'" fill="'+acc+'" fill-opacity=".35" stroke="'+acc+'" stroke-width="3" stroke-linejoin="round"/>'+
+    T(2.5,-0.6,"5 cm")+T(-0.2,2,"4 cm","end")+T(5.2,1,"2 cm","start")+T(1,4.2,"2 cm")+T(3.5,2.2,"3 cm")+T(2.2,3,"2 cm","start");
+}
+
+function all(){drawBox("b0",4,3,2,{layers:false,max:30});r1();r2();r3();r4();r5();r6();drawL()}
+all();
+if(window.matchMedia)window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",all);
+go(+load("room",0)||0);
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

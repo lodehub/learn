@@ -71,6 +71,15 @@
       "topic": "Algebra"
     },
     {
+      "title": "How much space? Volume from scratch",
+      "path": "maths/explore-volume/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "strand": "explore",
+      "topic": "Area and shape"
+    },
+    {
       "title": "Answer it the way the question asks",
       "path": "english/answer-it-right/",
       "type": "html",
