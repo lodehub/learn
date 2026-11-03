@@ -76,6 +76,8 @@ Privacy: slugs and labels only, never real names, schools or personal data. Comm
 - **Archive** toggle: `"status": "archived"` hides finished work without moving files (URLs and saved progress keep working). Grouped by year, then `topic`. Older items were archived to keep the latest two per subject for ember, ninja and bingo.
 - **This week** box: manifest top-level `"currentWeek": N`; items tagged `"week": N` show at the top with a tick each. Optional `"checkin"` path adds the half-term check-in link. Currently only ember uses it (`currentWeek: 3`).
 - **Back button** on every tool via `back.js` (needed when installed as an app).
+- **Offline and slow wifi** (`<slug>/sw.js`, one identical copy per child, cache `learn-v2`): pages and data wait at most 3 s for the network, then use the saved copy. After install, every current tool in the manifest (page, scripts, styles and the JSON its engine loads) is saved in the background, so it opens offline without being visited first. When changing it, edit one copy and copy it to the other three; bump `CACHE` only if old caches must be thrown away.
+- **Fonts are self-hosted** in `assets/fonts/` (latin + latin-ext woff2 and one CSS per font set). Never link fonts.googleapis.com: it slows the first paint, fails offline and leaks visits to Google. To add a font, download it the same way and link `assets/fonts/<name>.css`.
 - **Explore strand** style: rooms at the child's own pace, "predict first" before each reveal, an interactive, a "Big idea" box, a notebook prompt saved on the device. No scores.
 
 ## Content by learner
@@ -110,7 +112,7 @@ Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squ
 ### Heeler (adult / fluent speaker)
 - French **Phrase Lab**: 12 weeks of everyday structures, rebuilt around real situations in Madagascar (audio removed).
 - French **Verb Dials** (Language Lab level 4).
-- French **Role-play: work in Madagascar** (`french-roleplay-madagascar.json`): arriving, first day at the hospital, teaching nurse anaesthetists (skills, debrief, theatre supervision, a quiet trainee), a planning meeting, a conference talk and networking.
+- French **Role-play: work in Madagascar** (`french-roleplay-madagascar.json`, 31 scenes): arriving and daily life (airport, taxi, guesthouse, market and pharmacy, SIM and mobile money, a meal with colleagues, falling ill), teaching nurse anaesthetists (skills, debriefs, theatre supervision, a quiet trainee, pre-op, spinal, WHO checklist, anaphylaxis and PPH drills, paediatric laryngospasm and doses, recovery handover, feedback), meetings and conferences (planning, director, curriculum, donated equipment, video call, conference talk, panel Q&A, networking, farewell speech).
 - **Mainland Mandarin**: for a fluent Malaysian Chinese speaker; habits to swap, conversation moves, themes.
 
 ## Language Lab (`assets/lab/`, see its README.md)
@@ -119,7 +121,7 @@ One engine for any language: a language-neutral `blueprint.json` (10 stages, ~11
 - `dials.js` + `french-dials.json`: Verb Dials (37 verbs, six tenses, transform / pick the form / 60-second speed round).
 - `mainland.js` + `mainland.json`: Mainland Mandarin.
 - `phrase-lab/`: Phrase Lab engine and content (`units.json`, `structures.json`).
-- `roleplay.js` + `french-roleplay.json` / `mandarin-roleplay.json`: **Role-play**, speaking practice with a partner. 10 scenes per language over levels 1–3 (shop, café or noodle bar, directions, school, hotel...): an English prompt, say it aloud, reveal the answer (Mandarin as characters with pinyin), self-mark. Printable scripts at `#/print`. On ember, ninja and bingo's French and Mandarin pages and the Languages hub. A wrapper can pick its own scenes file with `data-content` (Heeler's work-in-Madagascar set).
+- `roleplay.js` + `french-roleplay.json` / `mandarin-roleplay.json`: **Role-play**, speaking practice with a partner. 34 scenes per language over levels 1–3 (shops, café or noodle bar, market, train or taxi, party, zoo, doctor, family, town, routine, weather, festivals, directions, school, hotel, holidays, healthy living, technology, environment, future plans...): an English prompt, say it aloud, reveal the answer (Mandarin as characters with pinyin), self-mark. Printable scripts at `#/print`. On ember, ninja and bingo's French and Mandarin pages and the Languages hub. A wrapper can pick its own scenes file with `data-content` (Heeler's work-in-Madagascar set).
 
 **Languages hub** at `/languages/` (driven by `languages/languages.json`): every language tool in level order, pick a person, same saved progress as their own page.
 
@@ -140,7 +142,7 @@ Family Bible study: one book a month, about a chapter a week, five ~10-minute se
 - **New language**: copy `french.json`, translate, add a wrapper page.
 
 ## Git history in brief
-PRs #1–#30 all merged to `main`. Rough order: initial hub and conventions → first maths/science/English tools → Practise/Print split, printables shelf and archive (#2) → Ember Weeks 1–3 and history coaching (#3–#14) → Ninja/Bingo maths and English (#9–#16) → archive tidy-up (#17) → site restore after an accidental merge of an old local commit (#18) → Heeler added and language tools (#19–#23) → Languages hub (#24) → Bible Lab (#25) → Explore strand (#26–#28) → This-week box and half-term check-in (#29) → French and Mandarin Role-play (#30) → Heeler's work-in-Madagascar role-play (#31) → Ninja's volume Explore journey.
+PRs #1–#30 all merged to `main`. Rough order: initial hub and conventions → first maths/science/English tools → Practise/Print split, printables shelf and archive (#2) → Ember Weeks 1–3 and history coaching (#3–#14) → Ninja/Bingo maths and English (#9–#16) → archive tidy-up (#17) → site restore after an accidental merge of an old local commit (#18) → Heeler added and language tools (#19–#23) → Languages hub (#24) → Bible Lab (#25) → Explore strand (#26–#28) → This-week box and half-term check-in (#29) → French and Mandarin Role-play (#30) → Heeler's work-in-Madagascar role-play (#31) → Ninja's volume Explore journey → Ember's forces Explore → Role-play expanded (34 French, 34 Mandarin, 31 Madagascar scenes) → fonts self-hosted, service worker with 3 s timeout and offline warm-up.
 
 ## Working locally
 ```bash

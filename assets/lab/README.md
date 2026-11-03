@@ -54,9 +54,11 @@ Mandarin text is written as `汉字|pinyin` pairs separated by spaces; each pair
   Scene: `{ id, level, emoji, title, roles: {A, B}, setting, tip?, lines: [{ who: "A"|"B", cue, fr, en, hint?, alt?, surprise? }] }`
   (`surprise: true` marks an exam-style unexpected question). The spoken line can be `say` (or `fr`); any target-language
   string (`say`, `hint`, `alt`) written `汉字|pinyin` shows the characters with pinyin underneath.
-  Languages: `french-roleplay.json` and `mandarin-roleplay.json` (10 scenes each, the Mandarin ones set in China).
+  Languages: `french-roleplay.json` and `mandarin-roleplay.json` (34 scenes each, about 11 per level, the Mandarin ones set in China;
+  level 3 suits GCSE: opinions with reasons, past and future, a surprise question).
   A wrapper can load a different set with `data-content="<file name>"`: Heeler's page uses `french-roleplay-madagascar.json`
-  (10 adult work scenes: arriving at Ivato, first day at the hospital, teaching nurse anaesthetists, a simulation debrief,
-  supervising in theatre, a planning meeting, a conference talk with questions, networking). Add a scene
+  (31 adult scenes: arriving, taxi, guesthouse, market, SIM and mobile money, a meal, falling ill; teaching nurse anaesthetists:
+  skills, debriefs, theatre, pre-op, spinal, WHO checklist, anaphylaxis, PPH, laryngospasm, recovery, paediatric doses, feedback;
+  planning, director and supplier meetings, a curriculum meeting, conference talk and panel, networking, a farewell speech). Add a scene
   by adding an object to `scenes`; another language needs a `<lang>-roleplay.json` and `data-lang="<lang>"`.
   Pages: `<slug>/french/role-play/` and `<slug>/mandarin/role-play/` for ember, ninja and bingo, and both on the Languages hub.

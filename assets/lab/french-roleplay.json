@@ -267,6 +267,433 @@
         { "who": "A", "cue": "Say perfect, thank you very much!", "hint": "Parfait,",
           "fr": "Parfait, merci beaucoup !", "en": "Perfect, thank you very much!" }
       ]
+    },
+    {
+      "id": "icecream", "level": 1, "emoji": "🍦", "title": "At the ice-cream stand",
+      "roles": {"A": "You", "B": "Ice-cream seller"},
+      "setting": "A hot day at the beach in Brittany. You buy an ice cream.",
+      "tip": "Je voudrais (I would like) works in every shop. Une boule = one scoop, deux boules = two scoops.",
+      "lines": [
+        {"who": "B", "cue": "Say hello and ask what they would like.", "hint": "Bonjour !", "fr": "Bonjour ! Vous désirez ?", "en": "Hello! What would you like?", "alt": ["Bonjour ! Qu'est-ce que tu veux ?"]},
+        {"who": "A", "cue": "Say hello, you would like an ice cream, please.", "hint": "Bonjour, je voudrais", "fr": "Bonjour, je voudrais une glace, s'il vous plaît.", "en": "Hello, I would like an ice cream, please."},
+        {"who": "B", "cue": "Ask one scoop or two scoops?", "hint": "Une boule", "fr": "Une boule ou deux boules ?", "en": "One scoop or two scoops?"},
+        {"who": "A", "cue": "Say two scoops, please.", "hint": "Deux", "fr": "Deux boules, s'il vous plaît.", "en": "Two scoops, please."},
+        {"who": "B", "cue": "Ask which flavours.", "hint": "Quels", "fr": "Quels parfums ?", "en": "Which flavours?"},
+        {"who": "A", "cue": "Say chocolate and strawberry.", "hint": "Chocolat", "fr": "Chocolat et fraise.", "en": "Chocolate and strawberry.", "alt": ["Vanille et citron."]},
+        {"who": "B", "cue": "Ask: in a cone or a tub?", "hint": "En cornet", "fr": "En cornet ou en pot ?", "en": "In a cone or a tub?"},
+        {"who": "A", "cue": "Say in a cone. Ask how much it is.", "hint": "En cornet.", "fr": "En cornet. C'est combien ?", "en": "In a cone. How much is it?"},
+        {"who": "B", "cue": "Say it's four euros.", "hint": "C'est", "fr": "C'est quatre euros.", "en": "It's four euros."},
+        {"who": "A", "cue": "Say here you are, thank you, goodbye!", "hint": "Voilà,", "fr": "Voilà, merci, au revoir !", "en": "Here you are, thank you, goodbye!"}
+      ]
+    },
+    {
+      "id": "market", "level": 1, "emoji": "🍎", "title": "At the market",
+      "roles": {"A": "You", "B": "Stallholder"},
+      "setting": "A Saturday market in a French town. You buy fruit for a picnic.",
+      "tip": "Un kilo de, cinq cents grammes de: after a quantity, use de (not des).",
+      "lines": [
+        {"who": "B", "cue": "Say hello and ask what they'd like.", "hint": "Bonjour,", "fr": "Bonjour, qu'est-ce que vous voulez ?", "en": "Hello, what would you like?"},
+        {"who": "A", "cue": "Say hello, you'd like a kilo of apples, please.", "hint": "Bonjour, je voudrais un kilo", "fr": "Bonjour, je voudrais un kilo de pommes, s'il vous plaît.", "en": "Hello, I'd like a kilo of apples, please."},
+        {"who": "B", "cue": "Say here you are. Ask: anything else?", "hint": "Voilà.", "fr": "Voilà. Et avec ça ?", "en": "Here you are. Anything else?"},
+        {"who": "A", "cue": "Ask if they have any strawberries.", "hint": "Vous avez", "fr": "Vous avez des fraises ?", "en": "Do you have any strawberries?"},
+        {"who": "B", "cue": "Say yes, they're very good today.", "hint": "Oui,", "fr": "Oui, elles sont très bonnes aujourd'hui.", "en": "Yes, they're very good today."},
+        {"who": "A", "cue": "Say a punnet of strawberries and three bananas, please.", "hint": "Une barquette", "fr": "Une barquette de fraises et trois bananes, s'il vous plaît.", "en": "A punnet of strawberries and three bananas, please."},
+        {"who": "B", "cue": "Ask: is that all?", "hint": "C'est", "fr": "C'est tout ?", "en": "Is that all?"},
+        {"who": "A", "cue": "Say yes, that's all. Ask how much it comes to.", "hint": "Oui, c'est tout.", "fr": "Oui, c'est tout. Ça fait combien ?", "en": "Yes, that's all. How much does it come to?"},
+        {"who": "B", "cue": "Say that comes to six euros fifty.", "hint": "Ça fait", "fr": "Ça fait six euros cinquante.", "en": "That comes to six euros fifty."}
+      ]
+    },
+    {
+      "id": "train", "level": 1, "emoji": "🚆", "title": "Buying a train ticket",
+      "roles": {"A": "You", "B": "Ticket office"},
+      "setting": "At the station in Paris. You want to go to Rouen.",
+      "tip": "Un aller simple = a single, un aller-retour = a return. Le train part à... = the train leaves at...",
+      "lines": [
+        {"who": "B", "cue": "Say hello, and ask how you can help.", "hint": "Bonjour,", "fr": "Bonjour, je peux vous aider ?", "en": "Hello, can I help you?"},
+        {"who": "A", "cue": "Say hello, a ticket for Rouen, please.", "hint": "Bonjour, un billet pour", "fr": "Bonjour, un billet pour Rouen, s'il vous plaît.", "en": "Hello, a ticket to Rouen, please."},
+        {"who": "B", "cue": "Ask: a single or a return?", "hint": "Un aller simple", "fr": "Un aller simple ou un aller-retour ?", "en": "A single or a return?"},
+        {"who": "A", "cue": "Say a return, please.", "hint": "Un aller-retour,", "fr": "Un aller-retour, s'il vous plaît.", "en": "A return, please."},
+        {"who": "B", "cue": "Ask: first or second class?", "hint": "En première", "fr": "En première ou en deuxième classe ?", "en": "First or second class?"},
+        {"who": "A", "cue": "Say second class. Ask what time the train leaves.", "hint": "En deuxième classe.", "fr": "En deuxième classe. Le train part à quelle heure ?", "en": "Second class. What time does the train leave?"},
+        {"who": "B", "cue": "Say it leaves at ten fifteen, from platform four.", "hint": "Il part à", "fr": "Il part à dix heures quinze, du quai numéro quatre.", "en": "It leaves at ten fifteen, from platform four."},
+        {"who": "A", "cue": "Ask how much it is.", "hint": "C'est", "fr": "C'est combien ?", "en": "How much is it?"},
+        {"who": "B", "cue": "Say thirty euros, please.", "hint": "Trente", "fr": "Trente euros, s'il vous plaît.", "en": "Thirty euros, please."},
+        {"who": "A", "cue": "Say here you are, thank you very much.", "hint": "Voilà,", "fr": "Voilà, merci beaucoup.", "en": "Here you are, thank you very much."}
+      ]
+    },
+    {
+      "id": "birthday", "level": 1, "emoji": "🎂", "title": "At a birthday party",
+      "roles": {"A": "You", "B": "Birthday friend"},
+      "setting": "Your French friend is having a birthday party. You arrive with a present.",
+      "tip": "Joyeux anniversaire! = Happy birthday! Quel âge as-tu? asks someone's age. C'est pour toi = it's for you.",
+      "lines": [
+        {"who": "A", "cue": "Say hi and happy birthday!", "hint": "Salut !", "fr": "Salut ! Joyeux anniversaire !", "en": "Hi! Happy birthday!"},
+        {"who": "B", "cue": "Say thank you! Come in!", "hint": "Merci !", "fr": "Merci ! Entre !", "en": "Thank you! Come in!"},
+        {"who": "A", "cue": "Say here's a present, it's for you.", "hint": "Voici un cadeau,", "fr": "Voici un cadeau, c'est pour toi.", "en": "Here's a present, it's for you."},
+        {"who": "B", "cue": "Say oh, a book! Thanks, it's great!", "hint": "Oh, un livre !", "fr": "Oh, un livre ! Merci, c'est super !", "en": "Oh, a book! Thanks, it's great!"},
+        {"who": "A", "cue": "Ask how old they are today.", "hint": "Tu as quel", "fr": "Tu as quel âge aujourd'hui ?", "en": "How old are you today?", "alt": ["Quel âge as-tu aujourd'hui ?"]},
+        {"who": "B", "cue": "Say you're ten. Ask if they would like some cake.", "hint": "J'ai dix ans.", "fr": "J'ai dix ans. Tu veux du gâteau ?", "en": "I'm ten. Would you like some cake?"},
+        {"who": "A", "cue": "Say yes please! Ask what flavour it is.", "hint": "Oui, s'il te plaît !", "fr": "Oui, s'il te plaît ! C'est quel parfum ?", "en": "Yes please! What flavour is it?"},
+        {"who": "B", "cue": "Say it's a chocolate cake. Ask if they want a drink too.", "hint": "C'est un gâteau", "fr": "C'est un gâteau au chocolat. Tu veux une boisson aussi ?", "en": "It's a chocolate cake. Do you want a drink too?"},
+        {"who": "A", "cue": "Say an orange juice, please. Mmm, it's delicious!", "hint": "Un jus d'orange,", "fr": "Un jus d'orange, s'il te plaît. Mmm, c'est délicieux !", "en": "An orange juice, please. Mmm, it's delicious!"}
+      ]
+    },
+    {
+      "id": "family", "level": 2, "emoji": "🏠", "title": "My family and my house",
+      "roles": {"A": "You", "B": "Pen pal"},
+      "setting": "A video call with your new French pen pal. You talk about families and homes.",
+      "tip": "J'ai un frère / une sœur. Il s'appelle..., elle est... Dans ma maison, il y a... (in my house there is/are).",
+      "lines": [
+        {"who": "B", "cue": "Ask how many people there are in their family.", "hint": "Il y a combien", "fr": "Il y a combien de personnes dans ta famille ?", "en": "How many people are there in your family?"},
+        {"who": "A", "cue": "Say there are four people: your mum, your dad, your brother and you.", "hint": "Il y a quatre personnes :", "fr": "Il y a quatre personnes : ma mère, mon père, mon frère et moi.", "en": "There are four people: my mum, my dad, my brother and me."},
+        {"who": "B", "cue": "Ask what their brother is like.", "hint": "Il est comment,", "fr": "Il est comment, ton frère ?", "en": "What's your brother like?"},
+        {"who": "A", "cue": "Say he's tall and funny, but sometimes annoying.", "hint": "Il est grand", "fr": "Il est grand et drôle, mais parfois énervant.", "en": "He's tall and funny, but sometimes annoying."},
+        {"who": "B", "cue": "Ask if they live in a house or a flat.", "hint": "Tu habites", "fr": "Tu habites dans une maison ou dans un appartement ?", "en": "Do you live in a house or a flat?"},
+        {"who": "A", "cue": "Say you live in a house with a small garden.", "hint": "J'habite dans", "fr": "J'habite dans une maison avec un petit jardin.", "en": "I live in a house with a small garden."},
+        {"who": "B", "cue": "Ask what there is in their house.", "hint": "Qu'est-ce qu'il y a", "fr": "Qu'est-ce qu'il y a dans ta maison ?", "en": "What is there in your house?"},
+        {"who": "A", "cue": "Say there's a kitchen, a living room and three bedrooms.", "hint": "Il y a une cuisine,", "fr": "Il y a une cuisine, un salon et trois chambres.", "en": "There's a kitchen, a living room and three bedrooms."},
+        {"who": "B", "surprise": true, "cue": "Ask what their bedroom is like.", "hint": "Et ta chambre,", "fr": "Et ta chambre, elle est comment ?", "en": "And your bedroom, what's it like?"},
+        {"who": "A", "cue": "Say it's small but you love it, because it's blue and there are lots of books.", "hint": "Elle est petite, mais", "fr": "Elle est petite, mais je l'adore, parce qu'elle est bleue et il y a beaucoup de livres.", "en": "It's small but I love it, because it's blue and there are lots of books."}
+      ]
+    },
+    {
+      "id": "dinner", "level": 2, "emoji": "🍽️", "title": "Dinner with a French family",
+      "roles": {"A": "You", "B": "Host parent"},
+      "setting": "You're staying with a French family on an exchange. It's your first dinner.",
+      "tip": "J'aime / je n'aime pas + le, la, les. Je suis allergique à... C'était délicieux = it was delicious.",
+      "lines": [
+        {"who": "B", "cue": "Say dinner is ready! Ask if they're hungry.", "hint": "À table !", "fr": "À table ! Tu as faim ?", "en": "Dinner's ready! Are you hungry?"},
+        {"who": "A", "cue": "Say yes, you're very hungry!", "hint": "Oui, j'ai", "fr": "Oui, j'ai très faim !", "en": "Yes, I'm very hungry!"},
+        {"who": "B", "cue": "Say tonight there's chicken with chips. Ask if they like chicken.", "hint": "Ce soir, il y a", "fr": "Ce soir, il y a du poulet avec des frites. Tu aimes le poulet ?", "en": "Tonight there's chicken with chips. Do you like chicken?"},
+        {"who": "A", "cue": "Say yes, you love chicken.", "hint": "Oui, j'adore", "fr": "Oui, j'adore le poulet.", "en": "Yes, I love chicken."},
+        {"who": "B", "cue": "Ask if there's anything they don't eat.", "hint": "Il y a quelque chose", "fr": "Il y a quelque chose que tu ne manges pas ?", "en": "Is there anything you don't eat?"},
+        {"who": "A", "cue": "Say you don't like mushrooms, and you're allergic to nuts.", "hint": "Je n'aime pas", "fr": "Je n'aime pas les champignons, et je suis allergique aux noix.", "en": "I don't like mushrooms, and I'm allergic to nuts."},
+        {"who": "B", "cue": "Say no problem. Ask if they'd like some more.", "hint": "Pas de problème.", "fr": "Pas de problème. Tu en veux encore ?", "en": "No problem. Would you like some more?"},
+        {"who": "A", "cue": "Say yes please, it's delicious! Could you pass the bread, please?", "hint": "Oui, je veux bien,", "fr": "Oui, je veux bien, c'est délicieux ! Tu peux me passer le pain, s'il te plaît ?", "en": "Yes please, it's delicious! Could you pass me the bread, please?"},
+        {"who": "B", "surprise": true, "cue": "Ask what their favourite meal is at home.", "hint": "Chez toi,", "fr": "Chez toi, c'est quoi ton repas préféré ?", "en": "At home, what's your favourite meal?"},
+        {"who": "A", "cue": "Say your favourite meal is pizza because it's tasty and easy.", "hint": "Mon repas préféré, c'est", "fr": "Mon repas préféré, c'est la pizza parce que c'est bon et facile.", "en": "My favourite meal is pizza because it's tasty and easy."}
+      ]
+    },
+    {
+      "id": "doctor", "level": 2, "emoji": "🤒", "title": "At the doctor's",
+      "roles": {"A": "Patient", "B": "Doctor"},
+      "setting": "You feel ill on holiday in France and go to see a doctor.",
+      "tip": "J'ai mal à la tête / au ventre / à la gorge / aux dents. Depuis = since/for: depuis hier, depuis deux jours.",
+      "lines": [
+        {"who": "B", "cue": "Say hello, and ask what's wrong.", "hint": "Bonjour,", "fr": "Bonjour, qu'est-ce qui ne va pas ?", "en": "Hello, what's wrong?"},
+        {"who": "A", "cue": "Say you don't feel well. You have a headache.", "hint": "Je ne me sens pas", "fr": "Je ne me sens pas bien. J'ai mal à la tête.", "en": "I don't feel well. I have a headache."},
+        {"who": "B", "cue": "Ask since when.", "hint": "Depuis", "fr": "Depuis quand ?", "en": "Since when?"},
+        {"who": "A", "cue": "Say since yesterday.", "hint": "Depuis", "fr": "Depuis hier.", "en": "Since yesterday."},
+        {"who": "B", "cue": "Ask if they have a sore throat too.", "hint": "Vous avez mal", "fr": "Vous avez mal à la gorge aussi ?", "en": "Do you have a sore throat too?"},
+        {"who": "A", "cue": "Say yes, a bit, and you're very tired.", "hint": "Oui, un peu,", "fr": "Oui, un peu, et je suis très fatigué.", "en": "Yes, a bit, and I'm very tired.", "alt": ["Oui, un peu, et je suis très fatiguée."]},
+        {"who": "B", "cue": "Say you have a temperature: it's a cold. Ask if they have any allergies.", "hint": "Vous avez de la fièvre :", "fr": "Vous avez de la fièvre : c'est un rhume. Vous avez des allergies ?", "en": "You have a temperature: it's a cold. Do you have any allergies?"},
+        {"who": "A", "cue": "Say no, you have no allergies.", "hint": "Non, je n'ai pas", "fr": "Non, je n'ai pas d'allergies.", "en": "No, I don't have any allergies."},
+        {"who": "B", "cue": "Say take this medicine three times a day, drink lots of water and rest.", "hint": "Prenez ce médicament", "fr": "Prenez ce médicament trois fois par jour, buvez beaucoup d'eau et reposez-vous.", "en": "Take this medicine three times a day, drink lots of water and rest."},
+        {"who": "A", "cue": "Say thank you very much, doctor. Goodbye.", "hint": "Merci beaucoup,", "fr": "Merci beaucoup, docteur. Au revoir.", "en": "Thank you very much, doctor. Goodbye."}
+      ]
+    },
+    {
+      "id": "weather", "level": 2, "emoji": "🌦️", "title": "What's the weather like?",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You're making plans with a French friend for tomorrow, but the weather keeps changing.",
+      "tip": "Il fait beau / chaud / froid. Il pleut, il neige, il y a du vent. Quand il pleut, je... (when it rains, I...).",
+      "lines": [
+        {"who": "A", "cue": "Ask what the weather is like today.", "hint": "Quel temps", "fr": "Quel temps fait-il aujourd'hui ?", "en": "What's the weather like today?", "alt": ["Il fait quel temps aujourd'hui ?"]},
+        {"who": "B", "cue": "Say it's raining and it's cold.", "hint": "Il pleut", "fr": "Il pleut et il fait froid.", "en": "It's raining and it's cold."},
+        {"who": "A", "cue": "Ask what they do when it rains.", "hint": "Qu'est-ce que tu fais", "fr": "Qu'est-ce que tu fais quand il pleut ?", "en": "What do you do when it rains?"},
+        {"who": "B", "cue": "Say when it rains, you play video games or you read.", "hint": "Quand il pleut,", "fr": "Quand il pleut, je joue aux jeux vidéo ou je lis.", "en": "When it rains, I play video games or I read."},
+        {"who": "A", "cue": "Say you prefer it when it's sunny, because you can go out.", "hint": "Moi, je préfère", "fr": "Moi, je préfère quand il fait beau, parce que je peux sortir.", "en": "I prefer it when it's sunny, because I can go out."},
+        {"who": "B", "cue": "Say good news: tomorrow it's going to be sunny!", "hint": "Bonne nouvelle :", "fr": "Bonne nouvelle : demain, il va faire beau !", "en": "Good news: tomorrow it's going to be sunny!"},
+        {"who": "A", "cue": "Say great! Suggest going to the park together.", "hint": "Super !", "fr": "Super ! On va au parc ensemble ?", "en": "Great! Shall we go to the park together?"},
+        {"who": "B", "surprise": true, "cue": "Ask what season they like best, and why.", "hint": "Quelle est", "fr": "Quelle est ta saison préférée ? Pourquoi ?", "en": "What's your favourite season? Why?"},
+        {"who": "A", "cue": "Say summer, because it's hot and there's no school.", "hint": "L'été, parce que", "fr": "L'été, parce qu'il fait chaud et il n'y a pas d'école.", "en": "Summer, because it's hot and there's no school.", "alt": ["L'hiver, parce que j'adore la neige."]}
+      ]
+    },
+    {
+      "id": "holiday", "level": 3, "emoji": "🏖️", "title": "Last summer's holiday",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "Back at school in September. You and a friend talk about your summer holidays.",
+      "tip": "Je suis allé(e), j'ai visité, j'ai nagé. C'était... = it was... Next year: l'année prochaine, je vais...",
+      "lines": [
+        {"who": "B", "cue": "Ask where they went on holiday this summer.", "hint": "Où es-tu", "fr": "Où es-tu allé en vacances cet été ?", "en": "Where did you go on holiday this summer?", "alt": ["Tu es allé où en vacances cet été ?"]},
+        {"who": "A", "cue": "Say you went to Spain with your family.", "hint": "Je suis allé", "fr": "Je suis allé en Espagne avec ma famille.", "en": "I went to Spain with my family.", "alt": ["Je suis allée en Espagne avec ma famille."]},
+        {"who": "B", "cue": "Ask how they travelled.", "hint": "Tu as voyagé", "fr": "Tu as voyagé comment ?", "en": "How did you travel?"},
+        {"who": "A", "cue": "Say you took the plane, and it was quick.", "hint": "J'ai pris", "fr": "J'ai pris l'avion, et c'était rapide.", "en": "I took the plane, and it was quick."},
+        {"who": "B", "cue": "Ask what they did there.", "hint": "Qu'est-ce que tu as", "fr": "Qu'est-ce que tu as fait là-bas ?", "en": "What did you do there?"},
+        {"who": "A", "cue": "Say you swam in the sea every day and you visited an old castle.", "hint": "J'ai nagé", "fr": "J'ai nagé dans la mer tous les jours et j'ai visité un vieux château.", "en": "I swam in the sea every day and I visited an old castle."},
+        {"who": "B", "cue": "Ask what it was like.", "hint": "C'était", "fr": "C'était comment ?", "en": "What was it like?"},
+        {"who": "A", "cue": "Say it was brilliant because it was hot, but the food was too spicy for you.", "hint": "C'était génial parce qu'il", "fr": "C'était génial parce qu'il faisait chaud, mais la nourriture était trop épicée pour moi.", "en": "It was brilliant because it was hot, but the food was too spicy for me."},
+        {"who": "B", "surprise": true, "cue": "Ask where they're going to go next year.", "hint": "Et l'année prochaine,", "fr": "Et l'année prochaine, où est-ce que tu vas aller ?", "en": "And next year, where are you going to go?"},
+        {"who": "A", "cue": "Say next year you're going to go to France, because you want to practise your French.", "hint": "L'année prochaine, je vais", "fr": "L'année prochaine, je vais aller en France, parce que je veux pratiquer mon français.", "en": "Next year I'm going to go to France, because I want to practise my French."}
+      ]
+    },
+    {
+      "id": "healthy", "level": 3, "emoji": "🥗", "title": "A healthy lifestyle",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "A class discussion in pairs: are you healthy? What could you do better?",
+      "tip": "Pour être en forme, il faut... (to be healthy you must...). Je devrais = I should. Habits: d'habitude, je...",
+      "lines": [
+        {"who": "B", "cue": "Ask if they think they're healthy.", "hint": "Tu penses que", "fr": "Tu penses que tu es en bonne santé ?", "en": "Do you think you're healthy?"},
+        {"who": "A", "cue": "Say yes, quite, because you do sport three times a week.", "hint": "Oui, assez, parce que", "fr": "Oui, assez, parce que je fais du sport trois fois par semaine.", "en": "Yes, quite, because I do sport three times a week."},
+        {"who": "B", "cue": "Ask what they usually eat for breakfast.", "hint": "D'habitude, qu'est-ce que", "fr": "D'habitude, qu'est-ce que tu manges au petit-déjeuner ?", "en": "What do you usually eat for breakfast?"},
+        {"who": "A", "cue": "Say usually you eat cereal and a banana, and you drink a glass of milk.", "hint": "D'habitude, je mange", "fr": "D'habitude, je mange des céréales et une banane, et je bois un verre de lait.", "en": "Usually I eat cereal and a banana, and I drink a glass of milk."},
+        {"who": "B", "cue": "Say that's good. Ask if they have any bad habits.", "hint": "C'est bien.", "fr": "C'est bien. Tu as des mauvaises habitudes ?", "en": "That's good. Do you have any bad habits?"},
+        {"who": "A", "cue": "Say yes: you eat too many sweets and you go to bed too late.", "hint": "Oui : je mange trop", "fr": "Oui : je mange trop de bonbons et je me couche trop tard.", "en": "Yes: I eat too many sweets and I go to bed too late."},
+        {"who": "B", "cue": "Ask what they should do to be healthier.", "hint": "Qu'est-ce que tu devrais", "fr": "Qu'est-ce que tu devrais faire pour être en meilleure santé ?", "en": "What should you do to be healthier?"},
+        {"who": "A", "cue": "Say you should sleep more and eat more fruit and vegetables.", "hint": "Je devrais", "fr": "Je devrais dormir plus et manger plus de fruits et de légumes.", "en": "I should sleep more and eat more fruit and vegetables."},
+        {"who": "B", "surprise": true, "cue": "Ask what they did last week to stay in shape.", "hint": "La semaine dernière,", "fr": "La semaine dernière, qu'est-ce que tu as fait pour rester en forme ?", "en": "Last week, what did you do to stay in shape?"},
+        {"who": "A", "cue": "Say last week you went swimming and you walked to school every day.", "hint": "La semaine dernière, je suis allé", "fr": "La semaine dernière, je suis allé à la piscine et je suis allé à l'école à pied tous les jours.", "en": "Last week I went swimming and I walked to school every day.", "alt": ["La semaine dernière, je suis allée à la piscine et je suis allée à l'école à pied tous les jours."]}
+      ]
+    },
+    {
+      "id": "future", "level": 3, "emoji": "🚀", "title": "Future plans and jobs",
+      "roles": {"A": "You", "B": "Careers adviser"},
+      "setting": "A careers chat at school with the French assistant. What do you want to do later?",
+      "tip": "Je voudrais devenir... (I'd like to become), j'aimerais travailler... No article with jobs: je voudrais être médecin.",
+      "lines": [
+        {"who": "B", "cue": "Ask what they would like to do later on.", "hint": "Qu'est-ce que tu voudrais", "fr": "Qu'est-ce que tu voudrais faire plus tard ?", "en": "What would you like to do later on?"},
+        {"who": "A", "cue": "Say you'd like to become a vet.", "hint": "Je voudrais devenir", "fr": "Je voudrais devenir vétérinaire.", "en": "I'd like to become a vet.", "alt": ["J'aimerais être vétérinaire."]},
+        {"who": "B", "cue": "Ask why.", "hint": "Pourquoi", "fr": "Pourquoi ?", "en": "Why?"},
+        {"who": "A", "cue": "Say because you love animals and you want to help them.", "hint": "Parce que j'adore", "fr": "Parce que j'adore les animaux et je veux les aider.", "en": "Because I love animals and I want to help them."},
+        {"who": "B", "cue": "Ask which subjects they're good at.", "hint": "Tu es fort en", "fr": "Tu es fort en quelles matières ?", "en": "Which subjects are you good at?", "alt": ["Tu es forte en quelles matières ?"]},
+        {"who": "A", "cue": "Say you're good at science, but maths is hard for you.", "hint": "Je suis fort en", "fr": "Je suis fort en sciences, mais les maths, c'est difficile pour moi.", "en": "I'm good at science, but maths is hard for me.", "alt": ["Je suis forte en sciences, mais les maths, c'est difficile pour moi."]},
+        {"who": "B", "cue": "Ask if they want to go to university.", "hint": "Tu veux aller", "fr": "Tu veux aller à l'université ?", "en": "Do you want to go to university?", "alt": ["Tu veux aller à la fac ?"]},
+        {"who": "A", "cue": "Say yes, after sixth form you're going to study at university.", "hint": "Oui, après le lycée,", "fr": "Oui, après le lycée, je vais étudier à l'université.", "en": "Yes, after sixth form I'm going to study at university."},
+        {"who": "B", "surprise": true, "cue": "Ask if they'd like to work abroad one day.", "hint": "Tu aimerais", "fr": "Tu aimerais travailler à l'étranger un jour ?", "en": "Would you like to work abroad one day?"},
+        {"who": "A", "cue": "Say yes, you'd like to work in Africa because you'd like to see wild animals.", "hint": "Oui, j'aimerais travailler", "fr": "Oui, j'aimerais travailler en Afrique parce que je voudrais voir des animaux sauvages.", "en": "Yes, I'd like to work in Africa because I'd like to see wild animals."}
+      ]
+    },
+    {
+      "id": "restaurant", "level": 3, "emoji": "🍝", "title": "A problem at the restaurant",
+      "roles": {"A": "Customer", "B": "Waiter"},
+      "setting": "You're eating out in France. Your order arrives, but something isn't right.",
+      "tip": "Excusez-moi, il y a un problème. J'ai commandé... (I ordered). Polite: est-ce que vous pourriez... (could you...).",
+      "lines": [
+        {"who": "B", "cue": "Say here's your meal. Enjoy!", "hint": "Voici", "fr": "Voici votre plat. Bon appétit !", "en": "Here's your meal. Enjoy!"},
+        {"who": "A", "cue": "Say excuse me, there's a problem.", "hint": "Excusez-moi,", "fr": "Excusez-moi, il y a un problème.", "en": "Excuse me, there's a problem."},
+        {"who": "B", "cue": "Ask what's the matter.", "hint": "Qu'est-ce qui", "fr": "Qu'est-ce qui se passe ?", "en": "What's the matter?"},
+        {"who": "A", "cue": "Say you ordered fish, but this is steak.", "hint": "J'ai commandé", "fr": "J'ai commandé du poisson, mais ça, c'est un steak.", "en": "I ordered fish, but this is a steak."},
+        {"who": "B", "cue": "Say oh, you're very sorry. You'll bring the fish straight away.", "hint": "Oh, je suis", "fr": "Oh, je suis vraiment désolé. Je vous apporte le poisson tout de suite.", "en": "Oh, I'm really sorry. I'll bring you the fish straight away."},
+        {"who": "A", "cue": "Say thank you. Also, the glass is dirty. Could you bring another one?", "hint": "Merci. Et aussi,", "fr": "Merci. Et aussi, le verre est sale. Est-ce que vous pourriez en apporter un autre ?", "en": "Thank you. Also, the glass is dirty. Could you bring another one?"},
+        {"who": "B", "cue": "Say of course. Here's your fish and a clean glass.", "hint": "Bien sûr.", "fr": "Bien sûr. Voici votre poisson et un verre propre.", "en": "Of course. Here's your fish and a clean glass."},
+        {"who": "B", "surprise": true, "cue": "Later: ask how the meal was.", "hint": "Le repas,", "fr": "Le repas, c'était comment ?", "en": "How was the meal?"},
+        {"who": "A", "cue": "Say the fish was delicious, but the service was a bit slow.", "hint": "Le poisson était", "fr": "Le poisson était délicieux, mais le service était un peu lent.", "en": "The fish was delicious, but the service was a bit slow."},
+        {"who": "B", "cue": "Apologise again and offer a free dessert.", "hint": "Encore désolé.", "fr": "Encore désolé. Le dessert est offert !", "en": "Sorry again. The dessert is on the house!"}
+      ]
+    },
+    {
+      "id": "pool", "level": 1, "emoji": "🏊", "title": "At the swimming pool",
+      "roles": {"A": "You", "B": "Pool attendant"},
+      "setting": "You arrive at the swimming pool in Nice with your little brother.",
+      "tip": "Combien ça coûte ? works for any price. C'est où, ... ? asks where anything is.",
+      "lines": [
+        {"who": "B", "cue": "Say hello, and ask how you can help.", "hint": "Bonjour,", "fr": "Bonjour, je peux t'aider ?", "en": "Hello, can I help you?"},
+        {"who": "A", "cue": "Say hello, two tickets please: one child and one small child.", "hint": "Bonjour, deux tickets,", "fr": "Bonjour, deux tickets, s'il vous plaît : un enfant et un petit enfant.", "en": "Hello, two tickets please: one child and one small child."},
+        {"who": "B", "cue": "Ask how old the small child is.", "hint": "Il a quel", "fr": "Il a quel âge, le petit ?", "en": "How old is the little one?"},
+        {"who": "A", "cue": "Say he is five.", "hint": "Il a", "fr": "Il a cinq ans.", "en": "He's five."},
+        {"who": "B", "cue": "Say it's free for him. For you it's three euros.", "hint": "C'est gratuit", "fr": "C'est gratuit pour lui. Pour toi, c'est trois euros.", "en": "It's free for him. For you it's three euros."},
+        {"who": "A", "cue": "Say here you are. Ask where the changing rooms are.", "hint": "Voilà.", "fr": "Voilà. Les vestiaires, c'est où ?", "en": "Here you are. Where are the changing rooms?"},
+        {"who": "B", "cue": "Say they're on the left. A swimming cap is compulsory!", "hint": "C'est à gauche.", "fr": "C'est à gauche. Le bonnet de bain est obligatoire !", "en": "They're on the left. A swimming cap is compulsory!"},
+        {"who": "A", "cue": "Say oh no, you don't have a cap.", "hint": "Oh non,", "fr": "Oh non, je n'ai pas de bonnet.", "en": "Oh no, I don't have a cap."},
+        {"who": "B", "cue": "Say no problem, there are some for sale here: two euros.", "hint": "Pas de problème,", "fr": "Pas de problème, il y en a ici : deux euros.", "en": "No problem, there are some here: two euros."},
+        {"who": "A", "cue": "Say OK, a blue cap please. Thank you!", "hint": "D'accord, un bonnet", "fr": "D'accord, un bonnet bleu, s'il vous plaît. Merci !", "en": "OK, a blue cap please. Thank you!"}
+      ]
+    },
+    {
+      "id": "toyshop", "level": 1, "emoji": "🧸", "title": "At the toy shop",
+      "roles": {"A": "You", "B": "Shop assistant"},
+      "setting": "You're buying a present for your cousin's birthday in a toy shop in Lyon.",
+      "tip": "Colours go after the noun: un ballon rouge, une voiture verte. Add -e for a feminine noun.",
+      "lines": [
+        {"who": "B", "cue": "Say hello, and ask what they're looking for.", "hint": "Bonjour, tu cherches", "fr": "Bonjour, tu cherches quelque chose ?", "en": "Hello, are you looking for something?"},
+        {"who": "A", "cue": "Say yes, a present for your cousin.", "hint": "Oui, un cadeau", "fr": "Oui, un cadeau pour mon cousin.", "en": "Yes, a present for my cousin."},
+        {"who": "B", "cue": "Ask how old he is.", "hint": "Il a", "fr": "Il a quel âge ?", "en": "How old is he?"},
+        {"who": "A", "cue": "Say he's seven and he likes cars.", "hint": "Il a sept ans", "fr": "Il a sept ans et il aime les voitures.", "en": "He's seven and he likes cars."},
+        {"who": "B", "cue": "Say there's this red car or this green car.", "hint": "Il y a", "fr": "Il y a cette voiture rouge ou cette voiture verte.", "en": "There's this red car or this green car."},
+        {"who": "A", "cue": "Ask how much the red car is.", "hint": "C'est combien", "fr": "C'est combien, la voiture rouge ?", "en": "How much is the red car?"},
+        {"who": "B", "cue": "Say it's twelve euros.", "hint": "Elle coûte", "fr": "Elle coûte douze euros.", "en": "It costs twelve euros.", "alt": ["C'est douze euros."]},
+        {"who": "A", "cue": "Say great, you'll take it.", "hint": "Super, je", "fr": "Super, je la prends.", "en": "Great, I'll take it."},
+        {"who": "B", "cue": "Ask if they'd like wrapping paper.", "hint": "Tu veux", "fr": "Tu veux un papier cadeau ?", "en": "Would you like it gift-wrapped?"},
+        {"who": "A", "cue": "Say yes please, yellow paper. Thank you!", "hint": "Oui, s'il vous plaît,", "fr": "Oui, s'il vous plaît, du papier jaune. Merci !", "en": "Yes please, yellow paper. Thank you!"}
+      ]
+    },
+    {
+      "id": "zoo", "level": 1, "emoji": "🦁", "title": "At the zoo",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You're at the zoo with a French friend, looking at the animals.",
+      "tip": "Regarde ! (look!) and J'adore / Je n'aime pas get you a long way. Il est grand / petit / drôle.",
+      "lines": [
+        {"who": "A", "cue": "Say look, a lion!", "hint": "Regarde,", "fr": "Regarde, un lion !", "en": "Look, a lion!"},
+        {"who": "B", "cue": "Say wow, it's very big!", "hint": "Oh là là,", "fr": "Oh là là, il est très grand !", "en": "Wow, it's very big!"},
+        {"who": "A", "cue": "Ask what their favourite animal is.", "hint": "Quel est ton", "fr": "Quel est ton animal préféré ?", "en": "What's your favourite animal?"},
+        {"who": "B", "cue": "Say the monkey, because it's funny. Ask them back.", "hint": "Le singe,", "fr": "Le singe, parce qu'il est drôle. Et toi ?", "en": "The monkey, because it's funny. And you?"},
+        {"who": "A", "cue": "Say you love giraffes.", "hint": "Moi, j'adore", "fr": "Moi, j'adore les girafes.", "en": "I love giraffes."},
+        {"who": "B", "cue": "Ask if they like snakes.", "hint": "Tu aimes", "fr": "Tu aimes les serpents ?", "en": "Do you like snakes?"},
+        {"who": "A", "cue": "Say no, you don't like snakes: they're scary!", "hint": "Non, je n'aime pas", "fr": "Non, je n'aime pas les serpents : ils font peur !", "en": "No, I don't like snakes: they're scary!"},
+        {"who": "B", "cue": "Say you're hungry. Ask where the café is.", "hint": "J'ai faim.", "fr": "J'ai faim. Le café, c'est où ?", "en": "I'm hungry. Where's the café?"},
+        {"who": "A", "cue": "Say it's over there, next to the penguins.", "hint": "C'est là-bas,", "fr": "C'est là-bas, à côté des pingouins.", "en": "It's over there, next to the penguins.", "alt": ["C'est là-bas, à côté des manchots."]}
+      ]
+    },
+    {
+      "id": "phone", "level": 1, "emoji": "📞", "title": "Phoning a friend",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You phone a French friend to arrange to meet up.",
+      "tip": "Allô ? is only for the phone. Tu es libre ? (are you free?) and On se retrouve où ? (where shall we meet?) are the key questions.",
+      "lines": [
+        {"who": "B", "cue": "Answer the phone: hello?", "hint": "Allô", "fr": "Allô ?", "en": "Hello?"},
+        {"who": "A", "cue": "Say hi, it's you (Sam). Ask how they are.", "hint": "Salut, c'est", "fr": "Salut, c'est Sam ! Ça va ?", "en": "Hi, it's Sam! How are you?"},
+        {"who": "B", "cue": "Say fine thanks, and you?", "hint": "Ça va bien,", "fr": "Ça va bien, merci. Et toi ?", "en": "Fine thanks. And you?"},
+        {"who": "A", "cue": "Say fine. Ask if they're free on Saturday.", "hint": "Ça va.", "fr": "Ça va. Tu es libre samedi ?", "en": "Fine. Are you free on Saturday?"},
+        {"who": "B", "cue": "Say yes, why?", "hint": "Oui,", "fr": "Oui, pourquoi ?", "en": "Yes, why?"},
+        {"who": "A", "cue": "Ask if they want to go to the park.", "hint": "Tu veux aller", "fr": "Tu veux aller au parc ?", "en": "Do you want to go to the park?"},
+        {"who": "B", "cue": "Say yes, good idea! Ask what time.", "hint": "Oui, bonne idée !", "fr": "Oui, bonne idée ! À quelle heure ?", "en": "Yes, good idea! What time?"},
+        {"who": "A", "cue": "Say at two o'clock, in front of the library.", "hint": "À quatorze heures,", "fr": "À quatorze heures, devant la bibliothèque.", "en": "At two o'clock, in front of the library.", "alt": ["À deux heures, devant la bibliothèque."]},
+        {"who": "B", "cue": "Say OK, see you Saturday!", "hint": "D'accord,", "fr": "D'accord, à samedi !", "en": "OK, see you Saturday!"}
+      ]
+    },
+    {
+      "id": "routine", "level": 2, "emoji": "⏰", "title": "My daily routine",
+      "roles": {"A": "You", "B": "Exchange partner"},
+      "setting": "Your French exchange partner asks about a normal school day at your house.",
+      "tip": "Reflexive verbs: je me lève, je me douche, je m'habille, je me couche. Times: à sept heures et demie.",
+      "lines": [
+        {"who": "B", "cue": "Ask what time they get up on school days.", "hint": "Tu te lèves", "fr": "Tu te lèves à quelle heure pour l'école ?", "en": "What time do you get up for school?"},
+        {"who": "A", "cue": "Say you get up at seven o'clock.", "hint": "Je me lève", "fr": "Je me lève à sept heures.", "en": "I get up at seven o'clock."},
+        {"who": "B", "cue": "Ask what they eat for breakfast.", "hint": "Qu'est-ce que tu manges", "fr": "Qu'est-ce que tu manges au petit-déjeuner ?", "en": "What do you eat for breakfast?"},
+        {"who": "A", "cue": "Say you eat cereal and drink orange juice.", "hint": "Je mange", "fr": "Je mange des céréales et je bois du jus d'orange.", "en": "I eat cereal and drink orange juice."},
+        {"who": "B", "cue": "Ask how they get to school.", "hint": "Comment tu vas", "fr": "Comment tu vas à l'école ?", "en": "How do you get to school?"},
+        {"who": "A", "cue": "Say you go by bus, it takes twenty minutes.", "hint": "J'y vais", "fr": "J'y vais en bus, ça prend vingt minutes.", "en": "I go by bus, it takes twenty minutes.", "alt": ["Je prends le bus. C'est vingt minutes."]},
+        {"who": "B", "surprise": true, "cue": "Ask what they do after school.", "hint": "Et après l'école,", "fr": "Et après l'école, qu'est-ce que tu fais ?", "en": "And after school, what do you do?"},
+        {"who": "A", "cue": "Say first you do your homework, then you watch TV.", "hint": "D'abord, je fais", "fr": "D'abord, je fais mes devoirs, puis je regarde la télé.", "en": "First I do my homework, then I watch TV."},
+        {"who": "B", "cue": "Ask what time they go to bed.", "hint": "Tu te couches", "fr": "Tu te couches à quelle heure ?", "en": "What time do you go to bed?"},
+        {"who": "A", "cue": "Say at nine thirty, but at the weekend later.", "hint": "À neuf heures et demie,", "fr": "À neuf heures et demie, mais le week-end, plus tard.", "en": "At half past nine, but later at the weekend."}
+      ]
+    },
+    {
+      "id": "town", "level": 2, "emoji": "🏘️", "title": "My town",
+      "roles": {"A": "You", "B": "Penfriend"},
+      "setting": "On a video call, your French penfriend asks about where you live.",
+      "tip": "Il y a (there is) + un/une/des. Il n'y a pas de (there isn't any). Add an opinion: c'est calme, c'est animé.",
+      "lines": [
+        {"who": "B", "cue": "Ask where they live.", "hint": "Tu habites", "fr": "Tu habites où ?", "en": "Where do you live?"},
+        {"who": "A", "cue": "Say you live in a small town in the north of England.", "hint": "J'habite dans", "fr": "J'habite dans une petite ville dans le nord de l'Angleterre.", "en": "I live in a small town in the north of England."},
+        {"who": "B", "cue": "Ask what there is in their town.", "hint": "Qu'est-ce qu'il y a", "fr": "Qu'est-ce qu'il y a dans ta ville ?", "en": "What is there in your town?"},
+        {"who": "A", "cue": "Say there's a park, a swimming pool and lots of shops.", "hint": "Il y a un parc,", "fr": "Il y a un parc, une piscine et beaucoup de magasins.", "en": "There's a park, a swimming pool and lots of shops."},
+        {"who": "B", "cue": "Ask if there's a cinema.", "hint": "Il y a", "fr": "Il y a un cinéma ?", "en": "Is there a cinema?"},
+        {"who": "A", "cue": "Say no, there isn't a cinema, and that's a shame.", "hint": "Non, il n'y a pas", "fr": "Non, il n'y a pas de cinéma, et c'est dommage.", "en": "No, there isn't a cinema, and that's a shame."},
+        {"who": "B", "surprise": true, "cue": "Ask if they like living there, and why.", "hint": "Tu aimes", "fr": "Tu aimes habiter là ? Pourquoi ?", "en": "Do you like living there? Why?"},
+        {"who": "A", "cue": "Say yes, because it's quiet and your friends live nearby.", "hint": "Oui, parce que", "fr": "Oui, parce que c'est calme et mes amis habitent près de chez moi.", "en": "Yes, because it's quiet and my friends live near me."},
+        {"who": "A", "cue": "Ask them: and your town, what's it like?", "hint": "Et ta ville,", "fr": "Et ta ville, elle est comment ?", "en": "And your town, what's it like?"},
+        {"who": "B", "cue": "Say it's big and lively, there's a castle and a market.", "hint": "Elle est grande", "fr": "Elle est grande et animée. Il y a un château et un marché.", "en": "It's big and lively. There's a castle and a market."}
+      ]
+    },
+    {
+      "id": "sports", "level": 2, "emoji": "🎾", "title": "At the sports centre",
+      "roles": {"A": "You", "B": "Receptionist"},
+      "setting": "You want to book a tennis court at the sports centre for you and a friend.",
+      "tip": "Je voudrais réserver... is polite and works for anything. Times on the 24-hour clock: à seize heures.",
+      "lines": [
+        {"who": "B", "cue": "Say hello, and ask how you can help.", "hint": "Bonjour,", "fr": "Bonjour, je peux vous aider ?", "en": "Hello, can I help you?"},
+        {"who": "A", "cue": "Say you'd like to book a tennis court for tomorrow.", "hint": "Je voudrais réserver", "fr": "Je voudrais réserver un court de tennis pour demain.", "en": "I'd like to book a tennis court for tomorrow."},
+        {"who": "B", "cue": "Ask what time.", "hint": "À quelle", "fr": "À quelle heure ?", "en": "What time?"},
+        {"who": "A", "cue": "Say at four o'clock in the afternoon, for one hour.", "hint": "À seize heures,", "fr": "À seize heures, pour une heure.", "en": "At four in the afternoon, for one hour."},
+        {"who": "B", "cue": "Say sorry, it's full at four. There's a court free at five.", "hint": "Désolé, c'est complet", "fr": "Désolé, c'est complet à seize heures. Il y a un court libre à dix-sept heures.", "en": "Sorry, it's full at four. There's a court free at five."},
+        {"who": "A", "cue": "Say OK, five o'clock is fine. Ask how much it costs.", "hint": "D'accord, dix-sept heures,", "fr": "D'accord, dix-sept heures, c'est bien. Ça coûte combien ?", "en": "OK, five o'clock is fine. How much does it cost?"},
+        {"who": "B", "cue": "Say eight euros an hour. Ask if they have rackets.", "hint": "Huit euros", "fr": "Huit euros de l'heure. Vous avez des raquettes ?", "en": "Eight euros an hour. Do you have rackets?"},
+        {"who": "A", "cue": "Say no, you'd like to hire two rackets, please.", "hint": "Non, je voudrais louer", "fr": "Non, je voudrais louer deux raquettes, s'il vous plaît.", "en": "No, I'd like to hire two rackets, please."},
+        {"who": "B", "surprise": true, "cue": "Ask for their name for the booking.", "hint": "C'est à quel", "fr": "C'est à quel nom ?", "en": "What name is it under?"},
+        {"who": "A", "cue": "Say it's in the name of Smith: S-M-I-T-H.", "hint": "C'est au nom de", "fr": "C'est au nom de Smith : S-M-I-T-H.", "en": "It's under the name Smith: S-M-I-T-H."}
+      ]
+    },
+    {
+      "id": "friend", "level": 2, "emoji": "🧑‍🤝‍🧑", "title": "Describing a friend",
+      "roles": {"A": "You", "B": "Classmate"},
+      "setting": "A new French classmate asks about your best friend.",
+      "tip": "Il/Elle a les cheveux... (hair) and les yeux... (eyes). Il/Elle est + personality. Feminine adjectives add -e: grand → grande.",
+      "lines": [
+        {"who": "B", "cue": "Ask who their best friend is.", "hint": "C'est qui,", "fr": "C'est qui, ton meilleur ami ?", "en": "Who's your best friend?", "alt": ["Qui est ton meilleur ami ou ta meilleure amie ?"]},
+        {"who": "A", "cue": "Say your best friend is called Alex.", "hint": "Mon meilleur ami", "fr": "Mon meilleur ami s'appelle Alex.", "en": "My best friend is called Alex.", "alt": ["Ma meilleure amie s'appelle Alex."]},
+        {"who": "B", "cue": "Ask what he looks like.", "hint": "Il est", "fr": "Il est comment ?", "en": "What's he like?"},
+        {"who": "A", "cue": "Say he is tall, with short brown hair and blue eyes.", "hint": "Il est grand,", "fr": "Il est grand, il a les cheveux courts et bruns et les yeux bleus.", "en": "He's tall, he has short brown hair and blue eyes."},
+        {"who": "B", "cue": "Ask what his personality is like.", "hint": "Et de caractère,", "fr": "Et de caractère, il est comment ?", "en": "And what's his personality like?"},
+        {"who": "A", "cue": "Say he's funny and kind, but sometimes a bit lazy.", "hint": "Il est drôle", "fr": "Il est drôle et gentil, mais parfois un peu paresseux.", "en": "He's funny and kind, but sometimes a bit lazy."},
+        {"who": "B", "surprise": true, "cue": "Ask what they do together.", "hint": "Qu'est-ce que vous faites", "fr": "Qu'est-ce que vous faites ensemble ?", "en": "What do you do together?"},
+        {"who": "A", "cue": "Say you play video games and go to the park on Sundays.", "hint": "On joue", "fr": "On joue aux jeux vidéo et on va au parc le dimanche.", "en": "We play video games and go to the park on Sundays."},
+        {"who": "B", "cue": "Ask why he's a good friend.", "hint": "Pourquoi c'est", "fr": "Pourquoi c'est un bon ami ?", "en": "Why is he a good friend?"},
+        {"who": "A", "cue": "Say because he always listens to you.", "hint": "Parce qu'il", "fr": "Parce qu'il m'écoute toujours.", "en": "Because he always listens to me."}
+      ]
+    },
+    {
+      "id": "tech", "level": 3, "emoji": "📱", "title": "Technology and social media",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You and a French friend talk about phones and social media.",
+      "tip": "Give both sides: d'un côté... de l'autre côté. Opinions: je pense que, à mon avis. Add a past: hier, j'ai passé...",
+      "lines": [
+        {"who": "B", "cue": "Ask how much time they spend on their phone each day.", "hint": "Tu passes combien", "fr": "Tu passes combien de temps sur ton portable par jour ?", "en": "How much time do you spend on your phone each day?"},
+        {"who": "A", "cue": "Say about two hours, but yesterday you spent four hours on it.", "hint": "Environ deux heures,", "fr": "Environ deux heures, mais hier, j'ai passé quatre heures dessus.", "en": "About two hours, but yesterday I spent four hours on it."},
+        {"who": "B", "cue": "Ask what they use their phone for.", "hint": "Tu l'utilises", "fr": "Tu l'utilises pour quoi ?", "en": "What do you use it for?"},
+        {"who": "A", "cue": "Say to chat with friends, listen to music and watch videos.", "hint": "Pour discuter", "fr": "Pour discuter avec mes amis, écouter de la musique et regarder des vidéos.", "en": "To chat with my friends, listen to music and watch videos."},
+        {"who": "B", "cue": "Ask what they think of social media.", "hint": "Qu'est-ce que tu penses", "fr": "Qu'est-ce que tu penses des réseaux sociaux ?", "en": "What do you think of social media?"},
+        {"who": "A", "cue": "Say on one hand it's useful to stay in touch, on the other hand it can be dangerous.", "hint": "D'un côté,", "fr": "D'un côté, c'est utile pour rester en contact, mais de l'autre côté, ça peut être dangereux.", "en": "On one hand it's useful for staying in touch, but on the other hand it can be dangerous."},
+        {"who": "B", "cue": "Ask why it's dangerous.", "hint": "Pourquoi", "fr": "Pourquoi c'est dangereux ?", "en": "Why is it dangerous?"},
+        {"who": "A", "cue": "Say because there is cyberbullying and you don't always know who you're talking to.", "hint": "Parce qu'il y a", "fr": "Parce qu'il y a du harcèlement en ligne et on ne sait pas toujours à qui on parle.", "en": "Because there's cyberbullying and you don't always know who you're talking to."},
+        {"who": "B", "surprise": true, "cue": "Ask if they could live without a phone for a week.", "hint": "Tu pourrais", "fr": "Tu pourrais vivre sans portable pendant une semaine ?", "en": "Could you live without a phone for a week?"},
+        {"who": "A", "cue": "Say it would be difficult, but you'd read more and sleep better.", "hint": "Ce serait difficile,", "fr": "Ce serait difficile, mais je lirais plus et je dormirais mieux.", "en": "It would be difficult, but I would read more and sleep better."}
+      ]
+    },
+    {
+      "id": "environment", "level": 3, "emoji": "♻️", "title": "Protecting the environment",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "Your class is doing a project on the environment. You discuss it with a French friend.",
+      "tip": "Il faut + infinitive (we must). On devrait (we should). Past: j'ai recyclé. Future: je vais + infinitive.",
+      "lines": [
+        {"who": "B", "cue": "Ask what the biggest environmental problem is, in their opinion.", "hint": "À ton avis,", "fr": "À ton avis, quel est le plus grand problème pour l'environnement ?", "en": "In your opinion, what's the biggest problem for the environment?"},
+        {"who": "A", "cue": "Say in your opinion it's pollution, because of cars and plastic.", "hint": "À mon avis,", "fr": "À mon avis, c'est la pollution, à cause des voitures et du plastique.", "en": "In my opinion it's pollution, because of cars and plastic."},
+        {"who": "B", "cue": "Ask what they do at home to help.", "hint": "Qu'est-ce que tu fais", "fr": "Qu'est-ce que tu fais à la maison pour aider ?", "en": "What do you do at home to help?"},
+        {"who": "A", "cue": "Say you recycle paper and glass and you turn off the lights.", "hint": "Je recycle", "fr": "Je recycle le papier et le verre, et j'éteins les lumières.", "en": "I recycle paper and glass, and I turn off the lights."},
+        {"who": "B", "surprise": true, "cue": "Ask what they did last week for the environment.", "hint": "Et la semaine dernière,", "fr": "Et la semaine dernière, qu'est-ce que tu as fait pour l'environnement ?", "en": "And last week, what did you do for the environment?"},
+        {"who": "A", "cue": "Say you went to school by bike instead of by car.", "hint": "Je suis allé", "fr": "Je suis allé au collège à vélo au lieu d'y aller en voiture.", "en": "I went to school by bike instead of going by car.", "alt": ["Je suis allée au collège à vélo au lieu d'y aller en voiture."]},
+        {"who": "B", "cue": "Ask what we should do in the future.", "hint": "Qu'est-ce qu'il faut", "fr": "Qu'est-ce qu'il faut faire à l'avenir ?", "en": "What must we do in the future?"},
+        {"who": "A", "cue": "Say we should use public transport and buy less plastic.", "hint": "On devrait", "fr": "On devrait prendre les transports en commun et acheter moins de plastique.", "en": "We should use public transport and buy less plastic."},
+        {"who": "B", "cue": "Ask what they're going to do this month.", "hint": "Et toi, ce mois-ci,", "fr": "Et toi, ce mois-ci, qu'est-ce que tu vas faire ?", "en": "And you, this month, what are you going to do?"},
+        {"who": "A", "cue": "Say you're going to take a water bottle to school, because it's easy.", "hint": "Je vais apporter", "fr": "Je vais apporter une gourde au collège, parce que c'est facile.", "en": "I'm going to take a water bottle to school, because it's easy."}
+      ]
+    },
+    {
+      "id": "exchange", "level": 3, "emoji": "🚌", "title": "A school exchange trip",
+      "roles": {"A": "You", "B": "Host teacher"},
+      "setting": "You're at the end of a week's school exchange in France. A teacher asks how it went.",
+      "tip": "Past: j'ai visité, je suis allé(e), c'était + adjective. Future: la prochaine fois, je vais... Always add parce que.",
+      "lines": [
+        {"who": "B", "cue": "Ask how the week was.", "hint": "Alors, cette semaine,", "fr": "Alors, cette semaine, c'était comment ?", "en": "So, how was this week?"},
+        {"who": "A", "cue": "Say it was brilliant, because your host family was very kind.", "hint": "C'était génial,", "fr": "C'était génial, parce que ma famille d'accueil était très gentille.", "en": "It was brilliant, because my host family was very kind."},
+        {"who": "B", "cue": "Ask what they visited.", "hint": "Qu'est-ce que vous avez", "fr": "Qu'est-ce que vous avez visité ?", "en": "What did you visit?"},
+        {"who": "A", "cue": "Say on Tuesday you visited the castle and on Thursday you went to the beach.", "hint": "Mardi, on a visité", "fr": "Mardi, on a visité le château et jeudi, on est allés à la plage.", "en": "On Tuesday we visited the castle and on Thursday we went to the beach."},
+        {"who": "B", "cue": "Ask what the difference is between French and English schools.", "hint": "Quelle est la différence", "fr": "Quelle est la différence entre l'école en France et en Angleterre ?", "en": "What's the difference between school in France and in England?"},
+        {"who": "A", "cue": "Say in France the days are longer, but there's no uniform.", "hint": "En France,", "fr": "En France, les journées sont plus longues, mais il n'y a pas d'uniforme.", "en": "In France the days are longer, but there's no uniform."},
+        {"who": "B", "surprise": true, "cue": "Ask if they had a problem during the week.", "hint": "Tu as eu", "fr": "Tu as eu un problème pendant la semaine ?", "en": "Did you have a problem during the week?"},
+        {"who": "A", "cue": "Say yes, on the first day you got lost in the school, but a student helped you.", "hint": "Oui, le premier jour,", "fr": "Oui, le premier jour, je me suis perdu dans le collège, mais un élève m'a aidé.", "en": "Yes, on the first day I got lost in the school, but a pupil helped me.", "alt": ["Oui, le premier jour, je me suis perdue dans le collège, mais une élève m'a aidée."]},
+        {"who": "B", "cue": "Ask if they'd like to come back.", "hint": "Tu voudrais", "fr": "Tu voudrais revenir ?", "en": "Would you like to come back?"},
+        {"who": "A", "cue": "Say yes, next year you're going to come back for two weeks.", "hint": "Oui, l'année prochaine,", "fr": "Oui, l'année prochaine, je vais revenir pour deux semaines.", "en": "Yes, next year I'm going to come back for two weeks."}
+      ]
+    },
+    {
+      "id": "festivals", "level": 3, "emoji": "🎆", "title": "Festivals and celebrations",
+      "roles": {"A": "You", "B": "French friend"},
+      "setting": "Your French friend tells you about 14 July and asks about celebrations in the UK.",
+      "tip": "Le 14 juillet = the French national day (fireworks, parade). Past: on a mangé, on a ouvert les cadeaux. On fête = we celebrate.",
+      "lines": [
+        {"who": "B", "cue": "Ask if they know the 14th of July.", "hint": "Tu connais", "fr": "Tu connais le 14 juillet ?", "en": "Do you know about the 14th of July?"},
+        {"who": "A", "cue": "Say yes, it's the French national day. Ask what they did this year.", "hint": "Oui, c'est la fête", "fr": "Oui, c'est la fête nationale. Qu'est-ce que tu as fait cette année ?", "en": "Yes, it's the national day. What did you do this year?"},
+        {"who": "B", "cue": "Say you watched the fireworks with your family, and it was magnificent.", "hint": "J'ai regardé", "fr": "J'ai regardé le feu d'artifice avec ma famille, et c'était magnifique.", "en": "I watched the fireworks with my family, and it was magnificent."},
+        {"who": "B", "cue": "Ask what their favourite celebration is.", "hint": "Quelle est ta fête", "fr": "Quelle est ta fête préférée ?", "en": "What's your favourite celebration?"},
+        {"who": "A", "cue": "Say it's Christmas, because the whole family gets together.", "hint": "C'est Noël,", "fr": "C'est Noël, parce que toute la famille se retrouve.", "en": "It's Christmas, because the whole family gets together."},
+        {"who": "B", "cue": "Ask what they did last Christmas.", "hint": "Qu'est-ce que tu as fait", "fr": "Qu'est-ce que tu as fait à Noël l'année dernière ?", "en": "What did you do last Christmas?"},
+        {"who": "A", "cue": "Say you opened the presents in the morning, then you ate turkey with your grandparents.", "hint": "J'ai ouvert", "fr": "J'ai ouvert les cadeaux le matin, puis on a mangé de la dinde avec mes grands-parents.", "en": "I opened the presents in the morning, then we ate turkey with my grandparents."},
+        {"who": "B", "surprise": true, "cue": "Ask what Bonfire Night is.", "hint": "C'est quoi,", "fr": "C'est quoi, Bonfire Night ?", "en": "What's Bonfire Night?"},
+        {"who": "A", "cue": "Say it's a celebration in November: there are fireworks and a big fire.", "hint": "C'est une fête", "fr": "C'est une fête en novembre : il y a des feux d'artifice et un grand feu.", "en": "It's a celebration in November: there are fireworks and a big fire."},
+        {"who": "B", "cue": "Say next year you'd like to come and see it!", "hint": "L'année prochaine,", "fr": "L'année prochaine, je voudrais venir voir ça !", "en": "Next year I'd like to come and see it!"}
+      ]
     }
   ]
 }

@@ -272,6 +272,426 @@
         { "who": "A", "cue": "Say great, thank you!", "hint": "太好了|tài hǎo le",
           "say": "太好了，谢谢！|tài hǎo le, xièxie!", "en": "Great, thank you!" }
       ]
+    },
+    {
+      "id": "fruit", "level": 1, "emoji": "🍉", "title": "At the fruit stall",
+      "roles": {"A": "You", "B": "Stallholder"},
+      "setting": "You're at a street market in Shanghai buying fruit for a picnic.",
+      "tip": "多少钱？ (how much?) works for anything. Prices are in 块 (kuài), the everyday word for yuan. 一斤 is half a kilo.",
+      "lines": [
+        {"who": "B", "cue": "Say hello and ask what they'd like.", "hint": "你好！你要|nǐ hǎo! nǐ yào", "say": "你好！你要什么？|nǐ hǎo! nǐ yào shénme?", "en": "Hello! What would you like?"},
+        {"who": "A", "cue": "Say you want apples. Ask how much a jin is.", "hint": "我要苹果。|wǒ yào píngguǒ.", "say": "我要苹果。一斤多少钱？|wǒ yào píngguǒ. yì jīn duōshao qián?", "en": "I want apples. How much is a jin (half a kilo)?"},
+        {"who": "B", "cue": "Say eight kuai a jin.", "hint": "八块|bā kuài", "say": "八块一斤。|bā kuài yì jīn.", "en": "Eight kuai a jin."},
+        {"who": "A", "cue": "Say that's a bit expensive! Ask if it can be cheaper.", "hint": "有点儿贵！|yǒudiǎnr guì!", "say": "有点儿贵！便宜一点儿，好吗？|yǒudiǎnr guì! piányi yìdiǎnr, hǎo ma?", "en": "That's a bit expensive! A bit cheaper, OK?", "alt": ["太贵了！能便宜一点儿吗？|tài guì le! néng piányi yìdiǎnr ma?"]},
+        {"who": "B", "cue": "Say OK, seven kuai. Ask how many jin they want.", "hint": "好吧，七块。|hǎo ba, qī kuài.", "say": "好吧，七块。你要几斤？|hǎo ba, qī kuài. nǐ yào jǐ jīn?", "en": "All right, seven kuai. How many jin do you want?"},
+        {"who": "A", "cue": "Say two jin. And one watermelon.", "hint": "两斤。|liǎng jīn.", "say": "两斤。还要一个西瓜。|liǎng jīn. hái yào yí ge xīguā.", "en": "Two jin. And I also want a watermelon."},
+        {"who": "B", "cue": "Say the watermelon is ten kuai. Altogether twenty-four kuai.", "hint": "西瓜十块。|xīguā shí kuài.", "say": "西瓜十块。一共二十四块。|xīguā shí kuài. yígòng èrshísì kuài.", "en": "The watermelon is ten kuai. Twenty-four kuai altogether."},
+        {"who": "A", "cue": "Ask if you can pay with WeChat.", "hint": "可以用|kěyǐ yòng", "say": "可以用微信吗？|kěyǐ yòng Wēixìn ma?", "en": "Can I use WeChat (to pay)?"},
+        {"who": "B", "cue": "Say yes, scan here. Thank you!", "hint": "可以，扫这里。|kěyǐ, sǎo zhèlǐ.", "say": "可以，扫这里。谢谢！|kěyǐ, sǎo zhèlǐ. xièxie!", "en": "Yes, scan here. Thank you!"}
+      ]
+    },
+    {
+      "id": "bubbletea", "level": 1, "emoji": "🧋", "title": "At the bubble tea shop",
+      "roles": {"A": "You", "B": "Shop assistant"},
+      "setting": "You and your friend stop at a bubble tea shop after school in Chengdu.",
+      "tip": "大杯 (large) and 中杯 (medium). 冰 is ice, 少冰 is less ice, 不要冰 is no ice. 要 does the ordering.",
+      "lines": [
+        {"who": "B", "cue": "Say welcome! Ask what they'd like to drink.", "hint": "欢迎光临！|huānyíng guānglín!", "say": "欢迎光临！你想喝什么？|huānyíng guānglín! nǐ xiǎng hē shénme?", "en": "Welcome! What would you like to drink?"},
+        {"who": "A", "cue": "Say you'd like a pearl milk tea.", "hint": "我要一杯|wǒ yào yì bēi", "say": "我要一杯珍珠奶茶。|wǒ yào yì bēi zhēnzhū nǎichá.", "en": "I'd like a pearl milk tea."},
+        {"who": "B", "cue": "Ask: large or medium?", "hint": "大杯|dà bēi", "say": "大杯还是中杯？|dà bēi háishi zhōng bēi?", "en": "Large or medium?"},
+        {"who": "A", "cue": "Say large, please.", "hint": "大杯，|dà bēi,", "say": "大杯，谢谢。|dà bēi, xièxie.", "en": "Large, please."},
+        {"who": "B", "cue": "Ask if they want ice.", "hint": "要冰|yào bīng", "say": "要冰吗？|yào bīng ma?", "en": "Do you want ice?"},
+        {"who": "A", "cue": "Say less ice, and less sugar.", "hint": "少冰，|shǎo bīng,", "say": "少冰，少糖。|shǎo bīng, shǎo táng.", "en": "Less ice, less sugar.", "alt": ["不要冰，少糖。|bú yào bīng, shǎo táng."]},
+        {"who": "B", "cue": "Say fifteen kuai. Ask if they're drinking here or taking it away.", "hint": "十五块。|shíwǔ kuài.", "say": "十五块。在这儿喝还是带走？|shíwǔ kuài. zài zhèr hē háishi dài zǒu?", "en": "Fifteen kuai. Drinking here or taking away?"},
+        {"who": "A", "cue": "Say taking it away.", "hint": "带|dài", "say": "带走。|dài zǒu.", "en": "Taking it away."},
+        {"who": "B", "cue": "Say OK, please wait a moment.", "hint": "好的，请|hǎo de, qǐng", "say": "好的，请等一下。|hǎo de, qǐng děng yíxià.", "en": "OK, please wait a moment."}
+      ]
+    },
+    {
+      "id": "taxi", "level": 1, "emoji": "🚕", "title": "Taking a taxi",
+      "roles": {"A": "Passenger", "B": "Driver"},
+      "setting": "You get in a taxi in Beijing and need to go to the Summer Palace.",
+      "tip": "我去… (I'm going to…) is all you need. 到了 means we've arrived. 师傅 (shīfu) is the polite way to address a driver.",
+      "lines": [
+        {"who": "B", "cue": "Say hello! Ask where they're going.", "hint": "你好！去|nǐ hǎo! qù", "say": "你好！去哪儿？|nǐ hǎo! qù nǎr?", "en": "Hello! Where to?"},
+        {"who": "A", "cue": "Say: driver, I'm going to the Summer Palace.", "hint": "师傅，我去|shīfu, wǒ qù", "say": "师傅，我去颐和园。|shīfu, wǒ qù Yíhéyuán.", "en": "Driver, I'm going to the Summer Palace."},
+        {"who": "B", "cue": "Say OK. Ask them to fasten their seatbelt.", "hint": "好的。请|hǎo de. qǐng", "say": "好的。请系好安全带。|hǎo de. qǐng jì hǎo ānquándài.", "en": "OK. Please fasten your seatbelt."},
+        {"who": "A", "cue": "Ask if it's far.", "hint": "远|yuǎn", "say": "远吗？|yuǎn ma?", "en": "Is it far?"},
+        {"who": "B", "cue": "Say not very far, about twenty minutes.", "hint": "不太远，|bú tài yuǎn,", "say": "不太远，大概二十分钟。|bú tài yuǎn, dàgài èrshí fēnzhōng.", "en": "Not very far, about twenty minutes."},
+        {"who": "B", "cue": "Ask if they're on holiday in Beijing.", "hint": "你来北京|nǐ lái Běijīng", "say": "你来北京旅游吗？|nǐ lái Běijīng lǚyóu ma?", "en": "Are you in Beijing on holiday?"},
+        {"who": "A", "cue": "Say yes, Beijing is very fun!", "hint": "对，北京|duì, Běijīng", "say": "对，北京很好玩！|duì, Běijīng hěn hǎowán!", "en": "Yes, Beijing is great fun!"},
+        {"who": "B", "cue": "Say we've arrived. Thirty-five kuai.", "hint": "到了。|dào le.", "say": "到了。三十五块。|dào le. sānshíwǔ kuài.", "en": "We're here. Thirty-five kuai."},
+        {"who": "A", "cue": "Say here you are. Thank you, driver! Goodbye!", "hint": "给你。|gěi nǐ.", "say": "给你。谢谢师傅！再见！|gěi nǐ. xièxie shīfu! zàijiàn!", "en": "Here you are. Thank you, driver! Goodbye!"}
+      ]
+    },
+    {
+      "id": "birthday", "level": 1, "emoji": "🎂", "title": "At a birthday party",
+      "roles": {"A": "Guest", "B": "Birthday child"},
+      "setting": "Your Chinese friend has invited you to their birthday party at home.",
+      "tip": "生日快乐！ is happy birthday. 送给你 (this is for you) when you hand over a present. 好吃 (tasty) works for any food.",
+      "lines": [
+        {"who": "A", "cue": "Say happy birthday!", "hint": "生日|shēngrì", "say": "生日快乐！|shēngrì kuàilè!", "en": "Happy birthday!"},
+        {"who": "B", "cue": "Say thank you! Come in, please.", "hint": "谢谢！请|xièxie! qǐng", "say": "谢谢！请进！|xièxie! qǐng jìn!", "en": "Thank you! Please come in!"},
+        {"who": "A", "cue": "Say this present is for you.", "hint": "这是|zhè shì", "say": "这是礼物，送给你。|zhè shì lǐwù, sòng gěi nǐ.", "en": "This is a present for you."},
+        {"who": "B", "cue": "Say wow, thank you! You're too kind.", "hint": "哇，谢谢！|wā, xièxie!", "say": "哇，谢谢！你太客气了。|wā, xièxie! nǐ tài kèqi le.", "en": "Wow, thank you! You're too kind."},
+        {"who": "A", "cue": "Ask how old they are today.", "hint": "你今天|nǐ jīntiān", "say": "你今天几岁？|nǐ jīntiān jǐ suì?", "en": "How old are you today?"},
+        {"who": "B", "cue": "Say you're ten today. Ask if they want some cake.", "hint": "我今天十岁。|wǒ jīntiān shí suì.", "say": "我今天十岁。你要吃蛋糕吗？|wǒ jīntiān shí suì. nǐ yào chī dàngāo ma?", "en": "I'm ten today. Do you want some cake?"},
+        {"who": "A", "cue": "Say yes please! Chocolate cake is your favourite.", "hint": "要！我最|yào! wǒ zuì", "say": "要！我最喜欢巧克力蛋糕。|yào! wǒ zuì xǐhuan qiǎokèlì dàngāo.", "en": "Yes! I love chocolate cake most."},
+        {"who": "B", "cue": "Ask: is it tasty?", "hint": "好吃|hǎochī", "say": "好吃吗？|hǎochī ma?", "en": "Is it tasty?"},
+        {"who": "A", "cue": "Say very tasty! Let's sing a song together.", "hint": "很好吃！|hěn hǎochī!", "say": "很好吃！我们一起唱歌吧！|hěn hǎochī! wǒmen yìqǐ chàng gē ba!", "en": "Really tasty! Let's sing a song together!"}
+      ]
+    },
+    {
+      "id": "family", "level": 2, "emoji": "👨‍👩‍👧", "title": "My family and my home",
+      "roles": {"A": "You", "B": "Penfriend"},
+      "setting": "You're on a video call with your penfriend in Nanjing, talking about families and homes.",
+      "tip": "Count people with 口: 我家有四口人. 有 (have) and 没有 (don't have): never 不有. 和 joins nouns (and), not sentences.",
+      "lines": [
+        {"who": "B", "cue": "Ask how many people there are in their family.", "hint": "你家有|nǐ jiā yǒu", "say": "你家有几口人？|nǐ jiā yǒu jǐ kǒu rén?", "en": "How many people are there in your family?"},
+        {"who": "A", "cue": "Say four: dad, mum, an older brother and you.", "hint": "我家有四口人：|wǒ jiā yǒu sì kǒu rén:", "say": "我家有四口人：爸爸、妈妈、哥哥和我。|wǒ jiā yǒu sì kǒu rén: bàba, māma, gēge hé wǒ.", "en": "There are four people in my family: Dad, Mum, my older brother and me."},
+        {"who": "B", "cue": "Ask what their brother is like.", "hint": "你哥哥|nǐ gēge", "say": "你哥哥怎么样？|nǐ gēge zěnmeyàng?", "en": "What's your older brother like?"},
+        {"who": "A", "cue": "Say he's very tall and very funny, but a bit lazy.", "hint": "他很高，|tā hěn gāo,", "say": "他很高，也很有意思，但是有点儿懒。|tā hěn gāo, yě hěn yǒu yìsi, dànshì yǒudiǎnr lǎn.", "en": "He's very tall and very funny, but a bit lazy."},
+        {"who": "A", "cue": "Ask if they have brothers or sisters.", "hint": "你有|nǐ yǒu", "say": "你有兄弟姐妹吗？|nǐ yǒu xiōngdì jiěmèi ma?", "en": "Do you have any brothers or sisters?"},
+        {"who": "B", "cue": "Say no, you're an only child. Ask where they live.", "hint": "没有，我是|méiyǒu, wǒ shì", "say": "没有，我是独生子女。你住在哪儿？|méiyǒu, wǒ shì dúshēng zǐnǚ. nǐ zhù zài nǎr?", "en": "No, I'm an only child. Where do you live?"},
+        {"who": "A", "cue": "Say you live in a house in a small town.", "hint": "我住在|wǒ zhù zài", "say": "我住在一个小镇，我家是一座房子。|wǒ zhù zài yí ge xiǎo zhèn, wǒ jiā shì yí zuò fángzi.", "en": "I live in a small town; my home is a house."},
+        {"who": "B", "surprise": true, "cue": "Ask what their bedroom is like.", "hint": "你的房间|nǐ de fángjiān", "say": "你的房间怎么样？|nǐ de fángjiān zěnmeyàng?", "en": "What's your bedroom like?"},
+        {"who": "A", "cue": "Say it's not big, but very comfortable. There's a bed, a desk and lots of books.", "hint": "我的房间不大，|wǒ de fángjiān bú dà,", "say": "我的房间不大，但是很舒服。有一张床、一张书桌和很多书。|wǒ de fángjiān bú dà, dànshì hěn shūfu. yǒu yì zhāng chuáng, yì zhāng shūzhuō hé hěn duō shū.", "en": "My room isn't big, but it's very comfortable. There's a bed, a desk and lots of books."},
+        {"who": "B", "cue": "Say sounds great! Your home is a flat on the twentieth floor.", "hint": "真不错！|zhēn búcuò!", "say": "真不错！我家是公寓，在二十楼。|zhēn búcuò! wǒ jiā shì gōngyù, zài èrshí lóu.", "en": "Sounds great! My home is a flat on the twentieth floor."}
+      ]
+    },
+    {
+      "id": "dinner", "level": 2, "emoji": "🥢", "title": "Dinner with a host family",
+      "roles": {"A": "You", "B": "Host parent"},
+      "setting": "Your first evening with a host family in Xi'an. Dinner is on the table.",
+      "tip": "多吃一点儿！ (eat a bit more!) is what hosts say. 我吃饱了 means I'm full. 会 = can (a learned skill): 我会用筷子.",
+      "lines": [
+        {"who": "B", "cue": "Say dinner's ready! Ask if they can use chopsticks.", "hint": "吃饭了！|chī fàn le!", "say": "吃饭了！你会用筷子吗？|chī fàn le! nǐ huì yòng kuàizi ma?", "en": "Dinner's ready! Can you use chopsticks?"},
+        {"who": "A", "cue": "Say yes, a little, but not very well.", "hint": "会一点儿，|huì yìdiǎnr,", "say": "会一点儿，但是用得不太好。|huì yìdiǎnr, dànshì yòng de bú tài hǎo.", "en": "A little, but not very well."},
+        {"who": "B", "cue": "Say no problem. Ask if they like spicy food.", "hint": "没关系。|méi guānxi.", "say": "没关系。你喜欢吃辣的吗？|méi guānxi. nǐ xǐhuan chī là de ma?", "en": "No problem. Do you like spicy food?"},
+        {"who": "A", "cue": "Say you like it a bit spicy, but not too spicy.", "hint": "我喜欢|wǒ xǐhuan", "say": "我喜欢有点儿辣，但是不要太辣。|wǒ xǐhuan yǒudiǎnr là, dànshì bú yào tài là.", "en": "I like it a bit spicy, but not too spicy."},
+        {"who": "B", "cue": "Say try this: dumplings with tomato and egg.", "hint": "尝尝这个：|chángchang zhège:", "say": "尝尝这个：西红柿鸡蛋饺子。|chángchang zhège: xīhóngshì jīdàn jiǎozi.", "en": "Try this: tomato and egg dumplings."},
+        {"who": "A", "cue": "Say it's delicious! You really like dumplings.", "hint": "真好吃！|zhēn hǎochī!", "say": "真好吃！我很喜欢吃饺子。|zhēn hǎochī! wǒ hěn xǐhuan chī jiǎozi.", "en": "Delicious! I really like dumplings."},
+        {"who": "B", "surprise": true, "cue": "Ask if there's anything they don't eat.", "hint": "你有什么|nǐ yǒu shénme", "say": "你有什么不吃的吗？|nǐ yǒu shénme bù chī de ma?", "en": "Is there anything you don't eat?"},
+        {"who": "A", "cue": "Say you don't eat mushrooms, sorry.", "hint": "我不吃|wǒ bù chī", "say": "我不吃蘑菇，不好意思。|wǒ bù chī mógu, bù hǎoyìsi.", "en": "I don't eat mushrooms, sorry.", "alt": ["我什么都吃！|wǒ shénme dōu chī!"]},
+        {"who": "B", "cue": "Say that's fine. Eat a bit more!", "hint": "没事。|méi shì.", "say": "没事。多吃一点儿！|méi shì. duō chī yìdiǎnr!", "en": "That's fine. Eat a bit more!"},
+        {"who": "A", "cue": "Say thank you, you're full!", "hint": "谢谢，我|xièxie, wǒ", "say": "谢谢，我吃饱了！|xièxie, wǒ chī bǎo le!", "en": "Thank you, I'm full!"}
+      ]
+    },
+    {
+      "id": "doctor", "level": 2, "emoji": "🤒", "title": "At the doctor's",
+      "roles": {"A": "Patient", "B": "Doctor"},
+      "setting": "You feel ill on a school trip in Hangzhou, so your teacher takes you to a clinic.",
+      "tip": "Body part + 疼 says what hurts: 头疼 (headache), 肚子疼 (tummy ache). 从…开始 = since…. 要多喝水 (drink lots of water) is every Chinese doctor's advice.",
+      "lines": [
+        {"who": "B", "cue": "Ask what's wrong.", "hint": "你哪儿|nǐ nǎr", "say": "你哪儿不舒服？|nǐ nǎr bù shūfu?", "en": "What's wrong? (Where do you feel unwell?)"},
+        {"who": "A", "cue": "Say you've got a headache, and your throat hurts too.", "hint": "我头疼，|wǒ tóu téng,", "say": "我头疼，嗓子也疼。|wǒ tóu téng, sǎngzi yě téng.", "en": "I've got a headache, and my throat hurts too."},
+        {"who": "B", "cue": "Ask since when.", "hint": "从什么时候|cóng shénme shíhou", "say": "从什么时候开始的？|cóng shénme shíhou kāishǐ de?", "en": "Since when?"},
+        {"who": "A", "cue": "Say since yesterday evening.", "hint": "从昨天|cóng zuótiān", "say": "从昨天晚上开始的。|cóng zuótiān wǎnshang kāishǐ de.", "en": "Since yesterday evening."},
+        {"who": "B", "cue": "Ask if they have a temperature.", "hint": "你发烧|nǐ fāshāo", "say": "你发烧吗？|nǐ fāshāo ma?", "en": "Do you have a temperature?"},
+        {"who": "A", "cue": "Say you don't know. You feel very hot and very tired.", "hint": "我不知道。|wǒ bù zhīdào.", "say": "我不知道。我觉得很热，也很累。|wǒ bù zhīdào. wǒ juéde hěn rè, yě hěn lèi.", "en": "I don't know. I feel very hot and very tired."},
+        {"who": "B", "surprise": true, "cue": "Ask if they've eaten anything today.", "hint": "你今天|nǐ jīntiān", "say": "你今天吃东西了吗？|nǐ jīntiān chī dōngxi le ma?", "en": "Have you eaten anything today?"},
+        {"who": "A", "cue": "Say just a little rice porridge this morning.", "hint": "早上|zǎoshang", "say": "早上吃了一点儿粥。|zǎoshang chī le yìdiǎnr zhōu.", "en": "I had a little rice porridge this morning."},
+        {"who": "B", "cue": "Say it's a cold. Take this medicine three times a day, and drink lots of water.", "hint": "你感冒了。|nǐ gǎnmào le.", "say": "你感冒了。这个药一天吃三次，要多喝水。|nǐ gǎnmào le. zhège yào yì tiān chī sān cì, yào duō hē shuǐ.", "en": "You've got a cold. Take this medicine three times a day, and drink lots of water."},
+        {"who": "A", "cue": "Say OK, thank you, doctor!", "hint": "好的，谢谢|hǎo de, xièxie", "say": "好的，谢谢医生！|hǎo de, xièxie yīshēng!", "en": "OK, thank you, doctor!"}
+      ]
+    },
+    {
+      "id": "weather", "level": 2, "emoji": "🌦️", "title": "Weather and seasons",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You're chatting with a friend in Guangzhou about the weather here and at home.",
+      "tip": "天气怎么样？ asks about the weather. 下雨 (it rains), 下雪 (it snows). Compare with 比: 英国比广州冷.",
+      "lines": [
+        {"who": "A", "cue": "Ask what the weather is like today.", "hint": "今天天气|jīntiān tiānqì", "say": "今天天气怎么样？|jīntiān tiānqì zěnmeyàng?", "en": "What's the weather like today?"},
+        {"who": "B", "cue": "Say it's very hot, thirty-two degrees!", "hint": "今天很热，|jīntiān hěn rè,", "say": "今天很热，三十二度！|jīntiān hěn rè, sānshí'èr dù!", "en": "It's very hot today, thirty-two degrees!"},
+        {"who": "B", "cue": "Ask what the weather is like in Britain.", "hint": "英国的天气|Yīngguó de tiānqì", "say": "英国的天气怎么样？|Yīngguó de tiānqì zěnmeyàng?", "en": "What's the weather like in Britain?"},
+        {"who": "A", "cue": "Say it often rains, and it's colder than Guangzhou.", "hint": "常常下雨，|chángcháng xià yǔ,", "say": "常常下雨，而且比广州冷。|chángcháng xià yǔ, érqiě bǐ Guǎngzhōu lěng.", "en": "It often rains, and it's colder than Guangzhou."},
+        {"who": "B", "cue": "Ask which season they like best.", "hint": "你最喜欢|nǐ zuì xǐhuan", "say": "你最喜欢哪个季节？|nǐ zuì xǐhuan nǎge jìjié?", "en": "Which season do you like best?"},
+        {"who": "A", "cue": "Say winter, because it snows and you can make a snowman.", "hint": "冬天，因为|dōngtiān, yīnwèi", "say": "冬天，因为会下雪，可以堆雪人。|dōngtiān, yīnwèi huì xià xuě, kěyǐ duī xuěrén.", "en": "Winter, because it snows and you can make a snowman.", "alt": ["我最喜欢夏天，因为很暖和。|wǒ zuì xǐhuan xiàtiān, yīnwèi hěn nuǎnhuo."]},
+        {"who": "B", "cue": "Say it never snows in Guangzhou! You like spring best: not cold, not hot.", "hint": "广州从来不|Guǎngzhōu cónglái bú", "say": "广州从来不下雪！我最喜欢春天，不冷也不热。|Guǎngzhōu cónglái bú xià xuě! wǒ zuì xǐhuan chūntiān, bù lěng yě bú rè.", "en": "It never snows in Guangzhou! I like spring best: not cold and not hot."},
+        {"who": "B", "surprise": true, "cue": "Ask what the weather will be like tomorrow.", "hint": "明天|míngtiān", "say": "明天天气怎么样？|míngtiān tiānqì zěnmeyàng?", "en": "What will the weather be like tomorrow?"},
+        {"who": "A", "cue": "Say the forecast says it will rain tomorrow, so take an umbrella.", "hint": "天气预报说|tiānqì yùbào shuō", "say": "天气预报说明天会下雨，所以要带伞。|tiānqì yùbào shuō míngtiān huì xià yǔ, suǒyǐ yào dài sǎn.", "en": "The forecast says it'll rain tomorrow, so take an umbrella."}
+      ]
+    },
+    {
+      "id": "summer", "level": 3, "emoji": "🏖️", "title": "Last summer holiday",
+      "roles": {"A": "You", "B": "Classmate"},
+      "setting": "First day back at school. A classmate asks about your summer holiday.",
+      "tip": "了 after a verb says it happened: 我去了. 过 says you've ever done it: 你去过长城吗？ Time words come first: 七月我去了….",
+      "lines": [
+        {"who": "B", "cue": "Ask where they went in the summer holiday.", "hint": "暑假你|shǔjià nǐ", "say": "暑假你去哪儿了？|shǔjià nǐ qù nǎr le?", "en": "Where did you go in the summer holiday?"},
+        {"who": "A", "cue": "Say in July you went to Beijing with your family.", "hint": "七月我|qīyuè wǒ", "say": "七月我和家人去了北京。|qīyuè wǒ hé jiārén qù le Běijīng.", "en": "In July I went to Beijing with my family."},
+        {"who": "B", "cue": "Ask how they got there.", "hint": "你们怎么|nǐmen zěnme", "say": "你们怎么去的？|nǐmen zěnme qù de?", "en": "How did you get there?"},
+        {"who": "A", "cue": "Say you went by plane; it took ten hours.", "hint": "我们坐飞机|wǒmen zuò fēijī", "say": "我们坐飞机去的，坐了十个小时。|wǒmen zuò fēijī qù de, zuò le shí ge xiǎoshí.", "en": "We went by plane; it took ten hours."},
+        {"who": "B", "cue": "Ask if they've ever been to the Great Wall.", "hint": "你去过|nǐ qù guo", "say": "你去过长城吗？|nǐ qù guo Chángchéng ma?", "en": "Have you ever been to the Great Wall?"},
+        {"who": "A", "cue": "Say yes! You climbed the Great Wall, it was very tiring but very beautiful.", "hint": "去过！我们|qù guo! wǒmen", "say": "去过！我们爬了长城，很累，但是很漂亮。|qù guo! wǒmen pá le Chángchéng, hěn lèi, dànshì hěn piàoliang.", "en": "Yes! We climbed the Great Wall. It was tiring but beautiful."},
+        {"who": "B", "cue": "Ask what they ate.", "hint": "你吃了|nǐ chī le", "say": "你吃了什么？|nǐ chī le shénme?", "en": "What did you eat?"},
+        {"who": "A", "cue": "Say you ate Peking duck. It was the best thing you've ever eaten!", "hint": "我吃了北京烤鸭。|wǒ chī le Běijīng kǎoyā.", "say": "我吃了北京烤鸭。那是我吃过的最好吃的东西！|wǒ chī le Běijīng kǎoyā. nà shì wǒ chī guo de zuì hǎochī de dōngxi!", "en": "I ate Peking duck. It was the tastiest thing I've ever eaten!"},
+        {"who": "B", "surprise": true, "cue": "Ask if they would like to go back again, and why.", "hint": "你还想|nǐ hái xiǎng", "say": "你还想再去吗？为什么？|nǐ hái xiǎng zài qù ma? wèishénme?", "en": "Would you like to go again? Why?"},
+        {"who": "A", "cue": "Say yes, because next time you want to see the pandas in Chengdu.", "hint": "想，因为|xiǎng, yīnwèi", "say": "想，因为下次我想去成都看熊猫。|xiǎng, yīnwèi xià cì wǒ xiǎng qù Chéngdū kàn xióngmāo.", "en": "Yes, because next time I want to go to Chengdu to see the pandas."}
+      ]
+    },
+    {
+      "id": "healthy", "level": 3, "emoji": "🥦", "title": "A healthy lifestyle",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You and a friend compare habits for a school project on healthy living.",
+      "tip": "每天 (every day) and 一个星期…次 (…times a week) say how often. 应该 (should) and 不应该 give advice. 对身体好 = good for your health.",
+      "lines": [
+        {"who": "B", "cue": "Ask if they think they're healthy.", "hint": "你觉得|nǐ juéde", "say": "你觉得你健康吗？|nǐ juéde nǐ jiànkāng ma?", "en": "Do you think you're healthy?"},
+        {"who": "A", "cue": "Say fairly healthy: you eat fruit every day, but you don't sleep enough.", "hint": "还可以。我每天|hái kěyǐ. wǒ měitiān", "say": "还可以。我每天吃水果，但是睡觉睡得不够。|hái kěyǐ. wǒ měitiān chī shuǐguǒ, dànshì shuìjiào shuì de bú gòu.", "en": "Fairly healthy. I eat fruit every day, but I don't get enough sleep."},
+        {"who": "B", "cue": "Ask how often they do exercise.", "hint": "你多久|nǐ duōjiǔ", "say": "你多久运动一次？|nǐ duōjiǔ yùndòng yí cì?", "en": "How often do you exercise?"},
+        {"who": "A", "cue": "Say three times a week: you swim and play basketball.", "hint": "一个星期三次。|yí ge xīngqī sān cì.", "say": "一个星期三次。我游泳，也打篮球。|yí ge xīngqī sān cì. wǒ yóuyǒng, yě dǎ lánqiú.", "en": "Three times a week. I swim and I play basketball too."},
+        {"who": "B", "cue": "Say you eat too many sweets and drink a lot of cola.", "hint": "我吃太多|wǒ chī tài duō", "say": "我吃太多糖，也喝很多可乐。|wǒ chī tài duō táng, yě hē hěn duō kělè.", "en": "I eat too many sweets and drink a lot of cola."},
+        {"who": "A", "cue": "Say you shouldn't drink so much cola because it's bad for your health.", "hint": "你不应该|nǐ bù yīnggāi", "say": "你不应该喝那么多可乐，因为对身体不好。|nǐ bù yīnggāi hē nàme duō kělè, yīnwèi duì shēntǐ bù hǎo.", "en": "You shouldn't drink so much cola, because it's bad for your health."},
+        {"who": "B", "surprise": true, "cue": "Ask how much time they spend on their phone every day.", "hint": "你每天玩|nǐ měitiān wán", "say": "你每天玩手机玩多长时间？|nǐ měitiān wán shǒujī wán duō cháng shíjiān?", "en": "How long do you spend on your phone each day?"},
+        {"who": "A", "cue": "Say about two hours. It's too long, so you go to bed late.", "hint": "大概两个小时。|dàgài liǎng ge xiǎoshí.", "say": "大概两个小时。太长了，所以我睡得很晚。|dàgài liǎng ge xiǎoshí. tài cháng le, suǒyǐ wǒ shuì de hěn wǎn.", "en": "About two hours. It's too long, so I go to bed late."},
+        {"who": "B", "cue": "Ask what they'll do to be healthier in future.", "hint": "以后你会|yǐhòu nǐ huì", "say": "以后你会做什么让自己更健康？|yǐhòu nǐ huì zuò shénme ràng zìjǐ gèng jiànkāng?", "en": "What will you do in future to be healthier?"},
+        {"who": "A", "cue": "Say from now on you'll put your phone away at nine and sleep earlier.", "hint": "从现在开始，|cóng xiànzài kāishǐ,", "say": "从现在开始，我九点以后不玩手机，早点儿睡觉。|cóng xiànzài kāishǐ, wǒ jiǔ diǎn yǐhòu bù wán shǒujī, zǎo diǎnr shuìjiào.", "en": "From now on, no phone after nine, and I'll go to bed earlier."}
+      ]
+    },
+    {
+      "id": "future", "level": 3, "emoji": "🚀", "title": "Future plans and jobs",
+      "roles": {"A": "You", "B": "Teacher"},
+      "setting": "Your Chinese teacher asks about your plans after school, as in a speaking exam.",
+      "tip": "想 (would like to), 打算 (plan to), 希望 (hope to). Give a reason with 因为…所以…. 当 = to work as: 我想当医生.",
+      "lines": [
+        {"who": "B", "cue": "Ask what they want to do in the future.", "hint": "你将来想|nǐ jiānglái xiǎng", "say": "你将来想做什么？|nǐ jiānglái xiǎng zuò shénme?", "en": "What do you want to do in the future?"},
+        {"who": "A", "cue": "Say you'd like to be a vet.", "hint": "我想当|wǒ xiǎng dāng", "say": "我想当兽医。|wǒ xiǎng dāng shòuyī.", "en": "I'd like to be a vet.", "alt": ["我想当医生。|wǒ xiǎng dāng yīshēng.", "我想当工程师。|wǒ xiǎng dāng gōngchéngshī."]},
+        {"who": "B", "cue": "Ask why.", "hint": "为什么|wèi", "say": "为什么？|wèishénme?", "en": "Why?"},
+        {"who": "A", "cue": "Say because you love animals, and you want to help them.", "hint": "因为我很喜欢|yīnwèi wǒ hěn xǐhuan", "say": "因为我很喜欢动物，而且我想帮助它们。|yīnwèi wǒ hěn xǐhuan dòngwù, érqiě wǒ xiǎng bāngzhù tāmen.", "en": "Because I love animals, and I want to help them."},
+        {"who": "B", "cue": "Ask what they plan to do after secondary school.", "hint": "中学毕业以后，|zhōngxué bìyè yǐhòu,", "say": "中学毕业以后，你打算做什么？|zhōngxué bìyè yǐhòu, nǐ dǎsuàn zuò shénme?", "en": "What do you plan to do after secondary school?"},
+        {"who": "A", "cue": "Say you plan to go to university to study science.", "hint": "我打算|wǒ dǎsuàn", "say": "我打算上大学，学习科学。|wǒ dǎsuàn shàng dàxué, xuéxí kēxué.", "en": "I plan to go to university and study science."},
+        {"who": "B", "surprise": true, "cue": "Ask if they'd like to work abroad.", "hint": "你想在国外|nǐ xiǎng zài guówài", "say": "你想在国外工作吗？|nǐ xiǎng zài guówài gōngzuò ma?", "en": "Would you like to work abroad?"},
+        {"who": "A", "cue": "Say yes, maybe in China, because then you could speak Chinese every day.", "hint": "想，也许|xiǎng, yěxǔ", "say": "想，也许在中国，因为这样我可以每天说中文。|xiǎng, yěxǔ zài Zhōngguó, yīnwèi zhèyàng wǒ kěyǐ měitiān shuō Zhōngwén.", "en": "Yes, maybe in China, because then I could speak Chinese every day."},
+        {"who": "B", "cue": "Ask what's more important: money or an interesting job?", "hint": "钱和有意思的工作，|qián hé yǒu yìsi de gōngzuò,", "say": "钱和有意思的工作，哪个更重要？|qián hé yǒu yìsi de gōngzuò, nǎge gèng zhòngyào?", "en": "Money or an interesting job: which is more important?"},
+        {"who": "A", "cue": "Say you think an interesting job is more important, because you'll do it every day.", "hint": "我觉得|wǒ juéde", "say": "我觉得有意思的工作更重要，因为每天都要做。|wǒ juéde yǒu yìsi de gōngzuò gèng zhòngyào, yīnwèi měitiān dōu yào zuò.", "en": "I think an interesting job matters more, because you do it every day."}
+      ]
+    },
+    {
+      "id": "lost", "level": 3, "emoji": "🎒", "title": "Lost bag at the station",
+      "roles": {"A": "Traveller", "B": "Station staff"},
+      "setting": "You've just got off the high-speed train in Shanghai and realise you left your bag on board.",
+      "tip": "丢了 = lost. Describe things with 是…的: 是蓝色的 (it's blue). 把 moves the object forward: 我把包忘在车上了.",
+      "lines": [
+        {"who": "A", "cue": "Say excuse me, you've lost your bag. Ask if they can help you.", "hint": "不好意思，我的包|bù hǎoyìsi, wǒ de bāo", "say": "不好意思，我的包丢了。你能帮我吗？|bù hǎoyìsi, wǒ de bāo diū le. nǐ néng bāng wǒ ma?", "en": "Excuse me, I've lost my bag. Can you help me?"},
+        {"who": "B", "cue": "Say of course. Ask where they lost it.", "hint": "当然可以。|dāngrán kěyǐ.", "say": "当然可以。你在哪儿丢的？|dāngrán kěyǐ. nǐ zài nǎr diū de?", "en": "Of course. Where did you lose it?"},
+        {"who": "A", "cue": "Say you left it on the train, the one from Beijing.", "hint": "我把包忘在|wǒ bǎ bāo wàng zài", "say": "我把包忘在火车上了，从北京来的那趟。|wǒ bǎ bāo wàng zài huǒchē shang le, cóng Běijīng lái de nà tàng.", "en": "I left my bag on the train, the one from Beijing."},
+        {"who": "B", "cue": "Ask which carriage and which seat.", "hint": "几号车厢？|jǐ hào chēxiāng?", "say": "几号车厢？几号座位？|jǐ hào chēxiāng? jǐ hào zuòwèi?", "en": "Which carriage? Which seat?"},
+        {"who": "A", "cue": "Say carriage five, seat 12A.", "hint": "五号车厢，|wǔ hào chēxiāng,", "say": "五号车厢，十二A。|wǔ hào chēxiāng, shí'èr A.", "en": "Carriage five, seat 12A."},
+        {"who": "B", "cue": "Ask what the bag looks like.", "hint": "你的包|nǐ de bāo", "say": "你的包是什么样子的？|nǐ de bāo shì shénme yàngzi de?", "en": "What does your bag look like?"},
+        {"who": "A", "cue": "Say it's a small blue rucksack with a panda on it.", "hint": "是一个蓝色的|shì yí ge lánsè de", "say": "是一个蓝色的小背包，上面有一只熊猫。|shì yí ge lánsè de xiǎo bēibāo, shàngmian yǒu yì zhī xióngmāo.", "en": "It's a small blue rucksack with a panda on it."},
+        {"who": "B", "surprise": true, "cue": "Ask what was inside it.", "hint": "里面有|lǐmian yǒu", "say": "里面有什么？|lǐmian yǒu shénme?", "en": "What was inside?"},
+        {"who": "A", "cue": "Say your passport, a book and a water bottle.", "hint": "有我的护照、|yǒu wǒ de hùzhào,", "say": "有我的护照、一本书和一个水瓶。|yǒu wǒ de hùzhào, yì běn shū hé yí ge shuǐpíng.", "en": "My passport, a book and a water bottle."},
+        {"who": "B", "cue": "Say don't worry: you'll phone the train now. Ask them to wait here.", "hint": "别担心，|bié dānxīn,", "say": "别担心，我现在给火车打电话。请你在这儿等一下。|bié dānxīn, wǒ xiànzài gěi huǒchē dǎ diànhuà. qǐng nǐ zài zhèr děng yíxià.", "en": "Don't worry, I'll phone the train now. Please wait here a moment."}
+      ]
+    },
+    {
+      "id": "zoo", "level": 1, "emoji": "🐼", "title": "At the zoo",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You and a friend are at the zoo in Chengdu, looking for the pandas.",
+      "tip": "在哪儿？ (where is it?) works for anything. 好可爱！ (so cute!) is the most useful word at a zoo.",
+      "lines": [
+        {"who": "A", "cue": "Say you want to see the pandas.", "hint": "我想看|wǒ xiǎng kàn", "say": "我想看熊猫！|wǒ xiǎng kàn xióngmāo!", "en": "I want to see the pandas!"},
+        {"who": "B", "cue": "Say me too! Ask where the pandas are.", "hint": "我也是！|wǒ yě shì!", "say": "我也是！熊猫在哪儿？|wǒ yě shì! xióngmāo zài nǎr?", "en": "Me too! Where are the pandas?"},
+        {"who": "A", "cue": "Say they're over there, next to the monkeys.", "hint": "在那儿，|zài nàr,", "say": "在那儿，在猴子旁边。|zài nàr, zài hóuzi pángbiān.", "en": "Over there, next to the monkeys."},
+        {"who": "B", "cue": "Say look! There are three pandas!", "hint": "你看！|nǐ kàn!", "say": "你看！有三只熊猫！|nǐ kàn! yǒu sān zhī xióngmāo!", "en": "Look! There are three pandas!"},
+        {"who": "A", "cue": "Say they're so cute! Ask what they're eating.", "hint": "好可爱！|hǎo kě'ài!", "say": "好可爱！它们在吃什么？|hǎo kě'ài! tāmen zài chī shénme?", "en": "So cute! What are they eating?"},
+        {"who": "B", "cue": "Say they're eating bamboo.", "hint": "它们在吃|tāmen zài chī", "say": "它们在吃竹子。|tāmen zài chī zhúzi.", "en": "They're eating bamboo."},
+        {"who": "A", "cue": "Ask what their favourite animal is.", "hint": "你最喜欢|nǐ zuì xǐhuan", "say": "你最喜欢什么动物？|nǐ zuì xǐhuan shénme dòngwù?", "en": "What's your favourite animal?"},
+        {"who": "B", "cue": "Say you like tigers best. Ask them back.", "hint": "我最喜欢|wǒ zuì xǐhuan", "say": "我最喜欢老虎。你呢？|wǒ zuì xǐhuan lǎohǔ. nǐ ne?", "en": "I like tigers best. And you?"},
+        {"who": "A", "cue": "Say pandas, of course!", "hint": "当然是|dāngrán shì", "say": "当然是熊猫！|dāngrán shì xióngmāo!", "en": "Pandas, of course!"}
+      ]
+    },
+    {
+      "id": "stationery", "level": 1, "emoji": "✏️", "title": "At the stationery shop",
+      "roles": {"A": "You", "B": "Shopkeeper"},
+      "setting": "You need things for school at a little stationery shop near the school gate.",
+      "tip": "Measure words: 一支笔 (a pen), 一本本子 (a notebook), 一块橡皮 (a rubber). 一共 = altogether.",
+      "lines": [
+        {"who": "B", "cue": "Say hello, ask what they want to buy.", "hint": "你好，你要|nǐ hǎo, nǐ yào", "say": "你好，你要买什么？|nǐ hǎo, nǐ yào mǎi shénme?", "en": "Hello, what would you like to buy?"},
+        {"who": "A", "cue": "Say you want a pen and a notebook.", "hint": "我要一支笔|wǒ yào yì zhī bǐ", "say": "我要一支笔和一本本子。|wǒ yào yì zhī bǐ hé yì běn běnzi.", "en": "I want a pen and a notebook."},
+        {"who": "B", "cue": "Ask: what colour pen do you want?", "hint": "你要什么|nǐ yào shénme", "say": "你要什么颜色的笔？|nǐ yào shénme yánsè de bǐ?", "en": "What colour pen do you want?"},
+        {"who": "A", "cue": "Say blue. Ask if they have rubbers.", "hint": "蓝色的。|lánsè de.", "say": "蓝色的。有橡皮吗？|lánsè de. yǒu xiàngpí ma?", "en": "Blue. Do you have rubbers?"},
+        {"who": "B", "cue": "Say yes, there are lots. This one is a little cat.", "hint": "有，很多。|yǒu, hěn duō.", "say": "有，很多。这块是小猫。|yǒu, hěn duō. zhè kuài shì xiǎo māo.", "en": "Yes, lots. This one is a little cat."},
+        {"who": "A", "cue": "Say it's so cute, you want it. Ask how much altogether.", "hint": "好可爱，我要。|hǎo kě'ài, wǒ yào.", "say": "好可爱，我要。一共多少钱？|hǎo kě'ài, wǒ yào. yígòng duōshao qián?", "en": "So cute, I'll have it. How much altogether?"},
+        {"who": "B", "cue": "Say twelve kuai altogether.", "hint": "一共|yígòng", "say": "一共十二块。|yígòng shí'èr kuài.", "en": "Twelve kuai altogether."},
+        {"who": "A", "cue": "Say here you are (give the money).", "hint": "给你。|gěi nǐ.", "say": "给你。|gěi nǐ.", "en": "Here you are."},
+        {"who": "B", "cue": "Say thank you, goodbye!", "hint": "谢谢，|xièxie,", "say": "谢谢，再见！|xièxie, zàijiàn!", "en": "Thank you, goodbye!"}
+      ]
+    },
+    {
+      "id": "meetup", "level": 1, "emoji": "⏰", "title": "What time shall we meet?",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You phone a friend to meet up on Saturday.",
+      "tip": "Times: 两点 (two o'clock), 两点半 (half past two). Questions about time: 几点？ Days: 星期六 = Saturday.",
+      "lines": [
+        {"who": "A", "cue": "Say hello, ask if they're free on Saturday.", "hint": "喂，你星期六|wèi, nǐ xīngqīliù", "say": "喂，你星期六有空吗？|wèi, nǐ xīngqīliù yǒu kòng ma?", "en": "Hello, are you free on Saturday?"},
+        {"who": "B", "cue": "Say yes. Ask what you're going to do.", "hint": "有空。|yǒu kòng.", "say": "有空。我们做什么？|yǒu kòng. wǒmen zuò shénme?", "en": "Yes. What shall we do?"},
+        {"who": "A", "cue": "Say let's go to the cinema!", "hint": "我们去|wǒmen qù", "say": "我们去看电影吧！|wǒmen qù kàn diànyǐng ba!", "en": "Let's go and see a film!"},
+        {"who": "B", "cue": "Say good! Ask what time.", "hint": "好啊！|hǎo a!", "say": "好啊！几点？|hǎo a! jǐ diǎn?", "en": "Great! What time?"},
+        {"who": "A", "cue": "Say at two o'clock.", "hint": "两点|liǎng diǎn", "say": "两点，好吗？|liǎng diǎn, hǎo ma?", "en": "Two o'clock, OK?"},
+        {"who": "B", "cue": "Say two is too early. Suggest half past two.", "hint": "两点太早了。|liǎng diǎn tài zǎo le.", "say": "两点太早了。两点半吧。|liǎng diǎn tài zǎo le. liǎng diǎn bàn ba.", "en": "Two is too early. Let's say half past two."},
+        {"who": "A", "cue": "Say OK. Ask where to meet.", "hint": "好的。我们在哪儿|hǎo de. wǒmen zài nǎr", "say": "好的。我们在哪儿见？|hǎo de. wǒmen zài nǎr jiàn?", "en": "OK. Where shall we meet?"},
+        {"who": "B", "cue": "Say at the cinema door.", "hint": "在电影院|zài diànyǐngyuàn", "say": "在电影院门口。|zài diànyǐngyuàn ménkǒu.", "en": "At the cinema entrance."},
+        {"who": "A", "cue": "Say great, see you Saturday!", "hint": "太好了，|tài hǎo le,", "say": "太好了，星期六见！|tài hǎo le, xīngqīliù jiàn!", "en": "Great, see you on Saturday!"}
+      ]
+    },
+    {
+      "id": "park", "level": 1, "emoji": "🛝", "title": "At the park",
+      "roles": {"A": "You", "B": "Child at the park"},
+      "setting": "You're at a park in Shanghai and want to join a game of football.",
+      "tip": "可以…吗？ asks permission: 我可以玩吗？ (can I play?). 一起 = together.",
+      "lines": [
+        {"who": "A", "cue": "Say hello. Ask what they're playing.", "hint": "你好！你们在|nǐ hǎo! nǐmen zài", "say": "你好！你们在玩什么？|nǐ hǎo! nǐmen zài wán shénme?", "en": "Hello! What are you playing?"},
+        {"who": "B", "cue": "Say you're playing football.", "hint": "我们在|wǒmen zài", "say": "我们在踢足球。|wǒmen zài tī zúqiú.", "en": "We're playing football."},
+        {"who": "A", "cue": "Ask if you can play too.", "hint": "我可以|wǒ kěyǐ", "say": "我可以一起玩吗？|wǒ kěyǐ yìqǐ wán ma?", "en": "Can I play too?"},
+        {"who": "B", "cue": "Say of course! Ask if they can play well.", "hint": "当然可以！|dāngrán kěyǐ!", "say": "当然可以！你踢得好吗？|dāngrán kěyǐ! nǐ tī de hǎo ma?", "en": "Of course! Are you good?"},
+        {"who": "A", "cue": "Say just OK.", "hint": "还|hái", "say": "还可以。|hái kěyǐ.", "en": "I'm OK."},
+        {"who": "B", "cue": "Say you're on our team. Stand over there.", "hint": "你在我们队。|nǐ zài wǒmen duì.", "say": "你在我们队。你站那儿。|nǐ zài wǒmen duì. nǐ zhàn nàr.", "en": "You're on our team. Stand over there."},
+        {"who": "A", "cue": "Say OK! Pass the ball to me!", "hint": "好！|hǎo!", "say": "好！传给我！|hǎo! chuán gěi wǒ!", "en": "OK! Pass it to me!"},
+        {"who": "B", "cue": "Say goal! You're great!", "hint": "进了！|jìn le!", "say": "进了！你真棒！|jìn le! nǐ zhēn bàng!", "en": "Goal! You're brilliant!"},
+        {"who": "A", "cue": "Say thanks! Let's play again tomorrow.", "hint": "谢谢！|xièxie!", "say": "谢谢！我们明天再玩吧！|xièxie! wǒmen míngtiān zài wán ba!", "en": "Thanks! Let's play again tomorrow!"}
+      ]
+    },
+    {
+      "id": "routine", "level": 2, "emoji": "🌅", "title": "My daily routine",
+      "roles": {"A": "You", "B": "Penfriend"},
+      "setting": "A video call with your penfriend in Beijing, comparing your school days.",
+      "tip": "Time goes before the verb: 我七点起床 (I get up at seven). 然后 = then, 以后 = after.",
+      "lines": [
+        {"who": "B", "cue": "Ask what time they get up every day.", "hint": "你每天几点|nǐ měitiān jǐ diǎn", "say": "你每天几点起床？|nǐ měitiān jǐ diǎn qǐchuáng?", "en": "What time do you get up every day?"},
+        {"who": "A", "cue": "Say you get up at seven, then eat breakfast.", "hint": "我七点起床，|wǒ qī diǎn qǐchuáng,", "say": "我七点起床，然后吃早饭。|wǒ qī diǎn qǐchuáng, ránhòu chī zǎofàn.", "en": "I get up at seven, then I have breakfast."},
+        {"who": "B", "cue": "Ask what they eat for breakfast.", "hint": "你早饭|nǐ zǎofàn", "say": "你早饭吃什么？|nǐ zǎofàn chī shénme?", "en": "What do you have for breakfast?"},
+        {"who": "A", "cue": "Say usually cereal and milk. Ask them back.", "hint": "一般吃|yìbān chī", "say": "一般吃麦片，喝牛奶。你呢？|yìbān chī màipiàn, hē niúnǎi. nǐ ne?", "en": "Usually cereal and milk. And you?"},
+        {"who": "B", "cue": "Say you eat buns and soy milk. School starts at half past seven.", "hint": "我吃包子，|wǒ chī bāozi,", "say": "我吃包子，喝豆浆。七点半上课。|wǒ chī bāozi, hē dòujiāng. qī diǎn bàn shàngkè.", "en": "I have buns and soy milk. School starts at half seven."},
+        {"who": "A", "cue": "Say wow, so early! Your school starts at nine.", "hint": "哇，这么早！|wā, zhème zǎo!", "say": "哇，这么早！我们九点上课。|wā, zhème zǎo! wǒmen jiǔ diǎn shàngkè.", "en": "Wow, so early! We start at nine."},
+        {"who": "B", "surprise": true, "cue": "Ask what they do after school.", "hint": "放学以后|fàngxué yǐhòu", "say": "放学以后你做什么？|fàngxué yǐhòu nǐ zuò shénme?", "en": "What do you do after school?"},
+        {"who": "A", "cue": "Say first you do homework, then play on your phone a bit.", "hint": "我先做作业，|wǒ xiān zuò zuòyè,", "say": "我先做作业，然后玩一会儿手机。|wǒ xiān zuò zuòyè, ránhòu wán yíhuìr shǒujī.", "en": "First I do my homework, then I go on my phone for a bit."},
+        {"who": "B", "cue": "Ask what time they go to bed.", "hint": "你几点|nǐ jǐ diǎn", "say": "你几点睡觉？|nǐ jǐ diǎn shuìjiào?", "en": "What time do you go to bed?"},
+        {"who": "A", "cue": "Say about half past nine.", "hint": "大概|dàgài", "say": "大概九点半。|dàgài jiǔ diǎn bàn.", "en": "About half past nine."}
+      ]
+    },
+    {
+      "id": "town", "level": 2, "emoji": "🏙️", "title": "My town",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "A new friend in Hangzhou asks about where you live.",
+      "tip": "有 lists what's there: 我的城市有一个公园. 没有 = there isn't. Add 很 or 非常 before adjectives.",
+      "lines": [
+        {"who": "B", "cue": "Ask where they live.", "hint": "你住在|nǐ zhù zài", "say": "你住在哪儿？|nǐ zhù zài nǎr?", "en": "Where do you live?"},
+        {"who": "A", "cue": "Say you live in a small town in England.", "hint": "我住在|wǒ zhù zài", "say": "我住在英国的一个小城市。|wǒ zhù zài Yīngguó de yí ge xiǎo chéngshì.", "en": "I live in a small town in England."},
+        {"who": "B", "cue": "Ask what there is in their town.", "hint": "你的城市有|nǐ de chéngshì yǒu", "say": "你的城市有什么？|nǐ de chéngshì yǒu shénme?", "en": "What is there in your town?"},
+        {"who": "A", "cue": "Say there's a big park, a library and a lot of shops.", "hint": "有一个大公园，|yǒu yí ge dà gōngyuán,", "say": "有一个大公园、一个图书馆和很多商店。|yǒu yí ge dà gōngyuán, yí ge túshūguǎn hé hěn duō shāngdiàn.", "en": "There's a big park, a library and lots of shops."},
+        {"who": "B", "cue": "Ask if there's a cinema.", "hint": "有没有|yǒu méiyǒu", "say": "有没有电影院？|yǒu méiyǒu diànyǐngyuàn?", "en": "Is there a cinema?"},
+        {"who": "A", "cue": "Say no, there isn't a cinema, which is a bit boring.", "hint": "没有电影院，|méiyǒu diànyǐngyuàn,", "say": "没有电影院，有点儿无聊。|méiyǒu diànyǐngyuàn, yǒudiǎnr wúliáo.", "en": "There isn't a cinema, which is a bit boring."},
+        {"who": "B", "surprise": true, "cue": "Ask if they like their town.", "hint": "你喜欢|nǐ xǐhuan", "say": "你喜欢你的城市吗？|nǐ xǐhuan nǐ de chéngshì ma?", "en": "Do you like your town?"},
+        {"who": "A", "cue": "Say yes, because it's very quiet and clean.", "hint": "喜欢，因为|xǐhuan, yīnwèi", "say": "喜欢，因为很安静，也很干净。|xǐhuan, yīnwèi hěn ānjìng, yě hěn gānjìng.", "en": "Yes, because it's very quiet and clean too."},
+        {"who": "B", "cue": "Say Hangzhou is very big and has a beautiful lake.", "hint": "杭州很大，|Hángzhōu hěn dà,", "say": "杭州很大，有一个很漂亮的湖。|Hángzhōu hěn dà, yǒu yí ge hěn piàoliang de hú.", "en": "Hangzhou is very big and has a beautiful lake."}
+      ]
+    },
+    {
+      "id": "newyear", "level": 2, "emoji": "🧧", "title": "Chinese New Year",
+      "roles": {"A": "You", "B": "Friend's grandma"},
+      "setting": "You're visiting a friend's family in Xi'an at Chinese New Year.",
+      "tip": "新年快乐！ (Happy New Year!) and 恭喜发财！ are the greetings. Take a red envelope with both hands and say 谢谢.",
+      "lines": [
+        {"who": "A", "cue": "Say Happy New Year, Grandma!", "hint": "奶奶，|nǎinai,", "say": "奶奶，新年快乐！|nǎinai, xīnnián kuàilè!", "en": "Happy New Year, Grandma!"},
+        {"who": "B", "cue": "Say Happy New Year! This red envelope is for you.", "hint": "新年快乐！|xīnnián kuàilè!", "say": "新年快乐！这个红包给你。|xīnnián kuàilè! zhège hóngbāo gěi nǐ.", "en": "Happy New Year! This red envelope is for you."},
+        {"who": "A", "cue": "Say thank you, Grandma!", "hint": "谢谢|xièxie", "say": "谢谢奶奶！|xièxie nǎinai!", "en": "Thank you, Grandma!"},
+        {"who": "B", "cue": "Ask if they've eaten dumplings before.", "hint": "你吃过|nǐ chīguo", "say": "你吃过饺子吗？|nǐ chīguo jiǎozi ma?", "en": "Have you ever eaten dumplings?"},
+        {"who": "A", "cue": "Say yes, you love dumplings, but you've never made them.", "hint": "吃过，我很喜欢。|chīguo, wǒ hěn xǐhuan.", "say": "吃过，我很喜欢。但是我没包过。|chīguo, wǒ hěn xǐhuan. dànshì wǒ méi bāoguo.", "en": "Yes, I love them. But I've never made them."},
+        {"who": "B", "cue": "Say come, let's make them together. Look, like this.", "hint": "来，我们一起|lái, wǒmen yìqǐ", "say": "来，我们一起包。你看，这样。|lái, wǒmen yìqǐ bāo. nǐ kàn, zhèyàng.", "en": "Come, let's make them together. Look, like this."},
+        {"who": "A", "cue": "Ask: like this? Is that right?", "hint": "这样|zhèyàng", "say": "这样吗？对不对？|zhèyàng ma? duì bu duì?", "en": "Like this? Is that right?"},
+        {"who": "B", "surprise": true, "cue": "Say very good! Ask what people do at New Year in England.", "hint": "很好！在英国，|hěn hǎo! zài Yīngguó,", "say": "很好！在英国，新年做什么？|hěn hǎo! zài Yīngguó, xīnnián zuò shénme?", "en": "Very good! What do people do at New Year in England?"},
+        {"who": "A", "cue": "Say we watch fireworks and stay up until twelve.", "hint": "我们看烟花，|wǒmen kàn yānhuā,", "say": "我们看烟花，一直玩到十二点。|wǒmen kàn yānhuā, yìzhí wán dào shí'èr diǎn.", "en": "We watch fireworks and stay up until midnight."},
+        {"who": "B", "cue": "Say we watch fireworks too! Let's eat!", "hint": "我们也|wǒmen yě", "say": "我们也看烟花！来，吃饺子吧！|wǒmen yě kàn yānhuā! lái, chī jiǎozi ba!", "en": "We watch fireworks too! Come on, let's eat dumplings!"}
+      ]
+    },
+    {
+      "id": "bestfriend", "level": 2, "emoji": "🧑‍🤝‍🧑", "title": "Describing a friend",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You show a friend a photo of your best friend back home.",
+      "tip": "Describe people with 很 + adjective: 很高, 很有意思. Hair: 她是长头发 / 短头发 (long / short hair). 戴眼镜 = wears glasses.",
+      "lines": [
+        {"who": "B", "cue": "Ask who this is in the photo.", "hint": "照片里|zhàopiàn lǐ", "say": "照片里这个人是谁？|zhàopiàn lǐ zhège rén shì shéi?", "en": "Who's this in the photo?"},
+        {"who": "A", "cue": "Say she's your best friend. Her name is Lily.", "hint": "她是我最好的|tā shì wǒ zuì hǎo de", "say": "她是我最好的朋友，叫莉莉。|tā shì wǒ zuì hǎo de péngyou, jiào Lìli.", "en": "She's my best friend. Her name is Lily."},
+        {"who": "B", "cue": "Say she's very tall! Ask how old she is.", "hint": "她很高！|tā hěn gāo!", "say": "她很高！她多大？|tā hěn gāo! tā duō dà?", "en": "She's very tall! How old is she?"},
+        {"who": "A", "cue": "Say she's eleven, the same as you.", "hint": "她十一岁，|tā shíyī suì,", "say": "她十一岁，跟我一样大。|tā shíyī suì, gēn wǒ yíyàng dà.", "en": "She's eleven, the same age as me."},
+        {"who": "B", "cue": "Ask what she's like.", "hint": "她|tā", "say": "她怎么样？|tā zěnmeyàng?", "en": "What's she like?"},
+        {"who": "A", "cue": "Say she's very funny and kind, but a bit lazy!", "hint": "她很有意思，|tā hěn yǒu yìsi,", "say": "她很有意思，也很友好，但是有点儿懒！|tā hěn yǒu yìsi, yě hěn yǒuhǎo, dànshì yǒudiǎnr lǎn!", "en": "She's really funny and friendly, but a bit lazy!"},
+        {"who": "B", "surprise": true, "cue": "Ask what you like doing together.", "hint": "你们喜欢|nǐmen xǐhuan", "say": "你们喜欢一起做什么？|nǐmen xǐhuan yìqǐ zuò shénme?", "en": "What do you like doing together?"},
+        {"who": "A", "cue": "Say you like drawing and watching films together.", "hint": "我们喜欢一起|wǒmen xǐhuan yìqǐ", "say": "我们喜欢一起画画儿，看电影。|wǒmen xǐhuan yìqǐ huà huàr, kàn diànyǐng.", "en": "We like drawing and watching films together."},
+        {"who": "B", "cue": "Say she sounds great. You'd like to meet her.", "hint": "她真好。|tā zhēn hǎo.", "say": "她真好。我想认识她！|tā zhēn hǎo. wǒ xiǎng rènshi tā!", "en": "She sounds great. I'd like to meet her!"}
+      ]
+    },
+    {
+      "id": "phones", "level": 3, "emoji": "📱", "title": "Technology and phones",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You and a friend in Shenzhen talk about phones and screen time.",
+      "tip": "因为…所以… gives reason and result. 一方面…另一方面… (on one hand… on the other) wins marks for balance.",
+      "lines": [
+        {"who": "B", "cue": "Ask if they have a phone.", "hint": "你有|nǐ yǒu", "say": "你有手机吗？|nǐ yǒu shǒujī ma?", "en": "Do you have a phone?"},
+        {"who": "A", "cue": "Say yes, your parents bought it for you last year.", "hint": "有，|yǒu,", "say": "有，是我爸妈去年给我买的。|yǒu, shì wǒ bà mā qùnián gěi wǒ mǎi de.", "en": "Yes, my parents bought it for me last year."},
+        {"who": "B", "cue": "Ask what they usually use it for.", "hint": "你一般用手机|nǐ yìbān yòng shǒujī", "say": "你一般用手机做什么？|nǐ yìbān yòng shǒujī zuò shénme?", "en": "What do you usually use your phone for?"},
+        {"who": "A", "cue": "Say you chat with friends, listen to music and sometimes look things up for homework.", "hint": "我跟朋友聊天，|wǒ gēn péngyou liáotiān,", "say": "我跟朋友聊天，听音乐，有时候查作业。|wǒ gēn péngyou liáotiān, tīng yīnyuè, yǒu shíhou chá zuòyè.", "en": "I chat with friends, listen to music and sometimes look things up for homework."},
+        {"who": "B", "cue": "Ask if they think phones are good for young people.", "hint": "你觉得手机对年轻人|nǐ juéde shǒujī duì niánqīngrén", "say": "你觉得手机对年轻人好吗？|nǐ juéde shǒujī duì niánqīngrén hǎo ma?", "en": "Do you think phones are good for young people?"},
+        {"who": "A", "cue": "Say on one hand they're very useful; on the other hand, using them too much is bad for your eyes.", "hint": "一方面很有用，|yì fāngmiàn hěn yǒuyòng,", "say": "一方面很有用，另一方面用得太多对眼睛不好。|yì fāngmiàn hěn yǒuyòng, lìng yì fāngmiàn yòng de tài duō duì yǎnjing bù hǎo.", "en": "On one hand they're very useful; on the other, using them too much is bad for your eyes."},
+        {"who": "B", "surprise": true, "cue": "Ask how long they used their phone yesterday.", "hint": "你昨天用了|nǐ zuótiān yòng le", "say": "你昨天用了多长时间手机？|nǐ zuótiān yòng le duō cháng shíjiān shǒujī?", "en": "How long did you use your phone yesterday?"},
+        {"who": "A", "cue": "Say three hours, because you played a game, so you went to bed late.", "hint": "三个小时。因为|sān ge xiǎoshí. yīnwèi", "say": "三个小时。因为我玩了游戏，所以睡得很晚。|sān ge xiǎoshí. yīnwèi wǒ wán le yóuxì, suǒyǐ shuì de hěn wǎn.", "en": "Three hours. Because I played a game, I went to bed late."},
+        {"who": "B", "cue": "Ask if they'll use it less in future.", "hint": "以后你会|yǐhòu nǐ huì", "say": "以后你会少用一点儿吗？|yǐhòu nǐ huì shǎo yòng yìdiǎnr ma?", "en": "Will you use it less in future?"},
+        {"who": "A", "cue": "Say yes, from next week you'll put your phone outside your bedroom.", "hint": "会。从下个星期开始，|huì. cóng xià ge xīngqī kāishǐ,", "say": "会。从下个星期开始，我会把手机放在卧室外面。|huì. cóng xià ge xīngqī kāishǐ, wǒ huì bǎ shǒujī fàng zài wòshì wàimiàn.", "en": "Yes. From next week, I'll leave my phone outside my bedroom."}
+      ]
+    },
+    {
+      "id": "environment", "level": 3, "emoji": "🌍", "title": "Protecting the environment",
+      "roles": {"A": "You", "B": "Classmate"},
+      "setting": "You and a classmate in Beijing are planning a class talk about the environment.",
+      "tip": "应该 = should, 不应该 = shouldn't. 为了 + goal (in order to). Recycling is 回收 or 垃圾分类 (sorting rubbish).",
+      "lines": [
+        {"who": "B", "cue": "Ask what the biggest environmental problem is, in their opinion.", "hint": "你觉得最大的|nǐ juéde zuì dà de", "say": "你觉得最大的环境问题是什么？|nǐ juéde zuì dà de huánjìng wèntí shì shénme?", "en": "What do you think is the biggest environmental problem?"},
+        {"who": "A", "cue": "Say pollution, because there are too many cars in cities.", "hint": "是污染，因为|shì wūrǎn, yīnwèi", "say": "是污染，因为城市里汽车太多了。|shì wūrǎn, yīnwèi chéngshì lǐ qìchē tài duō le.", "en": "Pollution, because there are too many cars in cities."},
+        {"who": "B", "cue": "Ask what they do to protect the environment.", "hint": "你为了保护环境|nǐ wèile bǎohù huánjìng", "say": "你为了保护环境做什么？|nǐ wèile bǎohù huánjìng zuò shénme?", "en": "What do you do to protect the environment?"},
+        {"who": "A", "cue": "Say you walk to school and you sort the rubbish at home.", "hint": "我走路上学，|wǒ zǒulù shàngxué,", "say": "我走路上学，在家也做垃圾分类。|wǒ zǒulù shàngxué, zài jiā yě zuò lājī fēnlèi.", "en": "I walk to school, and I sort the rubbish at home too."},
+        {"who": "B", "cue": "Say last week you bought a lot of things in plastic bags.", "hint": "上个星期我|shàng ge xīngqī wǒ", "say": "上个星期我买了很多东西，用了很多塑料袋。|shàng ge xīngqī wǒ mǎi le hěn duō dōngxi, yòng le hěn duō sùliàodài.", "en": "Last week I bought lots of things and used lots of plastic bags."},
+        {"who": "A", "cue": "Say we shouldn't use plastic bags; we should bring our own bag.", "hint": "我们不应该|wǒmen bù yīnggāi", "say": "我们不应该用塑料袋，应该带自己的包。|wǒmen bù yīnggāi yòng sùliàodài, yīnggāi dài zìjǐ de bāo.", "en": "We shouldn't use plastic bags; we should bring our own bag."},
+        {"who": "B", "surprise": true, "cue": "Ask what the school could do.", "hint": "学校可以|xuéxiào kěyǐ", "say": "学校可以做什么？|xuéxiào kěyǐ zuò shénme?", "en": "What could the school do?"},
+        {"who": "A", "cue": "Say the school could plant more trees and turn the lights off after class.", "hint": "学校可以多种树，|xuéxiào kěyǐ duō zhòng shù,", "say": "学校可以多种树，下课以后关灯。|xuéxiào kěyǐ duō zhòng shù, xiàkè yǐhòu guān dēng.", "en": "The school could plant more trees and turn off the lights after lessons."},
+        {"who": "B", "cue": "Say good idea! Let's put that in our talk.", "hint": "好主意！|hǎo zhǔyi!", "say": "好主意！我们把这个写进演讲里吧。|hǎo zhǔyi! wǒmen bǎ zhège xiě jìn yǎnjiǎng lǐ ba.", "en": "Good idea! Let's put that in our talk."}
+      ]
+    },
+    {
+      "id": "trip", "level": 3, "emoji": "🚌", "title": "Last week's school trip",
+      "roles": {"A": "You", "B": "Friend"},
+      "setting": "You tell a friend in Nanjing about your class trip to the science museum.",
+      "tip": "Past: 去了, 看了. Experience: 去过. Comparisons: A 比 B + adjective (博物馆比公园有意思).",
+      "lines": [
+        {"who": "B", "cue": "Ask where they went on the school trip last week.", "hint": "上个星期你们|shàng ge xīngqī nǐmen", "say": "上个星期你们去哪儿了？|shàng ge xīngqī nǐmen qù nǎr le?", "en": "Where did you go last week?"},
+        {"who": "A", "cue": "Say your class went to the science museum.", "hint": "我们班去了|wǒmen bān qù le", "say": "我们班去了科技馆。|wǒmen bān qù le kējìguǎn.", "en": "Our class went to the science museum."},
+        {"who": "B", "cue": "Ask how they got there.", "hint": "你们怎么|nǐmen zěnme", "say": "你们怎么去的？|nǐmen zěnme qù de?", "en": "How did you get there?"},
+        {"who": "A", "cue": "Say by coach; it took an hour.", "hint": "坐大巴去的，|zuò dàbā qù de,", "say": "坐大巴去的，坐了一个小时。|zuò dàbā qù de, zuò le yí ge xiǎoshí.", "en": "By coach; it took an hour."},
+        {"who": "B", "cue": "Ask what they saw.", "hint": "你们看了|nǐmen kàn le", "say": "你们看了什么？|nǐmen kàn le shénme?", "en": "What did you see?"},
+        {"who": "A", "cue": "Say you saw robots and a space exhibition, and you made a little rocket.", "hint": "我们看了机器人|wǒmen kàn le jīqìrén", "say": "我们看了机器人和太空展览，还做了一个小火箭。|wǒmen kàn le jīqìrén hé tàikōng zhǎnlǎn, hái zuò le yí ge xiǎo huǒjiàn.", "en": "We saw robots and a space exhibition, and we made a little rocket."},
+        {"who": "B", "surprise": true, "cue": "Ask if it was better than last year's trip to the park.", "hint": "比去年|bǐ qùnián", "say": "比去年去公园好吗？|bǐ qùnián qù gōngyuán hǎo ma?", "en": "Was it better than last year's trip to the park?"},
+        {"who": "A", "cue": "Say yes, the museum was much more interesting than the park, because you could touch everything.", "hint": "好多了！科技馆比公园|hǎo duō le! kējìguǎn bǐ gōngyuán", "say": "好多了！科技馆比公园有意思多了，因为什么都可以摸。|hǎo duō le! kējìguǎn bǐ gōngyuán yǒu yìsi duō le, yīnwèi shénme dōu kěyǐ mō.", "en": "Much better! The museum was far more interesting than the park, because you could touch everything."},
+        {"who": "B", "cue": "Ask if they've ever been to a museum in China.", "hint": "你去过|nǐ qùguo", "say": "你去过中国的博物馆吗？|nǐ qùguo Zhōngguó de bówùguǎn ma?", "en": "Have you ever been to a museum in China?"},
+        {"who": "A", "cue": "Say not yet, but you'd like to go to the one in Xi'an next year.", "hint": "还没有，|hái méiyǒu,", "say": "还没有，但是明年我想去西安的博物馆。|hái méiyǒu, dànshì míngnián wǒ xiǎng qù Xī'ān de bówùguǎn.", "en": "Not yet, but next year I'd like to go to the museum in Xi'an."}
+      ]
+    },
+    {
+      "id": "greatwall", "level": 3, "emoji": "🏯", "title": "A trip to the Great Wall",
+      "roles": {"A": "You", "B": "Host"},
+      "setting": "Back at your host family's flat after a day at the Great Wall near Beijing.",
+      "tip": "Past with 了, experience with 过, future with 要/会/打算. 虽然…但是… (although… but…) adds a level.",
+      "lines": [
+        {"who": "B", "cue": "Ask if they had a good time at the Great Wall today.", "hint": "今天在长城|jīntiān zài Chángchéng", "say": "今天在长城玩得怎么样？|jīntiān zài Chángchéng wán de zěnmeyàng?", "en": "How was your day at the Great Wall?"},
+        {"who": "A", "cue": "Say it was amazing! You'd never been before.", "hint": "太棒了！|tài bàng le!", "say": "太棒了！我以前没去过。|tài bàng le! wǒ yǐqián méi qùguo.", "en": "Amazing! I'd never been before."},
+        {"who": "B", "cue": "Ask how they went up.", "hint": "你们是怎么|nǐmen shì zěnme", "say": "你们是怎么上去的？|nǐmen shì zěnme shàngqu de?", "en": "How did you get up?"},
+        {"who": "A", "cue": "Say you walked up, and came down by toboggan.", "hint": "我们走上去，|wǒmen zǒu shàngqu,", "say": "我们走上去，坐滑道下来的。|wǒmen zǒu shàngqu, zuò huádào xiàlai de.", "en": "We walked up and came down on the toboggan."},
+        {"who": "B", "cue": "Ask if they were tired.", "hint": "你累|nǐ lèi", "say": "你累不累？|nǐ lèi bu lèi?", "en": "Were you tired?"},
+        {"who": "A", "cue": "Say although it was very tiring, the view was very beautiful.", "hint": "虽然很累，|suīrán hěn lèi,", "say": "虽然很累，但是风景非常漂亮。|suīrán hěn lèi, dànshì fēngjǐng fēicháng piàoliang.", "en": "Although it was very tiring, the view was beautiful."},
+        {"who": "B", "surprise": true, "cue": "Ask what they bought.", "hint": "你买了|nǐ mǎi le", "say": "你买了什么东西？|nǐ mǎi le shénme dōngxi?", "en": "What did you buy?"},
+        {"who": "A", "cue": "Say a T-shirt that says 'I climbed the Great Wall'.", "hint": "我买了一件T恤，|wǒ mǎi le yí jiàn T xù,", "say": "我买了一件T恤，上面写着“我登上了长城”。|wǒ mǎi le yí jiàn T xù, shàngmiàn xiězhe “wǒ dēngshàng le Chángchéng”.", "en": "I bought a T-shirt that says 'I climbed the Great Wall'."},
+        {"who": "B", "cue": "Ask what they're going to do tomorrow.", "hint": "明天你打算|míngtiān nǐ dǎsuàn", "say": "明天你打算做什么？|míngtiān nǐ dǎsuàn zuò shénme?", "en": "What are you planning to do tomorrow?"},
+        {"who": "A", "cue": "Say tomorrow you're going to the Forbidden City, and in the evening you'll eat Peking duck.", "hint": "明天我要去故宫，|míngtiān wǒ yào qù Gùgōng,", "say": "明天我要去故宫，晚上去吃北京烤鸭。|míngtiān wǒ yào qù Gùgōng, wǎnshang qù chī Běijīng kǎoyā.", "en": "Tomorrow I'm going to the Forbidden City, and in the evening I'll have Peking duck."}
+      ]
     }
   ]
 }

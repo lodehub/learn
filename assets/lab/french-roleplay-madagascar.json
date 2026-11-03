@@ -318,6 +318,412 @@
         { "who": "A", "cue": "Say yes, absolutely. Suggest talking about it again by email.", "hint": "Oui, absolument.",
           "fr": "Oui, absolument. On en reparle par e-mail ?", "en": "Yes, absolutely. Shall we discuss it by email?" }
       ]
+    },
+    {
+      "id": "taxi", "level": 1, "emoji": "🚕", "title": "Taxi from the airport",
+      "roles": {"A": "You", "B": "Taxi driver"},
+      "setting": "Outside Ivato airport, a driver offers you a taxi into town. Agree the price before you get in.",
+      "tip": "Always agree the fare first: \"C'est combien jusqu'à...?\" Prices are in ariary. \"C'est un peu cher\" opens a polite haggle.",
+      "lines": [
+        {"who": "B", "cue": "Offer a taxi and ask where they're going.", "hint": "Taxi ? Vous allez", "fr": "Taxi, madame, monsieur ? Vous allez où ?", "en": "Taxi? Where are you going?"},
+        {"who": "A", "cue": "Say you're going to the guesthouse near the hospital, in the town centre. Show the address.", "hint": "Je vais à", "fr": "Je vais à la maison d'hôtes près de l'hôpital, au centre-ville. Voici l'adresse.", "en": "I'm going to the guesthouse near the hospital, in the town centre. Here's the address."},
+        {"who": "A", "cue": "Ask how much it is to get there.", "hint": "C'est combien", "fr": "C'est combien jusque-là ?", "en": "How much is it to get there?", "alt": ["Ça coûte combien pour y aller ?"]},
+        {"who": "B", "cue": "Say eighty thousand ariary.", "hint": "Quatre-vingt", "fr": "Quatre-vingt mille ariary.", "en": "Eighty thousand ariary."},
+        {"who": "A", "cue": "Say that's a bit expensive. Offer sixty thousand.", "hint": "C'est un peu cher.", "fr": "C'est un peu cher. Soixante mille, ça va ?", "en": "That's a bit expensive. Is sixty thousand OK?", "alt": ["C'est un peu cher. Je vous propose soixante mille."]},
+        {"who": "B", "cue": "Say seventy thousand, with the bags included.", "hint": "Soixante-dix mille,", "fr": "Soixante-dix mille, avec les bagages compris.", "en": "Seventy thousand, with the bags included."},
+        {"who": "A", "cue": "Agree. Ask him to be careful with the big bag: it's fragile.", "hint": "D'accord.", "fr": "D'accord. Faites attention au grand sac, s'il vous plaît : c'est fragile.", "en": "OK. Please be careful with the big bag: it's fragile."},
+        {"who": "B", "surprise": true, "cue": "Ask if it's their first time in Madagascar.", "hint": "C'est la première fois", "fr": "C'est la première fois que vous venez à Madagascar ?", "en": "Is it your first time in Madagascar?"},
+        {"who": "A", "cue": "Say no, it's the second time. You come to work at the hospital.", "hint": "Non, c'est la deuxième", "fr": "Non, c'est la deuxième fois. Je viens travailler à l'hôpital.", "en": "No, it's the second time. I come to work at the hospital.", "alt": ["Oui, c'est la première fois. Je viens pour travailler à l'hôpital."]},
+        {"who": "B", "cue": "Warn that there's a lot of traffic at this time: about an hour.", "hint": "À cette heure-ci,", "fr": "À cette heure-ci, il y a beaucoup d'embouteillages. Il faut compter une heure.", "en": "At this time of day there's a lot of traffic. Allow an hour."},
+        {"who": "A", "cue": "Say no problem, you're not in a hurry.", "hint": "Pas de problème,", "fr": "Pas de problème, je ne suis pas pressé.", "en": "No problem, I'm not in a hurry.", "alt": ["Pas de souci, je ne suis pas pressée."]}
+      ]
+    },
+    {
+      "id": "guesthouse", "level": 1, "emoji": "🔑", "title": "Checking in at the guesthouse",
+      "roles": {"A": "You", "B": "Owner"},
+      "setting": "You arrive at the guesthouse where you'll stay for three weeks. Sort out the room, water, power and wifi.",
+      "tip": "\"Est-ce que l'eau du robinet est potable ?\" is worth knowing by heart. Un groupe électrogène is a generator.",
+      "lines": [
+        {"who": "B", "cue": "Welcome them and ask if they have a reservation.", "hint": "Bienvenue !", "fr": "Bienvenue ! Vous avez une réservation ?", "en": "Welcome! Do you have a reservation?"},
+        {"who": "A", "cue": "Say yes, a room for three weeks, booked by the hospital.", "hint": "Oui, une chambre", "fr": "Oui, une chambre pour trois semaines, réservée par l'hôpital.", "en": "Yes, a room for three weeks, booked by the hospital."},
+        {"who": "B", "cue": "Say here's the key: room 4, on the first floor. Breakfast is from half past six.", "hint": "Voici la clé :", "fr": "Voici la clé : chambre 4, au premier étage. Le petit-déjeuner est servi à partir de six heures et demie.", "en": "Here's the key: room 4, on the first floor. Breakfast is from half past six."},
+        {"who": "A", "cue": "Ask if the tap water is drinkable.", "hint": "Est-ce que l'eau", "fr": "Est-ce que l'eau du robinet est potable ?", "en": "Is the tap water drinkable?"},
+        {"who": "B", "cue": "Say no, better not. There's bottled water in the room.", "hint": "Non, il vaut mieux", "fr": "Non, il vaut mieux pas. Il y a de l'eau en bouteille dans la chambre.", "en": "No, better not. There's bottled water in the room."},
+        {"who": "A", "cue": "Ask if there are often power cuts.", "hint": "Il y a souvent", "fr": "Il y a souvent des coupures de courant ?", "en": "Are there often power cuts?"},
+        {"who": "B", "cue": "Say yes, in the evening, but there's a generator.", "hint": "Oui, le soir,", "fr": "Oui, le soir surtout, mais on a un groupe électrogène.", "en": "Yes, especially in the evening, but we have a generator."},
+        {"who": "A", "cue": "Ask what the wifi password is.", "hint": "Quel est le mot", "fr": "Quel est le mot de passe du wifi ?", "en": "What's the wifi password?"},
+        {"who": "B", "cue": "Say it's on the card, but the connection is slow in the evening.", "hint": "Il est sur", "fr": "Il est sur la carte, mais la connexion est lente le soir.", "en": "It's on the card, but the connection is slow in the evening."},
+        {"who": "B", "surprise": true, "cue": "Ask what time they leave in the morning, so you can order a taxi.", "hint": "Vous partez", "fr": "Vous partez à quelle heure le matin ? Je peux vous commander un taxi.", "en": "What time do you leave in the morning? I can order you a taxi."},
+        {"who": "A", "cue": "Say at seven fifteen, please. Thank them for everything.", "hint": "À sept heures", "fr": "À sept heures et quart, s'il vous plaît. Merci pour tout.", "en": "At a quarter past seven, please. Thank you for everything."}
+      ]
+    },
+    {
+      "id": "market", "level": 1, "emoji": "🧺", "title": "At the market and the pharmacy",
+      "roles": {"A": "You", "B": "Stallholder, then pharmacist"},
+      "setting": "A Saturday off. You buy fruit and a gift at the market, then stop at a pharmacy.",
+      "tip": "Haggling is normal at the market but stay friendly: smile, offer a price, settle in the middle. Not at the pharmacy.",
+      "lines": [
+        {"who": "A", "cue": "Ask how much the mangoes are.", "hint": "Elles sont à combien", "fr": "Elles sont à combien, les mangues ?", "en": "How much are the mangoes?", "alt": ["C'est combien, les mangues ?"]},
+        {"who": "B", "cue": "Say two thousand ariary for five.", "hint": "Deux mille", "fr": "Deux mille ariary les cinq.", "en": "Two thousand ariary for five."},
+        {"who": "A", "cue": "Say you'll take ten. And ask about the embroidered tablecloth: how much?", "hint": "J'en prends dix.", "fr": "J'en prends dix. Et cette nappe brodée, c'est combien ?", "en": "I'll take ten. And this embroidered tablecloth, how much is it?"},
+        {"who": "B", "cue": "Say fifty thousand. It's handmade.", "hint": "Cinquante mille.", "fr": "Cinquante mille. C'est fait à la main.", "en": "Fifty thousand. It's handmade."},
+        {"who": "A", "cue": "Say it's beautiful, but it's a bit too much. Offer thirty-five thousand.", "hint": "Elle est très belle,", "fr": "Elle est très belle, mais c'est un peu trop pour moi. Trente-cinq mille ?", "en": "It's very beautiful, but it's a bit too much for me. Thirty-five thousand?"},
+        {"who": "B", "cue": "Say forty thousand, last price.", "hint": "Quarante mille,", "fr": "Quarante mille, dernier prix.", "en": "Forty thousand, final price."},
+        {"who": "A", "cue": "Agree: it's a deal.", "hint": "D'accord,", "fr": "D'accord, c'est entendu.", "en": "OK, it's a deal.", "alt": ["Ça marche, je la prends."]},
+        {"who": "B", "cue": "(At the pharmacy) Ask how you can help.", "hint": "Bonjour,", "fr": "Bonjour, je peux vous aider ?", "en": "Hello, can I help you?"},
+        {"who": "A", "cue": "Say you'd like some oral rehydration salts and a mosquito repellent.", "hint": "Je voudrais", "fr": "Je voudrais des sels de réhydratation orale et un répulsif anti-moustiques.", "en": "I'd like some oral rehydration salts and a mosquito repellent."},
+        {"who": "B", "surprise": true, "cue": "Ask if it's for them, and if they have a fever.", "hint": "C'est pour vous ?", "fr": "C'est pour vous ? Vous avez de la fièvre ?", "en": "Is it for you? Do you have a fever?"},
+        {"who": "A", "cue": "Say no, no fever: it's just a precaution.", "hint": "Non, pas de fièvre :", "fr": "Non, pas de fièvre : c'est juste par précaution.", "en": "No, no fever: it's just a precaution."}
+      ]
+    },
+    {
+      "id": "preop", "level": 2, "emoji": "📝", "title": "Teaching the pre-op assessment",
+      "roles": {"A": "Trainer", "B": "Trainee"},
+      "setting": "On the ward the day before surgery. The trainee assesses a patient for a hernia repair while you guide them.",
+      "tip": "The key headings: antécédents, traitement, allergies, jeûne, examen des voies aériennes (Mallampati, ouverture de bouche), score ASA.",
+      "lines": [
+        {"who": "A", "cue": "Ask what they want to know before an anaesthetic.", "hint": "Avant une anesthésie,", "fr": "Avant une anesthésie, qu'est-ce que vous voulez savoir sur le patient ?", "en": "Before an anaesthetic, what do you want to know about the patient?"},
+        {"who": "B", "cue": "Say past history, current treatment and allergies.", "hint": "Les antécédents,", "fr": "Les antécédents, le traitement en cours et les allergies.", "en": "Past history, current treatment and allergies."},
+        {"who": "A", "cue": "Say good. And what else? Think about the previous anaesthetics.", "hint": "Bien. Et quoi d'autre ?", "fr": "Bien. Et quoi d'autre ? Pensez aux anesthésies précédentes.", "en": "Good. And what else? Think about previous anaesthetics."},
+        {"who": "B", "cue": "Ask the patient (role-play) if they've already had an operation, and if it went well.", "hint": "Vous avez déjà été", "fr": "Vous avez déjà été opéré ? Ça s'est bien passé ?", "en": "Have you had an operation before? Did it go well?"},
+        {"who": "A", "cue": "Say perfect. Now examine the airway: ask him to open his mouth wide.", "hint": "Parfait. Maintenant,", "fr": "Parfait. Maintenant, on examine les voies aériennes : demandez-lui d'ouvrir grand la bouche.", "en": "Perfect. Now examine the airway: ask him to open his mouth wide."},
+        {"who": "B", "cue": "Say mouth opening is good, Mallampati 2, and the neck moves well.", "hint": "L'ouverture de bouche", "fr": "L'ouverture de bouche est bonne, Mallampati 2, et le cou est bien mobile.", "en": "Mouth opening is good, Mallampati 2, and the neck moves well."},
+        {"who": "A", "surprise": true, "cue": "Ask: he takes medication for high blood pressure. Does he take it tomorrow morning?", "hint": "Il prend un traitement", "fr": "Il prend un traitement pour l'hypertension. Il le prend demain matin ?", "en": "He takes medication for high blood pressure. Does he take it tomorrow morning?"},
+        {"who": "B", "cue": "Say yes, with a sip of water, except if it's an ACE inhibitor: you'd check.", "hint": "Oui, avec une gorgée", "fr": "Oui, avec une gorgée d'eau, sauf si c'est un IEC : je vérifierais.", "en": "Yes, with a sip of water, unless it's an ACE inhibitor: I'd check."},
+        {"who": "A", "cue": "Say excellent. What ASA score do you give him?", "hint": "Excellent. Quel score", "fr": "Excellent. Quel score ASA vous lui donnez ?", "en": "Excellent. What ASA grade do you give him?"},
+        {"who": "B", "cue": "Say ASA 2: well-controlled high blood pressure.", "hint": "ASA 2 :", "fr": "ASA 2 : une hypertension bien contrôlée.", "en": "ASA 2: well-controlled high blood pressure."},
+        {"who": "A", "cue": "Say very good. And don't forget to tell him: nothing to eat from midnight.", "hint": "Très bien. Et n'oubliez pas", "fr": "Très bien. Et n'oubliez pas de lui dire : à jeun à partir de minuit.", "en": "Very good. And don't forget to tell him: nil by mouth from midnight."}
+      ]
+    },
+    {
+      "id": "anaphylaxis", "level": 2, "emoji": "🚨", "title": "Critical incident: anaphylaxis",
+      "roles": {"A": "Lead (you)", "B": "Nurse anaesthetist"},
+      "setting": "Minutes after the antibiotic is given, the patient goes red, the pressure drops and the airway pressure rises. Lead with clear closed-loop commands.",
+      "tip": "Closed loop: name the person, give one clear task, they repeat it back and say when it's done. \"Adrénaline, 50 microgrammes en IV\"... \"50 microgrammes faits\".",
+      "lines": [
+        {"who": "B", "cue": "Say the pressure is falling: 60 over 30, and the patient is all red.", "hint": "La tension baisse :", "fr": "La tension baisse : 6 de systolique sur 3, et le patient est tout rouge.", "en": "The pressure is falling: 60 over 30, and the patient is all red.", "alt": ["La tension chute : 60 sur 30, et il est tout rouge."]},
+        {"who": "A", "cue": "Say it's probably anaphylaxis. Stop the antibiotic. Call for help.", "hint": "C'est probablement", "fr": "C'est probablement une anaphylaxie. On arrête l'antibiotique. Appelez de l'aide.", "en": "It's probably anaphylaxis. Stop the antibiotic. Call for help."},
+        {"who": "B", "cue": "Repeat back: antibiotic stopped, calling for help.", "hint": "Antibiotique arrêté,", "fr": "Antibiotique arrêté, j'appelle de l'aide.", "en": "Antibiotic stopped, I'm calling for help."},
+        {"who": "A", "cue": "Say you're giving 100% oxygen. Ask them to prepare adrenaline: 1 milligram in 10 millilitres.", "hint": "Je mets en oxygène", "fr": "Je mets en oxygène pur. Préparez de l'adrénaline : un milligramme dans dix millilitres.", "en": "I'm putting on 100% oxygen. Prepare adrenaline: one milligram in ten millilitres."},
+        {"who": "B", "cue": "Repeat back: adrenaline 1 milligram in 10 millilitres, so 100 micrograms per millilitre. Ready.", "hint": "Adrénaline un milligramme", "fr": "Adrénaline un milligramme dans dix, donc cent microgrammes par millilitre. C'est prêt.", "en": "Adrenaline one milligram in ten, so a hundred micrograms per millilitre. Ready."},
+        {"who": "A", "cue": "Say give 50 micrograms IV, so half a millilitre.", "hint": "Injectez cinquante", "fr": "Injectez cinquante microgrammes en IV, donc un demi-millilitre.", "en": "Give fifty micrograms IV, so half a millilitre."},
+        {"who": "B", "cue": "Confirm: 50 micrograms given.", "hint": "Cinquante microgrammes", "fr": "Cinquante microgrammes injectés.", "en": "Fifty micrograms given."},
+        {"who": "A", "cue": "Ask them to run in a litre of saline, fast, and raise the legs.", "hint": "Passez un litre", "fr": "Passez un litre de sérum physiologique en débit libre, et surélevez les jambes.", "en": "Run in a litre of saline wide open, and raise the legs."},
+        {"who": "B", "surprise": true, "cue": "Say the surgeon is asking if he can carry on.", "hint": "Le chirurgien demande", "fr": "Le chirurgien demande s'il peut continuer.", "en": "The surgeon is asking if he can carry on."},
+        {"who": "A", "cue": "Say no, not for now: we stabilise first. Ask for a fresh pressure.", "hint": "Non, pas pour l'instant :", "fr": "Non, pas pour l'instant : on stabilise d'abord. Redonnez-moi une tension.", "en": "No, not for now: we stabilise first. Give me a new pressure."},
+        {"who": "B", "cue": "Say 95 over 50 and coming up. Airway pressures are better.", "hint": "Neuf et demi", "fr": "Neuf et demi sur cinq, ça remonte. Les pressions d'insufflation sont meilleures.", "en": "95 over 50, coming up. Airway pressures are better."},
+        {"who": "A", "cue": "Say good, well done everyone. Take a blood sample for tryptase and we'll write it all down.", "hint": "Bien, bravo", "fr": "Bien, bravo à tous. Faites un prélèvement pour la tryptase, et on note tout dans le dossier.", "en": "Good, well done everyone. Take a sample for tryptase, and we'll write everything in the notes."}
+      ]
+    },
+    {
+      "id": "spinal", "level": 2, "emoji": "💉", "title": "Teaching a spinal anaesthetic",
+      "roles": {"A": "Trainer", "B": "Trainee"},
+      "setting": "The trainee does a spinal for a knee operation. You talk them through position, landmarks and what to watch afterwards.",
+      "tip": "Le dos rond (curved back), l'espace L3-L4, la ligne bi-iliaque (Tuffier's line), le reflux de liquide céphalorachidien (LCR).",
+      "lines": [
+        {"who": "A", "cue": "Ask how they're going to position the patient.", "hint": "Comment vous allez", "fr": "Comment vous allez installer le patient ?", "en": "How are you going to position the patient?"},
+        {"who": "B", "cue": "Say sitting, back curved, shoulders relaxed.", "hint": "Assis,", "fr": "Assis, le dos bien rond, les épaules relâchées.", "en": "Sitting, back nicely curved, shoulders relaxed."},
+        {"who": "A", "cue": "Say good. Now find your landmarks: where do you puncture?", "hint": "Bien. Maintenant,", "fr": "Bien. Maintenant, repérez-vous : vous piquez où ?", "en": "Good. Now find your landmarks: where are you going in?"},
+        {"who": "B", "cue": "Say at the line joining the iliac crests, so the L3-L4 space, or just below.", "hint": "Sur la ligne", "fr": "Sur la ligne qui relie les crêtes iliaques, donc l'espace L3-L4, ou juste en dessous.", "en": "On the line joining the iliac crests, so the L3-L4 space, or just below."},
+        {"who": "A", "cue": "Say perfect. Remember: strict asepsis, then the local anaesthetic for the skin.", "hint": "Parfait. N'oubliez pas :", "fr": "Parfait. N'oubliez pas : asepsie stricte, puis l'anesthésie locale de la peau.", "en": "Perfect. Don't forget: strict asepsis, then local anaesthetic for the skin."},
+        {"who": "B", "cue": "Say you feel bone. Ask what to do.", "hint": "Je touche", "fr": "Je touche l'os. Qu'est-ce que je fais ?", "en": "I'm hitting bone. What do I do?"},
+        {"who": "A", "cue": "Say no problem: pull back to the skin and redirect slightly upward, staying in the midline.", "hint": "Pas de problème :", "fr": "Pas de problème : retirez jusqu'à la peau et réorientez un peu vers le haut, en restant bien sur la ligne médiane.", "en": "No problem: withdraw to the skin and redirect slightly upwards, staying in the midline."},
+        {"who": "B", "cue": "Say there: clear fluid is coming back.", "hint": "Voilà :", "fr": "Voilà : le liquide revient, il est clair.", "en": "There: fluid is coming back, and it's clear."},
+        {"who": "A", "cue": "Say very good, inject slowly. Then lay the patient down.", "hint": "Très bien,", "fr": "Très bien, injectez doucement. Ensuite, on allonge le patient.", "en": "Very good, inject slowly. Then we lie the patient down."},
+        {"who": "A", "surprise": true, "cue": "Ask what the main risk is in the first ten minutes.", "hint": "Quel est le risque", "fr": "Quel est le risque principal dans les dix premières minutes ?", "en": "What's the main risk in the first ten minutes?"},
+        {"who": "B", "cue": "Say low blood pressure: you check the pressure every two minutes and have ephedrine ready.", "hint": "L'hypotension :", "fr": "L'hypotension : je prends la tension toutes les deux minutes et j'ai l'éphédrine prête.", "en": "Hypotension: I take the pressure every two minutes and have ephedrine ready."},
+        {"who": "A", "cue": "Say exactly. And you check the height of the block with cold. Well done.", "hint": "Exactement.", "fr": "Exactement. Et on vérifie le niveau du bloc au froid. Bravo.", "en": "Exactly. And we check the block height with cold. Well done."}
+      ]
+    },
+    {
+      "id": "feedback", "level": 2, "emoji": "📊", "title": "Feedback and assessment",
+      "roles": {"A": "Trainer", "B": "Trainee"},
+      "setting": "End of the course. A one-to-one review of the trainee's practical assessment: strengths, one thing to work on, a plan.",
+      "tip": "Start with what went well, then one clear point to improve, then a plan. \"Ce que j'ai apprécié...\", \"Un point à travailler...\".",
+      "lines": [
+        {"who": "A", "cue": "Ask how they felt the assessment went.", "hint": "Comment vous avez", "fr": "Comment vous avez trouvé l'évaluation ?", "en": "How did you find the assessment?", "alt": ["Comment ça s'est passé, d'après vous ?"]},
+        {"who": "B", "cue": "Say you were stressed, but you think it went quite well.", "hint": "J'étais stressée,", "fr": "J'étais stressée, mais je pense que ça s'est plutôt bien passé.", "en": "I was stressed, but I think it went quite well.", "alt": ["J'étais stressé, mais je crois que ça allait."]},
+        {"who": "A", "cue": "Say you agree. What you liked: the checklist was complete and you talked to the patient a lot.", "hint": "Je suis d'accord.", "fr": "Je suis d'accord. Ce que j'ai apprécié : la check-list était complète et vous avez beaucoup parlé au patient.", "en": "I agree. What I liked: the checklist was complete and you talked to the patient a lot."},
+        {"who": "B", "cue": "Thank them. Ask what you need to improve.", "hint": "Merci.", "fr": "Merci. Qu'est-ce que je dois améliorer ?", "en": "Thank you. What do I need to improve?"},
+        {"who": "A", "cue": "Say one point to work on: when the saturation dropped, you waited too long before calling for help.", "hint": "Un point à travailler :", "fr": "Un point à travailler : quand la saturation a baissé, vous avez attendu trop longtemps avant d'appeler de l'aide.", "en": "One point to work on: when the saturation dropped, you waited too long before calling for help."},
+        {"who": "B", "cue": "Say that's true. You didn't want to disturb the doctor.", "hint": "C'est vrai.", "fr": "C'est vrai. Je ne voulais pas déranger le médecin.", "en": "That's true. I didn't want to disturb the doctor."},
+        {"who": "A", "cue": "Say you understand, but calling early is a sign of a good professional, not weakness.", "hint": "Je comprends, mais", "fr": "Je comprends, mais appeler tôt, c'est le signe d'un bon professionnel, pas une faiblesse.", "en": "I understand, but calling early is the sign of a good professional, not a weakness."},
+        {"who": "B", "surprise": true, "cue": "Ask if you've passed.", "hint": "Est-ce que j'ai", "fr": "Est-ce que j'ai réussi ?", "en": "Have I passed?"},
+        {"who": "A", "cue": "Say yes, you've validated the module. Congratulations!", "hint": "Oui, vous avez", "fr": "Oui, vous avez validé le module. Félicitations !", "en": "Yes, you've passed the module. Congratulations!"},
+        {"who": "A", "cue": "Suggest that next month you lead a simulation for the new students.", "hint": "Je vous propose", "fr": "Je vous propose d'animer une simulation pour les nouveaux étudiants le mois prochain.", "en": "I suggest you lead a simulation for the new students next month."},
+        {"who": "B", "cue": "Say with pleasure. It's a good way to keep learning.", "hint": "Avec plaisir.", "fr": "Avec plaisir. C'est une bonne façon de continuer à apprendre.", "en": "With pleasure. It's a good way to keep learning."}
+      ]
+    },
+    {
+      "id": "doses", "level": 2, "emoji": "🧮", "title": "Drug calculations: a child's doses",
+      "roles": {"A": "Trainer", "B": "Trainee"},
+      "setting": "A teaching session before a paediatric list. A 3-year-old, 14 kilos. You work through the doses out loud.",
+      "tip": "Say the working aloud: \"par kilo\", \"fois quatorze\", \"ça fait\". Always ask a colleague to double-check a child's dose.",
+      "lines": [
+        {"who": "A", "cue": "Say first, the weight. Ask how they estimate a child's weight if there are no scales.", "hint": "D'abord, le poids.", "fr": "D'abord, le poids. S'il n'y a pas de balance, comment vous estimez le poids d'un enfant ?", "en": "First, the weight. If there are no scales, how do you estimate a child's weight?"},
+        {"who": "B", "cue": "Say age plus four, times two. So for three years old: fourteen kilos.", "hint": "L'âge plus quatre,", "fr": "L'âge plus quatre, fois deux. Donc pour trois ans : quatorze kilos.", "en": "Age plus four, times two. So for three years old: fourteen kilos."},
+        {"who": "A", "cue": "Say good. Paracetamol IV: 15 milligrams per kilo. How much?", "hint": "Bien. Paracétamol", "fr": "Bien. Paracétamol en IV : quinze milligrammes par kilo. Combien ?", "en": "Good. IV paracetamol: fifteen milligrams per kilo. How much?"},
+        {"who": "B", "cue": "Say fifteen times fourteen: 210 milligrams.", "hint": "Quinze fois quatorze :", "fr": "Quinze fois quatorze : deux cent dix milligrammes.", "en": "Fifteen times fourteen: two hundred and ten milligrams."},
+        {"who": "A", "cue": "Ask how many millilitres, if the solution is 10 milligrams per millilitre.", "hint": "Et en millilitres,", "fr": "Et en millilitres, si la solution fait dix milligrammes par millilitre ?", "en": "And in millilitres, if the solution is ten milligrams per millilitre?"},
+        {"who": "B", "cue": "Say 21 millilitres.", "hint": "Vingt et un", "fr": "Vingt et un millilitres.", "en": "Twenty-one millilitres."},
+        {"who": "A", "cue": "Say perfect. Now fluids: maintenance, 4-2-1 rule. How much per hour?", "hint": "Parfait. Maintenant,", "fr": "Parfait. Maintenant, les apports d'entretien, règle des 4-2-1. Combien par heure ?", "en": "Perfect. Now maintenance fluids, the 4-2-1 rule. How much per hour?"},
+        {"who": "B", "cue": "Say forty for the first ten kilos, plus eight for the next four: 48 millilitres an hour.", "hint": "Quarante pour", "fr": "Quarante pour les dix premiers kilos, plus huit pour les quatre suivants : quarante-huit millilitres par heure.", "en": "Forty for the first ten kilos, plus eight for the next four: forty-eight millilitres an hour."},
+        {"who": "A", "surprise": true, "cue": "Ask: you're tired at the end of the day and unsure of a dose. What do you do?", "hint": "Vous êtes fatigué", "fr": "Vous êtes fatigué en fin de journée et vous n'êtes pas sûr d'une dose. Qu'est-ce que vous faites ?", "en": "You're tired at the end of the day and unsure of a dose. What do you do?"},
+        {"who": "B", "cue": "Say you ask a colleague to check it with you, and you write the calculation down.", "hint": "Je demande", "fr": "Je demande à un collègue de vérifier avec moi, et j'écris le calcul.", "en": "I ask a colleague to check with me, and I write the calculation down."},
+        {"who": "A", "cue": "Say exactly. With children, a ten-times error happens fast. Always double-check.", "hint": "Exactement.", "fr": "Exactement. Chez l'enfant, une erreur d'un facteur dix arrive vite. On vérifie toujours à deux.", "en": "Exactly. With children, a tenfold error happens fast. Always check with two people."}
+      ]
+    },
+    {
+      "id": "director", "level": 3, "emoji": "🏛️", "title": "Meeting the hospital director",
+      "roles": {"A": "You", "B": "Hospital director"},
+      "setting": "A formal meeting with the director about equipment: what was donated, what is broken, and how to keep it working after you leave.",
+      "tip": "Formal register: \"Je vous remercie de me recevoir\", \"Si vous me permettez\", \"Il me semble que...\". La maintenance and la pérennité (sustainability) are the key words.",
+      "lines": [
+        {"who": "A", "cue": "Thank the director for seeing you.", "hint": "Monsieur le Directeur,", "fr": "Monsieur le Directeur, je vous remercie de me recevoir.", "en": "Director, thank you for seeing me.", "alt": ["Madame la Directrice, merci de prendre le temps de me recevoir."]},
+        {"who": "B", "cue": "Say it's a pleasure. Thank them for the donation of equipment last year.", "hint": "C'est un plaisir.", "fr": "C'est un plaisir. Je tiens à vous remercier pour le don de matériel l'année dernière.", "en": "It's a pleasure. I'd like to thank you for the donation of equipment last year."},
+        {"who": "A", "cue": "Say you're glad. But you noticed that two of the monitors no longer work.", "hint": "J'en suis ravi.", "fr": "J'en suis ravi. Mais j'ai remarqué que deux des moniteurs ne fonctionnent plus.", "en": "I'm glad. But I noticed that two of the monitors no longer work."},
+        {"who": "B", "cue": "Say yes, unfortunately you're missing spare parts, and there's no biomedical technician.", "hint": "Oui, malheureusement,", "fr": "Oui, malheureusement, il nous manque des pièces détachées, et nous n'avons pas de technicien biomédical.", "en": "Yes, unfortunately we're missing spare parts, and we don't have a biomedical technician."},
+        {"who": "A", "cue": "Say that's the heart of the problem. A donation without maintenance doesn't last.", "hint": "C'est le cœur", "fr": "C'est le cœur du problème. Un don sans maintenance ne dure pas.", "en": "That's the heart of the problem. A donation without maintenance doesn't last."},
+        {"who": "A", "cue": "Propose training a technician from the hospital, and choosing equipment that can be repaired locally.", "hint": "Je propose", "fr": "Je propose de former un technicien de l'hôpital, et de choisir du matériel qu'on peut réparer sur place.", "en": "I propose training a technician from the hospital, and choosing equipment that can be repaired locally."},
+        {"who": "B", "cue": "Say it's a good idea, but who will pay for the training?", "hint": "C'est une bonne idée,", "fr": "C'est une bonne idée, mais qui va financer la formation ?", "en": "It's a good idea, but who will fund the training?"},
+        {"who": "A", "cue": "Say your association can cover the first year, if the hospital commits to keeping the post.", "hint": "Notre association", "fr": "Notre association peut prendre en charge la première année, si l'hôpital s'engage à maintenir le poste.", "en": "Our association can cover the first year, if the hospital commits to keeping the post."},
+        {"who": "B", "surprise": true, "cue": "Ask if they could also bring a new oxygen concentrator.", "hint": "Est-ce que vous pourriez", "fr": "Est-ce que vous pourriez aussi nous apporter un nouveau concentrateur d'oxygène ?", "en": "Could you also bring us a new oxygen concentrator?"},
+        {"who": "A", "cue": "Say you'll look into it, but you'd rather first repair the one that's broken. You'll send a written estimate.", "hint": "Je vais étudier", "fr": "Je vais étudier la question, mais je préférerais d'abord réparer celui qui est en panne. Je vous enverrai un devis par écrit.", "en": "I'll look into it, but I'd rather first repair the one that's broken. I'll send you a written estimate."},
+        {"who": "B", "cue": "Say agreed. Ask them to send it to the administrative office.", "hint": "Entendu.", "fr": "Entendu. Envoyez-le au service administratif, s'il vous plaît.", "en": "Agreed. Please send it to the administrative office."}
+      ]
+    },
+    {
+      "id": "videocall", "level": 3, "emoji": "💻", "title": "Video call: planning the next visit",
+      "roles": {"A": "You", "B": "Training coordinator"},
+      "setting": "Back in the UK, you have a video call with the coordinator to fix dates and needs for the next trip. The connection is shaky.",
+      "tip": "Video-call French: \"Vous m'entendez ?\", \"Ça coupe\", \"Je vous entends mal\", \"Vous pouvez répéter ?\". Confirm dates in writing afterwards.",
+      "lines": [
+        {"who": "A", "cue": "Say hello. Ask if they can hear you.", "hint": "Bonjour !", "fr": "Bonjour ! Vous m'entendez ?", "en": "Hello! Can you hear me?"},
+        {"who": "B", "cue": "Say yes, but the image freezes. Suggest turning off the cameras.", "hint": "Oui, mais l'image", "fr": "Oui, mais l'image se fige. On peut couper les caméras ?", "en": "Yes, but the picture freezes. Shall we turn off the cameras?"},
+        {"who": "A", "cue": "Say good idea. Say you'd like to fix the dates of the next visit.", "hint": "Bonne idée.", "fr": "Bonne idée. J'aimerais qu'on fixe les dates de la prochaine mission.", "en": "Good idea. I'd like us to fix the dates for the next visit."},
+        {"who": "B", "cue": "Suggest the second fortnight of March.", "hint": "Je propose", "fr": "Je propose la deuxième quinzaine de mars.", "en": "I suggest the second half of March."},
+        {"who": "A", "cue": "Say March suits you, but not after the twenty-fifth. Ask if that's possible.", "hint": "Mars me convient,", "fr": "Mars me convient, mais pas après le vingt-cinq. Est-ce que c'est possible ?", "en": "March suits me, but not after the twenty-fifth. Is that possible?"},
+        {"who": "B", "cue": "Say it's breaking up. Ask them to repeat.", "hint": "Ça coupe…", "fr": "Ça coupe… Vous pouvez répéter, s'il vous plaît ?", "en": "It's breaking up… Can you repeat, please?"},
+        {"who": "A", "cue": "Repeat more slowly: from the tenth to the twenty-fifth of March.", "hint": "Je répète :", "fr": "Je répète : du dix au vingt-cinq mars.", "en": "I'll repeat: from the tenth to the twenty-fifth of March."},
+        {"who": "B", "cue": "Say perfect. Ask what topics they want for the course.", "hint": "Parfait.", "fr": "Parfait. Quels thèmes vous voulez aborder pendant la formation ?", "en": "Perfect. What topics do you want to cover during the course?"},
+        {"who": "A", "cue": "Say paediatric anaesthesia and obstetric emergencies, as the trainees asked.", "hint": "L'anesthésie pédiatrique", "fr": "L'anesthésie pédiatrique et les urgences obstétricales, comme les étudiants l'ont demandé.", "en": "Paediatric anaesthesia and obstetric emergencies, as the trainees asked."},
+        {"who": "B", "surprise": true, "cue": "Ask if they could train two local trainers this time.", "hint": "Cette fois,", "fr": "Cette fois, est-ce que vous pourriez former deux formateurs locaux ?", "en": "This time, could you train two local trainers?"},
+        {"who": "A", "cue": "Say yes, that's the priority. Ask them to choose two trainees who did well.", "hint": "Oui, c'est la priorité.", "fr": "Oui, c'est la priorité. Choisissez deux étudiants qui ont bien réussi.", "en": "Yes, that's the priority. Choose two trainees who did well."},
+        {"who": "A", "cue": "Say you'll confirm everything by email this evening.", "hint": "Je vous confirme", "fr": "Je vous confirme tout ça par mail ce soir.", "en": "I'll confirm all that by email this evening."}
+      ]
+    },
+    {
+      "id": "farewell", "level": 3, "emoji": "🌺", "title": "Farewell speech",
+      "roles": {"A": "You", "B": "Head of department"},
+      "setting": "The last day. The department holds a small ceremony with certificates. You give a short speech of thanks.",
+      "tip": "Speech structure: thank, highlight one thing you saw, look ahead. \"Je voudrais remercier...\", \"J'ai été touché(e) par...\", \"Je reviendrai avec plaisir\".",
+      "lines": [
+        {"who": "B", "cue": "Say now let's give the floor to our trainer.", "hint": "Maintenant,", "fr": "Maintenant, je donne la parole à notre formateur.", "en": "Now I give the floor to our trainer.", "alt": ["Maintenant, je passe la parole à notre formatrice."]},
+        {"who": "A", "cue": "Say thank you. You'd like to say a few words.", "hint": "Merci.", "fr": "Merci. Je voudrais dire quelques mots.", "en": "Thank you. I'd like to say a few words."},
+        {"who": "A", "cue": "Thank the head of department and the whole team for the warm welcome.", "hint": "Je voudrais remercier", "fr": "Je voudrais remercier le chef de service et toute l'équipe pour l'accueil chaleureux.", "en": "I'd like to thank the head of department and the whole team for the warm welcome."},
+        {"who": "A", "cue": "Say to the trainees: you were touched by your commitment, despite difficult conditions.", "hint": "Aux étudiants :", "fr": "Aux étudiants : j'ai été très touché par votre engagement, malgré des conditions difficiles.", "en": "To the trainees: I was very touched by your commitment, despite difficult conditions."},
+        {"who": "A", "cue": "Say in three weeks they've made enormous progress, especially in simulation.", "hint": "En trois semaines,", "fr": "En trois semaines, vous avez fait d'énormes progrès, surtout en simulation.", "en": "In three weeks, you've made enormous progress, especially in simulation."},
+        {"who": "A", "cue": "Say you've learnt a lot too: to do a lot with little.", "hint": "Moi aussi,", "fr": "Moi aussi, j'ai beaucoup appris : à faire beaucoup avec peu.", "en": "I've learnt a lot too: how to do a lot with little."},
+        {"who": "A", "cue": "Say you'll come back with pleasure in March. Thank you all.", "hint": "Je reviendrai", "fr": "Je reviendrai avec plaisir en mars. Merci à tous.", "en": "I'll come back with pleasure in March. Thank you all."},
+        {"who": "B", "cue": "Thank them on behalf of the department and give them a small gift.", "hint": "Au nom du service,", "fr": "Au nom du service, merci beaucoup. Voici un petit cadeau en souvenir.", "en": "On behalf of the department, thank you very much. Here's a little gift to remember us by."},
+        {"who": "A", "cue": "Say it's very kind, you're touched. Ask what it is.", "hint": "C'est très gentil,", "fr": "C'est très gentil, je suis touché. Qu'est-ce que c'est ?", "en": "That's very kind, I'm touched. What is it?", "alt": ["Oh, merci, c'est vraiment gentil. Je suis touchée."]},
+        {"who": "B", "surprise": true, "cue": "Say it's a lamba, a traditional scarf, and ask them to put it on for the photo.", "hint": "C'est un lamba,", "fr": "C'est un lamba, une écharpe traditionnelle. Mettez-le pour la photo !", "en": "It's a lamba, a traditional scarf. Put it on for the photo!"},
+        {"who": "A", "cue": "Say with pleasure: you'll wear it proudly. Misaotra! (thank you in Malagasy)", "hint": "Avec plaisir :", "fr": "Avec plaisir : je le porterai avec fierté. Misaotra !", "en": "With pleasure: I'll wear it proudly. Misaotra (thank you)!"}
+      ]
+    },
+    {
+      "id": "simcard", "level": 1, "emoji": "📱", "title": "A local SIM, mobile money and changing money",
+      "roles": {"A": "Visitor", "B": "Shop assistant"},
+      "setting": "In a phone shop in Antananarivo on your first afternoon. You need a SIM card, data and some ariary.",
+      "tip": "Une puce (or une carte SIM), un forfait internet, recharger = to top up. Mobile money is everywhere: on paie avec MVola or Orange Money.",
+      "lines": [
+        {"who": "A", "cue": "Say hello, you'd like a SIM card for your phone.", "hint": "Bonjour, je voudrais", "fr": "Bonjour, je voudrais une carte SIM pour mon téléphone.", "en": "Hello, I'd like a SIM card for my phone.", "alt": ["Bonjour, je voudrais une puce, s'il vous plaît."]},
+        {"who": "B", "cue": "Say of course. Ask for their passport, it's needed to register the card.", "hint": "Bien sûr. Il me faut", "fr": "Bien sûr. Il me faut votre passeport, c'est obligatoire pour enregistrer la carte.", "en": "Of course. I need your passport: it's required to register the card."},
+        {"who": "A", "cue": "Say here it is. Ask which internet bundle they recommend for a month.", "hint": "Le voici. Quel forfait", "fr": "Le voici. Quel forfait internet vous me conseillez pour un mois ?", "en": "Here it is. Which internet bundle do you recommend for a month?"},
+        {"who": "B", "cue": "Say the 10 GB bundle is the most popular: about forty thousand ariary.", "hint": "Le forfait de 10 gigas", "fr": "Le forfait de 10 gigas est le plus demandé : environ quarante mille ariary.", "en": "The 10 GB bundle is the most popular: about forty thousand ariary."},
+        {"who": "A", "cue": "Say that's fine. Ask if you can also activate mobile money on it.", "hint": "Ça me va. Est-ce que je peux", "fr": "Ça me va. Est-ce que je peux aussi activer le mobile money dessus ?", "en": "That's fine. Can I also activate mobile money on it?"},
+        {"who": "B", "surprise": true, "cue": "Say yes, and ask if they want to put money on the account straight away.", "hint": "Oui, et vous voulez", "fr": "Oui. Et vous voulez déposer de l'argent sur le compte tout de suite ?", "en": "Yes. And do you want to put money on the account straight away?"},
+        {"who": "A", "cue": "Say yes, but first you have to change money. Ask where there's a bureau de change nearby.", "hint": "Oui, mais d'abord", "fr": "Oui, mais d'abord je dois changer de l'argent. Il y a un bureau de change près d'ici ?", "en": "Yes, but first I have to change money. Is there a bureau de change near here?"},
+        {"who": "B", "cue": "Say there's one in the shopping centre, opposite the bank. They take euros and pounds.", "hint": "Il y en a un", "fr": "Il y en a un dans le centre commercial, en face de la banque. Ils prennent les euros et les livres.", "en": "There's one in the shopping centre, opposite the bank. They take euros and pounds."},
+        {"who": "A", "cue": "Ask if it's better to change at the bureau or withdraw from a cash machine.", "hint": "C'est mieux de changer", "fr": "C'est mieux de changer au bureau ou de retirer au distributeur ?", "en": "Is it better to change at the bureau or withdraw from a cash machine?"},
+        {"who": "B", "cue": "Say the rate is often better at the bureau, and cash machines sometimes run out at the weekend.", "hint": "Le taux est souvent", "fr": "Le taux est souvent meilleur au bureau, et les distributeurs sont parfois vides le week-end.", "en": "The rate is often better at the bureau, and cash machines are sometimes empty at the weekend."},
+        {"who": "A", "cue": "Say thank you, you'll be back in half an hour to top up.", "hint": "Merci, je reviens", "fr": "Merci, je reviens dans une demi-heure pour recharger.", "en": "Thank you, I'll be back in half an hour to top up."}
+      ]
+    },
+    {
+      "id": "meal", "level": 1, "emoji": "🍚", "title": "A meal with colleagues",
+      "roles": {"A": "Visitor", "B": "Colleague"},
+      "setting": "A colleague invites you to lunch at a local restaurant (hotely) near the hospital. Rice comes with everything.",
+      "tip": "Accepting: avec plaisir. Refusing politely: c'est très gentil, mais... Ça a l'air délicieux. Romazava (beef and greens stew) and ravitoto (cassava leaves with pork) are classics.",
+      "lines": [
+        {"who": "B", "cue": "Ask if they'd like to come and eat with the team at lunchtime.", "hint": "Ça vous dirait", "fr": "Ça vous dirait de venir manger avec l'équipe à midi ?", "en": "Would you like to come and eat with the team at lunchtime?"},
+        {"who": "A", "cue": "Say with pleasure, that's very kind.", "hint": "Avec plaisir,", "fr": "Avec plaisir, c'est très gentil.", "en": "With pleasure, that's very kind."},
+        {"who": "B", "cue": "At the restaurant: explain this is romazava, a beef stew with greens, served with rice.", "hint": "Ça, c'est le romazava :", "fr": "Ça, c'est le romazava : un ragoût de zébu avec des brèdes, servi avec du riz.", "en": "This is romazava: a zebu beef stew with greens, served with rice."},
+        {"who": "A", "cue": "Say it looks delicious. Ask if it's spicy.", "hint": "Ça a l'air", "fr": "Ça a l'air délicieux. C'est épicé ?", "en": "It looks delicious. Is it spicy?"},
+        {"who": "B", "cue": "Say no, but the chilli (sakay) is on the side. Careful, it's very strong!", "hint": "Non, mais le piment", "fr": "Non, mais le piment est à part. Attention, il est très fort !", "en": "No, but the chilli is on the side. Careful, it's very strong!"},
+        {"who": "A", "cue": "Say you'll try just a little, then.", "hint": "Alors, j'en goûte", "fr": "Alors, j'en goûte juste un petit peu.", "en": "Then I'll just try a tiny bit."},
+        {"who": "B", "cue": "Ask how they find it.", "hint": "Vous trouvez", "fr": "Vous trouvez ça comment ?", "en": "How do you find it?"},
+        {"who": "A", "cue": "Say it's excellent. Ask what the drink is.", "hint": "C'est excellent.", "fr": "C'est excellent. Et qu'est-ce que c'est, cette boisson ?", "en": "It's excellent. And what's this drink?"},
+        {"who": "B", "cue": "Say it's ranovola, water boiled with burnt rice. Everyone drinks it with meals.", "hint": "C'est du ranovola :", "fr": "C'est du ranovola : de l'eau bouillie avec du riz grillé. Tout le monde en boit au repas.", "en": "It's ranovola: water boiled with toasted rice. Everyone drinks it with meals."},
+        {"who": "B", "surprise": true, "cue": "Invite them to your family's home on Sunday for a big lunch.", "hint": "Dimanche, vous êtes invité", "fr": "Dimanche, vous êtes invité chez nous pour un grand déjeuner en famille.", "en": "On Sunday you're invited to our home for a big family lunch."},
+        {"who": "A", "cue": "Say that's very kind, but you already have a commitment on Sunday. Ask if another day would suit them.", "hint": "C'est très gentil, mais", "fr": "C'est très gentil, mais j'ai déjà un engagement dimanche. Un autre jour, ça vous irait ?", "en": "That's very kind, but I already have something on Sunday. Would another day suit you?", "alt": ["Je suis vraiment désolé, je ne suis pas libre dimanche. On peut trouver une autre date ?"]},
+        {"who": "B", "cue": "Say no problem: next Saturday, then.", "hint": "Pas de problème :", "fr": "Pas de problème : samedi prochain, alors.", "en": "No problem: next Saturday, then."}
+      ]
+    },
+    {
+      "id": "unwell", "level": 1, "emoji": "🤒", "title": "Unwell: the clinic and the insurer",
+      "roles": {"A": "Visitor", "B": "Doctor / insurer"},
+      "setting": "Two days of fever and diarrhoea. You see a doctor at a private clinic, then call your travel insurer.",
+      "tip": "Depuis quand ? = since when? J'ai de la fièvre, la diarrhée, des vomissements. Insurer: numéro de contrat, prise en charge (cover), une facture détaillée.",
+      "lines": [
+        {"who": "B", "cue": "Ask what brings them in.", "hint": "Qu'est-ce qui", "fr": "Qu'est-ce qui vous amène ?", "en": "What brings you in?"},
+        {"who": "A", "cue": "Say you've had diarrhoea and a fever since the day before yesterday.", "hint": "J'ai la diarrhée", "fr": "J'ai la diarrhée et de la fièvre depuis avant-hier.", "en": "I've had diarrhoea and a fever since the day before yesterday."},
+        {"who": "B", "cue": "Ask if there's blood in the stools, and if they can drink.", "hint": "Il y a du sang", "fr": "Il y a du sang dans les selles ? Et vous arrivez à boire ?", "en": "Is there blood in your stools? And can you drink?"},
+        {"who": "A", "cue": "Say no blood, you can drink, but you feel very weak.", "hint": "Pas de sang,", "fr": "Pas de sang, j'arrive à boire, mais je me sens très faible.", "en": "No blood, I can drink, but I feel very weak."},
+        {"who": "B", "surprise": true, "cue": "Say with a fever here, you have to rule out malaria. Do a rapid test.", "hint": "Avec de la fièvre ici,", "fr": "Avec de la fièvre ici, il faut éliminer le paludisme. On va faire un test rapide.", "en": "With a fever here, we have to rule out malaria. We'll do a rapid test."},
+        {"who": "A", "cue": "Say of course. Mention you're taking antimalarial prophylaxis.", "hint": "Bien sûr. Je prends", "fr": "Bien sûr. Je précise que je prends un traitement préventif contre le paludisme.", "en": "Of course. I should say I'm taking antimalarial prophylaxis."},
+        {"who": "B", "cue": "Say the test is negative. It's probably traveller's diarrhoea: oral rehydration salts, rest, and come back if it gets worse.", "hint": "Le test est négatif.", "fr": "Le test est négatif. C'est sûrement une diarrhée du voyageur : des sels de réhydratation, du repos, et revenez si ça s'aggrave.", "en": "The test is negative. It's probably traveller's diarrhoea: rehydration salts, rest, and come back if it gets worse."},
+        {"who": "A", "cue": "Ask for a detailed invoice for your insurance.", "hint": "Je pourrais avoir", "fr": "Je pourrais avoir une facture détaillée pour mon assurance ?", "en": "Could I have a detailed invoice for my insurance?"},
+        {"who": "A", "cue": "On the phone to the insurer: say hello, you're calling about a medical consultation abroad. Give your policy number.", "hint": "Bonjour, j'appelle", "fr": "Bonjour, j'appelle pour une consultation médicale à l'étranger. Mon numéro de contrat est le 4 8 2 7 1.", "en": "Hello, I'm calling about a medical consultation abroad. My policy number is 48271."},
+        {"who": "B", "cue": "Ask if it's an emergency and if they need to be repatriated.", "hint": "Est-ce que c'est", "fr": "Est-ce que c'est une urgence ? Vous avez besoin d'un rapatriement ?", "en": "Is it an emergency? Do you need repatriation?"},
+        {"who": "A", "cue": "Say no, it's not serious. You just want to know if the consultation is covered.", "hint": "Non, ce n'est pas grave.", "fr": "Non, ce n'est pas grave. Je voudrais juste savoir si la consultation est prise en charge.", "en": "No, it's not serious. I just want to know if the consultation is covered."},
+        {"who": "B", "cue": "Say yes: send the invoice and the prescription by email and you'll be reimbursed within two weeks.", "hint": "Oui : envoyez-nous", "fr": "Oui : envoyez-nous la facture et l'ordonnance par e-mail, et vous serez remboursé sous quinze jours.", "en": "Yes: email us the invoice and the prescription, and you'll be reimbursed within a fortnight."}
+      ]
+    },
+    {
+      "id": "checklist", "level": 2, "emoji": "✅", "title": "The WHO checklist and team brief",
+      "roles": {"A": "Trainer", "B": "Trainee"},
+      "setting": "Before the first case of the list. You coach a trainee to lead the team brief and the sign in, out loud, in front of the team.",
+      "tip": "The three moments: avant l'induction (sign in), avant l'incision (time out), avant la sortie de salle (sign out). On parle fort, on attend la réponse.",
+      "lines": [
+        {"who": "A", "cue": "Say this morning, you'll lead the brief. Everyone stops for one minute.", "hint": "Ce matin, c'est vous", "fr": "Ce matin, c'est vous qui menez le briefing. Tout le monde s'arrête une minute.", "en": "This morning you lead the brief. Everyone stops for one minute."},
+        {"who": "B", "cue": "Say good morning everyone. Ask everyone to introduce themselves, name and role.", "hint": "Bonjour à tous.", "fr": "Bonjour à tous. Chacun se présente, s'il vous plaît : nom et fonction.", "en": "Good morning everyone. Please introduce yourselves: name and role."},
+        {"who": "A", "cue": "Say good. Now the sign in, before induction. Check identity first.", "hint": "Bien. Maintenant,", "fr": "Bien. Maintenant, la vérification avant l'induction. D'abord, l'identité.", "en": "Good. Now the sign in, before induction. Identity first."},
+        {"who": "B", "cue": "Ask the patient their name, date of birth, and what operation they're having today.", "hint": "Madame, pouvez-vous", "fr": "Madame, pouvez-vous me dire votre nom, votre date de naissance, et l'opération prévue aujourd'hui ?", "en": "Madam, can you tell me your name, date of birth, and the operation planned today?"},
+        {"who": "B", "cue": "Ask: is the site marked? Any allergies? A difficult airway or risk of aspiration?", "hint": "Le site est", "fr": "Le site est marqué ? Des allergies ? Une intubation difficile ou un risque d'inhalation ?", "en": "Is the site marked? Any allergies? A difficult airway or risk of aspiration?"},
+        {"who": "A", "cue": "Remind them of the last question: the risk of bleeding more than 500 ml.", "hint": "N'oubliez pas", "fr": "N'oubliez pas la dernière question : le risque de saignement de plus de 500 millilitres.", "en": "Don't forget the last question: the risk of blood loss over 500 ml."},
+        {"who": "B", "cue": "Ask the surgeon if they expect significant bleeding, and if blood is available.", "hint": "Docteur, vous prévoyez", "fr": "Docteur, vous prévoyez un saignement important ? Est-ce qu'on a du sang disponible ?", "en": "Doctor, do you expect significant bleeding? Do we have blood available?"},
+        {"who": "A", "surprise": true, "cue": "Say the surgeon wants to skip the time out because the list is late. What do you say?", "hint": "Le chirurgien veut", "fr": "Le chirurgien veut sauter la pause avant l'incision parce qu'on est en retard. Vous lui dites quoi ?", "en": "The surgeon wants to skip the time out because we're running late. What do you say to him?"},
+        {"who": "B", "cue": "Say politely: it only takes one minute, and it protects the patient and us. We do it every time.", "hint": "Ça prend juste", "fr": "Ça prend juste une minute, et ça protège le patient et l'équipe. On le fait à chaque fois.", "en": "It only takes a minute, and it protects the patient and the team. We do it every time."},
+        {"who": "A", "cue": "Say perfect: calm, polite and firm. And at the end of the case?", "hint": "Parfait :", "fr": "Parfait : calme, poli et ferme. Et à la fin de l'intervention ?", "en": "Perfect: calm, polite and firm. And at the end of the case?"},
+        {"who": "B", "cue": "Say the sign out: count the swabs and instruments, label the samples, and plan the post-op care.", "hint": "La vérification de sortie :", "fr": "La vérification de sortie : on compte les compresses et les instruments, on étiquette les prélèvements, et on prévoit les soins post-opératoires.", "en": "The sign out: count swabs and instruments, label the samples, and plan post-op care."}
+      ]
+    },
+    {
+      "id": "pph", "level": 2, "emoji": "🩸", "title": "Obstetric emergency: post-partum haemorrhage",
+      "roles": {"A": "Trainer", "B": "Trainee"},
+      "setting": "A simulation in the maternity theatre: a woman bleeding heavily after a vaginal delivery. You lead, then debrief the four Ts.",
+      "tip": "Closed loop: say the dose, they repeat it back. The four Ts: tonus, tissu, traumatisme, thrombine. Oxytocin 5 units slow IV, tranexamic acid 1 g IV.",
+      "lines": [
+        {"who": "B", "cue": "Say the midwife estimates a litre of blood loss, and the bleeding continues.", "hint": "La sage-femme estime", "fr": "La sage-femme estime la perte de sang à un litre, et ça continue de saigner.", "en": "The midwife estimates a litre of blood loss, and it's still bleeding."},
+        {"who": "A", "cue": "Say: call for help, two large cannulas, blood for group and crossmatch, and warm fluids.", "hint": "On appelle", "fr": "On appelle de l'aide. Deux voies veineuses de gros calibre, un bilan avec groupe et cross-match, et du remplissage réchauffé.", "en": "Call for help. Two large-bore cannulas, bloods with group and crossmatch, and warmed fluids."},
+        {"who": "B", "cue": "Say pulse 125, pressure 85 over 50.", "hint": "Pouls à", "fr": "Pouls à 125, tension à 85 sur 50.", "en": "Pulse 125, pressure 85 over 50."},
+        {"who": "A", "cue": "Say: massage the uterus. Give oxytocin, five units slow IV.", "hint": "Massage utérin.", "fr": "Massage utérin. Ocytocine, cinq unités en IV lente.", "en": "Uterine massage. Oxytocin, five units slow IV."},
+        {"who": "B", "cue": "Repeat back: oxytocin five units slow IV, given.", "hint": "Ocytocine", "fr": "Ocytocine cinq unités en IV lente, c'est fait.", "en": "Oxytocin five units slow IV, given."},
+        {"who": "A", "cue": "Say: and tranexamic acid, one gram IV over ten minutes.", "hint": "Et l'acide", "fr": "Et l'acide tranexamique, un gramme en IV sur dix minutes.", "en": "And tranexamic acid, one gram IV over ten minutes."},
+        {"who": "B", "surprise": true, "cue": "Say the uterus is still soft and the bleeding isn't stopping. Ask what's next.", "hint": "L'utérus reste", "fr": "L'utérus reste mou et le saignement ne s'arrête pas. On fait quoi ensuite ?", "en": "The uterus is still soft and the bleeding isn't stopping. What next?"},
+        {"who": "A", "cue": "Say: an oxytocin infusion, then ergometrine if there's no hypertension, and we prepare theatre. Activate the major haemorrhage protocol.", "hint": "Une perfusion", "fr": "Une perfusion d'ocytocine, puis de l'ergométrine s'il n'y a pas d'hypertension, et on prépare le bloc. On déclenche le protocole d'hémorragie massive.", "en": "An oxytocin infusion, then ergometrine if she's not hypertensive, and we prepare theatre. Activate the major haemorrhage protocol."},
+        {"who": "A", "cue": "In the debrief, ask: what are the four causes of post-partum haemorrhage?", "hint": "Quelles sont", "fr": "Quelles sont les quatre causes d'hémorragie du post-partum ?", "en": "What are the four causes of post-partum haemorrhage?"},
+        {"who": "B", "cue": "Say: tone, tissue, trauma and thrombin. Tone is the most common.", "hint": "Le tonus,", "fr": "Le tonus, le tissu, le traumatisme et la thrombine. Le tonus est la cause la plus fréquente.", "en": "Tone, tissue, trauma and thrombin. Tone is the most common."},
+        {"who": "A", "cue": "Say exactly. And what went well in our teamwork?", "hint": "Exactement. Et qu'est-ce", "fr": "Exactement. Et qu'est-ce qui a bien marché dans le travail d'équipe ?", "en": "Exactly. And what went well in our teamwork?"},
+        {"who": "B", "cue": "Say the doses were repeated back, and everyone knew their role.", "hint": "Les doses", "fr": "Les doses étaient répétées à voix haute, et chacun connaissait son rôle.", "en": "The doses were repeated back out loud, and everyone knew their role."}
+      ]
+    },
+    {
+      "id": "laryngospasm", "level": 2, "emoji": "👶", "title": "Teaching: laryngospasm in a child",
+      "roles": {"A": "Trainer", "B": "Trainee"},
+      "setting": "A teaching session after a near-miss: a child who went into laryngospasm at extubation. Talk through the steps, then a quick drill.",
+      "tip": "Escalate step by step: oxygène 100 % et CPAP, subluxation de la mâchoire, approfondir au propofol, puis suxaméthonium. Doses per kilo: say them twice.",
+      "lines": [
+        {"who": "A", "cue": "Ask what laryngospasm is, in one sentence.", "hint": "En une phrase,", "fr": "En une phrase, c'est quoi un laryngospasme ?", "en": "In one sentence, what is laryngospasm?"},
+        {"who": "B", "cue": "Say it's a reflex closure of the vocal cords, often at induction or extubation when the child is too light.", "hint": "C'est une fermeture", "fr": "C'est une fermeture réflexe des cordes vocales, souvent à l'induction ou au réveil, quand l'enfant n'est pas assez endormi.", "en": "It's a reflex closure of the vocal cords, often at induction or emergence, when the child isn't deep enough."},
+        {"who": "A", "cue": "Ask what signs make them think of it.", "hint": "Quels signes", "fr": "Quels signes vous font penser à ça ?", "en": "What signs make you think of it?"},
+        {"who": "B", "cue": "Say a high-pitched noise or silence, chest movement without air, the bag doesn't move, then desaturation.", "hint": "Un bruit aigu", "fr": "Un bruit aigu ou un silence, le thorax bouge mais l'air ne passe pas, le ballon ne bouge plus, puis la saturation baisse.", "en": "A high-pitched noise or silence, the chest moves but no air goes in, the bag stops moving, then the sats fall."},
+        {"who": "A", "cue": "Say good. First step?", "hint": "Bien. Première", "fr": "Bien. Première étape ?", "en": "Good. First step?"},
+        {"who": "B", "cue": "Say: call for help, stop the stimulation, 100% oxygen with tight-fitting mask and CPAP, and jaw thrust.", "hint": "J'appelle à l'aide,", "fr": "J'appelle à l'aide, j'arrête toute stimulation, oxygène à 100 % avec le masque bien hermétique et une CPAP, et je fais une subluxation de la mâchoire.", "en": "Call for help, stop all stimulation, 100% oxygen with a tight mask and CPAP, and jaw thrust."},
+        {"who": "A", "cue": "Say the sats are still falling: 85%. And now?", "hint": "La saturation", "fr": "La saturation continue de baisser : 85 %. Et maintenant ?", "en": "The sats are still falling: 85%. And now?"},
+        {"who": "B", "cue": "Say: deepen the anaesthesia with propofol, one milligram per kilo.", "hint": "J'approfondis", "fr": "J'approfondis l'anesthésie avec du propofol, un milligramme par kilo.", "en": "I deepen the anaesthesia with propofol, one milligram per kilo."},
+        {"who": "A", "surprise": true, "cue": "Say no improvement, and there's no IV access. What do you do?", "hint": "Pas d'amélioration,", "fr": "Pas d'amélioration, et il n'y a pas de voie veineuse. Vous faites quoi ?", "en": "No improvement, and there's no IV access. What do you do?"},
+        {"who": "B", "cue": "Say: suxamethonium intramuscular, four milligrams per kilo, with atropine, and be ready to intubate.", "hint": "Suxaméthonium", "fr": "Suxaméthonium en intramusculaire, quatre milligrammes par kilo, avec de l'atropine, et je suis prêt à intuber.", "en": "Intramuscular suxamethonium, four milligrams per kilo, with atropine, and be ready to intubate.", "alt": ["Si j'ai une voie veineuse : suxaméthonium, un à deux milligrammes par kilo en IV."]},
+        {"who": "A", "cue": "Say excellent. And how do you prevent it?", "hint": "Excellent. Et pour", "fr": "Excellent. Et pour le prévenir ?", "en": "Excellent. And to prevent it?"},
+        {"who": "B", "cue": "Say extubate either fully awake or deep, never in between, and suction the secretions first.", "hint": "On extube", "fr": "On extube soit bien réveillé, soit profond, jamais entre les deux, et on aspire les sécrétions avant.", "en": "Extubate either fully awake or deep, never in between, and suction secretions first."}
+      ]
+    },
+    {
+      "id": "recovery", "level": 2, "emoji": "🛏️", "title": "Recovery room handover: pain and sickness",
+      "roles": {"A": "Trainer", "B": "Trainee"},
+      "setting": "You supervise a trainee handing over a patient to the recovery nurse, then deal together with pain and nausea.",
+      "tip": "A structured handover: qui, quoi, comment ça s'est passé, ce qu'il faut surveiller. Pain score: sur une échelle de 0 à 10.",
+      "lines": [
+        {"who": "A", "cue": "Say: hand over to the nurse, using the structure we practised.", "hint": "Faites la transmission", "fr": "Faites la transmission à l'infirmière, avec la structure qu'on a travaillée.", "en": "Hand over to the nurse, using the structure we practised."},
+        {"who": "B", "cue": "Say: Mr R., 45, appendicectomy under general anaesthetic, no allergies.", "hint": "Monsieur R.,", "fr": "Monsieur R., 45 ans, appendicectomie sous anesthésie générale, pas d'allergie.", "en": "Mr R., 45, appendicectomy under general anaesthetic, no allergies."},
+        {"who": "B", "cue": "Say the case went well. He's had paracetamol, and 6 mg of morphine. Ondansetron given at the end.", "hint": "Tout s'est bien passé.", "fr": "Tout s'est bien passé. Il a reçu du paracétamol et six milligrammes de morphine. Ondansétron donné en fin d'intervention.", "en": "It went well. He's had paracetamol and six milligrams of morphine. Ondansetron given at the end."},
+        {"who": "B", "cue": "Say: watch breathing and sedation, and call us if the pain is above 4 out of 10.", "hint": "À surveiller :", "fr": "À surveiller : la respiration et la sédation, et appelez-nous si la douleur dépasse 4 sur 10.", "en": "Watch his breathing and sedation, and call us if the pain is above 4 out of 10."},
+        {"who": "A", "cue": "Say very clear. Now ask the patient how much pain he has.", "hint": "Très clair.", "fr": "Très clair. Maintenant, demandez au patient s'il a mal.", "en": "Very clear. Now ask the patient about his pain."},
+        {"who": "B", "cue": "Ask the patient: on a scale of 0 to 10, how much does it hurt?", "hint": "Sur une échelle", "fr": "Monsieur, sur une échelle de 0 à 10, vous avez mal à combien ?", "en": "Sir, on a scale of 0 to 10, how much does it hurt?"},
+        {"who": "A", "cue": "Say he answers 7. What do you do?", "hint": "Il répond 7.", "fr": "Il répond 7. Vous faites quoi ?", "en": "He says 7. What do you do?"},
+        {"who": "B", "cue": "Say: check breathing rate and sedation, then titrate morphine, 2 mg every five minutes, and reassess.", "hint": "Je vérifie", "fr": "Je vérifie la fréquence respiratoire et la sédation, puis je titre la morphine, deux milligrammes toutes les cinq minutes, et je réévalue.", "en": "I check his breathing rate and sedation, then titrate morphine, two milligrams every five minutes, and reassess."},
+        {"who": "A", "surprise": true, "cue": "Say now he says he feels sick. He's already had ondansetron. What next?", "hint": "Maintenant, il a", "fr": "Maintenant, il a des nausées. Il a déjà eu de l'ondansétron. Et ensuite ?", "en": "Now he feels sick. He's already had ondansetron. What next?"},
+        {"who": "B", "cue": "Say: give an antiemetic from a different class, for example cyclizine or dexamethasone, and check he's not hypotensive.", "hint": "Un antiémétique", "fr": "Un antiémétique d'une autre classe, par exemple de la cyclizine ou de la dexaméthasone, et je vérifie qu'il n'est pas hypotendu.", "en": "An antiemetic from a different class, for example cyclizine or dexamethasone, and I check he isn't hypotensive."},
+        {"who": "A", "cue": "Say very good: never repeat the same class. When can he leave recovery?", "hint": "Très bien :", "fr": "Très bien : on ne répète pas la même classe. Il peut sortir de la salle de réveil quand ?", "en": "Very good: never repeat the same class. When can he leave recovery?"},
+        {"who": "B", "cue": "Say when he's awake, his observations are stable, and the pain and nausea are controlled.", "hint": "Quand il est", "fr": "Quand il est bien réveillé, que ses constantes sont stables, et que la douleur et les nausées sont contrôlées.", "en": "When he's fully awake, his observations are stable, and his pain and nausea are under control."}
+      ]
+    },
+    {
+      "id": "panel", "level": 3, "emoji": "🎙️", "title": "Panel Q&A: a challenging question",
+      "roles": {"A": "You (panellist)", "B": "Chair / audience"},
+      "setting": "A panel on training in low-resource settings. Someone in the audience challenges whether short visits by foreign trainers do any good.",
+      "tip": "Buying time: c'est une question importante, merci de la poser. Agreeing in part: vous avez raison sur un point. Then: cela dit... and finish with a concrete example.",
+      "lines": [
+        {"who": "B", "cue": "As chair: say we'll take a question from the floor. The gentleman at the back.", "hint": "Nous allons prendre", "fr": "Nous allons prendre une question de la salle. Le monsieur au fond, je vous en prie.", "en": "We'll take a question from the floor. The gentleman at the back, please."},
+        {"who": "B", "cue": "As the questioner: say frankly, foreign trainers come for two weeks, then leave. What really stays afterwards?", "hint": "Franchement,", "fr": "Franchement, les formateurs étrangers viennent deux semaines, puis ils repartent. Qu'est-ce qui reste vraiment après ?", "en": "Frankly, foreign trainers come for two weeks and then leave. What really remains afterwards?"},
+        {"who": "A", "cue": "Say thank you, it's an important question, and it's fair to ask it.", "hint": "Merci, c'est", "fr": "Merci, c'est une question importante, et c'est légitime de la poser.", "en": "Thank you, it's an important question, and it's fair to ask it."},
+        {"who": "A", "cue": "Say he's right on one point: a single visit on its own changes very little.", "hint": "Vous avez raison", "fr": "Vous avez raison sur un point : une visite isolée, toute seule, change très peu de choses.", "en": "You're right on one point: a one-off visit, on its own, changes very little."},
+        {"who": "A", "cue": "Say that's why the project trains local trainers, who carry on teaching between visits.", "hint": "C'est pour ça", "fr": "C'est pour ça que notre projet forme des formateurs locaux, qui continuent à enseigner entre nos visites.", "en": "That's why our project trains local trainers, who carry on teaching between our visits."},
+        {"who": "A", "cue": "Give an example: last year, two nurse anaesthetists ran the simulation sessions on their own.", "hint": "Par exemple,", "fr": "Par exemple, l'année dernière, deux infirmières anesthésistes ont animé les séances de simulation toutes seules.", "en": "For example, last year two nurse anaesthetists ran the simulation sessions on their own."},
+        {"who": "B", "surprise": true, "cue": "As the questioner: ask how they measure that, beyond impressions.", "hint": "Et comment", "fr": "Et comment vous mesurez ça, au-delà des impressions ?", "en": "And how do you measure that, beyond impressions?"},
+        {"who": "A", "cue": "Say: with skills assessments before and after, and with incident data collected by the local team.", "hint": "Avec des évaluations", "fr": "Avec des évaluations des compétences avant et après, et avec les données d'incidents recueillies par l'équipe locale.", "en": "With skills assessments before and after, and with incident data collected by the local team."},
+        {"who": "A", "cue": "Admit the data are still limited, and say you'd welcome help to evaluate it better.", "hint": "Je reconnais", "fr": "Je reconnais que les données sont encore limitées, et toute aide pour mieux évaluer est la bienvenue.", "en": "I admit the data are still limited, and any help to evaluate it better is welcome."},
+        {"who": "B", "cue": "As chair: thank them for this frank exchange. Time for one last question.", "hint": "Merci pour", "fr": "Merci pour cet échange franc. Nous avons le temps pour une dernière question.", "en": "Thank you for this frank exchange. We have time for one last question."}
+      ]
+    },
+    {
+      "id": "curriculum", "level": 3, "emoji": "📚", "title": "Curriculum meeting at the school",
+      "roles": {"A": "You", "B": "Head of the school"},
+      "setting": "A meeting with the head of the school of nurse anaesthetists to build next year's training programme together.",
+      "tip": "Proposing: je propose que + subjunctive (que l'on fasse). Priorities: en priorité, ensuite, à terme. Checking agreement: est-ce que ça vous convient ?",
+      "lines": [
+        {"who": "B", "cue": "Say thank you for coming. Today, the aim is to fix the programme for next year.", "hint": "Merci d'être venu.", "fr": "Merci d'être venu. Aujourd'hui, l'objectif est d'arrêter le programme de l'année prochaine.", "en": "Thank you for coming. Today the aim is to finalise next year's programme."},
+        {"who": "A", "cue": "Ask what the students found most difficult this year.", "hint": "Qu'est-ce que", "fr": "Qu'est-ce que les étudiants ont trouvé le plus difficile cette année ?", "en": "What did the students find most difficult this year?"},
+        {"who": "B", "cue": "Say paediatrics and obstetric emergencies. And the exam results in pharmacology were weak.", "hint": "La pédiatrie", "fr": "La pédiatrie et les urgences obstétricales. Et les résultats en pharmacologie étaient faibles.", "en": "Paediatrics and obstetric emergencies. And the pharmacology exam results were weak."},
+        {"who": "A", "cue": "Propose that you do one simulation day per term on obstetric emergencies.", "hint": "Je propose que", "fr": "Je propose que l'on fasse une journée de simulation par trimestre sur les urgences obstétricales.", "en": "I suggest we do one simulation day a term on obstetric emergencies."},
+        {"who": "B", "cue": "Say good idea, but the simulation room isn't available on Mondays.", "hint": "Bonne idée, mais", "fr": "Bonne idée, mais la salle de simulation n'est pas disponible le lundi.", "en": "Good idea, but the simulation room isn't available on Mondays."},
+        {"who": "A", "cue": "Say no problem, Thursdays then. For pharmacology, suggest short weekly quizzes on the phone.", "hint": "Pas de problème,", "fr": "Pas de problème, le jeudi alors. Pour la pharmacologie, je suggère de petits quiz hebdomadaires sur le téléphone.", "en": "No problem, Thursdays then. For pharmacology, I suggest short weekly quizzes on the phone."},
+        {"who": "B", "surprise": true, "cue": "Ask who will write and correct the quizzes when you're in the UK.", "hint": "Qui va", "fr": "Et qui va rédiger et corriger les quiz quand vous serez au Royaume-Uni ?", "en": "And who will write and mark the quizzes when you're in the UK?"},
+        {"who": "A", "cue": "Say you'll write the first twenty together, then two of your trainers take over, with a review every month by video.", "hint": "On rédige", "fr": "On rédige les vingt premiers ensemble, puis deux de vos formateurs prennent le relais, avec un point chaque mois en visio.", "en": "We write the first twenty together, then two of your trainers take over, with a monthly review by video."},
+        {"who": "B", "cue": "Say that suits me. Ask them to write it all in a document for the board.", "hint": "Ça me convient.", "fr": "Ça me convient. Vous pouvez mettre tout ça par écrit pour le conseil d'administration ?", "en": "That suits me. Can you put all that in writing for the board?"},
+        {"who": "A", "cue": "Say of course, you'll send a draft by Friday. Ask if they can add the exam dates.", "hint": "Bien sûr,", "fr": "Bien sûr, je vous envoie un projet d'ici vendredi. Vous pourrez y ajouter les dates d'examen ?", "en": "Of course, I'll send you a draft by Friday. Could you add the exam dates to it?"},
+        {"who": "B", "cue": "Say yes, and thank them: this programme is much clearer than last year.", "hint": "Oui, et merci :", "fr": "Oui, et merci : ce programme est beaucoup plus clair que l'an dernier.", "en": "Yes, and thank you: this programme is much clearer than last year's."}
+      ]
+    },
+    {
+      "id": "donation", "level": 3, "emoji": "🔧", "title": "Donated equipment: negotiating maintenance",
+      "roles": {"A": "You", "B": "NGO representative"},
+      "setting": "An NGO offers two anaesthetic machines. You want them, but only with training, spare parts and a maintenance plan.",
+      "tip": "Conditions: à condition que + subjunctive, à condition de + infinitive. Softening: nous apprécions beaucoup, mais... Une pièce détachée = a spare part.",
+      "lines": [
+        {"who": "B", "cue": "Say your organisation can donate two anaesthetic machines next month.", "hint": "Notre association", "fr": "Notre association peut faire don de deux appareils d'anesthésie le mois prochain.", "en": "Our organisation can donate two anaesthetic machines next month."},
+        {"who": "A", "cue": "Say thank you, the hospital really appreciates it. Ask what model they are and how old.", "hint": "Merci, l'hôpital", "fr": "Merci, l'hôpital l'apprécie beaucoup. Ce sont quels modèles, et ils ont quel âge ?", "en": "Thank you, the hospital really appreciates it. What models are they, and how old?"},
+        {"who": "B", "cue": "Say they're about ten years old, from a hospital in France, in working order.", "hint": "Ils ont", "fr": "Ils ont une dizaine d'années, ils viennent d'un hôpital en France, et ils fonctionnent.", "en": "They're about ten years old, from a hospital in France, and they work."},
+        {"who": "A", "cue": "Say the problem: last time, a donated machine broke down after six months and no one could repair it.", "hint": "Le problème,", "fr": "Le problème, c'est que la dernière fois, un appareil donné est tombé en panne au bout de six mois, et personne n'a pu le réparer.", "en": "The problem is that last time a donated machine broke down after six months, and no one could repair it."},
+        {"who": "A", "cue": "Say you'd accept on condition there are spare parts and training for the biomedical technician.", "hint": "Nous les acceptons", "fr": "Nous les acceptons volontiers, à condition qu'il y ait des pièces détachées et une formation pour le technicien biomédical.", "en": "We'd gladly accept them, on condition there are spare parts and training for the biomedical technician."},
+        {"who": "B", "cue": "Say spare parts are possible, but training costs extra. Ask if the hospital can contribute.", "hint": "Les pièces,", "fr": "Les pièces, c'est possible, mais la formation coûte plus cher. Est-ce que l'hôpital peut participer ?", "en": "Spare parts are possible, but training costs more. Can the hospital contribute?"},
+        {"who": "A", "cue": "Propose a compromise: the hospital provides accommodation for the engineer, and the NGO pays the travel.", "hint": "Je propose", "fr": "Je propose un compromis : l'hôpital loge l'ingénieur, et votre association prend en charge le voyage.", "en": "I suggest a compromise: the hospital houses the engineer, and your organisation pays for the travel."},
+        {"who": "B", "surprise": true, "cue": "Ask if the machines work with the local oxygen supply: concentrators or cylinders?", "hint": "Les appareils", "fr": "Au fait, vous utilisez des concentrateurs ou des bouteilles d'oxygène ? Les appareils doivent être compatibles.", "en": "By the way, do you use oxygen concentrators or cylinders? The machines need to be compatible."},
+        {"who": "A", "cue": "Say mostly cylinders, with frequent power cuts, so you need a machine that works without electricity in an emergency.", "hint": "Surtout des bouteilles,", "fr": "Surtout des bouteilles, avec des coupures de courant fréquentes, donc il nous faut un appareil qui fonctionne sans électricité en cas d'urgence.", "en": "Mostly cylinders, with frequent power cuts, so we need a machine that works without electricity in an emergency."},
+        {"who": "B", "cue": "Say that's important: you'll check with the technical team before shipping.", "hint": "C'est important :", "fr": "C'est important : je vérifie avec l'équipe technique avant l'expédition.", "en": "That's important: I'll check with the technical team before shipping."},
+        {"who": "A", "cue": "Say perfect. Suggest putting everything in a written agreement, including who pays for maintenance after two years.", "hint": "Parfait. Je propose", "fr": "Parfait. Je propose qu'on mette tout ça dans une convention écrite, y compris qui paie la maintenance après deux ans.", "en": "Perfect. I suggest we put all this in a written agreement, including who pays for maintenance after two years."}
+      ]
     }
   ]
 }
