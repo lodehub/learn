@@ -76,6 +76,8 @@ Privacy: slugs and labels only, never real names, schools or personal data. Comm
 - **Archive** toggle: `"status": "archived"` hides finished work without moving files (URLs and saved progress keep working). Grouped by year, then `topic`. Older items were archived to keep the latest two per subject for ember, ninja and bingo.
 - **This week** box: manifest top-level `"currentWeek": N`; items tagged `"week": N` show at the top with a tick each. Optional `"checkin"` path adds the half-term check-in link. Currently only ember uses it (`currentWeek: 3`).
 - **Back button** on every tool via `back.js` (needed when installed as an app).
+- **Offline and slow wifi** (`<slug>/sw.js`, one identical copy per child, cache `learn-v2`): pages and data wait at most 3 s for the network, then use the saved copy. After install, every current tool in the manifest (page, scripts, styles and the JSON its engine loads) is saved in the background, so it opens offline without being visited first. When changing it, edit one copy and copy it to the other three; bump `CACHE` only if old caches must be thrown away.
+- **Fonts are self-hosted** in `assets/fonts/` (latin + latin-ext woff2 and one CSS per font set). Never link fonts.googleapis.com: it slows the first paint, fails offline and leaks visits to Google. To add a font, download it the same way and link `assets/fonts/<name>.css`.
 - **Explore strand** style: rooms at the child's own pace, "predict first" before each reveal, an interactive, a "Big idea" box, a notebook prompt saved on the device. No scores.
 
 ## Content by learner
@@ -140,7 +142,7 @@ Family Bible study: one book a month, about a chapter a week, five ~10-minute se
 - **New language**: copy `french.json`, translate, add a wrapper page.
 
 ## Git history in brief
-PRs #1–#30 all merged to `main`. Rough order: initial hub and conventions → first maths/science/English tools → Practise/Print split, printables shelf and archive (#2) → Ember Weeks 1–3 and history coaching (#3–#14) → Ninja/Bingo maths and English (#9–#16) → archive tidy-up (#17) → site restore after an accidental merge of an old local commit (#18) → Heeler added and language tools (#19–#23) → Languages hub (#24) → Bible Lab (#25) → Explore strand (#26–#28) → This-week box and half-term check-in (#29) → French and Mandarin Role-play (#30) → Heeler's work-in-Madagascar role-play (#31) → Ninja's volume Explore journey → Ember's forces Explore → Role-play expanded (34 French, 34 Mandarin, 31 Madagascar scenes).
+PRs #1–#30 all merged to `main`. Rough order: initial hub and conventions → first maths/science/English tools → Practise/Print split, printables shelf and archive (#2) → Ember Weeks 1–3 and history coaching (#3–#14) → Ninja/Bingo maths and English (#9–#16) → archive tidy-up (#17) → site restore after an accidental merge of an old local commit (#18) → Heeler added and language tools (#19–#23) → Languages hub (#24) → Bible Lab (#25) → Explore strand (#26–#28) → This-week box and half-term check-in (#29) → French and Mandarin Role-play (#30) → Heeler's work-in-Madagascar role-play (#31) → Ninja's volume Explore journey → Ember's forces Explore → Role-play expanded (34 French, 34 Mandarin, 31 Madagascar scenes) → fonts self-hosted, service worker with 3 s timeout and offline warm-up.
 
 ## Working locally
 ```bash
