@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbf6f1">
+<title>Forces from scratch</title>
+<style>
+:root{--bg:#fbf6f1;--card:#ffffff;--ink:#2b2a28;--mute:#6f6b64;--acc:#d9682a;--accsoft:#fdeee4;--two:#2f74c0;--twosoft:#e6f0fb;--ok:#1b7f4b;--oksoft:#e2f4ea;--bad:#b3261e;--badsoft:#fbe7e5;--line:#e4dcd2;--grid:#efe8df;--wt:#7a4fc4;--air:#2f74c0;--res:#b3261e;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--two:#7fb0e3;--twosoft:#1f2c3b;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3835;--grid:#302e2b;--wt:#b99af0;--air:#7fb0e3;--res:#ff8a80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--two:#7fb0e3;--twosoft:#1f2c3b;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3835;--grid:#302e2b;--wt:#b99af0;--air:#7fb0e3;--res:#ff8a80;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(24px,5.5vw,32px);margin:2px 0 6px;line-height:1.2}
+.lede{color:var(--mute);margin:0 0 14px}
+.rooms{display:flex;gap:6px;overflow-x:auto;padding:4px 0 10px;margin:0 0 6px;scrollbar-width:none}
+.rooms::-webkit-scrollbar{display:none}
+.rooms button{flex:none;min-width:44px;height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.rooms button.done{background:var(--oksoft);border-color:var(--ok);color:var(--ok)}
+.rooms button[aria-current="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+section.room{display:none}section.room.on{display:block}
+h2{font-size:clamp(22px,5vw,28px);margin:6px 0 10px;line-height:1.25}
+p{margin:0 0 12px}
+ul{margin:0 0 12px;padding-left:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
+.card h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+.big{background:var(--accsoft);border-left:5px solid var(--acc);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.big b:first-child{color:var(--acc)}
+.aside{font-size:15px;color:var(--mute);border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.row{flex-direction:row;flex-wrap:wrap}
+.opts.row .opt{flex:1;min-width:96px;text-align:center}
+.opt{text-align:left;min-height:48px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:11px 14px;border-radius:12px;font:inherit;font-size:16px;cursor:pointer}
+.opt.right{background:var(--oksoft);border-color:var(--ok)}
+.opt.wrong{background:var(--badsoft);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.opt svg{width:100%;max-width:120px;margin:0 auto;pointer-events:none}
+.why{display:none;margin-top:10px;font-size:16px}
+.why.show{display:block}
+.g{color:var(--ok)}.r{color:var(--bad)}
+svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
+svg text{font-family:inherit;fill:var(--ink)}
+.ctl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:10px 0 0}
+.ctl label{font-size:15px;color:var(--mute);min-width:96px}
+.ctl output{font-variant-numeric:tabular-nums;font-weight:700;min-width:70px;text-align:right}
+input[type=range]{width:100%;height:36px;accent-color:var(--acc)}
+.read{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:12px}
+.read div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:15px}
+.read b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.read .w b{color:var(--wt)}.read .a b{color:var(--air)}.read .x b{color:var(--res)}
+.state{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font-weight:600}
+.ans{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.ans input{font:inherit;font-size:18px;padding:10px 12px;width:150px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.btn{min-height:48px;border:1px solid var(--acc);background:var(--acc);color:#fff;padding:10px 18px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btn:disabled{opacity:.45;cursor:default}
+textarea{width:100%;min-height:96px;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+.saved{font-size:13px;color:var(--mute);margin-top:4px;min-height:18px}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:18px;flex-wrap:wrap}
+.nav .btn{flex:1;min-width:140px}
+.toggle{display:inline-flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--line);background:var(--bg);margin-top:10px;flex-wrap:wrap}
+.toggle button{min-height:40px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--mute);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.key{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--mute);margin-top:8px}
+.key span::before{content:"";display:inline-block;width:14px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle;background:currentColor}
+.key .w{color:var(--wt)}.key .a{color:var(--air)}.key .x{color:var(--res)}.key .f{color:var(--acc)}
+.src{font-size:13px;color:var(--mute);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.fig{margin:8px 0 12px}.fig img{max-width:100%;height:auto;display:block;border-radius:8px;background:#fff}
+.fig figcaption{font-size:13px;color:var(--mute);margin-top:4px}
+.chain{display:flex;flex-direction:column;gap:8px}
+.chain .opt.placed{background:var(--oksoft);border-color:var(--ok);cursor:default}
+.chain .opt.shake{animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ms label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);font-size:16px;cursor:pointer}
+.ms input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--ok)}
+.end{text-align:center;padding:10px 0}
+.try{background:var(--twosoft);border-left:5px solid var(--two);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.try b:first-child{color:var(--two)}
+@media (prefers-reduced-motion: reduce){.chain .opt.shake{animation:none}}
+@media print{
+  .rooms,.nav,.btn,svg,.ctl,.read,.opts,.toggle,.state,.chain,.key{display:none!important}
+  section.room{display:block!important;page-break-inside:avoid}
+  section.room > *:not(h2):not(.kick):not(.note-card){display:none!important}
+  textarea{border:none;min-height:0;height:auto}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Explore · Science · from first principles</p>
+  <h1>Forces from scratch</h1>
+  <p class="lede">Ten short rooms, from "what is a force?" to explaining why a skydiver stops speeding up. Take your time: about three sessions of 15 minutes (rooms 1–3, 4–6, 7–10). Predict first, then try it.</p>
+</header>
+<nav class="rooms" id="rooms" aria-label="Rooms"></nav>
+
+<!-- ROOM 1 -->
+<section class="room" id="r0" data-title="What is a force?">
+  <p class="kick">Room 1 of 10</p>
+  <h2>What is a force?</h2>
+  <p>A <b>force</b> is a push or a pull. That's all. Kicking a ball, the floor holding you up, the Earth pulling you down, a rope pulling a sledge: all forces.</p>
+  <p>Every force has two things:</p>
+  <ul>
+    <li>a <b>size</b>, measured in <b>newtons (N)</b>. An apple weighs about 1&nbsp;N. You weigh about 500&nbsp;N.</li>
+    <li>a <b>direction</b>. A push to the left is not the same as a push to the right.</li>
+  </ul>
+  <p>So scientists draw a force as an <b>arrow</b>: the arrow points the way the force acts, and a longer arrow means a bigger force.</p>
+  <div class="card">
+    <h3>Try it</h3>
+    <svg id="push" viewBox="0 0 340 130" role="img" aria-label="A box with a force arrow that changes size and direction"></svg>
+    <div class="ctl"><label for="pushF">Push</label><input id="pushF" type="range" min="-100" max="100" step="5" value="40"><output id="pushFo"></output></div>
+    <p class="aside">Slide left of the middle and the push changes direction. The arrow flips.</p>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>A book is sitting still on a table. Are there any forces acting on it?</p>
+    <div class="opts" data-answer="2" data-why="There are two. The Earth pulls the book <b>down</b> (its weight) and the table pushes it <b>up</b> (the normal contact force). They are the same size and in opposite directions, so they cancel. <b>Still does not mean no forces.</b> Hold on to that: it comes back in Room 5.">
+      <button class="opt" type="button">No: it isn't moving, so there are no forces</button>
+      <button class="opt" type="button">One: gravity pulling it down</button>
+      <button class="opt" type="button">Two: gravity pulling it down and the table pushing it up</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> A force is a push or a pull with a size (in newtons) and a direction. We draw it as an arrow: direction = where it points, size = how long it is.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Before we start, a guess. A skydiver jumps out of a plane. At first they speed up, but after a while they stop speeding up and fall at a steady speed. <b>Why do you think they stop speeding up?</b> Any guess is fine. You'll come back to it at the end.</p><textarea data-note="r0" placeholder="I think they stop speeding up because…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 2 -->
+<section class="room" id="r1" data-title="Naming forces">
+  <p class="kick">Room 2 of 10</p>
+  <h2>Forces have names</h2>
+  <p>Exam questions expect the proper names. Here are the ones you'll meet most:</p>
+  <div class="card">
+    <p style="margin:0 0 6px"><b style="color:var(--wt)">Weight</b>: the Earth's gravity pulling an object down. Always points straight down.</p>
+    <p style="margin:0 0 6px"><b style="color:var(--air)">Air resistance</b> (also called <i>drag</i>): the air pushing against something moving through it. Always points <b>against the direction of motion</b>.</p>
+    <p style="margin:0 0 6px"><b>Friction</b>: surfaces rubbing. Also acts against motion.</p>
+    <p style="margin:0 0 6px"><b>Normal contact force</b>: a surface pushing back on whatever is pressing on it (the table pushing up on the book).</p>
+    <p style="margin:0 0 6px"><b>Thrust</b>: the driving force from an engine. <b>Tension</b>: the pull in a rope or string. <b>Upthrust</b>: water pushing a boat up.</p>
+    <p class="aside"><b>Contact forces</b> need the objects to touch (friction, air resistance, normal contact force, tension, upthrust, thrust). <b>Non-contact forces</b> act across a gap: weight (gravity), magnetic and electrostatic forces.</p>
+  </div>
+  <div class="card">
+    <h3>Name that force</h3>
+    <p>A box slides along the floor and slows down. Which force slows it down?</p>
+    <div class="opts" data-answer="1" data-why="Friction between the box and the floor acts against the motion, so it slows the box down.">
+      <button class="opt" type="button">Weight</button>
+      <button class="opt" type="button">Friction</button>
+      <button class="opt" type="button">Thrust</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Name that force</h3>
+    <p>A skydiver is falling <b>downwards</b>. Which way does air resistance push on them?</p>
+    <div class="opts" data-answer="0" data-why="Up. Air resistance always acts against the direction of motion. They're moving down, so the air pushes up.">
+      <button class="opt" type="button">Up</button>
+      <button class="opt" type="button">Down</button>
+      <button class="opt" type="button">There's no air resistance when you fall</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Name that force</h3>
+    <p>Which of these is a <b>non-contact</b> force?</p>
+    <div class="opts" data-answer="2" data-why="Weight. Gravity pulls you down even when nothing is touching you, which is why a skydiver falls at all.">
+      <button class="opt" type="button">Air resistance</button>
+      <button class="opt" type="button">Tension</button>
+      <button class="opt" type="button">Weight</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>The two forces on a skydiver</h3>
+    <svg id="sky2" viewBox="0 0 340 220" role="img" aria-label="A skydiver with weight pointing down and air resistance pointing up"></svg>
+    <div class="key"><span class="w">weight (down)</span><span class="a">air resistance (up)</span></div>
+    <p class="aside">This is a <b>free-body diagram</b>: the object as a dot or a simple shape, with an arrow for every force on it. Only two forces matter for a skydiver, and they point in opposite directions. That's the whole story of this journey.</p>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Draw (or describe) the forces on a book sitting on a table. Name each one and say which way it points.</p><textarea data-note="r1" placeholder="There is… pointing… and…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 3 -->
+<section class="room" id="r2" data-title="Mass and weight">
+  <p class="kick">Room 3 of 10</p>
+  <h2>Mass and weight are not the same thing</h2>
+  <p><b>Mass</b> is how much stuff is in you, in <b>kilograms (kg)</b>. It's the same wherever you go.</p>
+  <p><b>Weight</b> is a force: how hard gravity pulls on that mass, in <b>newtons (N)</b>. It depends on where you are.</p>
+  <p class="mono" style="font-size:20px;text-align:center"><b>weight = mass × gravitational field strength</b><br><span style="font-size:16px;color:var(--mute)">W = m × g &nbsp;&nbsp; On Earth, g = 9.8 N/kg</span></p>
+  <div class="card">
+    <h3>Try it</h3>
+    <svg id="wscale" viewBox="0 0 340 170" role="img" aria-label="An object with its weight arrow"></svg>
+    <div class="ctl"><label for="wm">Mass</label><input id="wm" type="range" min="1" max="100" value="50"><output id="wmo"></output></div>
+    <div class="toggle" role="group" aria-label="Where are you?" id="planet">
+      <button type="button" aria-pressed="true" data-g="9.8">Earth</button>
+      <button type="button" aria-pressed="false" data-g="1.6">Moon</button>
+      <button type="button" aria-pressed="false" data-g="3.7">Mars</button>
+    </div>
+    <div class="read"><div>mass<b id="wmr"></b></div><div>g<b id="wg"></b></div><div class="w">weight<b id="ww"></b></div></div>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>You fly to the Moon. What changes?</p>
+    <div class="opts" data-answer="1" data-why="Your weight. The Moon's gravity is weaker (g = 1.6 N/kg), so it pulls on you less. Your mass is the same: you're made of the same stuff. Try it with the buttons above.">
+      <button class="opt" type="button">Your mass</button>
+      <button class="opt" type="button">Your weight</button>
+      <button class="opt" type="button">Both</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Work it out</h3>
+    <p>A skydiver has a mass of 80&nbsp;kg. What is their weight on Earth, in newtons? (g = 9.8 N/kg)</p>
+    <div class="ans"><input id="w80" type="text" inputmode="decimal" autocomplete="off" aria-label="Weight in newtons"><button class="btn" type="button" id="w80Go">Check</button></div>
+    <div class="why" id="w80Fb"></div>
+  </div>
+  <div class="card">
+    <h3>Predict first: the important one</h3>
+    <p>The skydiver falls faster and faster. What happens to their <b>weight</b>?</p>
+    <div class="opts" data-answer="2" data-why="It stays the same. Weight = mass × g. Their mass doesn't change and g doesn't change, so their weight is the same the whole way down, however fast they go. <b>Speed changes air resistance, not weight.</b> This one matters for the exam answer.">
+      <button class="opt" type="button">It gets bigger, because they're going faster</button>
+      <button class="opt" type="button">It gets smaller</button>
+      <button class="opt" type="button">It stays the same</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> Mass (kg) is how much stuff. Weight (N) is the pull of gravity on it: W = m × g. A falling skydiver's weight never changes.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Explain the difference between mass and weight to someone in Year 6. Use the Moon in your answer.</p><textarea data-note="r2" placeholder="Mass is… but weight is…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 4 -->
+<section class="room" id="r3" data-title="Resultant force">
+  <p class="kick">Room 4 of 10</p>
+  <h2>Adding forces up: the resultant force</h2>
+  <p>Most objects have several forces on them at once. What matters is what they add up to. That total is called the <b>resultant force</b>.</p>
+  <ul>
+    <li>Forces in the <b>same</b> direction: <b>add</b> them.</li>
+    <li>Forces in <b>opposite</b> directions: <b>subtract</b> the smaller from the bigger. The resultant points the way of the bigger one.</li>
+  </ul>
+  <div class="card">
+    <h3>Try it: a tug of war on a box</h3>
+    <svg id="tug" viewBox="0 0 340 170" role="img" aria-label="A box pulled left and right, with the resultant force shown"></svg>
+    <div class="ctl"><label for="tugR">Pull right</label><input id="tugR" type="range" min="0" max="100" step="5" value="60"><output id="tugRo"></output></div>
+    <div class="ctl"><label for="tugL">Pull left</label><input id="tugL" type="range" min="0" max="100" step="5" value="25"><output id="tugLo"></output></div>
+    <div class="state" id="tugS"></div>
+    <div class="key"><span class="f">the forces</span><span class="x">resultant</span></div>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>A box is pushed right with 30&nbsp;N. Friction of 30&nbsp;N acts to the left. What is the resultant force?</p>
+    <div class="opts" data-answer="0" data-why="Zero. 30 − 30 = 0. The forces are <b>balanced</b>: they cancel out. Make it happen with the sliders. Forces can be balanced even when they are big.">
+      <button class="opt" type="button">0 N</button>
+      <button class="opt" type="button">60 N</button>
+      <button class="opt" type="button">30 N to the right</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Work it out</h3>
+    <p>A trolley is pushed forwards with 45&nbsp;N. Friction of 12&nbsp;N acts backwards. What is the size of the resultant force, in N?</p>
+    <div class="ans"><input id="rf1" type="text" inputmode="decimal" autocomplete="off" aria-label="Resultant force in newtons"><button class="btn" type="button" id="rf1Go">Check</button></div>
+    <div class="why" id="rf1Fb"></div>
+  </div>
+  <div class="card">
+    <div class="src"><span>AQA Physics 8463/2H, June 2023, Q02.2</span><span>[1 mark]</span></div>
+    <p>Figure 4 shows the direction of the horizontal forces acting on the aeroplane as it moves in a straight line towards the runway.</p>
+    <figure class="fig"><img src="../week3plus-forces/fig/2023_P2_Q02.2.png" alt="An aeroplane with three horizontal forces: air resistance 4500 N backwards, friction 9500 N backwards, thrust from the engines 14 000 N forwards."><figcaption>June 2023, Paper 2, Figure 4</figcaption></figure>
+    <p>Determine the magnitude of the resultant horizontal force on the aeroplane.</p>
+    <p class="aside" style="border:0;padding:0">Hint: there are two forces pointing backwards. Add those first.</p>
+    <div class="ans"><input id="rf2" type="text" inputmode="decimal" autocomplete="off" aria-label="Resultant force in newtons"><button class="btn" type="button" id="rf2Go">Check</button></div>
+    <div class="why" id="rf2Fb"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> The resultant force is all the forces added up, taking direction into account. When the forces cancel, the resultant is zero and we say the forces are <b>balanced</b>.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Make up your own example of balanced forces from everyday life. What are the two forces and how do you know they're balanced?</p><textarea data-note="r3" placeholder="When… the two forces are…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 5 -->
+<section class="room" id="r4" data-title="Zero resultant">
+  <p class="kick">Room 5 of 10</p>
+  <h2>What happens when the resultant force is zero?</h2>
+  <p>Most people's gut feeling: "if you stop pushing, things stop". Let's test that gut feeling.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Far out in space, away from every planet, there's no air and no friction. A spacecraft is drifting along with its engines off. What happens?</p>
+    <div class="opts" data-answer="2" data-why="It keeps going, at the same speed, in a straight line, for ever. Nothing pushes it, but nothing slows it down either. On Earth things stop because <b>friction and air resistance</b> push on them, not because they 'run out' of push. Try it below.">
+      <button class="opt" type="button">It slowly stops, because there's no force keeping it going</button>
+      <button class="opt" type="button">It speeds up</button>
+      <button class="opt" type="button">It keeps going at the same speed in a straight line</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: a puck on ice</h3>
+    <svg id="puck" viewBox="0 0 340 120" role="img" aria-label="A puck sliding on a surface"></svg>
+    <div class="ans"><button class="btn" type="button" id="puckGo">Push it</button><button class="btn ghost" type="button" id="puckStop">Stop</button></div>
+    <div class="toggle" role="group" aria-label="Surface" id="puckSurf">
+      <button type="button" aria-pressed="true" data-f="0">Perfect ice: no friction</button>
+      <button type="button" aria-pressed="false" data-f="1">Carpet: friction</button>
+    </div>
+    <div class="state" id="puckS"></div>
+    <div class="key"><span class="f">your push</span><span class="x">friction</span></div>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>A car drives along a straight motorway at a steady 70&nbsp;mph. What is the resultant force on it?</p>
+    <div class="opts" data-answer="1" data-why="Zero. The engine's driving force is exactly balanced by friction and air resistance. Steady speed in a straight line means nothing is changing, so the forces must be balanced. The car doesn't need a <i>leftover</i> forwards force to keep moving.">
+      <button class="opt" type="button">Forwards, otherwise it would stop</button>
+      <button class="opt" type="button">Zero: the forces are balanced</button>
+      <button class="opt" type="button">Backwards</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <div class="src"><span>AQA Physics 8463/2H, June 2023, Q02.3</span><span>[1 mark]</span></div>
+    <p>Back to the aeroplane from Room 4. You found the resultant force was 0&nbsp;N.</p>
+    <p>Describe the motion of the aeroplane as it moves towards the runway.</p>
+    <div class="opts" data-answer="1" data-why="AQA's mark scheme: <b>constant velocity</b> (or constant speed in a straight line). It does <b>not</b> accept 'stationary'. The plane is already moving, and zero resultant force means it keeps doing exactly what it was doing.">
+      <button class="opt" type="button">It is stationary</button>
+      <button class="opt" type="button">It moves at a constant velocity</button>
+      <button class="opt" type="button">It is slowing down</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> Zero resultant force means <b>no change</b> in motion. A still object stays still. A moving object keeps moving at the same speed in the same direction. (This is Newton's first law.)</div>
+  <div class="card note-card"><h3>Notebook</h3><p>"You need a force to keep something moving." Explain why this is wrong, using the puck.</p><textarea data-note="r4" placeholder="This is wrong because…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 6 -->
+<section class="room" id="r5" data-title="Unbalanced">
+  <p class="kick">Room 6 of 10</p>
+  <h2>When the forces don't cancel</h2>
+  <p>Two words first:</p>
+  <ul>
+    <li><b>Velocity</b> is speed in a particular direction.</li>
+    <li><b>Acceleration</b> is how quickly the velocity is <b>changing</b>. Speeding up is accelerating. Slowing down is decelerating (negative acceleration). A car at a steady 70&nbsp;mph is <b>not</b> accelerating, even though it's fast.</li>
+  </ul>
+  <p>Now the rule: <b>a resultant force makes an object accelerate in the direction of the resultant.</b></p>
+  <div class="card">
+    <h3>Try it: drive the car</h3>
+    <svg id="car" viewBox="0 0 340 200" role="img" aria-label="A car on a road with driving and resistive forces, and a speed graph"></svg>
+    <div class="ctl"><label for="carF">Driving force</label><input id="carF" type="range" min="0" max="2000" step="100" value="1200"><output id="carFo"></output></div>
+    <div class="ctl"><label for="carR">Resistive force</label><input id="carR" type="range" min="0" max="2000" step="100" value="600"><output id="carRo"></output></div>
+    <div class="ans"><button class="btn" type="button" id="carGo">Go</button><button class="btn ghost" type="button" id="carReset">Start again</button></div>
+    <div class="read"><div>speed<b id="carV"></b></div><div class="x">resultant<b id="carX"></b></div></div>
+    <div class="state" id="carS"></div>
+    <p class="aside">Things to try: make the forces equal while it's moving. Then make the resistive force bigger. Then turn the driving force to zero.</p>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>A cyclist on a flat road stops pedalling. What happens, and why?</p>
+    <div class="opts" data-answer="0" data-why="With no driving force, only the resistive forces (friction and air resistance) are left. They point backwards, so the resultant force is backwards, so the cyclist <b>decelerates</b> until they stop. That's a chain: cause → effect → consequence.">
+      <button class="opt" type="button">The resultant force is now backwards, so they slow down</button>
+      <button class="opt" type="button">They stop straight away, because there's no force</button>
+      <button class="opt" type="button">They keep going at the same speed for ever</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Same push, two trolleys: one empty, one full of shopping. Which speeds up more quickly?</p>
+    <div class="opts" data-answer="0" data-why="The empty one. The more mass something has, the smaller its acceleration for the same resultant force. At GCSE this is <b>resultant force = mass × acceleration</b> (F = m a).">
+      <button class="opt" type="button">The empty trolley</button>
+      <button class="opt" type="button">The full trolley</button>
+      <button class="opt" type="button">Both the same</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> Resultant forwards → speeds up. Resultant zero → steady speed (or stays still). Resultant backwards → slows down. Bigger resultant → bigger acceleration.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>A lorry is going at a steady speed. The driver presses the accelerator harder. Explain what happens, starting with "The driving force increases, so…".</p><textarea data-note="r5" placeholder="The driving force increases, so…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 7 -->
+<section class="room" id="r6" data-title="Air resistance">
+  <p class="kick">Room 7 of 10</p>
+  <h2>Air resistance grows with speed</h2>
+  <p>So far the resistive force stayed the same however fast the car went. In real life, air resistance doesn't.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>You hold your hand out of a car window. When do you feel the air push hardest on your hand?</p>
+    <div class="opts" data-answer="1" data-why="At high speed. The faster you move, the more air you crash into each second, and the harder it hits. <b>More speed → more air resistance.</b>">
+      <button class="opt" type="button">When the car is going slowly</button>
+      <button class="opt" type="button">When the car is going fast</button>
+      <button class="opt" type="button">It's the same at any speed</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: speed up a skydiver</h3>
+    <svg id="drag" viewBox="0 0 340 220" role="img" aria-label="A skydiver whose air resistance arrow grows with speed"></svg>
+    <div class="ctl"><label for="dragV">Speed</label><input id="dragV" type="range" min="0" max="60" value="10"><output id="dragVo"></output></div>
+    <div class="toggle" role="group" aria-label="Shape" id="dragShape">
+      <button type="button" aria-pressed="true" data-k="0.26">Spread out</button>
+      <button type="button" aria-pressed="false" data-k="31">Parachute open</button>
+    </div>
+    <div class="read"><div class="a">air resistance<b id="dragA"></b></div></div>
+    <p class="aside">Notice how fast the arrow grows: double the speed and the air resistance is about four times bigger. A parachute has a huge area, so it makes enormous air resistance even at low speed.</p>
+  </div>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>Drop a flat sheet of paper and an identical sheet scrunched into a ball, from the same height. Which lands first?</p>
+    <div class="opts" data-answer="1" data-why="The ball. They have the same weight, but the flat sheet has a much bigger area, so it gets much more air resistance at the same speed. It only needs to fall slowly before the air resistance is big enough to match its weight.">
+      <button class="opt" type="button">The flat sheet</button>
+      <button class="opt" type="button">The scrunched ball</button>
+      <button class="opt" type="button">They land together</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="try"><b>Try at home.</b> Do the paper drop for real. Then, if you have paper cupcake cases, drop 1 case and a stack of 4 cases together from as high as you safely can. The stack has 4 times the weight but the same shape. Which lands first? Write down what you see: you'll explain it in Room 8.</div>
+  <div class="big"><b>Big idea.</b> Air resistance depends on <b>speed</b> (faster → more) and <b>area</b> (bigger → more). Weight does not depend on speed at all.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>What happened in your paper or cupcake-case drop? Which forces were acting, and which one was different between the two?</p><textarea data-note="r6" placeholder="The … landed first. Both had… but…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 8 -->
+<section class="room" id="r7" data-title="The skydive">
+  <p class="kick">Room 8 of 10</p>
+  <h2>Put it together: the skydive</h2>
+  <p>Now you know everything you need. Weight stays the same. Air resistance grows with speed. The resultant force decides whether the skydiver speeds up. Press Jump and watch the arrows.</p>
+  <div class="card">
+    <h3>Watch it</h3>
+    <svg id="sky" viewBox="0 0 340 260" role="img" aria-label="A skydiver falling, with force arrows and a speed-time graph"></svg>
+    <div class="ans"><button class="btn" type="button" id="skyGo">Jump</button><button class="btn ghost" type="button" id="skyChute" disabled>Open parachute</button><button class="btn ghost" type="button" id="skyReset">Start again</button></div>
+    <div class="read"><div class="w">weight<b id="skyW">784 N</b></div><div class="a">air resistance<b id="skyA"></b></div><div class="x">resultant<b id="skyX"></b></div><div>speed<b id="skyV"></b></div></div>
+    <div class="state" id="skyS"></div>
+    <p class="aside">The skydiver's mass is 80&nbsp;kg, so their weight is 80 × 9.8 = 784&nbsp;N (Room 3). Watch the weight arrow: it never changes.</p>
+  </div>
+  <div class="card">
+    <h3>Which free-body diagram? 1</h3>
+    <p>Two seconds after jumping. The skydiver is still speeding up.</p>
+    <div class="opts row" data-answer="0" data-fbd="0,1,2" data-why="A. Weight is bigger than air resistance, so the resultant force is downwards and the skydiver speeds up. This is the one AQA asked you to draw (June 2025, Q05.1): the air resistance arrow pointing up and <b>shorter</b> than the weight arrow."></div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Which free-body diagram? 2</h3>
+    <p>At terminal velocity: falling at a steady speed.</p>
+    <div class="opts row" data-answer="2" data-fbd="1,0,2" data-why="The arrows are equal. Steady speed means zero resultant force (Room 5), so air resistance must equal weight."></div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Which free-body diagram? 3</h3>
+    <p>Just after the parachute opens.</p>
+    <div class="opts row" data-answer="1" data-fbd="2,1,0" data-why="Air resistance is suddenly much bigger than weight, so the resultant force is <b>upwards</b>. They are still falling, but they <b>slow down</b> (Room 6). As they slow, air resistance falls, until it equals weight again at a new, slower terminal velocity."></div>
+    <div class="why"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> Terminal velocity happens because air resistance grows with speed until it equals the weight. Then the resultant force is zero, so the speed stops changing.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Use this to explain your cupcake-case drop from Room 7: why did the stack of 4 fall faster? (Hint: it needed to go faster before air resistance matched its weight.)</p><textarea data-note="r7" placeholder="The stack had more weight, so…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 9 -->
+<section class="room" id="r8" data-title="The chain">
+  <p class="kick">Room 9 of 10</p>
+  <h2>Build the chain, then answer the real question</h2>
+  <p>An exam explanation is a chain: each link causes the next. AQA gives one mark per link. Tap the links in order.</p>
+  <div class="card">
+    <h3>Build the chain</h3>
+    <div class="chain" id="chainDone"></div>
+    <p style="margin:12px 0 8px;font-size:15px;color:var(--mute)" id="chainHint">Tap the first link.</p>
+    <div class="chain" id="chainPool"></div>
+    <div class="why" id="chainFb"></div>
+  </div>
+  <div class="card">
+    <div class="src"><span>AQA Physics 8463/2H, June 2025, Q05.3</span><span>[4 marks]</span></div>
+    <p>In a world record attempt, a skydiver jumped from a height of 40&nbsp;km above the Earth.</p>
+    <p><b>The skydiver accelerated until reaching terminal velocity.</b></p>
+    <p><b>Explain why the skydiver reached terminal velocity.</b></p>
+    <p class="aside" style="border:0;padding:0">Write it in full sentences, in your own words, without looking at the chain above. Join the links with <i>as</i>, <i>until</i>, <i>so</i>.</p>
+    <textarea data-note="r8" placeholder="As the skydiver's velocity increased…" style="min-height:150px"></textarea><div class="saved"></div>
+    <div class="ans"><button class="btn ghost" type="button" id="msShow">Show AQA's mark scheme</button></div>
+    <div class="ms" id="ms" hidden>
+      <p style="margin:10px 0 4px">Tick each point your answer makes. One mark each.</p>
+      <label><input type="checkbox" data-ms="0">(as the skydiver's velocity / speed increased) the air resistance increased</label>
+      <label><input type="checkbox" data-ms="1">until the air resistance was equal to the weight of the skydiver (and in the opposite direction)</label>
+      <label><input type="checkbox" data-ms="2">(so) the resultant force was zero</label>
+      <label><input type="checkbox" data-ms="3">(so) the acceleration was zero (so the velocity was constant)</label>
+      <p class="aside">Allow "drag" for air resistance. The most common lost mark: saying air resistance and weight are "there" without saying they become <b>equal</b>. Missed a link? Add it to your answer now.</p>
+    </div>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Which link was hardest to remember, and which room explains it?</p><textarea data-note="r8b" placeholder="The hardest link was… Room … explains it."></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 10 -->
+<section class="room" id="r9" data-title="Look back">
+  <p class="kick">Room 10 of 10</p>
+  <h2>Look back</h2>
+  <p>The whole journey in one line: <b>forces are arrows → add them up to get the resultant → zero resultant means no change → a resultant means acceleration → air resistance grows with speed until it balances weight → terminal velocity.</b></p>
+  <div class="card">
+    <h3>Your first guess (Room 1)</h3>
+    <p id="firstGuess" class="aside" style="border:0;padding:0">You didn't write a guess in Room 1. That's fine.</p>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Now explain it properly, in your own words, without looking back: why does a skydiver stop speeding up? Was your first guess right, partly right, or wrong?</p><textarea data-note="r9a" placeholder="The skydiver stops speeding up because…"></textarea><div class="saved"></div></div>
+  <div class="card">
+    <h3>Ready for the paper?</h3>
+    <p>Now do the skydiver questions by hand, on paper, from the <b>Week 3 plus</b> written sheet. Mark it with the mark scheme on the last page.</p>
+    <div class="ans"><a class="btn" href="../week3plus-forces/week3plus-forces-written.pdf">Open the written paper</a><a class="btn ghost" href="../week3plus-forces/">Week 3 plus questions</a></div>
+  </div>
+  <div class="card">
+    <h3>Say it out loud</h3>
+    <p>Ask someone at home to ask you: <b>"Why does a falling object stop speeding up?"</b> Say the whole chain without looking. If you miss a link, they say "and so…?"</p>
+  </div>
+  <div class="end"><button class="btn ghost" type="button" onclick="window.print()">Print my notebook</button></div>
+</section>
+
+<div class="nav"><button class="btn ghost" type="button" id="prev">← Back</button><button class="btn" type="button" id="next">Next room →</button></div>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY="ember:science:explore-forces:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+var $=function(id){return document.getElementById(id)};
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* arrow from (x1,y1) to (x2,y2) */
+function arrow(x1,y1,x2,y2,col,w,dash){
+  var dx=x2-x1,dy=y2-y1,L=Math.sqrt(dx*dx+dy*dy);if(L<3)return "";
+  var ux=dx/L,uy=dy/L,h=Math.min(14,L*0.6),hw=h*0.6,bx=x2-ux*h,by=y2-uy*h;
+  return '<line x1="'+x1+'" y1="'+y1+'" x2="'+bx.toFixed(1)+'" y2="'+by.toFixed(1)+'" stroke="'+col+'" stroke-width="'+(w||5)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="6 5"':'')+'/>'+
+    '<polygon points="'+x2.toFixed(1)+','+y2.toFixed(1)+' '+(bx-uy*hw).toFixed(1)+','+(by+ux*hw).toFixed(1)+' '+(bx+uy*hw).toFixed(1)+','+(by-ux*hw).toFixed(1)+'" fill="'+col+'"/>';
+}
+function txt(x,y,s,col,anchor,size){return '<text x="'+x+'" y="'+y+'" font-size="'+(size||13)+'" text-anchor="'+(anchor||"start")+'"'+(col?' style="fill:'+col+'"':'')+'>'+s+'</text>'}
+function person(cx,cy,col){ /* simple skydiver, spread-eagle, seen from the side */
+  return '<circle cx="'+cx+'" cy="'+(cy-20)+'" r="8" fill="'+col+'"/>'+
+    '<line x1="'+cx+'" y1="'+(cy-12)+'" x2="'+cx+'" y2="'+(cy+12)+'" stroke="'+col+'" stroke-width="5" stroke-linecap="round"/>'+
+    '<line x1="'+(cx-20)+'" y1="'+(cy-14)+'" x2="'+(cx+20)+'" y2="'+(cy-14)+'" stroke="'+col+'" stroke-width="4" stroke-linecap="round"/>'+
+    '<line x1="'+cx+'" y1="'+(cy+12)+'" x2="'+(cx-14)+'" y2="'+(cy+28)+'" stroke="'+col+'" stroke-width="4" stroke-linecap="round"/>'+
+    '<line x1="'+cx+'" y1="'+(cy+12)+'" x2="'+(cx+14)+'" y2="'+(cy+28)+'" stroke="'+col+'" stroke-width="4" stroke-linecap="round"/>';
+}
+function chute(cx,top,col){return '<path d="M'+(cx-46)+','+(top+26)+' Q'+cx+','+(top-24)+' '+(cx+46)+','+(top+26)+' Z" fill="'+css("--accsoft")+'" stroke="'+col+'" stroke-width="2"/>'+
+  '<line x1="'+(cx-46)+'" y1="'+(top+26)+'" x2="'+(cx-6)+'" y2="'+(top+62)+'" stroke="'+css("--mute")+'"/><line x1="'+(cx+46)+'" y1="'+(top+26)+'" x2="'+(cx+6)+'" y2="'+(top+62)+'" stroke="'+css("--mute")+'"/>'}
+
+/* ---------- rooms + navigation ---------- */
+var rooms=[].slice.call(document.querySelectorAll("section.room"));
+var done=load("done",{});
+var nav=$("rooms");
+rooms.forEach(function(r,i){
+  var b=document.createElement("button");b.type="button";b.textContent=i+1;b.title=r.getAttribute("data-title");
+  b.setAttribute("aria-label","Room "+(i+1)+": "+r.getAttribute("data-title"));
+  b.onclick=function(){go(i)};nav.appendChild(b);
+});
+var cur=0;
+function paint(){[].forEach.call(nav.children,function(b,i){b.setAttribute("aria-current",i===cur?"true":"false");b.classList.toggle("done",!!done[i])})}
+function go(i){
+  cur=Math.max(0,Math.min(rooms.length-1,i));
+  rooms.forEach(function(r,k){r.classList.toggle("on",k===cur)});
+  $("prev").style.visibility=cur===0?"hidden":"visible";
+  $("next").textContent=cur===rooms.length-1?"Finished ✓":"Next room →";
+  if(cur===rooms.length-1){var g=load("note:r0","");if(g)$("firstGuess").textContent="“"+g+"”"}
+  if(cur!==4)puck.stop();if(cur!==5)car.pause();if(cur!==7)sky.pause();
+  save("room",cur);paint();
+  nav.children[cur].scrollIntoView({block:"nearest",inline:"center"});
+  window.scrollTo(0,0);
+}
+$("prev").onclick=function(){go(cur-1)};
+$("next").onclick=function(){done[cur]=true;save("done",done);if(cur<rooms.length-1)go(cur+1);else paint()};
+
+/* ---------- free-body diagram options (Room 8) ---------- */
+function fbd(kind){ /* 0: weight > air, 1: air > weight, 2: equal */
+  var wt=css("--wt"),air=css("--air"),ink=css("--ink");
+  var W=60,A=kind===0?28:kind===1?92:60,cx=60,cy=100;
+  var s='<svg viewBox="0 0 120 200" aria-hidden="true"><circle cx="'+cx+'" cy="'+cy+'" r="7" fill="'+ink+'"/>'+arrow(cx,cy,cx,cy+W*1.0,wt,5)+arrow(cx,cy,cx,cy-A*1.0,air,5)+'</svg>';
+  return s;
+}
+[].forEach.call(document.querySelectorAll(".opts[data-fbd]"),function(o){
+  var order=o.getAttribute("data-fbd").split(",").map(Number),L="ABC";
+  o.innerHTML=order.map(function(k,i){return '<button class="opt" type="button" aria-label="Diagram '+L[i]+'">'+fbd(k)+'<b>'+L[i]+'</b></button>'}).join("");
+});
+
+/* ---------- predict-first questions ---------- */
+[].forEach.call(document.querySelectorAll(".opts[data-answer]"),function(o){
+  var ans=+o.getAttribute("data-answer"),why=o.nextElementSibling;
+  [].forEach.call(o.children,function(b,i){
+    b.onclick=function(){
+      [].forEach.call(o.children,function(x,k){x.disabled=true;if(k===ans)x.classList.add("right")});
+      if(i!==ans)b.classList.add("wrong");
+      why.innerHTML=(i===ans?"<b class='g'>Yes.</b> ":"<b class='r'>Good guess, but no.</b> ")+o.getAttribute("data-why");
+      why.classList.add("show");
+    };
+  });
+});
+
+/* ---------- notebook ---------- */
+[].forEach.call(document.querySelectorAll("textarea[data-note]"),function(t){
+  var k="note:"+t.getAttribute("data-note"),s=t.parentNode.querySelector(".saved"),timer;
+  t.value=load(k,"");
+  t.addEventListener("input",function(){clearTimeout(timer);timer=setTimeout(function(){save(k,t.value);s.textContent="Saved on this device"},400)});
+});
+
+/* ---------- number answers ---------- */
+function checker(inp,btn,fb,trueV,traps,right,wrong){
+  function run(){
+    var v=parseFloat(String($(inp).value).replace(/[, ]/g,"").replace(/n$/i,""));var el=$(fb);
+    if(isNaN(v)){el.innerHTML="<b class='r'>Type a number.</b>";el.classList.add("show");return}
+    var ok=Math.abs(v-trueV)<=Math.max(0.01,Math.abs(trueV)*0.01),msg=wrong;
+    (traps||[]).forEach(function(t){if(Math.abs(v-t[0])<0.5)msg=t[1]});
+    el.innerHTML=ok?"<b class='g'>Yes.</b> "+right:"<b class='r'>Not quite.</b> "+msg;el.classList.add("show");
+  }
+  $(btn).onclick=run;$(inp).addEventListener("keydown",function(e){if(e.key==="Enter")run()});
+}
+checker("w80","w80Go","w80Fb",784,[[80,"That's the mass in kg. Weight is a force: multiply by g."],[800,"Close: that's using g = 10. AQA uses 9.8 N/kg."]],"80 × 9.8 = 784 N. Remember this number: it's the skydiver in Room 8.","Weight = mass × g = 80 × 9.8.");
+checker("rf1","rf1Go","rf1Fb",33,[[57,"You added them. They point in opposite directions, so subtract."]],"45 − 12 = 33 N, forwards (the direction of the bigger force).","Opposite directions: subtract the smaller from the bigger.");
+checker("rf2","rf2Go","rf2Fb",0,[[28000,"You added all three. Forces in opposite directions cancel: add each direction first, then subtract."],[4500,"You only took away the friction. Air resistance acts backwards too."],[9500,"You only took away the air resistance. Friction acts backwards too."]],"Backwards: 4500 + 9500 = 14 000 N. Forwards: 14 000 N. They cancel, so the resultant force is 0 N. AQA's mark scheme: 0 (N). Hold on to that: Room 5 asks what the plane is doing.","Add the two backwards forces first, then compare with the forwards force.");
+
+/* ---------- Room 1: one force ---------- */
+function drawPush(){
+  var F=+$("pushF").value,acc=css("--acc"),ink=css("--ink"),mute=css("--mute");
+  var cx=170,cy=70,k=1.3;
+  var s='<line x1="10" y1="100" x2="330" y2="100" stroke="'+mute+'" stroke-width="2"/>'+
+    '<rect x="'+(cx-30)+'" y="'+(cy-30)+'" width="60" height="60" rx="6" fill="'+css("--card")+'" stroke="'+ink+'" stroke-width="2"/>';
+  if(F>0)s+=arrow(cx+30,cy,cx+30+F*k,cy,acc,6)+txt(cx+36,cy-12,F+" N",acc);
+  if(F<0)s+=arrow(cx-30,cy,cx-30+F*k,cy,acc,6)+txt(cx-36,cy-12,(-F)+" N",acc,"end");
+  if(F===0)s+=txt(cx,cy+52,"no push",mute,"middle");
+  $("push").innerHTML=s;
+  $("pushFo").textContent=F===0?"0 N":Math.abs(F)+" N "+(F>0?"→":"←");
+}
+$("pushF").oninput=drawPush;
+
+/* ---------- Room 2: skydiver diagram ---------- */
+function drawSky2(){
+  var wt=css("--wt"),air=css("--air"),ink=css("--ink");
+  $("sky2").innerHTML=person(170,110,ink)+arrow(170,122,170,205,wt,6)+txt(180,190,"weight",wt)+arrow(170,90,170,30,air,6)+txt(180,40,"air resistance",air);
+}
+
+/* ---------- Room 3: mass and weight ---------- */
+var g=9.8;
+function drawW(){
+  var m=+$("wm").value,W=m*g,wt=css("--wt"),ink=css("--ink"),mute=css("--mute");
+  var side=24+m*0.5,cx=110,top=20+(60-side);
+  var len=Math.min(85,W*0.085);
+  $("wscale").innerHTML='<rect x="'+(cx-side/2)+'" y="'+top+'" width="'+side+'" height="'+side+'" rx="5" fill="'+css("--card")+'" stroke="'+ink+'" stroke-width="2"/>'+
+    txt(cx,top+side/2+5,m+" kg",ink,"middle",12)+
+    arrow(cx,top+side,cx,top+side+Math.max(4,len),wt,6)+
+    txt(cx+14,top+side+len/2+16,W.toFixed(0)+" N",wt)+
+    txt(220,40,g===9.8?"Earth":g===1.6?"Moon":"Mars",mute,"start",15)+
+    txt(220,62,"g = "+g+" N/kg",mute,"start",13);
+  $("wmo").textContent=m+" kg";$("wmr").textContent=m+" kg";$("wg").textContent=g+" N/kg";$("ww").textContent=(Math.round(W*10)/10)+" N";
+}
+$("wm").oninput=drawW;
+function toggleGroup(id,cb){var bs=[].slice.call($(id).querySelectorAll("button"));bs.forEach(function(b){b.onclick=function(){bs.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});cb(b)}})}
+toggleGroup("planet",function(b){g=+b.getAttribute("data-g");drawW()});
+
+/* ---------- Room 4: resultant ---------- */
+function drawTug(){
+  var R=+$("tugR").value,L=+$("tugL").value,acc=css("--acc"),res=css("--res"),ink=css("--ink"),mute=css("--mute");
+  var cx=170,cy=60,k=1.2,X=R-L;
+  var s='<rect x="'+(cx-28)+'" y="'+(cy-28)+'" width="56" height="56" rx="6" fill="'+css("--card")+'" stroke="'+ink+'" stroke-width="2"/>';
+  if(R)s+=arrow(cx+28,cy,cx+28+R*k,cy,acc,6)+txt(cx+34,cy-10,R+" N",acc);
+  if(L)s+=arrow(cx-28,cy,cx-28-L*k,cy,acc,6)+txt(cx-34,cy-10,L+" N",acc,"end");
+  s+=txt(cx,cy+60,"resultant",mute,"middle",12);
+  if(X)s+=arrow(cx,cy+80,cx+X*k,cy+80,res,6)+txt(cx+X*k/2,cy+102,Math.abs(X)+" N",res,"middle");
+  else s+='<circle cx="'+cx+'" cy="'+(cy+80)+'" r="5" fill="'+res+'"/>'+txt(cx,cy+102,"0 N: balanced",res,"middle");
+  $("tug").innerHTML=s;
+  $("tugRo").textContent=R+" N";$("tugLo").textContent=L+" N";
+  $("tugS").innerHTML=X===0?"Balanced: "+R+" − "+L+" = 0 N. The forces cancel.":"Unbalanced: "+Math.max(R,L)+" − "+Math.min(R,L)+" = "+Math.abs(X)+" N to the "+(X>0?"right":"left")+".";
+}
+$("tugR").oninput=drawTug;$("tugL").oninput=drawTug;
+
+/* ---------- Room 5: puck ---------- */
+var puck=(function(){
+  var x=40,v=0,fr=0,pushT=0,raf=null,last=0;
+  function draw(){
+    var acc=css("--acc"),res=css("--res"),ink=css("--ink"),mute=css("--mute");
+    var s='<rect x="0" y="70" width="340" height="20" fill="'+(fr?css("--accsoft"):css("--twosoft"))+'"/>'+
+      '<ellipse cx="'+x.toFixed(1)+'" cy="64" rx="22" ry="8" fill="'+ink+'"/>';
+    if(pushT>0)s+=arrow(x-60,50,x-24,50,acc,5);
+    if(fr&&v>0)s+=arrow(x+4,36,x-36,36,res,4);
+    if(v>0)s+=txt(x,22,"→ moving",mute,"middle",12);
+    $("puck").innerHTML=s;
+    var st;
+    if(pushT>0)st="You're pushing: resultant force forwards, so it speeds up.";
+    else if(v<=0)st="Still. No forces left over: it stays still.";
+    else if(fr)st="No push any more. Friction pushes backwards, so the resultant is backwards: it slows down.";
+    else st="No push any more, and no friction. Resultant force = 0, so it keeps going at the same speed.";
+    $("puckS").textContent=st;
+  }
+  function step(ts){
+    var dt=last?Math.min(0.05,(ts-last)/1000):0;last=ts;
+    if(pushT>0){v+=400*dt;pushT-=dt}
+    if(fr&&v>0&&pushT<=0)v=Math.max(0,v-70*dt);
+    x+=v*dt;if(x>362)x=-22;
+    draw();
+    if(v>0||pushT>0)raf=requestAnimationFrame(step);else raf=null;
+  }
+  function start(){if(!raf){last=0;raf=requestAnimationFrame(step)}}
+  $("puckGo").onclick=function(){pushT=0.3;start()};
+  $("puckStop").onclick=function(){stop();v=0;pushT=0;x=40;draw()};
+  toggleGroup("puckSurf",function(b){fr=+b.getAttribute("data-f");draw();if(v>0)start()});
+  function stop(){if(raf)cancelAnimationFrame(raf);raf=null}
+  return {draw:draw,stop:stop};
+})();
+
+/* ---------- Room 6: car ---------- */
+var car=(function(){
+  var v=0,t=0,dist=0,hist=[],raf=null,last=0,run=false,M=1000;
+  function F(){return +$("carF").value}function R(){return +$("carR").value}
+  function res(){var x=F()-R();if(v<=0&&x<=0)return 0;return x}
+  function draw(){
+    var acc=css("--acc"),rc=css("--res"),ink=css("--ink"),mute=css("--mute"),grid=css("--grid"),air=css("--air");
+    var s='<line x1="0" y1="78" x2="340" y2="78" stroke="'+mute+'" stroke-width="2"/>';
+    var off=(dist*6)%40;for(var d=-off;d<340;d+=40)s+='<line x1="'+d.toFixed(1)+'" y1="86" x2="'+(d+20).toFixed(1)+'" y2="86" stroke="'+grid+'" stroke-width="3"/>';
+    var cx=170;s+='<rect x="'+(cx-34)+'" y="46" width="68" height="24" rx="6" fill="'+acc+'"/><rect x="'+(cx-18)+'" y="34" width="36" height="16" rx="5" fill="'+acc+'" opacity=".7"/><circle cx="'+(cx-20)+'" cy="72" r="7" fill="'+ink+'"/><circle cx="'+(cx+20)+'" cy="72" r="7" fill="'+ink+'"/>';
+    var k=0.045;if(F())s+=arrow(cx+34,58,cx+34+F()*k,58,css("--ok"),5);if(R()&&(v>0||F()>0))s+=arrow(cx-34,58,cx-34-R()*k,58,air,5);
+    s+=txt(cx+40,26,"driving",css("--ok"),"start",12)+txt(cx-40,26,"resistive",air,"end",12);
+    var gx=34,gy=190,gw=296,gh=80;
+    s+='<line x1="'+gx+'" y1="'+gy+'" x2="'+(gx+gw)+'" y2="'+gy+'" stroke="'+mute+'"/><line x1="'+gx+'" y1="'+gy+'" x2="'+gx+'" y2="'+(gy-gh)+'" stroke="'+mute+'"/>'+
+      txt(gx+4,gy-gh+8,"speed",mute,"start",11)+txt(gx+gw,gy-4,"time",mute,"end",11);
+    if(hist.length>1){var t0=Math.max(0,t-20),p=hist.filter(function(h){return h[0]>=t0}).map(function(h){return (gx+(h[0]-t0)/20*gw).toFixed(1)+","+(gy-Math.min(1,h[1]/40)*gh).toFixed(1)});s+='<polyline points="'+p.join(" ")+'" fill="none" stroke="'+rc+'" stroke-width="2.5"/>'}
+    $("car").innerHTML=s;
+    var x=res();
+    $("carFo").textContent=F()+" N";$("carRo").textContent=R()+" N";
+    $("carV").textContent=v.toFixed(1)+" m/s";
+    $("carX").textContent=x===0?"0 N":Math.abs(x)+" N "+(x>0?"forwards":"backwards");
+    var st;
+    if(!run&&v===0)st="Press Go.";
+    else if(x>0)st="Resultant forwards → accelerating (speeding up).";
+    else if(x<0)st="Resultant backwards → decelerating (slowing down).";
+    else if(v>0)st="Resultant zero → steady speed. Not accelerating, even though it's moving.";
+    else st="Stopped. Resultant zero → stays still.";
+    if(v>=40&&x>0)st="Top speed of this little simulation reached.";
+    $("carS").textContent=st;
+  }
+  function step(ts){
+    var dt=last?Math.min(0.05,(ts-last)/1000):0;last=ts;
+    v=Math.max(0,Math.min(40,v+res()/M*dt*4));t+=dt;dist+=v*dt;hist.push([t,v]);if(hist.length>800)hist.shift();
+    draw();if(run)raf=requestAnimationFrame(step);
+  }
+  $("carGo").onclick=function(){if(run){pause();return}run=true;$("carGo").textContent="Pause";last=0;raf=requestAnimationFrame(step)};
+  function pause(){run=false;$("carGo").textContent="Go";if(raf)cancelAnimationFrame(raf);raf=null;draw()}
+  $("carReset").onclick=function(){pause();v=0;t=0;dist=0;hist=[];draw()};
+  $("carF").oninput=draw;$("carR").oninput=draw;
+  return {draw:draw,pause:pause};
+})();
+
+/* ---------- Room 7: drag grows with speed ---------- */
+var dk=0.26;
+function drawDrag(){
+  var v=+$("dragV").value,A=dk*v*v,air=css("--air"),ink=css("--ink"),mute=css("--mute");
+  var len=Math.max(10,Math.min(150,A*0.12)),off=A*0.12>150;
+  var s=person(170,150,ink)+(dk>1?chute(170,40,ink):"");
+  if(A>1)s+=arrow(150,175,150,175-len,air,6)+txt(140,175-len/2,Math.round(A)+" N"+(off?" (off the scale)":""),air,"end");
+  s+=arrow(250,40,250,40+Math.min(50,v*0.9)+6,mute,3)+txt(258,60,v+" m/s",mute,"start",12)+txt(258,76,"falling",mute,"start",12);
+  $("drag").innerHTML=s;
+  $("dragVo").textContent=v+" m/s";$("dragA").textContent=Math.round(A)+" N";
+}
+$("dragV").oninput=drawDrag;
+toggleGroup("dragShape",function(b){dk=+b.getAttribute("data-k");drawDrag()});
+
+/* ---------- Room 8: the skydive ---------- */
+var sky=(function(){
+  var M=80,G=9.8,W=M*G,KB=0.26,KC=31,k=KB,v=0,t=0,hist=[],raf=null,last=0,run=false,chuteT=-1;
+  function A(){return k*v*v}
+  function draw(){
+    var wt=css("--wt"),air=css("--air"),rc=css("--res"),ink=css("--ink"),mute=css("--mute");
+    var cx=80,cy=120,sc=0.09,a=A(),aL=Math.min(110,a*sc),off=a*sc>110;
+    var s=(chuteT>=0?chute(cx,8,ink):"")+person(cx,cy,ink);
+    s+=arrow(cx-28,cy-4,cx-28,cy-4+W*sc,wt,5)+txt(cx-34,cy+W*sc/2+4,"W",wt,"end");
+    if(aL>2)s+=arrow(cx+28,cy-4,cx+28,cy-4-aL,air,5)+txt(cx+34,cy-4-aL/2,off?"AR ↑↑":"AR",air);
+    var X=W-a;
+    var gx=170,gy=230,gw=160,gh=180;
+    s+='<line x1="'+gx+'" y1="'+gy+'" x2="'+(gx+gw)+'" y2="'+gy+'" stroke="'+mute+'"/><line x1="'+gx+'" y1="'+gy+'" x2="'+gx+'" y2="'+(gy-gh)+'" stroke="'+mute+'"/>'+
+      txt(gx+4,gy-gh-6,"speed",mute,"start",11)+txt(gx+gw,gy+16,"time",mute,"end",11);
+    var term=Math.sqrt(W/KB),ty=gy-term/60*gh;
+    s+='<line x1="'+gx+'" y1="'+ty.toFixed(1)+'" x2="'+(gx+gw)+'" y2="'+ty.toFixed(1)+'" stroke="'+mute+'" stroke-dasharray="3 4"/>'+txt(gx+gw,ty-4,"terminal velocity",mute,"end",10);
+    if(hist.length>1){s+='<polyline points="'+hist.map(function(h){return (gx+h[0]/40*gw).toFixed(1)+","+(gy-Math.min(60,h[1])/60*gh).toFixed(1)}).join(" ")+'" fill="none" stroke="'+rc+'" stroke-width="2.5"/>'}
+    $("sky").innerHTML=s;
+    $("skyA").textContent=Math.round(a)+" N";$("skyV").textContent=v.toFixed(1)+" m/s";
+    var Xr=Math.round(X);
+    $("skyX").textContent=Math.abs(Xr)<=2?"0 N":Math.abs(Xr)+" N "+(X>0?"down":"up");
+    var st;
+    if(t===0)st="Standing at the door. Speed 0, so air resistance 0.";
+    else if(Math.abs(X)<=W*0.01)st="Air resistance = weight → resultant force zero → no acceleration: steady speed. "+(chuteT>=0?"A new, slower terminal velocity.":"This is terminal velocity.");
+    else if(X>0)st="Weight > air resistance → resultant force down → speeding up. And as speed rises, air resistance rises…";
+    else st="Air resistance > weight → resultant force up → slowing down (still falling!). As speed falls, air resistance falls…";
+    $("skyS").textContent=st;
+  }
+  function step(ts){
+    var dt=last?Math.min(0.05,(ts-last)/1000):0;last=ts;var sim=dt;
+    for(var i=0;i<20;i++){var h=sim/20;if(chuteT>=0){chuteT+=h;k=KB+(KC-KB)*Math.min(1,chuteT/2.5)}v=Math.max(0,v+(W-A())/M*h);t+=h}
+    hist.push([t,v]);
+    if(t>=40){pause();$("skyGo").disabled=true}
+    draw();if(run)raf=requestAnimationFrame(step);
+  }
+  function pause(){run=false;$("skyGo").textContent="Jump";if(raf)cancelAnimationFrame(raf);raf=null}
+  $("skyGo").onclick=function(){
+    if(run){pause();$("skyGo").textContent="Carry on";return}
+    if(reduce&&t===0){ /* jump straight to terminal velocity, still showing the graph */
+      var n=0;while(t<20){v=Math.max(0,v+(W-A())/M*0.01);t+=0.01;if(++n%20===0)hist.push([t,v])}
+      $("skyChute").disabled=false;draw();return}
+    run=true;$("skyGo").textContent="Pause";$("skyChute").disabled=false;last=0;raf=requestAnimationFrame(step)};
+  $("skyChute").onclick=function(){if(chuteT<0){chuteT=0;$("skyChute").disabled=true;if(!run&&!reduce){run=true;$("skyGo").textContent="Pause";last=0;raf=requestAnimationFrame(step)}
+    if(reduce){var e=t+15,n=0;while(t<e&&t<40){chuteT+=0.01;k=KB+(KC-KB)*Math.min(1,chuteT/2.5);v=Math.max(0,v+(W-A())/M*0.01);t+=0.01;if(++n%20===0)hist.push([t,v])}draw()}}};
+  $("skyReset").onclick=function(){pause();v=0;t=0;k=KB;chuteT=-1;hist=[];$("skyGo").disabled=false;$("skyChute").disabled=true;draw()};
+  return {draw:draw,pause:pause};
+})();
+
+/* ---------- Room 9: chain ---------- */
+(function(){
+  var links=["The skydiver falls, so their velocity increases.","As their velocity increases, the air resistance increases.","The air resistance keeps increasing until it is equal to the weight of the skydiver.","So the resultant force is zero.","So the acceleration is zero: the skydiver falls at a constant (terminal) velocity."];
+  var hints=["Tap the first link.","What does more speed do to the air?","How long does it keep growing?","Two equal, opposite forces add up to…","And zero resultant force means…",""];
+  var order=[2,4,0,3,1],next=0;
+  var pool=$("chainPool"),doneEl=$("chainDone");
+  order.forEach(function(i){
+    var b=document.createElement("button");b.type="button";b.className="opt";b.textContent=links[i];
+    b.onclick=function(){
+      if(i===next){b.classList.add("placed");b.disabled=true;doneEl.appendChild(b);next++;$("chainHint").textContent=hints[next];
+        if(next===links.length){$("chainHint").textContent="";$("chainFb").innerHTML="<b class='g'>Chain complete.</b> Five links. AQA's 4 marks are links 2 to 5. Notice the joining words: <i>as</i>, <i>until</i>, <i>so</i>. Now write it yourself below.";$("chainFb").classList.add("show")}}
+      else{b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");$("chainHint").textContent="Not yet: what has to happen before that? "+hints[next]}
+    };
+    pool.appendChild(b);
+  });
+})();
+$("msShow").onclick=function(){$("ms").hidden=false;this.hidden=true};
+(function(){var st=load("ms",{});[].forEach.call(document.querySelectorAll("[data-ms]"),function(c){var k=c.getAttribute("data-ms");c.checked=!!st[k];c.onchange=function(){st[k]=c.checked;save("ms",st)}})})();
+
+function all(){drawPush();drawSky2();drawW();drawTug();puck.draw();car.draw();drawDrag();sky.draw()}
+all();
+if(window.matchMedia)window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",all);
+go(+load("room",0)||0);
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

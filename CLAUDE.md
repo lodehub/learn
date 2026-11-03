@@ -47,7 +47,7 @@ Owner account: lodehub (anonymous by design).
 - Mobile-first, big tap targets, works on iPad Safari. Add a web manifest and service worker per child folder so each can be installed as a PWA (scoped to that folder).
 - Before pushing: open each page locally, check for broken links, then commit with a clear message.
 
-# Part 2: What exists (state as of 2 Nov 2026)
+# Part 2: What exists (state as of 3 Nov 2026)
 
 ## What it is
 
@@ -91,7 +91,7 @@ Current (Week 3):
 - Half-term check-in: how is each subject going? (`weekly/check-in/`)
 - **Week 3 plus** (optional extra, tagged week 3): English, Maths, Science, History and Geography rebuilt on real AQA past-paper questions with the Practice engine, each with a `?print` written paper (`<subject>/week3plus-*/`).
 
-Also current: French Week 2 (verbs and extending a sentence), French Lab, French Role-play, Mandarin Lab, Mandarin Role-play, and **Explore: "Why triangles know things", trigonometry from scratch**.
+Also current: French Week 2 (verbs and extending a sentence), French Lab, French Role-play, Mandarin Lab, Mandarin Role-play, and **Explore: "Why triangles know things", trigonometry from scratch**, and **Explore: "Forces from scratch"** (`science/explore-forces/`): ten rooms from what a force is to terminal velocity (naming forces, mass and weight, resultant force, zero resultant, acceleration, air resistance, a live skydive with free-body diagrams), ending with the AQA June 2025 skydiver question and its mark scheme.
 
 Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squad, Forming and solving equations, Weeks 1–2; Science B4 Organisms (lungs and gas exchange, breathing, drugs/alcohol/smoking, nutrients and food tests, Weeks 1–2); History Rome 14-day revision road, Roman life and equality, So What? coaching, writing task 2 (Roman childhood), Tie it back to the question, Week 2 PDF; Geography megacities Weeks 1–2.
 
