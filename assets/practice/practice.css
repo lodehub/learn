@@ -112,3 +112,12 @@ body.pp .pr-page { max-width: none; padding: 0; }
 .pp-foot { margin-top: 14px; font-size: 8.5pt; color: #666; border-top: 1px solid #ccc; padding-top: 4px; }
 body.pp .pr-mark { color: #111; border-color: #111; }
 @media print { .pr-back, a.back, [aria-label^="Back to"] { display: none !important; } }
+
+/* Feedback written to the learner (from /<slug>/feedback/feedback.json) */
+.pr-feedback { margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: var(--accent-soft); border-left: 5px solid var(--accent); }
+.pr-feedback p { margin: 0 0 8px; }
+.pr-feedback p:last-child { margin-bottom: 0; }
+.pr-fbh { font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); }
+.pr-fbmodel { font-style: italic; }
+.pr-fbtop { margin-top: 0; border: 1px solid var(--line); border-left: 5px solid var(--accent); }
+@media print { .pr-feedback { display: none; } }

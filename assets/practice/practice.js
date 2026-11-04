@@ -101,6 +101,7 @@
   }
   function card(b, extraCls) {
     var c = el('section', 'pr-card' + (extraCls ? ' ' + extraCls : ''));
+    if (b.id) c.setAttribute('data-block', b.id);
     if (b.h) c.appendChild(el('h3', 'pr-h', esc(b.h)));
     return c;
   }
@@ -398,6 +399,34 @@
     end.appendChild(reset);
     app.appendChild(end);
     updateSummary();
+    loadFeedback(top);
+  }
+
+  /* ---------- feedback written to the learner: /<slug>/feedback/feedback.json ---------- */
+  function loadFeedback(top) {
+    var parts = RAWKEY.split(':'); if (parts.length < 3) return;
+    var tool = parts[1] + '/' + parts[2] + '/';
+    fetch('../../feedback/feedback.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (F) {
+      if (!F || !F.entries) return;
+      var mine = F.entries.filter(function (e) { return e.tool === tool; });
+      if (!mine.length) return;
+      mine.sort(function (a, z) { return a.date < z.date ? 1 : -1; });
+      var e = mine[0];
+      var box = el('section', 'pr-card pr-feedback pr-fbtop');
+      box.innerHTML = '<h3 class="pr-h">Feedback on this page · ' + esc(e.date) + '</h3>' + (e.summary ? '<p>' + rich(e.summary) + '</p>' : '') +
+        (e.next ? '<p class="pr-fbnext"><b>Your next step:</b> ' + rich(e.next) + '</p>' : '') +
+        (e.items && e.items.length ? '<p class="pr-note">Look for the orange feedback boxes under the questions below.</p>' : '');
+      top.parentNode.insertBefore(box, top.nextSibling);
+      (e.items || []).forEach(function (it) {
+        var card = app.querySelector('[data-block="' + String(it.block).replace(/"/g, '') + '"]'); if (!card) return;
+        var f = el('div', 'pr-feedback');
+        f.innerHTML = '<p class="pr-fbh">Feedback' + (it.mark ? ' · <b>' + esc(it.mark) + '</b>' : '') + '</p>' +
+          (it.good ? '<p><b>What worked:</b> ' + rich(it.good) + '</p>' : '') +
+          (it.fix ? '<p><b>To fix:</b> ' + rich(it.fix) + '</p>' : '') +
+          (it.model ? '<p class="pr-fbmodel"><b>A model sentence:</b> ' + rich(it.model) + '</p>' : '');
+        card.appendChild(f);
+      });
+    }).catch(function () {});
   }
 
   /* ---------- print paper ---------- */

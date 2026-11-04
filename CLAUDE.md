@@ -94,6 +94,8 @@ Current (Week 3):
 - Week 3 homework pack, full, with parent answers (PDF, `weekly/pdfs/`)
 - Half-term check-in: how is each subject going? (`weekly/check-in/`)
 - **What I learned today** (`weekly/today/`): daily recall, subject + 3–5 key words + one explaining sentence, sent to the parent's sheet.
+- **Feedback** (`feedback/feedback.json` + `feedback/index.html`): feedback written *to her* on marked work. Each entry `{id, date, subject, title, tool: "<subject>/<tool>/", mark?, summary, next, items[{block, q, mark, good, fix, model}]}`. Practice tools show the latest entry for their tool at the top and each item under its question (matched by block id); the Feedback page lists everything, with a "New" badge. Public, so codename only: no real name, school, teachers, level estimates or parent notes.
+- **Home links**: manifest top-level `links: [{badge, title, path, feed?}]` add permanent rows to the This-week box (ember: What I learned today, My feedback with an "N new" count from `feed`).
 - **Answer sending** (LearnSend): Practice tools, Explore: Forces from scratch and the daily page send her answers, first wrong tries, predictions, notebook entries and self-marks to the parent's private sheet.
 - **Week 3 plus** (optional extra, tagged week 3): English, Maths, Science, History and Geography rebuilt on real AQA past-paper questions with the Practice engine, each with a `?print` written paper (`<subject>/week3plus-*/`).
 

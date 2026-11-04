@@ -157,7 +157,7 @@
       }
       function thisWeekHTML() {
         var list = weekItems();
-        if (!list.length && !manifest.checkin) return '';
+        if (!list.length && !manifest.checkin && !(manifest.links || []).length) return '';
         var done = ticked(), n = list.filter(function (it) { return done.indexOf(it.path) >= 0; }).length;
         var html = '<section class="week"><div class="week-head"><h2>This week' + (week ? ' <span>Week ' + esc(week) + '</span>' : '') + '</h2>' +
           (list.length ? '<span class="week-count">' + (n === list.length ? 'All done ✓' : n + ' of ' + list.length + ' done') + '</span>' : '') + '</div>';
@@ -172,9 +172,21 @@
             '</li>';
         }).join('') + '</ul>';
         if (manifest.checkin) html += '<a class="row checkin" href="' + esc(manifest.checkin) + '"><span class="badge">Check-in</span><span class="title">How is each subject going? Half-term check-in</span></a>';
+        (manifest.links || []).forEach(function (l) { html += '<a class="row checkin" href="' + esc(l.path) + '"><span class="badge">' + esc(l.badge || 'Link') + '</span><span class="title">' + esc(l.title) + '</span>' + (l.feed ? '<span class="week-count" data-feed="' + esc(l.feed) + '" data-slug="' + esc(slug) + '"></span>' : '') + '</a>'; });
         return html + '</section>';
       }
+      function newFeedback() {
+        Array.prototype.forEach.call(el.querySelectorAll('[data-feed]'), function (b) {
+          fetch(b.getAttribute('data-feed'), { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (F) {
+            if (!F || !F.entries) return;
+            var seen = {}; try { seen = JSON.parse(localStorage.getItem(b.getAttribute('data-slug') + ':feedback:seen')) || {}; } catch (e) {}
+            var n = F.entries.filter(function (e) { return !seen[e.id]; }).length;
+            b.textContent = n ? n + ' new' : '';
+          }).catch(function () {});
+        });
+      }
       function bindWeek() {
+        newFeedback();
         Array.prototype.forEach.call(el.querySelectorAll('.week .tick'), function (b) {
           b.addEventListener('click', function () {
             var done = ticked(), p = b.getAttribute('data-path'), i = done.indexOf(p);

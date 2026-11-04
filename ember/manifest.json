@@ -1,6 +1,19 @@
 {
   "currentWeek": 3,
   "checkin": "weekly/check-in/",
+  "links": [
+    {
+      "badge": "Daily",
+      "title": "What I learned today",
+      "path": "weekly/today/"
+    },
+    {
+      "badge": "Feedback",
+      "title": "My feedback: marked work and next steps",
+      "path": "feedback/",
+      "feed": "feedback/feedback.json"
+    }
+  ],
   "subjects": [
     {
       "slug": "english",
