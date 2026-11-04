@@ -159,6 +159,16 @@
       "year": 2026,
       "status": "current",
       "strand": "explore",
+      "topic": "Trigonometry",
+      "print": "maths/trig-sheets/trigonometry-4-pages.pdf",
+      "printTitle": "Trigonometry: 4 pages of questions (builds on the Explore)"
+    },
+    {
+      "title": "Trigonometry sheets: answers (for parent)",
+      "path": "maths/trig-sheets/trigonometry-answers.pdf",
+      "type": "pdf",
+      "year": 2026,
+      "status": "current",
       "topic": "Trigonometry"
     },
     {

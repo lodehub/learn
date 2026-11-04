@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trigonometry practice sheets</title>
+<style>
+:root{--bg:#efe9e2;--paper:#ffffff;--ink:#1f1e1c;--mute:#5f5b55;--acc:#c85a1e;--accsoft:#fbeadf;--line:#d9d1c7;--grid:#e9e3dc;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1b1a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b1a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:10pt/1.36 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.bar{max-width:210mm;margin:0 auto;padding:16px 16px 8px 72px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar button{min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--acc);background:var(--acc);color:#fff;font:600 15px/1 inherit;font-family:inherit;cursor:pointer}
+.bar button.ghost{background:transparent;color:var(--acc)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bar button.ghost{color:#f0935a;border-color:#f0935a}}
+.bar p{margin:0;flex-basis:100%;font-size:14px;color:#8a847c}
+.sheet{width:210mm;height:297mm;margin:0 auto 16px;background:var(--paper);color:var(--ink);padding:10mm 14mm 10mm;position:relative;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.12)}
+.sheet.answers{display:none;height:auto;min-height:297mm}
+body.show-answers .sheet.answers{display:block}
+@media screen and (max-width:830px){
+  .bar{padding-left:64px}
+  .sheet{width:auto;height:auto;margin:0 8px 14px;padding:16px}
+}
+header.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--acc);padding-bottom:3mm;margin-bottom:3mm}
+header.top h1{font-size:15pt;margin:0;line-height:1.2}
+header.top .k{font-size:8pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+.sec{font-size:12.5pt;margin:0 0 1.5mm;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{font-size:7.5pt;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--ink);border-radius:99px;padding:.6mm 2.2mm}
+.pill.calc{background:var(--ink);color:#fff}
+.intro{color:var(--mute);margin:0 0 2.5mm;font-size:9.5pt}
+.q{display:grid;grid-template-columns:7mm 1fr;margin:0 0 2mm}
+.q>.n{font-weight:800;color:var(--acc)}
+.q p{margin:0 0 1.2mm}
+.m{float:right;font-size:8.5pt;color:var(--mute);font-weight:600;margin-left:3mm}
+.parts{margin:0;padding:0;list-style:none}
+.parts li{margin:0 0 .8mm;padding-left:6mm;padding-right:9mm;text-indent:-6mm;position:relative}
+.parts li .m{position:absolute;right:0;top:0;float:none;text-indent:0;margin:0}
+.parts li b.l{display:inline-block;width:6mm;text-indent:0}
+.work{border:1px solid var(--line);border-radius:2mm;margin:1mm 0 0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:5mm 5mm;background-position:-1px -1px;position:relative}
+.work span.ans{position:absolute;right:2mm;bottom:1.5mm;font-size:8.5pt;color:var(--mute);background:#fff;padding:0 1mm}
+.lines{margin:1mm 0 0}
+.lines div{border-bottom:1px solid var(--line);height:6.5mm}
+.row{display:flex;gap:4mm;align-items:flex-start}
+.row>*{flex:1;min-width:0}
+.figs{display:flex;gap:3mm;justify-content:space-between;margin:1mm 0}
+.figs figure{margin:0;flex:1;text-align:center}
+.figs figcaption{font-size:9pt;font-weight:700}
+svg{display:block;width:100%;height:auto}
+.figs svg{max-height:22mm}
+svg text{font-family:inherit;font-size:11px;fill:var(--ink)}
+svg .t{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+svg .ra{fill:none;stroke:var(--ink);stroke-width:1}
+svg .arc{fill:none;stroke:var(--acc);stroke-width:1.4}
+svg .al{fill:var(--acc);font-weight:700}
+svg .dash{stroke-dasharray:4 3}
+svg .gl{stroke:var(--grid);stroke-width:1}
+svg .ax{stroke:var(--mute);stroke-width:1}
+.nd{font-size:8pt;color:var(--mute);font-style:italic;text-align:right;margin:0}
+.tip{border-left:3px solid var(--acc);background:var(--accsoft);padding:1.5mm 3mm;margin:0 0 2.5mm;font-size:9.5pt;border-radius:0 2mm 2mm 0}
+.tip p{margin:0}
+.aqa{border:1.5px solid var(--ink);border-radius:2mm;padding:2mm 3mm;margin:0 0 2.6mm}
+.aqa .src{font-size:8pt;font-weight:700;color:var(--mute);letter-spacing:.03em;margin:0 0 1mm}
+table.fill{border-collapse:collapse;width:100%;font-size:10pt;margin:1mm 0}
+table.fill th,table.fill td{border:1px solid var(--line);padding:1.5mm 2mm;text-align:center}
+table.fill th{background:var(--accsoft);font-weight:700}
+table.fill td{height:7.5mm}
+footer.f{position:absolute;left:14mm;right:14mm;bottom:6mm;display:flex;justify-content:space-between;font-size:7.5pt;color:var(--mute)}
+@media screen and (max-width:830px){footer.f{position:static;margin-top:10px}}
+.check{font-size:8.5pt;color:var(--mute);margin:1mm 0 0}
+.check b{color:var(--ink)}
+/* answers */
+.answers h2{font-size:13pt;margin:4mm 0 1.5mm;color:var(--acc)}
+.answers h2:first-of-type{margin-top:0}
+.answers ol{margin:0;padding-left:7mm}
+.answers li{margin:0 0 1.2mm}
+.answers .ms{font-size:9pt;border:1px solid var(--line);border-radius:2mm;padding:2mm 3mm;margin:1mm 0 2mm}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .bar,.lh-back,a[aria-label^="Back"]{display:none!important}
+  .sheet{margin:0;box-shadow:none;break-after:page;page-break-after:always}
+  .sheet:last-of-type{break-after:auto}
+  body:not(.show-answers) .sheet.answers{display:none}
+  .sheet.answers{height:auto;min-height:0}
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <button type="button" id="print">Print the 4 pages</button>
+  <button type="button" class="ghost" id="toggle">Show answers (parent)</button>
+  <p>Goes with the Explore page <i>Why triangles know things</i>. Do it on paper. Use a pencil for the diagrams.</p>
+</div>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="sheet" id="p1">
+  <header class="top"><h1>Trigonometry: from fingerprints to proofs</h1><span class="k">Page 1 of 4</span></header>
+  <h2 class="sec">1 · Fingerprints <span class="pill">No calculator</span></h2>
+  <p class="intro">Every angle has its own fixed ratios. Show your working, and write a sentence when the question says <b>explain</b>.</p>
+
+  <div class="q"><span class="n">1</span><div>
+    <p><span class="m">[3 marks]</span>In each triangle, write <b>opp</b>, <b>adj</b> and <b>hyp</b> next to the correct sides, for the angle marked θ.</p>
+    <div class="figs">
+      <figure><svg data-tri='{"vb":[200,120],"tris":[{"p":[[20,105],[175,105],[175,22]],"r":1,"a":0,"al":"θ"}]}'></svg><figcaption>(a)</figcaption></figure>
+      <figure><svg data-tri='{"vb":[200,120],"tris":[{"p":[[35,105],[35,15],[180,15]],"r":1,"a":0,"al":"θ"}]}'></svg><figcaption>(b)</figcaption></figure>
+      <figure><svg data-tri='{"vb":[200,120],"tris":[{"p":[[40,12],[40,105],[180,105]],"r":1,"a":0,"al":"θ"}]}'></svg><figcaption>(c)</figcaption></figure>
+    </div>
+  </div></div>
+
+  <div class="q"><span class="n">2</span><div>
+    <div class="row">
+      <div>
+        <ol class="parts">
+          <li><b class="l">(a)</b>Write sin A, cos A and tan A as fractions. <span class="m">[3]</span></li>
+          <li><b class="l">(b)</b>Write sin B and cos B as fractions. <span class="m">[2]</span></li>
+          <li><b class="l">(c)</b>Compare your answers to (a) and (b). What do you notice? <b>Explain</b> why this must happen in every right-angled triangle. <span class="m">[2]</span></li>
+        </ol>
+      </div>
+      <div style="flex:0 0 46mm"><svg data-tri='{"vb":[170,120],"tris":[{"p":[[150,105],[30,105],[30,15]],"r":1,"a":0,"al":"","vl":["A","","B"],"sl":["4","3","5"]}],"arcs":[[0,""],[2,""]]}'></svg><p class="nd">Not drawn accurately</p></div>
+    </div>
+    <div class="work" style="height:19mm"></div>
+    <div class="lines"><div></div></div>
+  </div></div>
+
+  <div class="q"><span class="n">3</span><div>
+    <div class="row">
+      <div>
+        <p>These two triangles have the same angles. In the small one, the opposite side is 3&nbsp;cm and the hypotenuse is 5&nbsp;cm.</p>
+        <ol class="parts">
+          <li><b class="l">(a)</b>Without a calculator, work out the side marked <b>x</b> in the big triangle. <span class="m">[2]</span></li>
+          <li><b class="l">(b)</b><b>Explain</b> in one sentence, using <i>because</i>, why you did not need to know the angle. <span class="m">[1]</span></li>
+        </ol>
+      </div>
+      <div style="flex:0 0 74mm"><svg data-tri='{"vb":[280,120],"tris":[{"p":[[10,105],[70,105],[70,60]],"r":1,"a":0,"al":"","sl":["","3 cm","5 cm"]},{"p":[[130,105],[258,105],[258,9]],"r":1,"a":0,"al":"","sl":["","x","35 cm"]}],"arcs":[[0,"",0],[0,"",1]]}'></svg><p class="nd">Not drawn accurately</p></div>
+    </div>
+    <div class="work" style="height:13mm"></div>
+    <div class="lines"><div></div></div>
+  </div></div>
+
+  <div class="q"><span class="n">4</span><div>
+    <p><span class="pill calc">Calculator</span> &nbsp;Your calculator says sin&nbsp;35°&nbsp;=&nbsp;0.574 (to 3 decimal places).</p>
+    <ol class="parts">
+      <li><b class="l">(a)</b>Finish the sentence: “In <i>every</i> right-angled triangle with a 35° angle, …” <span class="m">[1]</span></li>
+    </ol>
+    <div class="lines"><div></div></div>
+    <ol class="parts" style="margin-top:1.5mm">
+      <li><b class="l">(b)</b>A triangle has a 35° angle and a hypotenuse of 20&nbsp;cm. Work out the side opposite the 35°. <span class="m">[2]</span></li>
+      <li><b class="l">(c)</b>Another has a 35° angle and the side opposite it is 8.61&nbsp;cm. Work out its hypotenuse. <span class="m">[2]</span></li>
+    </ol>
+    <div class="row"><div class="work" style="height:14mm"><span class="ans">(b) ........ cm</span></div><div class="work" style="height:14mm"><span class="ans">(c) ........ cm</span></div></div>
+  </div></div>
+
+  <div class="q"><span class="n">5</span><div>
+    <p><span class="m">[4 marks]</span><b>Think.</b> (a) Can the sine of an angle in a right-angled triangle ever be bigger than 1? <b>Explain</b> using the sides of the triangle.
+    &nbsp;(b) Can the tangent be bigger than 1? If so, give an example angle. &nbsp;(c) Without a calculator, find the angle whose tangent is exactly 1, and <b>explain</b> how you know.</p>
+    <div class="lines"><div></div><div></div><div></div></div>
+  </div></div>
+  <footer class="f"><span>Ember · Maths · Trigonometry</span><span>Check: does each answer make sense with the picture?</span></footer>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="sheet" id="p2">
+  <header class="top"><h1>Measure what you can't reach</h1><span class="k">Page 2 of 4</span></header>
+  <h2 class="sec">2 · Sides and angles <span class="pill calc">Calculator</span></h2>
+  <div class="tip"><p><b>Method, every time:</b> ① label opp, adj, hyp from the angle ② circle the two sides you know or want ③ pick the ratio that uses exactly those two ④ write the equation, then solve ⑤ <b>check</b>: is the hypotenuse still the longest side? Give answers to 1 decimal place.</p></div>
+
+  <div class="q"><span class="n">6</span><div>
+    <p><span class="m">[3 marks]</span>Don't work anything out yet. For each triangle, circle the ratio you would use: <b>sin</b> &nbsp;<b>cos</b> &nbsp;<b>tan</b>.</p>
+    <div class="figs">
+      <figure><svg data-tri='{"vb":[200,110],"tris":[{"p":[[20,95],[170,95],[170,20]],"r":1,"a":0,"al":"50°","sl":["?","","8 m"]}]}'></svg><figcaption>(a) &nbsp; sin &nbsp; cos &nbsp; tan</figcaption></figure>
+      <figure><svg data-tri='{"vb":[200,110],"tris":[{"p":[[20,95],[170,95],[170,30]],"r":1,"a":0,"al":"25°","sl":["6 m","?",""]}]}'></svg><figcaption>(b) &nbsp; sin &nbsp; cos &nbsp; tan</figcaption></figure>
+      <figure><svg data-tri='{"vb":[200,110],"tris":[{"p":[[20,95],[160,95],[160,20]],"r":1,"a":0,"al":"θ","sl":["","4 m","9 m"]}]}'></svg><figcaption>(c) &nbsp; sin &nbsp; cos &nbsp; tan</figcaption></figure>
+    </div>
+  </div></div>
+
+  <div class="q"><span class="n">7</span><div>
+    <p><span class="m">[7 marks]</span>Work out the length <b>x</b> in each triangle. Part (c) is harder: <b>x</b> ends up on the bottom of the fraction.</p>
+    <div class="figs">
+      <figure><svg data-tri='{"vb":[200,120],"tris":[{"p":[[20,105],[170,105],[170,22]],"r":1,"a":0,"al":"40°","sl":["","x","12 cm"]}]}'></svg><figcaption>(a) [2]</figcaption></figure>
+      <figure><svg data-tri='{"vb":[200,120],"tris":[{"p":[[180,105],[30,105],[30,40]],"r":1,"a":0,"al":"28°","sl":["9 cm","x",""]}]}'></svg><figcaption>(b) [2]</figcaption></figure>
+      <figure><svg data-tri='{"vb":[200,120],"tris":[{"p":[[30,15],[30,105],[170,105]],"r":1,"a":2,"al":"35°","sl":["6 cm","","x"]}]}'></svg><figcaption>(c) [3]</figcaption></figure>
+    </div>
+    <p class="nd">Not drawn accurately</p>
+    <div class="row"><div class="work" style="height:21mm"><span class="ans">x = ........</span></div><div class="work" style="height:21mm"><span class="ans">x = ........</span></div><div class="work" style="height:21mm"><span class="ans">x = ........</span></div></div>
+  </div></div>
+
+  <div class="q"><span class="n">8</span><div>
+    <div class="row">
+      <div>
+        <p><span class="m">[4 marks]</span>Now the angle is the unknown. Use the inverse button (sin⁻¹, cos⁻¹ or tan⁻¹). Work out θ in each triangle.</p>
+        <div class="row"><div class="work" style="height:20mm"><span class="ans">(a) θ = ........°</span></div><div class="work" style="height:20mm"><span class="ans">(b) θ = ........°</span></div></div>
+      </div>
+      <div style="flex:0 0 70mm"><svg data-tri='{"vb":[260,110],"tris":[{"p":[[10,95],[120,95],[120,30]],"r":1,"a":0,"al":"θ","sl":["8 m","5 m",""]},{"p":[[140,95],[250,95],[250,10]],"r":1,"a":0,"al":"θ","sl":["7 m","","10 m"]}],"labels":[[14,22,"(a)"],[146,22,"(b)"]]}'></svg></div>
+    </div>
+  </div></div>
+
+  <div class="q"><span class="n">9</span><div>
+    <p><span class="m">[4 marks]</span>Back to the tree. You stand 24&nbsp;m from the bottom of a tree on flat ground. Your eyes are 1.5&nbsp;m above the ground. You measure the angle up to the top of the tree as 32°. <b>Draw a labelled diagram</b>, then work out the height of the tree.</p>
+    <div class="work" style="height:27mm"><span class="ans">height = ........ m</span></div>
+  </div></div>
+
+  <div class="q"><span class="n">10</span><div>
+    <p><span class="m">[3 marks]</span><b>Spot the mistake.</b> A 5&nbsp;m ladder leans against a wall. It makes an angle of 70° with the ground. Sam works out how high up the wall it reaches:</p>
+    <p style="font-family:ui-monospace,Menlo,monospace;font-size:9.5pt;margin-left:5mm">height = 5 × cos 70° = 1.71 m</p>
+    <p>(a) Without doing any calculation, how can you tell that 1.71&nbsp;m must be wrong? &nbsp;(b) What mistake did Sam make? &nbsp;(c) Work out the correct height.</p>
+    <div class="lines"><div></div><div></div></div>
+  </div></div>
+  <footer class="f"><span>Ember · Maths · Trigonometry</span><span>Check: is the hypotenuse still the longest side?</span></footer>
+</section>
+
+<!-- ============ PAGE 3 ============ -->
+<section class="sheet" id="p3">
+  <header class="top"><h1>The circle and the wave</h1><span class="k">Page 3 of 4</span></header>
+  <h2 class="sec">3 · Beyond the triangle <span class="pill">No calculator</span></h2>
+  <p class="intro">Remember the circle of radius 1: the point at angle θ is <b>cos θ across</b> and <b>sin θ up</b>. Angles go anticlockwise from the right.</p>
+
+  <div class="q"><span class="n">11</span><div>
+    <div class="row">
+      <div>
+        <p><span class="m">[4 marks]</span>Use the circle only, no calculator. Fill in the table, then for <b>one</b> of the boxes <b>explain</b> how the circle tells you the answer.</p>
+        <table class="fill"><tr><th></th><th>0°</th><th>90°</th><th>180°</th><th>270°</th><th>360°</th></tr>
+          <tr><th>sin</th><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><th>cos</th><td></td><td></td><td></td><td></td><td></td></tr></table>
+        
+      </div>
+      <div style="flex:0 0 40mm"><svg viewBox="0 0 160 160" aria-label="Circle of radius 1 with axes">
+        <line class="ax" x1="8" y1="80" x2="152" y2="80"/><line class="ax" x1="80" y1="8" x2="80" y2="152"/>
+        <circle cx="80" cy="80" r="56" class="t"/>
+        <line x1="80" y1="80" x2="128.5" y2="52" stroke="var(--acc)" stroke-width="1.6"/><circle cx="128.5" cy="52" r="3.5" fill="var(--acc)"/>
+        <line x1="128.5" y1="52" x2="128.5" y2="80" class="ra dash"/>
+        <path d="M100 80 A20 20 0 0 0 97.3 70" class="arc"/><text x="103" y="76" class="al">θ</text>
+        <text x="96" y="60" font-size="10">1</text>
+        <text x="138" y="76" font-size="10">0°</text><text x="84" y="18" font-size="10">90°</text><text x="6" y="76" font-size="10">180°</text><text x="84" y="150" font-size="10">270°</text>
+      </svg></div>
+    </div>
+  </div></div>
+
+  <div class="q"><span class="n">12</span><div>
+    <p><span class="m">[5 marks]</span>sin&nbsp;30°&nbsp;=&nbsp;0.5.</p>
+    <ol class="parts">
+      <li><b class="l">(a)</b>Find another angle between 0° and 360° whose sine is also 0.5. <b>Explain</b> using the circle (sketch it). <span class="m">[2]</span></li>
+      <li><b class="l">(b)</b>Is sin&nbsp;200° positive or negative? <b>Explain</b> how you know. <span class="m">[1]</span></li>
+      <li><b class="l">(c)</b>Write down an angle whose cosine is negative, and one whose sine and cosine are <i>both</i> negative. <span class="m">[2]</span></li>
+    </ol>
+    <div class="work" style="height:19mm"></div>
+  </div></div>
+
+  <div class="q"><span class="n">13</span><div>
+    <p><span class="m">[5 marks]</span>In Room 5 you showed that <b>(sin θ)² + (cos θ)² = 1</b> for every angle.</p>
+    <ol class="parts">
+      <li><b class="l">(a)</b>sin θ = 0.8. Find <b>two</b> possible values of cos θ. Why are there two? <span class="m">[2]</span></li>
+      <li><b class="l">(b)</b>Angle A is in a right-angled triangle and cos A = <sup>5</sup>⁄<sub>13</sub>. Without a calculator, find sin A and tan A as fractions. (Hint: sketch a triangle that has this cosine.) <span class="m">[3]</span></li>
+    </ol>
+    <div class="work" style="height:19mm"></div>
+  </div></div>
+
+  <div class="q"><span class="n">14</span><div>
+    <div class="row">
+      <div style="flex:0 0 72mm">
+        <p><span class="m">[3 marks]</span>(a) Sketch <b>y = sin x</b> for 0° to 360° on the grid. Mark where it crosses the x-axis.</p>
+        <p>(b) In a different colour, sketch <b>y = 1 + sin x</b>.</p>
+        <p>(c) In words: what did the “1 +” do to the graph?</p>
+      </div>
+      <div><svg id="grid14" viewBox="0 0 300 132" aria-label="Empty grid, x from 0 to 360 degrees, y from minus 2 to 2"></svg></div>
+    </div>
+    <div class="lines"><div></div></div>
+  </div></div>
+
+  <div class="q"><span class="n">15</span><div>
+    <p><span class="m">[6 marks]</span>A Ferris wheel seat starts level with the centre and turns anticlockwise. After the wheel turns through θ, its height in metres is &nbsp;<b>height = 20 + 15 sin θ</b>.</p>
+    <ol class="parts">
+      <li><b class="l">(a)</b>How high is the centre of the wheel? What is its radius? <span class="m">[1]</span></li>
+      <li><b class="l">(b)</b>What are the highest and lowest heights of the seat? <b>Explain</b> using the largest and smallest values sin can take. <span class="m">[2]</span></li>
+      <li><b class="l">(c)</b>Use your answer to 12(a) and the circle to find the height after 210°. <span class="m">[1]</span></li>
+      <li><b class="l">(d)</b>The seat is 27.5&nbsp;m high twice on the way round. At which two angles? <span class="m">[2]</span></li>
+    </ol>
+    <div class="work" style="height:16mm"></div>
+  </div></div>
+  <footer class="f"><span>Ember · Maths · Trigonometry</span><span>Check: sin and cos are always between −1 and 1</span></footer>
+</section>
+
+<!-- ============ PAGE 4 ============ -->
+<section class="sheet" id="p4">
+  <header class="top"><h1>Challenge: think it through</h1><span class="k">Page 4 of 4</span></header>
+  <h2 class="sec">4 · Exact values, real exam questions, two triangles</h2>
+  <div class="tip"><p><b>√3</b> is the number that squares to 3, so <b>√3 × √3 = 3</b>. Leave √3 as it is: it is <i>exact</i>, and 1.732… is not.</p></div>
+
+  <div class="q"><span class="n">16</span><div>
+    <div class="row">
+      <div>
+        <p><span class="pill">No calculator</span> <span class="m">[6 marks]</span></p>
+        <ol class="parts">
+          <li><b class="l">(a)</b>An equilateral triangle with sides of 2 is cut in half (left). Use Pythagoras to <b>show</b> that the dashed height is √3. <span class="m">[2]</span></li>
+          <li><b class="l">(b)</b>Use the half-triangle to write <b>exact</b> values for sin, cos and tan of 30° and of 60°. <span class="m">[3]</span></li>
+          <li><b class="l">(c)</b>A square with sides of 1 is cut along a diagonal (right). Find tan 45° and sin 45°. <span class="m">[1]</span></li>
+        </ol>
+      </div>
+      <div style="flex:0 0 74mm"><svg viewBox="0 0 270 135" aria-label="Equilateral triangle of side 2 split by a dashed height, and a unit square split by a diagonal">
+        <polygon points="15,125 155,125 85,4" class="t"/>
+        <line x1="85" y1="4" x2="85" y2="125" class="t dash" style="stroke-width:1.2"/>
+        <polyline points="85,115 95,115 95,125" class="ra"/>
+        <text x="36" y="60">2</text><text x="128" y="60">2</text><text x="46" y="134">1</text><text x="116" y="134">1</text>
+        <path d="M37 125 A22 22 0 0 0 26 106" class="arc"/><text x="34" y="115" class="al" font-size="10">60°</text>
+        <path d="M85 26 A22 22 0 0 1 74 23" class="arc"/><text x="58" y="40" class="al" font-size="10">30°</text>
+        <rect x="180" y="40" width="80" height="80" class="t"/><line x1="180" y1="120" x2="260" y2="40" class="t"/>
+        <text x="215" y="132">1</text><text x="263" y="84">1</text>
+        <path d="M202 120 A22 22 0 0 0 195.6 104.4" class="arc"/><text x="204" y="112" class="al" font-size="10">45°</text>
+      </svg></div>
+    </div>
+    <div class="work" style="height:20mm"></div>
+  </div></div>
+
+  <div class="aqa"><p class="src">REAL GCSE QUESTION · AQA 8300/1H June 2018, Higher Paper 1 (non-calculator), Q30 [3 marks]</p>
+    <div class="q" style="margin:0"><span class="n">17</span><div>
+      <p>Show that the value of cos 30° × tan 60° + sin 30° is an integer.</p>
+      <div class="work" style="height:20mm"></div>
+    </div></div>
+  </div>
+
+  <div class="aqa"><p class="src">REAL GCSE QUESTION · AQA 8300/1H November 2022, Higher Paper 1 (non-calculator), Q23 [4 marks]</p>
+    <div class="q" style="margin:0"><span class="n">18</span><div>
+      <p>4 × sin 30° × tan 30° × cos 30° = sin <i>y</i></p>
+      <p>Work out one possible value of <i>y</i>.<br>You must show your working.</p>
+      <div class="work" style="height:19mm"><span class="ans"><i>y</i> = ........°</span></div>
+      <p class="check"><b>Second way, if you finish:</b> tan&nbsp;30° = sin&nbsp;30° ÷ cos&nbsp;30° (why?). Put that in and watch what cancels.</p>
+    </div></div>
+  </div>
+
+  <div class="q"><span class="n">19</span><div>
+    <div class="row">
+      <div>
+        <p><span class="pill calc">Calculator</span> <span class="m">[6 marks]</span>A vertical pole BD stands on flat ground. From A, 12&nbsp;m from the foot of the pole, the angle up to the top B is 35°. A wire runs from B down to C, making 60° with the ground.</p>
+        <ol class="parts">
+          <li><b class="l">(a)</b>Work out the height of the pole BD. <span class="m">[2]</span></li>
+          <li><b class="l">(b)</b>Work out the length of the wire BC. <span class="m">[2]</span></li>
+          <li><b class="l">(c)</b>Sam rounded BD to 8&nbsp;m before doing (b). What answer did he get? <b>Explain</b> why you should keep the full number in your calculator. <span class="m">[2]</span></li>
+        </ol>
+      </div>
+      <div style="flex:0 0 58mm"><svg data-tri='{"vb":[220,120],"tris":[{"p":[[24,105],[150,105],[150,18]],"r":1,"a":0,"al":"35°","vl":["A","D","B"],"sl":["12 m","",""]},{"p":[[200,105],[150,105],[150,18]],"r":1,"a":0,"al":"60°","vl":["C","",""]}]}'></svg><p class="nd">Not drawn accurately</p></div>
+    </div>
+    <div class="work" style="height:19mm"></div>
+  </div></div>
+
+  <div class="q"><span class="n">20</span><div>
+    <p><span class="m">[2 marks]</span>Lily says: <i>“sin 40° = 0.643, so a triangle with a 40° angle has an opposite side of 0.643 cm.”</i> &nbsp;Is she right? <b>Explain</b>, using what a ratio means.</p>
+    <div class="lines"><div></div><div></div></div>
+  </div></div>
+  <footer class="f"><span>Ember · Maths · Trigonometry</span><span>Total: 87 marks · Questions 17 and 18 are real GCSE Higher questions</span></footer>
+</section>
+
+<!-- ============ ANSWERS ============ -->
+<section class="sheet answers" id="ans">
+  <header class="top"><h1>Answers (for marking)</h1><span class="k">Trigonometry sheets</span></header>
+  <h2>Page 1 · Fingerprints</h2>
+  <ol>
+    <li>(a) bottom = adj, vertical = opp, sloping = hyp. (b) left vertical = adj, top = opp, sloping = hyp. (c) θ at the top: left vertical = adj, bottom = opp, sloping = hyp. <i>The hyp is always opposite the right angle; the adj touches θ.</i></li>
+    <li>(a) sin A = 3/5, cos A = 4/5, tan A = 3/4. (b) sin B = 4/5, cos B = 3/5. (c) sin A = cos B and cos A = sin B, <b>because</b> the side opposite A is the side next to B (A and B add up to 90°).</li>
+    <li>(a) x = 21 cm (35 is 7 × 5, so the opposite is 7 × 3). (b) Same angles means same shape, <b>so</b> every side is scaled by the same amount (the ratio opp ÷ hyp stays 3/5).</li>
+    <li>(a) … the opposite side is 0.574 of (about 57% of) the hypotenuse. (b) 20 × sin 35° = 11.5 cm. (c) 8.61 ÷ sin 35° = 15.0 cm.</li>
+    <li>(a) No: sin = opp ÷ hyp and the hyp is always the longest side, so the fraction is less than 1. (b) Yes, when opp &gt; adj, e.g. any angle above 45° (tan 60° ≈ 1.73). (c) 45°: tan = 1 means opp = adj, so the triangle is isosceles and the two other angles are equal: (180 − 90) ÷ 2 = 45°.</li>
+  </ol>
+  <h2>Page 2 · Sides and angles</h2>
+  <ol start="6">
+    <li>(a) cos (adj and hyp). (b) tan (opp and adj). (c) sin (opp and hyp).</li>
+    <li>(a) x = 12 sin 40° = 7.7 cm. (b) x = 9 tan 28° = 4.8 cm. (c) sin 35° = 6/x, so x = 6 ÷ sin 35° = 10.5 cm (check: longer than 6 ✓).</li>
+    <li>(a) tan θ = 5/8, θ = 32.0°. (b) cos θ = 7/10, θ = 45.6°.</li>
+    <li>24 tan 32° = 15.0 m above eye level, + 1.5 = <b>16.5 m</b>. (Common slip: forgetting the 1.5 m.)</li>
+    <li>(a) A steep 5 m ladder (70°) must reach most of the way up, nearly 5 m; 1.71 m is far too short. (b) The height is <i>opposite</i> the 70° angle, so it needs sin, not cos (cos gives the distance from the wall). (c) 5 sin 70° = 4.70 m.</li>
+  </ol>
+  <h2>Page 3 · The circle and the wave</h2>
+  <ol start="11">
+    <li>sin: 0, 1, 0, −1, 0. cos: 1, 0, −1, 0, 1. E.g. at 90° the point is at the very top: 0 across, 1 up.</li>
+    <li>(a) 150°: the point at 150° is the mirror image of 30° in the vertical axis, the same height. (b) Negative: 200° is below the horizontal axis. (c) Any angle between 90° and 270°, e.g. 120°; both negative between 180° and 270°, e.g. 225°.</li>
+    <li>(a) cos² θ = 1 − 0.64 = 0.36, so cos θ = 0.6 or −0.6 (two points on the circle at height 0.8, one right, one left). (b) adj 5, hyp 13, so opp = √(169 − 25) = 12. sin A = 12/13, tan A = 12/5.</li>
+    <li>(a) Wave through (0,0), up to 1 at 90°, (180,0), down to −1 at 270°, (360,0). (b) Same shape, everything 1 higher: from 0 up to 2 and back to 0. (c) It moved the graph up by 1 (a translation).</li>
+    <li>(a) Centre 20 m, radius 15 m. (b) sin is at most 1 and at least −1, so 35 m and 5 m. (c) sin 210° = −0.5 (mirror of 30° below the axis), so 20 − 7.5 = 12.5 m. (d) 15 sin θ = 7.5, sin θ = 0.5: θ = 30° and 150°.</li>
+  </ol>
+  <h2>Page 4 · Challenge</h2>
+  <ol start="16">
+    <li>(a) h² + 1² = 2², h² = 3, h = √3. (b) sin 30° = 1/2, cos 30° = √3/2, tan 30° = 1/√3; sin 60° = √3/2, cos 60° = 1/2, tan 60° = √3. (c) tan 45° = 1; diagonal = √2, so sin 45° = 1/√2.</li>
+    <li><b>AQA mark scheme:</b>
+      <div class="ms">√3/2 × √3 + 1/2 &nbsp;= 3/2 + 1/2 &nbsp;= 2 &nbsp;<b>B3</b><br>B2: √3/2 × √3 + 1/2 &nbsp;· B1: cos 30° = √3/2 or tan 60° = √3 or sin 30° = 1/2.<br>For B3 all steps must be shown. Allow equivalent expressions for all trig values.</div></li>
+    <li><b>AQA mark scheme</b> (one of two methods):
+      <div class="ms">Method 1: sin 30 = 1/2 or tan 30 = 1/√3 (or √3/3) or cos 30 = √3/2 <b>M1</b> · 4 × 1/2 × 1/√3 × √3/2 <b>M1dep</b> · 1 with all three values seen <b>A1</b> · 90 <b>A1</b><br>
+      Method 2: 4 × sin 30° × (sin 30° ÷ cos 30°) × cos 30° <b>M1</b> · 4 × 1/2 × 1/2 <b>M1dep</b> · 1 <b>A1</b> · 90 <b>A1</b><br>Accept any angle of the form 90 + 360n, where n is an integer.</div></li>
+    <li>(a) BD = 12 tan 35° = 8.40 m. (b) sin 60° = BD/BC, BC = 8.402… ÷ sin 60° = 9.70 m. (c) 8 ÷ sin 60° = 9.24 m: almost half a metre out. Rounding early throws away accuracy, and the error grows in every later step.</li>
+    <li>No. sin 40° = 0.643 is a <b>ratio</b>: the opposite side is 0.643 <i>times</i> the hypotenuse. It is only 0.643 cm if the hypotenuse is exactly 1 cm.</li>
+  </ol>
+</section>
+
+<script>
+"use strict";
+(function(){
+  var NS="http://www.w3.org/2000/svg";
+  function el(n,a,txt){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e}
+  function sub(a,b){return[a[0]-b[0],a[1]-b[1]]}
+  function len(v){return Math.hypot(v[0],v[1])}
+  function unit(v){var l=len(v);return[v[0]/l,v[1]/l]}
+  function drawTri(svg,t,i,spec){
+    var P=t.p;svg.appendChild(el("polygon",{points:P.map(function(p){return p.join(",")}).join(" "),"class":"t"}));
+    var cx=(P[0][0]+P[1][0]+P[2][0])/3,cy=(P[0][1]+P[1][1]+P[2][1])/3;
+    // right-angle box
+    if(t.r!=null){var R=P[t.r],u=unit(sub(P[(t.r+1)%3],R)),w=unit(sub(P[(t.r+2)%3],R)),s=9;
+      svg.appendChild(el("polyline",{points:[R[0]+u[0]*s,R[1]+u[1]*s].join(",")+" "+[R[0]+u[0]*s+w[0]*s,R[1]+u[1]*s+w[1]*s].join(",")+" "+[R[0]+w[0]*s,R[1]+w[1]*s].join(","),"class":"ra"}))}
+    function arc(k,label){var V=P[k],a=unit(sub(P[(k+1)%3],V)),b=unit(sub(P[(k+2)%3],V)),r=20;
+      var A=[V[0]+a[0]*r,V[1]+a[1]*r],B=[V[0]+b[0]*r,V[1]+b[1]*r],cr=a[0]*b[1]-a[1]*b[0];
+      svg.appendChild(el("path",{d:"M"+A.join(" ")+" A"+r+" "+r+" 0 0 "+(cr>0?1:0)+" "+B.join(" "),"class":"arc"}));
+      if(label){var m=unit([a[0]+b[0],a[1]+b[1]]),d=label.length>2?33:30;svg.appendChild(el("text",{x:V[0]+m[0]*d,y:V[1]+m[1]*d+4,"text-anchor":"middle","class":"al"},label))}}
+    if(t.a!=null)arc(t.a,t.al);
+    (spec.arcs||[]).forEach(function(x){if(x[2]==null||x[2]===i){if(x[2]===i||spec.tris.length===1)arc(x[0],x[1])}});
+    (t.sl||[]).forEach(function(lab,k){if(!lab)return;var a=P[k],b=P[(k+1)%3],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,n=unit([mx-cx,my-cy]);
+      var tx=mx+n[0]*12,ty=my+n[1]*12+4;svg.appendChild(el("text",{x:tx,y:ty,"text-anchor":Math.abs(n[0])<.35?"middle":(n[0]>0?"start":"end"),"font-weight":lab==="x"||lab==="?"?"700":"400"},lab))});
+    (t.vl||[]).forEach(function(lab,k){if(!lab)return;var n=unit(sub(P[k],[cx,cy]));
+      svg.appendChild(el("text",{x:P[k][0]+n[0]*11,y:P[k][1]+n[1]*11+4,"text-anchor":"middle","font-weight":"700"},lab))});
+  }
+  [].forEach.call(document.querySelectorAll("svg[data-tri]"),function(svg){
+    var spec=JSON.parse(svg.getAttribute("data-tri"));svg.setAttribute("viewBox","0 0 "+spec.vb[0]+" "+spec.vb[1]);
+    spec.tris.forEach(function(t,i){drawTri(svg,t,i,spec)});
+    (spec.labels||[]).forEach(function(l){svg.appendChild(el("text",{x:l[0],y:l[1],"text-anchor":"middle","font-weight":"700"},l[2]))});
+  });
+  // Q14 grid
+  var g=document.getElementById("grid14"),x0=26,x1=284,yc=62,dy=24;
+  for(var d=0;d<=360;d+=30){var x=x0+(x1-x0)*d/360;g.appendChild(el("line",{x1:x,y1:yc-2*dy-4,x2:x,y2:yc+2*dy+4,"class":"gl"}));if(d%90===0)g.appendChild(el("text",{x:x,y:yc+2*dy+16,"text-anchor":"middle","font-size":"9"},d+"°"))}
+  for(var v=-2;v<=2;v+=.5){var y=yc-v*dy;g.appendChild(el("line",{x1:x0,y1:y,x2:x1,y2:y,"class":"gl"}));if(v%1===0)g.appendChild(el("text",{x:x0-5,y:y+3,"text-anchor":"end","font-size":"9"},String(v).replace("-","−")))}
+  g.appendChild(el("line",{x1:x0,y1:yc,x2:x1,y2:yc,"class":"ax"}));g.appendChild(el("line",{x1:x0,y1:yc-2*dy-4,x2:x0,y2:yc+2*dy+4,"class":"ax"}));
+  g.appendChild(el("text",{x:x1,y:yc-4,"text-anchor":"end","font-size":"9","font-style":"italic"},"x"));g.appendChild(el("text",{x:x0+5,y:10,"font-size":"9","font-style":"italic"},"y"));
+
+  var showing=/[?&]answers\b/.test(location.search);
+  function paint(){document.body.classList.toggle("show-answers",showing);document.getElementById("toggle").textContent=showing?"Hide answers":"Show answers (parent)";document.getElementById("print").textContent=showing?"Print 4 pages + answers":"Print the 4 pages"}
+  document.getElementById("toggle").onclick=function(){showing=!showing;paint();if(showing)document.getElementById("ans").scrollIntoView({behavior:"smooth"})};
+  document.getElementById("print").onclick=function(){window.print()};
+  paint();
+  document.documentElement.setAttribute("data-ready","1");
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>
