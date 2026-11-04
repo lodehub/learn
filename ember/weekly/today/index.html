@@ -41,6 +41,14 @@ textarea{min-height:76px;resize:vertical}
 .day{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute);margin:14px 0 4px}
 .empty{color:var(--mute);font-size:15px}
 .tip{background:var(--accsoft);border-radius:12px;padding:10px 14px;font-size:15px;margin:0 0 14px}
+.none{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.none p{margin:0;color:var(--mute);font-size:15px}
+.reasons{display:none;margin-top:12px}
+.reasons.show{display:block}
+.done-msg{display:none;font-weight:700;color:var(--ok);margin-top:10px}
+.done-msg.show{display:block}
+.wkend{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:10px 14px;font-size:15px;color:var(--mute);margin:0 0 14px;display:none}
+.wkend.show{display:block}
 </style>
 </head>
 <body>
@@ -52,6 +60,18 @@ textarea{min-height:76px;resize:vertical}
 </header>
 
 <div class="tip"><b>The rule:</b> 3 to 5 key words, then <b>one sentence that explains</b> something, using <i>because</i>, <i>so</i> or <i>which means</i>. Not just what the lesson was about: what it showed.</div>
+
+<p class="wkend" id="wkend">It's the weekend: nothing needed. Only add something if you learned something you want to remember.</p>
+
+<div class="card none" id="noneCard">
+  <p>Nothing much to say today? That's fine.</p>
+  <button class="btn ghost" type="button" id="noneBtn">Nothing new today</button>
+  <div class="reasons" id="reasons" style="flex-basis:100%">
+    <label class="f">Why? (optional, tap one)</label>
+    <div class="chips" id="why"></div>
+    <p class="done-msg" id="noneDone">Saved ✓ Nothing new today. See you tomorrow.</p>
+  </div>
+</div>
 
 <div class="card" id="form">
   <label class="f" for="date">Date</label>
@@ -81,9 +101,19 @@ function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
 var $=function(id){return document.getElementById(id)};
 var LS=window.LearnSend;if(LS)LS.init({key:"ember:weekly:today",title:"What I learned today",kind:"today"});
 var SUBJ=["English","Maths","Science","History","Geography","French","Other"];
-var entries=load("entries",[]),subject=null;
+var entries=load("entries",[]),subject=null,days=load("days",{});
 function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 $("date").value=iso(new Date());
+var dow=(new Date().getDay()+6)%7;if(dow>4)$("wkend").classList.add("show");
+var WHY=["Weekend or holiday","No new topics today","Test or revision day","Can't remember"];
+function markNothing(reason){var d=$("date").value;if(days[d]==="done")return;days[d]="nothing";save("days",days);
+  if(LS){LS.put("nothing-"+d,{date:d,subject:"(none)",words:"(nothing today)",sentence:reason||""});LS.flush()}
+  $("noneDone").classList.add("show")}
+WHY.forEach(function(w){var b=document.createElement("button");b.type="button";b.textContent=w;b.setAttribute("aria-pressed","false");
+  b.onclick=function(){[].forEach.call($("why").children,function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});markNothing(w)};$("why").appendChild(b)});
+$("noneBtn").onclick=function(){$("reasons").classList.add("show");$("noneBtn").style.display="none";markNothing(dow>4?"Weekend or holiday":"")};
+if(/[?&]nothing\b/.test(location.search))$("noneBtn").onclick();
+if(days[iso(new Date())]==="done")$("noneCard").style.display="none";
 SUBJ.forEach(function(s){var b=document.createElement("button");b.type="button";b.textContent=s;b.setAttribute("aria-pressed","false");
   b.onclick=function(){subject=s;[].forEach.call($("subj").children,function(x){x.setAttribute("aria-pressed",x===b?"true":"false")})};$("subj").appendChild(b)});
 function linked(t){return /\b(because|so|which means|therefore|this means|as a result|this shows|this suggests|due to|causes?|leads? to)\b/i.test(t)}
@@ -96,7 +126,7 @@ $("add").onclick=function(){
   if(!subject){$("hint").textContent="Pick a subject first.";$("hint").className="hint";return}
   if(!w&&!t){$("words").focus();return}
   var e={id:Date.now().toString(36),date:d,subject:subject,words:w,sentence:t};
-  entries.push(e);save("entries",entries);
+  entries.push(e);save("entries",entries);days[d]="done";save("days",days);
   if(LS)LS.put(e.id,{date:e.date,subject:e.subject,words:e.words,sentence:e.sentence});
   if(LS)LS.flush();
   $("words").value="";$("sent").value="";$("hint").textContent="Saved ✓ Next lesson?";$("hint").className="hint ok";
@@ -113,7 +143,7 @@ function draw(){
     if(e.date!==day){day=e.date;var h=document.createElement("p");h.className="day";h.textContent=new Date(e.date+"T12:00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short"});L.appendChild(h)}
     var div=document.createElement("div");div.className="entry";
     var del=document.createElement("button");del.type="button";del.textContent="remove";
-    del.onclick=function(){if(del.dataset.sure){entries=entries.filter(function(x){return x.id!==e.id});save("entries",entries);if(LS)LS.put(e.id,{date:e.date,subject:e.subject,words:"(removed)",sentence:""});draw()}else{del.dataset.sure=1;del.textContent="tap again to remove"}};
+    del.onclick=function(){if(del.dataset.sure){entries=entries.filter(function(x){return x.id!==e.id});save("entries",entries);if(!entries.some(function(x){return x.date===e.date})){delete days[e.date];save("days",days)}if(LS)LS.put(e.id,{date:e.date,subject:e.subject,words:"(removed)",sentence:""});draw()}else{del.dataset.sure=1;del.textContent="tap again to remove"}};
     div.appendChild(del);
     var b=document.createElement("b");b.textContent=e.subject+": ";div.appendChild(b);
     div.appendChild(document.createTextNode(e.words||""));

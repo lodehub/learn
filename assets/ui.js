@@ -121,7 +121,7 @@
       }
 
       function drawSubjects() {
-        var html = bar(child.label, '../', 'Back to everyone') + toggleHTML() + (showArchived ? '' : thisWeekHTML());
+        var html = bar(child.label, '../', 'Back to everyone') + toggleHTML() + (showArchived ? '' : dailyHTML() + thisWeekHTML());
         var shown = subjects.filter(function (s) {
           // In the archive, only subjects that have archived material.
           return !showArchived || items.some(function (it) { return subjectOf(it) === s.slug && visible(it); });
@@ -154,6 +154,26 @@
       }
       function ticked() {
         try { return JSON.parse(localStorage.getItem(weekKey)) || []; } catch (e) { return []; }
+      }
+      /* Daily recall card (manifest.daily = {path, key}): today's state plus a Mon-Fri strip. */
+      function dailyHTML() {
+        var d = manifest.daily; if (!d) return '';
+        var days = {}; try { days = JSON.parse(localStorage.getItem(d.key + 'days')) || {}; } catch (e) {}
+        function iso(x) { return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0'); }
+        var now = new Date(), today = iso(now), dow = (now.getDay() + 6) % 7, weekend = dow > 4, st = days[today];
+        var mon = new Date(now); mon.setDate(now.getDate() - dow);
+        var strip = ['M', 'T', 'W', 'T', 'F'].map(function (l, i) {
+          var x = new Date(mon); x.setDate(mon.getDate() + i); var k = iso(x), v = days[k];
+          var cls = v === 'done' ? 'done' : v === 'nothing' ? 'nothing' : (i < dow && !weekend) || weekend ? 'missed' : i === dow ? 'today' : '';
+          return '<span class="dd ' + cls + '" title="' + k + '">' + l + '</span>';
+        }).join('');
+        var head, body;
+        if (st === 'done') { head = 'Today’s learning saved ✓'; body = '<a class="row" href="' + esc(d.path) + '"><span class="title">Add another lesson</span></a>'; }
+        else if (st === 'nothing') { head = 'Nothing new today ✓'; body = '<a class="row" href="' + esc(d.path) + '"><span class="title">Changed your mind? Add something</span></a>'; }
+        else if (weekend) { head = 'Weekend: nothing needed'; body = '<a class="row" href="' + esc(d.path) + '"><span class="title">Learned something interesting? Add it</span></a>'; }
+        else { head = 'What did you learn today?'; body = '<div class="daily-btns"><a class="row go" href="' + esc(d.path) + '"><span class="title">Write it down (3 min)</span></a>' +
+          '<a class="row" href="' + esc(d.path) + '?nothing"><span class="title">Nothing today</span></a></div>'; }
+        return '<section class="daily' + (st || weekend ? ' calm' : '') + '"><div class="daily-head"><h2>' + head + '</h2><div class="daily-strip" aria-label="This week">' + strip + '</div></div>' + body + '</section>';
       }
       function thisWeekHTML() {
         var list = weekItems();

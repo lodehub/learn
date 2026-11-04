@@ -1,12 +1,11 @@
 {
   "currentWeek": 3,
   "checkin": "weekly/check-in/",
+  "daily": {
+    "path": "weekly/today/",
+    "key": "ember:weekly:today:"
+  },
   "links": [
-    {
-      "badge": "Daily",
-      "title": "What I learned today",
-      "path": "weekly/today/"
-    },
     {
       "badge": "Feedback",
       "title": "My feedback: marked work and next steps",
