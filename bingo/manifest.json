@@ -98,6 +98,24 @@
       "topic": "Times tables"
     },
     {
+      "title": "Story Detective: read to the end, clues, tick a box, day detective",
+      "path": "english/story-detective/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Reading",
+      "print": "english/story-detective/story-detective-missing-socks.pdf",
+      "printTitle": "Story Detective: The Missing Socks (1 page)"
+    },
+    {
+      "title": "Story Detective page: answers (for parent)",
+      "path": "english/story-detective/story-detective-answers.pdf",
+      "type": "pdf",
+      "year": 2026,
+      "status": "current",
+      "topic": "Reading"
+    },
+    {
       "title": "Grammar and Writing Pack",
       "path": "english/grammar-writing-pack/",
       "type": "html",

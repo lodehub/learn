@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Story Detective</title>
+<link rel="stylesheet" href="../../../assets/fonts/atkinsonhyperlegible-c24f9e.css">
+<style>
+:root{--bg:#e6f2f3;--card:#ffffff;--ink:#1d2b33;--muted:#4f656d;--teal:#0f6b6b;--on-teal:#ffffff;--teal-soft:#dff0ee;--sun:#ffd35c;--sun-soft:#fff3c4;--on-sun:#3b2c00;--good:#1c7447;--good-bg:#d9f2e3;--bad:#a8352c;--bad-bg:#fbe2df;--line:#b3c9ce;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f1d22;--card:#172a31;--ink:#e8f1f2;--muted:#9db5ba;--teal:#5cc9c0;--on-teal:#0f1d22;--teal-soft:#1c3a40;--sun:#ffd35c;--sun-soft:#3a3318;--on-sun:#3b2c00;--good:#7fdca6;--good-bg:#173a28;--bad:#ff9a90;--bad-bg:#432220;--line:#36525a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1d22;--card:#172a31;--ink:#e8f1f2;--muted:#9db5ba;--teal:#5cc9c0;--on-teal:#0f1d22;--teal-soft:#1c3a40;--sun:#ffd35c;--sun-soft:#3a3318;--on-sun:#3b2c00;--good:#7fdca6;--good-bg:#173a28;--bad:#ff9a90;--bad-bg:#432220;--line:#36525a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible","Trebuchet MS",system-ui,sans-serif;font-size:19px;line-height:1.55;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:720px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin:0}
+h1{font-size:clamp(28px,7vw,38px);margin:2px 0 6px;line-height:1.15}
+h2{font-size:clamp(23px,6vw,28px);margin:4px 0 10px;line-height:1.2}
+p{margin:0 0 12px}
+.lede{color:var(--muted)}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 16px}
+.tabs button{min-height:60px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:15px;font-weight:700;line-height:1.2;padding:6px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-teal)}
+.tabs button.done::after{content:" ⭐"}
+@media (max-width:520px){.tabs{grid-template-columns:repeat(2,1fr)}}
+section.part{display:none}section.part.on{display:block}
+.rule{background:var(--sun-soft);border:2px solid var(--sun);border-radius:18px;padding:12px 16px;margin:0 0 16px;font-size:19px}
+.rule b{font-size:20px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:16px;margin:0 0 14px}
+.story{background:var(--teal-soft);border-radius:14px;padding:12px 14px;margin:0 0 12px;font-size:20px;line-height:1.6}
+.qn{font-weight:700;margin-bottom:10px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:420px){.opts{grid-template-columns:1fr}}
+.opt{text-align:left;min-height:56px;border:2px solid var(--line);background:var(--bg);color:var(--ink);padding:10px 14px;border-radius:14px;font:inherit;font-size:18px;cursor:pointer}
+.opt.right{background:var(--good-bg);border-color:var(--good)}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.why{display:none;margin-top:10px;font-size:18px}
+.why.show{display:block}
+.g{color:var(--good)}.r{color:var(--bad)}
+.score{font-weight:700;color:var(--teal);font-size:20px}
+.think{display:inline-block;background:var(--card);border:2px dashed var(--teal);border-radius:20px;padding:4px 14px;margin:4px 0 10px;font-weight:700}
+.sent{cursor:pointer;border-radius:6px;padding:1px 2px}
+.daygrid{display:flex;flex-direction:column;gap:12px}
+.dayrow{border:2px solid var(--line);border-radius:16px;padding:10px 12px;background:var(--card)}
+.dayrow .d{font-weight:700;margin-bottom:6px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{min-height:48px;padding:0 14px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:17px;cursor:pointer}
+.chips button.right{background:var(--good-bg);border-color:var(--good)}
+.chips button.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.btn{min-height:54px;border:2px solid var(--teal);background:var(--teal);color:var(--on-teal);padding:10px 20px;border-radius:14px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--teal)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.printlink{margin-top:24px;text-align:center}
+.printlink a{color:var(--teal);font-weight:700}
+.party{display:none;text-align:center;font-size:22px;font-weight:700;color:var(--teal);margin:10px 0}
+.party.show{display:block}
+/* print */
+#paper{display:none}
+body.print .wrap{display:none}
+body.print #paper{display:block}
+.pbar{max-width:210mm;margin:12px auto;display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 0 64px}
+.sheet{width:210mm;min-height:297mm;margin:0 auto 16px;background:#fff;color:#111;padding:12mm 15mm;font-size:13pt;line-height:1.45;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+.sheet h1{font-size:19pt;margin:0 0 2mm;color:#0f6b6b}
+.sheet .pas{border:1.5px solid #9fbcc1;border-radius:3mm;padding:3mm 5mm;font-size:13.5pt;line-height:1.6;background:#f1f8f8}
+.sheet .pas p{margin:0 0 2mm}
+.sheet .q{display:grid;grid-template-columns:9mm 1fr;margin:3.2mm 0 0}
+.sheet .q .n{font-weight:700;background:#0f6b6b;color:#fff;border-radius:50%;width:7mm;height:7mm;display:flex;align-items:center;justify-content:center;font-size:10.5pt}
+.sheet .q p{margin:0 0 1.5mm}
+.sheet .ln{border-bottom:1.5px solid #9fbcc1;height:9mm;margin-left:9mm}
+.sheet .ticks{display:grid;grid-template-columns:1fr 1fr;gap:1.5mm 8mm;margin-left:9mm}
+.sheet .ticks span::after{content:"";display:inline-block;width:6mm;height:6mm;border:1.5px solid #333;margin-left:3mm;vertical-align:middle}
+.sheet .match{display:grid;grid-template-columns:35mm 1fr 45mm;row-gap:3mm;margin:2mm 0 0 9mm;align-items:center}
+.sheet .match span{border:1.5px solid #333;border-radius:2mm;padding:1.5mm 3mm;text-align:center}
+.sheet .match span.l::after,.sheet .match span.rr::before{content:"●";font-size:9pt}
+.sheet .match span.l{display:flex;justify-content:space-between}
+.sheet .match span.rr{display:flex;justify-content:space-between}
+.sheet.answers{display:none}
+body.print.show-ans .sheet.answers{display:block}
+@media screen and (max-width:830px){.sheet{width:auto;min-height:0;margin:0 8px 14px;padding:16px}}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .pbar,a[aria-label^="Back"]{display:none!important}
+  .sheet{margin:0;box-shadow:none;break-after:page;height:297mm;overflow:hidden}
+  .sheet.answers{height:auto}
+  body.print:not(.show-ans) .sheet.answers{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">English · Reading</p>
+  <h1>Story Detective 🔍</h1>
+  <p class="lede">Four detective skills for reading questions. One part a day is plenty.</p>
+</header>
+<div class="tabs" role="tablist" id="tabs"></div>
+
+<section class="part" data-title="Read to the end">
+  <h2>1 · Read to the end</h2>
+  <div class="rule"><b>Detective rule:</b> don't stop at the first word that fits. <b>Keep reading</b> to the end of the sentence, and the next one. The answer is often hiding there!</div>
+  <div id="p1"></div><p class="score" id="s1"></p>
+</section>
+
+<section class="part" data-title="What does it tell us?">
+  <h2>2 · What does it tell us?</h2>
+  <div class="rule"><b>Detective rule:</b> stories don't always say it straight out. Look at the clues and ask: <b>so what happened?</b></div>
+  <div id="p2"></div><p class="score" id="s2"></p>
+</section>
+
+<section class="part" data-title="Tick a box">
+  <h2>3 · Always tick a box</h2>
+  <div class="rule"><b>Detective rule:</b> when it says <b>Tick one</b>, your answer must be one of the boxes. If your own word pops into your head, find the box that <b>means the same</b>.</div>
+  <div id="p3"></div><p class="score" id="s3"></p>
+</section>
+
+<section class="part" data-title="Day detective">
+  <h2>4 · Day detective</h2>
+  <div class="rule"><b>Detective rule:</b> for each day, <b>go back</b> to that day's part of the story. Don't guess from memory!</div>
+  <div class="card"><div class="story" id="fox"></div>
+    <p class="qn">Where was Fox on each day? Tap a place for each day.</p>
+    <div class="daygrid" id="days"></div>
+    <p class="party" id="party">🎉 Detective badge earned!</p>
+  </div>
+  <div id="p4"></div>
+</section>
+
+<div class="nav"><button class="btn ghost" type="button" id="prev">← Back</button><button class="btn" type="button" id="next">Next →</button></div>
+<p class="printlink"><a href="?print">Printable story page (1 page to do on paper)</a></p>
+</div>
+
+<!-- print -->
+<div id="paper">
+  <div class="pbar"><button class="btn" type="button" onclick="window.print()">Print</button><button class="btn ghost" type="button" id="ansToggle">Show answers (parent)</button><a class="btn ghost" href="./" style="text-decoration:none;display:inline-flex;align-items:center">Back</a></div>
+  <section class="sheet">
+    <h1>Story Detective: The Missing Socks</h1>
+    <div class="pas">
+      <p>On Monday, Ella's red sock went missing from the washing line. On Tuesday, her blue sock went missing too. Ella was puzzled. “Socks can't walk,” she said.</p>
+      <p>On Wednesday, Ella hid behind the shed and watched. A little brown dog crept into the garden, jumped up and pulled a stripy sock off the line!</p>
+      <p>Ella followed the dog next door. In its basket were lots of socks: red, blue and stripy. The stripy sock was the softest of them all, so the puppy was fast asleep on it.</p>
+    </div>
+    <div class="q"><span class="n">1</span><div><p>Ella was <b>puzzled</b>. This means Ella was… &nbsp;Tick <b>one</b>.</p></div></div>
+    <div class="ticks"><span>happy.</span><span>confused.</span><span>sleepy.</span><span>cross.</span></div>
+    <div class="q"><span class="n">2</span><div><p>What colour sock went missing on Tuesday?</p></div></div><div class="ln"></div>
+    <div class="q"><span class="n">3</span><div><p>Why did Ella hide behind the shed? &nbsp;Tick <b>one</b>.</p></div></div>
+    <div class="ticks"><span>to play hide and seek.</span><span>to see who was taking the socks.</span><span>to stay out of the rain.</span><span>to find the dog's ball.</span></div>
+    <div class="q"><span class="n">4</span><div><p>Draw <b>three</b> lines to show which sock went missing on each day.</p></div></div>
+    <div class="match"><span class="l">Monday</span><i></i><span class="rr">stripy sock</span><span class="l">Tuesday</span><i></i><span class="rr">red sock</span><span class="l">Wednesday</span><i></i><span class="rr">blue sock</span></div>
+    <div class="q"><span class="n">5</span><div><p>Who was taking the socks?</p></div></div><div class="ln"></div>
+    <div class="q"><span class="n">6</span><div><p>Which sock was the <b>softest</b>? <span style="font-size:10.5pt;color:#555">(Read to the end!)</span></p></div></div><div class="ln"></div>
+    <div class="q"><span class="n">7</span><div><p>Why was the puppy asleep on the stripy sock?</p></div></div><div class="ln"></div>
+  </section>
+  <section class="sheet answers">
+    <h1>Answers (for marking)</h1>
+    <ol style="font-size:12pt">
+      <li><b>confused.</b></li>
+      <li><b>blue</b> (not red: red was Monday).</li>
+      <li><b>to see who was taking the socks.</b> This needs her to link “socks went missing” with hiding and watching.</li>
+      <li>Monday → <b>red</b> sock, Tuesday → <b>blue</b> sock, Wednesday → <b>stripy</b> sock (all three for the mark).</li>
+      <li>a (little brown) dog / the puppy from next door.</li>
+      <li><b>the stripy one.</b> The trap: “red” is the first sock in the list.</li>
+      <li>Because it was the softest (sock). Accept “it was comfy / soft”.</li>
+    </ol>
+    <p style="font-size:11pt">What to look for: Q3 and Q7 are the “so what happened?” questions; Q6 is the “read to the end” trap; Q4 needs her to go back to each day. If she writes her own word next to a tick-box question, remind her: always tick a box.</p>
+  </section>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY="bingo:english:story-detective:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+function $(id){return document.getElementById(id)}
+function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+var st=load("mc",{});
+function set(parent,prefix,items,scoreEl,part){
+  items.forEach(function(x,i){
+    var id=prefix+i,c=h("div","card");
+    if(x.story)c.appendChild(h("div","story",x.story));
+    if(x.think)c.appendChild(h("div","think","💭 "+x.think));
+    c.appendChild(h("p","qn",x.q));
+    var o=h("div","opts"),y=h("p","why");
+    x.o.forEach(function(t,k){var b=h("button","opt",t);b.type="button";b.onclick=function(){pick(k,true)};o.appendChild(b)});
+    function pick(k,fresh){[].forEach.call(o.children,function(b,j){b.disabled=true;if(j===x.a)b.classList.add("right")});if(k!==x.a)o.children[k].classList.add("wrong");
+      y.innerHTML=(k===x.a?"<b class='g'>Yes! 🔍</b> ":"<b class='r'>Not quite.</b> ")+x.why;y.classList.add("show");
+      if(fresh){st[id]=k;save("mc",st)}score()}
+    c.appendChild(o);c.appendChild(y);parent.appendChild(c);if(st[id]!=null)pick(st[id],false);
+  });
+  function score(){var n=0,r=0;items.forEach(function(x,i){if(st[prefix+i]!=null){n++;if(st[prefix+i]===x.a)r++}});
+    if(n===items.length){scoreEl.textContent="You got "+r+" out of "+n+(r===n?". Super detective! ⭐":". Look again at the red ones.");markDone(part)}}
+}
+set($("p1"),"a",[
+ {story:"Pip has three pets: a cat, a dog and a goldfish. The goldfish is the oldest of them all.",q:"Which pet is the oldest?",o:["the cat","the dog","the goldfish","a rabbit"],a:2,why:"The cat comes first in the list, but keep reading: “The goldfish is the oldest of them all.”"},
+ {story:"Three trains left the station: the red train, the blue train and the green train. The green train was the fastest.",q:"Which train was the fastest?",o:["the red train","the blue train","the green train","all of them"],a:2,why:"The next sentence tells you: the green train was the fastest."},
+ {story:"Sam tried on a blue hat and a yellow hat. He liked the blue one, but in the end he bought the yellow one.",q:"Which hat did Sam buy?",o:["the blue hat","the yellow hat","both hats","no hat"],a:1,why:"He <i>liked</i> the blue one, “but in the end he bought the yellow one.” The word <b>but</b> means: keep reading!"},
+ {story:"The children went to the park, then to the library, and last of all to the café.",q:"Where did the children go last?",o:["the park","the library","the café","home"],a:2,why:"“Last of all to the café.” The park was first."},
+ {story:"Ben found a shell, a stone and a feather on the beach. The only thing he kept was the feather.",q:"What did Ben keep?",o:["the shell","the stone","the feather","everything"],a:2,why:"He <i>found</i> three things, but “the only thing he kept was the feather.”"},
+ {story:"Mia's garden has roses, daisies and sunflowers. The sunflowers are the tallest flowers in the garden.",q:"Which flowers are the tallest?",o:["the roses","the daisies","the sunflowers","the trees"],a:2,why:"Read on to the second sentence: the sunflowers are the tallest."}
+],$("s1"),0);
+set($("p2"),"b",[
+ {story:"When Lily came back, her sandcastle had gone. There were big wet footprints all around it.",q:"What happened to the sandcastle?",o:["Someone stepped on it.","It flew away.","Lily painted it.","It grew bigger."],a:0,why:"The story never says “someone stepped on it”, but the <b>footprints</b> are the clue."},
+ {story:"Tom left his sandwich on the bench. When he came back, there were only crumbs, and a seagull was licking its beak.",q:"What happened to the sandwich?",o:["Tom ate it.","The seagull ate it.","It fell in the sea.","Tom's friend took it."],a:1,why:"Crumbs + a seagull licking its beak = the seagull ate it!"},
+ {story:"“Who has been in my biscuit tin?” asked Grandma. Jack had chocolate all round his mouth.",q:"Who ate the biscuits?",o:["Grandma","Jack","the dog","nobody"],a:1,why:"Chocolate all round his mouth is the clue."},
+ {story:"Ava ran all the way home and burst through the door. “Is it here yet? Has my parcel come?”",q:"How did Ava feel?",o:["sleepy","cross","excited","bored"],a:2,why:"Running, bursting in, lots of questions: she can't wait. She is excited."},
+ {story:"Every night, someone tidied Rosie's toys away. One night, Rosie hid behind the door and stayed very still.",q:"Why did Rosie hide?",o:["She was scared of the dark.","She wanted to see who was tidying her toys.","She was playing hide and seek.","She was tired."],a:1,why:"Put the two sentences together: someone tidies the toys <b>so</b> she hides to find out who. (Just like Molly rushing back to see the octopus!)"},
+ {story:"The puddles were frozen, and Dad scraped ice off the car.",q:"What time of year is it?",o:["summer","winter","spring","autumn"],a:1,why:"Frozen puddles and ice mean it is very cold: winter."}
+],$("s2"),1);
+set($("p3"),"c",[
+ {story:"When Max came back, his bike had disappeared.",think:"disappeared",q:"His bike had been… Tick one.",o:["painted.","taken away.","fixed.","washed."],a:1,why:"“Disappeared” isn't a box. Which box means the same? Something that disappears has been <b>taken away</b>."},
+ {story:"The cake had vanished from the plate. Only crumbs were left.",think:"gone",q:"The cake had been… Tick one.",o:["baked.","eaten.","dropped.","iced."],a:1,why:"Gone, with crumbs left: it was <b>eaten</b>."},
+ {story:"Max didn't understand the puzzle.",think:"didn't get it",q:"This means Max was… Tick one.",o:["puzzled.","sleepy.","angry.","proud."],a:0,why:"Not understanding = <b>puzzled</b> (or confused)."},
+ {story:"Nina beamed when she opened her present.",think:"big smile",q:"This means Nina was… Tick one.",o:["cross.","happy.","scared.","tired."],a:1,why:"Beaming is a big smile: she was <b>happy</b>."},
+ {story:"By morning, all the toys were back in the toy box.",think:"put away",q:"The toys had been… Tick one.",o:["broken.","lost.","tidied up.","painted."],a:2,why:"Back in the box = <b>tidied up</b>."}
+],$("s3"),2);
+
+/* part 4 */
+var FOX=["On Monday, Fox played football in the park.","On Tuesday, it rained, so Fox stayed inside and painted pictures on the kitchen table.","On Wednesday, Fox visited Grandma. They baked buns together at her house.","On Thursday, Fox was tired. He read his books and fell asleep in his bed."];
+$("fox").innerHTML=FOX.map(function(s){return "<p style='margin:0 0 6px'>"+s+"</p>"}).join("");
+var PL=["park","kitchen","Grandma's house","bedroom"],DAYS=[["Monday",0,"Monday: “football in the park”."],["Tuesday",1,"Tuesday: painted “on the kitchen table”."],["Wednesday",2,"Wednesday: baked buns “at her house”: Grandma's house."],["Thursday",3,"Thursday: “fell asleep in his bed”. Where is your bed? In your <b>bedroom</b>."]];
+var dv=load("days",{});
+DAYS.forEach(function(d,i){var r=h("div","dayrow");r.appendChild(h("div","d",d[0]));var c=h("div","chips"),y=h("p","why");
+  PL.forEach(function(p,k){var b=h("button",null,p);b.type="button";b.onclick=function(){go(k,true)};c.appendChild(b)});
+  function go(k,fresh){[].forEach.call(c.children,function(b){b.classList.remove("wrong")});
+    if(k===d[1]){[].forEach.call(c.children,function(b){b.disabled=true});c.children[k].classList.add("right");y.innerHTML="<b class='g'>Yes!</b> "+d[2];y.classList.add("show");if(fresh){dv[i]=k;save("days",dv)}check()}
+    else{c.children[k].classList.add("wrong");y.innerHTML="<b class='r'>Not that one.</b> Go back to the <b>"+d[0]+"</b> sentence and read it again.";y.classList.add("show")}}
+  r.appendChild(c);r.appendChild(y);$("days").appendChild(r);if(dv[i]!=null)go(dv[i],false)});
+function check(){if(DAYS.every(function(d,i){return dv[i]===d[1]})){$("party").classList.add("show");markDone(3)}}
+set($("p4"),"d",[
+ {q:"On which day did Fox make something to eat?",o:["Monday","Tuesday","Wednesday","Thursday"],a:2,why:"Wednesday: they baked buns."},
+ {q:"Why did Fox stay inside on Tuesday?",o:["He was tired.","It was raining.","Grandma came.","He lost his ball."],a:1,why:"“It rained, <b>so</b> Fox stayed inside.” The word <i>so</i> tells you the reason."}
+],document.createElement("p"),-1);
+
+/* tabs */
+var parts=[].slice.call(document.querySelectorAll("section.part")),tabs=$("tabs"),cur=load("part",0),done=load("done",{});
+parts.forEach(function(p,i){var b=h("button",null,(i+1)+". "+p.dataset.title);b.type="button";b.setAttribute("role","tab");b.onclick=function(){go(i)};tabs.appendChild(b)});
+function markDone(i){if(i<0)return;done[i]=true;save("done",done);paint()}
+function paint(){[].forEach.call(tabs.children,function(b,i){b.setAttribute("aria-selected",i===cur?"true":"false");b.classList.toggle("done",!!done[i])})}
+function go(i){cur=Math.max(0,Math.min(parts.length-1,i));parts.forEach(function(p,k){p.classList.toggle("on",k===cur)});save("part",cur);paint();
+  $("prev").style.visibility=cur===0?"hidden":"visible";$("next").textContent=cur===parts.length-1?"Story page to print →":"Next →";window.scrollTo(0,0)}
+$("prev").onclick=function(){go(cur-1)};
+$("next").onclick=function(){if(cur===parts.length-1)location.search="?print";else go(cur+1)};
+go(cur);
+if(/[?&]print\b/.test(location.search)){document.body.classList.add("print");document.title="Story Detective: The Missing Socks"}
+var sa=/[?&]answers\b/.test(location.search);function pa(){document.body.classList.toggle("show-ans",sa);$("ansToggle").textContent=sa?"Hide answers":"Show answers (parent)"}
+$("ansToggle").onclick=function(){sa=!sa;pa()};pa();
+document.documentElement.setAttribute("data-ready","1");
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

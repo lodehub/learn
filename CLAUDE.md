@@ -113,7 +113,7 @@ Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squ
 ### Bingo (lower primary, Year 3)
 - Maths: Times tables 2s and 5s; Times tables 1 to 10. Archived: Times Table Blast Off 3s and 4s, Match & Blast, Say it then flip it, Climb the threes/fours, Threes Bakery.
 - Explore: "Secret Number and Pattern Train", thinking puzzles.
-- English: Grammar and Writing Pack; English Quest.
+- English: **Story Detective** (`english/story-detective/`, KS1 reading moves: read to the end (first-match traps), what does it tell us (inference), always tick a box (find the box that means the same), day detective (go back to each day); `?print` 1-page story with answers PDF; all passages original); Grammar and Writing Pack; English Quest.
 - French Lab, French Role-play, Mandarin Lab, Mandarin Role-play.
 
 ### Heeler (adult / fluent speaker)
