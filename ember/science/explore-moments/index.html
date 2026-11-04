@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbf6f1">
+<title>Moments from scratch</title>
+<style>
+:root{--bg:#fbf6f1;--card:#ffffff;--ink:#2b2a28;--mute:#6f6b64;--acc:#d9682a;--accsoft:#fdeee4;--two:#2f74c0;--twosoft:#e6f0fb;--ok:#1b7f4b;--oksoft:#e2f4ea;--bad:#b3261e;--badsoft:#fbe7e5;--line:#e4dcd2;--grid:#efe8df;--wt:#7a4fc4;--air:#2f74c0;--res:#b3261e;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--two:#7fb0e3;--twosoft:#1f2c3b;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3835;--grid:#302e2b;--wt:#b99af0;--air:#7fb0e3;--res:#ff8a80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--two:#7fb0e3;--twosoft:#1f2c3b;--ok:#6fd49b;--oksoft:#16352a;--bad:#ff8a80;--badsoft:#3b1f1d;--line:#3a3835;--grid:#302e2b;--wt:#b99af0;--air:#7fb0e3;--res:#ff8a80;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(24px,5.5vw,32px);margin:2px 0 6px;line-height:1.2}
+.lede{color:var(--mute);margin:0 0 14px}
+.rooms{display:flex;gap:6px;overflow-x:auto;padding:4px 0 10px;margin:0 0 6px;scrollbar-width:none}
+.rooms::-webkit-scrollbar{display:none}
+.rooms button{flex:none;min-width:44px;height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.rooms button.done{background:var(--oksoft);border-color:var(--ok);color:var(--ok)}
+.rooms button[aria-current="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+section.room{display:none}section.room.on{display:block}
+h2{font-size:clamp(22px,5vw,28px);margin:6px 0 10px;line-height:1.25}
+p{margin:0 0 12px}
+ul{margin:0 0 12px;padding-left:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
+.card h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+.big{background:var(--accsoft);border-left:5px solid var(--acc);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.big b:first-child{color:var(--acc)}
+.aside{font-size:15px;color:var(--mute);border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts.row{flex-direction:row;flex-wrap:wrap}
+.opts.row .opt{flex:1;min-width:96px;text-align:center}
+.opt{text-align:left;min-height:48px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:11px 14px;border-radius:12px;font:inherit;font-size:16px;cursor:pointer}
+.opt.right{background:var(--oksoft);border-color:var(--ok)}
+.opt.wrong{background:var(--badsoft);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.opt svg{width:100%;max-width:120px;margin:0 auto;pointer-events:none}
+.why{display:none;margin-top:10px;font-size:16px}
+.why.show{display:block}
+.g{color:var(--ok)}.r{color:var(--bad)}
+svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
+svg text{font-family:inherit;fill:var(--ink)}
+.ctl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:10px 0 0}
+.ctl label{font-size:15px;color:var(--mute);min-width:96px}
+.ctl output{font-variant-numeric:tabular-nums;font-weight:700;min-width:70px;text-align:right}
+input[type=range]{width:100%;height:36px;accent-color:var(--acc)}
+.read{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:12px}
+.read div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:15px}
+.read b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.read .w b{color:var(--wt)}.read .a b{color:var(--air)}.read .x b{color:var(--res)}
+.state{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font-weight:600}
+.ans{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.ans input{font:inherit;font-size:18px;padding:10px 12px;width:150px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.btn{min-height:48px;border:1px solid var(--acc);background:var(--acc);color:#fff;padding:10px 18px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btn:disabled{opacity:.45;cursor:default}
+textarea{width:100%;min-height:96px;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+.saved{font-size:13px;color:var(--mute);margin-top:4px;min-height:18px}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:18px;flex-wrap:wrap}
+.nav .btn{flex:1;min-width:140px}
+.toggle{display:inline-flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--line);background:var(--bg);margin-top:10px;flex-wrap:wrap}
+.toggle button{min-height:40px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--mute);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.key{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--mute);margin-top:8px}
+.key span::before{content:"";display:inline-block;width:14px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle;background:currentColor}
+.key .w{color:var(--wt)}.key .a{color:var(--air)}.key .x{color:var(--res)}.key .f{color:var(--acc)}
+.src{font-size:13px;color:var(--mute);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.fig{margin:8px 0 12px}.fig img{max-width:100%;height:auto;display:block;border-radius:8px;background:#fff}
+.fig figcaption{font-size:13px;color:var(--mute);margin-top:4px}
+.chain{display:flex;flex-direction:column;gap:8px}
+.chain .opt.placed{background:var(--oksoft);border-color:var(--ok);cursor:default}
+.chain .opt.shake{animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ms label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);font-size:16px;cursor:pointer}
+.ms input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--ok)}
+.end{text-align:center;padding:10px 0}
+.try{background:var(--twosoft);border-left:5px solid var(--two);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.try b:first-child{color:var(--two)}
+@media (prefers-reduced-motion: reduce){.chain .opt.shake{animation:none}}
+@media print{
+  .rooms,.nav,.btn,svg,.ctl,.read,.opts,.toggle,.state,.chain,.key{display:none!important}
+  section.room{display:block!important;page-break-inside:avoid}
+  section.room > *:not(h2):not(.kick):not(.note-card){display:none!important}
+  textarea{border:none;min-height:0;height:auto}
+  body{background:#fff;color:#000}
+}
+</style>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Explore · Science · from first principles</p>
+  <h1>Moments from scratch</h1>
+  <p class="lede">Seven short rooms, from "why is the door handle there?" to balancing a see-saw and explaining a lever the way AQA marks it. About two sessions of 15 minutes (rooms 1–4, then 5–7). Predict first, then try it.</p>
+</header>
+<nav class="rooms" id="rooms" aria-label="Rooms"></nav>
+
+<!-- ROOM 1 -->
+<section class="room" id="r0" data-title="Turning forces">
+  <p class="kick">Room 1 of 7</p>
+  <h2>Some forces make things turn</h2>
+  <p>In <i>Forces from scratch</i> forces pushed things along. But push a door, turn a spanner, or sit on a see-saw, and the force makes something <b>turn</b> around a fixed point.</p>
+  <p>That fixed point is the <b>pivot</b> (the turning point). For a door, the pivot is the hinge.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>You want to open a heavy door with the smallest push you can. Where do you push?</p>
+    <div class="opts" data-answer="2" data-why="As far from the hinge as you can. The further your push is from the pivot, the bigger its turning effect, so the same push opens the door more easily. Try it below. That's why the handle is on the side away from the hinges.">
+      <button class="opt" type="button">Right next to the hinge</button>
+      <button class="opt" type="button">In the middle of the door</button>
+      <button class="opt" type="button">At the edge, far from the hinge</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: push a door (seen from above)</h3>
+    <svg id="door" viewBox="0 0 340 180" role="img" aria-label="A door seen from above, with a push at a chosen distance from the hinge"></svg>
+    <div class="ctl"><label for="doorD">Push at</label><input id="doorD" type="range" min="0" max="80" step="5" value="20"><output id="doorDo"></output></div>
+    <div class="read"><div>push<b>20 N</b></div><div>distance from hinge<b id="doorDr"></b></div><div class="x">turning effect (moment)<b id="doorM"></b></div></div>
+    <p class="aside">The push is always 20&nbsp;N. Only <b>where</b> you push changes. Watch the curved arrow: that's the turning effect. Slide right to the hinge and it vanishes.</p>
+  </div>
+  <div class="card">
+    <div class="src"><span>AQA Physics 8463/2H, June 2023, Q03.1</span><span>[1 mark]</span></div>
+    <p>Some cars have a lever that is used to apply the handbrake.</p>
+    <p>Figure 8 shows the handbrake lever in a car.</p>
+    <figure class="fig"><img src="fig/2023_P2_Q03.1.png" alt="A handbrake lever. The pivot is at the left end, near the floor. A force arrow points upwards from the hand grip at the right end."><figcaption>June 2023, Paper 2, Figure 8</figcaption></figure>
+    <p>The driver applies the force shown in Figure 8. The force produces a moment about the pivot.</p>
+    <p>How could the driver increase the moment about the pivot without increasing the size of the force?</p>
+    <div class="opts" data-answer="1" data-why="AQA's mark scheme: <b>apply the force further away from the pivot</b>. Watch out: it does <b>not</b> allow 'increase the length of the lever'. The driver can't change the car, only where they push. Answer about the <b>distance from the pivot</b>.">
+      <button class="opt" type="button">Make the lever longer</button>
+      <button class="opt" type="button">Apply the force further away from the pivot</button>
+      <button class="opt" type="button">Apply the force closer to the pivot</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> A force can make an object turn around a <b>pivot</b>. Its turning effect is called a <b>moment</b>. The further from the pivot the force acts, the bigger the moment.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Before you go on: in class you did an experiment with moments and a turning point. What did you do, and what do you think it was testing? Any guess is fine. You'll come back to it.</p><textarea data-note="r0" placeholder="We had a … balanced on … and we …"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 2 -->
+<section class="room" id="r1" data-title="M = F × d">
+  <p class="kick">Room 2 of 7</p>
+  <h2>Measuring a moment: M = F × d</h2>
+  <p>A moment depends on two things: how big the force is, and how far from the pivot it acts. Multiply them:</p>
+  <p style="font-size:20px;text-align:center"><b>moment = force × distance</b><br><span style="font-size:16px;color:var(--mute)">M = F × d</span></p>
+  <ul>
+    <li><b>F</b> is the force, in newtons (N).</li>
+    <li><b>d</b> is the distance from the pivot, in <b>metres</b> (m). Not centimetres.</li>
+    <li><b>M</b> is the moment, in <b>newton metres (N m)</b>: newtons × metres. It's an N and an m, because you multiplied them.</li>
+  </ul>
+  <div class="card">
+    <h3>Try it: a spanner on a nut</h3>
+    <svg id="span" viewBox="0 0 340 160" role="img" aria-label="A spanner with a force pushing down at a chosen distance from the nut"></svg>
+    <div class="ctl"><label for="spF">Force</label><input id="spF" type="range" min="0" max="100" step="5" value="40"><output id="spFo"></output></div>
+    <div class="ctl"><label for="spD">Distance</label><input id="spD" type="range" min="5" max="50" step="5" value="25"><output id="spDo"></output></div>
+    <div class="state" id="spS"></div>
+    <p class="aside">Find two different ways to make a moment of 10&nbsp;N&nbsp;m. Double the distance: what happens to the moment?</p>
+  </div>
+  <div class="card">
+    <h3>Work it out</h3>
+    <p>A force of 40&nbsp;N pushes on a spanner 0.25&nbsp;m from the nut. What is the moment, in N&nbsp;m?</p>
+    <div class="ans"><input id="m1" type="text" inputmode="decimal" autocomplete="off" aria-label="Moment in newton metres"><button class="btn" type="button" id="m1Go">Check</button></div>
+    <div class="why" id="m1Fb"></div>
+  </div>
+  <div class="card">
+    <h3>Work it out: the trap</h3>
+    <p>A force of 30&nbsp;N pushes on a lever 20&nbsp;cm from the pivot. What is the moment, in N&nbsp;m?</p>
+    <div class="ans"><input id="m2" type="text" inputmode="decimal" autocomplete="off" aria-label="Moment in newton metres"><button class="btn" type="button" id="m2Go">Check</button></div>
+    <div class="why" id="m2Fb"></div>
+  </div>
+  <div class="card">
+    <div class="src"><span>AQA Physics 8463/2H, June 2024, Q02.5 and Q02.6</span><span>[1 + 3 marks]</span></div>
+    <p>There are some toy gears on the front of the baby walker.</p>
+    <p>Figure 6 shows the gears.</p>
+    <figure class="fig"><img src="fig/2024_P2_Q02.6.png" alt="Two meshing gears, A (larger) and B. A force of 2.0 N acts on the edge of gear A. The distance from the pivot of gear A to the force is 7.5 cm."><figcaption>June 2024, Paper 2, Figure 6</figcaption></figure>
+    <p>The child applies a force to gear A.</p>
+    <p>This causes a moment about the pivot, so gear A rotates.</p>
+    <p><b>02.5</b> Write down the equation which links distance (<i>d</i>), force (<i>F</i>) and moment of a force (<i>M</i>).</p>
+    <div class="opts" data-answer="0" data-why="AQA's mark scheme: <b>moment = force × distance</b> (or M = F × d). In the exam you can write it in words or symbols.">
+      <button class="opt" type="button">M = F × d</button>
+      <button class="opt" type="button">M = F ÷ d</button>
+      <button class="opt" type="button">M = F + d</button>
+    </div>
+    <div class="why"></div>
+    <p style="margin-top:14px"><b>02.6</b> The child applies a force of 2.0&nbsp;N on gear A.</p>
+    <p>The perpendicular distance between the force and the pivot is 7.5&nbsp;cm.</p>
+    <p>Calculate the moment of the force about the pivot.</p>
+    <div class="ans"><input id="m3" type="text" inputmode="decimal" autocomplete="off" aria-label="Moment in newton metres"><span>N m</span><button class="btn" type="button" id="m3Go">Check</button></div>
+    <div class="why" id="m3Fb"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> Moment = force × distance from the pivot (M = F d). Force in N, distance in <b>m</b>, moment in <b>N m</b>. Change cm to m first.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Explain why a long spanner makes it easier to undo a tight nut. Use the words <i>moment</i>, <i>distance</i> and <i>force</i>.</p><textarea data-note="r1" placeholder="A long spanner means the distance is bigger, so…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 3 -->
+<section class="room" id="r2" data-title="Which distance?">
+  <p class="kick">Room 3 of 7</p>
+  <h2>Which distance? The one at right angles</h2>
+  <p>AQA always says <b>perpendicular distance</b>. Perpendicular means "at right angles". If you push at a slant, only part of your push helps the turning.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>You pull on the end of a spanner, but straight along the spanner, away from the nut. What happens?</p>
+    <div class="opts" data-answer="1" data-why="Nothing turns. Your pull points straight through the pivot, so the perpendicular distance from the pivot to your force is zero, and the moment is F × 0 = 0. Try it below with the angle at 0°.">
+      <button class="opt" type="button">The nut turns, just slowly</button>
+      <button class="opt" type="button">The nut doesn't turn at all</button>
+      <button class="opt" type="button">The nut turns more than usual</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: change the angle</h3>
+    <svg id="ang" viewBox="0 0 340 230" role="img" aria-label="A spanner with a 50 N force at an angle; the perpendicular distance from the nut to the line of the force is shown"></svg>
+    <div class="ctl"><label for="angA">Angle</label><input id="angA" type="range" min="0" max="90" step="5" value="90"><output id="angAo"></output></div>
+    <div class="read"><div>force<b>50 N</b></div><div>perpendicular distance<b id="angD"></b></div><div class="x">moment<b id="angM"></b></div></div>
+    <div class="key"><span class="f">force (and its line)</span><span class="a">perpendicular distance</span></div>
+    <p class="aside">The spanner is 0.30&nbsp;m long. The dashed line shows which way the force acts. The blue line is the shortest path from the nut to that line: it always meets it at a right angle. At 90° it's the whole 0.30&nbsp;m, so the moment is biggest.</p>
+  </div>
+  <div class="big"><b>Big idea.</b> Use the <b>perpendicular</b> distance: from the pivot to the line of the force, at a right angle. Pushing at right angles to the lever gives the biggest moment. A force through the pivot gives no moment.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>A door handle is pushed straight towards the hinge. Explain why the door doesn't open, however hard you push.</p><textarea data-note="r2" placeholder="The force goes through the pivot, so…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 4 -->
+<section class="room" id="r3" data-title="Which way?">
+  <p class="kick">Room 4 of 7</p>
+  <h2>Clockwise or anticlockwise</h2>
+  <p>A force has a direction, and so does a moment. It turns things one of two ways around the pivot: <b style="color:var(--two)">clockwise</b> (the way clock hands go) or <b style="color:var(--wt)">anticlockwise</b>.</p>
+  <div class="card">
+    <h3>Which way does it turn? 1</h3>
+    <svg id="cw1" viewBox="0 0 340 120" role="img" aria-label="A bar pivoted in the middle with a downward force on the right end"></svg>
+    <div class="opts row" data-answer="0" data-why="Clockwise. Pushing down on the right of the pivot swings the right end down, the way clock hands go from 12 to 3 to 6.">
+      <button class="opt" type="button">Clockwise</button>
+      <button class="opt" type="button">Anticlockwise</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Which way does it turn? 2</h3>
+    <svg id="cw2" viewBox="0 0 340 120" role="img" aria-label="A bar pivoted in the middle with a downward force on the left end"></svg>
+    <div class="opts row" data-answer="1" data-why="Anticlockwise. Down on the <b>left</b> of the pivot turns it the opposite way. Same force, other side: opposite direction.">
+      <button class="opt" type="button">Clockwise</button>
+      <button class="opt" type="button">Anticlockwise</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Which way does it turn? 3</h3>
+    <svg id="cw3" viewBox="0 0 340 120" role="img" aria-label="A bar pivoted in the middle with an upward force on the left end"></svg>
+    <div class="opts row" data-answer="0" data-why="Clockwise. Pushing <b>up</b> on the left lifts the left end, so the bar turns clockwise. Flip the side <b>or</b> flip the direction and the turn flips.">
+      <button class="opt" type="button">Clockwise</button>
+      <button class="opt" type="button">Anticlockwise</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <div class="src"><span>AQA Physics 8463/2H, June 2024, Q02.7</span><span>[2 marks]</span></div>
+    <p class="aside" style="border:0;padding:0">Look back at Figure 6 in Room 2. The 2.0&nbsp;N force turns gear A anticlockwise.</p>
+    <p>Explain what happens to gear B when the child applies the force to gear A.</p>
+    <div class="opts" data-answer="1" data-why="AQA's mark scheme gives 1 mark for what happens: <b>gear B rotates in the opposite direction</b> (clockwise), or rotates faster than gear A. And 1 mark for why: <b>gear A exerts a force on gear B</b> (or causes a moment about the pivot of gear B). A good 2-mark answer: <i>Gear B turns clockwise, the opposite way to gear A, because the teeth of gear A push on gear B, causing a moment about gear B's pivot.</i>">
+      <button class="opt" type="button">Gear B turns anticlockwise, the same way as gear A</button>
+      <button class="opt" type="button">Gear B turns clockwise, because the teeth of gear A push on gear B</button>
+      <button class="opt" type="button">Gear B doesn't move, because the force is only on gear A</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="big"><b>Big idea.</b> Every moment is either clockwise or anticlockwise. Which one depends on which side of the pivot the force is and which way it pushes.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>On a see-saw, a child sits on the left. Which way does their weight turn the see-saw? What would a second child have to do to stop it turning?</p><textarea data-note="r3" placeholder="Their weight turns it … so the other child…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 5 -->
+<section class="room" id="r4" data-title="Balancing">
+  <p class="kick">Room 5 of 7</p>
+  <h2>Balancing: the principle of moments</h2>
+  <p>This is your class experiment. When something is <b>balanced</b> (not turning), the clockwise and anticlockwise moments cancel out:</p>
+  <p style="font-size:19px;text-align:center"><b>total clockwise moment = total anticlockwise moment</b></p>
+  <p>It's the same idea as balanced forces in <i>Forces from scratch</i>, but for turning.</p>
+  <div class="card">
+    <h3>Predict first</h3>
+    <p>A small child (300&nbsp;N) sits 2&nbsp;m from the middle of a see-saw. Their parent (600&nbsp;N) sits on the other side. Where must the parent sit to balance it?</p>
+    <div class="opts" data-answer="0" data-why="1&nbsp;m. The child's moment is 300 × 2 = 600&nbsp;N&nbsp;m. The parent is twice as heavy, so they only need half the distance: 600 × 1 = 600&nbsp;N&nbsp;m. Equal moments, so it balances. Check it below.">
+      <button class="opt" type="button">1 m from the middle</button>
+      <button class="opt" type="button">2 m from the middle</button>
+      <button class="opt" type="button">4 m from the middle</button>
+    </div>
+    <div class="why"></div>
+  </div>
+  <div class="card">
+    <h3>Try it: balance the see-saw</h3>
+    <svg id="saw" viewBox="0 0 340 200" role="img" aria-label="A see-saw with a weight on each side, tilting unless the moments are equal"></svg>
+    <div class="ctl"><label for="lW">Left weight</label><input id="lW" type="range" min="100" max="600" step="50" value="300"><output id="lWo"></output></div>
+    <div class="ctl"><label for="lD">Left distance</label><input id="lD" type="range" min="0.25" max="2" step="0.25" value="2"><output id="lDo"></output></div>
+    <div class="ctl"><label for="rW">Right weight</label><input id="rW" type="range" min="100" max="600" step="50" value="600"><output id="rWo"></output></div>
+    <div class="ctl"><label for="rD">Right distance</label><input id="rD" type="range" min="0.25" max="2" step="0.25" value="1.5"><output id="rDo"></output></div>
+    <div class="read"><div class="w">anticlockwise moment<b id="sawA"></b></div><div class="a">clockwise moment<b id="sawC"></b></div></div>
+    <div class="state" id="sawS"></div>
+    <p class="aside">Find three different ways to balance it. Each time, check: is left weight × left distance the same as right weight × right distance?</p>
+  </div>
+  <div class="card">
+    <h3>Work it out</h3>
+    <p>A metre rule is balanced on a pivot at its middle. A 2&nbsp;N weight hangs 0.30&nbsp;m to the left of the pivot. Where must a 3&nbsp;N weight hang on the right to balance it? Give the distance in m.</p>
+    <div class="ans"><input id="m4" type="text" inputmode="decimal" autocomplete="off" aria-label="Distance in metres"><button class="btn" type="button" id="m4Go">Check</button></div>
+    <div class="why" id="m4Fb"></div>
+  </div>
+  <div class="try"><b>Try at home.</b> Balance a ruler on a pencil at the 15&nbsp;cm mark. Put 2 coins on the 10&nbsp;cm mark (5&nbsp;cm from the pivot). Where do you need to put 1 coin on the other side? Predict with the rule first, then test it.</div>
+  <div class="big"><b>Big idea.</b> When an object is balanced, <b>total clockwise moment = total anticlockwise moment</b> about the pivot. A heavier weight balances a lighter one by sitting closer to the pivot.</div>
+  <div class="card note-card"><h3>Notebook</h3><p>Now explain your class experiment properly. What were you measuring, and what rule were you testing? Use the words <i>clockwise</i>, <i>anticlockwise</i> and <i>balanced</i>.</p><textarea data-note="r4" placeholder="We were testing whether… When the ruler balanced, the…"></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 6 -->
+<section class="room" id="r5" data-title="The chain">
+  <p class="kick">Room 6 of 7</p>
+  <h2>Explain a lever, the AQA way</h2>
+  <p>"Explain why it's easier" questions about levers always have the same chain: <b>bigger distance → same moment needs less force</b>. Tap the links in order.</p>
+  <div class="card">
+    <div class="src"><span>AQA Physics 8463/2H, June 2019, Q10.1</span><span>[2 marks]</span></div>
+    <p>Figure 19 shows the back of a lorry. The lorry is used to carry horses.</p>
+    <figure class="fig"><img src="fig/2019_P2_Q10.1.png" alt="The back of a horse lorry. The ramp is hinged at the bottom. A person pulls a rope attached near the top of the ramp. A handle is about halfway up the ramp. A spring inside a tube is at the side."><figcaption>June 2019, Paper 2, Figure 19</figcaption></figure>
+    <p>The ramp is lowered by pulling on the rope or by pulling on the handle.</p>
+    <p>The hinge acts as a pivot.</p>
+    <p><b>Explain why it is easier to lower the ramp by pulling on the rope rather than pulling on the handle.</b></p>
+  </div>
+  <div class="card">
+    <h3>Build the chain</h3>
+    <div class="chain" id="chainDone"></div>
+    <p style="margin:12px 0 8px;font-size:15px;color:var(--mute)" id="chainHint">Tap the first link.</p>
+    <div class="chain" id="chainPool"></div>
+    <div class="why" id="chainFb"></div>
+  </div>
+  <div class="card">
+    <h3>Now write it</h3>
+    <p class="aside" style="border:0;padding:0">Write your answer to the lorry question in full sentences, without looking at the chain. Join the links with <i>so</i> and <i>because</i>.</p>
+    <textarea data-note="r5" placeholder="The rope is further from the hinge, so…" style="min-height:130px"></textarea><div class="saved"></div>
+    <div class="ans"><button class="btn ghost" type="button" id="msShow">Show AQA's mark scheme</button></div>
+    <div class="ms" id="ms" hidden>
+      <p style="margin:10px 0 4px">Tick each point your answer makes. One mark each.</p>
+      <label><input type="checkbox" data-ms="0">the (perpendicular) distance from the pivot / hinge to (the line of action of) the force is greater (for the rope)</label>
+      <label><input type="checkbox" data-ms="1">so a smaller force is required</label>
+      <p class="aside">The second mark only counts if you got the first: "smaller force" on its own scores 0. AQA also gives both marks for "a smaller force is required at the rope to produce the same moment". Missed a link? Add it to your answer now.</p>
+    </div>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Which link was hardest to remember? Which room explains it?</p><textarea data-note="r5b" placeholder="The hardest link was… Room … explains it."></textarea><div class="saved"></div></div>
+</section>
+
+<!-- ROOM 7 -->
+<section class="room" id="r6" data-title="Look back">
+  <p class="kick">Room 7 of 7</p>
+  <h2>Look back</h2>
+  <p>The whole journey in one line: <b>a force can turn things around a pivot → moment = force × perpendicular distance (N m) → each moment is clockwise or anticlockwise → balanced means clockwise moments = anticlockwise moments → bigger distance means less force for the same moment.</b></p>
+  <div class="card">
+    <h3>What you wrote in Room 1</h3>
+    <p id="firstGuess" class="aside" style="border:0;padding:0">You didn't write anything in Room 1. That's fine.</p>
+  </div>
+  <div class="card note-card"><h3>Notebook</h3><p>Write today's "What I learned" sentence again, properly this time: what is a moment, how do you calculate it, and what does it tell you about the experiment you did? One or two sentences.</p><textarea data-note="r6a" placeholder="A moment is… You calculate it by… In the experiment…"></textarea><div class="saved"></div></div>
+  <div class="card">
+    <h3>Say it out loud</h3>
+    <p>Ask someone at home: <b>"Why is it easier to push a door at the handle than near the hinge?"</b> Say the chain without looking. If you miss a link, they say "and so…?"</p>
+  </div>
+  <div class="end"><button class="btn ghost" type="button" onclick="window.print()">Print my notebook</button></div>
+</section>
+
+<div class="nav"><button class="btn ghost" type="button" id="prev">← Back</button><button class="btn" type="button" id="next">Next room →</button></div>
+</div>
+
+<script src="../../../assets/send.js"></script>
+<script>
+"use strict";
+(function(){
+var KEY="ember:science:explore-moments:";
+var LS=window.LearnSend;if(LS)LS.init({key:"ember:science:explore-moments",title:"Moments from scratch",kind:"explore"});
+function plain(el){return (el.textContent||"").replace(/\s+/g," ").trim()}
+function roomOf(el){var r=el.closest("section.room");return r?r.id:""}
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+var $=function(id){return document.getElementById(id)};
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+function fmt(n){return String(Math.round(n*100)/100)}
+
+function arrow(x1,y1,x2,y2,col,w,dash){
+  var dx=x2-x1,dy=y2-y1,L=Math.sqrt(dx*dx+dy*dy);if(L<3)return "";
+  var ux=dx/L,uy=dy/L,h=Math.min(14,L*0.6),hw=h*0.6,bx=x2-ux*h,by=y2-uy*h;
+  return '<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+bx.toFixed(1)+'" y2="'+by.toFixed(1)+'" stroke="'+col+'" stroke-width="'+(w||5)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="6 5"':'')+'/>'+
+    '<polygon points="'+x2.toFixed(1)+','+y2.toFixed(1)+' '+(bx-uy*hw).toFixed(1)+','+(by+ux*hw).toFixed(1)+' '+(bx+uy*hw).toFixed(1)+','+(by-ux*hw).toFixed(1)+'" fill="'+col+'"/>';
+}
+function txt(x,y,s,col,anchor,size){return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" font-size="'+(size||13)+'" text-anchor="'+(anchor||"start")+'"'+(col?' style="fill:'+col+'"':'')+'>'+s+'</text>'}
+/* curved turning arrow around (cx,cy), radius r; cw=true clockwise; w = thickness */
+function turn(cx,cy,r,cw,col,w){
+  var a0=cw?-150:-30,a1=cw?-30:-150,rad=Math.PI/180;
+  var x0=cx+r*Math.cos(a0*rad),y0=cy+r*Math.sin(a0*rad),x1=cx+r*Math.cos(a1*rad),y1=cy+r*Math.sin(a1*rad);
+  var tx=cw?-Math.sin(a1*rad):Math.sin(a1*rad),ty=cw?Math.cos(a1*rad):-Math.cos(a1*rad),h=8+w,hw=h*0.6;
+  return '<path d="M'+x0.toFixed(1)+','+y0.toFixed(1)+' A'+r+','+r+' 0 0 '+(cw?1:0)+' '+x1.toFixed(1)+','+y1.toFixed(1)+'" fill="none" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/>'+
+    '<polygon points="'+(x1+tx*h*0.5).toFixed(1)+','+(y1+ty*h*0.5).toFixed(1)+' '+(x1-tx*h*0.5-ty*hw).toFixed(1)+','+(y1-ty*h*0.5+tx*hw).toFixed(1)+' '+(x1-tx*h*0.5+ty*hw).toFixed(1)+','+(y1-ty*h*0.5-tx*hw).toFixed(1)+'" fill="'+col+'"/>';
+}
+function pivot(x,y,ink){return '<polygon points="'+x+','+y+' '+(x-12)+','+(y+20)+' '+(x+12)+','+(y+20)+'" fill="'+css("--card")+'" stroke="'+ink+'" stroke-width="2"/>'}
+
+/* ---------- rooms + navigation ---------- */
+var rooms=[].slice.call(document.querySelectorAll("section.room"));
+var done=load("done",{});
+var nav=$("rooms");
+rooms.forEach(function(r,i){
+  var b=document.createElement("button");b.type="button";b.textContent=i+1;b.title=r.getAttribute("data-title");
+  b.setAttribute("aria-label","Room "+(i+1)+": "+r.getAttribute("data-title"));
+  b.onclick=function(){go(i)};nav.appendChild(b);
+});
+var cur=0;
+function paint(){[].forEach.call(nav.children,function(b,i){b.setAttribute("aria-current",i===cur?"true":"false");b.classList.toggle("done",!!done[i])})}
+function go(i){
+  cur=Math.max(0,Math.min(rooms.length-1,i));
+  rooms.forEach(function(r,k){r.classList.toggle("on",k===cur)});
+  $("prev").style.visibility=cur===0?"hidden":"visible";
+  $("next").textContent=cur===rooms.length-1?"Finished ✓":"Next room →";
+  if(cur===rooms.length-1){var g=load("note:r0","");if(g)$("firstGuess").textContent="“"+g+"”"}
+  save("room",cur);paint();
+  nav.children[cur].scrollIntoView({block:"nearest",inline:"center"});
+  window.scrollTo(0,0);
+}
+$("prev").onclick=function(){go(cur-1)};
+$("next").onclick=function(){done[cur]=true;save("done",done);if(cur<rooms.length-1)go(cur+1);else paint()};
+
+/* ---------- predict-first questions ---------- */
+[].forEach.call(document.querySelectorAll(".opts[data-answer]"),function(o){
+  var ans=+o.getAttribute("data-answer"),why=o.nextElementSibling;
+  [].forEach.call(o.children,function(b,i){
+    b.onclick=function(){
+      if(LS){var card=o.closest(".card"),qs=[].slice.call(card.querySelectorAll("p")).filter(function(p){return !p.classList.contains("aside")}),qid=roomOf(o)+"-q"+[].indexOf.call(document.querySelectorAll("#"+roomOf(o)+" .opts[data-answer]"),o);
+        LS.put(qid,{type:"predict",q:(card.querySelector("h3")?plain(card.querySelector("h3"))+": ":"")+qs.map(plain).join(" "),answer:plain(b),result:i===ans?"right":"wrong (correct: "+plain(o.children[ans])+")"})}
+      [].forEach.call(o.children,function(x,k){x.disabled=true;if(k===ans)x.classList.add("right")});
+      if(i!==ans)b.classList.add("wrong");
+      why.innerHTML=(i===ans?"<b class='g'>Yes.</b> ":"<b class='r'>Good guess, but no.</b> ")+o.getAttribute("data-why");
+      why.classList.add("show");
+    };
+  });
+});
+
+/* ---------- notebook ---------- */
+[].forEach.call(document.querySelectorAll("textarea[data-note]"),function(t){
+  var k="note:"+t.getAttribute("data-note"),s=t.parentNode.querySelector(".saved"),timer;
+  t.value=load(k,"");
+  var pr=t.parentNode.querySelector("p");
+  t.addEventListener("input",function(){clearTimeout(timer);timer=setTimeout(function(){save(k,t.value);s.textContent="Saved on this device";if(LS&&t.value.trim())LS.put("note:"+t.getAttribute("data-note"),{type:"notebook",q:pr?plain(pr):"",answer:t.value})},400)});
+});
+
+/* ---------- number answers (first wrong try is sent) ---------- */
+function checker(inp,btn,fb,trueV,traps,right,wrong,q){
+  var tries=0;
+  function run(){
+    var raw=String($(inp).value),v=parseFloat(raw.replace(/[, ]/g,"").replace(/n ?m$|m$/i,""));var el=$(fb);
+    if(isNaN(v)){el.innerHTML="<b class='r'>Type a number.</b>";el.classList.add("show");return}
+    var ok=Math.abs(v-trueV)<=Math.max(0.001,Math.abs(trueV)*0.01),msg=wrong;
+    (traps||[]).forEach(function(t){if(Math.abs(v-t[0])<=Math.max(0.001,Math.abs(t[0])*0.01))msg=t[1]});
+    tries++;
+    if(LS&&(ok||tries===1))LS.put(inp,{type:"number",q:q,answer:raw,result:ok?(tries===1?"right":"right after "+tries+" tries"):"wrong first try (correct: "+trueV+")"});
+    el.innerHTML=ok?"<b class='g'>Yes.</b> "+right:"<b class='r'>Not quite.</b> "+msg;el.classList.add("show");
+  }
+  $(btn).onclick=run;$(inp).addEventListener("keydown",function(e){if(e.key==="Enter")run()});
+}
+checker("m1","m1Go","m1Fb",10,[[160,"You divided. Moment = force × distance: multiply."],[40.25,"You added. Multiply the force by the distance."]],"40 × 0.25 = 10 N m.","Moment = force × distance = 40 × 0.25.","40 N at 0.25 m: moment?");
+checker("m2","m2Go","m2Fb",6,[[600,"Close, but the distance was in cm. Change 20 cm to 0.20 m first, then multiply."],[1.5,"You divided. Moment = force × distance: multiply (after changing cm to m)."]],"20 cm = 0.20 m, and 30 × 0.20 = 6 N m. This is the trap AQA sets: always change cm to m first.","Change 20 cm to metres first, then multiply by the force.","30 N at 20 cm: moment in N m?");
+checker("m3","m3Go","m3Fb",0.15,[[15,"That's 2.0 × 7.5, using cm. AQA would give you 2 of the 3 marks: you lose the mark for changing 7.5 cm to 0.075 m."],[0.27,"You divided. Moment = force × distance."]],"AQA's mark scheme: 7.5 cm = 0.075 m (1 mark), M = 2.0 × 0.075 (1 mark), <b>M = 0.15 N m</b> (1 mark). Write all three steps in the exam: each one is a mark.","Change 7.5 cm to metres first (÷ 100), then M = F × d.","AQA June 2024 Q02.6: 2.0 N at 7.5 cm");
+checker("m4","m4Go","m4Fb",0.2,[[0.45,"You swapped them: 3 × 0.45 is not equal to 2 × 0.30. The heavier weight has to be closer."],[20,"Right idea, but in cm. In metres that's 0.20 m."],[0.6,"That's the anticlockwise moment (2 × 0.30 = 0.6 N m). Now find the distance that gives 3 N the same moment."]],"Anticlockwise: 2 × 0.30 = 0.60 N m. Clockwise must match: 3 × d = 0.60, so d = 0.60 ÷ 3 = <b>0.20 m</b>. The heavier weight sits closer.","Work out the anticlockwise moment first (2 × 0.30). Then the 3 N weight needs the same moment: 3 × d = ?","Metre rule: 2 N at 0.30 m left, where does 3 N go?");
+
+/* ---------- Room 1: door ---------- */
+function drawDoor(){
+  var dcm=+$("doorD").value,d=dcm/100,F=20,M=F*d,acc=css("--acc"),res=css("--res"),ink=css("--ink"),mute=css("--mute");
+  var hx=40,hy=70,px=hx+dcm*3.2;
+  var s='<line x1="10" y1="'+(hy-8)+'" x2="'+(hx-6)+'" y2="'+(hy-8)+'" stroke="'+mute+'" stroke-width="6"/><line x1="'+(hx+262)+'" y1="'+(hy-8)+'" x2="335" y2="'+(hy-8)+'" stroke="'+mute+'" stroke-width="6"/>'+
+    '<rect x="'+hx+'" y="'+(hy-6)+'" width="256" height="12" rx="3" fill="'+css("--card")+'" stroke="'+ink+'" stroke-width="2"/>'+
+    '<circle cx="'+hx+'" cy="'+hy+'" r="7" fill="'+ink+'"/>'+txt(hx-14,hy+26,"hinge (pivot)",mute,"start",12)+
+    '<rect x="'+(hx+238)+'" y="'+(hy+6)+'" width="12" height="8" rx="2" fill="'+mute+'"/>'+txt(hx+244,hy+30,"handle",mute,"middle",12);
+  s+=arrow(px,hy+70,px,hy+9,acc,6)+txt(px+8,hy+64,"20 N",acc);
+  if(dcm>0)s+='<line x1="'+hx+'" y1="'+(hy+90)+'" x2="'+px+'" y2="'+(hy+90)+'" stroke="'+mute+'" stroke-width="1.5"/>'+'<line x1="'+hx+'" y1="'+(hy+84)+'" x2="'+hx+'" y2="'+(hy+96)+'" stroke="'+mute+'"/><line x1="'+px+'" y1="'+(hy+84)+'" x2="'+px+'" y2="'+(hy+96)+'" stroke="'+mute+'"/>'+txt((hx+px)/2,hy+106,fmt(d)+" m",mute,"middle",12);
+  if(M>0)s+=turn(hx,hy,34,false,res,2+M*0.5);
+  $("door").innerHTML=s;
+  $("doorDo").textContent=fmt(d)+" m";$("doorDr").textContent=fmt(d)+" m";
+  $("doorM").textContent=M>0?"20 × "+fmt(d)+" = "+fmt(M)+" N m":"none";
+}
+$("doorD").oninput=drawDoor;
+
+/* ---------- Room 2: spanner ---------- */
+function drawSpan(){
+  var F=+$("spF").value,dcm=+$("spD").value,d=dcm/100,M=F*d,acc=css("--acc"),res=css("--res"),ink=css("--ink"),mute=css("--mute");
+  var nx=50,ny=70,ex=nx+dcm*5.2;
+  var s='<rect x="'+nx+'" y="'+(ny-7)+'" width="'+(nx+270-nx)+'" height="14" rx="7" fill="'+css("--grid")+'" stroke="'+mute+'" stroke-width="1.5"/>'+
+    '<polygon points="'+[0,60,120,180,240,300].map(function(a){a*=Math.PI/180;return (nx+16*Math.cos(a)).toFixed(1)+","+(ny+16*Math.sin(a)).toFixed(1)}).join(" ")+'" fill="'+css("--card")+'" stroke="'+ink+'" stroke-width="2.5"/>'+
+    '<circle cx="'+nx+'" cy="'+ny+'" r="4" fill="'+ink+'"/>';
+  if(F>0)s+=arrow(ex,ny+8,ex,ny+8+F*0.8,acc,6)+txt(ex+8,ny+30,F+" N",acc);
+  s+='<line x1="'+nx+'" y1="'+(ny-30)+'" x2="'+ex+'" y2="'+(ny-30)+'" stroke="'+mute+'" stroke-width="1.5"/><line x1="'+nx+'" y1="'+(ny-36)+'" x2="'+nx+'" y2="'+(ny-24)+'" stroke="'+mute+'"/><line x1="'+ex+'" y1="'+(ny-36)+'" x2="'+ex+'" y2="'+(ny-24)+'" stroke="'+mute+'"/>'+txt((nx+ex)/2,ny-38,dcm+" cm = "+fmt(d)+" m",mute,"middle",12);
+  if(M>0)s+=turn(nx,ny,34,true,res,Math.min(12,2+M*0.25));
+  $("span").innerHTML=s;
+  $("spFo").textContent=F+" N";$("spDo").textContent=fmt(d)+" m";
+  $("spS").innerHTML="M = F × d = "+F+" × "+fmt(d)+" = <b>"+fmt(M)+" N m</b>";
+}
+$("spF").oninput=drawSpan;$("spD").oninput=drawSpan;
+
+/* ---------- Room 3: angle ---------- */
+function drawAng(){
+  var deg=+$("angA").value,th=deg*Math.PI/180,acc=css("--acc"),air=css("--air"),ink=css("--ink"),mute=css("--mute");
+  var nx=45,ny=150,L=240,ex=nx+L,ey=ny,ux=Math.cos(th),uy=Math.sin(th);
+  var dp=0.30*Math.sin(th),M=50*dp;
+  var fx=ex-L*Math.cos(th)*ux,fy=ey-L*Math.cos(th)*uy;
+  var s='<rect x="'+nx+'" y="'+(ny-7)+'" width="'+L+'" height="14" rx="7" fill="'+css("--grid")+'" stroke="'+mute+'" stroke-width="1.5"/>'+
+    '<polygon points="'+[0,60,120,180,240,300].map(function(a){a*=Math.PI/180;return (nx+16*Math.cos(a)).toFixed(1)+","+(ny+16*Math.sin(a)).toFixed(1)}).join(" ")+'" fill="'+css("--card")+'" stroke="'+ink+'" stroke-width="2.5"/>'+
+    '<circle cx="'+nx+'" cy="'+ny+'" r="4" fill="'+ink+'"/>'+
+    '<line x1="'+(ex-ux*330).toFixed(1)+'" y1="'+(ey-uy*330).toFixed(1)+'" x2="'+(ex+ux*90).toFixed(1)+'" y2="'+(ey+uy*90).toFixed(1)+'" stroke="'+acc+'" stroke-width="1.5" stroke-dasharray="5 5" opacity=".7"/>';
+  if(dp>0.001)s+='<line x1="'+nx+'" y1="'+ny+'" x2="'+fx.toFixed(1)+'" y2="'+fy.toFixed(1)+'" stroke="'+air+'" stroke-width="4" stroke-linecap="round"/>';
+  s+=arrow(ex,ey,ex+ux*70,ey+uy*70,acc,6)+txt(ex-6,ey+uy*70+(deg>60?0:-12)-4,"50 N",acc,"end");
+  $("ang").innerHTML=s;
+  $("angAo").textContent=deg+"°";$("angD").textContent=fmt(dp)+" m";$("angM").textContent=fmt(M)+" N m";
+}
+$("angA").oninput=drawAng;
+
+/* ---------- Room 4: which way ---------- */
+function bar(id,side,up){
+  var acc=css("--acc"),ink=css("--ink");
+  var cx=170,cy=60,x=cx+side*120;
+  var s='<rect x="'+(cx-140)+'" y="'+(cy-6)+'" width="280" height="12" rx="4" fill="'+css("--card")+'" stroke="'+ink+'" stroke-width="2"/>'+pivot(cx,cy+6,ink);
+  s+=up?arrow(x,cy+56,x,cy+8,acc,6):arrow(x,cy-56,x,cy-8,acc,6);
+  $(id).innerHTML=s;
+}
+function drawWays(){bar("cw1",1,false);bar("cw2",-1,false);bar("cw3",-1,true)}
+
+/* ---------- Room 5: see-saw ---------- */
+function drawSaw(){
+  var lW=+$("lW").value,lD=+$("lD").value,rW=+$("rW").value,rD=+$("rD").value;
+  var A=lW*lD,C=rW*rD,diff=C-A,ink=css("--ink"),wt=css("--wt"),air=css("--air"),mute=css("--mute"),acc=css("--acc");
+  var ang=Math.abs(diff)<1e-9?0:Math.max(-12,Math.min(12,diff*0.02+(diff>0?3:-3)));
+  var cx=170,cy=120,k=70,r=ang*Math.PI/180,c=Math.cos(r),sn=Math.sin(r);
+  function pt(s,h){return [cx+s*k*c+sn*h,cy+s*k*sn-c*h]} /* point at distance s (m) along beam, h px above it */
+  var e1=pt(-2.1,0),e2=pt(2.1,0);
+  var s='<line x1="'+e1[0].toFixed(1)+'" y1="'+e1[1].toFixed(1)+'" x2="'+e2[0].toFixed(1)+'" y2="'+e2[1].toFixed(1)+'" stroke="'+ink+'" stroke-width="8" stroke-linecap="round"/>'+pivot(cx,cy+4,ink);
+  for(var m=-2;m<=2;m+=0.5){if(m===0)continue;var t=pt(m,0);s+='<circle cx="'+t[0].toFixed(1)+'" cy="'+t[1].toFixed(1)+'" r="1.6" fill="'+css("--bg")+'"/>'}
+  function block(sd,W,col){var b=pt(sd,4),sz=14+W/25;
+    return '<rect x="'+(b[0]-sz/2).toFixed(1)+'" y="'+(b[1]-sz).toFixed(1)+'" width="'+sz.toFixed(1)+'" height="'+sz.toFixed(1)+'" rx="4" fill="'+col+'" opacity=".85"/>'+
+      txt(b[0],b[1]-sz-6,W+" N",col,"middle",12)+arrow(b[0],b[1]+6,b[0],b[1]+6+W/12,acc,3)}
+  s+=block(-lD,lW,wt)+block(rD,rW,air);
+  s+=txt(cx,192,Math.abs(diff)<1e-9?"balanced":(diff>0?"turns clockwise":"turns anticlockwise"),mute,"middle",13);
+  $("saw").innerHTML=s;
+  $("lWo").textContent=lW+" N";$("lDo").textContent=lD+" m";$("rWo").textContent=rW+" N";$("rDo").textContent=rD+" m";
+  $("sawA").textContent=lW+" × "+lD+" = "+fmt(A)+" N m";$("sawC").textContent=rW+" × "+rD+" = "+fmt(C)+" N m";
+  $("sawS").textContent=Math.abs(diff)<1e-9?"Balanced: clockwise moment = anticlockwise moment. It doesn't turn.":
+    (diff>0?"Clockwise moment is bigger by "+fmt(diff)+" N m, so the see-saw turns clockwise (right side down).":"Anticlockwise moment is bigger by "+fmt(-diff)+" N m, so the see-saw turns anticlockwise (left side down).");
+}
+["lW","lD","rW","rD"].forEach(function(id){$(id).oninput=drawSaw});
+
+/* ---------- Room 6: chain ---------- */
+(function(){
+  var links=["The rope is attached further from the hinge (the pivot) than the handle.","So the perpendicular distance from the pivot to the force is greater.","Moment = force × distance, and lowering the ramp needs the same moment either way.","So a smaller force is needed on the rope to make that moment."];
+  var hints=["Tap the first link: what's different about where the rope is?","So what is bigger?","What links force and distance?","So what does that mean for the force?",""];
+  var order=[2,0,3,1],next=0,pool=$("chainPool"),doneEl=$("chainDone");
+  order.forEach(function(i){
+    var b=document.createElement("button");b.type="button";b.className="opt";b.textContent=links[i];
+    b.onclick=function(){
+      if(i===next){b.classList.add("placed");b.disabled=true;doneEl.appendChild(b);next++;$("chainHint").textContent=hints[next];
+        if(next===links.length){$("chainHint").textContent="";$("chainFb").innerHTML="<b class='g'>Chain complete.</b> AQA's 2 marks are links 2 and 4: <b>greater distance</b>, <b>so smaller force</b>. Links 1 and 3 are the glue that makes it an explanation. Now write it yourself below.";$("chainFb").classList.add("show")}}
+      else{b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");$("chainHint").textContent="Not yet: what has to come before that? "+hints[next]}
+    };
+    pool.appendChild(b);
+  });
+})();
+$("msShow").onclick=function(){$("ms").hidden=false;this.hidden=true};
+(function(){var st=load("ms",{});[].forEach.call(document.querySelectorAll("[data-ms]"),function(c){var k=c.getAttribute("data-ms");c.checked=!!st[k];c.onchange=function(){st[k]=c.checked;save("ms",st);if(LS){var all=[].slice.call(document.querySelectorAll("[data-ms]"));LS.put("ms",{type:"selfmark",source:"AQA Physics 8463/2H, June 2019, Q10.1",q:"Self-marked the lorry ramp answer against the mark scheme",answer:all.map(function(x){return (x.checked?"✓ ":"✗ ")+plain(x.parentNode)}).join(" | "),got:all.filter(function(x){return x.checked}).length,max:2})}}})})();
+if(LS&&LS.enabled()){var endBox=document.querySelector("#r6 .end");var slot=document.createElement("div");slot.innerHTML='<p class="aside" style="text-align:left">Your notebook and predictions are sent to your parent as you go, so the next homework can build on them.</p>';endBox.parentNode.insertBefore(slot,endBox);LS.button(slot,"Send my notebook now")}
+
+function all(){drawDoor();drawSpan();drawAng();drawWays();drawSaw()}
+all();
+if(window.matchMedia)window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",all);
+go(+load("room",0)||0);
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>
