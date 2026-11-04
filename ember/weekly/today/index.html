@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbf6f1">
+<title>What I learned today</title>
+<style>
+:root{--bg:#fbf6f1;--card:#ffffff;--ink:#2b2a28;--mute:#6f6b64;--acc:#d9682a;--accsoft:#fdeee4;--line:#e4dcd2;--ok:#1b7f4b;--oksoft:#e2f4ea;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--line:#3a3835;--ok:#6fd49b;--oksoft:#16352a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1b1a;--card:#272624;--ink:#f1eee9;--mute:#aaa49b;--acc:#f0935a;--accsoft:#3a2a20;--line:#3a3835;--ok:#6fd49b;--oksoft:#16352a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:720px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0}
+h1{font-size:clamp(26px,6vw,34px);margin:2px 0 6px;line-height:1.2}
+h2{font-size:20px;margin:22px 0 10px}
+.lede{color:var(--mute);margin:0 0 14px}
+p{margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
+label.f{display:block;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px}
+label.f:first-child{margin-top:0}
+input[type=text],input[type=date],textarea{font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);width:100%}
+input[type=date]{width:auto;min-height:48px}
+textarea{min-height:76px;resize:vertical}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.hint{font-size:14px;color:var(--mute);margin-top:6px;min-height:20px}
+.hint.ok{color:var(--ok)}
+.btn{min-height:50px;border:1px solid var(--acc);background:var(--acc);color:#fff;padding:10px 18px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.entry{border-top:1px solid var(--line);padding:10px 0}
+.entry:first-child{border-top:0;padding-top:0}
+.entry b{color:var(--acc)}
+.entry .s{color:var(--mute);font-size:15px}
+.entry button{float:right;border:0;background:none;color:var(--mute);font:inherit;font-size:14px;cursor:pointer;min-height:36px}
+.day{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mute);margin:14px 0 4px}
+.empty{color:var(--mute);font-size:15px}
+.tip{background:var(--accsoft);border-radius:12px;padding:10px 14px;font-size:15px;margin:0 0 14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">Every school day · 3 minutes</p>
+  <h1>What I learned today</h1>
+  <p class="lede">From memory first, before you look at your exercise book. One entry per lesson.</p>
+</header>
+
+<div class="tip"><b>The rule:</b> 3 to 5 key words, then <b>one sentence that explains</b> something, using <i>because</i>, <i>so</i> or <i>which means</i>. Not just what the lesson was about: what it showed.</div>
+
+<div class="card" id="form">
+  <label class="f" for="date">Date</label>
+  <input type="date" id="date">
+  <label class="f">Subject</label>
+  <div class="chips" id="subj"></div>
+  <label class="f" for="words">Key words (3 to 5)</label>
+  <input type="text" id="words" placeholder="e.g. terminal velocity, air resistance, weight" autocomplete="off">
+  <label class="f" for="sent">One explaining sentence</label>
+  <textarea id="sent" placeholder="e.g. Air resistance grows as you speed up, so eventually it balances your weight."></textarea>
+  <p class="hint" id="hint"></p>
+  <div class="btns"><button class="btn" type="button" id="add">Save this lesson</button></div>
+</div>
+
+<h2>This week so far</h2>
+<div class="card" id="list"></div>
+<div id="sendSlot"></div>
+</div>
+
+<script src="../../../assets/send.js"></script>
+<script>
+"use strict";
+(function(){
+var KEY="ember:weekly:today:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+var $=function(id){return document.getElementById(id)};
+var LS=window.LearnSend;if(LS)LS.init({key:"ember:weekly:today",title:"What I learned today",kind:"today"});
+var SUBJ=["English","Maths","Science","History","Geography","French","Other"];
+var entries=load("entries",[]),subject=null;
+function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+$("date").value=iso(new Date());
+SUBJ.forEach(function(s){var b=document.createElement("button");b.type="button";b.textContent=s;b.setAttribute("aria-pressed","false");
+  b.onclick=function(){subject=s;[].forEach.call($("subj").children,function(x){x.setAttribute("aria-pressed",x===b?"true":"false")})};$("subj").appendChild(b)});
+function linked(t){return /\b(because|so|which means|therefore|this means|as a result|this shows|this suggests|due to|causes?|leads? to)\b/i.test(t)}
+$("sent").oninput=function(){var t=$("sent").value.trim();var h=$("hint");
+  if(!t){h.textContent="";h.className="hint";return}
+  if(linked(t)){h.textContent="✓ That sentence explains something.";h.className="hint ok"}
+  else{h.textContent="Can you add because, so or which means?";h.className="hint"}};
+$("add").onclick=function(){
+  var w=$("words").value.trim(),t=$("sent").value.trim(),d=$("date").value;
+  if(!subject){$("hint").textContent="Pick a subject first.";$("hint").className="hint";return}
+  if(!w&&!t){$("words").focus();return}
+  var e={id:Date.now().toString(36),date:d,subject:subject,words:w,sentence:t};
+  entries.push(e);save("entries",entries);
+  if(LS)LS.put(e.id,{date:e.date,subject:e.subject,words:e.words,sentence:e.sentence});
+  if(LS)LS.flush();
+  $("words").value="";$("sent").value="";$("hint").textContent="Saved ✓ Next lesson?";$("hint").className="hint ok";
+  subject=null;[].forEach.call($("subj").children,function(x){x.setAttribute("aria-pressed","false")});
+  draw();
+};
+function monday(d){var x=new Date(d+"T12:00:00");var k=(x.getDay()+6)%7;x.setDate(x.getDate()-k);return iso(x)}
+function draw(){
+  var wk=monday(iso(new Date())),mine=entries.filter(function(e){return monday(e.date)===wk}).sort(function(a,b){return a.date<b.date?-1:1});
+  var L=$("list");L.innerHTML="";
+  if(!mine.length){L.innerHTML='<p class="empty">Nothing yet this week.</p>';return}
+  var day="";
+  mine.forEach(function(e){
+    if(e.date!==day){day=e.date;var h=document.createElement("p");h.className="day";h.textContent=new Date(e.date+"T12:00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short"});L.appendChild(h)}
+    var div=document.createElement("div");div.className="entry";
+    var del=document.createElement("button");del.type="button";del.textContent="remove";
+    del.onclick=function(){if(del.dataset.sure){entries=entries.filter(function(x){return x.id!==e.id});save("entries",entries);if(LS)LS.put(e.id,{date:e.date,subject:e.subject,words:"(removed)",sentence:""});draw()}else{del.dataset.sure=1;del.textContent="tap again to remove"}};
+    div.appendChild(del);
+    var b=document.createElement("b");b.textContent=e.subject+": ";div.appendChild(b);
+    div.appendChild(document.createTextNode(e.words||""));
+    if(e.sentence){var s=document.createElement("div");s.className="s";s.textContent=e.sentence;div.appendChild(s)}
+    L.appendChild(div);
+  });
+}
+draw();
+if(LS)LS.button($("sendSlot"),"Send to my parent now");
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

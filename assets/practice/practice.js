@@ -10,9 +10,11 @@
   var KEY = (me.getAttribute('data-key') || location.pathname) + ':state';
   var PRINT = /[?&]print\b/.test(location.search);
   var app = document.getElementById('app');
+  var RAWKEY = me.getAttribute('data-key') || location.pathname;
+  var SENDJS = me.src.replace(/practice\/practice\.js(\?.*)?$/, 'send.js');
   var state = {};
   try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} queueSend(); }
   function st(id) { return state[id] || (state[id] = {}); }
 
   /* ---------- text helpers ---------- */
@@ -153,7 +155,7 @@
       else {
         fb.innerHTML = '<b class="no">Not yet.</b> ' + rich(r.msg) + (tries >= 3 && spec.hint ? '<br><i>Hint:</i> ' + rich(spec.hint) : '');
         fb.classList.add('show');
-        if (tries === 1) onDone(null, null, true);
+        if (tries === 1) onDone(null, inp.value.trim(), true);
       }
     };
     inp.onkeydown = function (e) { if (e.key === 'Enter') bt.onclick(); };
@@ -166,7 +168,7 @@
     c.insertAdjacentHTML('beforeend', head(b));
     var s = st(b.id), ms = el('div');
     c.appendChild(answerRow(b, function (first, value, missed) {
-      if (missed) { if (s.got == null) { s.got = 0; save(); updateSummary(); } return; }
+      if (missed) { if (s.firstWrong == null) s.firstWrong = value; if (s.got == null) s.got = 0; save(); updateSummary(); return; }
       if (s.got == null) s.got = first ? (b.marks || 1) : 0;
       s.value = value; save(); updateSummary(); ms.innerHTML = msBox(b);
     }, s.value));
@@ -187,7 +189,7 @@
       li.innerHTML = '<div class="pr-steph">' + rich(sp.p) + (sp.mark ? ' <span class="pr-mark">' + esc(sp.mark) + '</span>' : '') + '</div>';
       li.appendChild(answerRow(sp, function (first, value, missed) {
         var ss = s.steps[i] || (s.steps[i] = {});
-        if (missed) { ss.first = false; save(); return; }
+        if (missed) { ss.first = false; if (ss.firstWrong == null) ss.firstWrong = value; save(); return; }
         if (ss.first == null) ss.first = !!first;
         ss.value = value; tally(); save(); updateSummary(); unlock(i + 1);
       }, s.steps[i] && s.steps[i].value));
@@ -329,6 +331,48 @@
     return c;
   };
 
+  /* ---------- sending answers to the parent's private sheet (assets/send.js) ---------- */
+  var CONTENT = null, sendTimer = null;
+  function plain(h) { var d = document.createElement('div'); d.innerHTML = rich(h); return (d.textContent || '').replace(/\s+/g, ' ').trim(); }
+  function rowsFor(b) {
+    var s = state[b.id]; if (!s) return null;
+    var q = plain(b.q || b.h || b.stem || ''), base = { type: b.type, source: b.source || '', q: q, max: b.marks || (b.type === 'mc' || b.type === 'num' ? 1 : '') };
+    function r(o) { for (var k in base) if (!(k in o)) o[k] = base[k]; return o; }
+    if (b.type === 'mc') { if (s.choice == null) return null; return r({ answer: plain(b.o[s.choice]), result: s.choice === b.c ? 'right' : 'wrong (correct: ' + plain(b.o[b.c]) + ')', got: s.got }); }
+    if (b.type === 'num') { if (s.got == null) return null; return r({ answer: s.value != null ? s.value : (s.firstWrong || ''), result: s.got ? 'right first try' : 'wrong first try' + (s.firstWrong != null ? ': ' + s.firstWrong : '') + (s.value != null ? ', then got ' + s.value : ', not finished'), got: s.got }); }
+    if (b.type === 'steps') { var st = s.steps || {}, parts = []; b.steps.forEach(function (sp, i) { var x = st[i]; if (x) parts.push('step ' + (i + 1) + ': ' + (x.first ? 'right first try' : 'wrong first try' + (x.firstWrong != null ? ' (' + x.firstWrong + ')' : '')) + (x.value != null ? ' → ' + x.value : '')); }); if (!parts.length) return null; return r({ answer: parts.join('; '), result: s.got != null ? 'all steps done' : 'not finished', got: s.got }); }
+    if (b.type === 'product') { if (!s.vals && s.got == null) return null; return r({ answer: (s.vals || []).join(' × '), result: s.got ? 'right first try' : 'not first try', got: s.got }); }
+    if (b.type === 'order') { if (!s.done) return null; return r({ answer: 'put in order', result: 'completed' }); }
+    if (b.type === 'write') {
+      if (!s.text || !s.text.trim()) return null;
+      var m = b.mark || {}, res = 'not self-marked yet';
+      if (s.open && m.points) res = 'self-marked: ' + (m.points.map(function (p, i) { return (s.ticks && s.ticks[i] ? '✓ ' : '✗ ') + plain(p.t); }).join(' | '));
+      if (s.open && m.levels && s.level != null) res = 'self-marked: ' + plain(m.levels[s.level].l);
+      return r({ answer: s.text, result: res, got: s.open ? s.got : '' });
+    }
+    if (b.type === 'checklist') { if (!(s.ticks || []).some(Boolean)) return null; var t = (b.items || []).map(function (x, i) { return (s.ticks && s.ticks[i] ? '✓ ' : '✗ ') + plain(x); }); return r({ answer: t.join(' | '), result: 'checklist' }); }
+    return null;
+  }
+  function queueSend() {
+    if (!window.LearnSend || !CONTENT) return;
+    clearTimeout(sendTimer);
+    sendTimer = setTimeout(function () {
+      (CONTENT.sections || []).forEach(function (sec) { sec.blocks.forEach(function (b) { if (!b.id) return; var row = rowsFor(b); if (row) window.LearnSend.put(b.id, row); }); });
+    }, 800);
+  }
+  function startSend(C, slot) {
+    CONTENT = C;
+    var sc = document.createElement('script'); sc.src = SENDJS;
+    sc.onload = function () {
+      window.LearnSend.init({ key: RAWKEY, title: C.title, kind: 'practice' });
+      if (!window.LearnSend.enabled()) return;
+      slot.appendChild(el('p', 'pr-note', 'Your answers (and how you marked them) are sent to your parent so next week’s homework can be planned around them.'));
+      window.LearnSend.button(slot, 'Send my answers now');
+      queueSend();
+    };
+    document.head.appendChild(sc);
+  }
+
   /* ---------- page ---------- */
   function renderPage(C) {
     document.title = C.title;
@@ -348,6 +392,7 @@
     end.appendChild(el('h2', null, 'Your marks'));
     var sum = el('div', 'pr-card pr-summary'); sum.id = 'pr-summary'; end.appendChild(sum);
     if (C.print) end.appendChild(el('a', 'pr-btn pr-printlink', '🖨 Open the written paper (PDF)')).href = C.print;
+    var sendSlot = el('div'); end.appendChild(sendSlot); startSend(C, sendSlot);
     var reset = el('button', 'pr-link', 'Start again (clears saved answers on this device)'); reset.type = 'button';
     reset.onclick = function () { if (reset.dataset.sure) { state = {}; save(); location.reload(); } else { reset.dataset.sure = 1; reset.textContent = 'Tap again to clear everything'; } };
     end.appendChild(reset);

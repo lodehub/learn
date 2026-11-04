@@ -504,10 +504,14 @@ textarea{width:100%;min-height:96px;font:inherit;font-size:16px;padding:10px 12p
 <div class="nav"><button class="btn ghost" type="button" id="prev">← Back</button><button class="btn" type="button" id="next">Next room →</button></div>
 </div>
 
+<script src="../../../assets/send.js"></script>
 <script>
 "use strict";
 (function(){
 var KEY="ember:science:explore-forces:";
+var LS=window.LearnSend;if(LS)LS.init({key:"ember:science:explore-forces",title:"Forces from scratch",kind:"explore"});
+function plain(el){return (el.textContent||"").replace(/\s+/g," ").trim()}
+function roomOf(el){var r=el.closest("section.room");return r?r.id:""}
 function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
 function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
 var $=function(id){return document.getElementById(id)};
@@ -574,6 +578,8 @@ function fbd(kind){ /* 0: weight > air, 1: air > weight, 2: equal */
   var ans=+o.getAttribute("data-answer"),why=o.nextElementSibling;
   [].forEach.call(o.children,function(b,i){
     b.onclick=function(){
+      if(LS){var card=o.closest(".card"),qs=[].slice.call(card.querySelectorAll("p")).filter(function(p){return !p.classList.contains("aside")}),qid=roomOf(o)+"-q"+[].indexOf.call(document.querySelectorAll("#"+roomOf(o)+" .opts[data-answer]"),o);
+        LS.put(qid,{type:"predict",q:(card.querySelector("h3")?plain(card.querySelector("h3"))+": ":"")+qs.map(plain).join(" "),answer:plain(b)||("diagram "+"ABC"[i]),result:i===ans?"right":"wrong (correct: "+(plain(o.children[ans])||"diagram "+"ABC"[ans])+")"})}
       [].forEach.call(o.children,function(x,k){x.disabled=true;if(k===ans)x.classList.add("right")});
       if(i!==ans)b.classList.add("wrong");
       why.innerHTML=(i===ans?"<b class='g'>Yes.</b> ":"<b class='r'>Good guess, but no.</b> ")+o.getAttribute("data-why");
@@ -586,7 +592,8 @@ function fbd(kind){ /* 0: weight > air, 1: air > weight, 2: equal */
 [].forEach.call(document.querySelectorAll("textarea[data-note]"),function(t){
   var k="note:"+t.getAttribute("data-note"),s=t.parentNode.querySelector(".saved"),timer;
   t.value=load(k,"");
-  t.addEventListener("input",function(){clearTimeout(timer);timer=setTimeout(function(){save(k,t.value);s.textContent="Saved on this device"},400)});
+  var pr=t.parentNode.querySelector("p");
+  t.addEventListener("input",function(){clearTimeout(timer);timer=setTimeout(function(){save(k,t.value);s.textContent="Saved on this device";if(LS&&t.value.trim())LS.put("note:"+t.getAttribute("data-note"),{type:"notebook",q:pr?plain(pr):"",answer:t.value})},400)});
 });
 
 /* ---------- number answers ---------- */
@@ -813,7 +820,8 @@ var sky=(function(){
   });
 })();
 $("msShow").onclick=function(){$("ms").hidden=false;this.hidden=true};
-(function(){var st=load("ms",{});[].forEach.call(document.querySelectorAll("[data-ms]"),function(c){var k=c.getAttribute("data-ms");c.checked=!!st[k];c.onchange=function(){st[k]=c.checked;save("ms",st)}})})();
+(function(){var st=load("ms",{});[].forEach.call(document.querySelectorAll("[data-ms]"),function(c){var k=c.getAttribute("data-ms");c.checked=!!st[k];c.onchange=function(){st[k]=c.checked;save("ms",st);if(LS){var all=[].slice.call(document.querySelectorAll("[data-ms]"));LS.put("ms",{type:"selfmark",source:"AQA Physics 8463/2H, June 2025, Q05.3",q:"Self-marked the skydiver answer against the mark scheme",answer:all.map(function(x){return (x.checked?"✓ ":"✗ ")+plain(x.parentNode)}).join(" | "),got:all.filter(function(x){return x.checked}).length,max:4})}}})})();
+if(LS&&LS.enabled()){var endBox=document.querySelector("#r9 .end");var slot=document.createElement("div");slot.innerHTML='<p class="aside" style="text-align:left">Your notebook and predictions are sent to your parent as you go, so the next homework can build on them.</p>';endBox.parentNode.insertBefore(slot,endBox);LS.button(slot,"Send my notebook now")}
 
 function all(){drawPush();drawSky2();drawW();drawTug();puck.draw();car.draw();drawDrag();sky.draw()}
 all();

@@ -35,3 +35,6 @@ Marks: on-screen questions score on the first try; `write` blocks score what the
 
 `paper`: `{ title, sub, intro, blocks[], selfcheck[], marking[{h, html}], footer }`. Paper blocks are questions
 (`lines`, `workBox` in mm, `answerLine`), `info`, `plan {cols}` or `table {cols, rows}`; `pageBreak: true` starts a new page.
+
+## Sending answers
+The engine loads `/assets/send.js` and, for children listed in its `ENDPOINTS`, sends each answered block (her answer, first wrong try, right/wrong, self-marks) to the parent's private sheet: automatically when the page is hidden and about 20 s after changes, or with the "Send my answers now" button. Only changed answers are sent. Children without an endpoint see no difference.

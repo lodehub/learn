@@ -401,6 +401,13 @@
       "status": "current"
     },
     {
+      "title": "What I learned today (every school day, 3 minutes)",
+      "path": "weekly/today/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
+    },
+    {
       "title": "Half-term check-in: how is each subject going?",
       "path": "weekly/check-in/",
       "type": "html",

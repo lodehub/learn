@@ -20,6 +20,7 @@ Owner account: lodehub (anonymous by design).
 - `/index.html`: "Who's learning?" child picker, reads `/children.json`
 - `/assets/`: shared style.css and ui.js used by every page
 - `/assets/lab/`: the Language Lab engine (French Lab, Mandarin Lab), shared by every child. Content lives in its JSON files; each child has a thin wrapper page. See assets/lab/README.md.
+- `/assets/send.js`: LearnSend. Sends a child's answers to the parent's **private** Google Sheet (an Apps Script web app that can only add rows). Only children with an entry in its `ENDPOINTS` send anything (currently ember). The Practice engine loads it automatically; standalone pages include it and call `LearnSend.init/put/flush/button`. Answers are never stored in this repo.
 - `/assets/practice/`: the Practice engine (real exam questions, instant feedback, self-marking against the mark scheme, and a `?print` paper from the same content file). Each tool is a thin wrapper plus `content.json`. See assets/practice/README.md.
 - `/bible/`: Bible Lab, a family Bible study (one book, one passage a week, verse memory per person). Engine in `/assets/bible/`, content in `bible/<book>/season.json`. See assets/bible/README.md.
 - `/<slug>/index.html`: subject picker, reads that child's `manifest.json`
@@ -30,6 +31,7 @@ Owner account: lodehub (anonymous by design).
 - Never use real names, initials, schools, dates of birth or any personal data anywhere: slugs and labels only.
 - Git identity for this repo must be `lodehub <107417864+lodehub@users.noreply.github.com>` (set in the repo-local git config). Check `git config user.email` before every commit.
 - Do not commit anything that links to any other personal account or website.
+- Children's answers never go in the repo. They leave the device only through `assets/send.js` to the parent's private sheet. The endpoint URL in send.js is write-only, so it may be public; the read key must never be committed.
 
 ## Rules
 - ALL links relative, so the site works at lodehub.github.io/learn/ and later at a custom domain.
@@ -91,6 +93,8 @@ Current (Week 3):
 - Geography Week 3: megacities, evidence and a judgement (+ PDF)
 - Week 3 homework pack, full, with parent answers (PDF, `weekly/pdfs/`)
 - Half-term check-in: how is each subject going? (`weekly/check-in/`)
+- **What I learned today** (`weekly/today/`): daily recall, subject + 3–5 key words + one explaining sentence, sent to the parent's sheet.
+- **Answer sending** (LearnSend): Practice tools, Explore: Forces from scratch and the daily page send her answers, first wrong tries, predictions, notebook entries and self-marks to the parent's private sheet.
 - **Week 3 plus** (optional extra, tagged week 3): English, Maths, Science, History and Geography rebuilt on real AQA past-paper questions with the Practice engine, each with a `?print` written paper (`<subject>/week3plus-*/`).
 
 Also current: French Week 2 (verbs and extending a sentence), French Lab, French Role-play, Mandarin Lab, Mandarin Role-play, and **Explore: "Why triangles know things", trigonometry from scratch**, and **Explore: "Forces from scratch"** (`science/explore-forces/`): ten rooms from what a force is to terminal velocity (naming forces, mass and weight, resultant force, zero resultant, acceleration, air resistance, a live skydive with free-body diagrams), ending with the AQA June 2025 skydiver question and its mark scheme.
