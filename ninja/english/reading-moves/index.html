@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reading Detective</title>
+<link rel="stylesheet" href="../../../assets/fonts/lexend-72d2ef.css">
+<style>
+:root{--paper:#F2F6FB;--card:#FFFFFF;--ink:#1D2740;--muted:#56617D;--line:#D5DEEC;--blue:#3C6BFF;--blue-bg:#E3EBFF;--purple:#7A4DE0;--purple-bg:#EBE3FC;--green:#1F9D63;--green-bg:#DDF5E9;--bad:#C8352F;--bad-bg:#FCE4E2;--hi:#FFE45C;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#131A2C;--card:#1C2540;--ink:#EAF0FF;--muted:#A5B0CC;--line:#33405F;--blue:#7F9DFF;--blue-bg:#22305E;--purple:#B39BFF;--purple-bg:#342A5E;--green:#56D69A;--green-bg:#1C4034;--bad:#FF8F88;--bad-bg:#4A2624;--hi:#7A6A10;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#131A2C;--card:#1C2540;--ink:#EAF0FF;--muted:#A5B0CC;--line:#33405F;--blue:#7F9DFF;--blue-bg:#22305E;--purple:#B39BFF;--purple-bg:#342A5E;--green:#56D69A;--green-bg:#1C4034;--bad:#FF8F88;--bad-bg:#4A2624;--hi:#7A6A10;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Lexend","Trebuchet MS","Segoe UI",system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(90px,env(safe-area-inset-bottom))}
+header{padding-left:56px;min-height:48px}
+@media (max-width:699px){header{padding-left:0}}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);margin:0}
+h1{font-size:clamp(26px,6vw,34px);margin:2px 0 6px;line-height:1.2}
+h2{font-size:clamp(21px,5vw,26px);margin:4px 0 8px;line-height:1.25}
+h3{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+p{margin:0 0 12px}
+.lede{color:var(--muted)}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 16px}
+.tabs button{min-height:56px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:14px;font-weight:600;line-height:1.2;padding:6px;cursor:pointer}
+.tabs button small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.tabs button[aria-selected="true"]{background:var(--purple);border-color:var(--purple);color:#fff}
+.tabs button[aria-selected="true"] small{color:#fff}
+.tabs button.done::after{content:" ✓"}
+@media (max-width:520px){.tabs{grid-template-columns:repeat(2,1fr)}}
+section.part{display:none}section.part.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
+.big{background:var(--purple-bg);border-left:5px solid var(--purple);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.passage{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin:0 0 14px;font-size:17px;line-height:1.75}
+.passage h3{margin-bottom:4px}
+.passage p{margin:0 0 10px}
+.words{display:grid;grid-template-columns:1fr;gap:8px}
+.word{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+.word button{width:100%;text-align:left;min-height:52px;padding:10px 14px;border:0;background:none;color:var(--ink);font:inherit;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.word button::after{content:"+";font-size:22px;color:var(--purple)}
+.word.open button::after{content:"−"}
+.word .body{display:none;padding:0 14px 12px;font-size:16px}
+.word.open .body{display:block}
+.frame{display:inline-block;background:var(--blue-bg);border-radius:8px;padding:2px 8px;font-weight:600;margin-top:4px}
+.qn{font-weight:700;margin-bottom:8px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;min-height:48px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:10px 14px;border-radius:12px;font:inherit;font-size:16px;cursor:pointer}
+.opt.right{background:var(--green-bg);border-color:var(--green)}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.why{display:none;margin-top:10px;font-size:16px}
+.why.show{display:block}
+.g{color:var(--green)}.r{color:var(--bad)}
+.score{font-weight:700;color:var(--purple)}
+.sent{cursor:pointer;border-radius:6px;padding:1px 2px;transition:background .15s}
+.sent:hover{background:var(--blue-bg)}
+.sent.pick-right{background:var(--green-bg);outline:2px solid var(--green)}
+.sent.pick-wrong{background:var(--bad-bg);outline:2px solid var(--bad)}
+.sorts{display:flex;flex-direction:column;gap:10px}
+.sortrow{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--card)}
+.sortrow .a{font-weight:600;margin-bottom:6px}
+.sortrow .btns{display:flex;gap:6px;flex-wrap:wrap}
+.sortrow .btns button{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
+.sortrow .btns button.right{background:var(--green-bg);border-color:var(--green)}
+.sortrow .btns button.wrong{background:var(--bad-bg);border-color:var(--bad)}
+textarea{width:100%;min-height:110px;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);resize:vertical}
+.checks label{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:6px 0;font-size:16px;cursor:pointer}
+.checks input{width:22px;height:22px;margin-top:2px;accent-color:var(--purple);flex:none}
+.btn{min-height:50px;border:1px solid var(--purple);background:var(--purple);color:#fff;padding:10px 18px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--purple)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.model{display:none;margin-top:12px;background:var(--green-bg);border-radius:12px;padding:10px 14px}
+.model.show{display:block}
+.saved{font-size:13px;color:var(--muted);min-height:18px}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.printlink{margin-top:24px;text-align:center}
+.printlink a{color:var(--purple);font-weight:700}
+/* ---------- print paper ---------- */
+#paper{display:none}
+body.print .wrap{display:none}
+body.print #paper{display:block}
+.sheet{width:210mm;min-height:297mm;margin:0 auto 16px;background:#fff;color:#111;padding:12mm 15mm;font-size:11pt;line-height:1.45;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+.sheet h1{font-size:17pt;margin:0 0 2mm}
+.sheet h2{font-size:12.5pt;margin:4mm 0 2mm;color:#5a35b8}
+.sheet table{width:100%;border-collapse:collapse;font-size:9.6pt}
+.sheet th,.sheet td{border:1px solid #c9cfdc;padding:1.3mm 2mm;text-align:left;vertical-align:top}
+.sheet th{background:#efe9fb}
+.sheet .pas{border:1px solid #c9cfdc;border-radius:2mm;padding:3mm 4mm;font-size:10.8pt;line-height:1.6}
+.sheet .pas p{margin:0 0 2mm}
+.sheet .q{display:grid;grid-template-columns:8mm 1fr 14mm;margin:3mm 0 0}
+.sheet .q .n{font-weight:700}
+.sheet .q .mk{text-align:right;font-size:9pt;color:#555}
+.sheet .q p{margin:0}
+.sheet .ln{border-bottom:1px solid #b8bfcc;height:10.5mm}
+.sheet .ans li{margin-bottom:2mm}
+.sheet.answers{display:none}
+body.print.show-ans .sheet.answers{display:block}
+.pbar{max-width:210mm;margin:12px auto;display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 0 64px}
+@media screen and (max-width:830px){.sheet{width:auto;min-height:0;margin:0 8px 14px;padding:16px}}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .pbar,a[aria-label^="Back"]{display:none!important}
+  .sheet{margin:0;box-shadow:none;break-after:page;height:297mm;overflow:hidden}
+  .sheet.answers{height:auto}
+  body.print:not(.show-ans) .sheet.answers{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kick">English · Reading</p>
+  <h1>Reading Detective</h1>
+  <p class="lede">Four moves that win reading marks. Do one part a day, about 10 minutes each.</p>
+</header>
+
+<div class="tabs" role="tablist" id="tabs"></div>
+
+<!-- ============ PART 1 ============ -->
+<section class="part" data-title="Question words" data-sub="what it wants">
+  <h2>1 · Crack the question word</h2>
+  <p>One word in a question tells you <b>what kind of answer</b> gets the marks. If you don't know the word, you can't win the marks, even if you understood the story perfectly.</p>
+  <div class="big"><b>Tip:</b> before you answer any question, find its question word and ask: <i>what does it want me to do?</i></div>
+  <h3>The words (tap to open)</h3>
+  <div class="words" id="words"></div>
+  <h3 style="margin-top:20px">Now test yourself</h3>
+  <div id="quiz1"></div>
+  <p class="score" id="quiz1score"></p>
+</section>
+
+<!-- ============ PART 2 ============ -->
+<section class="part" data-title="Impressions" data-sub="trait + proof">
+  <h2>2 · Impressions: what is this person like?</h2>
+  <div class="big"><b>An impression</b> is what you think a character is <b>like</b>, as a describing word (curious, brave, bossy, kind…), <b>plus the proof</b> from the text.<br><span class="frame">She seems ___ because ___.</span></div>
+  <div class="passage"><h3>Read: The Lighthouse Key</h3><div id="maya"></div></div>
+
+  <div class="card"><h3>Step 1 · Clue → describing word</h3><p>For each clue, pick the word that says what Maya is <b>like</b>.</p><div id="traits"></div></div>
+
+  <div class="card"><h3>Step 2 · Be the marker</h3>
+    <p>The real test asks: <i>What impressions do you get of Maya? Give two impressions, using evidence from the text.</i> <b>(3 marks)</b></p>
+    <p style="font-size:15px;color:var(--muted)">How the real marks work: <b>3</b> = two impressions, at least one with evidence. <b>2</b> = two impressions with no evidence, or one with evidence. <b>1</b> = one impression. <b>0</b> = just retelling what happened.</p>
+    <div id="judge"></div>
+  </div>
+
+  <div class="card"><h3>Step 3 · Your turn</h3>
+    <p>Write your own answer about Maya: <b>two different</b> describing words, at least one with proof.</p>
+    <textarea id="mayaWrite" placeholder="Maya seems … because … . She also seems … because …"></textarea>
+    <p class="saved" id="mayaSaved"></p>
+    <div class="checks">
+      <label><input type="checkbox" data-c="1"> I used a describing word (not just what she did)</label>
+      <label><input type="checkbox" data-c="2"> I used a <b>second, different</b> describing word</label>
+      <label><input type="checkbox" data-c="3"> At least one has proof from the text (a quote or a detail)</label>
+      <label><input type="checkbox" data-c="4"> I linked them with <i>because</i></label>
+    </div>
+    <div class="row"><button class="btn ghost" type="button" id="mayaModelBtn">Show a 3-mark answer</button></div>
+    <div class="model" id="mayaModel"><b>3 marks:</b> Maya seems <b>curious</b> because she wants to “see what you're hiding” at the lighthouse. She also seems <b>brave</b>, because she walks the cliff path alone and laughs when the wind shoves at her.<br><span style="font-size:15px">Other words that would score: observant (she notices the star and Grandad's glance), disobedient or headstrong (told three times, takes it anyway), adventurous.</span></div>
+  </div>
+</section>
+
+<!-- ============ PART 3 ============ -->
+<section class="part" data-title="Two ways" data-sub="different points">
+  <h2>3 · “Give two ways”: two <i>different</i> clues</h2>
+  <div class="big">Two marks need <b>two different clues</b>. Saying the same clue twice in new words only scores once. And each clue must prove the question's <b>key word</b>.</div>
+  <div class="passage"><h3>Read: The Start Line</h3><div id="sam"></div></div>
+  <div class="card"><h3>Step 1 · Sort the answers</h3>
+    <p>The question: <i>How can you tell Sam was <b>nervous</b> before the race? Give two ways.</i></p>
+    <p>For each answer, decide:</p>
+    <div class="sorts" id="sorts"></div>
+    <p class="score" id="sortScore"></p>
+  </div>
+  <div class="card"><h3>Step 2 · Which pair gets both marks?</h3><div id="pairs"></div></div>
+</section>
+
+<!-- ============ PART 4 ============ -->
+<section class="part" data-title="Find it first" data-sub="tap the line">
+  <h2>4 · Find it first, then answer</h2>
+  <div class="big">Don't answer from memory. <b>Go back and find the sentence</b> that answers the question, then use its words. Many answers that “sound right” are not in the text and score 0.</div>
+  <div class="card"><p class="qn" id="findQ"></p><p style="font-size:15px;color:var(--muted)">Tap the sentence in the story that answers it.</p><p class="why" id="findWhy"></p>
+    <div class="row"><button class="btn" type="button" id="findNext" style="display:none">Next question</button></div><p class="score" id="findScore"></p></div>
+  <div class="passage"><h3>Read: The Night Market</h3><div id="market"></div></div>
+</section>
+
+<div class="nav"><button class="btn ghost" type="button" id="prev">← Back</button><button class="btn" type="button" id="next">Next part →</button></div>
+<p class="printlink"><a href="?print">Printable paper (2 pages, handwritten practice)</a></p>
+</div>
+
+<!-- ============ PRINT PAPER ============ -->
+<div id="paper">
+  <div class="pbar"><button class="btn" type="button" onclick="window.print()">Print</button><button class="btn ghost" type="button" id="ansToggle">Show answers (parent)</button><a class="btn ghost" href="./" style="text-decoration:none;display:inline-flex;align-items:center">Back to the activities</a></div>
+  <section class="sheet">
+    <h1>Reading Detective: practice paper</h1>
+    <p style="margin:0 0 2mm">First, learn the question words. Then read the story and answer the questions. <b>Find the line before you write.</b></p>
+    <h2>Question words</h2>
+    <table id="pTable"><tr><th style="width:24%">If the question says…</th><th>…your answer must</th><th style="width:30%">Start like this</th></tr></table>
+    <h2>Read: The Storm Shed</h2>
+    <div class="pas">
+      <p>Nobody used the old shed at the bottom of Mrs Patel's garden. Its door hung crooked, and ivy had crept across the only window like a hand.</p>
+      <p>On Tuesday, Isla and her little brother Ben were sent to fetch the deckchairs. Ben stopped at the gate. “I'll wait here,” he said, kicking at the gravel.</p>
+      <p>Isla rolled her eyes and marched on. The door groaned as she pulled it. Inside, the air was cold and smelled of old rain. Something ticked in the darkness: slowly, steadily, like a clock that had been waiting.</p>
+      <p>She held her breath. The ticking stopped.</p>
+      <p>“Isla?” Ben's voice floated down the path. “Did you find them?”</p>
+      <p>She looked at the dusty deckchairs, then at the shadowy corner where the sound had been. “Yes,” she called back. “Coming.” But she didn't move. Not yet.</p>
+    </div>
+  </section>
+  <section class="sheet">
+    <h1 style="font-size:14pt">The Storm Shed: questions</h1>
+    <div class="q"><span class="n">1</span><p>Find and <b>copy</b> one word that shows the shed door was hard to open.</p><span class="mk">1 mark</span></div><div class="ln"></div>
+    <div class="q"><span class="n">2</span><p>How can you tell Ben did <b>not</b> want to go near the shed? Give <b>two</b> ways.</p><span class="mk">2 marks</span></div>
+    <div class="ln"></div><div class="ln"></div>
+    <div class="q"><span class="n">3</span><p>What <b>impressions</b> do you get of Isla? Give two impressions, using <b>evidence</b> from the text.</p><span class="mk">3 marks</span></div>
+    <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+    <div class="q"><span class="n">4</span><p>How does the writer create a <b>mysterious atmosphere</b>? Give two ways, using evidence from the text.</p><span class="mk">3 marks</span></div>
+    <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+    <div class="q"><span class="n">5</span><p>What do you <b>predict</b> Isla will do next? Use the text to explain why.</p><span class="mk">2 marks</span></div>
+    <div class="ln"></div><div class="ln"></div>
+    <div class="q"><span class="n">6</span><p><i>…ivy had crept across the only window like a hand.</i> What does this <b>suggest</b> about the shed?</p><span class="mk">1 mark</span></div>
+    <div class="ln"></div>
+    <p style="margin-top:6mm;font-size:9.5pt;color:#555"><b>Check before you finish:</b> ☐ two <i>different</i> points where it says two ☐ each answer proves the question's key word ☐ impressions = describing word + proof ☐ every answer came from a line in the story.</p>
+  </section>
+  <section class="sheet answers">
+    <h1 style="font-size:14pt">Answers (for marking)</h1>
+    <ol class="ans">
+      <li><b>groaned</b>. Accept “crooked” only with a reason (it hung badly). Not a whole sentence.</li>
+      <li>1 mark each, up to 2, for <b>different</b> points: he stopped at the gate · he said “I'll wait here” · he was kicking at the gravel (fidgeting/putting it off). <i>Same point twice scores once.</i></li>
+      <li>Points: <b>brave / bold</b> (marched on, went in alone) · <b>impatient with Ben</b> (rolled her eyes) · <b>curious</b> (looked at the shadowy corner, didn't move) · <b>calm / keeps secrets</b> (says “Coming” but stays). <b>3</b> = two points, at least one with evidence; <b>2</b> = two points without evidence, or one with evidence; <b>1</b> = one point. Retelling with no describing word = 0.</li>
+      <li>Points: the ticking in the darkness, then it stops · nobody uses the shed · ivy “like a hand” · cold air, smell of old rain · Isla holds her breath · the story stops before we find out (“Not yet”). Marked like Q3. Do not accept “it is dark” on its own.</li>
+      <li>She will go and look in the corner / find what was ticking (1), because “she didn't move. Not yet.” or she looked at the corner where the sound had been (1).</li>
+      <li>It is old / not looked after / creepy, as if something is reaching or holding on.</li>
+    </ol>
+  </section>
+</div>
+
+<script>
+"use strict";
+(function(){
+var KEY="ninja:english:reading-moves:";
+function load(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}
+function $(id){return document.getElementById(id)}
+function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+
+/* ---------- question words ---------- */
+var WORDS=[
+ ["impression","What you think a character is <b>like</b>: a describing word (curious, brave…) plus proof.","She seems ___ because ___."],
+ ["suggest / suggests","Read between the lines: what does it show <b>that the text doesn't say straight out</b>?","This suggests that ___."],
+ ["evidence","A quote or detail <b>from the text</b> that proves your point. Not your own idea.","…because it says “___”."],
+ ["atmosphere","The <b>feeling or mood</b> of a place or scene (mysterious, tense, cheerful, spooky).","The writer makes it feel ___ by ___."],
+ ["effect","What something <b>did to</b> a character or the reader: made them jump, feel calm, laugh.","It made them ___."],
+ ["explain","Say <b>why or how</b>, not just what. Use <i>because</i>.","___ because ___."],
+ ["give two ways","Two <b>different</b> clues. The same clue twice in new words only scores once.","1. ___ 2. (a different clue) ___"],
+ ["find and copy","Copy the <b>exact word(s)</b> from the text. Only what is asked: one word means one word.","(the word, spelt as in the text)"],
+ ["according to the text","Answer <b>only</b> from what the text says, even if you know more.","The text says ___."],
+ ["summary / summarise","The <b>main idea of the whole text</b>, not one detail from it.","It is mostly about ___."],
+ ["predict / most likely to happen next","Use <b>clues in the text</b> to say what will happen next, and say which clue.","I think ___ because ___."]
+];
+var W=$("words");
+WORDS.forEach(function(w){var d=h("div","word");var b=h("button",null,"“"+w[0]+"”");b.type="button";b.onclick=function(){d.classList.toggle("open")};
+  d.appendChild(b);d.appendChild(h("div","body",w[1]+"<br><span class='frame'>"+w[2]+"</span>"));W.appendChild(d)});
+var pt=$("pTable");WORDS.forEach(function(w){var r=document.createElement("tr");r.innerHTML="<td><b>"+w[0]+"</b></td><td>"+w[1]+"</td><td>"+w[2]+"</td>";pt.appendChild(r)});
+
+/* generic multiple choice */
+function mc(parent,id,q,opts,ans,why,onDone){
+  var c=h("div","card");c.appendChild(h("p","qn",q));var o=h("div","opts"),y=h("p","why");
+  var st=load("mc",{});
+  opts.forEach(function(t,i){var b=h("button","opt",t);b.type="button";b.onclick=function(){pick(i,true)};o.appendChild(b)});
+  function pick(i,fresh){[].forEach.call(o.children,function(x,k){x.disabled=true;if(k===ans)x.classList.add("right")});if(i!==ans)o.children[i].classList.add("wrong");
+    y.innerHTML=(i===ans?"<b class='g'>Yes.</b> ":"<b class='r'>Not quite.</b> ")+why;y.classList.add("show");
+    if(fresh){st=load("mc",{});st[id]=i;save("mc",st)}if(onDone)onDone()}
+  c.appendChild(o);c.appendChild(y);parent.appendChild(c);
+  if(st[id]!=null)pick(st[id],false);
+}
+function tally(prefix,n,el,label){var st=load("mc",{}),done=0,right=0;for(var k in st)if(k.indexOf(prefix)===0){done++;if(st[k]===ANS[k])right++}
+  el.textContent=done===n?(label+": "+right+" out of "+n+(right===n?". Brilliant.":". Have another look at the red ones.")):"";if(done===n)markDone(prefix)}
+var ANS={};
+function q(parent,id,qtext,opts,ans,why,prefix,n,el,label){ANS[id]=ans;mc(parent,id,qtext,opts,ans,why,function(){tally(prefix,n,el,label)})}
+
+var Q1=[
+ ["What impressions do you get of Maya? Which answer does what the question asks?",["Maya takes the key and walks to the lighthouse.","Maya seems curious, because she wants to see what the lighthouse is hiding.","I like Maya because she is my favourite character."],1,"An impression is a <b>describing word plus proof</b>. The first one only retells the story. The last one is about you, not Maya."],
+ ["A question says <b>“Give two ways.”</b> Which answer gets both marks?",["1. He was shaking. 2. He was trembling.","1. He was shaking. 2. He didn't answer his friend.","1. He was shaking. 2. He was very shaky."],1,"Shaking and trembling are the <b>same clue</b> in new words. You need two <b>different</b> clues."],
+ ["“How does the writer create a mysterious <b>atmosphere</b>?” The word atmosphere means…",["the weather in the story","the feeling or mood of the place","the air the characters breathe"],1,"Atmosphere = the <b>mood</b>. Mysterious, spooky, tense, cheerful are all atmospheres."],
+ ["“<b>Find and copy</b> one word which shows he was not careful.” Which answer is right?",["He threw it on the floor without looking.","dumped","He wasn't careful because he dumped it."],1,"Find and copy = <b>the exact word</b> from the text, nothing else."],
+ ["“What <b>effect</b> did the loud bang have on the children?”",["It was a loud bang from the kitchen.","It made them jump.","The bang was very loud."],1,"Effect = what it <b>did to them</b>."],
+ ["“What does this <b>suggest</b> about Tom?” The text says: <i>Tom checked the door was locked three times.</i>",["Tom checked the door three times.","This suggests Tom was worried or nervous.","Tom has a door."],1,"Suggest = read between the lines. The text never says “worried”: you work it out."],
+ ["“<b>According to the text</b>, why did the bridge close?” You know bridges sometimes close for repairs, but the text says it closed because of a storm. You write…",["for repairs","because of a storm","because bridges get old"],1,"According to the text = <b>only</b> what the text says, not what you know."],
+ ["“Which gives the best <b>summary</b> of the whole text?”",["the sentence about the funniest part","the main idea that covers the whole text","the first line"],1,"A summary covers the <b>whole</b> text, not one moment."],
+ ["“What impressions do you get of Gran? Use <b>evidence</b>.” Which part is the evidence? <i>Gran seems generous because she gave Leo two coins.</i>",["Gran seems generous","because she gave Leo two coins","Gran"],1,"The <b>evidence</b> is the detail from the text that proves it. “Generous” is the impression."],
+ ["“What is <b>most likely to happen next</b>?” The story ends: <i>She looked at the shadowy corner. But she didn't move. Not yet.</i>",["She will go home and forget about it.","She will go and look in the corner.","She will fall asleep."],1,"Predict = use the <b>clue</b>: “Not yet” tells you she will move soon, towards the corner."]
+];
+Q1.forEach(function(x,i){q($("quiz1"),"p1-"+i,x[0],x[1],x[2],x[3],"p1-",Q1.length,$("quiz1score"),"Score")});
+
+/* ---------- passages ---------- */
+$("maya").innerHTML="<p>Maya had been told, three times, not to touch the key on the hook by the kitchen door. So, on the first wet Saturday of the holidays, she took it down and turned it over in her fingers. It was heavier than it looked, and someone had scratched a tiny star into the handle.</p><p>She noticed things like that. She noticed that Grandad always glanced at the hook before he went to bed, and that the lighthouse on the headland had not been lit for forty years.</p><p>When the rain eased, she pulled on her boots, slipped the key into her pocket and walked the cliff path alone. The wind shoved at her. She leaned into it and laughed.</p><p>At the lighthouse door she paused. The lock was rusted orange. “Right,” she whispered. “Let's see what you're hiding.”</p>";
+$("sam").innerHTML="<p>Sam stood at the start line, retying a shoelace that was already tied. His stomach felt as if it were full of bees. He glanced at the crowd, then quickly looked away.</p><p>“You'll be fine,” said Priya. Sam nodded but didn't answer.</p><p>Mr Okafor lifted the whistle. Sam wiped his palms on his shorts for the third time. When the whistle blew, he shot off the line like a firework.</p>";
+
+/* ---------- Part 2 ---------- */
+var T=[
+ ["<i>“…told, three times, not to touch the key… she took it down.”</i> Maya seems…",["lazy","curious","shy","tidy"],1,"She can't leave it alone: she wants to know about it. (<b>Headstrong</b> or <b>disobedient</b> would also score.)"],
+ ["<i>“She noticed that Grandad always glanced at the hook before he went to bed.”</i> Maya seems…",["forgetful","bossy","observant","sleepy"],2,"Observant = good at noticing things. The text even says “she noticed things like that.”"],
+ ["<i>“…walked the cliff path alone. The wind shoved at her. She leaned into it and laughed.”</i> Maya seems…",["nervous","brave","careful","bored"],1,"Alone on a cliff in strong wind, and she <b>laughs</b>: she is brave (or adventurous)."],
+ ["<i>“Let's see what you're hiding.”</i> Maya seems…",["determined","polite","confused","sad"],0,"She is going to find out, whatever it takes: determined (curious works too)."]
+];
+var JJ=[
+ ["Answer A: <i>“She takes the key and goes to the lighthouse and finds a rusty lock.”</i> How many marks?",["0","1","2","3"],0,"Only <b>retells</b> what happened. No describing word, so 0."],
+ ["Answer B: <i>“She is curious. She is brave.”</i> How many marks?",["0","1","2","3"],2,"Two impressions, but <b>no evidence</b>: 2 marks. Add one “because…” and it's 3."],
+ ["Answer C: <i>“She is brave because she walked the cliff path alone.”</i> How many marks?",["0","1","2","3"],2,"One impression <b>with</b> evidence: 2. A second, different impression would make it 3."],
+ ["Answer D: <i>“She is curious because she wants to see what the lighthouse is ‘hiding’. She is also observant.”</i> How many marks?",["0","1","2","3"],3,"Two different impressions, one with evidence: <b>full marks</b>."]
+];
+var js=h("p","score");js.id="judgeScore";
+T.forEach(function(x,i){q($("traits"),"p2t-"+i,x[0],x[1],x[2],x[3],"p2",T.length+JJ.length,js,"Score")});
+JJ.forEach(function(x,i){q($("judge"),"p2j-"+i,x[0],x[1],x[2],x[3],"p2",T.length+JJ.length,js,"Score")});
+$("judge").appendChild(js);
+var mw=$("mayaWrite");mw.value=load("maya","");var mt;mw.oninput=function(){clearTimeout(mt);mt=setTimeout(function(){save("maya",mw.value);$("mayaSaved").textContent="Saved on this device"},400)};
+var ck=load("checks",{});[].forEach.call(document.querySelectorAll(".checks input"),function(c){c.checked=!!ck[c.dataset.c];c.onchange=function(){ck[c.dataset.c]=c.checked;save("checks",ck)}});
+$("mayaModelBtn").onclick=function(){$("mayaModel").classList.toggle("show")};
+
+/* ---------- Part 3 ---------- */
+var S=[
+ ["He retied a shoelace that was already tied.",0,"A real clue: fiddling with something that doesn't need it."],
+ ["His stomach felt full of bees.",0,"A real clue: a nervous feeling inside."],
+ ["He kept fiddling with his shoe.",3,"Same clue as the shoelace answer, in new words. It only scores if you didn't already use the shoelace."],
+ ["He ran very fast.",2,"True, but running fast doesn't prove he was <b>nervous</b>."],
+ ["He was scared because he lost the race last year.",1,"The story never says that. Not in the text = 0."],
+ ["He looked away from the crowd.",0,"A real clue: he can't face people watching."],
+ ["He wiped his palms on his shorts for the third time.",0,"A real clue: sweaty hands."],
+ ["He didn't answer Priya.",0,"A real clue: too nervous to talk."]
+];
+var LAB=["Good clue","Not in the text","Doesn't prove 'nervous'","Same as another answer"];
+var sv=load("sorts",{});
+S.forEach(function(s,i){var r=h("div","sortrow");r.appendChild(h("div","a","“"+s[0]+"”"));var bs=h("div","btns"),y=h("p","why");
+  LAB.forEach(function(l,k){var b=h("button",null,l);b.type="button";b.onclick=function(){go(k,true)};bs.appendChild(b)});
+  function go(k,fresh){[].forEach.call(bs.children,function(x,j){x.disabled=true;if(j===s[1])x.classList.add("right")});if(k!==s[1])bs.children[k].classList.add("wrong");
+    y.innerHTML=(k===s[1]?"<b class='g'>Yes.</b> ":"<b class='r'>Not quite.</b> ")+s[2];y.classList.add("show");if(fresh){sv[i]=k;save("sorts",sv)}sortScore()}
+  r.appendChild(bs);r.appendChild(y);$("sorts").appendChild(r);if(sv[i]!=null)go(sv[i],false)});
+function sortScore(){var n=0,r=0;for(var k in sv){n++;if(sv[k]===S[k][1])r++}if(n===S.length){$("sortScore").textContent="Sorted: "+r+" out of "+S.length+" right.";}}
+ANS["p3-pair"]=2;
+mc($("pairs"),"p3-pair","Which two answers together get <b>both</b> marks?",["“He retied a shoelace that was already tied.” + “He kept fiddling with his shoe.”","“His stomach felt full of bees.” + “He ran very fast.”","“He looked away from the crowd.” + “He wiped his palms on his shorts.”","“He was scared because he lost last year.” + “He didn't answer Priya.”"],2,"Two <b>different</b> clues, both in the text, both prove <b>nervous</b>. The others: the same clue twice; a clue that doesn't prove nervous; a made-up reason.",function(){markDone("p3")});
+
+/* ---------- Part 4 ---------- */
+var M=["Every Friday, the car park behind the library turned into a night market.","At six o'clock, a man in a red apron rang a brass bell, and that was how Leo always knew the stalls were about to open.","The smell of frying onions drifted over the wall.","Strings of paper lanterns blinked on, one after another.","Leo's gran gave him two coins and a warning: “Back by the time the bell rings again.”","He nodded, already running.","By half past nine, the lanterns were dark, the stalls were folded away, and the car park was just a car park again."];
+var FQ=[
+ ["How did Leo always know the stalls were about to open?",1,"The text says “that was how Leo always knew”: the <b>bell</b>. The lanterns come on too, but the text doesn't say that's how he knew. Answer: <i>a man rang a brass bell.</i>"],
+ ["How can you tell Leo was eager to get to the market?",5,"“He nodded, <b>already running</b>.” He couldn't wait."],
+ ["Give one way you can tell things had gone back to normal.",6,"The lanterns were dark, the stalls folded away, and “the car park was just a car park again”."],
+ ["According to the text, what did Gran give Leo?",4,"Two coins <b>and a warning</b>. Careful readers get both."]
+];
+var fi=load("findIdx",0),fs=load("findScore",[]),M_el=$("market");
+M.forEach(function(s,i){var sp=h("span","sent",s+" ");sp.onclick=function(){tap(i)};M_el.appendChild(sp)});
+function showQ(){[].forEach.call(M_el.children,function(x){x.classList.remove("pick-right","pick-wrong")});$("findWhy").classList.remove("show");$("findNext").style.display="none";
+  if(fi>=FQ.length){$("findQ").textContent="All done!";var r=fs.filter(Boolean).length;$("findScore").textContent="First tries right: "+r+" out of "+FQ.length+".";markDone("p4");return}
+  $("findQ").textContent=(fi+1)+". "+FQ[fi][0];locked=false}
+var locked=false;
+function tap(i){if(locked||fi>=FQ.length)return;var right=FQ[fi][1];
+  if(i===right){M_el.children[i].classList.add("pick-right");locked=true;if(fs[fi]==null)fs[fi]=true;save("findScore",fs);
+    $("findWhy").innerHTML="<b class='g'>Found it.</b> "+FQ[fi][2];$("findWhy").classList.add("show");$("findNext").style.display="inline-block"}
+  else{M_el.children[i].classList.add("pick-wrong");if(fs[fi]==null){fs[fi]=false;save("findScore",fs)}
+    $("findWhy").innerHTML="<b class='r'>Not that one.</b> That sentence doesn't answer <i>this</i> question. Read the question's key words again and try another.";$("findWhy").classList.add("show")}}
+$("findNext").onclick=function(){fi++;save("findIdx",fi);showQ()};
+showQ();
+
+/* ---------- tabs ---------- */
+var parts=[].slice.call(document.querySelectorAll("section.part")),tabs=$("tabs"),cur=load("part",0),done=load("done",{});
+parts.forEach(function(p,i){var b=h("button",null,(i+1)+". "+p.dataset.title+"<small>"+p.dataset.sub+"</small>");b.type="button";b.setAttribute("role","tab");b.onclick=function(){go(i)};tabs.appendChild(b)});
+function markDone(prefix){var map={"p1-":0,"p2":1,"p3":2,"p4":3};var i=map[prefix];if(i==null)return;done[i]=true;save("done",done);paint()}
+function paint(){[].forEach.call(tabs.children,function(b,i){b.setAttribute("aria-selected",i===cur?"true":"false");b.classList.toggle("done",!!done[i])})}
+function go(i){cur=Math.max(0,Math.min(parts.length-1,i));parts.forEach(function(p,k){p.classList.toggle("on",k===cur)});save("part",cur);paint();
+  $("prev").style.visibility=cur===0?"hidden":"visible";$("next").textContent=cur===parts.length-1?"Print the paper →":"Next part →";window.scrollTo(0,0)}
+$("prev").onclick=function(){go(cur-1)};
+$("next").onclick=function(){if(cur===parts.length-1)location.search="?print";else go(cur+1)};
+go(cur);
+
+/* ---------- print mode ---------- */
+if(/[?&]print\b/.test(location.search)){document.body.classList.add("print");document.title="Reading Detective: practice paper"}
+var sa=/[?&]answers\b/.test(location.search);function pa(){document.body.classList.toggle("show-ans",sa);$("ansToggle").textContent=sa?"Hide answers":"Show answers (parent)"}
+$("ansToggle").onclick=function(){sa=!sa;pa()};pa();
+document.documentElement.setAttribute("data-ready","1");
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>

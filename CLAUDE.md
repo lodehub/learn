@@ -107,7 +107,7 @@ Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squ
 ### Ninja (upper primary, Year 5/6)
 - Maths: Mean, median, mode and area; Cancelling: percentages and ratios. Archived: Football stats (+ quiz), Shape Up: area formulas.
 - Explore: "Letters that stand for numbers", algebra from scratch; "Detective and Machine", logic and pattern puzzles; "How much space?", volume from scratch (builds on perimeter and area: counting cubes, area of the floor × height, cm³ and litres, same volume vs surface area, the doubling trap, prisms).
-- English: Answer it the way the question asks; Grammar Workshop (Year 5 and 6).
+- English: **Reading Detective** (`english/reading-moves/`, KS2 reading moves: question words decoder, impressions = trait + proof with a be-the-marker step, "give two ways" sorting, tap-the-sentence find-it-first; all passages original; `?print` 2-page paper with answers PDF); Answer it the way the question asks; Grammar Workshop (Year 5 and 6).
 - French Lab, French Role-play, Mandarin Lab, Mandarin Role-play.
 
 ### Bingo (lower primary, Year 3)

@@ -80,6 +80,22 @@
       "topic": "Area and shape"
     },
     {
+      "title": "Reading Detective: question words, impressions, two ways, find it first",
+      "path": "english/reading-moves/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "english/reading-moves/reading-detective-paper.pdf",
+      "printTitle": "Reading Detective practice paper (2 pages)"
+    },
+    {
+      "title": "Reading Detective paper: answers (for parent)",
+      "path": "english/reading-moves/reading-detective-answers.pdf",
+      "type": "pdf",
+      "year": 2026,
+      "status": "current"
+    },
+    {
       "title": "Answer it the way the question asks",
       "path": "english/answer-it-right/",
       "type": "html",
