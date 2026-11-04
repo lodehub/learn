@@ -12,7 +12,7 @@
 (function () {
   'use strict';
   var ENDPOINTS = {
-    ember: ''
+    ember: 'https://script.google.com/macros/s/AKfycby9wCaBjXS4csbP4Vb7FSg6Tajeq-yimAltZjt0bKMqhaK2GjlCno7r8bVqUckoI_UX/exec'
   };
   var cfg = null, url = '', K = '', pending = {}, last = {}, lastSent = null, timer = null;
 
