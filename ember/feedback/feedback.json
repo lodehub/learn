@@ -1,4 +1,39 @@
 {
   "about": "Feedback written to Ember on her work. Public: codename only, never a real name, school or teacher. Parent notes and level estimates stay private.",
-  "entries": []
+  "entries": [
+    {
+      "id": "2026-11-08-science-explore-moments",
+      "date": "2026-11-08",
+      "subject": "Science",
+      "title": "Moments from scratch",
+      "tool": "science/explore-moments/",
+      "mark": "Lorry ramp (AQA June 2019 Q10.1): 1 / 2",
+      "summary": "A strong session. You got M = F × d, the see-saw and the metre-rule balance right first time, and your last notebook answer was a proper linked explanation: “the distance is longer and a smaller force is needed”. Three things to fix, all small.",
+      "next": "Do Science Week 4: moments and the lever chain. It is built around these three fixes. Then say the long-spanner chain out loud without looking.",
+      "items": [
+        {
+          "block": "note:r5",
+          "q": "Lorry ramp: why is it easier to pull the rope?",
+          "mark": "1 / 2",
+          "good": "“The rope is further from the hinge… the distance is longer from the pivot” got the first mark. Your self-mark of 1 / 2 was exactly right.",
+          "fix": "You finished with “the moment is larger”. The ramp needs the same moment to lower it either way, so the point is that the force can be smaller. AQA only gives the second mark for “so a smaller force is needed”.",
+          "model": "The rope is further from the hinge, so the perpendicular distance from the pivot to the force is greater. The ramp needs the same moment to lower it, so a smaller force is needed on the rope."
+        },
+        {
+          "block": "note:r4",
+          "q": "Clockwise or anticlockwise?",
+          "good": "In Room 4 you said a child on the left turns the see-saw anticlockwise. That is right.",
+          "fix": "Room 4, question 1 and your Room 5 notebook had it backwards (“weights on the left side turns clockwise”). Picture a clock: pushing down on the right makes the right end go from 3 towards 6, which is clockwise.",
+          "model": "A weight on the right of the pivot turns the rule clockwise. A weight on the left turns it anticlockwise. It balances when the total clockwise moment equals the total anticlockwise moment."
+        },
+        {
+          "block": "r2-q0",
+          "q": "Pulling straight along a spanner",
+          "good": "After the reveal, your notebook got the idea: “it is through the pivot”.",
+          "fix": "You predicted the nut would turn more. If the force points through the pivot, the perpendicular distance is zero, so the moment is zero and nothing turns. The word is perpendicular distance, not height.",
+          "model": "The force acts through the pivot, so the perpendicular distance is zero, and moment = force × 0 = 0. The nut does not turn."
+        }
+      ]
+    }
+  ]
 }
