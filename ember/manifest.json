@@ -1,5 +1,5 @@
 {
-  "currentWeek": 3,
+  "currentWeek": 4,
   "checkin": "weekly/check-in/",
   "daily": {
     "path": "weekly/today/",
@@ -75,22 +75,35 @@
       "path": "english/week3-symbolism/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Language analysis",
       "print": "english/week3-symbolism/week3-written.pdf",
       "printTitle": "Week 3 written: symbol paragraph",
-      "week": 3
+      "week": 3,
+      "term": "Autumn"
     },
     {
       "title": "English Week 3 plus: real AQA Question 2 (a house that means more)",
       "path": "english/week3plus-symbolism/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Language analysis",
       "print": "english/week3plus-symbolism/week3plus-symbolism-written.pdf",
       "printTitle": "Week 3 plus written: AQA Q2 + Tsunami Girl",
-      "week": 3
+      "week": 3,
+      "term": "Autumn"
+    },
+    {
+      "title": "English Week 4: the empty town (Quote, effect, So What)",
+      "path": "english/week4-empty-town/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Language analysis",
+      "print": "english/week4-empty-town/week4-empty-town-written.pdf",
+      "printTitle": "Week 4 written: Question 2 format",
+      "week": 4
     },
     {
       "title": "Algebra Quest",
@@ -146,11 +159,12 @@
       "path": "maths/week3-fractions/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Fractions",
       "print": "maths/week3-fractions/week3-written.pdf",
       "printTitle": "Week 3 written multiplying fractions",
-      "week": 3
+      "week": 3,
+      "term": "Autumn"
     },
     {
       "title": "Why triangles know things: trigonometry from scratch",
@@ -176,11 +190,23 @@
       "path": "maths/week3plus-fractions/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Fractions",
       "print": "maths/week3plus-fractions/week3plus-fractions-written.pdf",
       "printTitle": "Week 3 plus written: two AQA fraction questions",
-      "week": 3
+      "week": 3,
+      "term": "Autumn"
+    },
+    {
+      "title": "Maths Week 4: dividing fractions, the method and the why",
+      "path": "maths/week4-dividing-fractions/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Fractions",
+      "print": "maths/week4-dividing-fractions/week4-dividing-fractions-written.pdf",
+      "printTitle": "Week 4 written: dividing fractions",
+      "week": 4
     },
     {
       "title": "Lungs and gas exchange",
@@ -245,22 +271,24 @@
       "path": "science/week3-forces/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Forces",
       "print": "science/week3-forces/week3-written.pdf",
       "printTitle": "Week 3 written forces and 6-mark answer",
-      "week": 3
+      "week": 3,
+      "term": "Autumn"
     },
     {
       "title": "Science Week 3 plus: forces, real AQA questions",
       "path": "science/week3plus-forces/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Forces",
       "print": "science/week3plus-forces/week3plus-forces-written.pdf",
       "printTitle": "Week 3 plus written: AQA skydiver questions",
-      "week": 3
+      "week": 3,
+      "term": "Autumn"
     },
     {
       "title": "Forces from scratch: why a skydiver stops speeding up",
@@ -279,6 +307,17 @@
       "status": "current",
       "strand": "explore",
       "topic": "Forces"
+    },
+    {
+      "title": "Science Week 4: moments and the lever chain",
+      "path": "science/week4-moments/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Forces",
+      "print": "science/week4-moments/week4-moments-written.pdf",
+      "printTitle": "Week 4 written: moments, with AQA gears question",
+      "week": 4
     },
     {
       "title": "Rome: the 14-day revision road",
@@ -333,20 +372,32 @@
       "path": "history/week3-black-death/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "print": "history/week3-black-death/week3-written.pdf",
       "printTitle": "Week 3 written: Black Death So What paragraphs",
-      "week": 3
+      "week": 3,
+      "term": "Autumn"
     },
     {
       "title": "History Week 3 plus: medieval medicine, climbing the AQA levels",
       "path": "history/week3plus-black-death/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "print": "history/week3plus-black-death/week3plus-black-death-written.pdf",
       "printTitle": "Week 3 plus written: AQA 8-mark significance",
-      "week": 3
+      "week": 3,
+      "term": "Autumn"
+    },
+    {
+      "title": "History Week 4: the Black Death, So What? on your own writing",
+      "path": "history/week4-black-death/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "history/week4-black-death/week4-black-death-written.pdf",
+      "printTitle": "Week 4 written: 12-mark question",
+      "week": 4
     },
     {
       "title": "Geography Week 1: megacities and case-study evidence",
@@ -400,8 +451,9 @@
       "path": "weekly/pdfs/week3-homework-pack.pdf",
       "type": "pdf",
       "year": 2026,
-      "status": "current",
-      "week": 3
+      "status": "archived",
+      "week": 3,
+      "term": "Autumn"
     },
     {
       "title": "French Lab: build French one sentence pattern at a time",

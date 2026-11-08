@@ -1,0 +1,70 @@
+{
+  "kicker": "Ember · History · Week 4",
+  "title": "The Black Death: So What?, on your own writing",
+  "sub": "You wrote a paragraph about how people responded to the Black Death. This week you improve two of its So Whats, check five claims, then write a 12-mark answer. About 20 minutes on screen, then the written paper.",
+  "skill": "So What? (developed explanation).",
+  "target": "A So What must point back to the evidence just before it: what does <i>that</i> show people valued, feared, wanted or believed? It must not add a new fact, and it must not judge the past by what we know now.",
+  "print": "week4-black-death-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up",
+      "time": "5 min",
+      "sub": "The So What test, from memory.",
+      "blocks": [
+        {"type": "mc", "id": "w1", "h": "Which is the So What?", "q": "Evidence: “Some people walked through towns whipping themselves in public.” Which sentence is a grounded So What?", "o": ["This shows how horrible the plague was.", "This suggests they believed the plague was a punishment from God, so the cure had to be showing God they were sorry.", "Flagellants were later banned by the Pope."], "c": 1, "why": "It points straight back at the whipping and says what belief it shows. The first is too general (it could follow any sentence). The third is a new fact, not a So What."},
+        {"type": "mc", "id": "w2", "h": "The point-back test", "q": "How do you test whether a So What is grounded?", "o": ["It is longer than the Evidence sentence", "You can point to the exact words in the Evidence sentence that it explains", "It uses the word “shows”"], "c": 1, "why": "If you can point at the evidence it explains, it is grounded. If it would still make sense after a different Evidence sentence, it is too general."},
+        {"type": "mc", "id": "w3", "h": "Judging the past", "q": "A pupil writes: “Cleaning the streets was actually a good idea, because it stopped germs spreading.” What is the problem?", "o": ["Nothing: it is true", "It judges medieval people by modern knowledge. They did not know about germs. Ask why <i>they</i> thought it would help.", "It is too short"], "c": 1, "why": "This is hindsight. Germ theory came in the 1860s. Medieval people cleaned streets because they believed bad smells (miasma) spread disease. The So What is about <b>their</b> belief."}
+      ]
+    },
+    {
+      "h": "2. Core skill: fix two So Whats",
+      "time": "15 min",
+      "sub": "These are your own sentences from 1 November. Sentence 1 was already strong. Now get 2 and 3 to the same standard.",
+      "blocks": [
+        {"type": "info", "html": "<b>Your sentence 1 (keep it):</b> “Some people thought that it was a punishment from god so they went around whipping themselves. This shows how desperate they were to rid England of this plague that they resorted to hurting themselves to show god they were sorry.” <br><br>Why it works: the So What points back at the whipping and says what they believed. (Check: capital G for God.)"},
+        {"type": "mc", "id": "c1", "h": "Your sentence 2", "q": "You wrote: “Some people thought it was bad air and treated others using herbal concoctions and treatments. <b>This shows that they wanted to have a different way of treating plague victims if the old way didn’t work and showed just how horrible the plague was.</b>” What is wrong with the So What?", "o": ["Nothing", "It adds an idea that is not in the evidence (“the old way didn’t work”) and ends with something too general (“how horrible”)", "It is too short"], "c": 1, "why": "Your evidence is about <b>bad air</b> and <b>herbs</b>. A grounded So What says what that shows about their beliefs: for example, that they believed disease travelled through the air as bad smells, so they tried to block or cover the smell."},
+        {"type": "write", "id": "c2", "marks": 2, "rows": 3, "h": "Rewrite So What 2", "q": "Rewrite the So What for sentence 2. Point back at <b>bad air</b> and <b>herbs</b>.", "starters": ["This suggests that people believed…", "Underlying this was the idea that…"], "minWords": 15, "mark": {"points": [{"t": "it points back at the evidence: bad air and/or the herbs", "m": 1}, {"t": "it says what people believed or feared (e.g. that disease spread through bad smells in the air), with no new fact", "m": 1}], "note": "Point-back test: can you put your finger on the words in the evidence that your So What explains?"}},
+        {"type": "mc", "id": "c3", "h": "Your sentence 3", "q": "You wrote: “In some areas, they cleaned the streets which was actually better as it made spreading the disease harder than before when the streets were dirtier. <b>This shows that not everyone was dirty in medieval england and some people actually had a way out.</b>” What are the problems? Choose the best answer.", "o": ["The evidence has no place or date, “actually better” uses modern knowledge, and the So What (“not everyone was dirty”) is not about what they believed", "Only the spelling of England", "Nothing: it is grounded"], "c": 0, "why": "Three fixes: (1) Says Who? Which town, and when? Find it in your notes. (2) Drop “actually better”: judge by what <i>they</i> believed. (3) Make the So What about belief: cleaning the streets shows they thought the filth and smell carried the disease."},
+        {"type": "write", "id": "c4", "marks": 3, "rows": 4, "h": "Rewrite sentence 3", "q": "Rewrite the whole of sentence 3: Evidence (with a place and date from your notes, or <i>source needed</i>), then a So What about what they believed.", "starters": ["In [place], in [year], …", "This suggests that they believed…"], "minWords": 25, "mark": {"points": [{"t": "the evidence names where and when (or says source needed)", "m": 1}, {"t": "no hindsight: no “actually better” or germs", "m": 1}, {"t": "the So What says what people believed about how the disease spread, and points back at the cleaning", "m": 1}], "note": "If your notes do not say where or when, write <i>source needed</i>. That is honest, and better than guessing."}},
+        {"type": "checklist", "id": "claims", "h": "Claim check: answer each from your notes", "items": ["Did the flagellants mostly march in England, or in mainland Europe? What does my sentence 1 need to say?", "Were herbs used to <b>cure</b> the plague, or to <b>protect</b> against bad air?", "Which town cleaned its streets, and in what year?", "Did medieval people know that dirt carries germs?", "What evidence do I have for “not everyone was dirty”? If none, cut it."]}
+      ]
+    },
+    {
+      "h": "3. Written paper",
+      "time": "20 min",
+      "blocks": [
+        {"type": "info", "tone": "big", "html": "Print the written paper. It is a 12-mark question in the exact format AQA uses: two bullet points, and you decide which was more important. Use your two new So Whats. Level descriptors on the last page."}
+      ]
+    },
+    {
+      "h": "4. Check yourself",
+      "time": "5 min",
+      "blocks": [
+        {"type": "checklist", "id": "sc", "h": "Self-check", "items": ["Every Evidence sentence is followed by a So What.", "Every So What passes the point-back test.", "No hindsight: I judged them by what <i>they</i> believed.", "I wrote about <b>both</b> bullet points.", "I ended with a clear judgement: which was more important, and why."]},
+        {"type": "oral", "q": "“People carried sweet-smelling herbs. So what does that tell us?”", "note": "For the parent: listen for a belief (“they thought the disease was in the bad-smelling air”). “That the plague was horrible” is too general: ask “what did they think was causing it?”"}
+      ]
+    }
+  ],
+  "paper": {
+    "title": "History Week 4: the Black Death (written)",
+    "sub": "Ember · A 12-mark question in AQA’s format · about 20 minutes",
+    "intro": "<b>Skill: So What?</b> After every Evidence sentence, write one more sentence: what does this show people believed, feared or wanted? Point back at the evidence. Evidence must come from your notes or the reference page below.",
+    "blocks": [
+      {"type": "info", "h": "Reference page (for checking claims, not for copying)", "html": "<ul><li>Most people believed the Black Death (1348–49) was sent by God as a punishment for sin. Responses included prayer, processions and pilgrimage.</li><li>Flagellants whipped themselves in public to show God they were sorry. They were mostly in mainland Europe; a group came to London in 1349, but the movement did not catch on in England.</li><li>Many people believed disease spread through <b>miasma</b>: bad air and foul smells from rotting matter. People carried sweet-smelling herbs and flowers to protect themselves, and lit fires to clean the air.</li><li>In 1349 King Edward III ordered the Mayor of London to clear the filth from the streets, because of the foul smell it gave off.</li><li>Doctors followed the theory of the four humours: bleeding and purging to rebalance the body.</li></ul>"},
+      {"type": "table", "h": "Plan (5 min): at least one row per bullet point", "cols": ["Bullet point", "Evidence (from my notes)", "So what? What did it show they believed?", "Claim check: supported / check / source needed"], "rows": [["Religious beliefs", "", "", ""], ["Religious beliefs", "", "", ""], ["Ideas about bad air", "", "", ""], ["Ideas about bad air", "", "", ""]]},
+      {"marks": 12, "q": "Which of the following was the more important reason why people in England responded to the Black Death in the ways that they did: <br>• religious beliefs <br>• ideas about bad air (miasma)? <br>Explain your answer with reference to both bullet points.", "lines": 24}
+    ],
+    "selfcheck": [
+      "I wrote about both bullet points.",
+      "Every Evidence sentence has a So What after it, and each So What points back at its evidence.",
+      "My claims are in my notes or the reference page (I filled in the claim check column).",
+      "No hindsight, and no modern labels.",
+      "My last paragraph says which reason was more important, and why.",
+      "Reflection: which So What was easiest to write? Which claim was hardest to back up? What would my first sentence say now?"
+    ],
+    "marking": [
+      {"h": "How AQA marks a 12-mark “Which was the more important reason” question (levels)", "html": "<ul><li><b>Level 4 (10–12): complex explanation of both bullets leading to a sustained judgement.</b> Explains how the reasons are related, supported by accurate and detailed knowledge.</li><li><b>Level 3 (7–9): developed explanation of both bullets.</b> Extended reasoning, supported by a range of accurate knowledge.</li><li><b>Level 2 (4–6): simple explanation of bullet(s).</b> Simple reasoning, supported by specific knowledge.</li><li><b>Level 1 (1–3): basic explanation of one or both bullets.</b> General, limited knowledge.</li></ul>Your So Whats are the step from Level 2 to Level 3. A Level 4 answer links the two bullets: for example, many people believed God sent the bad air, so the two ideas worked together. My level: ____"}
+    ],
+    "footer": "Question written for Ember in the format of AQA GCSE History 8145 Paper 1 Question 6 (12 marks). Level headings from AQA’s published mark schemes, used for private practice."
+  }
+}

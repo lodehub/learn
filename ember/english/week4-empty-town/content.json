@@ -1,0 +1,68 @@
+{
+  "kicker": "Ember · English · Week 4",
+  "title": "The empty town: Quote, effect, So What",
+  "sub": "In <i>Tsunami Girl</i>, Yuki and Taka go into the zone. This week you practise on a short passage about an empty town, then use the same moves on your own quote from the book. About 20 minutes on screen, then the written paper.",
+  "skill": "Quote, effect, So What.",
+  "target": "A short quote, then the effect (what it makes us picture or feel, and <b>how</b>), then So What: what that tells us about the place or the characters. Retelling what happens scores nothing in Question 2.",
+  "print": "week4-empty-town-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up",
+      "time": "5 min",
+      "sub": "Last week: symbols. From memory.",
+      "blocks": [
+        {"type": "mc", "id": "w1", "h": "Symbols", "q": "What makes an object a symbol in a story?", "o": ["It is described in a lot of detail", "It stands for an idea bigger than itself, like loss or hope", "It appears in the title"], "c": 1, "why": "A symbol is an object or place that comes to mean something bigger. That bigger meaning is your So What."},
+        {"type": "mc", "id": "w2", "h": "Retelling or analysing?", "q": "Which sentence analyses rather than retells?", "o": ["Yuki and Taka go into the radiation zone.", "The writer makes the zone feel frozen in time, which suggests that the disaster stopped people’s lives in a single moment.", "The zone is near the sea."], "c": 1, "why": "The first and last say what happens or where. The second says what the writing <b>does</b> and what that shows. Your daily note on Thursday (“Yuki and Taka go into radiation zone”) was a retell: this week you turn retells into analysis."}
+      ]
+    },
+    {
+      "h": "2. Core skill: practise on a passage",
+      "time": "15 min",
+      "sub": "A short passage written for practice (not from the novel).",
+      "blocks": [
+        {"type": "info", "html": "<blockquote class=\"pr-extract\">The road into the town was empty. Weeds pushed up through the cracks in the tarmac, and a vending machine still glowed outside a shuttered shop, humming to nobody. Washing hung on a balcony, stiff and faded, as if the family had stepped out for a moment years ago. Somewhere a gate banged in the wind, again and again, like someone knocking who knew no one would answer. The silence was so thick it seemed to press against their ears.</blockquote>"},
+        {"type": "mc", "id": "c1", "h": "Effect", "q": "‘a vending machine still glowed … humming to nobody’. What is the main effect?", "o": ["It shows the town has electricity", "The machine carries on as if life is normal, which makes the emptiness feel eerie and unnatural", "It tells us what drinks were for sale"], "c": 1, "why": "The machine is still ‘alive’ while the people are gone. ‘to nobody’ makes the reader notice the missing people. The So What: life stopped, but the town did not get to say goodbye."},
+        {"type": "mc", "id": "c2", "h": "How it works", "q": "‘like someone knocking who knew no one would answer’. Which is the best explanation of <b>how</b> this simile works?", "o": ["It is a simile because it uses ‘like’", "It compares the banging gate to a person knocking, so the sound feels lonely and hopeless: no one is coming back", "It describes the weather"], "c": 1, "why": "Naming the technique (‘it is a simile’) earns very little on its own. AQA rewards the <b>effect</b>: the gate becomes a lonely visitor, and the hopelessness tells us the people are not coming back."},
+        {"type": "mc", "id": "c3", "h": "So What", "q": "‘Washing hung on a balcony, stiff and faded, as if the family had stepped out for a moment years ago.’ Which is the strongest So What?", "o": ["The washing had been there a long time.", "This suggests the family left in a hurry, expecting to come back, so the town becomes a picture of lives interrupted, not finished.", "Washing is usually hung outside to dry."], "c": 1, "why": "The first restates the quote. The second says what it reveals about the people and what the place comes to stand for. That is the So What."},
+        {"type": "order", "id": "ladder", "h": "Climb the levels", "q": "Four comments on ‘The silence was so thick it seemed to press against their ears’. Tap them from weakest to strongest.", "items": ["It was very quiet in the town.", "The writer says the silence was ‘thick’, which shows it was very quiet.", "‘Thick’ makes the silence sound like something solid, so it seems to press on the characters and makes them feel uneasy.", "‘Thick’ turns the silence into something solid and heavy that ‘presses’ on them, so the absence of people becomes a presence: the town is full of what is missing."], "labels": ["L1", "L2", "L3", "L4"], "doneTitle": "That is the ladder.", "done": "Level 1 retells. Level 2 quotes and repeats. Level 3 explains <b>how</b> the word works. Level 4 adds a So What: what the place comes to mean."},
+        {"type": "write", "id": "own", "marks": 3, "rows": 6, "h": "Now your book", "q": "In <i>Tsunami Girl</i>, find the part where Yuki and Taka go into the zone. Copy one short quote (a few words) that describes the place. Then write: the effect, how it works, and So What.", "starters": ["The writer describes the zone as ‘…’, which makes the reader…", "This works because…", "This suggests that…"], "placeholder": "Quote: ‘…’\nEffect and how: …\nSo What: …", "minWords": 35, "mark": {"points": [{"t": "a short, real quote from the book (a few words, not a whole sentence)", "m": 1}, {"t": "the effect, with <b>how</b> the words create it (…so… / because…)", "m": 1}, {"t": "a So What: what this shows about the place, the disaster, or Yuki and Taka", "m": 1}], "note": "Use the book, not memory: the quote must be exact. If you don’t have the book with you, do this part when you do."}}
+      ]
+    },
+    {
+      "h": "3. Written paper",
+      "time": "20 min",
+      "blocks": [
+        {"type": "info", "tone": "big", "html": "Print the written paper. Part A: a Question 2 in the AQA format, on the practice passage (about 12 minutes). Part B: the same question on your own quotes from <i>Tsunami Girl</i> (about 8 minutes). Mark scheme on the last page."}
+      ]
+    },
+    {
+      "h": "4. Check yourself",
+      "time": "5 min",
+      "blocks": [
+        {"type": "checklist", "id": "sc", "h": "Self-check", "items": ["Each quote is a few words, not a whole sentence.", "I named a technique only when it helped me explain the effect.", "Every point says <b>how</b> the words work (…so… / because…).", "At least one point has a So What: what the place comes to mean.", "I did not retell the story."]},
+        {"type": "oral", "q": "“Yuki and Taka go into the zone. So what does the writer want us to feel about that place?”", "note": "For the parent: listen for a feeling plus a reason from the words (e.g. “eerie, because things are left exactly as they were, so it feels like time stopped”). A plot summary is not an answer: ask “which words make you feel that?”"}
+      ]
+    }
+  ],
+  "paper": {
+    "title": "English Week 4: the empty town (written)",
+    "sub": "Ember · AQA English Language Paper 1, Question 2 format · about 20 minutes",
+    "intro": "<b>Skill: Quote, effect, So What.</b> Short quotes. Say what the words make us picture or feel, explain <i>how</i>, then say what that tells us about the place or the people.",
+    "blocks": [
+      {"marks": 8, "stem": "<b>Part A (about 12 minutes).</b> Look in detail at this extract:", "extract": "The road into the town was empty. Weeds pushed up through the cracks in the tarmac, and a vending machine still glowed outside a shuttered shop, humming to nobody. Washing hung on a balcony, stiff and faded, as if the family had stepped out for a moment years ago. Somewhere a gate banged in the wind, again and again, like someone knocking who knew no one would answer. The silence was so thick it seemed to press against their ears.", "q": "How does the writer use language here to describe the empty town?<br><span style=\"font-weight:400\">You could include the writer’s choice of: • words and phrases • language features and techniques • sentence forms.</span>", "lines": 14},
+      {"type": "info", "pageBreak": true, "h": "Part B: the same question, your book (about 8 minutes)", "html": "Find the part of <i>Tsunami Girl</i> where Yuki and Taka go into the zone. Copy two short quotes that describe the place.<br><br>Quote 1: “_____________________________________________”<br><br>Quote 2: “_____________________________________________”<br><br><b>Question:</b> How does the writer use language to describe the zone?"},
+      {"lines": 10}
+    ],
+    "selfcheck": [
+      "Part A covers at least three different quotes.",
+      "Each quote is a few words, and each has an effect and a <b>how</b>.",
+      "At least one point reaches a So What: what the town comes to stand for.",
+      "Part B uses real quotes from <i>Tsunami Girl</i>, copied exactly.",
+      "Reflection: which quote was hardest to explain, and why?"
+    ],
+    "marking": [
+      {"h": "How AQA marks Paper 1, Question 2 (8 marks)", "html": "<ul><li><b>Level 4 (7–8): perceptive, detailed.</b> Analyses the effects of the writer’s choices of language; selects a range of judicious textual detail; makes sophisticated and accurate use of subject terminology.</li><li><b>Level 3 (5–6): clear, relevant.</b> Explains clearly the effects of the writer’s choices of language; selects a range of relevant textual detail; makes clear and accurate use of subject terminology.</li><li><b>Level 2 (3–4): some, attempts.</b> Attempts to comment on the effect of language; selects some appropriate textual detail; makes some use of subject terminology, mainly appropriately.</li><li><b>Level 1 (1–2): simple, limited.</b> Offers simple comment on the effect of language; selects simple references or textual details; makes simple use of subject terminology, not always appropriately.</li></ul>Ideas for Part A: the glowing, humming machine (life carrying on with no one there); ‘stiff and faded’ washing and ‘as if… a moment’ (lives interrupted); the simile of the knocking gate (loneliness, no one returning); ‘thick’ and ‘press’ (silence made solid); the short first sentence (blunt, empty). My level: ____"}
+    ],
+    "footer": "Practice passage written for Ember. Question format and level descriptors from AQA GCSE English Language 8700 Paper 1, Question 2, used for private practice."
+  }
+}

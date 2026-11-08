@@ -1,0 +1,75 @@
+{
+  "kicker": "Ember · Maths · Week 4",
+  "title": "Dividing fractions: the method and the why",
+  "sub": "You already know keep, flip, change. This week: why it works, mixed numbers, and checking your answer. About 20 minutes on screen, then the written paper.",
+  "skill": "Written method and checking.",
+  "target": "AQA gives method marks for working you write down. Write each step, and check every division by multiplying back.",
+  "print": "week4-dividing-fractions-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up",
+      "time": "5 min",
+      "sub": "Last week: multiplying fractions. From memory.",
+      "blocks": [
+        {"type": "num", "id": "w1", "h": "Multiply", "q": "Work out [[3/4]] × [[2/9]]", "answer": "1/6", "simplest": true, "why": "Cancel first: 3 and 9 share 3, 2 and 4 share 2. [[1/2]] × [[1/3]] = [[1/6]]. Or [[6/36]] = [[1/6]]."},
+        {"type": "num", "id": "w2", "h": "Mixed numbers", "q": "Work out [[2 1/2]] × [[2/5]]", "answer": "1", "why": "[[2 1/2]] = [[5/2]]. Then [[5/2]] × [[2/5]] = [[10/10]] = 1."},
+        {"type": "mc", "id": "w3", "h": "Reciprocal", "source": "AQA Maths 8300/1H, November 2020, Q4", "marks": 1, "q": "Circle the reciprocal of [[5/6]]", "o": ["[[6/5]]", "[[1/6]]", "−[[1/6]]", "−[[6/5]]"], "c": 0, "why": "The reciprocal is the fraction flipped: [[5/6]] becomes [[6/5]]. Check: [[5/6]] × [[6/5]] = 1. A number times its reciprocal always makes 1. The “flip” in keep, flip, change is the reciprocal.", "ms": "[[6/5]] <b>B1</b>"}
+      ]
+    },
+    {
+      "h": "2. Core skill: why keep, flip, change works",
+      "time": "15 min",
+      "sub": "Know the reason, and you can never get the method backwards.",
+      "blocks": [
+        {"type": "info", "html": "<b>Division asks “how many fit?”</b> 6 ÷ 2 asks how many 2s fit into 6 (three). So 6 ÷ [[1/2]] asks how many <b>halves</b> fit into 6. Each whole has 2 halves, so 6 wholes have 12 halves. 6 ÷ [[1/2]] = 12 = 6 × 2. Dividing by [[1/2]] is the same as multiplying by 2, its reciprocal."},
+        {"type": "mc", "id": "c1", "h": "How many fit?", "q": "What is 4 ÷ [[1/3]]?", "o": ["[[4/3]]", "12", "[[1 1/3]]"], "c": 1, "why": "How many thirds fit into 4? Each whole has 3 thirds, so 4 wholes have 12. 4 ÷ [[1/3]] = 4 × 3 = 12."},
+        {"type": "mc", "id": "c2", "h": "Bigger or smaller?", "q": "Without working it out: is 5 ÷ [[2/3]] bigger or smaller than 5?", "o": ["Bigger than 5", "Smaller than 5", "Exactly 5"], "c": 0, "why": "Dividing by a number <b>less than 1</b> gives a bigger answer, because more than one of the pieces fits into each whole. Use this as a check: if you divide by a fraction less than 1 and your answer got smaller, something went wrong."},
+        {"type": "num", "id": "c3", "h": "Keep, flip, change", "q": "Work out [[3/5]] ÷ [[3/10]]", "answer": "2", "traps": [{"value": "9/50", "msg": "You multiplied without flipping. Keep [[3/5]], flip [[3/10]] to [[10/3]], then multiply."}, {"value": "1/2", "msg": "You flipped the first fraction instead of the second. Keep the first, flip the second."}], "why": "[[3/5]] × [[10/3]] = [[30/15]] = 2. Check: how many [[3/10]]s fit into [[3/5]] = [[6/10]]? Two. ✓"},
+        {"type": "steps", "id": "c4", "h": "Mixed numbers: change them first", "q": "Work out [[3 1/3]] ÷ [[1 1/9]]", "steps": [{"p": "Write [[3 1/3]] as an improper fraction.", "answer": "10/3", "hint": "3 × 3 + 1 thirds."}, {"p": "Write [[1 1/9]] as an improper fraction.", "answer": "10/9", "hint": "1 × 9 + 1 ninths."}, {"p": "Keep, flip, change: [[10/3]] × …?", "answer": "9/10", "hint": "Flip [[10/9]]."}, {"p": "Work out [[10/3]] × [[9/10]]. Simplify.", "answer": "3", "hint": "Cancel the 10s, then 9 ÷ 3."}], "why": "Check by multiplying back: 3 × [[1 1/9]] = 3 × [[10/9]] = [[30/9]] = [[3 1/3]] ✓"},
+        {"type": "num", "id": "c5", "h": "In words", "q": "A jug holds [[2 1/4]] litres of juice. Each glass holds [[3/8]] of a litre. How many glasses can be filled?", "answer": "6", "traps": [{"value": "27/32", "msg": "You multiplied. “How many glasses fit?” is a division: [[2 1/4]] ÷ [[3/8]]."}], "why": "[[2 1/4]] = [[9/4]]. [[9/4]] ÷ [[3/8]] = [[9/4]] × [[8/3]] = [[72/12]] = 6. Check: 6 × [[3/8]] = [[18/8]] = [[2 1/4]] ✓"},
+        {"type": "num", "id": "c6", "h": "Give it as a mixed number", "q": "Work out [[5/6]] ÷ [[2/9]]. Give your answer as a mixed number.", "answer": "15/4", "form": "mixed", "formMsg": "[[15/4]] is the right value, but the question asks for a <b>mixed number</b>. That loses the last mark.", "why": "[[5/6]] × [[9/2]] = [[45/12]] = [[15/4]] = [[3 3/4]]. Check: [[3 3/4]] × [[2/9]] = [[15/4]] × [[2/9]] = [[30/36]] = [[5/6]] ✓"},
+        {"type": "write", "id": "c7", "marks": 2, "rows": 4, "h": "Explain it", "q": "Explain why 6 ÷ [[1/2]] gives the same answer as 6 × 2. Use the words <i>how many</i> in your answer.", "starters": ["Dividing by a half asks how many…", "Each whole has…", "so…"], "minWords": 20, "mark": {"points": [{"t": "says that ÷ [[1/2]] asks how many halves fit into 6", "m": 1}, {"t": "says there are 2 halves in each whole, so 6 wholes have 6 × 2 = 12 halves", "m": 1}], "note": "This is the “why” behind keep, flip, change. If you can explain it, you will never flip the wrong fraction."}}
+      ]
+    },
+    {
+      "h": "3. Written paper",
+      "time": "15 min",
+      "blocks": [
+        {"type": "info", "tone": "big", "html": "Print the written paper and do it by hand. Write every step, and under each answer write a <b>check</b>: multiply your answer by the number you divided by. Answers on the last page."}
+      ]
+    },
+    {
+      "h": "4. Check yourself",
+      "time": "5 min",
+      "blocks": [
+        {"type": "checklist", "id": "sc", "h": "Self-check", "items": ["I changed mixed numbers to improper fractions <b>before</b> flipping.", "I kept the first fraction and flipped the <b>second</b>.", "I simplified my answer and gave it in the form asked.", "I checked a division by multiplying back.", "I can explain why ÷ [[1/2]] is the same as × 2."]},
+        {"type": "oral", "q": "“Why does 6 ÷ [[1/2]] give 12, not 3?”", "note": "For the parent: listen for “how many halves fit into 6: there are 2 in each whole, so 12”. “Because of keep, flip, change” is the rule, not the reason: ask “but why does flipping work?”"}
+      ]
+    }
+  ],
+  "paper": {
+    "title": "Maths Week 4: dividing fractions (written)",
+    "sub": "Ember · Non-calculator · about 15 minutes",
+    "intro": "<b>Skill: written method and checking.</b> Write every step. Under each answer, write a check: multiply your answer by the number you divided by. You should get back to where you started.",
+    "blocks": [
+      {"marks": 2, "q": "1. Work out [[7/8]] ÷ [[1/4]] <br>Give your answer as a mixed number.", "workBox": 30, "answerLine": "____________"},
+      {"type": "info", "html": "Check: ________________________________________________"},
+      {"marks": 3, "q": "2. Work out [[2 2/5]] ÷ [[1 1/5]]", "workBox": 40, "answerLine": "____________"},
+      {"type": "info", "html": "Check: ________________________________________________"},
+      {"marks": 3, "q": "3. A ribbon is [[4 1/2]] m long. It is cut into pieces that are each [[3/4]] m long. How many pieces are there?", "workBox": 40, "answerLine": "____________ pieces"},
+      {"type": "info", "html": "Check: ________________________________________________"},
+      {"marks": 2, "q": "4. Sam says, “When you divide, the answer is always smaller than the number you started with.” Use [[1/2]] ÷ [[1/4]] to show that Sam is wrong. Explain your answer.", "lines": 5}
+    ],
+    "selfcheck": [
+      "I changed mixed numbers to improper fractions first.",
+      "I flipped the second fraction, not the first.",
+      "I wrote a check under questions 1 to 3, and it worked.",
+      "Question 4: I worked out the answer <b>and</b> explained why it is bigger.",
+      "Reflection: which step do I most often forget?"
+    ],
+    "marking": [
+      {"h": "Answers", "html": "<ul><li><b>1.</b> [[7/8]] × [[4/1]] = [[28/8]] = [[7/2]] = [[3 1/2]] <b>(M1 A1)</b>. Check: [[3 1/2]] × [[1/4]] = [[7/8]] ✓</li><li><b>2.</b> [[12/5]] ÷ [[6/5]] = [[12/5]] × [[5/6]] = [[60/30]] = 2 <b>(M1 M1 A1)</b>. Check: 2 × [[1 1/5]] = [[2 2/5]] ✓</li><li><b>3.</b> [[9/2]] ÷ [[3/4]] = [[9/2]] × [[4/3]] = [[36/6]] = 6 pieces <b>(M1 M1 A1)</b>. Check: 6 × [[3/4]] = [[18/4]] = [[4 1/2]] ✓</li><li><b>4.</b> [[1/2]] ÷ [[1/4]] = [[1/2]] × 4 = 2, which is bigger than [[1/2]] <b>(1)</b>. Because [[1/4]] is less than 1, more than one quarter fits into a half: two quarters fit, so the answer is bigger <b>(1)</b>.</li></ul>Score: ____ / 10"}
+    ],
+    "footer": "Questions written for Ember in AQA style. Week 4 screen questions include AQA Mathematics 8300/1H November 2020 Q4 © AQA, used for private practice."
+  }
+}

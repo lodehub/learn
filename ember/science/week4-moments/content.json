@@ -1,0 +1,75 @@
+{
+  "kicker": "Ember · Science · Week 4",
+  "title": "Moments: the lever chain",
+  "sub": "Builds on Moments from scratch. About 20 minutes on screen, then a short written paper with a real AQA question.",
+  "skill": "The Because Chain: cause → effect → consequence.",
+  "target": "For levers AQA wants the whole chain: bigger distance from the pivot → the same moment needs a smaller force. “The moment is bigger” on its own misses the mark that matters.",
+  "print": "week4-moments-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up",
+      "time": "5 min",
+      "sub": "Last week’s forces, from memory. No notes.",
+      "blocks": [
+        {"type": "mc", "id": "w1", "h": "Resultant force", "q": "A box is pushed right with 40 N. Friction of 15 N acts to the left. What is the resultant force?", "o": ["55 N to the right", "25 N to the right", "25 N to the left"], "c": 1, "why": "Opposite directions, so subtract: 40 − 15 = 25 N, in the direction of the bigger force."},
+        {"type": "mc", "id": "w2", "h": "Terminal velocity", "q": "A skydiver falls at a steady speed. What does that tell you?", "o": ["Weight is bigger than air resistance", "Air resistance equals weight, so the resultant force is zero", "There are no forces on the skydiver"], "c": 1, "why": "Steady speed means no acceleration, so the resultant force is zero: air resistance has grown until it equals the weight."},
+        {"type": "num", "id": "w3", "h": "Moments, from Thursday", "q": "A force of 50 N acts 0.4 m from a pivot. What is the moment?", "answer": "20", "unit": "N m", "decimal": true, "traps": [{"value": "125", "msg": "You divided. Moment = force × distance."}, {"value": "2000", "msg": "The distance is already in metres. 50 × 0.4."}], "why": "M = F × d = 50 × 0.4 = 20 N m."}
+      ]
+    },
+    {
+      "h": "2. Core skill: get the chain right",
+      "time": "15 min",
+      "sub": "Each question targets one thing that tripped you up on Thursday.",
+      "blocks": [
+        {"type": "info", "html": "<b>Which way does it turn?</b> Picture a see-saw pivoted in the middle. Pushing <b>down on the right</b> turns it <b>clockwise</b> (the right end goes down, like a clock hand going from 3 to 6). Pushing <b>down on the left</b> turns it <b>anticlockwise</b>."},
+        {"type": "mc", "id": "c1", "h": "Clockwise or anticlockwise?", "q": "A metre rule is balanced on a pivot at its middle. You hang a weight on the <b>right</b>-hand side. Which way does the weight turn the rule?", "o": ["Clockwise", "Anticlockwise"], "c": 0, "why": "A weight pulls down. Down on the right of the pivot = clockwise. (On Thursday you wrote that weights on the right turn it anticlockwise. Check that against this.)"},
+        {"type": "mc", "id": "c2", "h": "Clockwise or anticlockwise?", "q": "Same rule. You hang a weight on the <b>left</b>-hand side. Which way does it turn?", "o": ["Clockwise", "Anticlockwise"], "c": 1, "why": "Down on the left of the pivot = anticlockwise. To balance it, you need a clockwise moment on the right that is just as big."},
+        {"type": "mc", "id": "c3", "h": "Which distance?", "q": "You pull the end of a spanner straight along the spanner, away from the nut. Why doesn’t the nut turn?", "o": ["The force is too small", "The line of the force goes through the pivot, so the perpendicular distance is zero and the moment is zero", "Spanners only work if you push, not pull"], "c": 1, "why": "Moment = force × <b>perpendicular</b> distance. If the force points through the pivot, that distance is 0, so the moment is F × 0 = 0. (The word is perpendicular <b>distance</b>, not height.)"},
+        {"type": "num", "id": "c4", "h": "Balance it", "q": "A see-saw is pivoted in the middle. A child of weight 400 N sits 1.5 m to the left of the pivot. Where must a child of weight 300 N sit on the right to balance it? Give the distance in m.", "answer": "2", "unit": "m", "decimal": true, "traps": [{"value": "1.125", "msg": "That puts the lighter child closer than the heavier one. The lighter child must sit further away to make the same moment."}, {"value": "600", "msg": "600 N m is the anticlockwise moment (400 × 1.5). Now find the distance that gives 300 N the same moment."}], "why": "Anticlockwise moment = 400 × 1.5 = 600 N m. Balanced, so clockwise moment = 600 N m: 300 × d = 600, so d = 2 m. The lighter child sits further out."},
+        {"type": "num", "id": "c5", "h": "Two weights on one side (stretch)", "q": "A metre rule is balanced on a pivot at its middle. On the left: 2 N at 0.40 m and 1 N at 0.20 m from the pivot. On the right there is one weight, 0.25 m from the pivot. How big must it be, in N?", "answer": "4", "unit": "N", "decimal": true, "traps": [{"value": "3", "msg": "You added the weights, not the moments. Work out each moment on the left (force × distance) and add those."}, {"value": "1", "msg": "That is the total anticlockwise moment in N m (0.8 + 0.2). Now find the weight that gives 1 N m at 0.25 m."}], "why": "Total anticlockwise moment = (2 × 0.40) + (1 × 0.20) = 0.8 + 0.2 = 1.0 N m. Balanced, so W × 0.25 = 1.0, so W = 4 N."},
+        {"type": "mc", "id": "c6", "h": "The link that scores", "q": "A gardener can lift a heavy load more easily with a long-handled wheelbarrow than a short one. Which explanation gets <b>both</b> AQA marks?", "o": ["The long handles make the moment bigger, so it is easier.", "The hands are further from the pivot (the wheel), so a smaller force is needed to make the same moment.", "The long handles are stronger, so they can lift more."], "c": 1, "why": "AQA’s lever marks are: (1) the distance from the pivot to the force is greater, (2) <b>so a smaller force is needed</b> (for the same moment). The load needs the same moment to lift it either way. A bigger distance just means less force. On Thursday you wrote “the moment is larger”: that is the link that loses the second mark."},
+        {"type": "order", "id": "chain", "h": "Build the chain", "q": "Why is it easier to undo a tight nut with a long spanner? Tap the links in order.", "items": ["With a long spanner, your hand is further from the nut (the pivot).", "So the perpendicular distance from the pivot to the force is greater.", "The nut needs the same moment to undo it, whichever spanner you use.", "Moment = force × distance, so a bigger distance means a smaller force gives that moment.", "So you need to push less hard: it is easier."], "doneTitle": "Chain complete.", "done": "Link 3 is the one people leave out: the moment needed stays the <b>same</b>. That is why the force can be smaller."},
+        {"type": "write", "id": "c7", "marks": 2, "rows": 4, "q": "A door handle is fixed on the edge of the door, far from the hinges. Explain why it is easier to open the door by pushing on the handle rather than near the hinges.", "starters": ["The handle is further from…", "so a smaller force…"], "minWords": 20, "mark": {"points": [{"t": "the (perpendicular) distance from the pivot / hinge to the force is greater at the handle", "m": 1}, {"t": "so a smaller force is needed (to produce the same moment)", "m": 1}], "note": "This is the same mark scheme as AQA’s lorry ramp question (June 2019, Q10.1). The second mark only counts if you got the first. “The moment is bigger” does not score the second mark."}}
+      ]
+    },
+    {
+      "h": "3. Written paper",
+      "time": "15 min",
+      "blocks": [
+        {"type": "info", "tone": "big", "html": "Print the written paper and do it by hand. It has a balancing calculation, a lever explanation and a real AQA question about bicycle gears. Mark scheme on the last page."}
+      ]
+    },
+    {
+      "h": "4. Check yourself",
+      "time": "5 min",
+      "blocks": [
+        {"type": "checklist", "id": "sc", "h": "Self-check", "items": ["I changed cm to m before using M = F × d.", "Down on the right = clockwise. Down on the left = anticlockwise.", "For balancing, I made total clockwise moment = total anticlockwise moment.", "In every lever explanation I wrote “so a smaller force is needed”.", "I wrote units: N, m, N m."]},
+        {"type": "oral", "q": "“Why is a long spanner better for a tight nut?” Say the whole chain without looking.", "note": "For the parent: listen for <i>further from the pivot → the nut needs the same moment → so a smaller force is needed</i>. If she says “the moment is bigger”, ask “does the nut need a bigger moment, or the same one?”"}
+      ]
+    }
+  ],
+  "paper": {
+    "title": "Science Week 4: moments (written)",
+    "sub": "Ember · Moments and levers, with a real AQA GCSE Physics question · about 15 minutes · pencil and ruler",
+    "intro": "<b>Skill: the Because Chain.</b> One mark per link. For calculations, write the equation, then the numbers, then the answer with its unit.",
+    "blocks": [
+      {"marks": 3, "q": "1. A uniform plank is balanced on a pivot at its centre. A 60 N weight is placed 0.50 m to the left of the pivot. Calculate where an 80 N weight must be placed on the right of the pivot to balance the plank. Give your answer in metres.", "workBox": 40, "answerLine": "Distance = ____________ m"},
+      {"type": "plan", "h": "Plan the chain for question 2 (one short phrase per box)", "cols": ["Where is the force?", "So the distance…", "The moment needed…", "So the force…"]},
+      {"marks": 2, "q": "2. Scissors with long handles cut thick card more easily than scissors with short handles. The pivot is the screw in the middle. Explain why.", "lines": 5},
+      {"source": "AQA Physics 8463/2H, November 2021, Q07.3", "marks": 2, "stem": "Figure 13 shows the gears on the bicycle.", "fig": {"src": "fig/2021N_P2_Q07.3.png", "alt": "A bicycle pedal on a crank attached to gear A at the pedal axle. A chain links gear A to the smaller gear B on the rear axle of the back wheel. A force arrow points down on the pedal.", "label": "November 2021, Paper 2, Figure 13"}, "q": "Describe how the force on the pedal causes a moment about the rear axle.", "lines": 5}
+    ],
+    "selfcheck": [
+      "Question 1: I wrote the anticlockwise moment, then made the clockwise moment equal to it.",
+      "Question 2: I said the distance from the pivot is greater, <b>then</b> that a smaller force is needed.",
+      "The bicycle question: I described two steps: the pedal turns gear A, then the chain turns gear B.",
+      "I used the word <b>moment</b> and the word <b>pivot</b> (or axle).",
+      "Reflection: which link did I nearly leave out?"
+    ],
+    "marking": [
+      {"h": "Question 1 (3 marks)", "html": "<ul><li>anticlockwise moment = 60 × 0.50 = 30 (N m) <b>[1]</b></li><li>80 × d = 30 <b>[1]</b></li><li>d = 0.375 m (allow 0.38 m) <b>[1]</b></li></ul>The heavier weight sits closer to the pivot. Score: ____ / 3"},
+      {"h": "Question 2 (2 marks)", "html": "<ul><li>the (perpendicular) distance from the pivot to the force (the hands) is greater with long handles <b>[1]</b></li><li>so a smaller force is needed (to produce the same moment) <b>[1]</b> <i>(only if the first mark is scored)</i></li></ul>Marked the same way as AQA June 2019 Q10.1 (the lorry ramp). Score: ____ / 2"},
+      {"h": "AQA mark scheme: November 2021, Q07.3 (2 marks)", "html": "<ul><li>(the force on the pedal) causes a moment about the pedal axle <b>[1]</b></li><li>which causes a force on the chain (which causes a moment about the rear axle) <b>[1]</b> <i>(allow gear B for chain)</i></li></ul>It is a chain again: pedal → moment about the pedal axle → force on the chain → moment about the rear axle. Score: ____ / 2"}
+    ],
+    "footer": "Question 3 and its mark scheme wording © AQA, from the published GCSE Physics 8463 paper (November 2021). Used for private practice."
+  }
+}

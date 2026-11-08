@@ -84,21 +84,31 @@ Privacy: slugs and labels only, never real names, schools or personal data. Comm
 
 ## Content by learner
 
-### Ember (secondary, weekly homework rhythm, currently Week 3)
-Current (Week 3):
+### Ember (secondary, weekly homework rhythm, currently Week 4)
+Current (Week 4, all on the Practice engine with a `?print` written paper):
+- English Week 4: the empty town, Quote, effect, So What (original practice passage, then her own *Tsunami Girl* quotes; Q2 format) (`english/week4-empty-town/`)
+- Maths Week 4: dividing fractions, the method and the why (includes AQA 8300/1H Nov 2020 Q4) (`maths/week4-dividing-fractions/`)
+- Science Week 4: moments and the lever chain (paper includes AQA 8463/2H Nov 2021 Q07.3) (`science/week4-moments/`)
+- History Week 4: the Black Death, So What? on her own sentences, claim check, 12-mark question in AQA Paper 1 Q6 format (`history/week4-black-death/`)
+- Geography Week 3 and Week 3 plus kept current (no new Geography this week).
+
+Archived at the start of Week 4 (Autumn):
 - English Week 3: symbolism in *Tsunami Girl* (+ PDF)
 - Maths Week 3: multiplying fractions, with working and a check (+ PDF)
 - Science Week 3: forces and the Because Chain (+ PDF)
 - History Week 3: the Black Death (So What?) (+ PDF)
 - Geography Week 3: megacities, evidence and a judgement (+ PDF)
 - Week 3 homework pack, full, with parent answers (PDF, `weekly/pdfs/`)
+- Week 3 plus for English, Maths, Science and History (see below)
+
+Always current (not tied to a week):
 - Half-term check-in: how is each subject going? (`weekly/check-in/`)
 - **What I learned today** (`weekly/today/`): daily recall, subject + 3–5 key words + one explaining sentence, sent to the parent's sheet.
 - **Feedback** (`feedback/feedback.json` + `feedback/index.html`): feedback written *to her* on marked work. Each entry `{id, date, subject, title, tool: "<subject>/<tool>/", mark?, summary, next, items[{block, q, mark, good, fix, model}]}`. Practice tools show the latest entry for their tool at the top and each item under its question (matched by block id); the Feedback page lists everything, with a "New" badge. Public, so codename only: no real name, school, teachers, level estimates or parent notes.
 - **Daily card**: manifest top-level `daily: {path, key}` puts a "What did you learn today?" card at the very top of the child's page: Write it / Nothing today buttons, a Mon–Fri strip (filled = written, dashed = nothing new), calm wording when done or at weekends. It reads `<key>days` written by the daily page. ember uses it.
 - **Home links**: manifest top-level `links: [{badge, title, path, feed?}]` add permanent rows to the This-week box (ember: My feedback with an "N new" count from `feed`).
 - **Answer sending** (LearnSend): Practice tools, Explore: Forces from scratch, Explore: Moments from scratch and the daily page send her answers, first wrong tries, predictions, notebook entries and self-marks to the parent's private sheet.
-- **Week 3 plus** (optional extra, tagged week 3): English, Maths, Science, History and Geography rebuilt on real AQA past-paper questions with the Practice engine, each with a `?print` written paper (`<subject>/week3plus-*/`).
+- **Week 3 plus** (optional extra, tagged week 3; archived at Week 4 except Geography): English, Maths, Science, History and Geography rebuilt on real AQA past-paper questions with the Practice engine, each with a `?print` written paper (`<subject>/week3plus-*/`).
 
 Also current: French Week 2 (verbs and extending a sentence), French Lab, French Role-play, Mandarin Lab, Mandarin Role-play, and **Explore: "Why triangles know things", trigonometry from scratch** with **printable trigonometry sheets** (`maths/trig-sheets/`: 4 A4 pages, 20 questions, 87 marks, building on the Explore rooms from side ratios to exact values, ending with two real AQA Higher questions; HTML source prints to `trigonometry-4-pages.pdf`, `?answers` adds the answer pages, also saved as `trigonometry-answers.pdf`), and **Explore: "Forces from scratch"** (`science/explore-forces/`): ten rooms from what a force is to terminal velocity (naming forces, mass and weight, resultant force, zero resultant, acceleration, air resistance, a live skydive with free-body diagrams), ending with the AQA June 2025 skydiver question and its mark scheme. **Explore: "Moments from scratch"** (`science/explore-moments/`): seven rooms (turning forces and the pivot, M = F d in N m with the cm trap, perpendicular distance, clockwise and anticlockwise, the principle of moments on a see-saw, the lever chain, look back), with AQA 8463/2H June 2023 Q03.1, June 2024 Q02.5–Q02.7 and June 2019 Q10.1 (self-marked).
 
