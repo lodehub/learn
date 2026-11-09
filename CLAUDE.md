@@ -90,6 +90,7 @@ Current (Week 4, all on the Practice engine with a `?print` written paper):
 - Maths Week 4: dividing fractions, the method and the why (includes AQA 8300/1H Nov 2020 Q4) (`maths/week4-dividing-fractions/`)
 - Science Week 4: moments and the lever chain (paper includes AQA 8463/2H Nov 2021 Q07.3) (`science/week4-moments/`)
 - History Week 4: the Black Death, So What? on her own sentences, claim check, 12-mark question in AQA Paper 1 Q6 format (`history/week4-black-death/`)
+- History, Black Death: what changed? (school task support, tagged week 4): numbered fact bank (S1–S9 socioeconomic, C1–C9 cultural, each with date/place), then a step-by-step PEEL builder for two paragraphs with self-marked So Whats, plus a `?print` paper (`history/black-death-changes/`)
 - Geography Week 3 and Week 3 plus kept current (no new Geography this week).
 
 Archived at the start of Week 4 (Autumn):
