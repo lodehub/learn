@@ -1,0 +1,496 @@
+{
+ "kicker": "Ember · History · Black Death",
+ "title": "The Black Death: what changed?",
+ "sub": "Two PEEL paragraphs for your school task: one on <b>socioeconomic</b> changes (work, community) and one on <b>cultural</b> changes (beliefs, mindset). The facts are here. Your job is the So What. About 40 minutes.",
+ "skill": "So What? (developed explanation).",
+ "target": "After every piece of evidence, one more sentence: what does <i>that</i> show people wanted, feared or believed? Point back at the evidence. No new facts, no hindsight.",
+ "print": "black-death-changes.pdf",
+ "sections": [
+  {
+   "h": "1. The facts",
+   "time": "10 min",
+   "sub": "Read both lists. Tick in your head the three facts in each list you find most interesting.",
+   "blocks": [
+    {
+     "type": "info",
+     "h": "Socioeconomic: work and community",
+     "html": "<ul class=\"pr-facts\"><li><b>S1</b> <i>(June 1348, Dorset)</i> The Black Death reached England at the port of Melcombe (Weymouth). By 1350 it had killed between a third and a half of the people in England.</li><li><b>S2</b> <i>(1348–50, everywhere)</i> With so many dead, there were not enough workers to plough, sow and harvest. Some crops were left to rot in the fields.</li><li><b>S3</b> <i>(1349 onwards)</i> Surviving peasants asked for higher wages. Some left their lord’s manor to work for whoever paid most, even though villeins (unfree peasants) were not allowed to leave.</li><li><b>S4</b> <i>(1349 and 1351, laws)</i> The <b>Ordinance of Labourers</b> (1349) and the <b>Statute of Labourers</b> (1351) said wages must stay at the level they were before the plague. Workers who refused could be punished.</li><li><b>S5</b> <i>(after 1350)</i> Some lords who could not find workers switched from growing crops to keeping <b>sheep</b>, which needed far fewer workers. Others rented their land out for money instead of making peasants work it for free.</li><li><b>S6</b> <i>(over the next 100 years)</i> <b>Serfdom</b> (villeinage) slowly died out in England. More peasants paid rent in money and were free to move.</li><li><b>S7</b> <i>(England, 1350–1500)</i> Some villages shrank or were abandoned. Historians have found the remains of hundreds of <b>deserted villages</b>. The plague, later outbreaks and the switch to sheep all played a part.</li><li><b>S8</b> <i>(1363, law)</i> A law said what <b>clothes</b> each rank of people was allowed to wear, because some ordinary people now had more money and were dressing like the better-off.</li><li><b>S9</b> <i>(London, 1348–49)</i> So many people died that new burial grounds were opened, such as East Smithfield, where bodies were laid side by side in long trenches.</li></ul>"
+    },
+    {
+     "type": "info",
+     "h": "Cultural: beliefs and mindset",
+     "html": "<ul class=\"pr-facts\"><li><b>C1</b> <i>(1348–49, everywhere)</i> Most people believed the plague was sent by <b>God</b> as a punishment for sin. They responded with prayer, processions, pilgrimages and gifts to the Church.</li><li><b>C2</b> <i>(Paris, 1348)</i> Doctors at the University of Paris blamed the <b>planets</b>: they said Saturn, Jupiter and Mars had lined up in 1345 and poisoned the air.</li><li><b>C3</b> <i>(1348–49)</i> Many believed in <b>miasma</b>: disease spread through bad air and foul smells. People carried sweet-smelling herbs and flowers to protect themselves.</li><li><b>C4</b> <i>(Europe, 1348–49)</i> <b>Flagellants</b> went from town to town whipping themselves in public to show God they were sorry. They were mostly in Germany and the Low Countries; a group came to London in 1349, but the English did not join in. The Pope condemned them in 1349.</li><li><b>C5</b> <i>(Europe, 1348–49)</i> In parts of Europe, <b>Jews were blamed</b> for poisoning wells and thousands were killed, for example in Strasbourg in February 1349. This did not happen in England, because Jews had been expelled from England in 1290.</li><li><b>C6</b> <i>(England, 1348–50)</i> Priests visited the sick, so many caught the plague and died. Some were replaced by men with little training. Prayer had not stopped the plague, and some people began to lose respect for the <b>Church</b>.</li><li><b>C7</b> <i>(after 1350)</i> Other people became <b>more religious</b>. More rich people paid for chantries: priests whose job was to pray for their souls after they died.</li><li><b>C8</b> <i>(the century after)</i> Art became focused on <b>death</b>. The “Dance of Death” showed skeletons leading kings, bishops and peasants alike to the grave. Some rich people had tombs carved showing their body as a rotting corpse, like Archbishop Chichele’s in Canterbury Cathedral (1420s).</li><li><b>C9</b> <i>(Florence, Italy, 1348)</i> The writer Boccaccio described how some people shut themselves away and lived very carefully, while others drank and partied because they might die tomorrow.</li></ul>"
+    },
+    {
+     "type": "info",
+     "html": "<b>Three traps</b><ul><li><b>Don’t copy the fact.</b> Put it in your own words and keep the date or place.</li><li><b>No hindsight.</b> They did not know about germs, rats or fleas (that came over 500 years later). Ask why <i>they</i> thought something would help.</li><li><b>Political changes are not in your task</b> (for example the Peasants’ Revolt, 1381). Leave them out.</li></ul>"
+    }
+   ]
+  },
+  {
+   "h": "2. Warm-up",
+   "time": "3 min",
+   "sub": "Which kind of change is it?",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "s1",
+     "h": "Sort it",
+     "q": "Lords switched from growing crops to keeping sheep.",
+     "o": [
+      "Socioeconomic",
+      "Cultural",
+      "Political"
+     ],
+     "c": 0,
+     "why": "It is about work, land and money: socioeconomic."
+    },
+    {
+     "type": "mc",
+     "id": "s2",
+     "h": "Sort it",
+     "q": "Artists painted skeletons leading kings and peasants to the grave.",
+     "o": [
+      "Socioeconomic",
+      "Cultural",
+      "Political"
+     ],
+     "c": 1,
+     "why": "It shows how people thought about death: cultural."
+    },
+    {
+     "type": "mc",
+     "id": "s3",
+     "h": "Sort it",
+     "q": "The Peasants’ Revolt marched on London in 1381.",
+     "o": [
+      "Socioeconomic",
+      "Cultural",
+      "Political"
+     ],
+     "c": 2,
+     "why": "A challenge to the king’s government is political, so it is not part of your task."
+    },
+    {
+     "type": "info",
+     "html": "<b>What an Evidence + So What looks like</b> (a Rome example, so you still do the Black Death yourself):<br><br><b>Evidence:</b> Rich Roman families lived in a domus with an atrium and a garden, while most poor families rented one room in an insula.<br><b>So what?</b> This suggests that in Rome your home showed your rank, and the rich wanted their status to be seen.<br><br>The So What points back at the evidence (domus vs one room) and says what people <i>wanted</i>. It adds no new fact."
+    },
+    {
+     "type": "mc",
+     "id": "s4",
+     "h": "Spot the So What",
+     "q": "Evidence: “Some people carried sweet-smelling herbs.” Which So What is grounded?",
+     "o": [
+      "This shows the plague was horrible.",
+      "This suggests they believed the disease was carried in bad-smelling air.",
+      "Herbs actually did not work against germs."
+     ],
+     "c": 1,
+     "why": "It points back at the herbs and says what they believed. The first could follow any sentence. The third is hindsight: they did not know about germs."
+    }
+   ]
+  },
+  {
+   "h": "3. Paragraph 1: socioeconomic",
+   "time": "12 min",
+   "sub": "What happened to people working, and to communities?",
+   "blocks": [
+    {
+     "type": "write",
+     "id": "ap",
+     "marks": 1,
+     "rows": 2,
+     "h": "P: your Point",
+     "q": "One sentence: what changed for <b>working people and communities</b>?",
+     "starters": [
+      "One major socioeconomic change after the Black Death was…"
+     ],
+     "minWords": 10,
+     "mark": {
+      "points": [
+       {
+        "t": "it names <b>one</b> clear change (not just “things changed”)",
+        "m": 1
+       }
+      ]
+     }
+    },
+    {
+     "type": "write",
+     "id": "ae1",
+     "marks": 3,
+     "rows": 4,
+     "h": "E: Evidence 1 + So what?",
+     "q": "Pick a fact from the socioeconomic (S) list that proves your Point. Start with its number (e.g. S3). Write it in your own words, then add one sentence: <b>so what does that tell us about what people wanted, feared or believed?</b>",
+     "starters": [
+      "In [year], …",
+      "For example, …",
+      "This suggests that…",
+      "This reveals a society in which…",
+      "Underlying this was the idea that…"
+     ],
+     "minWords": 25,
+     "mark": {
+      "points": [
+       {
+        "t": "my evidence is a <b>specific</b> fact: a date, a place, a law or a number",
+        "m": 1
+       },
+       {
+        "t": "my So What <b>points back</b> at the exact words of my evidence",
+        "m": 1
+       },
+       {
+        "t": "my So What says what people <b>wanted, feared or believed</b>, with no new fact and no hindsight",
+        "m": 1
+       }
+      ]
+     }
+    },
+    {
+     "type": "write",
+     "id": "ae2",
+     "marks": 3,
+     "rows": 4,
+     "h": "E: Evidence 2 + So what?",
+     "q": "A <b>different</b> fact that backs up the same Point. Same again: fact in your own words, then So what?",
+     "starters": [
+      "Another example is…",
+      "Also, …",
+      "This suggests that…",
+      "This reveals a society in which…",
+      "Underlying this was the idea that…"
+     ],
+     "minWords": 25,
+     "mark": {
+      "points": [
+       {
+        "t": "my evidence is a <b>specific</b> fact: a date, a place, a law or a number",
+        "m": 1
+       },
+       {
+        "t": "my So What <b>points back</b> at the exact words of my evidence",
+        "m": 1
+       },
+       {
+        "t": "my So What says what people <b>wanted, feared or believed</b>, with no new fact and no hindsight",
+        "m": 1
+       }
+      ]
+     }
+    },
+    {
+     "type": "write",
+     "id": "al",
+     "marks": 1,
+     "rows": 2,
+     "h": "L: Link",
+     "q": "One sentence back to the question: how much did this change people’s lives?",
+     "starters": [
+      "This meant that…",
+      "Therefore, the Black Death changed… because…"
+     ],
+     "minWords": 12,
+     "mark": {
+      "points": [
+       {
+        "t": "it goes back to the question and says <b>how</b> life changed",
+        "m": 1
+       }
+      ]
+     }
+    },
+    {
+     "type": "write",
+     "id": "aall",
+     "marks": 6,
+     "rows": 12,
+     "h": "Put it together",
+     "q": "Write your socioeconomic paragraph out in full: P, E1 + So what, E2 + So what, L. Improve the wording as you go.",
+     "minWords": 100,
+     "mark": {
+      "points": [
+       {
+        "t": "Point",
+        "m": 1
+       },
+       {
+        "t": "Evidence 1, specific",
+        "m": 1
+       },
+       {
+        "t": "So what 1, points back",
+        "m": 1
+       },
+       {
+        "t": "Evidence 2, specific",
+        "m": 1
+       },
+       {
+        "t": "So what 2, points back",
+        "m": 1
+       },
+       {
+        "t": "Link back to the question",
+        "m": 1
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "h": "4. Paragraph 2: cultural",
+   "time": "12 min",
+   "sub": "What happened to people’s beliefs and mindset?",
+   "blocks": [
+    {
+     "type": "write",
+     "id": "bp",
+     "marks": 1,
+     "rows": 2,
+     "h": "P: your Point",
+     "q": "One sentence: what changed for <b>people’s beliefs and mindset</b>?",
+     "starters": [
+      "The Black Death also changed what people believed, because…"
+     ],
+     "minWords": 10,
+     "mark": {
+      "points": [
+       {
+        "t": "it names <b>one</b> clear change (not just “things changed”)",
+        "m": 1
+       }
+      ]
+     }
+    },
+    {
+     "type": "write",
+     "id": "be1",
+     "marks": 3,
+     "rows": 4,
+     "h": "E: Evidence 1 + So what?",
+     "q": "Pick a fact from the cultural (C) list that proves your Point. Start with its number (e.g. C3). Write it in your own words, then add one sentence: <b>so what does that tell us about what people wanted, feared or believed?</b>",
+     "starters": [
+      "In [year], …",
+      "For example, …",
+      "This suggests that…",
+      "This reveals a society in which…",
+      "Underlying this was the idea that…"
+     ],
+     "minWords": 25,
+     "mark": {
+      "points": [
+       {
+        "t": "my evidence is a <b>specific</b> fact: a date, a place, a law or a number",
+        "m": 1
+       },
+       {
+        "t": "my So What <b>points back</b> at the exact words of my evidence",
+        "m": 1
+       },
+       {
+        "t": "my So What says what people <b>wanted, feared or believed</b>, with no new fact and no hindsight",
+        "m": 1
+       }
+      ]
+     }
+    },
+    {
+     "type": "write",
+     "id": "be2",
+     "marks": 3,
+     "rows": 4,
+     "h": "E: Evidence 2 + So what?",
+     "q": "A <b>different</b> fact that backs up the same Point. Same again: fact in your own words, then So what?",
+     "starters": [
+      "Another example is…",
+      "Also, …",
+      "This suggests that…",
+      "This reveals a society in which…",
+      "Underlying this was the idea that…"
+     ],
+     "minWords": 25,
+     "mark": {
+      "points": [
+       {
+        "t": "my evidence is a <b>specific</b> fact: a date, a place, a law or a number",
+        "m": 1
+       },
+       {
+        "t": "my So What <b>points back</b> at the exact words of my evidence",
+        "m": 1
+       },
+       {
+        "t": "my So What says what people <b>wanted, feared or believed</b>, with no new fact and no hindsight",
+        "m": 1
+       }
+      ]
+     }
+    },
+    {
+     "type": "write",
+     "id": "bl",
+     "marks": 1,
+     "rows": 2,
+     "h": "L: Link",
+     "q": "One sentence back to the question: how much did this change people’s lives?",
+     "starters": [
+      "This meant that…",
+      "Therefore, the Black Death changed… because…"
+     ],
+     "minWords": 12,
+     "mark": {
+      "points": [
+       {
+        "t": "it goes back to the question and says <b>how</b> life changed",
+        "m": 1
+       }
+      ]
+     }
+    },
+    {
+     "type": "write",
+     "id": "ball",
+     "marks": 6,
+     "rows": 12,
+     "h": "Put it together",
+     "q": "Write your cultural paragraph out in full: P, E1 + So what, E2 + So what, L. Improve the wording as you go.",
+     "minWords": 100,
+     "mark": {
+      "points": [
+       {
+        "t": "Point",
+        "m": 1
+       },
+       {
+        "t": "Evidence 1, specific",
+        "m": 1
+       },
+       {
+        "t": "So what 1, points back",
+        "m": 1
+       },
+       {
+        "t": "Evidence 2, specific",
+        "m": 1
+       },
+       {
+        "t": "So what 2, points back",
+        "m": 1
+       },
+       {
+        "t": "Link back to the question",
+        "m": 1
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "h": "5. Check yourself",
+   "time": "3 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "Each paragraph has two pieces of evidence, each with a date, place, law or number.",
+      "Every piece of evidence has a So What straight after it.",
+      "Every So What points back at its evidence and says what people wanted, feared or believed.",
+      "I wrote the facts in my own words.",
+      "No hindsight (germs, rats) and nothing political."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“Lords tried to keep wages at the old level by law. So what does that tell us?”",
+     "note": "For the parent: listen for what the lords wanted or feared (to keep things as they were; losing control over peasants). “It was unfair” is a start: ask “what did the lords want?”"
+    }
+   ]
+  }
+ ],
+ "paper": {
+  "title": "The Black Death: what changed? (written)",
+  "sub": "Ember · two PEEL paragraphs · about 40 minutes",
+  "intro": "<b>Skill: So What?</b> After every Evidence sentence, write one more sentence: what does this show people wanted, feared or believed? Point back at the evidence. Use the fact lists, in your own words.",
+  "blocks": [
+   {
+    "type": "info",
+    "h": "Socioeconomic: work and community",
+    "html": "<ul class=\"pr-facts\"><li><b>S1</b> <i>(June 1348, Dorset)</i> The Black Death reached England at the port of Melcombe (Weymouth). By 1350 it had killed between a third and a half of the people in England.</li><li><b>S2</b> <i>(1348–50, everywhere)</i> With so many dead, there were not enough workers to plough, sow and harvest. Some crops were left to rot in the fields.</li><li><b>S3</b> <i>(1349 onwards)</i> Surviving peasants asked for higher wages. Some left their lord’s manor to work for whoever paid most, even though villeins (unfree peasants) were not allowed to leave.</li><li><b>S4</b> <i>(1349 and 1351, laws)</i> The <b>Ordinance of Labourers</b> (1349) and the <b>Statute of Labourers</b> (1351) said wages must stay at the level they were before the plague. Workers who refused could be punished.</li><li><b>S5</b> <i>(after 1350)</i> Some lords who could not find workers switched from growing crops to keeping <b>sheep</b>, which needed far fewer workers. Others rented their land out for money instead of making peasants work it for free.</li><li><b>S6</b> <i>(over the next 100 years)</i> <b>Serfdom</b> (villeinage) slowly died out in England. More peasants paid rent in money and were free to move.</li><li><b>S7</b> <i>(England, 1350–1500)</i> Some villages shrank or were abandoned. Historians have found the remains of hundreds of <b>deserted villages</b>. The plague, later outbreaks and the switch to sheep all played a part.</li><li><b>S8</b> <i>(1363, law)</i> A law said what <b>clothes</b> each rank of people was allowed to wear, because some ordinary people now had more money and were dressing like the better-off.</li><li><b>S9</b> <i>(London, 1348–49)</i> So many people died that new burial grounds were opened, such as East Smithfield, where bodies were laid side by side in long trenches.</li></ul>"
+   },
+   {
+    "type": "info",
+    "h": "Cultural: beliefs and mindset",
+    "html": "<ul class=\"pr-facts\"><li><b>C1</b> <i>(1348–49, everywhere)</i> Most people believed the plague was sent by <b>God</b> as a punishment for sin. They responded with prayer, processions, pilgrimages and gifts to the Church.</li><li><b>C2</b> <i>(Paris, 1348)</i> Doctors at the University of Paris blamed the <b>planets</b>: they said Saturn, Jupiter and Mars had lined up in 1345 and poisoned the air.</li><li><b>C3</b> <i>(1348–49)</i> Many believed in <b>miasma</b>: disease spread through bad air and foul smells. People carried sweet-smelling herbs and flowers to protect themselves.</li><li><b>C4</b> <i>(Europe, 1348–49)</i> <b>Flagellants</b> went from town to town whipping themselves in public to show God they were sorry. They were mostly in Germany and the Low Countries; a group came to London in 1349, but the English did not join in. The Pope condemned them in 1349.</li><li><b>C5</b> <i>(Europe, 1348–49)</i> In parts of Europe, <b>Jews were blamed</b> for poisoning wells and thousands were killed, for example in Strasbourg in February 1349. This did not happen in England, because Jews had been expelled from England in 1290.</li><li><b>C6</b> <i>(England, 1348–50)</i> Priests visited the sick, so many caught the plague and died. Some were replaced by men with little training. Prayer had not stopped the plague, and some people began to lose respect for the <b>Church</b>.</li><li><b>C7</b> <i>(after 1350)</i> Other people became <b>more religious</b>. More rich people paid for chantries: priests whose job was to pray for their souls after they died.</li><li><b>C8</b> <i>(the century after)</i> Art became focused on <b>death</b>. The “Dance of Death” showed skeletons leading kings, bishops and peasants alike to the grave. Some rich people had tombs carved showing their body as a rotting corpse, like Archbishop Chichele’s in Canterbury Cathedral (1420s).</li><li><b>C9</b> <i>(Florence, Italy, 1348)</i> The writer Boccaccio described how some people shut themselves away and lived very carefully, while others drank and partied because they might die tomorrow.</li></ul>"
+   },
+   {
+    "type": "info",
+    "html": "<b>Three traps</b><ul><li><b>Don’t copy the fact.</b> Put it in your own words and keep the date or place.</li><li><b>No hindsight.</b> They did not know about germs, rats or fleas (that came over 500 years later). Ask why <i>they</i> thought something would help.</li><li><b>Political changes are not in your task</b> (for example the Peasants’ Revolt, 1381). Leave them out.</li></ul>"
+   },
+   {
+    "type": "table",
+    "h": "Plan (5 min): fact numbers and a few words, not sentences",
+    "cols": [
+     "",
+     "Socioeconomic",
+     "Cultural"
+    ],
+    "rows": [
+     [
+      "<b>P</b> Point",
+      "",
+      ""
+     ],
+     [
+      "<b>E1</b> fact no.",
+      "",
+      ""
+     ],
+     [
+      "<b>So what?</b>",
+      "",
+      ""
+     ],
+     [
+      "<b>E2</b> fact no.",
+      "",
+      ""
+     ],
+     [
+      "<b>So what?</b>",
+      "",
+      ""
+     ],
+     [
+      "<b>L</b> Link",
+      "",
+      ""
+     ]
+    ]
+   },
+   {
+    "q": "<b>Paragraph 1.</b> How did the Black Death change life for working people and communities? (socioeconomic)",
+    "lines": 16,
+    "pageBreak": true
+   },
+   {
+    "q": "<b>Paragraph 2.</b> How did the Black Death change what people believed and thought? (cultural)",
+    "lines": 16,
+    "pageBreak": true
+   }
+  ],
+  "selfcheck": [
+   "Each paragraph has two pieces of evidence, each with a date, place, law or number.",
+   "Every piece of evidence has a So What straight after it.",
+   "Every So What points back at its evidence and says what people wanted, feared or believed.",
+   "The facts are in my own words.",
+   "No hindsight and nothing political."
+  ],
+  "footer": "Ember · History · Black Death: what changed?"
+ }
+}

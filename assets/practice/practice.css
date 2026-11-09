@@ -121,3 +121,7 @@ body.pp .pr-mark { color: #111; border-color: #111; }
 .pr-fbmodel { font-style: italic; }
 .pr-fbtop { margin-top: 0; border: 1px solid var(--line); border-left: 5px solid var(--accent); }
 @media print { .pr-feedback { display: none; } }
+/* fact bank lists (reference facts with numbers) */
+.pr-facts { padding-left: 1.1em; margin: 6px 0; }
+.pr-facts li { margin: 0 0 8px; line-height: 1.45; }
+.pp .pr-facts li { margin: 0 0 3px; font-size: 10pt; line-height: 1.3; }
