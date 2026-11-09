@@ -34,6 +34,41 @@
           "model": "The force acts through the pivot, so the perpendicular distance is zero, and moment = force × 0 = 0. The nut does not turn."
         }
       ]
+    },
+    {
+      "id": "2026-11-09-history-black-death-changes",
+      "date": "2026-11-09",
+      "subject": "History",
+      "title": "The Black Death: what changed?",
+      "tool": "history/black-death-changes/",
+      "mark": "Socioeconomic paragraph 2 / 6 · Cultural paragraph 4 / 6",
+      "summary": "You finished both paragraphs, and your cultural one has a real So What in it: “They were so desperate that they resorted to … hurting themselves to show God that they were sorry … in the hope that God might … forgive them”. That points straight back at the whipping and says what they hoped for. You also put the flagellants in Germany this time, which is right. You marked yourself 0 on almost everything: you earned more than that, so tick what you actually did. Three things to fix.",
+      "next": "Go back to “Put it together” for the socioeconomic paragraph. After each fact, add one sentence starting “This suggests that…” that says what the peasants or the lords wanted or feared. Use S4 (the 1351 law) as one of your facts. Then read your new So Whats out loud to Dad.",
+      "items": [
+        {
+          "block": "aall",
+          "q": "Socioeconomic paragraph",
+          "mark": "2 / 6",
+          "good": "“The lords who paid the peasants were forced to pay more if they wanted their workers to stay as many had dropped dead from the plague” is a clear cause and effect. Your Point box said the same thing well.",
+          "fix": "1. Your facts are not followed by a So What. After each fact, ask: what does this tell us the peasants or the lords <b>wanted</b> or <b>feared</b>? “Society slowly began to collapse” is too big a claim and does not point back at one fact.<br>2. Add a date or a law. S4 is the best fact for this paragraph: the lords passed a law to stop wages rising. Ask yourself why they wanted that.",
+          "model": "After 1349, surviving peasants demanded higher wages, and some left their manor to work for whoever paid most. This suggests that peasants now knew their work was valuable and wanted a better life than the one their lord had given them."
+        },
+        {
+          "block": "ae1",
+          "q": "Evidence 1 (S6)",
+          "mark": "0 / 3",
+          "fix": "3. Claim check: <b>Serfdom is not a village.</b> It was the system where unfree peasants (villeins) had to work their lord’s land for free and were not allowed to leave. So “villages (like Serfdom) died out” needs rewriting. Also, villages were deserted for several reasons, not because peasants got richer and moved out.",
+          "model": "Over the next 100 years serfdom slowly died out in England, as more peasants paid their rent in money and were free to move."
+        },
+        {
+          "block": "ball",
+          "q": "Cultural paragraph",
+          "mark": "4 / 6",
+          "good": "Your flagellant So What is grounded: it points back at the whipping and says what they hoped (that God would forgive them). “In Germany” is a correct, specific place.",
+          "fix": "Your first fact (praying, processions, pilgrimages) has no So What after it. What does begging God to take the plague away show they believed caused it? Also: “torture” means someone else hurting you, so “hurting themselves” is the better word. Capital letters for England, Germany and the Black Death.",
+          "model": "In 1348–49 people prayed, led processions and went on pilgrimages to beg God to end the plague. This suggests they believed the plague was God’s punishment for sin, so the only cure was to show God they were sorry."
+        }
+      ]
     }
   ]
 }
