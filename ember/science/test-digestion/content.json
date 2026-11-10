@@ -1,0 +1,260 @@
+{
+ "kicker": "Ember · Science · Test on Wed 18 Nov",
+ "title": "Day 3: The digestive system",
+ "sub": "Day 3 (Fri). The organs in order, what each one does, and why the small intestine is so good at absorbing food. About 25 minutes.",
+ "skill": "The Because Chain: cause → effect → consequence.",
+ "target": "For the small intestine, always link the <b>feature</b> to <b>what it does</b>: villi → big surface area → <b>absorbs food faster</b>.",
+ "sections": [
+  {
+   "h": "1. The journey",
+   "time": "8 min",
+   "sub": "Digestion breaks <b>big molecules</b> in food into <b>small molecules</b> of nutrients, small enough to pass into the blood.",
+   "blocks": [
+    {
+     "type": "order",
+     "id": "route",
+     "h": "Put the organs in order",
+     "q": "Tap the parts in the order food passes through them.",
+     "items": [
+      "mouth",
+      "gullet (oesophagus)",
+      "stomach",
+      "small intestine",
+      "large intestine",
+      "rectum",
+      "anus"
+     ],
+     "done": "Mouth → gullet → stomach → small intestine → large intestine → rectum → anus."
+    },
+    {
+     "type": "mc",
+     "id": "d1",
+     "h": "Mouth",
+     "q": "What happens in the mouth?",
+     "o": [
+      "Food is mixed with acid",
+      "Food is chewed by the teeth and mixed with saliva",
+      "Water is absorbed"
+     ],
+     "c": 1,
+     "why": "Teeth break food into smaller pieces, and saliva starts to soften and digest it."
+    },
+    {
+     "type": "mc",
+     "id": "d2",
+     "h": "Stomach",
+     "q": "What happens in the stomach?",
+     "o": [
+      "Food is mixed with digestive juices and acid",
+      "Nutrients pass into the blood",
+      "Faeces are stored"
+     ],
+     "c": 0,
+     "why": "The stomach churns the food with acid and digestive juices."
+    },
+    {
+     "type": "mc",
+     "id": "d3",
+     "h": "Small intestine",
+     "q": "What happens in the small intestine?",
+     "o": [
+      "Food is chewed",
+      "Juices from the liver and pancreas finish digestion, and small nutrient molecules pass into the blood",
+      "Only water is absorbed"
+     ],
+     "c": 1,
+     "why": "Digestion is completed here, and the small molecules are absorbed through the wall into the bloodstream."
+    },
+    {
+     "type": "mc",
+     "id": "d4",
+     "h": "Large intestine",
+     "q": "What happens in the large intestine?",
+     "o": [
+      "Water is absorbed back into the body, leaving solid waste (faeces)",
+      "Food is mixed with acid",
+      "Digestion starts"
+     ],
+     "c": 0,
+     "why": "Only food that could not be digested gets this far. Water is taken back into the body."
+    },
+    {
+     "type": "mc",
+     "id": "d5",
+     "h": "Rectum and anus",
+     "q": "Which is right?",
+     "o": [
+      "The anus stores faeces; the rectum lets them out",
+      "The rectum stores faeces; the anus is a ring of muscle that lets them out",
+      "Both absorb water"
+     ],
+     "c": 1,
+     "why": "Rectum = store. Anus = the muscular ring the faeces leave through."
+    }
+   ]
+  },
+  {
+   "h": "2. Into the blood",
+   "time": "7 min",
+   "sub": "Why the small intestine is adapted (suited) to its job.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>The small intestine’s job:</b> absorb small food molecules into the blood <b>quickly</b>, before the undigested food moves on.<br><b>How it is adapted:</b><ul><li>a <b>thin wall</b>, so molecules only have a short way to go;</li><li>it is covered in tiny finger-like <b>villi</b>, which give it a <b>huge surface area</b>;</li><li>the villi contain <b>blood capillaries</b> that carry the absorbed food away.</li></ul><b>Moving food along:</b> muscles in the wall of the gut squeeze food along, like squeezing toothpaste. <b>Fibre</b> is not digested, but gives the muscles something to push against, so a high-fibre diet helps prevent <b>constipation</b>."
+    },
+    {
+     "type": "mc",
+     "id": "v1",
+     "h": "Villi",
+     "q": "What do villi do?",
+     "o": [
+      "They make digestive juices",
+      "They give the small intestine a big surface area, so food is absorbed faster",
+      "They chew food"
+     ],
+     "c": 1,
+     "why": "More surface area = more space for molecules to pass into the blood at once."
+    },
+    {
+     "type": "mc",
+     "id": "v2",
+     "h": "Thin wall",
+     "q": "Why is it useful that the wall of the small intestine is thin?",
+     "o": [
+      "Food molecules have only a short distance to travel into the blood",
+      "It makes the intestine longer",
+      "So it can store faeces"
+     ],
+     "c": 0,
+     "why": "A short distance means the molecules get into the blood quickly."
+    },
+    {
+     "type": "mc",
+     "id": "v3",
+     "h": "Fibre",
+     "q": "Fibre is not digested. Why is it still good for you?",
+     "o": [
+      "It gives you lots of energy",
+      "It adds bulk, so the gut muscles can push food along, which helps prevent constipation",
+      "It is absorbed by the villi"
+     ],
+     "c": 1,
+     "why": "Fibre adds bulk for the muscles to push against."
+    }
+   ]
+  },
+  {
+   "h": "3. Explain it",
+   "time": "10 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "order",
+     "id": "ch",
+     "h": "Build the chain",
+     "q": "Why does the small intestine absorb food so quickly? Tap the links in order.",
+     "items": [
+      "The small intestine is covered in villi.",
+      "The villi give it a very big surface area.",
+      "So more food molecules can pass through the wall at the same time.",
+      "So food is absorbed into the blood quickly."
+     ],
+     "done": "Feature → big surface area → more molecules at once → fast absorption."
+    },
+    {
+     "type": "write",
+     "id": "e1",
+     "marks": 3,
+     "rows": 4,
+     "q": "Describe the adaptations of the small intestine and explain how each one helps it absorb food.",
+     "minWords": 30,
+     "mark": {
+      "points": [
+       {
+        "t": "<b>villi</b> give a <b>big surface area</b>, so more food is absorbed at once",
+        "m": 1
+       },
+       {
+        "t": "a <b>thin wall</b>, so molecules have a <b>short distance</b> to travel",
+        "m": 1
+       },
+       {
+        "t": "<b>blood capillaries</b> in the villi carry the food away",
+        "m": 1
+       }
+      ]
+     },
+     "starters": [
+      "The small intestine is covered in villi, which…",
+      "Its wall is thin, so…"
+     ]
+    },
+    {
+     "type": "write",
+     "id": "e2",
+     "marks": 6,
+     "rows": 8,
+     "q": "Describe what happens to a piece of bread from when you eat it to when the waste leaves your body.",
+     "minWords": 60,
+     "mark": {
+      "points": [
+       {
+        "t": "mouth: chewed by teeth and mixed with saliva",
+        "m": 1
+       },
+       {
+        "t": "gullet: passes down to the stomach",
+        "m": 1
+       },
+       {
+        "t": "stomach: mixed with acid and digestive juices",
+        "m": 1
+       },
+       {
+        "t": "small intestine: digestion finished (juices from liver and pancreas); small molecules absorbed into the blood",
+        "m": 1
+       },
+       {
+        "t": "large intestine: water absorbed back into the body, leaving faeces",
+        "m": 1
+       },
+       {
+        "t": "rectum stores faeces; they leave through the anus",
+        "m": 1
+       }
+      ],
+      "note": "This is a 6-mark “describe in detail”: one mark per stage, in the right order. Name each organ and say what happens there."
+     },
+     "starters": [
+      "First, in the mouth…",
+      "Then…",
+      "Next, in the small intestine…"
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Check yourself",
+   "time": "3 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "I can list the organs in order from mouth to anus.",
+      "I can say what each organ does in one sentence.",
+      "I can explain villi → surface area → faster absorption.",
+      "I can explain why fibre matters."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“Why is your small intestine covered in tiny villi?”",
+     "note": "For the parent: listen for big surface area → more food absorbed at once → faster. “To absorb food” alone is only half: ask “how do the villi help?”"
+    }
+   ]
+  }
+ ]
+}

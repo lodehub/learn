@@ -1,0 +1,236 @@
+{
+ "kicker": "Ember · Science · Test on Wed 18 Nov",
+ "title": "Day 5: Breathing",
+ "sub": "Day 5 (Sun). Breathing in and out, the bell-jar model and lung volume. It links straight back to gas pressure (Day 2). About 25 minutes.",
+ "skill": "The Because Chain: cause → effect → consequence.",
+ "target": "The breathing chain always runs: <b>muscles move → chest volume changes → pressure changes → air moves</b>. Miss the pressure link and you miss marks.",
+ "sections": [
+  {
+   "h": "1. In and out",
+   "time": "8 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>Inhaling (breathing in)</b><ul><li>Muscles between the ribs <b>contract</b>: the ribcage moves <b>up and out</b>.</li><li>The <b>diaphragm contracts</b> and moves <b>down</b>.</li><li>The <b>volume</b> inside the chest <b>increases</b>.</li><li>The <b>pressure</b> inside the chest <b>decreases</b>, so air is drawn <b>in</b>.</li></ul><b>Exhaling (breathing out)</b><ul><li>Rib muscles <b>relax</b>: the ribcage moves <b>down and in</b>.</li><li>The <b>diaphragm relaxes</b> and moves <b>up</b>.</li><li>Chest <b>volume decreases</b>; <b>pressure increases</b>, so air is pushed <b>out</b>.</li></ul><b>Link to Day 2:</b> a bigger volume means the gas particles hit the walls less often, so the pressure falls. Air always moves from higher pressure to lower pressure."
+    },
+    {
+     "type": "mc",
+     "id": "b1",
+     "h": "Ribcage",
+     "q": "What does your ribcage do when you inhale?",
+     "o": [
+      "Moves down and in",
+      "Moves up and out",
+      "Stays still"
+     ],
+     "c": 1,
+     "why": "Rib muscles contract, pulling the ribs up and out."
+    },
+    {
+     "type": "mc",
+     "id": "b2",
+     "h": "Diaphragm",
+     "q": "What does the diaphragm do when you exhale?",
+     "o": [
+      "Contracts and moves down",
+      "Relaxes and moves up",
+      "Relaxes and moves down"
+     ],
+     "c": 1,
+     "why": "Breathing out: the diaphragm relaxes and domes up."
+    },
+    {
+     "type": "mc",
+     "id": "b3",
+     "h": "Pressure",
+     "q": "When you inhale, what happens to the pressure inside your chest?",
+     "o": [
+      "It increases",
+      "It decreases",
+      "It stays the same"
+     ],
+     "c": 1,
+     "why": "The volume gets bigger, so the pressure drops below the air outside, and air flows in."
+    },
+    {
+     "type": "order",
+     "id": "table",
+     "h": "Inhaling: put the steps in order",
+     "q": "Tap the steps of breathing in, in order.",
+     "items": [
+      "The rib muscles and diaphragm contract.",
+      "The ribcage moves up and out and the diaphragm moves down.",
+      "The volume of the chest increases.",
+      "The pressure in the chest decreases.",
+      "Air is drawn into the lungs."
+     ],
+     "done": "Muscles → volume up → pressure down → air in."
+    }
+   ]
+  },
+  {
+   "h": "2. The bell-jar model and lung volume",
+   "time": "7 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>The bell-jar model:</b> the jar = the chest, the balloons = the lungs, the rubber sheet = the diaphragm.<br>Pull the sheet <b>down</b> → volume in the jar increases → pressure decreases → air rushes in → the <b>balloons inflate</b> (like inhaling). Push it <b>up</b> → the balloons deflate.<br><b>A problem with the model:</b> the jar’s sides cannot move, but the real ribcage moves up and out.<br><br><b>Lung volume</b> is measured by breathing out fully through a tube into an upside-down bottle full of water: the volume of water pushed out = the air your lungs held. Regular <b>exercise</b> can increase lung volume. <b>Smoking</b>, <b>asthma</b> and <b>old age</b> can reduce it."
+    },
+    {
+     "type": "mc",
+     "id": "j1",
+     "h": "The model",
+     "q": "In the bell-jar model, what does the rubber sheet represent?",
+     "o": [
+      "The lungs",
+      "The diaphragm",
+      "The ribs"
+     ],
+     "c": 1,
+     "why": "Balloons = lungs, jar = chest, rubber sheet = diaphragm."
+    },
+    {
+     "type": "mc",
+     "id": "j2",
+     "h": "Pull it down",
+     "q": "You pull the rubber sheet down. What happens to the balloons, and why?",
+     "o": [
+      "They deflate, because the pressure in the jar rises",
+      "They inflate, because the volume in the jar increases and the pressure decreases, so air rushes in",
+      "Nothing happens"
+     ],
+     "c": 1,
+     "why": "Same chain as inhaling: volume up → pressure down → air in."
+    },
+    {
+     "type": "mc",
+     "id": "j3",
+     "h": "Weakness",
+     "q": "Which is a problem with the bell-jar model?",
+     "o": [
+      "It has no lungs",
+      "The jar cannot move, but the real ribcage moves up and out",
+      "The balloons are too big"
+     ],
+     "c": 1,
+     "why": "The model only shows the diaphragm’s part, not the ribs."
+    },
+    {
+     "type": "mc",
+     "id": "j4",
+     "h": "Lung volume",
+     "q": "Which can reduce lung volume?",
+     "o": [
+      "Regular exercise",
+      "Smoking and asthma",
+      "Drinking water"
+     ],
+     "c": 1,
+     "why": "Smoking, asthma and old age can reduce lung volume."
+    }
+   ]
+  },
+  {
+   "h": "3. Explain it",
+   "time": "10 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "write",
+     "id": "e1",
+     "marks": 6,
+     "rows": 8,
+     "q": "Explain how changes in volume and pressure inside the chest move air into and out of the lungs.",
+     "minWords": 60,
+     "mark": {
+      "points": [
+       {
+        "t": "breathing in: rib muscles contract, ribs move <b>up and out</b>",
+        "m": 1
+       },
+       {
+        "t": "the diaphragm contracts and moves <b>down</b>",
+        "m": 1
+       },
+       {
+        "t": "so the chest <b>volume increases</b> and the <b>pressure decreases</b>",
+        "m": 1
+       },
+       {
+        "t": "so air is <b>drawn in</b> (from higher pressure outside)",
+        "m": 1
+       },
+       {
+        "t": "breathing out: muscles relax, ribs move down and in, diaphragm moves up",
+        "m": 1
+       },
+       {
+        "t": "so the volume decreases, the <b>pressure increases</b> and air is <b>pushed out</b>",
+        "m": 1
+       }
+      ],
+      "note": "A 6-mark explain: give the whole chain for <i>both</i> breathing in and breathing out. The pressure link earns marks."
+     },
+     "starters": [
+      "When you breathe in, the muscles between your ribs…",
+      "This increases the volume, so the pressure…",
+      "When you breathe out…"
+     ]
+    },
+    {
+     "type": "write",
+     "id": "e2",
+     "marks": 3,
+     "rows": 4,
+     "q": "Describe how you would measure the lung volume of an athlete.",
+     "minWords": 25,
+     "mark": {
+      "points": [
+       {
+        "t": "fill a bottle (or tank) with water and turn it upside down in water",
+        "m": 1
+       },
+       {
+        "t": "the athlete takes a deep breath and breathes out <b>fully</b> through a tube into the bottle",
+        "m": 1
+       },
+       {
+        "t": "the volume of water pushed out = the lung volume",
+        "m": 1
+       }
+      ]
+     },
+     "starters": [
+      "First, fill a bottle with water…"
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Check yourself",
+   "time": "3 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "I can give the full chain for breathing in: muscles → volume up → pressure down → air in.",
+      "I can give the reverse for breathing out.",
+      "I know what each part of the bell-jar model stands for, and one problem with it.",
+      "I can describe how to measure lung volume.",
+      "I can name three things that reduce lung volume."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“What happens to the pressure in your chest when you breathe in, and why does that make air go in?”",
+     "note": "For the parent: listen for volume increases → pressure decreases → air moves in from higher pressure outside. If she says “the lungs suck air in”, ask “what happens to the pressure?”"
+    }
+   ]
+  }
+ ]
+}

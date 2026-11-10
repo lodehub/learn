@@ -1,0 +1,207 @@
+{
+ "kicker": "Ember · Science · Test on Wed 18 Nov",
+ "title": "Days 6–7: Mock test and final review",
+ "sub": "Day 6 (Mon): a 30-minute mock test on paper, all four topics, then mark it. Day 7 (Tue): ten minutes on your mistakes only, then rest.",
+ "skill": "The Because Chain: cause → effect → consequence.",
+ "target": "Calculations: equation → numbers → answer with unit. Explanations: one mark per link, so write every link with <b>so</b>.",
+ "print": "test-mock.pdf",
+ "sections": [
+  {
+   "h": "Day 6 · 1. Quick-fire warm-up",
+   "time": "5 min",
+   "sub": "One from each topic, from memory.",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "w1",
+     "h": "Pressure",
+     "q": "Which is the equation for pressure?",
+     "o": [
+      "pressure = force × area",
+      "pressure = force ÷ area",
+      "pressure = area ÷ force"
+     ],
+     "c": 1,
+     "why": "pressure = force ÷ area, in N/m² (Pa)."
+    },
+    {
+     "type": "mc",
+     "id": "w2",
+     "h": "Digestion",
+     "q": "Where are small food molecules absorbed into the blood?",
+     "o": [
+      "Stomach",
+      "Small intestine",
+      "Large intestine"
+     ],
+     "c": 1,
+     "why": "Through the thin wall and villi of the small intestine."
+    },
+    {
+     "type": "mc",
+     "id": "w3",
+     "h": "Forces",
+     "q": "An object’s resultant force is zero. It is moving. What happens?",
+     "o": [
+      "It speeds up",
+      "It slows down",
+      "It keeps moving at a steady speed in the same direction"
+     ],
+     "c": 2,
+     "why": "Zero resultant force = equilibrium: steady speed (or stays still)."
+    },
+    {
+     "type": "mc",
+     "id": "w4",
+     "h": "Breathing",
+     "q": "When you breathe out, the chest volume…",
+     "o": [
+      "increases, so the pressure decreases",
+      "decreases, so the pressure increases",
+      "stays the same"
+     ],
+     "c": 1,
+     "why": "Smaller volume → higher pressure → air pushed out."
+    }
+   ]
+  },
+  {
+   "h": "Day 6 · 2. The mock test",
+   "time": "30 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "Print the mock test (button at the bottom). Do it <b>by hand</b>, in <b>30 minutes</b>, with no notes. Then mark it with the mark scheme on the last page and put your total below.",
+     "tone": "big"
+    },
+    {
+     "type": "write",
+     "id": "score",
+     "marks": 0,
+     "rows": 3,
+     "q": "After marking: write your score out of 33, and list the question numbers you dropped marks on.",
+     "minWords": 5,
+     "mark": {
+      "note": "Nothing to tick here: this is for you and for Dad to read."
+     },
+     "h": "Your score"
+    }
+   ]
+  },
+  {
+   "h": "Day 7 · 3. Fix your mistakes (10 min)",
+   "time": "10 min",
+   "sub": "Tuesday: only the questions you dropped marks on. Then stop and rest.",
+   "blocks": [
+    {
+     "type": "write",
+     "id": "fix",
+     "marks": 0,
+     "rows": 8,
+     "q": "Pick the two explanation questions where you lost the most marks. Rewrite each answer, adding the missing link with “so…”.",
+     "minWords": 30,
+     "mark": {
+      "note": "Nothing to tick here: this is for you and for Dad to read."
+     },
+     "h": "Rewrite two answers"
+    },
+    {
+     "type": "checklist",
+     "id": "final",
+     "h": "Ready for Wednesday",
+     "items": [
+      "I can say pressure = force ÷ area, with units, without looking.",
+      "I can say the digestive organs in order.",
+      "I can explain villi → surface area → faster absorption.",
+      "I can give the breathing chain both ways.",
+      "I know Hooke’s Law and how to work out extension.",
+      "I packed a pen, pencil, ruler and calculator."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“Tell me the breathing-in chain, then the pressure equation, without looking.”",
+     "note": "For the parent: keep it light. Praise the links she gets; if one is missing, ask “and so…?” Then stop: rest matters the night before."
+    }
+   ]
+  }
+ ],
+ "paper": {
+  "title": "Science mock test: forces, pressure, digestion and breathing",
+  "sub": "Ember · 30 minutes · 33 marks · pen, pencil, ruler, calculator",
+  "intro": "<b>Calculations:</b> write the equation, then the numbers, then the answer with its unit. <b>Explanations:</b> one mark per link, so join your ideas with <b>so</b>.",
+  "blocks": [
+   {
+    "marks": 2,
+    "q": "1. A box has a weight of 400 N. Its base has an area of 0.8 m². Calculate the pressure the box puts on the floor. Give the unit.",
+    "workBox": 30,
+    "answerLine": "Pressure = ____________ unit ______"
+   },
+   {
+    "marks": 3,
+    "q": "2. Explain why it hurts more to be stood on by someone in high-heeled shoes than in flat trainers, even though their weight is the same.",
+    "lines": 5
+   },
+   {
+    "marks": 3,
+    "q": "3. A sealed balloon is put in a hot room. It gets bigger. Use ideas about particles to explain why.",
+    "lines": 5
+   },
+   {
+    "marks": 2,
+    "q": "4. State what happens to atmospheric pressure as you climb a mountain, and give one reason why.",
+    "lines": 3
+   },
+   {
+    "marks": 5,
+    "q": "5. Name the organs that food passes through, in order, from the mouth to the anus.",
+    "lines": 3
+   },
+   {
+    "marks": 3,
+    "q": "6. Explain how the small intestine is adapted to absorb food quickly.",
+    "lines": 5
+   },
+   {
+    "marks": 2,
+    "q": "7. Fibre is not digested. Explain why it is important to eat a fibre-rich diet.",
+    "lines": 3
+   },
+   {
+    "marks": 2,
+    "q": "8. A spring is 5 cm long. A force of 3 N stretches it to 8 cm. (a) What is the extension? (b) The spring obeys Hooke’s Law. What would the extension be with a 6 N force?",
+    "lines": 3,
+    "pageBreak": true
+   },
+   {
+    "marks": 3,
+    "q": "9. A parachutist opens her parachute. Explain why she slows down and then falls at a steady speed.",
+    "lines": 5
+   },
+   {
+    "marks": 2,
+    "q": "10. Give one way to reduce friction and one way to reduce drag.",
+    "lines": 3
+   },
+   {
+    "marks": 6,
+    "q": "11. Explain how air is moved into and out of the lungs. Use the words volume and pressure in your answer.",
+    "lines": 12
+   }
+  ],
+  "selfcheck": [
+   "Every calculation shows the equation and a unit.",
+   "Every explanation has its links joined with “so”.",
+   "Q11 covers breathing in <b>and</b> out, with volume <b>and</b> pressure.",
+   "I wrote down which questions I lost marks on."
+  ],
+  "marking": [
+   {
+    "h": "Mark scheme",
+    "html": "<ol><li>400 ÷ 0.8 = <b>500</b> (1) <b>N/m²</b> or Pa (1).</li><li>Heels have a <b>smaller area</b> (1); the same force/weight on a smaller area (1) gives a <b>bigger pressure</b> (1).</li><li>The air particles get more energy and move <b>faster</b> (1); they hit the walls <b>harder / more often</b> (1); so the <b>pressure inside increases</b> and pushes the rubber out (1).</li><li>It <b>decreases</b> (1); there is less air above you / the air is less dense (1).</li><li>1 mark each for <b>gullet, stomach, small intestine, large intestine, rectum</b>, in the right order between the mouth and the anus.</li><li>Villi give a <b>big surface area</b> (1); <b>thin wall</b>, so a short distance (1); <b>blood capillaries</b> carry the food away (1).</li><li>Fibre adds <b>bulk</b> (1) so the gut muscles can push food along / prevents <b>constipation</b> (1).</li><li>(a) 8 − 5 = <b>3 cm</b> (1). (b) double the force → double the extension: <b>6 cm</b> (1).</li><li>The open parachute has a big area, so <b>air resistance increases</b> (1); air resistance is bigger than her weight, so she <b>slows down</b> (1); as she slows, air resistance falls until it <b>equals her weight</b>: resultant force zero, so steady speed (1).</li><li>Friction: oil / grease / lubrication (1). Drag: streamlined shape (1).</li><li>In: rib muscles contract, ribs up and out (1); diaphragm contracts and moves down (1); chest volume increases and pressure decreases, so air is drawn in (1). Out: muscles relax, ribs down and in, diaphragm up (1); volume decreases (1); pressure increases, so air is pushed out (1).</li></ol><p><b>Total: 33 marks.</b> In the explain questions, a mark only counts if the <i>link</i> is there (for example “smaller area <b>so</b> bigger pressure”).</p>"
+   }
+  ],
+  "footer": "Ember · Science mock · original questions in the style of the school’s assessment"
+ }
+}

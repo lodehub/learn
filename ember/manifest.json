@@ -325,6 +325,53 @@
       "week": 4
     },
     {
+      "title": "Science test (Wed 18 Nov) · Days 1–2: Pressure",
+      "path": "science/test-pressure/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Autumn assessment",
+      "week": 4
+    },
+    {
+      "title": "Science test · Day 3: The digestive system",
+      "path": "science/test-digestion/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Autumn assessment",
+      "week": 4
+    },
+    {
+      "title": "Science test · Day 4: Contact forces",
+      "path": "science/test-contact-forces/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Autumn assessment",
+      "week": 4
+    },
+    {
+      "title": "Science test · Day 5: Breathing",
+      "path": "science/test-breathing/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Autumn assessment",
+      "week": 4
+    },
+    {
+      "title": "Science test · Days 6–7: Mock test and final review",
+      "path": "science/test-mock/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Autumn assessment",
+      "week": 4,
+      "print": "science/test-mock/test-mock.pdf",
+      "printTitle": "Science mock test (30 min, 33 marks)"
+    },
+    {
       "title": "Rome: the 14-day revision road",
       "path": "history/rome.html",
       "type": "html",

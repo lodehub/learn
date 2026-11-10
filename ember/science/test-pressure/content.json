@@ -1,0 +1,408 @@
+{
+ "kicker": "Ember · Science · Test on Wed 18 Nov",
+ "title": "Days 1–2: Pressure",
+ "sub": "Day 1 (Wed): pressure on solids, P = F ÷ A. Day 2 (Thu): pressure in gases and the atmosphere. About 25 minutes each day.",
+ "skill": "The Because Chain: cause → effect → consequence.",
+ "target": "Every pressure explanation needs the link: <b>smaller area → the same force is more concentrated → bigger pressure</b>. For gases: <b>more collisions with the walls → bigger pressure</b>.",
+ "sections": [
+  {
+   "h": "Day 1 · 1. What is pressure?",
+   "time": "5 min",
+   "sub": "Pressure is how concentrated a force is: how much force pushes on each bit of area.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>The equation</b><br>pressure = force ÷ area<br><br>Units: force in <b>newtons (N)</b>. Area in <b>m²</b> gives pressure in <b>N/m²</b>, which is also called the <b>pascal (Pa)</b>: 1 N/m² = 1 Pa. Area in <b>cm²</b> gives pressure in <b>N/cm²</b>.<br><br><b>Same force, smaller area → bigger pressure.</b> Same force, bigger area → smaller pressure."
+    },
+    {
+     "type": "mc",
+     "id": "p1",
+     "h": "Which is bigger?",
+     "q": "You push a drawing pin into a board with the same force each time. Where is the pressure on the board biggest?",
+     "o": [
+      "Under the flat head, if you push it in upside down",
+      "Under the sharp point",
+      "The same: the force is the same"
+     ],
+     "c": 1,
+     "why": "The point has a tiny area, so the same force is concentrated on a small area: the pressure is huge and it goes into the board."
+    },
+    {
+     "type": "mc",
+     "id": "p2",
+     "h": "Units",
+     "q": "Which unit is the same as 1 N/m²?",
+     "o": [
+      "1 newton (N)",
+      "1 pascal (Pa)",
+      "1 N/cm²"
+     ],
+     "c": 1,
+     "why": "1 pascal is 1 newton on each square metre. N/cm² is a different, much bigger unit (1 N/cm² = 10 000 N/m²)."
+    },
+    {
+     "type": "mc",
+     "id": "p3",
+     "h": "Snowshoes",
+     "q": "Why do snowshoes stop you sinking into deep snow?",
+     "o": [
+      "They make you lighter",
+      "They spread your weight over a bigger area, so the pressure on the snow is smaller",
+      "They increase the force on the snow"
+     ],
+     "c": 1,
+     "why": "Your weight (the force) is the same. Spreading it over a bigger area makes the pressure smaller, so the snow is not pushed down as much."
+    }
+   ]
+  },
+  {
+   "h": "Day 1 · 2. Calculate it",
+   "time": "12 min",
+   "sub": "Write the equation, put the numbers in, then the answer with its unit.",
+   "blocks": [
+    {
+     "type": "num",
+     "id": "c1",
+     "h": "Box on the floor",
+     "q": "A box with a weight of 300 N rests on the floor. Its base has an area of 0.5 m². Calculate the pressure on the floor.",
+     "answer": "600",
+     "unit": "N/m²",
+     "decimal": true,
+     "why": "pressure = 300 ÷ 0.5 = 600 N/m² (600 Pa).",
+     "traps": [
+      {
+       "value": "150",
+       "msg": "You multiplied. Pressure = force ÷ area."
+      },
+      {
+       "value": "0.0016667",
+       "msg": "Upside down: force goes on top, area underneath."
+      }
+     ]
+    },
+    {
+     "type": "num",
+     "id": "c2",
+     "h": "Ice skate",
+     "q": "A skater with a weight of 600 N stands on one skate blade. The blade touches the ice over an area of 0.0005 m². Calculate the pressure.",
+     "answer": "1200000",
+     "unit": "N/m²",
+     "decimal": true,
+     "why": "pressure = 600 ÷ 0.0005 = 1 200 000 N/m². A tiny area makes a huge pressure, which is why the blade cuts into the ice.",
+     "traps": [
+      {
+       "value": "0.3",
+       "msg": "You multiplied. Divide the force by the area."
+      },
+      {
+       "value": "120000",
+       "msg": "Check the zeros: 600 ÷ 0.0005 = 1 200 000."
+      }
+     ]
+    },
+    {
+     "type": "num",
+     "id": "c3",
+     "h": "Area in cm²",
+     "q": "A brick with a weight of 24 N rests on a shelf. The face touching the shelf has an area of 120 cm². Calculate the pressure in N/cm².",
+     "answer": "0.2",
+     "unit": "N/cm²",
+     "decimal": true,
+     "why": "pressure = 24 ÷ 120 = 0.2 N/cm². With area in cm² the unit is N/cm².",
+     "traps": [
+      {
+       "value": "5",
+       "msg": "Upside down: it is force ÷ area, 24 ÷ 120."
+      },
+      {
+       "value": "2880",
+       "msg": "You multiplied."
+      }
+     ]
+    },
+    {
+     "type": "info",
+     "html": "<b>Finding the force.</b> If you know the pressure and the area: <b>force = pressure × area</b>. (This is pressure = force ÷ area, rearranged: multiply both sides by the area.)"
+    },
+    {
+     "type": "num",
+     "id": "c4",
+     "h": "Elephant",
+     "q": "An elephant’s feet press on the ground with a pressure of 100 000 N/m². The total area of its feet is 0.4 m². Calculate the force (its weight).",
+     "answer": "40000",
+     "unit": "N",
+     "decimal": true,
+     "why": "force = pressure × area = 100 000 × 0.4 = 40 000 N.",
+     "traps": [
+      {
+       "value": "250000",
+       "msg": "You divided. To find the force, multiply pressure by area."
+      }
+     ]
+    },
+    {
+     "type": "num",
+     "id": "c5",
+     "h": "Suction cup",
+     "q": "A suction cup has an area of 0.02 m². The air presses on it with a pressure of 100 000 N/m². What force holds it on?",
+     "answer": "2000",
+     "unit": "N",
+     "decimal": true,
+     "why": "force = 100 000 × 0.02 = 2000 N.",
+     "traps": [
+      {
+       "value": "5000000",
+       "msg": "You divided. force = pressure × area."
+      }
+     ]
+    },
+    {
+     "type": "num",
+     "id": "c6",
+     "h": "Find the area (stretch)",
+     "q": "A force of 50 N makes a pressure of 2500 N/m². What area is it acting on, in m²?",
+     "answer": "0.02",
+     "unit": "m²",
+     "decimal": true,
+     "why": "area = force ÷ pressure = 50 ÷ 2500 = 0.02 m².",
+     "traps": [
+      {
+       "value": "50",
+       "msg": "That is 2500 ÷ 50. Area = force ÷ pressure."
+      },
+      {
+       "value": "125000",
+       "msg": "You multiplied."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Day 1 · 3. Explain it",
+   "time": "8 min",
+   "sub": "A Because Chain: one mark per link.",
+   "blocks": [
+    {
+     "type": "order",
+     "id": "ch1",
+     "h": "Build the chain",
+     "q": "Why does a sharp knife cut better than a blunt one? Tap the links in order.",
+     "items": [
+      "A sharp knife has a very thin edge, so its area is small.",
+      "So the same force acts on a smaller area.",
+      "So the pressure on the food is bigger.",
+      "So the knife pushes through the food more easily."
+     ],
+     "done": "Cause (small area) → effect (bigger pressure) → consequence (cuts easily)."
+    },
+    {
+     "type": "write",
+     "id": "e1",
+     "marks": 3,
+     "rows": 4,
+     "q": "A tractor has very wide tyres. Explain why this helps it drive over soft, muddy fields without sinking.",
+     "minWords": 20,
+     "mark": {
+      "points": [
+       {
+        "t": "wide tyres have a <b>bigger area</b> touching the ground",
+        "m": 1
+       },
+       {
+        "t": "so the tractor’s weight is <b>spread out</b> / the same force acts on a bigger area",
+        "m": 1
+       },
+       {
+        "t": "so the <b>pressure</b> on the ground is <b>smaller</b>, so it sinks less",
+        "m": 1
+       }
+      ]
+     },
+     "starters": [
+      "The wide tyres have a bigger…",
+      "so the pressure…"
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Day 2 · 4. Pressure in gases",
+   "time": "8 min",
+   "sub": "Read this, then answer from memory.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>Why a gas presses.</b> A gas (or a liquid) is a <b>fluid</b>: it has no fixed shape. Its particles move about quickly and <b>collide</b> with the walls of the container. Each collision pushes on the wall. All those pushes make the <b>gas pressure</b>. The particles move in every direction, so the pressure acts <b>in all directions</b>: that is why a balloon swells in every direction.<br><br><b>Squash it</b> (smaller volume): the particles hit the walls <b>more often</b> → <b>higher pressure</b>.<br><b>Heat it</b>: the particles move <b>faster</b>, so they hit the walls <b>harder and more often</b> → <b>higher pressure</b>.<br><br><b>Atmospheric pressure</b> is the pressure of the air all around us. We do not feel it because the fluids inside our body push out just as hard. Higher up a mountain there is <b>less air above you</b>, so its weight is less and the air is <b>less dense</b>: atmospheric pressure is <b>lower</b>, and each breath holds less oxygen."
+    },
+    {
+     "type": "mc",
+     "id": "g1",
+     "h": "Directions",
+     "q": "In which direction does the pressure of a gas act?",
+     "o": [
+      "Downwards only",
+      "Upwards only",
+      "In all directions"
+     ],
+     "c": 2,
+     "why": "The particles move and collide in every direction, so the pressure acts in all directions."
+    },
+    {
+     "type": "mc",
+     "id": "g2",
+     "h": "Squash it",
+     "q": "You push in the handle of a bike pump with your finger over the end. What happens to the air pressure inside, and why?",
+     "o": [
+      "It goes down, because there is less air",
+      "It goes up, because the particles are closer together and hit the walls more often",
+      "It stays the same, because there is the same amount of air"
+     ],
+     "c": 1,
+     "why": "Same number of particles in a smaller volume → more collisions with the walls each second → higher pressure."
+    },
+    {
+     "type": "mc",
+     "id": "g3",
+     "h": "Heat it",
+     "q": "A sealed can of air is heated. Why does the pressure inside rise?",
+     "o": [
+      "The particles get bigger",
+      "The particles move faster, so they hit the walls harder and more often",
+      "More particles are made"
+     ],
+     "c": 1,
+     "why": "Heating gives the particles more energy: faster particles collide harder and more often. The particles themselves do not get bigger."
+    },
+    {
+     "type": "mc",
+     "id": "g4",
+     "h": "Up a mountain",
+     "q": "Why is atmospheric pressure lower at the top of a mountain?",
+     "o": [
+      "The air is colder",
+      "There is less air above you pressing down, and the air is less dense",
+      "The mountain blocks the wind"
+     ],
+     "c": 1,
+     "why": "Less air above you means less weight of air pushing down. Gravity pulls air towards the Earth, so it is densest at sea level."
+    },
+    {
+     "type": "num",
+     "id": "g5",
+     "h": "Fluid pressure",
+     "q": "The gas in a balloon pushes with a force of 6 N on an area of 0.0002 m². Calculate the gas pressure.",
+     "answer": "30000",
+     "unit": "N/m²",
+     "decimal": true,
+     "why": "pressure = 6 ÷ 0.0002 = 30 000 N/m². Fluid pressure uses the same equation.",
+     "traps": [
+      {
+       "value": "0.0012",
+       "msg": "You multiplied. Divide force by area."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Day 2 · 5. Explain it",
+   "time": "12 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "order",
+     "id": "ch2",
+     "h": "Build the chain",
+     "q": "Why does a balloon get bigger when you blow more air into it? Tap the links in order.",
+     "items": [
+      "There are more air particles inside the balloon.",
+      "So there are more collisions on the inside of the rubber than on the outside.",
+      "So the pressure inside is bigger than the pressure outside.",
+      "So the rubber is pushed outwards in all directions."
+     ],
+     "done": "More particles → more collisions → higher pressure inside → the balloon stretches."
+    },
+    {
+     "type": "write",
+     "id": "e2",
+     "marks": 3,
+     "rows": 4,
+     "q": "A sealed bag of crisps is taken up a mountain. The bag puffs up. Explain why.",
+     "minWords": 20,
+     "mark": {
+      "points": [
+       {
+        "t": "higher up, <b>atmospheric pressure is lower</b> (less air above / air less dense)",
+        "m": 1
+       },
+       {
+        "t": "the air <b>inside</b> the bag now has a <b>higher pressure than the air outside</b>",
+        "m": 1
+       },
+       {
+        "t": "so the gas pushes the bag <b>outwards</b> (in all directions)",
+        "m": 1
+       }
+      ]
+     },
+     "starters": [
+      "Higher up, the atmospheric pressure…",
+      "so the air inside the bag…"
+     ]
+    },
+    {
+     "type": "write",
+     "id": "e3",
+     "marks": 3,
+     "rows": 4,
+     "q": "Explain why a car tyre’s pressure goes up after a long drive, when the tyre is hot.",
+     "minWords": 18,
+     "mark": {
+      "points": [
+       {
+        "t": "the air inside gets <b>hotter</b>, so its particles move <b>faster</b>",
+        "m": 1
+       },
+       {
+        "t": "they hit the walls of the tyre <b>harder and more often</b>",
+        "m": 1
+       },
+       {
+        "t": "so the <b>pressure increases</b>",
+        "m": 1
+       }
+      ]
+     },
+     "starters": [
+      "The air in the tyre gets hotter, so…"
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Check yourself",
+   "time": "3 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "I can write pressure = force ÷ area from memory, with units (N, m², N/m² = Pa).",
+      "I can find a force: force = pressure × area.",
+      "Every explanation says <b>area</b> → <b>pressure</b> → what happens.",
+      "For gases I mention <b>collisions with the walls</b>.",
+      "I can say why air pressure is lower up a mountain."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“Why does a drawing pin go into the board but your thumb doesn’t hurt?”",
+     "note": "For the parent: listen for the point has a small area so a big pressure; the head has a big area so a small pressure on the thumb, with the same force. If she just says “it’s sharp”, ask “what does sharp mean for the area?”"
+    }
+   ]
+  }
+ ]
+}

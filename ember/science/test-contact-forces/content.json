@@ -1,0 +1,277 @@
+{
+ "kicker": "Ember · Science · Test on Wed 18 Nov",
+ "title": "Day 4: Contact forces",
+ "sub": "Day 4 (Sat). Friction and drag, then squashing and stretching (Hooke’s Law). About 25 minutes.",
+ "skill": "The Because Chain: cause → effect → consequence.",
+ "target": "Forces questions reward the chain <b>force → resultant force → what happens to the motion</b>, and for springs, numbers with units (extension = new length − original length).",
+ "sections": [
+  {
+   "h": "1. Friction and drag",
+   "time": "8 min",
+   "sub": "Contact forces act when two things touch.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>Friction</b> acts between two solid surfaces sliding past each other. Even smooth-looking surfaces are rough close up, so they <b>grip</b>. Rougher surfaces → more friction.<br><b>Drag</b> acts on something moving through a fluid: <b>air resistance</b> in air, <b>water resistance</b> in water. The object has to push the particles out of the way. Faster → more drag.<br><b>Reduce friction:</b> use oil or grease (<b>lubrication</b>). <b>Reduce drag:</b> a smooth, pointed (<b>streamlined</b>) shape.<br><b>Resultant force zero</b> (forces balanced) → the object is in <b>equilibrium</b>: it stays still, or keeps moving at a <b>steady speed</b> in the same direction."
+    },
+    {
+     "type": "mc",
+     "id": "f1",
+     "h": "Which force?",
+     "q": "A dolphin swims through the sea. Which force slows it down?",
+     "o": [
+      "Friction",
+      "Water resistance (drag)",
+      "Gravity"
+     ],
+     "c": 1,
+     "why": "Moving through water = water resistance, a drag force. Friction is between two solid surfaces."
+    },
+    {
+     "type": "mc",
+     "id": "f2",
+     "h": "Rough or smooth?",
+     "q": "On which surface is friction greater?",
+     "o": [
+      "A rough surface",
+      "A smooth surface",
+      "It is always the same"
+     ],
+     "c": 0,
+     "why": "Rough surfaces grip each other more."
+    },
+    {
+     "type": "mc",
+     "id": "f3",
+     "h": "Steady speed",
+     "q": "A leaf falls at a steady speed. What does that tell you about the forces on it?",
+     "o": [
+      "Its weight is bigger than air resistance",
+      "Air resistance equals its weight, so the resultant force is zero",
+      "There are no forces on it"
+     ],
+     "c": 1,
+     "why": "Steady speed = equilibrium = balanced forces. The forces are still there; they just cancel out."
+    },
+    {
+     "type": "mc",
+     "id": "f4",
+     "h": "Cut the drag",
+     "q": "A cyclist tucks her arms in and crouches low. Why?",
+     "o": [
+      "To make herself more streamlined, so there is less air resistance",
+      "To increase friction with the road",
+      "To make her heavier"
+     ],
+     "c": 0,
+     "why": "A more streamlined shape pushes fewer air particles out of the way, so the drag is smaller."
+    },
+    {
+     "type": "num",
+     "id": "f5",
+     "h": "Resultant force",
+     "q": "A car’s engine pushes it forward with 2000 N. Air resistance and friction add up to 1500 N backwards. What is the resultant force?",
+     "answer": "500",
+     "unit": "N",
+     "decimal": true,
+     "why": "2000 − 1500 = 500 N forwards, so the car speeds up.",
+     "traps": [
+      {
+       "value": "3500",
+       "msg": "They act in opposite directions, so subtract."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "h": "2. Squashing and stretching",
+   "time": "9 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "Forces can change the shape of an object: <b>deformation</b>. Squashing = <b>compression</b>; stretching = <b>tension</b>.<br><b>Why the floor holds you up:</b> a solid’s particles are joined by bonds. Your weight squashes the bonds a tiny bit, and they <b>push back</b>. That support force is the <b>reaction</b> force.<br><b>Extension</b> = how much longer something gets = new length − original length.<br><b>Hooke’s Law:</b> for a spring, if you <b>double the force, the extension doubles</b>. The force–extension graph is a <b>straight line through the origin</b>: a <b>linear relationship</b> (force and extension are proportional).<br>Past its <b>elastic limit</b>, a spring no longer goes back to its original length. Not everything obeys Hooke’s Law: an elastic band or a plastic bag (polyethene) does not."
+    },
+    {
+     "type": "mc",
+     "id": "s1",
+     "h": "Reaction force",
+     "q": "Why don’t you fall through a chair when you sit on it?",
+     "o": [
+      "The chair is heavier than you",
+      "Your weight slightly compresses the bonds between the chair’s particles, and they push back up with a reaction force",
+      "Air pushes you up"
+     ],
+     "c": 1,
+     "why": "The chair deforms a tiny bit; the compressed bonds push back. That is the reaction (support) force."
+    },
+    {
+     "type": "num",
+     "id": "s2",
+     "h": "Extension",
+     "q": "A spring is 4 cm long. When a weight hangs on it, it is 7 cm long. What is the extension?",
+     "answer": "3",
+     "unit": "cm",
+     "decimal": true,
+     "why": "extension = 7 − 4 = 3 cm.",
+     "traps": [
+      {
+       "value": "7",
+       "msg": "That is the new length. Extension = new length − original length."
+      },
+      {
+       "value": "11",
+       "msg": "Subtract, don’t add."
+      }
+     ]
+    },
+    {
+     "type": "num",
+     "id": "s3",
+     "h": "Hooke’s Law",
+     "q": "A 2 N force stretches a spring by 3 cm. The spring obeys Hooke’s Law. What is the extension with a 6 N force?",
+     "answer": "9",
+     "unit": "cm",
+     "decimal": true,
+     "why": "6 N is 3 × 2 N, so the extension is 3 × 3 cm = 9 cm.",
+     "traps": [
+      {
+       "value": "7",
+       "msg": "Not add: force × 3 means extension × 3."
+      },
+      {
+       "value": "6",
+       "msg": "The force tripled, so the extension triples: 9 cm."
+      }
+     ]
+    },
+    {
+     "type": "mc",
+     "id": "s4",
+     "h": "The graph",
+     "q": "What does a straight line through the origin on a force–extension graph show?",
+     "o": [
+      "The spring has passed its elastic limit",
+      "Force and extension are proportional (a linear relationship), so the spring obeys Hooke’s Law",
+      "The spring is not stretching"
+     ],
+     "c": 1,
+     "why": "Straight line through (0,0) = proportional = Hooke’s Law."
+    },
+    {
+     "type": "mc",
+     "id": "s5",
+     "h": "Elastic limit",
+     "q": "A spring is stretched too far and stays longer when the force is removed. What has happened?",
+     "o": [
+      "It has gone past its elastic limit",
+      "It obeyed Hooke’s Law",
+      "It was compressed"
+     ],
+     "c": 0,
+     "why": "Past the elastic limit it is permanently stretched."
+    }
+   ]
+  },
+  {
+   "h": "3. Explain it",
+   "time": "8 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "order",
+     "id": "ch",
+     "h": "Build the chain",
+     "q": "A skydiver jumps. Why does she stop speeding up? Tap the links in order.",
+     "items": [
+      "As she falls faster, she hits more air particles each second.",
+      "So the air resistance on her increases.",
+      "Eventually air resistance equals her weight, so the resultant force is zero.",
+      "So she falls at a steady speed."
+     ],
+     "done": "Faster → more drag → balanced forces → steady speed."
+    },
+    {
+     "type": "write",
+     "id": "e1",
+     "marks": 3,
+     "rows": 4,
+     "q": "Explain why a car with smooth, worn tyres is more likely to skid on the road than a car with new tyres.",
+     "minWords": 20,
+     "mark": {
+      "points": [
+       {
+        "t": "new tyres are <b>rougher</b> / have more grip",
+        "m": 1
+       },
+       {
+        "t": "so there is <b>more friction</b> between the tyres and the road",
+        "m": 1
+       },
+       {
+        "t": "worn (smooth) tyres give <b>less friction</b>, so the car slides more easily / takes longer to stop",
+        "m": 1
+       }
+      ]
+     },
+     "starters": [
+      "New tyres are rougher, so…"
+     ]
+    },
+    {
+     "type": "write",
+     "id": "e2",
+     "marks": 3,
+     "rows": 4,
+     "q": "A student hangs weights on a spring and a rubber band and plots force–extension graphs. Describe how the two graphs would be different, and what that tells you.",
+     "minWords": 25,
+     "mark": {
+      "points": [
+       {
+        "t": "the spring’s graph is a <b>straight line through the origin</b>",
+        "m": 1
+       },
+       {
+        "t": "so the spring <b>obeys Hooke’s Law</b> / extension is proportional to force",
+        "m": 1
+       },
+       {
+        "t": "the rubber band’s graph is <b>curved</b> (not linear), so it does <b>not</b> obey Hooke’s Law",
+        "m": 1
+       }
+      ]
+     },
+     "starters": [
+      "The spring’s graph is…",
+      "The rubber band’s graph…"
+     ]
+    }
+   ]
+  },
+  {
+   "h": "Check yourself",
+   "time": "3 min",
+   "sub": "",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "I can name friction, air resistance and water resistance, and say when each acts.",
+      "I can say how to reduce friction (lubrication) and drag (streamlining).",
+      "Balanced forces → still, or steady speed.",
+      "Extension = new length − original length.",
+      "Hooke’s Law: double the force, double the extension; straight line through the origin."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“Why does the floor push up on you?”",
+     "note": "For the parent: listen for weight compresses the bonds between particles, and they push back: the reaction force. “Because it’s solid” is not enough: ask “what happens to the particles?”"
+    }
+   ]
+  }
+ ]
+}
