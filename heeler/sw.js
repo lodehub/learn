@@ -43,7 +43,7 @@ function keep(c, page) {
         while ((m = re.exec(html))) {
           var src = new URL(m[1], page).href;
           refs.push(src);
-          data(src, m[0]).forEach(function (f) { refs.push(new URL(f, /practice\.js$/.test(src) ? page : src).href); });
+          data(src, m[0]).forEach(function (f) { refs.push(new URL(f, /(practice|reading)\.js$/.test(src) ? page : src).href); });
         }
         return c.put(page, res).then(function () {
           return Promise.all(refs.filter(function (u) { return u.indexOf(self.location.origin) === 0; }).map(function (u) {
@@ -55,7 +55,7 @@ function keep(c, page) {
   });
 }
 
-// The JSON each shared engine loads at runtime, read from its script tag (see assets/lab and assets/practice).
+// The JSON each shared engine loads at runtime, read from its script tag (see assets/lab, assets/practice and assets/reading).
 function data(src, tag) {
   function attr(n) { var m = new RegExp(n + '="([^"]+)"').exec(tag); return m && m[1]; }
   var lang = attr('data-lang') || 'french';
@@ -65,6 +65,7 @@ function data(src, tag) {
   if (/\/mainland\.js$/.test(src)) return ['mainland.json'];
   if (/\/phrase-lab\.js$/.test(src)) return ['units.json', 'structures.json'];
   if (/\/practice\.js$/.test(src)) return [attr('data-content') || 'content.json'];
+  if (/\/reading\/reading\.js$/.test(src)) return [attr('data-content') || 'reading.json'];
   return [];
 }
 

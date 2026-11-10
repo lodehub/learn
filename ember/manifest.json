@@ -11,6 +11,11 @@
       "title": "My feedback: marked work and next steps",
       "path": "feedback/",
       "feed": "feedback/feedback.json"
+    },
+    {
+      "badge": "Read",
+      "title": "History reading shelf: articles by historians",
+      "path": "history/reading/"
     }
   ],
   "subjects": [
@@ -408,6 +413,13 @@
       "print": "history/black-death-changes/black-death-changes.pdf",
       "printTitle": "Black Death: what changed? (written)",
       "week": 4
+    },
+    {
+      "title": "History reading shelf: articles by historians",
+      "path": "history/reading/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
     },
     {
       "title": "Geography Week 1: megacities and case-study evidence",

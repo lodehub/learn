@@ -1,0 +1,447 @@
+{
+ "kicker": "Ember · History",
+ "title": "History reading shelf",
+ "sub": "Real articles by historians, made easier to read. Use them to find evidence for your writing.",
+ "how": "<b>How to use it:</b> read the <b>Read for</b> questions first, so you know what you are looking for. Open the <b>key words</b>. Then read, and write one So What in your notebook at the end.",
+ "footer": "New articles are added here as you need them for school topics.",
+ "items": [
+  {
+   "id": "peasants-revolt",
+   "kind": "full",
+   "topic": "Medieval England: the Black Death and after",
+   "title": "The Peasants’ Revolt, 1381",
+   "author": "Mark Cartwright",
+   "source": "World History Encyclopedia",
+   "year": "2020",
+   "minutes": 12,
+   "url": "https://www.worldhistory.org/Peasants%27_Revolt/",
+   "why": "How the Black Death helped cause the biggest rebellion of the Middle Ages. Full article, readable here.",
+   "level": "Medium: a few long sentences. Tap underlined words.",
+   "readFor": [
+    "Find <b>two</b> ways the Black Death helped cause the revolt.",
+    "Look at the rebels’ demands. <b>So what</b> do they tell us peasants now believed about themselves?",
+    "The rhyme “When Adam delved, and Eve span…”: what is it saying?"
+   ],
+   "words": [
+    {
+     "w": "poll tax",
+     "d": "a tax where everyone pays the same amount, rich or poor"
+    },
+    {
+     "w": "serfdom",
+     "d": "the system where unfree peasants (serfs or villeins) had to work their lord’s land and could not leave"
+    },
+    {
+     "w": "villein",
+     "d": "an unfree peasant, tied to a lord’s manor"
+    },
+    {
+     "w": "groat",
+     "d": "a silver coin worth four pennies"
+    },
+    {
+     "w": "tithe",
+     "d": "a tenth of what you produced, paid to the Church"
+    },
+    {
+     "w": "yeomen",
+     "d": "peasants who owned their own small farm"
+    },
+    {
+     "w": "manor",
+     "d": "a lord’s estate: his land, his house and the village that worked it"
+    },
+    {
+     "w": "demagogue",
+     "d": "a leader who stirs up crowds with strong feelings"
+    },
+    {
+     "w": "Chancellor",
+     "d": "the king’s chief minister"
+    },
+    {
+     "w": "Lollards",
+     "d": "followers of John Wycliffe, who criticised the Church and wanted the Bible in English"
+    },
+    {
+     "w": "gibbet",
+     "d": "a wooden frame for hanging people"
+    }
+   ],
+   "text": [
+    [
+     "p",
+     "The Peasants' Revolt, also known as the Great Revolt, was a largely unsuccessful popular uprising in England in June 1381. The rebellion's leaders included Wat Tyler and they wanted massive social changes which included a removal of the poll tax, an end to the cap on labour wages, redistribution of the Church's wealth and the total abolition of serfdom."
+    ],
+    [
+     "p",
+     "The revolt began in the south-east of England and then spread to London and elsewhere. Although desiring social change, the rebels did not want to remove King Richard II of England (r. 1377-1399). It lasted only four weeks and was put down by Richard, first by negotiation and then through ruthless persecution of the ringleaders. The consequences of the revolt were, therefore, limited, but the poll tax was abandoned, restrictions on labour wages were not strictly enforced, and peasants continued the trend of buying their freedom from serfdom and becoming independent farmers."
+    ],
+    [
+     "h2",
+     "Causes of the Revolt"
+    ],
+    [
+     "p",
+     "The Peasant's Revolt of June 1381 was the most infamous popular uprising of the Middle Ages and it was caused by a simmering discontent in England that went as far back as the middle of Edward III of England's reign as king (1327-1377) and the arrival of the Black Death plague in 1348. It was, though, Edward's successor, Richard II of England, who had to deal with the chaos when the widespread discontent boiled over into all-out rebellion."
+    ],
+    [
+     "p",
+     "The principal causes of the Peasants' Revolt were:"
+    ],
+    [
+     "li",
+     "a new poll tax imposed on all peasants irrespective of wealth (the third such tax since 1377)."
+    ],
+    [
+     "li",
+     "the limit by law on wages after labour costs had risen dramatically following the Black Death plague."
+    ],
+    [
+     "li",
+     "unscrupulous landlords trying to turn free labourers back into serfs (aka villeins) to save money on wages."
+    ],
+    [
+     "li",
+     "a general feeling of exploitation by local authorities during a time of economic decline."
+    ],
+    [
+     "p",
+     "The poll tax of three groats (equivalent to a couple of days labour), was applied to anyone aged over 15 years (only beggars were exempt) and, unlike other taxes, it took no consideration of a person's ability to pay it. Just to add more woe, this third poll tax was three times higher than the two previous ones. The peasantry had been well-used to taxes, Edward III had imposed 27 of them during his reign, largely in order to pay for his hugely expensive military campaigns against the French during the Hundred Years' War (1337-1453). Richard similarly needed cash to carry on the war with France whose pirate ships were rampant in the English Channel, but now people had finally had enough. There were other problems, too."
+    ],
+    [
+     "p",
+     "The cost of labour had risen dramatically following a shortage of it after the Black Death struck in 1348, and this meant many serfs could now charge for their labour. Edward III had imposed laws restricting how much a labourer could earn each day, and there were strict punishments for those who did not comply. Many landlords attempted to get around the problem by making their labourers become serfs again, thus saving on their wages. The idea that one was not necessarily born into a life of servitude to another was a difficult one to quash, though, and people were well aware that large landowners, lawyers, and officials were conspiring in a system that kept the poor in their place while they themselves benefitted. There even spread a rhyme which expressed the commoner's discontent at not being treated equally as landowners:"
+    ],
+    [
+     "blockquote",
+     "When Adam delved, and Eve span, Who was then the gentleman?"
+    ],
+    [
+     "p",
+     "Christian beliefs were thus used to support the idea that all men were equal, or at least deserved to be treated with respect. Conversely, the medieval Church as an institution was also held responsible for many of the ills of society. Many commoners felt that church officials and institutions, especially the great abbeys, had not been very accommodating when the Black Death struck and were just as rapacious in extracting their duties and tithes as any other type of landowner."
+    ],
+    [
+     "p",
+     "The Black Death had killed between 30 and 50% of the population in areas it had struck, which meant that some peasants had been able to buy their own small piece of land to farm as land prices plummeted and there were not enough people to work it. These landed peasants were called yeomen. In addition, the drastic fall in population had hit small businesses and artisans as their customers evaporated. These developments may explain why it was in the better-off areas of the kingdom where the revolt broke out - East Anglia and Kent - and why it was a phenomenon not limited to the countryside."
+    ],
+    [
+     "h2",
+     "Violence Erupts"
+    ],
+    [
+     "p",
+     "The uprising began, then, in May-June 1381 in England's south-east where royal tax inspectors were investigating why tax returns had been surprisingly low. These inspectors suddenly met with opposition for their demands for payment of the poll tax which Parliament had passed in November 1380. Officials and sheriffs were kidnapped and murdered. Bands of rebels toured the countryside on horseback, torching manors and destroying their records - a clear indicator of the peasants' desire to overturn manorialism. The public records at Maidstone, Rochester, and Canterbury all went up in flames. The ringleaders seemed to be better-off small farmers and included in their number parish priests and village constables. This was not a revolt of the absolute poor but those commoners who had something to lose. The Crown sent men-at-arms to deal with the problem areas, but these were too few in number and many were killed."
+    ],
+    [
+     "p",
+     "Two leaders, in particular, came to the fore. Wat Tyler of Maidstone, perhaps a former soldier but any certain details are lacking, and the demagogue priest John Ball, who radically sought for more equality in society. Ball had already seen the inside of a prison a few times for his extreme preaching. The medieval chronicler Jean Froissart, (c. 1337 – c. 1405) records that Ball noted with frustration that:"
+    ],
+    [
+     "blockquote",
+     "[The lords] are clad in velvet and camlet lined with squirrel and ermine, while we go dressed in coarse cloth. They have the wines, the spices, and the good bread: we have the rye, the husks, and the straw, and we drink water. They have shelter and ease in their fine manors, and we have hardship and toil, the wind and the rain in the fields. And from us must come, from our labour, the things which keep them in luxury. (quoted in Gies, 198)"
+    ],
+    [
+     "p",
+     "Consequently, with leadership, genuine grievances and an ideological framework to justify their actions, the disturbances developed into a full-scale rebellion with a mission: confront the King and get things changed. It is important to note, however, that the rebels did not want to topple the king and their members even swore an oath of loyalty to 'King Richard and the true Commons'. The rebels marched to London on 11 June - causing much havoc on their way - where they were joined by equally discontented townsfolk illustrating that the revolt was not simply one of feudal labourers. In London, there had long been rivalries between the rich and poor, factions of the Church, medieval guilds, native and foreign merchants, and apprentices and their masters, and all these divisions would be widened by the revolt. Some chroniclers noted the rebels now numbered over 60,000 people, and all this while the king's army was in Scotland."
+    ],
+    [
+     "h2",
+     "The Peasants' Demands"
+    ],
+    [
+     "p",
+     "When the mob got to London on 13 June they continued to loot, pillage, and murder. Lawyers, foreigners, and petty officials of the Crown were just some of the groups targeted as old grudges resulted in wanton acts of vengeance. Prisoners were freed while those thought to be guilty of crimes were hanged by peoples' courts. A mob burnt down the Savoy palace and murdered anyone they pleased."
+    ],
+    [
+     "p",
+     "Although only 14, King Richard emerged from the safety of the Tower of London and bravely promised to meet the protest leaders at Mile End, a field on the outskirts of London. There Richard listened to their demands and blithely promised to meet all of them, issue charters accordingly and even permitted Tyler to extract justice on any person he thought deserved punishment. Tyler then promptly ordered the storming of the Tower of London and had the hated Chancellor, Archbishop Simon of Sudbury, decapitated on Tower Hill. Another day of looting, murder, and mayhem followed in the capital. Meanwhile, news reached the king that rioting had spread as far north as York and there was, or would be, trouble in the counties of Cambridgeshire, Herefordshire, Suffolk and Norfolk."
+    ],
+    [
+     "p",
+     "To put an end to the chaos Richard once more called to meet the rebel leaders, this time at Smithfield outside London on 15 June to hear their grievances again. He also ensured troops were put on standby in case of a battle."
+    ],
+    [
+     "p",
+     "The participants of the Peasants' Revolt demanded the following changes:"
+    ],
+    [
+     "li",
+     "the total abolition of serfdom"
+    ],
+    [
+     "li",
+     "a repeal of labour laws limiting wage increases brought in after the Black Death"
+    ],
+    [
+     "li",
+     "free fishing and hunting rights for all"
+    ],
+    [
+     "li",
+     "more peasant participation in local government"
+    ],
+    [
+     "li",
+     "the Crown should be the only authority in the counties, not local lords"
+    ],
+    [
+     "li",
+     "the redistribution of the Church's riches, especially of the great abbeys"
+    ],
+    [
+     "p",
+     "These demands were frankly ludicrous for the period but they did at least have some basis in reality. Serfdom had already been eradicated almost everywhere, but there were some pockets of the country where the practice still went on. Similarly, the redistribution of Church wealth was an idea championed by the theologian John Wycliffe (c. 1325-1384), one of the leaders of the movement whose followers became known as 'Lollards'. The movement of 'Lollardy', perhaps deriving its name from the Latin word for 'prayer' (or the derogatory Dutch word for 'mumble'), emphasised that anyone could pray in private, an idea which threatened the monopoly of the Church and its appointees as the bridge between humanity and God. Wycliffe even wanted people to be able to read the Bible for themselves, and so he made a translation from Latin into English, but he was prohibited from publishing his work in England."
+    ],
+    [
+     "p",
+     "Richard's successor, Henry IV of England (r. 1399-1413) was anxious to preserve the status quo and persecuted the Lollards until the movement all but disappeared. Nevertheless, there remained a strong anti-clerical feeling amongst the Peasants' Revolt protesters as the Church was seen not only as grasping but as the provider of funds to the Pope, a foreigner who supported the great enemy France. Finally, there was some truth in the idea that local lords were extracting more than they should from their estates, and there was a feeling that the king was being misled and badly served by certain officials such as the Chancellor and dukes like John of Gaunt, Duke of Lancaster (1340-1399)."
+    ],
+    [
+     "p",
+     "At Smithfield, after the demands were presented, things could have taken a very ugly turn when William Walworth, the Mayor of London stepped forward and killed Wat Tyler, perhaps thinking Tyler was about to do the king harm. Tyler had, in any case, been disrespectful to the king by spitting water at his feet. As the crowd surged forward, Richard stepped amongst them and boldly declared:"
+    ],
+    [
+     "blockquote",
+     "Sirs, would you kill your king? I am your rightful captain, and I will be your leader. Let all those who love me, follow me. (Quoted in Jones, N., 75)"
+    ],
+    [
+     "p",
+     "Richard then employed the much-used tactic of making a load of extravagant promises he had no intention of keeping such as giving everyone involved royal pardons. These promises were enough to stave off more rioting, and the mob disbanded, escorted out of London by the city's militia."
+    ],
+    [
+     "h2",
+     "Consequences of the Revolt"
+    ],
+    [
+     "p",
+     "Utterly ruthless, Richard next ensured that around 150 of the rebels were hanged, so many that new gibbets had to be built for the purpose. Wat Tyler's head was displayed on London Bridge. There were other minor outbreaks of rebellion thereafter, but these were mercilessly quashed and their ringleaders executed as traitors. As the king boldly stated: 'villeins ye are, and villeins ye shall remain'. The whole affair was perhaps the high point of Richard's reign as things went downhill from then on, the once-admired young king turning out to be a major disappointment and ending his days with a short imprisonment and a mysterious death."
+    ],
+    [
+     "p",
+     "Ultimately, though, there were social changes in England, as had already be seen prior to the revolt. The poll tax was abandoned, the limits on labourers' wages were not rigorously enforced, and serfs continued to buy their freedom. Significantly, the law and legal records were now used not by landowners to enforce an obligation of labour but to demonstrate a labourer had legitimately bought their freedom and could pass on their land to their descendants."
+    ]
+   ],
+   "note": "Write one cause of the revolt that links back to the Black Death. Then: <b>so what</b> does it tell us peasants wanted or believed after 1348?",
+   "credit": "Text: Mark Cartwright, “Peasants’ Revolt”, <i>World History Encyclopedia</i>, 23 January 2020 (<a href=\"https://www.worldhistory.org/Peasants%27_Revolt/\" target=\"_blank\" rel=\"noopener\">original</a>), licensed <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/\" target=\"_blank\" rel=\"noopener\">CC BY-NC-SA 4.0</a>. Pictures, adverts and links removed; key words and questions added. This adapted version is shared under the same licence."
+  },
+  {
+   "id": "ziegler-europe",
+   "kind": "guide",
+   "topic": "Medieval England: the Black Death and after",
+   "title": "The Black Death, Part I: across Europe",
+   "author": "Philip Ziegler",
+   "source": "History Today",
+   "year": "1968",
+   "minutes": 20,
+   "url": "https://www.historytoday.com/node/51032",
+   "why": "How the plague spread across Europe, what people thought caused it, and how they reacted.",
+   "level": "Written for adults in a history magazine. Start with the main points below, then try the real article.",
+   "readFor": [
+    "What did people at the time think caused the plague? Find three ideas.",
+    "Ziegler says medieval writers’ numbers can’t be trusted. Why might a chronicler exaggerate?",
+    "Pick one reaction to the plague. <b>So what</b> does it tell us people believed?"
+   ],
+   "words": [
+    {
+     "w": "chronicler",
+     "d": "someone who wrote down events as they happened, year by year"
+    },
+    {
+     "w": "bubonic plague",
+     "d": "a disease spread by rat fleas that causes painful swellings (buboes)"
+    },
+    {
+     "w": "flagellant",
+     "d": "a person who whipped themselves to show God they were sorry"
+    },
+    {
+     "w": "persecution",
+     "d": "cruel treatment of a group because of who they are"
+    },
+    {
+     "w": "penance",
+     "d": "something painful or difficult you do to show you are sorry for sin"
+    }
+   ],
+   "intro": "Ziegler takes the plague’s journey from Asia across Europe, then asks how people understood something they could not explain.",
+   "points": [
+    "The plague travelled from Central Asia along trade routes and reached Caffa, an Italian trading port in the Crimea, in 1346. Ships then carried it into Europe.",
+    "Nobody at the time knew what caused it. People blamed poisoned air, the movement of the stars, and above all <b>God’s anger at human sin</b>.",
+    "Doctors could do almost nothing. The best advice was to run away; otherwise burn sweet-smelling woods to clean the air. The Pope’s own surgeon wrote that doctors “could give no help at all”.",
+    "Chroniclers’ numbers were wild guesses: the Pope was told 42,836,486 people had died. Ziegler thinks about half of Florence’s 90,000 people died.",
+    "In Germany huge processions of flagellants went from town to town. At first they were respected, but rulers and the Church came to see them as a threat and stopped them.",
+    "Jews were falsely accused of poisoning wells. Thousands were murdered, in Basle, Strasbourg and Mainz. Pope Clement VI tried to stop the killings.",
+    "Ziegler’s best guess for Europe: between a quarter and a half died; “a third would be as good a guess as any”."
+   ],
+   "facts": [
+    [
+     "Caffa, 1346",
+     "the plague reached the Crimea and was carried west by Italian ships"
+    ],
+    [
+     "Siena, 1348",
+     "Agnolo di Tura wrote that he buried his five children with his own hands"
+    ],
+    [
+     "Germany, 1348–49",
+     "flagellant processions were hundreds, sometimes thousands, strong"
+    ],
+    [
+     "Florence, 1348",
+     "about half of roughly 90,000 people died (Ziegler)"
+    ]
+   ],
+   "debate": "<p><b>How many died?</b> In 1969 Philip Ziegler said about <b>a third</b> of England died (somewhere between a quarter and 45 per cent). In 2005 Ole Benedictow said about <b>60 per cent</b> of all Europe died: roughly 50 million people.</p><p>Why so different? Benedictow used many studies of ordinary villagers published after 1960, and argued that tax lists miss the poor, women and children, who died more often. Ziegler warned that every estimate is “highly speculative”.</p><p><b>Think:</b> which one is more recent? What evidence did each use? When you write a number, say <i>who</i> says so.</p>",
+   "note": "Pick one reaction from the article (doctors, flagellants, or blaming the Jews). <b>So what</b> does it tell us people believed or feared?",
+   "credit": "Article © History Today. This page is our own summary and reading guide; read the full article on History Today."
+  },
+  {
+   "id": "ziegler-england",
+   "kind": "guide",
+   "topic": "Medieval England: the Black Death and after",
+   "title": "The Black Death, Part II: England",
+   "author": "Philip Ziegler",
+   "source": "History Today",
+   "year": "1969",
+   "minutes": 20,
+   "url": "https://www.historytoday.com/node/51031",
+   "why": "What happened when the plague reached England in 1348: villages, priests, London, and how many died.",
+   "level": "Written for adults in a history magazine. Start with the main points below, then try the real article.",
+   "readFor": [
+    "Ziegler says England stayed calm compared with Europe. Find two pieces of evidence.",
+    "Priests were more likely to die than ordinary people, but were still blamed. <b>So what</b> does that tell us people expected from the Church?",
+    "Did the Black Death empty whole villages? What does Ziegler say?"
+   ],
+   "words": [
+    {
+     "w": "manor",
+     "d": "a lord’s estate: his land, his house and the village that worked it"
+    },
+    {
+     "w": "manorial court",
+     "d": "the lord’s court, which kept records of rents, fines and land"
+    },
+    {
+     "w": "reeve",
+     "d": "the peasant chosen to organise work on the manor"
+    },
+    {
+     "w": "clergy",
+     "d": "priests, monks and other people who worked for the Church"
+    },
+    {
+     "w": "mortality",
+     "d": "the number of deaths"
+    }
+   ],
+   "intro": "Ziegler follows the plague from the Dorset coast across England, using manor records and Church registers rather than just chroniclers’ stories.",
+   "points": [
+    "The plague probably arrived at <b>Melcombe Regis</b> (Weymouth, Dorset) in <b>June 1348</b>, though even the date and place are not certain.",
+    "England stayed surprisingly calm. A group of flagellants performed outside St Paul’s Cathedral in London, but people were unfriendly and they were sent home. There were no massacres of Jews, because Edward I had expelled them from England (in 1290).",
+    "Life carried on: manor courts kept meeting and peasants kept paying their dues, even when the lord, bailiff and reeve had all died.",
+    "Gloucester shut its gates to people from Bristol. It did not work: rats travelled along ditches and river boats.",
+    "Very few villages were emptied by the plague alone, but it weakened many so they died out later. Tilgarsley in Oxfordshire had nobody living there after 1350.",
+    "In London new cemeteries were opened. Perhaps 20,000–30,000 of 60,000–70,000 people died. Two Archbishops of Canterbury died in 1349.",
+    "About 45 per cent of parish priests died, more than ordinary people, yet priests were criticised as cowards and greedy. The Church’s reputation suffered.",
+    "Ziegler’s estimate: England had about 4 million people, and about <b>a third</b> died."
+   ],
+   "facts": [
+    [
+     "Dorset, June 1348",
+     "the plague arrived at Melcombe Regis"
+    ],
+    [
+     "London, 1349",
+     "new plague cemeteries; perhaps 20,000–30,000 dead"
+    ],
+    [
+     "Oxfordshire, 1350",
+     "the village of Tilgarsley was left empty"
+    ],
+    [
+     "Norfolk and Suffolk",
+     "very nearly half the clergy died"
+    ],
+    [
+     "Leicester",
+     "Henry Knighton wrote that sheep and cattle wandered with no one to look after them, and crops rotted"
+    ]
+   ],
+   "debate": "<p><b>How many died?</b> In 1969 Philip Ziegler said about <b>a third</b> of England died (somewhere between a quarter and 45 per cent). In 2005 Ole Benedictow said about <b>60 per cent</b> of all Europe died: roughly 50 million people.</p><p>Why so different? Benedictow used many studies of ordinary villagers published after 1960, and argued that tax lists miss the poor, women and children, who died more often. Ziegler warned that every estimate is “highly speculative”.</p><p><b>Think:</b> which one is more recent? What evidence did each use? When you write a number, say <i>who</i> says so.</p>",
+   "note": "Choose one fact about England. Write it with its date or place, then: <b>so what</b> does it show people valued, feared or believed?",
+   "credit": "Article © History Today. This page is our own summary and reading guide; read the full article on History Today."
+  },
+  {
+   "id": "benedictow",
+   "kind": "guide",
+   "topic": "Medieval England: the Black Death and after",
+   "title": "The Black Death: the greatest catastrophe ever",
+   "author": "Ole J. Benedictow",
+   "source": "History Today",
+   "year": "2005",
+   "minutes": 25,
+   "url": "https://www.historytoday.com/node/53279",
+   "why": "A historian explains how the disease really spread, and why he thinks 60 per cent of Europe died.",
+   "level": "Written for adults in a history magazine. Start with the main points below, then try the real article.",
+   "readFor": [
+    "How did the disease travel so fast? Find the evidence about ships.",
+    "Benedictow says 60 per cent died; Ziegler said about a third. What evidence does Benedictow use?",
+    "What did most people believe about the plague, and what did they do because of it?"
+   ],
+   "words": [
+    {
+     "w": "Yersinia pestis",
+     "d": "the bacterium (germ) that causes plague"
+    },
+    {
+     "w": "bubo",
+     "d": "a painful swelling, usually in the groin, armpit or neck"
+    },
+    {
+     "w": "epidemic",
+     "d": "a disease spreading quickly through many people"
+    },
+    {
+     "w": "mortality",
+     "d": "the number of deaths"
+    },
+    {
+     "w": "fatalism",
+     "d": "believing what happens is fixed, so there is no point trying to change it"
+    }
+   ],
+   "intro": "Benedictow uses modern science and many local studies to explain how the plague spread and how many it killed.",
+   "points": [
+    "The Black Death spread across Europe from 1346 to 1353. The name came centuries later, probably from a Latin word, <i>atra</i>, meaning both “terrible” and “black”.",
+    "It was caused by a germ carried by fleas on black rats. When the rats died, hungry fleas bit humans.",
+    "Ships spread it fast: about 40 km a day, so 600 km in a fortnight. By road it moved only about 2 km a day. It was a summer disease and slowed in winter.",
+    "It started in 1346 near the Caspian Sea. Mongol soldiers besieging the Italian port of Kaffa caught it, and Italian ships carried it away.",
+    "A ship from Bordeaux brought it to Melcombe Regis in Dorset around 8 May 1348; the outbreak began shortly before 24 June. All of England was hit by the end of 1349.",
+    "Most people believed it was a <b>punishment from God</b>. Some did penance; others accepted it, because trying to avoid God’s will was a sin.",
+    "His big claim: about <b>60 per cent</b> of Europe’s 80 million people died, around 50 million. Older estimates of 20–30 per cent should be doubled."
+   ],
+   "facts": [
+    [
+     "Kaffa, 1346",
+     "the plague broke out among the Mongol army besieging the port"
+    ],
+    [
+     "Dorset, May–June 1348",
+     "a ship from Bordeaux brought the plague to Melcombe Regis"
+    ],
+    [
+     "England, 1349",
+     "the whole country had been reached"
+    ],
+    [
+     "Europe, 1346–53",
+     "about 50 million died, roughly 60 per cent (Benedictow)"
+    ]
+   ],
+   "debate": "<p><b>How many died?</b> In 1969 Philip Ziegler said about <b>a third</b> of England died (somewhere between a quarter and 45 per cent). In 2005 Ole Benedictow said about <b>60 per cent</b> of all Europe died: roughly 50 million people.</p><p>Why so different? Benedictow used many studies of ordinary villagers published after 1960, and argued that tax lists miss the poor, women and children, who died more often. Ziegler warned that every estimate is “highly speculative”.</p><p><b>Think:</b> which one is more recent? What evidence did each use? When you write a number, say <i>who</i> says so.</p>",
+   "note": "Benedictow says most people believed the plague was God’s punishment. Write one thing people did because of that belief, then: <b>so what</b> does it tell us?",
+   "credit": "Article © History Today. This page is our own summary and reading guide; read the full article on History Today."
+  }
+ ]
+}

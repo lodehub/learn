@@ -22,6 +22,7 @@ Owner account: lodehub (anonymous by design).
 - `/assets/lab/`: the Language Lab engine (French Lab, Mandarin Lab), shared by every child. Content lives in its JSON files; each child has a thin wrapper page. See assets/lab/README.md.
 - `/assets/send.js`: LearnSend. Sends a child's answers to the parent's **private** Google Sheet (an Apps Script web app that can only add rows). Only children with an entry in its `ENDPOINTS` send anything (currently ember). The Practice engine loads it automatically; standalone pages include it and call `LearnSend.init/put/flush/button`. Answers are never stored in this repo.
 - `/assets/practice/`: the Practice engine (real exam questions, instant feedback, self-marking against the mark scheme, and a `?print` paper from the same content file). Each tool is a thin wrapper plus `content.json`. See assets/practice/README.md.
+- `/assets/reading/`: the Reading shelf engine (articles made easy to read: full text for openly licensed articles, our own reading guide + link for copyrighted ones). Content in one JSON per shelf. See assets/reading/README.md.
 - `/bible/`: Bible Lab, a family Bible study (one book, one passage a week, verse memory per person). Engine in `/assets/bible/`, content in `bible/<book>/season.json`. See assets/bible/README.md.
 - `/<slug>/index.html`: subject picker, reads that child's `manifest.json`
 - `/<slug>/<subject>/<tool>/`: HTML tools to practise on screen
@@ -92,6 +93,7 @@ Current (Week 4, all on the Practice engine with a `?print` written paper):
 - History Week 4: the Black Death, So What? on her own sentences, claim check, 12-mark question in AQA Paper 1 Q6 format (`history/week4-black-death/`)
 - History, Black Death: what changed? (school task support, tagged week 4): numbered fact bank (S1–S9 socioeconomic, C1–C9 cultural, each with date/place), then a step-by-step PEEL builder for two paragraphs with self-marked So Whats, plus a `?print` paper (`history/black-death-changes/`)
 - Geography Week 3 and Week 3 plus kept current (no new Geography this week).
+- **History reading shelf** (`history/reading/`, always current, also a "Read" row in her home links): Reading shelf engine. Peasants' Revolt (World History Encyclopedia, full text, CC BY-NC-SA, credited) plus reading guides with links for three History Today Black Death articles (Ziegler Parts I and II, Benedictow), each with key words, Read-for questions, a Historians-disagree box on the death toll, and a So What notebook prompt.
 
 Archived at the start of Week 4 (Autumn):
 - English Week 3: symbolism in *Tsunami Girl* (+ PDF)
