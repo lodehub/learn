@@ -23,6 +23,7 @@ Owner account: lodehub (anonymous by design).
 - `/assets/send.js`: LearnSend. Sends a child's answers to the parent's **private** Google Sheet (an Apps Script web app that can only add rows). Only children with an entry in its `ENDPOINTS` send anything (currently ember). The Practice engine loads it automatically; standalone pages include it and call `LearnSend.init/put/flush/button`. Answers are never stored in this repo.
 - `/assets/practice/`: the Practice engine (real exam questions, instant feedback, self-marking against the mark scheme, and a `?print` paper from the same content file). Each tool is a thin wrapper plus `content.json`. See assets/practice/README.md.
 - `/assets/reading/`: the Reading shelf engine (articles made easy to read: full text for openly licensed articles, our own reading guide + link for copyrighted ones). Content in one JSON per shelf. See assets/reading/README.md.
+- `/assets/spelling/`: the Spelling test engine (device reads the word and a sentence, child types it, wrong letters highlighted, pattern tip, Look-cover-write, tricky words saved on the device). Words live in each page. See assets/spelling/README.md.
 - `/bible/`: Bible Lab, a family Bible study (one book, one passage a week, verse memory per person). Engine in `/assets/bible/`, content in `bible/<book>/season.json`. See assets/bible/README.md.
 - `/<slug>/index.html`: subject picker, reads that child's `manifest.json`
 - `/<slug>/<subject>/<tool>/`: HTML tools to practise on screen
@@ -121,13 +122,13 @@ Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squ
 ### Ninja (upper primary, Year 5/6)
 - Maths: Mean, median, mode and area; Cancelling: percentages and ratios. Archived: Football stats (+ quiz), Shape Up: area formulas.
 - Explore: "Letters that stand for numbers", algebra from scratch; "Detective and Machine", logic and pattern puzzles; "How much space?", volume from scratch (builds on perimeter and area: counting cubes, area of the floor × height, cm³ and litres, same volume vs surface area, the doubling trap, prisms).
-- English: **Reading Detective** (`english/reading-moves/`, KS2 reading moves: question words decoder, impressions = trait + proof with a be-the-marker step, "give two ways" sorting, tap-the-sentence find-it-first; all passages original; `?print` 2-page paper with answers PDF); Answer it the way the question asks; Grammar Workshop (Year 5 and 6).
+- English: **Reading Detective** (`english/reading-moves/`, KS2 reading moves: question words decoder, impressions = trait + proof with a be-the-marker step, "give two ways" sorting, tap-the-sentence find-it-first; all passages original; `?print` 2-page paper with answers PDF); Answer it the way the question asks; Grammar Workshop (Year 5 and 6); **Spelling test: the tricky ones** (`english/spelling-test/`, 26 Year 5/6 statutory words in three patterns: double letters, hidden vowels, rule-breakers).
 - French Lab, French Role-play, Mandarin Lab, Mandarin Role-play.
 
 ### Bingo (lower primary, Year 3)
 - Maths: Times tables 2s and 5s; Times tables 1 to 10. Archived: Times Table Blast Off 3s and 4s, Match & Blast, Say it then flip it, Climb the threes/fours, Threes Bakery.
 - Explore: "Secret Number and Pattern Train", thinking puzzles.
-- English: **Story Detective** (`english/story-detective/`, KS1 reading moves: read to the end (first-match traps), what does it tell us (inference), always tick a box (find the box that means the same), day detective (go back to each day); `?print` 1-page story with answers PDF; all passages original); Grammar and Writing Pack; English Quest.
+- English: **Story Detective** (`english/story-detective/`, KS1 reading moves: read to the end (first-match traps), what does it tell us (inference), always tick a box (find the box that means the same), day detective (go back to each day); `?print` 1-page story with answers PDF; all passages original); Grammar and Writing Pack; English Quest; **Spelling test: my tricky words** (`english/spelling-test/`, 23 Year 3/4 statutory words in three patterns: say every sound, the quiet middle, odd bits).
 - French Lab, French Role-play, Mandarin Lab, Mandarin Role-play.
 
 ### Heeler (adult / fluent speaker)

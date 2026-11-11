@@ -1,0 +1,37 @@
+/* Spelling test engine (uses the tokens in /assets/style.css). */
+.sp-page { max-width: 680px; margin: 0 auto; padding: max(16px, env(safe-area-inset-top)) 16px max(90px, env(safe-area-inset-bottom)); font-family: "Atkinson Hyperlegible", system-ui, sans-serif; font-size: 18px; line-height: 1.55; }
+.sp-head { padding-left: 56px; min-height: 48px; }
+@media (max-width: 699px) { .sp-head { padding-left: 0; padding-top: 52px; } }
+.sp-kick { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0; }
+.sp-page h1 { font-size: clamp(26px, 6vw, 34px); line-height: 1.2; margin: 2px 0 6px; }
+.sp-page h2 { font-size: 1.15rem; margin: 22px 0 8px; }
+.sp-lede { color: var(--muted); margin: 0 0 14px; }
+.sp-card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px; margin: 0 0 12px; }
+.sp-pat { border-left: 6px solid var(--accent); }
+.sp-pn { display: block; font-weight: 700; font-size: 1.05rem; }
+.sp-pat p { margin: 4px 0 0; }
+.sp-eg { color: var(--muted); font-size: .92rem; }
+.sp-btns { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+.sp-btn { font: inherit; font-weight: 700; min-height: 52px; padding: 10px 18px; border-radius: 14px; border: 2px solid var(--accent); background: var(--accent); color: #fff; cursor: pointer; }
+.sp-btn.sp-ghost { background: var(--surface); color: var(--text); border-color: var(--line); }
+.sp-btn:disabled { opacity: .5; }
+.sp-prog { color: var(--muted); font-size: .95rem; margin: 0 0 8px; }
+.sp-bar { height: 8px; background: var(--accent-soft); border-radius: 99px; overflow: hidden; margin: 0 0 14px; }
+.sp-bar i { display: block; height: 100%; background: var(--accent); }
+.sp-say { font-size: 1.1rem; margin: 0 0 6px; }
+.sp-gap { color: var(--muted); font-style: italic; margin: 4px 0 12px; }
+.sp-in { font: inherit; font-size: 1.6rem; width: 100%; padding: 12px 14px; border-radius: 14px; border: 2px solid var(--line); background: var(--bg); color: var(--text); letter-spacing: .04em; }
+.sp-in:focus { outline: none; border-color: var(--accent); }
+.sp-ok { background: var(--green-soft); border-color: var(--green); }
+.sp-no { border-color: #d0605a; }
+.sp-word { font-size: 2rem; letter-spacing: .06em; margin: 4px 0; word-break: break-word; }
+.sp-word .x { background: #ffd84d; color: #2b2a28; border-radius: 4px; padding: 0 1px; }
+.sp-try { color: var(--muted); }
+.sp-try s { text-decoration-color: #d0605a; }
+.sp-tip { background: var(--accent-soft); border-radius: 12px; padding: 10px 12px; margin: 10px 0 0; }
+.sp-hidden { visibility: hidden; }
+.sp-list { margin: 6px 0 0; padding-left: 1.2em; }
+.sp-list li { margin: 0 0 4px; }
+.sp-big { font-size: 2.4rem; font-weight: 700; margin: 0; }
+.sp-note { color: var(--muted); font-size: .9rem; }
+details.sp-card summary { font-weight: 700; cursor: pointer; }

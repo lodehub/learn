@@ -167,6 +167,13 @@
       "status": "current",
       "strand": "explore",
       "topic": "Logic and patterns"
+    },
+    {
+      "title": "Spelling test: my tricky words",
+      "path": "english/spelling-test/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
     }
   ]
 }

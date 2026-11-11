@@ -145,6 +145,13 @@
       "status": "current",
       "strand": "explore",
       "topic": "Logic and patterns"
+    },
+    {
+      "title": "Spelling test: the tricky ones",
+      "path": "english/spelling-test/",
+      "type": "html",
+      "year": 2026,
+      "status": "current"
     }
   ]
 }
