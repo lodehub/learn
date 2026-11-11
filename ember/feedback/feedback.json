@@ -69,6 +69,130 @@
           "model": "In 1348–49 people prayed, led processions and went on pilgrimages to beg God to end the plague. This suggests they believed the plague was God’s punishment for sin, so the only cure was to show God they were sorry."
         }
       ]
+    },
+    {
+      "id": "2026-11-11-science-test-pressure",
+      "date": "2026-11-11",
+      "subject": "Science",
+      "title": "Days 1–2: Pressure",
+      "tool": "science/test-pressure/",
+      "mark": "Calculations 3 / 6 first time (6 / 6 in the end) · Written 3 / 9",
+      "summary": "Your multiple-choice was strong: snowshoes, heated gas, mountain air all right. And look at your calculations: you got the first ones wrong, then the last two (c5, c6) right first time, including the hard “find the area” one. That's learning in one sitting. Your written answers start well, then stop one link too early, so they lose the last mark. You gave yourself 5 / 9 for writing; I'd give 3 / 9.",
+      "next": "Before the test: write P = F ÷ A at the top of every calculation, then cover the letter you want. And for every “Explain” question, finish with the word pressure: “…so the pressure is smaller / bigger.”",
+      "items": [
+        {
+          "block": "c1",
+          "q": "Pressure calculations",
+          "mark": "first tries: 150, 20, 2500, 0.0012",
+          "good": "c2, c5 and c6 right first time, and you fixed every wrong one.",
+          "fix": "Three of the four wrong first tries used the wrong sum: multiplying when you should divide, or the other way round. Pressure = force ÷ area. Force = pressure × area. Area = force ÷ pressure.",
+          "model": "P = F ÷ A = 300 ÷ 0.5 = 600 N/m²"
+        },
+        {
+          "block": "p2",
+          "q": "Which unit is the same as 1 N/m²?",
+          "mark": "0 / 1",
+          "good": "",
+          "fix": "A newton is a force, not a pressure.",
+          "model": "1 N/m² = 1 pascal (Pa)."
+        },
+        {
+          "block": "g2",
+          "q": "Bike pump with your finger over the end",
+          "mark": "0 / 1",
+          "good": "",
+          "fix": "No air escapes, so there isn't less air. The same air is squeezed into a smaller space.",
+          "model": "The particles are closer together, so they hit the walls more often, so the pressure goes up."
+        },
+        {
+          "block": "e1",
+          "q": "Tractor with wide tyres",
+          "mark": "1 / 3 (you gave 2)",
+          "good": "“The wide tyres have a bigger surface area” is right.",
+          "fix": "You spread the pressure, but it's the weight (force) that's spread. And “the force is larger” is wrong: the weight stays the same. You never said the pressure gets smaller.",
+          "model": "The wide tyres have a bigger area touching the ground, so the tractor's weight is spread over a bigger area. This means the pressure on the ground is smaller, so it sinks less."
+        },
+        {
+          "block": "e2",
+          "q": "Crisp bag on a mountain",
+          "mark": "0 / 3",
+          "good": "You knew the bag puffs up because of a pressure difference.",
+          "fix": "Nothing changes inside the bag: the air inside is the same. What changes is outside. Start with the mountain.",
+          "model": "Higher up, there is less air above, so the atmospheric pressure outside the bag is lower. The air inside is now at a higher pressure than the air outside, so it pushes the bag outwards and it puffs up."
+        },
+        {
+          "block": "e3",
+          "q": "Hot car tyre",
+          "mark": "2 / 3 (you gave 3)",
+          "good": "“The air in the tyre gets hotter” and “the particles … faster”: a good start to the chain.",
+          "fix": "Say what the faster particles do to the walls.",
+          "model": "The air in the tyre gets hotter, so its particles move faster. They hit the walls of the tyre harder and more often, so the pressure increases."
+        }
+      ]
+    },
+    {
+      "id": "2026-11-11-science-test-digestion",
+      "date": "2026-11-11",
+      "subject": "Science",
+      "title": "Day 3: The digestive system",
+      "tool": "science/test-digestion/",
+      "mark": "Multiple choice 8 / 8 · Written 7 / 9",
+      "summary": "Brilliant recall: every multiple-choice question right, and your bread journey was a full-marks answer, in order, with every organ named. Your self-marking was honest too. The one to fix is the adaptations question: you named the adaptations but didn't say how each one helps.",
+      "next": "Learn the three adaptations as three Because Chains: villi → big surface area → more absorbed at once; thin wall → short distance → into the blood fast; capillaries → carry food away.",
+      "items": [
+        {
+          "block": "e1",
+          "q": "Adaptations of the small intestine",
+          "mark": "1 / 3",
+          "good": "You picked the right two adaptations: villi and a thin wall.",
+          "fix": "“Makes it easier to absorb” doesn't say why: the mark is for surface area. It's food molecules that move into the blood, not the blood that diffuses. And enzymes catalyse (speed up) digestion; the food itself is digested, not catalysed.",
+          "model": "Villi give the small intestine a big surface area, so more food is absorbed at once. The wall is thin, so molecules only have a short distance to travel into the blood. Each villus has lots of capillaries, which carry the food away."
+        },
+        {
+          "block": "e2",
+          "q": "A piece of bread's journey",
+          "mark": "6 / 6",
+          "good": "Every stage, in order: saliva, oesophagus, acid and juices, digestion and absorption, water absorbed, rectum and anus. Using “carbohydrases” and “glucose” was a bonus.",
+          "fix": "Tiny polish: say the glucose is absorbed into the blood.",
+          "model": "The villi absorb the glucose into the blood."
+        }
+      ]
+    },
+    {
+      "id": "2026-11-11-science-test-contact-forces",
+      "date": "2026-11-11",
+      "subject": "Science",
+      "title": "Day 4: Contact forces",
+      "tool": "science/test-contact-forces/",
+      "mark": "Short questions 10 / 10 · Written 1 / 6",
+      "summary": "Every short question right, including both Hooke's Law calculations first time. Your “500 N forwards” was right too: the page marked it wrong because of the words after the number, which I've fixed. The written questions are where the marks went: one answer was one link long, and you skipped the spring one.",
+      "next": "Go back to e2 (spring and rubber band) and have a go: it's the graph you saw in s4, plus one more line. Then redo e1 using the model.",
+      "items": [
+        {
+          "block": "f5",
+          "q": "Resultant force",
+          "mark": "1 / 1",
+          "good": "“500 N forwards” is exactly right: size and direction.",
+          "fix": "",
+          "model": ""
+        },
+        {
+          "block": "e1",
+          "q": "Smooth, worn tyres",
+          "mark": "1 / 3",
+          "good": "“Less friction” is the key idea.",
+          "fix": "One link isn't an explanation. Say why there's less friction, and what that does to the car.",
+          "model": "New tyres have deep tread, so they grip the road. Worn tyres are smooth, so there is less friction between the tyres and the road. This means the car slides more easily and takes longer to stop, so it is more likely to skid."
+        },
+        {
+          "block": "e2",
+          "q": "Spring and rubber band graphs",
+          "mark": "0 / 3",
+          "good": "Being honest that you weren't sure is better than guessing.",
+          "fix": "You already know half of this: in s4 you said a straight line through the origin means the spring obeys Hooke's Law. A rubber band stretches more and more easily, so its graph curves.",
+          "model": "The spring's graph is a straight line through the origin, so it obeys Hooke's Law: the extension is proportional to the force. The rubber band's graph is curved, so it does not obey Hooke's Law."
+        }
+      ]
     }
   ]
 }

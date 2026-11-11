@@ -33,6 +33,7 @@
   // Returns {n, d, kind: 'int'|'dec'|'frac'|'mixed', proper, simple} or null.
   function parse(raw) {
     var s = String(raw).trim().replace(/[–−]/g, '-').replace(/\s+/g, ' ').replace(/,/g, '');
+    s = s.replace(/\s*[A-Za-zµ°%²³][A-Za-zµ°%²³\/\s.]*$/, ''); // ignore a unit or words after the number ("500N forwards", "0.2 N/cm²")
     var m;
     if ((m = s.match(/^(-?\d+)$/))) return { n: +m[1], d: 1, kind: 'int', simple: true };
     if ((m = s.match(/^(-?\d*\.\d+)$/))) { var p = m[1].split('.')[1].length, d = Math.pow(10, p); return { n: Math.round(parseFloat(m[1]) * d), d: d, kind: 'dec', simple: true }; }
