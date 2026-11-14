@@ -349,6 +349,57 @@
           "model": ""
         }
       ]
+    },
+    {
+      "id": "2026-11-14-science-mock-paper",
+      "date": "2026-11-14",
+      "subject": "Science",
+      "title": "Mock test on paper (forces, pressure, digestion, breathing)",
+      "mark": "25 / 33",
+      "summary": "A strong mock: 25 out of 33. Full marks on the digestive organs (5/5), Hooke's Law (2/2) and friction and drag (2/2). The big news is Q11: you got the pressure the right way round both ways, <i>volume increases, pressure decreases</i> on the way in and <i>volume decreases, pressure increases</i> on the way out. That was the hardest idea this term and you've fixed it. Writing the missing points in brackets while you marked was exactly the right thing to do. The marks you lost were small: one calculation, one word and some missing links.<br><br>Marks by question: Q1 0/2 · Q2 2/3 · Q3 2/3 · Q4 1/2 · Q5 5/5 · Q6 2/3 · Q7 2/2 · Q8 2/2 · Q9 2/3 · Q10 2/2 · Q11 5/6. You gave yourself 3 on Q2 and 2 on Q4; they earn 2 and 1. Before each tick, point to the words in your answer that earn it.",
+      "next": "Tuesday: redo Q1, Q2 and Q9 only, by hand. For Q1 write <b>pressure = force ÷ area</b> first, every time, before any numbers.",
+      "items": [
+        {
+          "block": "q1",
+          "q": "Q1. Pressure of a 400 N box on 0.8 m²",
+          "mark": "0 / 2",
+          "good": "You spotted the mistake when you marked it and wrote 400 ÷ 0.8 = 500. That's right.",
+          "fix": "In the test you multiplied (400 × 0.8 = 320). Write the equation <b>before</b> the numbers, and it tells you to divide. Write the unit with its slash, N/m² (or Pa), because the slash means 'divide by'.",
+          "model": "pressure = force ÷ area = 400 ÷ 0.8 = 500 N/m²"
+        },
+        {
+          "block": "q2",
+          "q": "Q2. High heels vs flat trainers",
+          "mark": "2 / 3 (you gave 3)",
+          "good": "\"Spread out over a larger surface area\" is the key idea, and you joined it up with <b>so</b>.",
+          "fix": "It's the <b>force</b> (the weight) that gets spread out or concentrated, not the pressure. Pressure is the answer you get at the end. Say: same weight, smaller area, so bigger pressure.",
+          "model": "The heel has a much smaller area, so the same weight acts on a smaller area, so the pressure on your foot is bigger and it hurts more."
+        },
+        {
+          "block": "q9",
+          "q": "Q9. Parachutist slows down, then falls at a steady speed",
+          "mark": "2 / 3",
+          "good": "\"Air resistance is larger than the force of gravity\" and \"the forces will be balanced … steady speed\" both earn marks.",
+          "fix": "You need two more links. (1) <b>Why</b> air resistance gets bigger: the open parachute has a big area. (2) Why the forces balance: as she slows down, air resistance gets smaller until it equals her weight. Also, if air resistance is bigger than weight, the resultant force points <b>up</b>, not down. That's why she slows down.",
+          "model": "The parachute has a big area, so air resistance increases and becomes bigger than her weight, so the resultant force is upwards and she slows down. As she slows, air resistance decreases until it equals her weight, so the resultant force is zero and she falls at a steady speed."
+        },
+        {
+          "block": "q11",
+          "q": "Q11. Breathing in and out (volume and pressure)",
+          "mark": "5 / 6",
+          "good": "Ribs, diaphragm, volume and pressure all correct, both ways. The pressure is the right way round, which last week you had backwards.",
+          "fix": "You put \"air rushes in\" first, as a separate fact. Put it at the <b>end</b> of the chain, as the result: … pressure decreases, <b>so</b> air is pushed in. Same on the way out.",
+          "model": "The diaphragm contracts and moves down and the ribs move up and out, so the volume of the chest increases, so the pressure inside decreases below the air outside, so air is pushed into the lungs."
+        },
+        {
+          "block": "q4",
+          "q": "Q4. Atmospheric pressure up a mountain",
+          "mark": "1 / 2",
+          "good": "Less dense air and gravity pulling the air down: good reasoning.",
+          "fix": "Pressure doesn't get \"slower\". It <b>decreases</b> (gets lower). The wrong word cost you the mark.",
+          "model": "Atmospheric pressure decreases, because there is less air above you."
+        }
+      ]
     }
   ]
 }
