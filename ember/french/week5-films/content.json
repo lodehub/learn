@@ -1,0 +1,79 @@
+{
+  "kicker": "Ember · French · Week 5",
+  "title": "Les films: genres, describing words and comparing",
+  "sub": "You wrote: “genres of films and describing words”. This week: learn them cold, make the adjectives agree, and compare two kinds of film. About 15 minutes on screen, then a short translation and writing paper.",
+  "skill": "Vocabulary retrieval, then translation and short writing.",
+  "target": "AQA writing marks reward opinions with reasons and a range of structures. One sentence pattern to own: opinion + genre + parce que + adjective (that agrees) + a comparison.",
+  "print": "week5-films-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up",
+      "time": "3 min",
+      "sub": "Week 2: verbs and extending a sentence.",
+      "blocks": [
+        {"type": "mc", "id": "w1", "h": "Opinion verbs", "q": "“I don’t like…” in French is…", "o": ["Je n’aime pas…", "Je ne pas aime…", "Je aime ne pas…"], "c": 0, "why": "<b>ne</b> … <b>pas</b> wraps around the verb: je <b>n’</b>aime <b>pas</b>."},
+        {"type": "mc", "id": "w2", "h": "Extend it", "q": "Which sentence is extended with a reason?", "o": ["J’aime le sport.", "J’aime le sport parce que c’est amusant.", "Le sport."], "c": 1, "why": "<b>parce que</b> (because) + a reason turns a short sentence into one that earns more marks."}
+      ]
+    },
+    {
+      "h": "2. Genres",
+      "time": "4 min",
+      "blocks": [
+        {"type": "info", "html": "<table class=\"pr-table\"><tr><td>une comédie</td><td>a comedy</td></tr><tr><td>un film d’action</td><td>an action film</td></tr><tr><td>un film d’horreur</td><td>a horror film</td></tr><tr><td>un film de science-fiction</td><td>a science-fiction film</td></tr><tr><td>un film d’aventure</td><td>an adventure film</td></tr><tr><td>un film policier</td><td>a crime / detective film</td></tr><tr><td>un film romantique</td><td>a romantic film</td></tr><tr><td>un dessin animé</td><td>a cartoon / animated film</td></tr></table>Read them twice, say them aloud, then cover them and answer."},
+        {"type": "mc", "id": "g1", "h": "Genre", "q": "un dessin animé", "o": ["a drawing class", "a cartoon / animated film", "a documentary"], "c": 1, "why": "dessin = drawing, animé = moving / animated."},
+        {"type": "mc", "id": "g2", "h": "Genre", "q": "un film policier", "o": ["a crime / detective film", "a police station", "a war film"], "c": 0, "why": "policier comes from police, but as a genre it means a crime or detective film."},
+        {"type": "mc", "id": "g3", "h": "Genre", "q": "a horror film", "o": ["un film d’horreur", "un film horrible", "une horreur film"], "c": 0, "why": "In French the noun comes first: un film <b>d’</b>horreur (a film of horror)."},
+        {"type": "mc", "id": "g4", "h": "Genre", "q": "a comedy", "o": ["un comédie", "une comédie", "un film comédie"], "c": 1, "why": "comédie is feminine: <b>une</b> comédie. That matters for the adjective."}
+      ]
+    },
+    {
+      "h": "3. Describing words, agreement and comparing",
+      "time": "8 min",
+      "blocks": [
+        {"type": "info", "html": "<table class=\"pr-table\"><tr><td>drôle</td><td>funny</td></tr><tr><td>passionnant</td><td>exciting, gripping</td></tr><tr><td>effrayant</td><td>scary</td></tr><tr><td>ennuyeux</td><td>boring</td></tr><tr><td>émouvant</td><td>moving (makes you feel)</td></tr><tr><td>nul</td><td>rubbish</td></tr><tr><td>génial</td><td>great</td></tr></table><b>Agreement:</b> the adjective matches the noun. un film passionnant · une comédie passionnant<b>e</b> · des films passionnant<b>s</b> · des comédies passionnant<b>es</b>. Watch the odd ones: ennuyeux → ennuy<b>euse</b>; nul → nul<b>le</b>; drôle stays drôle (already ends in e).<br><br><b>Comparing:</b> plus … que = more … than; moins … que = less … than.<br>Les comédies sont <b>plus</b> drôles <b>que</b> les films d’horreur."},
+        {"type": "mc", "id": "d1", "h": "Meaning", "q": "effrayant", "o": ["boring", "scary", "funny"], "c": 1, "why": "effrayant = scary (think “afraid”)."},
+        {"type": "mc", "id": "d2", "h": "Meaning", "q": "émouvant", "o": ["moving: it makes you feel something", "moving: it is about travel", "exciting"], "c": 0, "why": "émouvant = moving, touching (émotion)."},
+        {"type": "mc", "id": "d3", "h": "Agreement", "q": "Les films d’horreur sont…", "o": ["effrayant", "effrayants", "effrayantes"], "c": 1, "why": "films is masculine plural, so add <b>s</b>: effrayants."},
+        {"type": "mc", "id": "d4", "h": "Agreement", "q": "C’est une comédie…", "o": ["ennuyeux", "ennuyeuse", "ennuyeuxe"], "c": 1, "why": "comédie is feminine: ennuyeux becomes ennuy<b>euse</b>."},
+        {"type": "mc", "id": "d5", "h": "Comparing", "q": "“Action films are more exciting than romantic films.”", "o": ["Les films d’action sont plus passionnants que les films romantiques.", "Les films d’action sont passionnants plus que les films romantiques.", "Les films d’action est plus passionnant que les films romantiques."], "c": 0, "why": "plus + adjective + que. sont (they are) for plural, and passionnant<b>s</b> agrees with films."},
+        {"type": "write", "id": "own", "marks": 3, "rows": 4, "h": "Your sentences", "q": "Write two or three French sentences about films: what you like or don’t like, why, and one comparison.", "starters": ["J’adore les…", "parce qu’ils sont…", "… sont plus … que …"], "minWords": 15, "mark": {"points": [{"t": "an opinion and a genre (j’aime / je n’aime pas / j’adore / je déteste + les comédies, les films d’action…)", "m": 1}, {"t": "a reason with parce que / car and an adjective that agrees", "m": 1}, {"t": "a comparison with plus … que or moins … que", "m": 1}], "note": "Check every adjective: masculine or feminine? one or more? Add e and s where needed."}}
+      ]
+    },
+    {
+      "h": "4. Written paper",
+      "time": "15 min",
+      "blocks": [
+        {"type": "info", "tone": "big", "html": "Print the written paper: translate five sentences each way, then write about 40 words about films. No dictionary for the first try; answers on the last page."}
+      ]
+    },
+    {
+      "h": "5. Check yourself",
+      "time": "2 min",
+      "blocks": [
+        {"type": "checklist", "id": "sc", "h": "Self-check", "items": ["I know eight genres without looking.", "I made every adjective agree (e for feminine, s for plural).", "I used parce que or car with a reason.", "I wrote one plus … que comparison.", "Accents: comédie, émouvant, génial."]},
+        {"type": "oral", "q": "“Quel est ton film préféré, et pourquoi ?”", "note": "For the parent: she answers in French, e.g. “Mon film préféré est … C’est un film d’action. Je l’aime parce qu’il est passionnant.” Then ask: “Et les films d’horreur ?” for a comparison."}
+      ]
+    }
+  ],
+  "paper": {
+    "title": "French Week 5: les films (written)",
+    "sub": "Ember · About 15 minutes · 20 marks",
+    "intro": "<b>Skill: translation and short writing.</b> Watch the adjective endings, and use parce que for reasons.",
+    "blocks": [
+      {"marks": 5, "q": "1. Translate into English.<br>(a) J’adore les dessins animés.<br>(b) Je n’aime pas les films d’horreur parce qu’ils sont effrayants.<br>(c) Ma sœur préfère les comédies car elles sont drôles.<br>(d) Les films policiers sont plus passionnants que les films romantiques.<br>(e) À mon avis, ce film est nul.", "lines": 8},
+      {"marks": 5, "q": "2. Translate into French.<br>(a) I like action films.<br>(b) My favourite film is a comedy.<br>(c) Horror films are boring.<br>(d) I prefer cartoons because they are funny.<br>(e) Comedies are less exciting than adventure films.", "lines": 8},
+      {"marks": 10, "q": "3. Écrivez environ 40 mots en français sur les films. Mentionnez :<br>• votre film préféré, et pourquoi<br>• un genre que vous n’aimez pas<br>• une comparaison entre deux genres.", "lines": 10}
+    ],
+    "selfcheck": [
+      "Every adjective agrees with its noun.",
+      "I used parce que or car at least twice.",
+      "I used plus … que or moins … que.",
+      "Q3: I covered all three bullet points.",
+      "Reflection: which genre or adjective did I forget?"
+    ],
+    "marking": [
+      {"h": "Answers", "html": "<ol><li>(a) I love cartoons. (b) I don’t like horror films because they are scary. (c) My sister prefers comedies because they are funny. (d) Crime / detective films are more exciting than romantic films. (e) In my opinion, this film is rubbish. <b>(1 each)</b></li><li>(a) J’aime les films d’action. (b) Mon film préféré est une comédie. (c) Les films d’horreur sont ennuyeux. (d) Je préfère les dessins animés parce qu’ils sont drôles. (e) Les comédies sont moins passionnantes que les films d’aventure. <b>(1 each; the mark needs the adjective ending right)</b></li><li>Up to 10: all three bullets covered (3), reasons with parce que / car (2), adjectives agree (2), a comparison (1), accurate verbs and spelling (2).</li></ol>Score: ____ / 20"}
+    ],
+    "footer": "Written for Ember in AQA style (opinions with reasons, translation both ways, short writing to bullet points)."
+  }
+}

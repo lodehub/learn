@@ -1,0 +1,74 @@
+{
+  "kicker": "Ember · Geography · Week 5",
+  "title": "Curitiba: case-study evidence and a judgement",
+  "sub": "You wrote: “brazil city and how its so sustainable”. This week: turn “so sustainable” into evidence and a judgement, the way AQA marks it. About 15 minutes on screen, then a real 6-mark question on paper.",
+  "skill": "Case-study evidence plus a judgement.",
+  "target": "AQA Level 3 (5–6 marks) needs “well developed assessment”: a specific fact from the case study, what it does for the city, and how important it is compared with something else.",
+  "print": "week5-curitiba-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up",
+      "time": "3 min",
+      "sub": "Megacities: evidence and a judgement, from memory.",
+      "blocks": [
+        {"type": "mc", "id": "w1", "h": "Evidence or judgement?", "q": "Which sentence is a <b>judgement</b>?", "o": ["Lagos has a population of over 15 million.", "Overall, the shortage of housing is the biggest challenge, because it causes the slums, the poor sanitation and the disease.", "Many people live in slums."], "c": 1, "why": "A judgement says <b>which matters most and why</b>. The others are evidence. You need both."},
+        {"type": "mc", "id": "w2", "h": "A strong judgement", "q": "What makes a judgement strong?", "o": ["It is in the last sentence", "It weighs one thing against another and gives a reason", "It uses the word “very”"], "c": 1, "why": "“More important than…, because…” is what “assess” and “evaluate” questions are asking for."}
+      ]
+    },
+    {
+      "h": "2. The case study: Curitiba, Brazil",
+      "time": "3 min",
+      "blocks": [
+        {"type": "info", "html": "<b>Curitiba</b> is a city of nearly 2 million people in southern Brazil (an NEE). Since the 1970s its planners have tried to make it grow sustainably.<ul class=\"pr-facts\"><li><b>T1 Buses (from 1974).</b> A Bus Rapid Transit system: buses run in their own lanes on main roads, and people pay <b>before</b> boarding in raised “tube” stations, so buses stop for only seconds. One fare covers changes between buses.</li><li><b>T2 Walking.</b> In 1972 a main shopping street in the centre was closed to cars and turned into a pedestrian street.</li><li><b>G1 Parks on flood plains.</b> Land by rivers that often flooded was turned into parks with lakes. In a flood the lakes and grass hold the water instead of homes being built there. Curitiba is often quoted as having over 50 m² of green space per person.</li><li><b>W1 Recycling (from 1989).</b> A “Garbage that isn’t garbage” campaign taught people to sort their waste.</li><li><b>W2 Green Exchange (from 1991).</b> People in poorer areas can swap bags of recyclable waste for fresh food or bus tickets.</li><li><b>C1 Critics say…</b> buses are crowded at rush hour, car ownership has still grown, and poor informal settlements have grown on the edges of the city, outside the planned areas.</li></ul><b>Sustainable</b> = meeting people’s needs now without harming the future: <b>environmental</b> (less pollution), <b>social</b> (better lives for everyone) and <b>economic</b> (people can get to work, businesses work)."}
+      ]
+    },
+    {
+      "h": "3. Evidence → so what → how important",
+      "time": "9 min",
+      "blocks": [
+        {"type": "mc", "id": "g1", "h": "Develop the point", "q": "Which sentence about the buses (T1) is most <b>developed</b>?", "o": ["Curitiba has good buses.", "Curitiba has a Bus Rapid Transit system with its own lanes.", "Curitiba’s buses run in their own lanes and people pay before boarding, so the buses are fast and many people choose them over cars, which means less congestion and fewer exhaust fumes."], "c": 2, "why": "Evidence (own lanes, pay before boarding) → effect (fast, people use them) → sustainability (less congestion, less pollution). That chain is what AQA calls “developed”."},
+        {"type": "mc", "id": "g2", "h": "Two benefits at once", "q": "Why is turning flood plains into parks (G1) especially sustainable?", "o": ["Parks look nice.", "It solves two problems: the lakes hold floodwater so homes are not flooded, and people get green space to relax in.", "It is cheap."], "c": 1, "why": "One action, an environmental benefit (flood control) and a social one (green space). Saying both makes the point stronger."},
+        {"type": "mc", "id": "g3", "h": "Social sustainability", "q": "The Green Exchange (W2) swaps recycling for food or bus tickets. Which So What links it to <b>social</b> sustainability?", "o": ["It reduces litter.", "Poorer families get food and can travel to work, so the scheme helps the people who most need it, not just the environment.", "It started in 1991."], "c": 1, "why": "Litter is the environmental side. The social side is who benefits: poorer families. AQA credits environmental, economic <b>and</b> social sustainability."},
+        {"type": "mc", "id": "g4", "h": "Yes, but…", "q": "Which sentence makes the answer <b>balanced</b>?", "o": ["Curitiba is the most sustainable city in the world.", "However, buses are crowded at rush hour and car ownership has still grown, so transport management has not solved congestion on its own.", "Curitiba is in Brazil."], "c": 1, "why": "“Assess” wants both sides. A limit (C1) then lets you judge: important, but not enough on its own."},
+        {"type": "order", "id": "ladder", "h": "Climb the levels", "q": "Four answers to “Assess the importance of managing transport as part of urban sustainability.” Tap them from weakest to strongest.", "items": ["Transport is important because cities have lots of cars.", "In Curitiba, buses have their own lanes, so they are quick.", "In Curitiba, buses have their own lanes and people pay before boarding, so buses are fast and many people use them instead of cars, cutting congestion and air pollution.", "In Curitiba, fast buses in their own lanes mean many people leave their cars at home, cutting congestion and pollution, so managing transport is very important. However, crowding and rising car ownership show it is not enough alone: it works best together with green spaces and recycling."], "labels": ["Level 1: asserts its value", "Level 1: a fact, little link", "Level 2: clear link to sustainability", "Level 3: developed, with an assessment"], "done": "The top answer has the evidence, the chain to sustainability, a limit, and a judgement."},
+        {"type": "write", "id": "w", "marks": 3, "rows": 4, "h": "Your developed point", "q": "Write one developed point about the green spaces (G1) or the Green Exchange (W2), then one sentence on how important it is.", "starters": ["In Curitiba…", "so…", "This is important because… However…"], "minWords": 35, "mark": {"points": [{"t": "a specific fact from the case study (a place, a date or a detail)", "m": 1}, {"t": "a chain to sustainability: what it does, for whom (environmental, social or economic)", "m": 1}, {"t": "a judgement: how important, compared with something else or with a limit", "m": 1}], "note": "Check: could your sentence be about any city? If yes, add a Curitiba detail."}}
+      ]
+    },
+    {
+      "h": "4. Written paper",
+      "time": "15 min",
+      "blocks": [
+        {"type": "info", "tone": "big", "html": "Print the written paper: a real AQA 6-mark question. Plan first (5 min), then write (10 min). Mark it with AQA’s levels on the last page."}
+      ]
+    },
+    {
+      "h": "5. Check yourself",
+      "time": "3 min",
+      "blocks": [
+        {"type": "checklist", "id": "sc", "h": "Self-check", "items": ["I used at least two specific facts from Curitiba.", "Each fact has a “so…” chain to sustainability.", "I gave one limit (“however…”).", "My last sentence says how important managing transport is, and why.", "Capital letters for Curitiba and Brazil."]},
+        {"type": "oral", "q": "“Why are Curitiba’s parks next to rivers?”", "note": "For the parent: listen for both benefits: the lakes hold floodwater so homes don’t flood, and people get green space. Then ask: “Which matters more?”"}
+      ]
+    }
+  ],
+  "paper": {
+    "title": "Geography Week 5: Curitiba, a real 6-mark question (written)",
+    "sub": "Ember · About 15 minutes · 6 marks",
+    "intro": "<b>Skill: case-study evidence plus a judgement.</b> Use Curitiba as your example. Each point: evidence → so what for sustainability. Then one limit, then your judgement.",
+    "blocks": [
+      {"type": "table", "h": "Plan (5 min)", "cols": ["Curitiba evidence (T1, T2 …)", "So what? (environmental, social, economic)", "How important? Any limit?"], "rows": [["", "", ""], ["", "", ""], ["", "", ""]]},
+      {"marks": 6, "source": "AQA Geography 8035/2, November 2020 series (June 2020 paper), Q01.8", "q": "Assess the importance of managing transport as part of urban sustainability.", "lines": 18}
+    ],
+    "selfcheck": [
+      "Two or more specific Curitiba facts.",
+      "Each one linked to sustainability with “so…” or “which means…”.",
+      "One limit (crowded buses, more cars, settlements on the edge).",
+      "A clear judgement at the end: how important, and why.",
+      "Reflection: where on the levels below is my answer? What one thing would move it up?"
+    ],
+    "marking": [
+      {"h": "AQA mark scheme (8035/2, Q01.8): levels", "html": "<ul><li><b>Level 3 (5–6):</b> “Shows detailed understanding of the relationship between managing transport and urban sustainability.” “…well developed assessment of the importance of managing transport as an urban sustainability strategy.”</li><li><b>Level 2 (3–4):</b> “Shows clear understanding…” “…clear assessment…”. “Partial overall assessment or a stronger assessment of one aspect.”</li><li><b>Level 1 (1–2):</b> “Shows limited understanding…” “…simple assessment of the link between managing transport and urban sustainability, or merely assert its value.”</li></ul>"},
+      {"h": "AQA indicative content (selected)", "html": "<ul><li>“Full marks possible for well-developed consideration of one transport strategy.”</li><li>“Credit both environmental, economic and social sustainability.”</li><li>“Promoting public transport will reduce congestion which will result in lower emissions and improved air quality … making cities more ‘liveable’.”</li><li>“Reducing congestion will improve travel times meaning that people are less likely to be late for work and products delivered on time so businesses are able to maintain their income.”</li></ul>"}
+    ],
+    "footer": "Curitiba facts summarised for Ember from widely used case-study material: check them against your class notes. Question and mark scheme wording © AQA (8035/2, Nov 2020 series), used for private practice."
+  }
+}

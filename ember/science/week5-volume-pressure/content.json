@@ -1,0 +1,72 @@
+{
+  "kicker": "Ember · Science · Week 5 · Tuesday, before the test",
+  "title": "One rule, three places: volume, pressure and the chain to the end",
+  "sub": "Do this on Tuesday after “Fix your mistakes”, about 15 minutes. One idea came up wrong in breathing <b>and</b> in gas pressure: what happens to pressure when the space gets bigger. Get it right here and it earns marks in two topics on Wednesday.",
+  "skill": "The Because Chain (cause, effect, consequence), finished with the quantity the question asks about.",
+  "target": "AQA Level 3 explanations are “detailed and logically linked”. Your chains stop after the first link. Every chain ends with the thing asked about: “…so the pressure is lower” or “…so air moves in”.",
+  "print": "week5-volume-pressure-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up",
+      "time": "3 min",
+      "sub": "Moments, from memory: two that tripped you up.",
+      "blocks": [
+        {"type": "mc", "id": "w1", "h": "Pull along the spanner", "q": "You pull the end of a spanner straight along the spanner, away from the nut. Why doesn’t the nut turn?", "o": ["Spanners only work if you push", "The line of the force goes through the pivot, so the perpendicular distance is zero and the moment is zero", "The force is too small"], "c": 1, "why": "Moment = force × <b>perpendicular</b> distance from the pivot. If the force points straight through the pivot, that distance is 0, so the moment is 0, however hard you pull."},
+        {"type": "mc", "id": "w2", "h": "Finish the chain", "q": "Why is it easier to push a door open at the handle? Which ending gets the last mark?", "o": ["…so the moment is larger.", "…so a smaller force is needed to make the same moment."], "c": 1, "why": "The question asks why it is <b>easier</b>, so end with the force: a smaller force is needed. Finish with the thing asked about."}
+      ]
+    },
+    {
+      "h": "2. The rule",
+      "time": "3 min",
+      "blocks": [
+        {"type": "info", "html": "<b>One rule:</b> for a fixed amount of gas, <b>bigger volume → lower pressure</b>; <b>smaller volume → higher pressure</b>.<br><br><b>Why:</b> in a bigger space the same particles are more spread out, so they hit each bit of wall <b>less often</b>. Squash them into a smaller space and they hit the walls <b>more often</b>.<br><br><b>Second rule:</b> air moves <b>from higher pressure to lower pressure</b>.<br><br>The trap: “more space, more pressure”. It is the other way round."}
+      ]
+    },
+    {
+      "h": "3. Three places",
+      "time": "6 min",
+      "blocks": [
+        {"type": "mc", "id": "v1", "h": "Place 1: your chest", "q": "When you breathe in, the volume of your chest…", "o": ["increases, so the pressure inside decreases", "increases, so the pressure inside increases", "decreases, so the pressure inside increases"], "c": 0, "why": "Ribs up and out, diaphragm down: more space. Bigger volume → lower pressure. Now the air outside is at a higher pressure, so air is pushed in."},
+        {"type": "mc", "id": "v2", "h": "Place 1: breathing out", "q": "What does the diaphragm do when you breathe out?", "o": ["Contracts and moves down", "Relaxes and moves up", "Relaxes and moves down"], "c": 1, "why": "Breathing <b>in</b>: it contracts and flattens (moves down). Breathing <b>out</b>: it relaxes and domes back <b>up</b>, so the chest volume gets smaller and the pressure rises."},
+        {"type": "mc", "id": "v3", "h": "Place 2: the bike pump", "q": "You push in the handle of a bike pump with your finger over the end. What happens to the pressure inside?", "o": ["It goes down, because there is less air", "It goes up, because the same air is squashed into a smaller volume, so the particles hit the walls more often"], "c": 1, "why": "No air escapes (your finger is on the end), so the amount of air stays the same. Smaller volume → higher pressure."},
+        {"type": "mc", "id": "v4", "h": "Place 3: the crisp bag", "q": "A sealed crisp bag puffs up at the top of a mountain. What changed?", "o": ["The pressure inside the bag went up", "The pressure <b>outside</b> went down (less air above), so the air inside now pushes out harder than the air outside pushes in", "The crisps got bigger"], "c": 1, "why": "Nothing changed inside the bag at first. Higher up there is less air above you, so atmospheric pressure is lower. Inside is now higher than outside, so the bag is pushed outwards. Look outside the bag, not just inside."},
+        {"type": "order", "id": "ch", "h": "The breathing-in chain, to the end", "q": "Tap the links in order.", "items": ["Diaphragm contracts and moves down; rib muscles contract, ribs move up and out", "so the volume of the chest increases", "so the pressure inside the chest decreases, below the pressure outside", "so air is pushed into the lungs from outside, where the pressure is higher"], "labels": ["Cause", "Effect", "Effect", "Consequence (the thing asked about)"], "done": "Four links. Most students stop at link 2 and lose the last two marks."}
+      ]
+    },
+    {
+      "h": "4. Write the whole chain",
+      "time": "6 min",
+      "blocks": [
+        {"type": "write", "id": "e1", "marks": 3, "rows": 4, "h": "Breathing out", "q": "Explain how breathing out pushes air out of the lungs.", "starters": ["The diaphragm relaxes and…", "so the volume…", "so the pressure…", "so air…"], "minWords": 25, "mark": {"points": [{"t": "muscles relax: diaphragm moves up, ribs move down and in", "m": 1}, {"t": "so the chest volume decreases and the pressure inside increases (above the pressure outside)", "m": 1}, {"t": "so air is pushed out of the lungs", "m": 1}], "note": "Check the last link: did you end with what happens to the <b>air</b>?"}},
+        {"type": "write", "id": "e2", "marks": 3, "rows": 4, "h": "The crisp bag, again", "q": "A sealed bag of crisps is taken up a mountain. The bag puffs up. Explain why.", "starters": ["Higher up, the air pressure outside…", "so the air inside the bag…", "so the bag…"], "minWords": 25, "mark": {"points": [{"t": "higher up, atmospheric pressure (outside) is lower: less air above", "m": 1}, {"t": "the air inside the bag now has a higher pressure than the air outside", "m": 1}, {"t": "so the gas pushes the bag outwards (in all directions)", "m": 1}], "note": "Last time you wrote that the pressure inside goes up. Start <b>outside</b> the bag."}}
+      ]
+    },
+    {
+      "h": "5. On paper (optional, 10 min)",
+      "time": "10 min",
+      "blocks": [
+        {"type": "info", "tone": "big", "html": "If you have 10 more minutes, print the short paper: two chains by hand, then mark them. If not, skip it and rest: the test is tomorrow."},
+        {"type": "checklist", "id": "sc", "h": "Self-check", "items": ["Bigger volume → lower pressure. Smaller volume → higher pressure.", "Air moves from higher pressure to lower pressure.", "Breathing out: the diaphragm relaxes and moves <b>up</b>.", "Crisp bag: I started with the pressure <b>outside</b>.", "Every chain ended with the thing the question asked about."]},
+        {"type": "oral", "q": "“What happens to the pressure in your chest when you breathe in, and why does that make air go in?”", "note": "For the parent: listen for “volume goes up, so pressure goes down, lower than outside, so air is pushed in”. If she says “pressure goes up”, ask: “more space or less space for the air?”"}
+      ]
+    }
+  ],
+  "paper": {
+    "title": "Science Week 5: volume, pressure and the chain to the end (written)",
+    "sub": "Ember · Tuesday before the test · about 10 minutes · 7 marks",
+    "intro": "<b>Skill: the Because Chain.</b> One link per mark. Every chain ends with the thing the question asks about.",
+    "blocks": [
+      {"marks": 4, "q": "1. Explain how the diaphragm and ribs cause air to move into the lungs.", "lines": 7},
+      {"marks": 3, "q": "2. A syringe is sealed at the end so no air can get in or out. The plunger is pulled out, so the air inside has a bigger volume. Explain what happens to the pressure of the air inside the syringe.", "lines": 6}
+    ],
+    "selfcheck": [
+      "Q1: four links, ending with air moving in.",
+      "Q2: I said bigger volume → lower pressure, and why (particles hit the walls less often).",
+      "Reflection: which link do I usually leave out?"
+    ],
+    "marking": [
+      {"h": "Mark scheme", "html": "<ul><li><b>1.</b> Diaphragm contracts and moves down / rib (intercostal) muscles contract and ribs move up and out <b>(1)</b>; so the volume of the chest increases <b>(1)</b>; so the pressure inside the chest decreases, lower than outside <b>(1)</b>; so air is pushed (moves) into the lungs <b>(1)</b>.</li><li><b>2.</b> The same number of particles in a bigger volume / particles more spread out <b>(1)</b>; so they hit the walls less often <b>(1)</b>; so the pressure decreases <b>(1)</b>.</li></ul>Score: ____ / 7"}
+    ],
+    "footer": "Questions written for Ember in AQA style, matched to the topics in the autumn science test (breathing, pressure in gases). No AQA past-paper questions used."
+  }
+}

@@ -1,0 +1,229 @@
+{
+ "kicker": "Ember · English · Week 5",
+ "title": "The lonely school: Quote, effect, So What (A Christmas Carol)",
+ "sub": "Last week you got every analysis question right on the empty town. This week the passage is here for you: a real GCSE extract from Dickens’ <i>A Christmas Carol</i>, about a lonely boy in an empty school. About 15 minutes on screen, then two paragraphs on paper.",
+ "skill": "Quote, effect, So What.",
+ "target": "AQA Literature Level 3 needs “explained comments on the writer’s methods” and Level 4 “clear explanation”. Each paragraph: a short quote, the effect of a word or method in it, then So What: what it shows about loneliness.",
+ "print": "week5-lonely-school-written.pdf",
+ "sections": [
+  {
+   "h": "1. Warm-up",
+   "time": "4 min",
+   "sub": "Last week: the empty town. From memory.",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "w1",
+     "h": "Analyse, don’t retell",
+     "q": "Which sentence analyses rather than retells?",
+     "o": [
+      "Scrooge goes back to his old school with the Ghost.",
+      "Dickens makes the school feel cold and forgotten, which suggests that loneliness has shaped Scrooge since he was a child.",
+      "There is a boy reading in the school."
+     ],
+     "c": 1,
+     "why": "Retelling says what happens. Analysis says what the writer <b>makes us feel</b> and what that <b>suggests</b>."
+    },
+    {
+     "type": "mc",
+     "id": "w2",
+     "h": "A short quote",
+     "q": "Which is the best quote to analyse?",
+     "o": [
+      "“They went, the Ghost and Scrooge, across the hall, to a door at the back of the house.”",
+      "“a feeble fire”",
+      "“It opened before them”"
+     ],
+     "c": 1,
+     "why": "Short quotes let you zoom in on one word. “feeble” is a word you can say a lot about. The long one is mostly plot."
+    }
+   ]
+  },
+  {
+   "h": "2. Read the extract",
+   "time": "4 min",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<p class=\"pr-note\">AQA English Literature 8702/1N, June 2022, extract for Q02 (Charles Dickens, A Christmas Carol, Chapter 2)</p><p><i>In this extract, the Ghost of Christmas Past takes Scrooge back to his school.</i></p><p>“The school is not quite deserted,” said the Ghost. “A solitary child, neglected by his friends, is left there still.”</p><p>Scrooge said he knew it. And he sobbed.</p><p>They left the high-road, by a well-remembered lane, and soon approached a mansion of dull red brick, with a little weathercock-surmounted cupola, on the roof, and a bell hanging in it. It was a large house, but one of broken fortunes; for the spacious offices were little used, their walls were damp and mossy, their windows broken, and their gates decayed. Fowls clucked and strutted in the stables; and the coach-houses and sheds were over-run with grass. Nor was it more retentive of its ancient state, within; for entering the dreary hall, and glancing through the open doors of many rooms, they found them poorly furnished, cold, and vast. There was an earthy savour in the air, a chilly bareness in the place, which associated itself somehow with too much getting up by candle-light, and not too much to eat.</p><p>They went, the Ghost and Scrooge, across the hall, to a door at the back of the house. It opened before them, and disclosed a long, bare, melancholy room, made barer still by lines of plain deal forms and desks. At one of these a lonely boy was reading near a feeble fire; and Scrooge sat down upon a form, and wept to see his poor forgotten self as he used to be.</p><p>Not a latent echo in the house, not a squeak and scuffle from the mice behind the panelling, not a drip from the half-thawed water-spout in the dull yard behind, not a sigh among the leafless boughs of one despondent poplar, not the idle swinging of an empty store-house door, no, not a clicking in the fire, but fell upon the heart of Scrooge with a softening influence, and gave a freer passage to his tears.</p><p class=\"pr-note\">Words: <b>cupola</b> a small dome; <b>retentive of its ancient state</b> keeping its old grandeur; <b>savour</b> smell or taste; <b>forms</b> wooden benches; <b>deal</b> cheap pine; <b>latent</b> hidden; <b>despondent</b> hopeless, low.</p>"
+    }
+   ]
+  },
+  {
+   "h": "3. Quote, effect, So What",
+   "time": "10 min",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "c1",
+     "h": "Effect of a word",
+     "q": "‘a lonely boy was reading near a <b>feeble</b> fire’. What is the main effect of “feeble”?",
+     "o": [
+      "It tells us the fire was small.",
+      "A fire should mean warmth and comfort; a feeble one gives almost none, so even the comfort in the room is weak, like the care the boy gets.",
+      "It is alliteration."
+     ],
+     "c": 1,
+     "why": "“It is alliteration” names the method but says nothing about the effect (AQA Level 2: identification). “The fire was small” retells. The effect links the word to the boy’s loneliness. (The alliteration of ‘feeble fire’ is in AQA’s own mark scheme: name it, <i>then</i> say what it does.)"
+    },
+    {
+     "type": "mc",
+     "id": "c2",
+     "h": "How a list works",
+     "q": "‘a long, bare, melancholy room, made barer still’. How does this work?",
+     "o": [
+      "Three adjectives pile up emptiness and sadness, then “barer still” makes it worse: the room seems to empty itself as we look.",
+      "It describes the room.",
+      "It uses a lot of commas."
+     ],
+     "c": 0,
+     "why": "Say what the method <b>does</b>: the build-up, then “barer still” going one step further. That is explaining the method, which moves you from Level 2 to Level 3."
+    },
+    {
+     "type": "mc",
+     "id": "c3",
+     "h": "So What",
+     "q": "‘Scrooge … wept to see his poor forgotten self as he used to be.’ Which is the strongest So What?",
+     "o": [
+      "This shows Scrooge is sad.",
+      "This suggests the hard, cold man we met in Chapter 1 was made by loneliness: Dickens wants us to see that Scrooge was once a child nobody cared for, so he can still be changed.",
+      "This is in Chapter 2."
+     ],
+     "c": 1,
+     "why": "The So What connects the quote to the big idea (loneliness shapes people, and they can change). “Scrooge is sad” is true but stops at the surface."
+    },
+    {
+     "type": "order",
+     "id": "ladder",
+     "h": "Climb the levels",
+     "q": "Four comments on ‘a solitary child, neglected by his friends’. Tap them from weakest to strongest.",
+     "items": [
+      "The Ghost says there is a child left at the school.",
+      "Dickens uses the word “solitary”, which is an adjective.",
+      "“Solitary” means completely alone, and “neglected” suggests someone should have cared for him but did not.",
+      "“Neglected” suggests the child was left alone by others, not by choice, which suggests Dickens blames a lack of care, not the child, for the lonely man Scrooge becomes."
+     ],
+     "labels": [
+      "Retells",
+      "Names a method",
+      "Explains the effect",
+      "Effect + So What"
+     ],
+     "done": "The top comment does all three: quote, effect, So What."
+    },
+    {
+     "type": "write",
+     "id": "own",
+     "marks": 3,
+     "rows": 5,
+     "h": "Your paragraph",
+     "q": "Choose one short quote from the last paragraph (“Not a latent echo… freer passage to his tears”). Write: the quote, the effect of a word or method in it, and So What about loneliness.",
+     "starters": [
+      "Dickens writes “…”.",
+      "The word “…” suggests…",
+      "This suggests that…"
+     ],
+     "minWords": 40,
+     "mark": {
+      "points": [
+       {
+        "t": "a short, exact quote from the last paragraph",
+        "m": 1
+       },
+       {
+        "t": "the effect of a word or method (e.g. the repeated “not a…” shows how silent the house is)",
+        "m": 1
+       },
+       {
+        "t": "a So What about loneliness: what it shows about Scrooge or Dickens’ ideas",
+        "m": 1
+       }
+      ],
+      "note": "A hint: count the “not”s. Why might silence make Scrooge cry, rather than a sound?"
+     }
+    }
+   ]
+  },
+  {
+   "h": "4. Written paper",
+   "time": "25 min",
+   "blocks": [
+    {
+     "type": "info",
+     "tone": "big",
+     "html": "Print the written paper. It is the real GCSE question. For now, write about the <b>extract only</b>: two or three Quote, effect, So What paragraphs, by hand, in 25 minutes. Then mark it against AQA’s levels on the last page."
+    }
+   ]
+  },
+  {
+   "h": "5. Check yourself",
+   "time": "3 min",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "Every quote is short (a few words) and exact.",
+      "After each quote, I explained the effect of one word or method.",
+      "Every paragraph ends with So What: what it shows about loneliness.",
+      "I named methods only when I also said what they do.",
+      "I wrote about Dickens’ choices (“Dickens makes…”), not just Scrooge."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“Why does Dickens show us Scrooge as a lonely boy?”",
+     "note": "For the parent: listen for a So What, e.g. “so we understand how he became cold, and believe he can change”. If she retells (“because the ghost takes him there”), ask “and what does that make us think about Scrooge?”"
+    }
+   ]
+  }
+ ],
+ "paper": {
+  "title": "English Week 5: the lonely school (written)",
+  "sub": "Ember · Real GCSE question, extract only · about 25 minutes",
+  "intro": "<b>Skill: Quote, effect, So What.</b> Each paragraph: a short quote, the effect of a word or method, then what it shows about loneliness. Re-read the extract on screen (or below) before you start.",
+  "blocks": [
+   {
+    "type": "info",
+    "h": "The extract (Chapter 2)",
+    "html": "<p style=\"font-size:0.9em\">“The school is not quite deserted,” said the Ghost. “A solitary child, neglected by his friends, is left there still.” Scrooge said he knew it. And he sobbed. … It was a large house, but one of broken fortunes; for the spacious offices were little used, their walls were damp and mossy, their windows broken, and their gates decayed. … entering the dreary hall, and glancing through the open doors of many rooms, they found them poorly furnished, cold, and vast. There was an earthy savour in the air, a chilly bareness in the place, which associated itself somehow with too much getting up by candle-light, and not too much to eat. … It opened before them, and disclosed a long, bare, melancholy room, made barer still by lines of plain deal forms and desks. At one of these a lonely boy was reading near a feeble fire; and Scrooge sat down upon a form, and wept to see his poor forgotten self as he used to be. Not a latent echo in the house, not a squeak and scuffle from the mice behind the panelling, not a drip from the half-thawed water-spout in the dull yard behind, not a sigh among the leafless boughs of one despondent poplar, not the idle swinging of an empty store-house door, no, not a clicking in the fire, but fell upon the heart of Scrooge with a softening influence, and gave a freer passage to his tears.</p>"
+   },
+   {
+    "type": "plan",
+    "h": "Plan (5 min): one row per paragraph",
+    "cols": [
+     "Quote",
+     "Effect (word or method)",
+     "So What (loneliness)"
+    ]
+   },
+   {
+    "marks": 30,
+    "source": "AQA English Literature 8702/1N, June 2022, Q02",
+    "stem": "Your version this week: write about the extract only, two or three paragraphs. (The full GCSE answer also covers the novel as a whole.)",
+    "q": "Starting with this extract, explore how Dickens presents the effects of loneliness and isolation in <i>A Christmas Carol</i>.<br><br>Write about:<br>• how Dickens presents the effects of loneliness and isolation in this extract<br>• how Dickens presents the effects of loneliness and isolation in the novel as a whole.",
+    "lines": 22,
+    "pageBreak": true
+   }
+  ],
+  "selfcheck": [
+   "Each paragraph has a short, exact quote.",
+   "Each paragraph explains the effect of one word or method.",
+   "Each paragraph ends with So What: what it shows about loneliness.",
+   "I used at least one method name (adjective, list, repetition, contrast) <b>and</b> said what it does.",
+   "Reflection: which So What was hardest to write? Where would you put yourself on the levels below?"
+  ],
+  "marking": [
+   {
+    "h": "AQA’s levels (8702/1N mark scheme, AO2: the writer’s methods)",
+    "html": "<ul><li><b>Level 2</b> (supported, relevant comments): “Identification of writers’ methods. Some reference to subject terminology.”</li><li><b>Level 3</b> (explained, structured comments): “Explained/relevant comments on writer’s methods with some relevant use of subject terminology. Identification of effects of writer’s methods to create meanings.”</li><li><b>Level 4</b> (clear understanding): “Clear explanation of writer’s methods with appropriate use of relevant subject terminology. Understanding of effects of writer’s methods to create meanings.”</li></ul>Naming “alliteration” with no effect = Level 2. Quote + effect = Level 3. Quote + effect + So What, every time = heading for Level 4."
+   },
+   {
+    "h": "AQA’s indicative content for the extract (things answers might include)",
+    "html": "<ul><li>first vision introducing Scrooge as ‘solitary’</li><li>description of school as bleak, uncared for place</li><li>use of cold imagery</li><li>alliteration of ‘feeble fire’</li><li>ideas about effect of loneliness and isolation; ideas about the importance of love and compassion</li></ul>"
+   }
+  ],
+  "footer": "Extract from Charles Dickens, A Christmas Carol (1843, public domain), as set in AQA English Literature 8702/1N June 2022 Q02. Question and mark scheme wording © AQA, used for private practice."
+ }
+}

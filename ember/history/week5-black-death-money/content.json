@@ -1,0 +1,85 @@
+{
+  "kicker": "Ember · History · Week 5",
+  "title": "The Black Death: So What? for money and work",
+  "sub": "Your So Whats about beliefs are getting strong (the flagellants, the herbs). This week: the harder kind. When the evidence is about wages, laws and land, ask: what did peasants <b>want</b>? What did lords <b>fear</b>? About 15 minutes on screen, then rework your own paragraph on paper.",
+  "skill": "So What? (one habit: after every Evidence sentence, one more sentence on what people wanted, feared or believed).",
+  "target": "AQA Level 3 needs developed explanation: the evidence, then what it shows. A So What about money names a group (peasants or lords) and what they wanted or feared, and points back at the evidence.",
+  "print": "week5-black-death-money-written.pdf",
+  "sections": [
+    {
+      "h": "1. Warm-up",
+      "time": "4 min",
+      "sub": "Last week: the point-back test, from memory.",
+      "blocks": [
+        {"type": "mc", "id": "w1", "h": "The point-back test", "q": "A So What is <b>grounded</b> when…", "o": ["it uses the word “shows”", "you can point at the exact words in the Evidence sentence that it explains", "it adds an interesting new fact"], "c": 1, "why": "If you can point back at the evidence it explains, it is grounded. A new fact is more evidence, not a So What."},
+        {"type": "mc", "id": "w2", "h": "Your own sentence", "q": "Last week you rewrote: “Bad air was normally cured by sweet smells so they used herbs to block out the miasma in hope of getting rid of the plague.” Which part shows what people <b>believed</b>?", "o": ["“in hope of getting rid of the plague”", "“Bad air was normally cured by sweet smells”: they believed disease travelled in bad-smelling air", "“they used herbs”"], "c": 1, "why": "That is the belief that explains the action. “They used herbs” is the evidence; the belief is <i>why</i>. Your best sentences link a belief to an action like this. Now do the same with money."}
+      ]
+    },
+    {
+      "h": "2. The facts you need (from the fact bank)",
+      "time": "2 min",
+      "blocks": [
+        {"type": "info", "html": "<ul class=\"pr-facts\"><li><b>S2</b> <i>(1348–50)</i> So many people died that there were not enough workers to plough, sow and harvest.</li><li><b>S3</b> <i>(1349 onwards)</i> Surviving peasants asked for higher wages. Some left their lord’s manor to work for whoever paid most, even though villeins (unfree peasants) were not allowed to leave.</li><li><b>S4</b> <i>(1349 and 1351)</i> The <b>Ordinance of Labourers</b> (1349) and the <b>Statute of Labourers</b> (1351) said wages must stay at the level they were before the plague. Workers who refused could be punished.</li><li><b>S5</b> <i>(after 1350)</i> Some lords switched from crops to <b>sheep</b>, which needed far fewer workers.</li><li><b>S6</b> <i>(over the next 100 years)</i> <b>Serfdom</b> (villeinage: peasants tied to their lord’s land) slowly died out in England.</li><li><b>S7</b> <i>(England, 1350–1500)</i> Some villages shrank or were abandoned: historians have found the remains of hundreds of deserted villages.</li><li><b>S8</b> <i>(1363)</i> A law said what <b>clothes</b> each rank could wear, because some ordinary people had more money and were dressing like the better-off.</li></ul><b>The So What question for money and work:</b> What did this make <b>peasants</b> want? What did it make <b>lords</b> fear? Starters: “This suggests that peasants now…”, “This reveals that lords feared…”, “Underlying this was the idea that…”."}
+      ]
+    },
+    {
+      "h": "3. So What? for money and work",
+      "time": "10 min",
+      "sub": "Pick the grounded So What, then write your own.",
+      "blocks": [
+        {"type": "mc", "id": "e1", "h": "What did peasants want?", "q": "Evidence (S3): “From 1349, surviving peasants asked for higher wages, and some left their lord’s manor to work for whoever paid most.” Which So What is grounded?", "o": ["This shows how terrible the plague was.", "This suggests peasants realised their work was now worth more, and wanted to be paid what it was worth, even if it meant breaking the rules that tied them to the manor.", "This was fair, because everyone deserves a decent wage.", "Serfdom ended about 100 years later."], "c": 1, "why": "It points back at “asked for higher wages” and “left their lord’s manor” and says what peasants <b>wanted</b>. The first is too general. The third judges by our values, not theirs. The fourth is a new fact (that is S6: more evidence, not a So What)."},
+        {"type": "mc", "id": "e2", "h": "What did lords fear?", "q": "Evidence (S4): “In 1349 and 1351 the government passed laws saying wages must stay at the level they were before the plague.” Which So What is grounded?", "o": ["This suggests lords, who made the laws, feared that rising wages would cost them their wealth and their control over the peasants.", "This shows the government was cruel.", "This suggests the plague changed a lot of things.", "This led to the Peasants’ Revolt in 1381."], "c": 0, "why": "It names who (lords), what they feared (losing wealth and control), and points back at “wages must stay at the level they were before”. “Cruel” is a judgement, not an inference. The last option is a new event: a link for later (Domino), not a So What."},
+        {"type": "mc", "id": "e3", "h": "A law about clothes", "q": "Evidence (S8): “In 1363 a law said what clothes each rank of people was allowed to wear, because some ordinary people were dressing like the better-off.” What does it reveal?", "o": ["People in 1363 liked fashion.", "The better-off feared that ordinary people with more money were forgetting their place: in their world, your rank was supposed to show.", "Clothes were expensive."], "c": 1, "why": "Ask why anyone would bother to make a law about clothes. It shows what the better-off <b>feared</b>: the order of society slipping. That is an economic change with a belief underneath it."},
+        {"type": "write", "id": "e4", "marks": 2, "rows": 3, "h": "Your sentence, plus a So What", "q": "You wrote: “Lots of the community was dead so the lords who paid the peasants were forced to pay more if they wanted their workers to stay.” Add <b>one</b> So What sentence: what did this make lords fear, or peasants want?", "starters": ["This suggests that lords feared…", "This reveals that peasants now…"], "minWords": 12, "mark": {"points": [{"t": "it points back at your evidence: being “forced to pay more” or wanting “workers to stay”", "m": 1}, {"t": "it says what lords feared or peasants wanted, with no new fact and no modern judgement", "m": 1}], "note": "Check it: can you point at the words it explains? Would it still make sense after a different Evidence sentence? If yes, it is too general."}},
+        {"type": "write", "id": "e5", "marks": 3, "rows": 4, "h": "S4 is yours", "q": "Write S4 in your own words, <b>with its dates</b>. Then add a So What about what lords wanted or feared.", "starters": ["In 1349 and 1351…", "This suggests that…"], "minWords": 25, "mark": {"points": [{"t": "the evidence names the laws or the dates (1349 and 1351)", "m": 1}, {"t": "it is in your own words, not copied from the fact bank", "m": 1}, {"t": "the So What says what lords wanted or feared, and points back at the laws", "m": 1}], "note": "Dates are part of the evidence. AQA rewards “specific” evidence, and a date makes it specific."}}
+      ]
+    },
+    {
+      "h": "4. Claim check",
+      "time": "3 min",
+      "sub": "Two of your sentences, checked against the fact bank.",
+      "blocks": [
+        {"type": "mc", "id": "k1", "h": "Serfdom", "q": "You wrote: “They moved out of villages such as Serfdom and that village died out.” Check it against S6. What is serfdom?", "o": ["A village in England", "The system that tied unfree peasants (serfs, or villeins) to their lord’s land and work", "A disease"], "c": 1, "why": "Serfdom was a <i>system</i>, not a place. S6 says it slowly died out over the next 100 years. A fixed sentence: “Over the next hundred years, serfdom, the system that tied peasants to their lord’s land, slowly died out.”"},
+        {"type": "mc", "id": "k2", "h": "How much was deserted?", "q": "You wrote that the change resulted in “much of england being deserted”. What does S7 actually support?", "o": ["Much of England was deserted", "Some villages shrank or were abandoned between 1350 and 1500; historians have found hundreds of deserted villages", "Nobody lived in villages after 1350"], "c": 1, "why": "Say exactly as much as the evidence shows. “Hundreds of deserted villages” is specific and true; “much of England” is a sweeping claim. Claims that are too big lose the trust of the examiner."}
+      ]
+    },
+    {
+      "h": "5. Written paper",
+      "time": "25 min",
+      "blocks": [
+        {"type": "info", "tone": "big", "html": "Print the written paper. On it is your own paragraph from last week. Rework it by hand: same ideas, but every Evidence sentence gets a date and a So What about what peasants wanted or lords feared. Then do the claim check table."}
+      ]
+    },
+    {
+      "h": "6. Check yourself",
+      "time": "3 min",
+      "blocks": [
+        {"type": "checklist", "id": "sc", "h": "Self-check", "items": ["Every Evidence sentence has a date or a place.", "Every Evidence sentence has a So What after it.", "Each So What names a group (peasants or lords) and what they wanted or feared.", "I can point at the words each So What explains.", "No sweeping claims: I said as much as the evidence shows, and no more."]},
+        {"type": "oral", "q": "“So what does the Statute of Labourers tell us about what lords feared?”", "note": "For the parent: listen for “they feared losing money / losing control over peasants, because workers were scarce and wanted more pay”. If she retells the law (“wages had to stay the same”), that is the evidence: ask “and why would lords want that?” Ask without her answer in front of her (graduation rule)."}
+      ]
+    }
+  ],
+  "paper": {
+    "title": "History Week 5: So What? for money and work (written)",
+    "sub": "Ember · Rework your own paragraph · about 25 minutes",
+    "intro": "<b>Skill: So What?</b> After every Evidence sentence, one more sentence: what did this make peasants <b>want</b>, or lords <b>fear</b>? Point back at the evidence. Evidence comes from the fact bank (S2–S8 on screen) or your notes.",
+    "blocks": [
+      {"type": "info", "h": "Your paragraph from last week (socioeconomic change)", "html": "<i>“One change in medieval england was that peasants got rich and they could afford rent and could move out. As a result, lots of villages and places in england were deserted. Lots of the community was dead so the lords who paid the peasants were forced to pay more if they wanted their workers to stay as many had dropped dead from the plague. They moved out of villages such as Serfdom and that village died out. This is an important change as it shows how the society in medieval england slowly began to collapse as the plague began to collect more victims and the richer side of society weren’t as rich anymore.”</i>"},
+      {"type": "table", "h": "Plan (5 min)", "cols": ["", "Evidence, with a date (fact number)", "So what? What did peasants want, or lords fear?"], "rows": [["Evidence 1", "", ""], ["Evidence 2", "", ""]]},
+      {"marks": 6, "q": "Rewrite the paragraph. Keep your Point. Use S3 for Evidence 1 and S4 for Evidence 2 (or your own choices), each with a date and a So What. End with one sentence back to the question: how much did this change people’s lives?", "lines": 16},
+      {"type": "table", "h": "Claim check: is each claim in the fact bank?", "cols": ["Claim from your paragraph", "Fact number, or “source needed”", "Supported / check / source needed"], "rows": [["“peasants got rich”", "", ""], ["“villages such as Serfdom”", "", ""], ["“society … slowly began to collapse”", "", ""], ["“the richer side of society weren’t as rich anymore”", "", ""]]}
+    ],
+    "selfcheck": [
+      "Point: one clear change, in one sentence.",
+      "Evidence 1 and Evidence 2 each have a date.",
+      "Each So What says what peasants wanted or lords feared, and points back.",
+      "The last sentence goes back to the question.",
+      "Capital letters for England, Germany and the Black Death.",
+      "Reflection: which So What was easiest to add? Which claim was hardest to back up?"
+    ],
+    "marking": [
+      {"h": "What a strong reworked paragraph does (AQA Level 3: developed explanation)", "html": "<ul><li><b>Point:</b> e.g. “One major change after the Black Death was that working people gained more power over their own work.”</li><li><b>Evidence 1 + So What:</b> S3 with “from 1349”; then what peasants <i>wanted</i> (to be paid what their work was now worth, to choose their master).</li><li><b>Evidence 2 + So What:</b> S4 with “1349 and 1351”; then what lords <i>feared</i> (losing money and control).</li><li><b>Link:</b> how much life changed, and for whom. Careful with “collapse”: serfdom faded over 100 years, it did not collapse at once.</li></ul><b>Claim check answers:</b> “got rich”: check (S3 says higher wages, not rich; S8 says <i>some</i> had more money). “Villages such as Serfdom”: wrong, serfdom is a system (S6). “Society collapsed”: source needed (S6 says a slow change). “Richer side weren’t as rich”: check (S5 shows lords changing how they used land; it does not say they lost their wealth)."}
+    ],
+    "footer": "Written for Ember. Facts from the Black Death fact bank (checked against History Today and World History Encyclopedia articles). Format: a paragraph for AQA-style “explain” questions."
+  }
+}

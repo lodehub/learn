@@ -51,7 +51,7 @@ Owner account: lodehub (anonymous by design).
 - Mobile-first, big tap targets, works on iPad Safari. Add a web manifest and service worker per child folder so each can be installed as a PWA (scoped to that folder).
 - Before pushing: open each page locally, check for broken links, then commit with a clear message.
 
-# Part 2: What exists (state as of 3 Nov 2026)
+# Part 2: What exists (state as of 14 Nov 2026)
 
 ## What it is
 
@@ -78,7 +78,7 @@ Privacy: slugs and labels only, never real names, schools or personal data. Comm
 - **Subject pages** show up to three sections: **Explore** (first-principles journeys, `"strand": "explore"`), **Practise** (HTML tools) and **Print** (PDFs and worksheets attached to a tool via `"print"`).
 - **All printables** shelf on each child's page, grouped by subject.
 - **Archive** toggle: `"status": "archived"` hides finished work without moving files (URLs and saved progress keep working). Grouped by year, then `topic`. Older items were archived to keep the latest two per subject for ember, ninja and bingo.
-- **This week** box: manifest top-level `"currentWeek": N`; items tagged `"week": N` show at the top with a tick each. Optional `"checkin"` path adds the half-term check-in link. Currently only ember uses it (`currentWeek: 3`).
+- **This week** box: manifest top-level `"currentWeek": N`; items tagged `"week": N` show at the top with a tick each. Optional `"checkin"` path adds the half-term check-in link. Currently only ember uses it (`currentWeek: 5`).
 - **Back button** on every tool via `back.js` (needed when installed as an app).
 - **Offline and slow wifi** (`<slug>/sw.js`, one identical copy per child, cache `learn-v2`): pages and data wait at most 3 s for the network, then use the saved copy. After install, every current tool in the manifest (page, scripts, styles and the JSON its engine loads) is saved in the background, so it opens offline without being visited first. When changing it, edit one copy and copy it to the other three; bump `CACHE` only if old caches must be thrown away.
 - **Fonts are self-hosted** in `assets/fonts/` (latin + latin-ext woff2 and one CSS per font set). Never link fonts.googleapis.com: it slows the first paint, fails offline and leaks visits to Google. To add a font, download it the same way and link `assets/fonts/<name>.css`.
@@ -86,18 +86,22 @@ Privacy: slugs and labels only, never real names, schools or personal data. Comm
 
 ## Content by learner
 
-### Ember (secondary, weekly homework rhythm, currently Week 4)
-Current (Week 4, all on the Practice engine with a `?print` written paper):
-- English Week 4: the empty town, Quote, effect, So What (original practice passage, then her own *Tsunami Girl* quotes; Q2 format) (`english/week4-empty-town/`)
-- Maths Week 4: dividing fractions, the method and the why (includes AQA 8300/1H Nov 2020 Q4) (`maths/week4-dividing-fractions/`)
-- Science Week 4: moments and the lever chain (paper includes AQA 8463/2H Nov 2021 Q07.3) (`science/week4-moments/`)
-- History Week 4: the Black Death, So What? on her own sentences, claim check, 12-mark question in AQA Paper 1 Q6 format (`history/week4-black-death/`)
-- History, Black Death: what changed? (school task support, tagged week 4): numbered fact bank (S1–S9 socioeconomic, C1–C9 cultural, each with date/place), then a step-by-step PEEL builder for two paragraphs with self-marked So Whats, plus a `?print` paper (`history/black-death-changes/`)
-- Geography Week 3 and Week 3 plus kept current (no new Geography this week).
-- **Science autumn assessment revision** (test Wed 18 Nov; tagged week 4, topic "Autumn assessment"): five Practice-engine tools, one per day: `science/test-pressure/` (Days 1–2: P = F ÷ A on solids incl. N/cm² and rearranging; pressure in gases and atmospheric pressure), `test-digestion/` (Day 3), `test-contact-forces/` (Day 4: friction, drag, equilibrium, deformation, Hooke's Law), `test-breathing/` (Day 5), `test-mock/` (Days 6–7: warm-up, a 33-mark handwritten mock with mark scheme as `test-mock.pdf`, Tuesday fix-your-mistakes). All questions original, matched to the school's textbook pages (kept private, never in the repo).
-- **History reading shelf** (`history/reading/`, always current, also a "Read" row in her home links): Reading shelf engine. Peasants' Revolt (World History Encyclopedia, full text, CC BY-NC-SA, credited) plus reading guides with links for three History Today Black Death articles (Ziegler Parts I and II, Benedictow), each with key words, Read-for questions, a Historians-disagree box on the death toll, and a So What notebook prompt.
+### Ember (secondary, weekly homework rhythm, currently Week 5)
+Current (Week 5, all on the Practice engine with a `?print` written paper):
+- English Week 5: the lonely school, Quote, effect, So What (AQA 8702/1N June 2022 Q02 *A Christmas Carol* extract; extract-only version) (`english/week5-lonely-school/`)
+- Maths Week 5: coordinates and straight lines (x = a, y = b, intercepts, midpoint, point above/below a line; AQA 8300/2H Nov 2022 Q3, 3H June 2018 Q19 and Q8(b), 2H Nov 2018 Q2, 1H Nov 2019 Q5(a), 1H June 2018 Q7) (`maths/week5-straight-lines/`)
+- Science Week 5 (Tuesday before the test): one rule, three places: volume and pressure in the chest, bike pump and crisp bag, chain to the end; original questions (`science/week5-volume-pressure/`)
+- History Week 5: the Black Death, So What? for money and work (her own paragraph reworked, claim check) (`history/week5-black-death-money/`)
+- Geography Week 5: Curitiba, case-study evidence and a judgement (AQA 8035/2 June 2020 paper Q01.8) (`geography/week5-curitiba/`)
+- French Week 5: les films, genres, adjective agreement and comparing (original) (`french/week5-films/`)
+- **Science autumn assessment revision** (test Wed 18 Nov; topic "Autumn assessment"): `science/test-pressure/`, `test-digestion/`, `test-contact-forces/`, `test-breathing/` stay current (week 4 tag, so outside the This-week box); `test-mock/` (Days 6–7, mock PDF `test-mock.pdf`, Tuesday fix-your-mistakes) is tagged week 5. All questions original. Archive these after the test.
+- **History reading shelf** (`history/reading/`, always current, also a "Read" row in her home links): Reading shelf engine. Peasants' Revolt (World History Encyclopedia, full text, CC BY-NC-SA, credited) plus reading guides with links for three History Today Black Death articles (Ziegler Parts I and II, Benedictow).
 
-Archived at the start of Week 4 (Autumn):
+Archived at the start of Week 5 (Autumn):
+- English Week 4: the empty town; Maths Week 4: dividing fractions; Science Week 4: moments and the lever chain; History Week 4: the Black Death and History "Black Death: what changed?" (all + PDFs)
+- Geography Week 3 and Week 3 plus (megacities); French Week 2 (verbs and extending a sentence)
+
+Archived earlier, at the start of Week 4 (Autumn):
 - English Week 3: symbolism in *Tsunami Girl* (+ PDF)
 - Maths Week 3: multiplying fractions, with working and a check (+ PDF)
 - Science Week 3: forces and the Because Chain (+ PDF)
@@ -115,7 +119,7 @@ Always current (not tied to a week):
 - **Answer sending** (LearnSend): Practice tools, Explore: Forces from scratch, Explore: Moments from scratch and the daily page send her answers, first wrong tries, predictions, notebook entries and self-marks to the parent's private sheet.
 - **Week 3 plus** (optional extra, tagged week 3; archived at Week 4 except Geography): English, Maths, Science, History and Geography rebuilt on real AQA past-paper questions with the Practice engine, each with a `?print` written paper (`<subject>/week3plus-*/`).
 
-Also current: French Week 2 (verbs and extending a sentence), French Lab, French Role-play, Mandarin Lab, Mandarin Role-play, and **Explore: "Why triangles know things", trigonometry from scratch** with **printable trigonometry sheets** (`maths/trig-sheets/`: 4 A4 pages, 20 questions, 87 marks, building on the Explore rooms from side ratios to exact values, ending with two real AQA Higher questions; HTML source prints to `trigonometry-4-pages.pdf`, `?answers` adds the answer pages, also saved as `trigonometry-answers.pdf`), and **Explore: "Forces from scratch"** (`science/explore-forces/`): ten rooms from what a force is to terminal velocity (naming forces, mass and weight, resultant force, zero resultant, acceleration, air resistance, a live skydive with free-body diagrams), ending with the AQA June 2025 skydiver question and its mark scheme. **Explore: "Moments from scratch"** (`science/explore-moments/`): seven rooms (turning forces and the pivot, M = F d in N m with the cm trap, perpendicular distance, clockwise and anticlockwise, the principle of moments on a see-saw, the lever chain, look back), with AQA 8463/2H June 2023 Q03.1, June 2024 Q02.5–Q02.7 and June 2019 Q10.1 (self-marked).
+Also current: French Lab, French Role-play, Mandarin Lab, Mandarin Role-play, and **Explore: "Why triangles know things", trigonometry from scratch** with **printable trigonometry sheets** (`maths/trig-sheets/`: 4 A4 pages, 20 questions, 87 marks, building on the Explore rooms from side ratios to exact values, ending with two real AQA Higher questions; HTML source prints to `trigonometry-4-pages.pdf`, `?answers` adds the answer pages, also saved as `trigonometry-answers.pdf`), and **Explore: "Forces from scratch"** (`science/explore-forces/`): ten rooms from what a force is to terminal velocity (naming forces, mass and weight, resultant force, zero resultant, acceleration, air resistance, a live skydive with free-body diagrams), ending with the AQA June 2025 skydiver question and its mark scheme. **Explore: "Moments from scratch"** (`science/explore-moments/`): seven rooms (turning forces and the pivot, M = F d in N m with the cm trap, perpendicular distance, clockwise and anticlockwise, the principle of moments on a see-saw, the lever chain, look back), with AQA 8463/2H June 2023 Q03.1, June 2024 Q02.5–Q02.7 and June 2019 Q10.1 (self-marked).
 
 Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squad, Forming and solving equations, Weeks 1–2; Science B4 Organisms (lungs and gas exchange, breathing, drugs/alcohol/smoking, nutrients and food tests, Weeks 1–2); History Rome 14-day revision road, Roman life and equality, So What? coaching, writing task 2 (Roman childhood), Tie it back to the question, Week 2 PDF; Geography megacities Weeks 1–2.
 
