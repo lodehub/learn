@@ -400,6 +400,33 @@
           "model": "Atmospheric pressure decreases, because there is less air above you."
         }
       ]
+    },
+    {
+      "id": "2026-11-15-science-week5-written",
+      "date": "2026-11-15",
+      "subject": "Science",
+      "title": "Week 5 written page: volume, pressure and the chain to the end",
+      "mark": "5 / 7",
+      "summary": "5 out of 7, and you marked yourself 5 out of 7 too: both your marks were exactly right, and the notes you wrote in brackets (\"mention pressure\", \"mention hitting walls\") are exactly the two missing links. That is how to self-mark. The pressure is the right way round again: <i>bigger volume, so the pressure decreases</i>. That idea is now secure.<br><br>Marks: Q1 3/4 · Q2 2/3.",
+      "items": [
+        {
+          "block": "q1",
+          "q": "Q1. How the diaphragm and ribs make air move into the lungs",
+          "mark": "3 / 4",
+          "good": "\"The diaphragm contracts and moves down\" and \"the intercostal muscles move the ribcage up and out\" are both correct, and you said the volume gets bigger and that air flows in.",
+          "fix": "You jumped from \"diaphragm moves down\" straight to \"air flows into the lungs\". The missing link is the <b>pressure</b>: volume up, so pressure inside goes <b>down, below the air outside</b>, so air is pushed in. Say \"so the volume increases\", not \"this is to maximise the volume\": the exam wants what happens, not what it is for.",
+          "model": "The diaphragm contracts and moves down and the ribs move up and out, so the volume of the chest increases, so the pressure inside decreases below the pressure outside, so air is pushed into the lungs."
+        },
+        {
+          "block": "q2",
+          "q": "Q2. Sealed syringe, plunger pulled out",
+          "mark": "2 / 3",
+          "good": "\"The pressure decreases\" is right, and \"more spaced out\" is the first link.",
+          "fix": "Pressure comes from particles hitting the <b>walls</b>, so say the walls. \"Collide less frequently\" could mean with each other, which doesn't make pressure. Also start with the volume and <b>end</b> with the pressure, the thing the question asks about.",
+          "model": "The same number of air particles are in a bigger volume, so they are more spread out, so they hit the walls of the syringe less often, so the pressure decreases."
+        }
+      ],
+      "next": "Before Wednesday's test: for any pressure question, write the chain in this order: <b>volume → particles → walls → pressure → air moves</b>. Every chain ends with the thing the question asks about."
     }
   ]
 }
