@@ -408,6 +408,17 @@
       "week": 5
     },
     {
+      "title": "Science test: force and hydraulics equations",
+      "path": "science/test-equations/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Autumn assessment",
+      "print": "science/test-equations/test-equations.pdf",
+      "printTitle": "Equations from memory (10 min, night before)",
+      "week": 5
+    },
+    {
       "title": "Rome: the 14-day revision road",
       "path": "history/rome.html",
       "type": "html",

@@ -94,7 +94,7 @@ Current (Week 5, all on the Practice engine with a `?print` written paper):
 - History Week 5: the Black Death, So What? for money and work (her own paragraph reworked, claim check) (`history/week5-black-death-money/`)
 - Geography Week 5: Curitiba, case-study evidence and a judgement (AQA 8035/2 June 2020 paper Q01.8) (`geography/week5-curitiba/`)
 - French Week 5: les films, genres, adjective agreement and comparing (original) (`french/week5-films/`)
-- **Science autumn assessment revision** (test Wed 18 Nov; topic "Autumn assessment"): `science/test-pressure/`, `test-digestion/`, `test-contact-forces/`, `test-breathing/` stay current (week 4 tag, so outside the This-week box); `test-mock/` (Days 6–7, mock PDF `test-mock.pdf`, Tuesday fix-your-mistakes) is tagged week 5. All questions original. Archive these after the test.
+- **Science autumn assessment revision** (test Wed 18 Nov; topic "Autumn assessment"): `science/test-pressure/`, `test-digestion/`, `test-contact-forces/`, `test-breathing/` stay current (week 4 tag, so outside the This-week box); `test-mock/` (Days 6–7, mock PDF `test-mock.pdf`, Tuesday fix-your-mistakes) is tagged week 5; `test-equations/` (every force and hydraulics equation with units, a drill on each, a hydraulic jack worked step by step, `test-equations.pdf` memory test with key) is tagged week 5. All questions original. Archive these after the test.
 - **History reading shelf** (`history/reading/`, always current, also a "Read" row in her home links): Reading shelf engine. Peasants' Revolt (World History Encyclopedia, full text, CC BY-NC-SA, credited) plus reading guides with links for three History Today Black Death articles (Ziegler Parts I and II, Benedictow).
 
 Archived at the start of Week 5 (Autumn):

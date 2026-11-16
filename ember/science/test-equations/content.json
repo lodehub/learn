@@ -1,0 +1,378 @@
+{
+  "kicker": "Ember · Science · Test on Wed 18 Nov",
+  "title": "Force and hydraulics equations",
+  "sub": "Every equation for the forces test on one page, then use each one. About 15 minutes. Print the paper and test yourself from memory the night before.",
+  "skill": "Equation first: write the equation in words, then the numbers, then the answer with its unit.",
+  "target": "Before any calculation, write the equation. If you know the force and the area, ask: <b>am I finding pressure (÷) or force (×)?</b>",
+  "print": "test-equations.pdf",
+  "sections": [
+    {
+      "h": "1. Your equation sheet",
+      "time": "3 min",
+      "sub": "Read it, then cover it and say each one out loud.",
+      "blocks": [
+        {
+          "type": "info",
+          "html": "<div style=\"padding:10px 0;border-bottom:1px solid #8884\"><b>Weight</b><br><span style=\"font-size:1.1em\">weight = mass × gravitational field strength</span> &nbsp;<i>(W = m × g)</i><br><small>N = kg × N/kg. On Earth g = 9.8 N/kg (some questions round it to 10: use the number they give).</small></div><div style=\"padding:10px 0;border-bottom:1px solid #8884\"><b>Resultant force</b><br><span style=\"font-size:1.1em\">same direction: <b>add</b>; opposite directions: <b>bigger − smaller</b></span><br><small>N, pointing the way of the bigger force.</small></div><div style=\"padding:10px 0;border-bottom:1px solid #8884\"><b>Hooke’s Law (springs)</b><br><span style=\"font-size:1.1em\">force = spring constant × extension</span> &nbsp;<i>(F = k × e)</i><br><small>N = N/m × m. Extension = new length − original length. In words: double the force, double the extension.</small></div><div style=\"padding:10px 0;border-bottom:1px solid #8884\"><b>Moment (turning)</b><br><span style=\"font-size:1.1em\">moment = force × distance</span> &nbsp;<i>(M = F × d)</i><br><small>N m. d is the <b>perpendicular</b> distance from the pivot (cm gives N cm). Balanced: total clockwise moment = total anticlockwise moment.</small></div><div style=\"padding:10px 0;border-bottom:1px solid #8884\"><b>Pressure</b><br><span style=\"font-size:1.1em\">pressure = force ÷ area</span> &nbsp;<i>(P = F ÷ A)</i><br><small>N/m² = Pa (pascal); area in cm² gives N/cm². Turned round: <b>force = pressure × area</b>, area = force ÷ pressure.</small></div><div style=\"padding:10px 0;border-bottom:1px solid #8884\"><b>Hydraulics</b><br><span style=\"font-size:1.1em\">1. pressure = force ÷ area <b>(small piston)</b><br>2. force = pressure × area <b>(big piston)</b></span> &nbsp;<i>(F₁ ÷ A₁ = F₂ ÷ A₂)</i><br><small>The pressure is the same at both pistons. Keep both areas in the <b>same unit</b>.</small></div>"
+        },
+        {
+          "type": "info",
+          "html": "<b>Why hydraulics works.</b> A liquid cannot be squashed (compressed). So pushing on it at one end raises the pressure <b>everywhere</b> in the liquid, by the same amount. The big piston has a bigger area, so the same pressure makes a <b>bigger force</b>. The catch: the small piston has to move much further than the big one."
+        },
+        {
+          "type": "checklist",
+          "id": "cover",
+          "h": "Cover the table. Can you say…",
+          "items": [
+            "weight = mass × gravitational field strength",
+            "force = spring constant × extension",
+            "moment = force × distance",
+            "pressure = force ÷ area",
+            "force = pressure × area",
+            "the unit of each: N, N/kg, N/m, N m, N/m² (Pa)"
+          ]
+        }
+      ]
+    },
+    {
+      "h": "2. Which equation?",
+      "time": "3 min",
+      "blocks": [
+        {
+          "type": "mc",
+          "id": "w1",
+          "h": "Weight",
+          "q": "Which is the equation for weight?",
+          "o": [
+            "weight = mass ÷ gravitational field strength",
+            "weight = mass × gravitational field strength",
+            "weight = mass + gravitational field strength"
+          ],
+          "c": 1,
+          "why": "W = m × g. A 1 kg mass on Earth weighs 9.8 N."
+        },
+        {
+          "type": "mc",
+          "id": "w2",
+          "h": "Pressure",
+          "q": "Which is the equation for pressure?",
+          "o": [
+            "pressure = force × area",
+            "pressure = area ÷ force",
+            "pressure = force ÷ area"
+          ],
+          "c": 2,
+          "why": "Pressure is force <b>per</b> area, so force ÷ area. In the mock you multiplied: this is the one to fix."
+        },
+        {
+          "type": "mc",
+          "id": "w3",
+          "h": "Units",
+          "q": "What is the unit of a moment?",
+          "o": [
+            "N/m",
+            "N m (newton metre)",
+            "N/m²"
+          ],
+          "c": 1,
+          "why": "Moment = force × distance, so N × m = N m. N/m is the spring constant; N/m² is pressure."
+        },
+        {
+          "type": "mc",
+          "id": "w4",
+          "h": "Units",
+          "q": "What is the unit of gravitational field strength?",
+          "o": [
+            "N/kg",
+            "kg",
+            "N"
+          ],
+          "c": 0,
+          "why": "g tells you how many newtons of weight each kilogram has: 9.8 N/kg on Earth."
+        },
+        {
+          "type": "mc",
+          "id": "w5",
+          "h": "Hydraulics",
+          "q": "In a hydraulic jack, what is the same at the small piston and the big piston?",
+          "o": [
+            "The force",
+            "The pressure",
+            "The area"
+          ],
+          "c": 1,
+          "why": "The liquid passes the pressure on equally. The big piston has more area, so it gets a bigger force."
+        }
+      ]
+    },
+    {
+      "h": "3. Use each one",
+      "time": "6 min",
+      "sub": "Write the equation on paper first, then the numbers.",
+      "blocks": [
+        {
+          "type": "num",
+          "id": "c1",
+          "h": "Weight",
+          "q": "A dog has a mass of 20 kg. Gravitational field strength = 9.8 N/kg. Calculate its weight.",
+          "answer": "196",
+          "unit": "N",
+          "decimal": true,
+          "why": "weight = 20 × 9.8 = 196 N.",
+          "traps": [
+            {
+              "value": "2.04",
+              "msg": "You divided. Weight = mass <b>×</b> g."
+            },
+            {
+              "value": "20",
+              "msg": "That is the mass. Weight is in newtons: multiply by 9.8."
+            }
+          ]
+        },
+        {
+          "type": "num",
+          "id": "c2",
+          "h": "Spring",
+          "q": "A spring has a spring constant of 40 N/m. It is stretched by 0.05 m. Calculate the force.",
+          "answer": "2",
+          "unit": "N",
+          "decimal": true,
+          "why": "force = 40 × 0.05 = 2 N.",
+          "traps": [
+            {
+              "value": "800",
+              "msg": "You divided. Force = spring constant <b>×</b> extension."
+            }
+          ]
+        },
+        {
+          "type": "num",
+          "id": "c3",
+          "h": "Moment",
+          "q": "You push a door handle with a force of 30 N. The handle is 80 cm from the hinge. Calculate the moment in N m.",
+          "answer": "24",
+          "unit": "N m",
+          "decimal": true,
+          "why": "80 cm = 0.8 m. moment = 30 × 0.8 = 24 N m.",
+          "traps": [
+            {
+              "value": "2400",
+              "msg": "The cm trap: change 80 cm to 0.8 m first."
+            },
+            {
+              "value": "37.5",
+              "msg": "You divided. Moment = force <b>×</b> distance."
+            }
+          ]
+        },
+        {
+          "type": "num",
+          "id": "c4",
+          "h": "Pressure",
+          "q": "A box weighing 600 N rests on an area of 0.2 m². Calculate the pressure on the floor.",
+          "answer": "3000",
+          "unit": "N/m²",
+          "decimal": true,
+          "why": "pressure = 600 ÷ 0.2 = 3000 N/m² (3000 Pa).",
+          "traps": [
+            {
+              "value": "120",
+              "msg": "You multiplied. Pressure = force <b>÷</b> area."
+            }
+          ]
+        },
+        {
+          "type": "num",
+          "id": "c5",
+          "h": "Turn it round",
+          "q": "Water pushes on a dam with a pressure of 5000 N/m². A gate in the dam has an area of 2 m². Calculate the force on the gate.",
+          "answer": "10000",
+          "unit": "N",
+          "decimal": true,
+          "why": "You want the <b>force</b>, so force = pressure × area = 5000 × 2 = 10 000 N.",
+          "traps": [
+            {
+              "value": "2500",
+              "msg": "You divided. To find a force from a pressure, multiply: force = pressure × area."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "h": "4. Hydraulics, step by step",
+      "time": "4 min",
+      "blocks": [
+        {
+          "type": "steps",
+          "id": "h1",
+          "h": "Car jack",
+          "q": "In a hydraulic jack, you push the small piston down with a force of 50 N. The small piston has an area of 2 cm². The big piston, under the car, has an area of 100 cm². Calculate the force on the big piston.",
+          "steps": [
+            {
+              "p": "Pressure in the liquid = force ÷ area at the <b>small</b> piston. What is it?",
+              "answer": "25",
+              "unit": "N/cm²",
+              "decimal": true,
+              "mark": "1 mark",
+              "hint": "50 ÷ 2",
+              "traps": [
+                {
+                  "value": "100",
+                  "msg": "You multiplied. Pressure = force ÷ area."
+                }
+              ]
+            },
+            {
+              "p": "The pressure is the same at the big piston. Force = pressure × area. What is the force on the big piston?",
+              "answer": "2500",
+              "unit": "N",
+              "decimal": true,
+              "mark": "1 mark",
+              "hint": "25 × 100",
+              "traps": [
+                {
+                  "value": "0.25",
+                  "msg": "You divided. Now you want a force, so multiply: force = pressure × area."
+                }
+              ]
+            },
+            {
+              "p": "How many times bigger is the force on the big piston than your push?",
+              "answer": "50",
+              "decimal": true,
+              "mark": "1 mark",
+              "hint": "2500 ÷ 50. Compare with the areas: 100 ÷ 2."
+            }
+          ],
+          "why": "Pressure = 50 ÷ 2 = 25 N/cm². Force = 25 × 100 = 2500 N. The area is 50 times bigger, so the force is 50 times bigger.",
+          "marks": 3
+        },
+        {
+          "type": "mc",
+          "id": "h2",
+          "h": "The catch",
+          "q": "To lift the car 1 cm, which piston moves further?",
+          "o": [
+            "The small piston",
+            "The big piston",
+            "They move the same distance"
+          ],
+          "c": 0,
+          "why": "The liquid pushed out of the thin cylinder has to fill a wide one, so the small piston moves about 50 cm for every 1 cm the big one rises. You get a bigger force, but you push further."
+        },
+        {
+          "type": "write",
+          "id": "h3",
+          "marks": 3,
+          "rows": 4,
+          "h": "Explain it",
+          "q": "Explain how a hydraulic jack lets a small force lift a heavy car.",
+          "starters": [
+            "The small force on the small piston…",
+            "The liquid cannot be compressed, so…",
+            "The big piston has a bigger area, so…"
+          ],
+          "minWords": 25,
+          "mark": {
+            "points": [
+              {
+                "t": "a small force on a small area makes a pressure in the liquid",
+                "m": 1
+              },
+              {
+                "t": "the liquid cannot be compressed, so the pressure is passed on equally to the big piston",
+                "m": 1
+              },
+              {
+                "t": "the big piston has a bigger area, so the force on it is bigger (force = pressure × area)",
+                "m": 1
+              }
+            ],
+            "note": "Point to the words for each tick. Did your chain end with the <b>bigger force</b> on the car?"
+          }
+        }
+      ]
+    }
+  ],
+  "paper": {
+    "title": "Force and hydraulics equations: from memory",
+    "sub": "Ember · Science · night before the test · about 10 minutes",
+    "intro": "Fill in the table from memory. Then do the three calculations: equation first, then numbers, then the answer with its unit. Mark it with the key at the end.",
+    "blocks": [
+      {
+        "type": "table",
+        "h": "1. Write each equation and its units",
+        "cols": [
+          "What",
+          "Equation (in words)",
+          "Units"
+        ],
+        "rows": [
+          [
+            "Weight",
+            "",
+            ""
+          ],
+          [
+            "Hooke’s Law (spring)",
+            "",
+            ""
+          ],
+          [
+            "Moment",
+            "",
+            ""
+          ],
+          [
+            "Pressure",
+            "",
+            ""
+          ],
+          [
+            "Force from a pressure",
+            "",
+            ""
+          ],
+          [
+            "Hydraulics (two steps)",
+            "",
+            ""
+          ]
+        ]
+      },
+      {
+        "marks": 2,
+        "q": "2. A suitcase has a mass of 15 kg. Gravitational field strength = 9.8 N/kg. Calculate its weight.",
+        "lines": 3,
+        "answerLine": "= ________ N"
+      },
+      {
+        "marks": 2,
+        "q": "3. A woman weighing 600 N stands on snowshoes with a total area of 0.3 m². Calculate the pressure on the snow.",
+        "lines": 3,
+        "answerLine": "= ________ N/m²"
+      },
+      {
+        "marks": 3,
+        "q": "4. In a hydraulic press, a force of 20 N pushes on a piston of area 4 cm². The big piston has an area of 200 cm². Calculate the force on the big piston.",
+        "lines": 4,
+        "answerLine": "= ________ N"
+      }
+    ],
+    "selfcheck": [
+      "I wrote the equation before the numbers every time.",
+      "Pressure: I <b>divided</b> force by area.",
+      "Hydraulics: I found the pressure first, then multiplied by the big area.",
+      "Every answer has a unit."
+    ],
+    "marking": [
+      {
+        "h": "Key",
+        "html": "<b>1.</b> weight = mass × gravitational field strength (N, kg, N/kg) · force = spring constant × extension (N, N/m, m) · moment = force × distance (N m) · pressure = force ÷ area (N/m² or Pa; N/cm²) · force = pressure × area (N) · hydraulics: pressure = force ÷ small area, then force = pressure × big area.<br><b>2.</b> 15 × 9.8 <b>(1)</b> = 147 N <b>(1)</b><br><b>3.</b> 600 ÷ 0.3 <b>(1)</b> = 2000 N/m² <b>(1)</b><br><b>4.</b> pressure = 20 ÷ 4 = 5 N/cm² <b>(1)</b>; force = 5 × 200 <b>(1)</b> = 1000 N <b>(1)</b><br><br>Score: ____ / 7 &nbsp; Equations right in the table: ____ / 6"
+      }
+    ],
+    "footer": "Questions written for Ember in AQA style for the autumn forces test. No AQA past-paper questions used."
+  }
+}
