@@ -116,6 +116,31 @@ button{font-family:inherit}
 .legend b{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:4px;border:2px solid}
 .note{color:var(--muted);font-size:.95rem;margin:14px 0 0}
 .reset{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.9rem;cursor:pointer;margin-top:10px}
+
+/* Play screen fits the screen: no scrolling. The clue area scrolls inside the card if it gets long. */
+body.playing{overflow:hidden}
+body.playing .wrap{display:flex;flex-direction:column;padding-top:10px;padding-bottom:10px;
+  height:calc(100vh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+  height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+body.playing .chips{display:none}
+body.playing .tabs{margin:8px 0}
+body.playing #play{flex:1;min-height:0;display:flex;flex-direction:column}
+body.playing .dots{margin:0 0 8px}
+body.playing .dots i{width:12px;height:12px}
+body.playing .qcard{flex:1;min-height:0;display:flex;flex-direction:column;padding:clamp(8px,1.6dvh,20px) 14px}
+body.playing .q{font-size:clamp(2.4rem,min(16vw,9dvh),5rem)}
+body.playing .abox{flex:none;margin-top:clamp(6px,1.4dvh,16px);height:clamp(46px,8dvh,78px);font-size:clamp(1.9rem,5.5dvh,3rem)}
+body.playing .msg{margin-top:6px}
+body.playing #clueArea{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+body.playing .cluebtn{margin-top:6px}
+body.playing .clues{margin-top:8px}
+body.playing .clue,body.playing .reveal{padding:9px 12px;font-size:1rem}
+body.playing .f{height:38px} body.playing .f.th{height:28px} body.playing .f.down{height:10px}
+body.playing .pad{flex:none;margin-top:10px;gap:8px}
+body.playing .key{padding:0;height:clamp(44px,7.5dvh,76px);font-size:clamp(1.4rem,4dvh,1.9rem)}
+/* leave room for the shared back button: bottom-left on phones, top-left on tablets */
+@media (max-width:699px){ body.playing .wrap{padding-bottom:66px} }
+@media (min-width:700px){ .top{padding-left:56px} }
 </style>
 </head>
 <body>
@@ -354,6 +379,7 @@ function showClue(){
   if (clueShown >= clueList.length) return;
   var d = document.createElement('div'); d.className = 'clue'; d.innerHTML = clueList[clueShown];
   $('clues').appendChild(d);
+  $('clueArea').scrollTop = 1e6;
   clueShown++; usedClue = true;
   $('clueBtn').hidden = clueShown >= clueList.length;
   $('clueBtnText').textContent = 'Another clue';
@@ -402,6 +428,7 @@ function check(){
         var r = document.createElement('div'); r.className = 'reveal';
         r.innerHTML = '<b>' + cur[0] + ' × ' + cur[1] + ' = ' + ans + '</b>. It will come back in a minute so you can try it again.';
         $('clues').appendChild(r);
+        $('clueArea').scrollTop = 1e6;
         comeBack.push({ p: [cur[0], cur[1]], at: done + 3 });
       }
       $('clueBtn').hidden = true;
@@ -411,6 +438,7 @@ function check(){
 
 function finish(){
   clearTimers();
+  document.body.classList.remove('playing');
   $('play').hidden = true; $('end').hidden = false;
   $('endStars').textContent = 'You got ' + ROUND + ' stars this round. ⭐';
   var h = '';
@@ -423,6 +451,7 @@ function finish(){
 
 function newRound(){
   done = 0; needed = []; comeBack = []; last = '';
+  document.body.classList.add('playing');
   $('end').hidden = true; $('facts').hidden = true; $('play').hidden = false;
   $('tabPlay').setAttribute('aria-current','page'); $('tabFacts').removeAttribute('aria-current');
   next();
@@ -445,6 +474,7 @@ function drawGrid(){
 }
 function showFacts(){
   clearTimers();
+  document.body.classList.remove('playing');
   $('play').hidden = true; $('end').hidden = true; $('facts').hidden = false;
   $('tabFacts').setAttribute('aria-current','page'); $('tabPlay').removeAttribute('aria-current');
   drawGrid();
