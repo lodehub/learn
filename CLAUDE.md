@@ -130,7 +130,7 @@ Archived: English Weeks 1–2 (language analysis); Maths Algebra Quest, Sign Squ
 - French Lab, French Role-play, Mandarin Lab, Mandarin Role-play.
 
 ### Bingo (lower primary, Year 3)
-- Maths: Times tables 2s and 5s; Times tables 1 to 10. Archived: Times Table Blast Off 3s and 4s, Match & Blast, Say it then flip it, Climb the threes/fours, Threes Bakery.
+- Maths: Times tables 2s and 5s; Times tables 1 to 10; **Times tables mix** (`maths/tables-mix/`: 3s, 4s, 6s, 7s, 8s, 9s mixed, no timer, rounds of 12; a clue button fades in after 9 s of quiet and the first clue opens itself at 22 s; clues are rhymes (6 × 6, 8 × 8, 6 × 8, 5-6-7-8, 1-2-3-4), the 9s finger trick, flip, double-double(-double), count in 3s, 5 × n + n, 5 + 2 split; missed facts come back 3 questions later; My facts grid turns gold after 3 clean rights). Archived: Times Table Blast Off 3s and 4s, Match & Blast, Say it then flip it, Climb the threes/fours, Threes Bakery.
 - Explore: "Secret Number and Pattern Train", thinking puzzles.
 - English: **Story Detective** (`english/story-detective/`, KS1 reading moves: read to the end (first-match traps), what does it tell us (inference), always tick a box (find the box that means the same), day detective (go back to each day); `?print` 1-page story with answers PDF; all passages original); Grammar and Writing Pack; English Quest; **Spelling test: my tricky words** (`english/spelling-test/`, 23 Year 3/4 statutory words in three patterns: say every sound, the quiet middle, odd bits).
 - French Lab, French Role-play, Mandarin Lab, Mandarin Role-play.
