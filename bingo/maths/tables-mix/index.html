@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Times tables mix</title>
+<link rel="stylesheet" href="../../../assets/fonts/fredoka-1d148e.css">
+<style>
+:root{
+  --bg:#e8f5ff; --card:#ffffff; --ink:#15203b; --muted:#56637f; --line:#c9dcee;
+  --accent:#0b6fa8; --accent-soft:#d4ebfa;
+  --gold:#ffb800; --gold-soft:#fff0bf;
+  --clue:#7a3fc2; --clue-soft:#efe4fc;
+  --good:#17794a; --good-soft:#d8f0d9; --bad:#cf2f3b; --warm:#c2570c; --warm-soft:#ffe3cc;
+  --on-accent:#ffffff; --focus:#3b4cca;
+  --font:'Fredoka','Trebuchet MS','Arial Rounded MT Bold',system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1630; --card:#18234a; --ink:#f0f3ff; --muted:#a2aed1; --line:#2c3a6b;
+    --accent:#5cc0ff; --accent-soft:#123a52;
+    --gold:#ffc933; --gold-soft:#4a3a0e;
+    --clue:#c7a2ff; --clue-soft:#34204f;
+    --good:#4fd68a; --good-soft:#1b3d22; --bad:#ff7a82; --warm:#ffa45c; --warm-soft:#4a2d14;
+    --on-accent:#08121f; --focus:#ffd24d;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1630; --card:#18234a; --ink:#f0f3ff; --muted:#a2aed1; --line:#2c3a6b;
+  --accent:#5cc0ff; --accent-soft:#123a52;
+  --gold:#ffc933; --gold-soft:#4a3a0e;
+  --clue:#c7a2ff; --clue-soft:#34204f;
+  --good:#4fd68a; --good-soft:#1b3d22; --bad:#ff7a82; --warm:#ffa45c; --warm-soft:#4a2d14;
+  --on-accent:#08121f; --focus:#ffd24d;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:18px;line-height:1.4;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.wrap{max-width:560px;margin:0 auto;padding:14px 16px 48px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top h1{margin:0;font-size:1.3rem;font-weight:600}
+.stars{display:flex;align-items:center;gap:6px;background:var(--card);border:2px solid var(--line);border-radius:999px;padding:4px 14px;font-weight:600;white-space:nowrap}
+.stars .s{color:var(--gold);font-size:1.2rem}
+
+.chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 4px;color:var(--muted);font-size:.95rem}
+.chip{font-weight:600;font-size:1.1rem;min-width:52px;padding:8px 12px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--accent);cursor:pointer;touch-action:manipulation}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:4px;margin:12px 0 14px}
+.tab{font-weight:600;font-size:1rem;padding:10px 2px;border-radius:12px;border:0;background:none;color:var(--muted);cursor:pointer;touch-action:manipulation}
+.tab[aria-current="page"]{background:var(--ink);color:var(--bg)}
+
+.dots{display:flex;gap:6px;justify-content:center;margin:0 0 12px;flex-wrap:wrap}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--line)}
+.dots i.dn{background:var(--gold)}
+.dots i.now{background:var(--accent)}
+
+.qcard{background:var(--card);border:3px solid var(--accent);border-radius:28px;padding:22px 16px 18px;text-align:center}
+.q{font-size:clamp(3.2rem,16vw,5rem);font-weight:700;line-height:1;white-space:nowrap}
+.abox{margin:16px auto 0;width:180px;height:78px;border-radius:18px;background:var(--bg);border:3px dashed var(--line);display:grid;place-items:center;font-size:3rem;font-weight:700}
+.abox.ok{border-style:solid;border-color:var(--good);background:var(--good-soft);color:var(--good)}
+.abox.shake{animation:shake .35s}
+@keyframes shake{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.msg{min-height:1.6em;margin:10px 0 0;font-weight:500}
+.msg.good{color:var(--good)} .msg.try{color:var(--warm)}
+
+.cluebtn{margin:12px auto 0;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:1.05rem;padding:10px 18px;border-radius:999px;border:2px solid var(--clue);background:var(--clue-soft);color:var(--clue);cursor:pointer;touch-action:manipulation;animation:fadein .6s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.clues{margin:12px 0 0;text-align:left}
+.clue{background:var(--clue-soft);border-radius:18px;padding:12px 14px;margin:0 0 8px;font-size:1.08rem;animation:fadein .5s ease}
+.clue b{color:var(--clue)}
+.clue .big{font-size:1.3rem;font-weight:600}
+.reveal{background:var(--gold-soft);border-radius:18px;padding:12px 14px;margin:0 0 8px;font-size:1.15rem;animation:fadein .5s ease}
+
+.hands{display:flex;justify-content:center;gap:16px;margin:10px 0 4px}
+.hand{display:flex;align-items:flex-end;gap:4px}
+.f{width:16px;height:52px;border-radius:9px 9px 4px 4px;background:var(--accent);position:relative}
+.f.th{height:38px}
+.f.down{height:14px;background:var(--line)}
+.f.l{background:var(--warm)} .f.r{background:var(--good)}
+.fn{font-size:.75rem;color:var(--muted);text-align:center;width:16px}
+.handrow{display:flex;justify-content:center;gap:16px}
+.handrow .hand{align-items:flex-start}
+.flabel{display:flex;justify-content:space-between;font-size:.95rem;margin-top:4px}
+
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.key{font-weight:700;font-size:1.8rem;padding:14px 0;border-radius:18px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.key:active{transform:scale(.96)}
+.key.go{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.key.del{font-size:1.4rem;color:var(--muted)}
+
+.btn{font-weight:600;font-size:1.1rem;padding:12px 20px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;touch-action:manipulation}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+
+.done{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:22px 18px;text-align:center}
+.done h2{margin:0 0 6px;font-size:1.8rem}
+.done p{margin:0 0 8px}
+.again{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0}
+.again span{background:var(--clue-soft);color:var(--clue);border-radius:12px;padding:6px 12px;font-weight:600}
+
+.grid{display:grid;gap:5px;font-weight:600;font-size:.95rem}
+.grid .h{color:var(--muted);text-align:center;align-self:center}
+.cell{border-radius:10px;padding:8px 0;text-align:center;background:var(--card);border:2px solid var(--line);color:var(--muted)}
+.cell.k{background:var(--gold-soft);border-color:var(--gold);color:var(--ink)}
+.cell.p{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.cell.h2{background:var(--clue-soft);border-color:var(--clue);color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0;font-size:.95rem;color:var(--muted)}
+.legend b{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:4px;border:2px solid}
+.note{color:var(--muted);font-size:.95rem;margin:14px 0 0}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.9rem;cursor:pointer;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Times tables mix</h1>
+    <div class="stars" aria-label="Stars"><span class="s">★</span><span id="starN">0</span></div>
+  </div>
+
+  <div class="chips" id="chips"><span>My tables:</span></div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tabPlay" aria-current="page">Play</button>
+    <button class="tab" id="tabFacts">My facts</button>
+  </div>
+
+  <section id="play">
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <div class="qcard">
+      <div class="q" id="q">6 × 7</div>
+      <div class="abox" id="abox" aria-live="polite"></div>
+      <div class="msg" id="msg"></div>
+      <div id="clueArea">
+        <button class="cluebtn" id="clueBtn" hidden>💡 <span id="clueBtnText">Need a clue?</span></button>
+        <div class="clues" id="clues"></div>
+      </div>
+    </div>
+    <div class="pad" id="pad"></div>
+  </section>
+
+  <section id="end" hidden>
+    <div class="done">
+      <h2>🎉 Round done!</h2>
+      <p id="endStars"></p>
+      <div id="endAgain"></div>
+      <div class="btns">
+        <button class="btn primary" id="again">Another 12</button>
+        <button class="btn" id="seeFacts">My facts</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="facts" hidden>
+    <div class="grid" id="grid"></div>
+    <div class="legend">
+      <span><b style="background:var(--gold-soft);border-color:var(--gold)"></b>I know it</span>
+      <span><b style="background:var(--accent-soft);border-color:var(--accent)"></b>Getting there</span>
+      <span><b style="background:var(--clue-soft);border-color:var(--clue)"></b>Needed a clue</span>
+    </div>
+    <p class="note">A fact turns gold when you get it right three times without a clue. 6 × 7 and 7 × 6 are the same fact.</p>
+    <button class="reset" id="reset">Start my facts again</button>
+  </section>
+</div>
+
+<script>
+(function(){
+var STORE = 'bingo:maths:tables-mix:';
+var ROUND = 12;
+var CLUE_BUTTON_AFTER = 9000;   // the clue button fades in after 9 s of quiet
+var CLUE_OPEN_AFTER = 22000;    // the first clue opens by itself after 22 s
+var ALL = [3,4,6,7,8,9];
+
+function load(k, d){ try { var v = localStorage.getItem(STORE + k); return v ? JSON.parse(v) : d; } catch(e){ return d; } }
+function save(k, v){ try { localStorage.setItem(STORE + k, JSON.stringify(v)); } catch(e){} }
+
+var tables = load('tables', [3,4,6,7,8,9]);
+var facts = load('facts', {});   // "a×b" (a<=b) -> {c: clean rights, r: rights, h: needed help}
+var stars = load('stars', 0);
+
+var $ = function(id){ return document.getElementById(id); };
+
+/* ---------- table chips ---------- */
+ALL.forEach(function(t){
+  var b = document.createElement('button');
+  b.className = 'chip'; b.textContent = t + 's';
+  b.setAttribute('aria-pressed', tables.indexOf(t) > -1);
+  b.onclick = function(){
+    var i = tables.indexOf(t);
+    if (i > -1) { if (tables.length === 1) return; tables.splice(i,1); } else tables.push(t);
+    b.setAttribute('aria-pressed', tables.indexOf(t) > -1);
+    save('tables', tables); if (!$('facts').hidden) drawGrid(); else newRound();
+  };
+  $('chips').appendChild(b);
+});
+
+/* ---------- facts ---------- */
+function key(a,b){ return Math.min(a,b) + '×' + Math.max(a,b); }
+function rec(a,b){ var k = key(a,b); return facts[k] || (facts[k] = {c:0, r:0, h:0}); }
+function known(f){ return f && f.c >= 3; }
+
+function pool(){
+  var list = [];
+  tables.forEach(function(t){ for (var n = 2; n <= 10; n++) list.push([t,n]); });
+  return list;
+}
+function weight(p){
+  var f = facts[key(p[0],p[1])];
+  var w = known(f) ? 1 : 4;
+  if (f && f.h) w += 3;
+  if (p[1] === 10 || p[1] === 2) w *= 0.5;   // easy ones less often
+  return w;
+}
+function pick(avoid){
+  var list = pool().filter(function(p){ return key(p[0],p[1]) !== avoid; });
+  var total = list.reduce(function(s,p){ return s + weight(p); }, 0), r = Math.random() * total;
+  for (var i = 0; i < list.length; i++) { r -= weight(list[i]); if (r <= 0) return list[i]; }
+  return list[0];
+}
+
+/* ---------- clues ---------- */
+var MEMORY = {
+  '3×3': '3 × 3 = <b>9</b>. Three threes make nine.',
+  '4×4': '4 × 4 = <b>16</b>. Four fours are sixteen.',
+  '6×6': '<span class="big">6 × 6 = 36</span><br>Say it like a rhyme: <b>six times six is thirty-six</b>. Easy to remember!',
+  '7×7': '<span class="big">7 × 7 = 49</span><br><b>Seven sevens, forty-nine</b>. Just one less than 50.',
+  '8×8': '<span class="big">8 × 8 = 64</span><br><b>“I ate and I ate till I was sick on the floor: eight times eight is sixty-four.”</b>',
+  '9×9': '9 × 9 = <b>81</b>. Try the finger trick below!',
+  '6×8': '<b>“Six and eight went on a date… they came back at forty-eight.”</b>',
+  '7×8': '<span class="big">5, 6, 7, 8</span><br><b>56 = 7 × 8</b>. The numbers go in order: five, six, seven, eight!',
+  '3×4': '<span class="big">1, 2, 3, 4</span><br><b>12 = 3 × 4</b>. The numbers go in order: one, two, three, four!',
+  '4×6': '<span class="big">6 × 4 = 24</span><br>Double 6 is 12, double 12 is <b>24</b>.',
+  '6×7': '<b>Six times seven is forty-two</b>. Or: 6 × 6 = 36, and one more 6 makes it.'
+};
+
+function seq(step, n){ var s = []; for (var i = 1; i <= n; i++) s.push(step*i); return s; }
+
+function fingerHTML(n){
+  // 10 fingers, finger n folded down: n-1 fingers before (tens), 10-n after (ones)
+  var h = '', i;
+  function finger(i){
+    var cls = 'f' + (i === 1 || i === 10 ? ' th' : '');
+    if (i === n) cls += ' down'; else if (i < n) cls += ' l'; else cls += ' r';
+    return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px"><div class="' + cls + '"></div><div class="fn">' + i + '</div></div>';
+  }
+  h += '<div class="hands"><div class="hand">';
+  for (i = 1; i <= 5; i++) h += finger(i);
+  h += '</div><div class="hand">';
+  for (i = 6; i <= 10; i++) h += finger(i);
+  h += '</div></div>';
+  return h;
+}
+
+function cluesFor(a, b){
+  var k = key(a,b), lo = Math.min(a,b), hi = Math.max(a,b), out = [];
+  var t, n;  // t = the table we use for the trick, n = the other number
+
+  if (MEMORY[k] && hi !== 9) out.push(MEMORY[k]);
+
+  if (a === 9 || b === 9) {
+    n = (a === 9) ? b : a;
+    if (n === 9) n = 9;
+    out.push('<b>Finger trick for the 9s.</b> Hold up all 10 fingers. Fold down finger number <b>' + n + '</b>.' + fingerHTML(n));
+    out.push('Fingers <b>before</b> the folded one = tens: <b>' + (n-1) + '</b>.<br>Fingers <b>after</b> it = ones: <b>' + (10-n) + '</b>.<br>Put them together!');
+    return out;
+  }
+
+  // flip to an easy table
+  if (lo === 2 || lo === 10 || lo === 5) {
+    var easy = lo;
+    out.push('<b>Flip it!</b> ' + a + ' × ' + b + ' is the same as ' + easy + ' × ' + hi + '. Count in ' + easy + 's: ' + seq(easy, Math.min(3, hi)).join(', ') + '…');
+    if (easy === 2) out.push('Times 2 is just <b>double</b>. Double ' + hi + ' is…?');
+    else if (easy === 10) out.push('Times 10: put a <b>0</b> on the end of ' + hi + '.');
+    else out.push('5 × ' + hi + ' is half of 10 × ' + hi + ' = ' + (10*hi) + '. Half of ' + (10*hi) + ' is…?');
+    return out;
+  }
+
+  // choose the friendliest trick: 4s, 3s, 8s, 6s, 7s
+  var order = [4,3,8,6,7];
+  for (var i = 0; i < order.length; i++) { if (a === order[i] || b === order[i]) { t = order[i]; break; } }
+  n = (a === t) ? b : a;
+  if (n === t) n = t;
+
+  // no rhyme for this one, and the trick table is second: say it can be flipped
+  var flip = (!out.length && a !== b && b === t) ? a + ' × ' + b + ' is the same as ' + b + ' × ' + a + '.<br>' : '';
+
+  if (t === 4) {
+    out.push('<b>Times 4 = double, then double again.</b><br>Double ' + n + ' is…? Now double that.');
+    out.push('Double ' + n + ' = <b>' + (2*n) + '</b>. Double ' + (2*n) + ' = …?');
+  } else if (t === 8) {
+    out.push('<b>Times 8 = double, double, double.</b><br>Start with ' + n + '.');
+    out.push(n + ' → <b>' + (2*n) + '</b> → <b>' + (4*n) + '</b> → double once more…');
+  } else if (t === 3) {
+    out.push('<b>Count in 3s</b> on your fingers, ' + n + ' fingers: 3, 6, 9…');
+    out.push('Keep counting until you have <b>' + n + '</b> fingers up: ' + seq(3, n-1).join(', ') + ', …?');
+  } else if (t === 6) {
+    if (n >= 5) {
+      out.push('<b>Start from 5 × ' + n + '</b>, then add one more ' + n + '.');
+      out.push('5 × ' + n + ' = <b>' + (5*n) + '</b>. ' + (5*n) + ' + ' + n + ' = …?');
+    } else {
+      out.push('<b>Times 6 = double the 3s.</b> What is 3 × ' + n + '? Now double it.');
+      out.push('3 × ' + n + ' = <b>' + (3*n) + '</b>. Double ' + (3*n) + ' = …?');
+    }
+  } else if (t === 7) {
+    out.push('<b>Split the 7 into 5 and 2.</b> Do 5 × ' + n + ' and 2 × ' + n + ', then add them.');
+    out.push('5 × ' + n + ' = <b>' + (5*n) + '</b> and 2 × ' + n + ' = <b>' + (2*n) + '</b>. ' + (5*n) + ' + ' + (2*n) + ' = …?');
+  }
+  // the flip reminder goes in front of the first trick clue
+  var first = out.length - 2;
+  if (flip && first >= 0) out[first] = flip + out[first];
+  return out.slice(0, 3);
+}
+
+/* ---------- play ---------- */
+var cur = null, entry = '', tries = 0, clueShown = 0, clueList = [], usedClue = false, done = 0, needed = [], last = '', comeBack = [], qStart = 0, timers = [];
+
+function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+function armTimers(){
+  clearTimers();
+  timers.push(setTimeout(function(){ if (clueShown === 0) { $('clueBtn').hidden = false; } }, CLUE_BUTTON_AFTER));
+  timers.push(setTimeout(function(){ if (clueShown === 0) showClue(); }, CLUE_OPEN_AFTER));
+}
+function nudge(){ if (clueShown === 0 && entry === '') armTimers(); }   // typing pauses the clue clock
+
+function drawDots(){
+  var h = ''; for (var i = 0; i < ROUND; i++) h += '<i class="' + (i < done ? 'dn' : i === done ? 'now' : '') + '"></i>';
+  $('dots').innerHTML = h;
+}
+
+function next(){
+  var p;
+  // a missed fact comes back three questions later
+  if (comeBack.length && comeBack[0].at <= done) p = comeBack.shift().p;
+  else p = pick(last);
+  if (Math.random() < 0.5) p = [p[1], p[0]];
+  cur = p; last = key(p[0], p[1]);
+  entry = ''; tries = 0; clueShown = 0; usedClue = false;
+  clueList = cluesFor(p[0], p[1]);
+  $('q').textContent = p[0] + ' × ' + p[1];
+  $('abox').textContent = ''; $('abox').className = 'abox';
+  $('msg').textContent = ''; $('msg').className = 'msg';
+  $('clues').innerHTML = ''; $('clueBtn').hidden = true; $('clueBtnText').textContent = 'Need a clue?';
+  drawDots(); armTimers();
+}
+
+function showClue(){
+  if (clueShown >= clueList.length) return;
+  var d = document.createElement('div'); d.className = 'clue'; d.innerHTML = clueList[clueShown];
+  $('clues').appendChild(d);
+  clueShown++; usedClue = true;
+  $('clueBtn').hidden = clueShown >= clueList.length;
+  $('clueBtnText').textContent = 'Another clue';
+  clearTimers();
+}
+
+function type(d){
+  if (!cur || $('abox').classList.contains('ok')) return;
+  if (entry.length >= 3) return;
+  entry += d; $('abox').textContent = entry; $('msg').textContent = ''; nudge();
+}
+function del(){ entry = entry.slice(0,-1); $('abox').textContent = entry; }
+
+var PRAISE = ['Yes! ⭐', 'Brilliant! ⭐', 'Spot on! ⭐', 'You got it! ⭐', 'Super! ⭐'];
+function check(){
+  if (!entry || !cur || $('abox').classList.contains('ok')) return;
+  var ans = cur[0] * cur[1], f = rec(cur[0], cur[1]);
+  if (+entry === ans) {
+    clearTimers();
+    $('abox').classList.add('ok');
+    var clean = !usedClue && tries === 0;
+    f.r++; if (clean) f.c++; else { f.h = (f.h || 0) + 1; f.c = Math.max(0, f.c - 1); }
+    if (clean && f.c >= 3) f.h = 0;
+    stars++; save('stars', stars); $('starN').textContent = stars;
+    save('facts', facts);
+    $('msg').className = 'msg good';
+    $('msg').textContent = (tries === 0 && !usedClue) ? PRAISE[Math.floor(Math.random()*PRAISE.length)] : 'Yes! You worked it out ⭐';
+    if (!clean && needed.indexOf(key(cur[0],cur[1])) < 0) needed.push(key(cur[0],cur[1]));
+    done++;
+    setTimeout(function(){ if (done >= ROUND) finish(); else next(); }, clean ? 900 : 1600);
+  } else {
+    tries++;
+    $('abox').classList.remove('shake'); void $('abox').offsetWidth; $('abox').classList.add('shake');
+    entry = '';
+    setTimeout(function(){ $('abox').textContent = ''; }, 350);
+    $('msg').className = 'msg try';
+    if (tries === 1) {
+      $('msg').textContent = 'Not quite. Have another go!';
+      if (clueShown === 0) showClue();
+    } else if (tries === 2 && clueShown < clueList.length) {
+      $('msg').textContent = 'Nearly there. Here’s another clue.';
+      showClue();
+    } else {
+      $('msg').textContent = 'Here it is. Type it in to keep it.';
+      if (!$('clues').querySelector('.reveal')) {
+        var r = document.createElement('div'); r.className = 'reveal';
+        r.innerHTML = '<b>' + cur[0] + ' × ' + cur[1] + ' = ' + ans + '</b>. It will come back in a minute so you can try it again.';
+        $('clues').appendChild(r);
+        comeBack.push({ p: [cur[0], cur[1]], at: done + 3 });
+      }
+      $('clueBtn').hidden = true;
+    }
+  }
+}
+
+function finish(){
+  clearTimers();
+  $('play').hidden = true; $('end').hidden = false;
+  $('endStars').textContent = 'You got ' + ROUND + ' stars this round. ⭐';
+  var h = '';
+  if (needed.length) {
+    h = '<p>These needed a clue. They’ll come up more often:</p><div class="again">' +
+        needed.map(function(k){ return '<span>' + k.replace('×',' × ') + '</span>'; }).join('') + '</div>';
+  } else h = '<p>No clues needed at all! 🌟</p>';
+  $('endAgain').innerHTML = h;
+}
+
+function newRound(){
+  done = 0; needed = []; comeBack = []; last = '';
+  $('end').hidden = true; $('facts').hidden = true; $('play').hidden = false;
+  $('tabPlay').setAttribute('aria-current','page'); $('tabFacts').removeAttribute('aria-current');
+  next();
+}
+
+/* ---------- facts grid ---------- */
+function drawGrid(){
+  var ts = tables.slice().sort(function(x,y){return x-y;}), h = '<div class="h"></div>';
+  for (var n = 2; n <= 10; n++) h += '<div class="h">×' + n + '</div>';
+  ts.forEach(function(t){
+    h += '<div class="h">' + t + 's</div>';
+    for (var n = 2; n <= 10; n++) {
+      var f = facts[key(t,n)], cls = 'cell';
+      if (known(f)) cls += ' k'; else if (f && f.h) cls += ' h2'; else if (f && f.r) cls += ' p';
+      h += '<div class="' + cls + '">' + (t*n) + '</div>';
+    }
+  });
+  $('grid').style.gridTemplateColumns = 'auto repeat(9, 1fr)';
+  $('grid').innerHTML = h;
+}
+function showFacts(){
+  clearTimers();
+  $('play').hidden = true; $('end').hidden = true; $('facts').hidden = false;
+  $('tabFacts').setAttribute('aria-current','page'); $('tabPlay').removeAttribute('aria-current');
+  drawGrid();
+}
+
+/* ---------- keypad ---------- */
+[1,2,3,4,5,6,7,8,9,'del',0,'go'].forEach(function(k){
+  var b = document.createElement('button');
+  b.className = 'key' + (k === 'go' ? ' go' : k === 'del' ? ' del' : '');
+  b.textContent = k === 'go' ? '✓' : k === 'del' ? '⌫' : k;
+  b.setAttribute('aria-label', k === 'go' ? 'Check' : k === 'del' ? 'Delete' : String(k));
+  b.onclick = function(){ if (k === 'go') check(); else if (k === 'del') del(); else type(String(k)); };
+  $('pad').appendChild(b);
+});
+document.addEventListener('keydown', function(e){
+  if ($('play').hidden) return;
+  if (/^[0-9]$/.test(e.key)) type(e.key);
+  else if (e.key === 'Backspace') del();
+  else if (e.key === 'Enter') check();
+});
+
+$('clueBtn').onclick = showClue;
+$('tabPlay').onclick = function(){ if ($('play').hidden) newRound(); };
+$('tabFacts').onclick = showFacts;
+$('again').onclick = newRound;
+$('seeFacts').onclick = showFacts;
+$('reset').onclick = function(){ facts = {}; save('facts', facts); drawGrid(); };
+
+$('starN').textContent = stars;
+newRound();
+})();
+</script>
+<script src="../../../assets/back.js"></script>
+</body>
+</html>
