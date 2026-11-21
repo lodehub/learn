@@ -1,0 +1,557 @@
+{
+ "kicker": "Ember · Science · Filling the test gaps",
+ "title": "Food tests, enzymes and alveoli: learn it, then try it",
+ "sub": "You told us what caught you out in the test. Each part starts with a short <b>Learn it</b> box. Read it first, then try the questions. About 25 minutes on screen, then a short written paper.",
+ "skill": "The Because Chain: feature → what it does → why that helps.",
+ "target": "Two kinds of marks were missing: <b>facts</b> (which test, which enzyme, where it comes from) and <b>links</b> (why each alveolus feature helps). Learn the facts from the boxes, then link every feature to what it does.",
+ "print": "test-gaps-written.pdf",
+ "sections": [
+  {
+   "h": "1. Food tests",
+   "time": "6 min",
+   "sub": "Read the box first.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>Learn it: four tests, four colour changes</b><table class=\"pr-table\"><tr><th>Testing for</th><th>Add</th><th>No (start colour)</th><th>Yes, it is there</th></tr><tr><td><b>Starch</b></td><td>iodine solution</td><td>orange-brown (yellow-brown)</td><td><b>blue-black</b></td></tr><tr><td><b>Sugar</b> (e.g. glucose)</td><td>Benedict’s solution, then <b>heat</b> in a hot water bath for a few minutes</td><td>blue</td><td>green → yellow → <b>brick-red</b> (more sugar = further along)</td></tr><tr><td><b>Protein</b></td><td>Biuret reagent (no heating)</td><td>blue</td><td><b>purple</b> (lilac)</td></tr><tr><td><b>Lipids</b> (fats and oils)</td><td>ethanol, shake, then pour into water</td><td>stays clear</td><td><b>cloudy white</b> (an emulsion)</td></tr></table>Your class may also have used <b>Sudan III</b> for lipids: a <b>red layer</b> on top means lipid. Memory hook: <b>S</b>ugar needs <b>S</b>team (Benedict’s is the only one you heat)."
+    },
+    {
+     "type": "mc",
+     "id": "f1",
+     "h": "Starch",
+     "q": "You add iodine solution to some crushed potato. It turns blue-black. What does that tell you?",
+     "o": [
+      "The potato contains sugar",
+      "The potato contains starch",
+      "The potato contains protein",
+      "The potato contains no starch"
+     ],
+     "c": 1,
+     "why": "Iodine turns from orange-brown to blue-black when starch is there."
+    },
+    {
+     "type": "mc",
+     "id": "f2",
+     "h": "Which one do you heat?",
+     "q": "Which food test needs heating in a hot water bath?",
+     "o": [
+      "Iodine (starch)",
+      "Benedict’s (sugar)",
+      "Biuret (protein)",
+      "Ethanol (lipids)"
+     ],
+     "c": 1,
+     "why": "Only Benedict’s needs heat. Sugar needs steam."
+    },
+    {
+     "type": "mc",
+     "id": "f3",
+     "h": "Sugar result",
+     "q": "A drink is tested with Benedict’s solution and heated. It goes brick-red. What does this show?",
+     "o": [
+      "No sugar",
+      "A lot of sugar",
+      "Protein",
+      "Starch"
+     ],
+     "c": 1,
+     "why": "Blue = none. Green, then yellow, then brick-red = more and more sugar."
+    },
+    {
+     "type": "mc",
+     "id": "f4",
+     "h": "Protein result",
+     "q": "Biuret reagent is added to egg white. What colour shows protein is there?",
+     "o": [
+      "Blue-black",
+      "Brick-red",
+      "Purple",
+      "Cloudy white"
+     ],
+     "c": 2,
+     "why": "Biuret goes from blue to purple (lilac) with protein."
+    },
+    {
+     "type": "mc",
+     "id": "f5",
+     "h": "Lipids",
+     "q": "Some butter is shaken with ethanol and poured into water. What shows a lipid is there?",
+     "o": [
+      "It turns purple",
+      "It goes cloudy white",
+      "It turns blue-black",
+      "It stays clear"
+     ],
+     "c": 1,
+     "why": "Lipid forms tiny droplets in the water (an emulsion), which look cloudy white."
+    },
+    {
+     "type": "write",
+     "id": "f6",
+     "source": "AQA Biology 8461/1H, June 2022, Q02.5",
+     "marks": 1,
+     "rows": 1,
+     "h": "Real AQA question",
+     "stem": "Some types of fungal cell are grown to produce high-protein food.<br>The high-protein food can be used to make meat-free burgers.",
+     "q": "Which chemical could be used to test if the burgers contain protein?",
+     "mark": {
+      "points": [
+       {
+        "t": "biuret reagent",
+        "m": 1
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "h": "2. Enzymes: what they are",
+   "time": "5 min",
+   "sub": "Read the box first.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>Learn it: what an enzyme does</b><ul class=\"pr-facts\"><li>Big food molecules (starch, protein, lipids) are too big to pass into the blood. Enzymes break them into <b>small molecules</b> that can be absorbed in the <b>small intestine</b>.</li><li>An enzyme is a <b>biological catalyst</b>: it <b>speeds up</b> a reaction and is <b>not used up</b>. It can be used again and again.</li><li><b>Lock and key:</b> each enzyme has an <b>active site</b> with a special shape. Only one substance (the <b>substrate</b>) has the right shape to fit it, like a key in a lock. The substrate binds to the active site, is broken into smaller molecules (the <b>products</b>), and the products are released.</li><li>That is why each enzyme works on only <b>one</b> kind of food molecule.</li></ul>"
+    },
+    {
+     "type": "mc",
+     "id": "e1",
+     "h": "Catalyst",
+     "q": "Which is true about an enzyme after it has broken down a food molecule?",
+     "o": [
+      "It is used up",
+      "It is unchanged and can be used again",
+      "It turns into the products",
+      "It is absorbed into the blood"
+     ],
+     "c": 1,
+     "why": "A catalyst is not used up. What is “left behind” is the enzyme (unchanged) plus the small product molecules."
+    },
+    {
+     "type": "mc",
+     "id": "e2",
+     "h": "Why only one food?",
+     "q": "Why does amylase break down starch but not protein?",
+     "o": [
+      "Protein is too big",
+      "Only starch has the right shape to fit amylase’s active site",
+      "Amylase only works in the mouth",
+      "Protein is not a food"
+     ],
+     "c": 1,
+     "why": "The substrate and the active site have complementary shapes (lock and key)."
+    },
+    {
+     "type": "order",
+     "id": "e3",
+     "h": "Lock and key chain",
+     "q": "Tap the steps in order.",
+     "items": [
+      "Starch fits into the active site of amylase.",
+      "It fits because their shapes are complementary (like a key in a lock).",
+      "Bonds in the starch are broken, making smaller sugar molecules.",
+      "The sugars are released and the amylase is ready to be used again."
+     ],
+     "labels": [
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "done": "Bind, fit, break, release. That is the 3-mark lock and key answer."
+    },
+    {
+     "type": "write",
+     "id": "e4",
+     "source": "AQA Biology 8461/1H, November 2021, Q05.3",
+     "marks": 3,
+     "rows": 4,
+     "h": "Real AQA question",
+     "stem": "Amylase is an enzyme that breaks down starch.",
+     "q": "Explain how amylase breaks down starch.<br>Answer in terms of the ‘lock and key theory’.",
+     "starters": [
+      "The starch binds to…",
+      "because…",
+      "Bonds are broken…"
+     ],
+     "minWords": 20,
+     "mark": {
+      "points": [
+       {
+        "t": "starch / substrate <b>binds</b> to the active site (of the enzyme). (“fits” alone is ignored)",
+        "m": 1
+       },
+       {
+        "t": "(because) the shape of the active site and the substrate are <b>complementary</b> (allow: they fit together)",
+        "m": 1
+       },
+       {
+        "t": "a chemical reaction makes smaller molecules / bonds in the starch are broken to make smaller molecules (allow maltose / sugars)",
+        "m": 1
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "h": "3. Which enzyme, where, and what is left",
+   "time": "7 min",
+   "sub": "Read the box first. This was the part you weren’t sure of.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>Learn it: the three enzymes (plus bile)</b><table class=\"pr-table\"><tr><th>Enzyme</th><th>Made in</th><th>Breaks down</th><th>Makes</th></tr><tr><td><b>Amylase</b> (a carbohydrase)</td><td>salivary glands, pancreas, small intestine</td><td>starch</td><td><b>sugars</b> (maltose, then glucose)</td></tr><tr><td><b>Protease</b></td><td>stomach, pancreas, small intestine</td><td>proteins</td><td><b>amino acids</b></td></tr><tr><td><b>Lipase</b></td><td>pancreas, small intestine</td><td>lipids (fats and oils)</td><td><b>fatty acids</b> and <b>glycerol</b></td></tr></table><b>Patterns that help:</b> the <b>pancreas</b> and <b>small intestine</b> make all three. Only amylase is made in the mouth (saliva). Only protease works in the stomach (it likes acid).<br><br><b>Bile is not an enzyme.</b> It is made in the <b>liver</b> and stored in the <b>gall bladder</b>. It breaks fat into small droplets (more surface area for lipase) and neutralises stomach acid.<br><br><b>After digestion:</b> the small molecules (sugars, amino acids, fatty acids and glycerol) are absorbed into the blood in the small intestine. Food that cannot be digested (fibre) goes on to the large intestine."
+    },
+    {
+     "type": "mc",
+     "id": "m1",
+     "h": "Saliva",
+     "q": "Which enzyme is in saliva?",
+     "o": [
+      "Protease",
+      "Lipase",
+      "Amylase",
+      "Bile"
+     ],
+     "c": 2,
+     "why": "Salivary glands make amylase, so starch digestion starts in the mouth."
+    },
+    {
+     "type": "mc",
+     "id": "m2",
+     "h": "Stomach",
+     "q": "Which enzyme works in the stomach?",
+     "o": [
+      "Amylase",
+      "Protease",
+      "Lipase"
+     ],
+     "c": 1,
+     "why": "The stomach makes protease, which works well in acid."
+    },
+    {
+     "type": "mc",
+     "id": "m3",
+     "h": "Proteins",
+     "q": "What are proteins broken down into?",
+     "o": [
+      "Sugars",
+      "Amino acids",
+      "Fatty acids and glycerol",
+      "Starch"
+     ],
+     "c": 1,
+     "why": "Protease: protein → amino acids."
+    },
+    {
+     "type": "mc",
+     "id": "m4",
+     "h": "Bile",
+     "q": "Which is true about bile?",
+     "o": [
+      "It is an enzyme made in the stomach",
+      "It is made in the liver, stored in the gall bladder, and breaks fat into droplets",
+      "It breaks protein into amino acids",
+      "It is made in the salivary glands"
+     ],
+     "c": 1,
+     "why": "Bile is not an enzyme. It helps lipase by giving it more surface area."
+    },
+    {
+     "type": "mc",
+     "id": "m5",
+     "h": "Organ that makes all three",
+     "q": "Which organ makes amylase, protease and lipase?",
+     "o": [
+      "Liver",
+      "Stomach",
+      "Pancreas",
+      "Large intestine"
+     ],
+     "c": 2,
+     "why": "The pancreas (and the small intestine) make all three. The liver makes bile, not enzymes."
+    },
+    {
+     "type": "write",
+     "id": "m6",
+     "source": "AQA Biology 8461/1H, November 2020, Q04.1",
+     "marks": 2,
+     "rows": 2,
+     "h": "Real AQA question",
+     "q": "Lipases break down lipids.<br>Which <b>two</b> products are formed when lipids are broken down?",
+     "mark": {
+      "points": [
+       {
+        "t": "fatty acids",
+        "m": 1
+       },
+       {
+        "t": "glycerol",
+        "m": 1
+       }
+      ]
+     }
+    },
+    {
+     "type": "write",
+     "id": "m7",
+     "source": "AQA Biology 8461/1H, November 2021, Q05.2",
+     "marks": 2,
+     "rows": 2,
+     "h": "Real AQA question",
+     "stem": "Amylase is an enzyme that breaks down starch.",
+     "q": "Name the <b>three</b> parts of the human digestive system that produce amylase.",
+     "mark": {
+      "points": [
+       {
+        "t": "all three of: salivary gland, pancreas, small intestine (“mouth” and “intestine” on their own don’t count; large intestine is wrong)",
+        "m": 2
+       },
+       {
+        "t": "or only two of them right",
+        "m": 1
+       }
+      ],
+      "note": "Give yourself 2 for all three, or 1 for two of them (not both)."
+     }
+    }
+   ]
+  },
+  {
+   "h": "4. Alveoli: why each feature helps",
+   "time": "6 min",
+   "sub": "Read the box first. In a 6-marker, every feature needs its link.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>Learn it: feature → what it does → why that helps</b><br>Oxygen diffuses from the air in the alveoli into the blood. Carbon dioxide diffuses the other way. Each feature makes diffusion <b>faster</b>.<table class=\"pr-table\"><tr><th>Feature</th><th>What it does</th><th>So…</th></tr><tr><td><b>Millions</b> of tiny alveoli</td><td>a very <b>large surface area</b></td><td>more oxygen can diffuse at once</td></tr><tr><td>Walls are <b>thin</b> (one cell thick), and so are the capillary walls</td><td>a <b>short distance</b> for gases to diffuse</td><td>oxygen gets into the blood faster</td></tr><tr><td>A big <b>network of capillaries</b> (good blood supply)</td><td>blood keeps carrying oxygen away and bringing carbon dioxide</td><td>keeps a <b>steep concentration gradient</b>, so diffusion stays fast</td></tr><tr><td><b>Breathing</b> (ventilation)</td><td>keeps bringing fresh air in</td><td>oxygen stays high in the alveoli, so the gradient stays steep</td></tr><tr><td><b>Moist</b> lining</td><td>gases dissolve</td><td>so they can diffuse across</td></tr></table>Careful: say the <b>walls</b> are thin. Not “the alveoli are thin”, and never “thin cell walls” (animal cells have no cell wall)."
+    },
+    {
+     "type": "mc",
+     "id": "a1",
+     "h": "Surface area",
+     "q": "Why do lungs have millions of tiny alveoli instead of one big bag?",
+     "o": [
+      "To hold more air",
+      "To give a much larger surface area, so more oxygen diffuses at once",
+      "To make the walls thicker",
+      "To slow the blood down"
+     ],
+     "c": 1,
+     "why": "Lots of small sacs = a huge surface area for diffusion."
+    },
+    {
+     "type": "mc",
+     "id": "a2",
+     "h": "Thin walls",
+     "q": "Why does a one-cell-thick wall help?",
+     "o": [
+      "It makes a short diffusion distance, so gases diffuse faster",
+      "It stops germs getting in",
+      "It makes the alveoli stronger",
+      "It keeps the air warm"
+     ],
+     "c": 0,
+     "why": "Shorter distance → faster diffusion."
+    },
+    {
+     "type": "mc",
+     "id": "a3",
+     "h": "Blood supply",
+     "q": "Why does a good blood supply speed up gas exchange?",
+     "o": [
+      "Blood pushes air into the alveoli",
+      "Blood keeps taking oxygen away, so there is always less oxygen in the blood than in the alveoli (a steep concentration gradient)",
+      "Blood makes the walls thinner",
+      "Blood adds oxygen to the alveoli"
+     ],
+     "c": 1,
+     "why": "Moving blood keeps the gradient steep, so oxygen keeps diffusing in."
+    },
+    {
+     "type": "order",
+     "id": "a4",
+     "h": "One full chain",
+     "q": "Tap the links in order for one feature.",
+     "items": [
+      "The alveoli walls are only one cell thick.",
+      "So the oxygen has a short distance to diffuse.",
+      "So oxygen diffuses into the blood quickly.",
+      "So the body gets enough oxygen for respiration."
+     ],
+     "labels": [
+      "Feature",
+      "Effect",
+      "Link",
+      "Consequence"
+     ],
+     "done": "A 6-marker wants about three features, each with its link like this."
+    },
+    {
+     "type": "write",
+     "id": "a5",
+     "source": "AQA Biology 8461/1H, June 2024, Q02.4",
+     "marks": 3,
+     "rows": 4,
+     "h": "Real AQA question",
+     "q": "Gas exchange happens in the alveoli in the lungs.<br>Describe <b>three</b> features of the alveoli that help maximise gas exchange.",
+     "starters": [
+      "The alveoli have…",
+      "The walls are…",
+      "There are many…"
+     ],
+     "minWords": 15,
+     "mark": {
+      "points": [
+       {
+        "t": "large surface area",
+        "m": 1
+       },
+       {
+        "t": "(large) capillary network / many capillaries / good blood supply",
+        "m": 1
+       },
+       {
+        "t": "walls are thin / one cell thick (“alveoli are thin” and “thin cell walls” don’t count)",
+        "m": 1
+       }
+      ],
+      "note": "In this question “moist” and “steep concentration gradient” score nothing: the marks are for the three features."
+     }
+    }
+   ]
+  },
+  {
+   "h": "5. Variables",
+   "time": "3 min",
+   "sub": "Read the box first.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>Learn it: three kinds of variable</b><ul class=\"pr-facts\"><li><b>Independent variable</b>: the one <b>you change</b> on purpose.</li><li><b>Dependent variable</b>: the one <b>you measure</b> (it depends on what you changed).</li><li><b>Control variables</b>: the ones you <b>keep the same</b> so the test is fair.</li></ul><b>The spring:</b> you hang masses on it and measure the extension. You change the <b>force</b> (the weight of the masses), so that is the independent variable. The extension is the dependent variable. Using the same spring is a control variable.<br><br>Your answer “the mass and the force applied” was really the same thing said twice: the weight of the masses is the force. AQA accepts force, weight or mass. Next time, write just <b>one</b>: “the force on the spring”."
+    },
+    {
+     "type": "mc",
+     "id": "v1",
+     "source": "AQA Physics 8463/2H, June 2025, Q02.1",
+     "marks": 1,
+     "h": "Real AQA question",
+     "stem": "A student investigated how the force applied to a spring affects the length of the spring.",
+     "q": "What is the independent variable in this investigation?",
+     "o": [
+      "The length of the spring",
+      "The force applied to the spring",
+      "The type of spring",
+      "The temperature"
+     ],
+     "c": 1,
+     "why": "Mark scheme: force (applied to spring) or weight (of the masses); allow mass hung from spring."
+    },
+    {
+     "type": "mc",
+     "id": "v2",
+     "h": "Dependent",
+     "q": "In the same investigation, what is the dependent variable?",
+     "o": [
+      "The force",
+      "The length (or extension) of the spring",
+      "The clamp stand"
+     ],
+     "c": 1,
+     "why": "It is what you measure."
+    },
+    {
+     "type": "mc",
+     "id": "v3",
+     "h": "Amylase experiment",
+     "q": "A student tests amylase at 10, 30, 60 and 90 °C. Which is the independent variable?",
+     "o": [
+      "The temperature",
+      "The colour of the iodine",
+      "The volume of starch"
+     ],
+     "c": 0,
+     "why": "Temperature is what the student changes. The iodine colour is what they observe, and the volume of starch is kept the same (a control)."
+    }
+   ]
+  },
+  {
+   "h": "6. Written paper",
+   "time": "15 min",
+   "blocks": [
+    {
+     "type": "info",
+     "tone": "big",
+     "html": "Print the written paper and do it by hand. Q3 is the 6-marker: write three features, and give every one its link (feature → what it does → why that helps). Mark it with the answers on the last page."
+    }
+   ]
+  },
+  {
+   "h": "7. Check yourself",
+   "time": "2 min",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "I can say all four food tests and their colour changes without looking.",
+      "I know Benedict’s is the only one you heat.",
+      "For each enzyme I can say where it is made, what it breaks down and what it makes.",
+      "I know bile is not an enzyme.",
+      "Every alveolus feature I wrote has a “so…” after it."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“Why can’t you absorb a piece of bread straight into your blood?”",
+     "note": "For the parent: listen for: starch is too big a molecule → amylase (from salivary glands, pancreas, small intestine) breaks it into sugars → small enough to be absorbed into the blood in the small intestine. Then ask “and what is left of the amylase?” (unchanged, used again)."
+    }
+   ]
+  }
+ ],
+ "paper": {
+  "title": "Filling the test gaps (written)",
+  "sub": "Ember · about 15 minutes · 15 marks",
+  "intro": "<b>Skill: the Because Chain.</b> Facts first, then every feature linked to what it does and why that helps.",
+  "blocks": [
+   {
+    "marks": 4,
+    "q": "1. Complete the table of food tests.<br><br><table class=\"pr-table\"><tr><th>Food</th><th>Chemical added</th><th>Colour if present</th></tr><tr><td>Starch</td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td></tr><tr><td>Sugar</td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td></tr><tr><td>Protein</td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td></tr><tr><td>Lipid</td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td></tr></table><br>(1 mark for each correct row)",
+    "lines": 0
+   },
+   {
+    "marks": 3,
+    "q": "2. Complete the table of digestive enzymes.<br><br><table class=\"pr-table\"><tr><th>Enzyme</th><th>Where it is made (two places)</th><th>What it breaks down</th><th>What it makes</th></tr><tr><td>Amylase</td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td></tr><tr><td>Protease</td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td></tr><tr><td>Lipase</td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td><td style=\"height:13mm;min-width:38mm\"></td></tr></table><br>(1 mark for each correct row)",
+    "lines": 0
+   },
+   {
+    "marks": 6,
+    "q": "3. Explain how the alveoli are adapted for efficient gas exchange.",
+    "lines": 12,
+    "pageBreak": true
+   },
+   {
+    "marks": 2,
+    "q": "4. A student hangs different masses on a spring and measures its extension.<br>(a) Name the independent variable. <b>(1)</b><br>(b) Name one control variable. <b>(1)</b>",
+    "lines": 3
+   }
+  ],
+  "selfcheck": [
+   "Q1: did I say Benedict’s needs heating?",
+   "Q2: did I give lipase <b>two</b> products?",
+   "Q3: does every feature have a “so…”? Did I say the <b>walls</b> are thin?",
+   "Q4: did I give <b>one</b> variable for (a)?",
+   "Reflection: which fact did I nearly forget?"
+  ],
+  "marking": [
+   {
+    "h": "Answers and marks",
+    "html": "<ul><li><b>1.</b> Starch: iodine, blue-black. Sugar: Benedict’s (heated), brick-red (or green/yellow/orange). Protein: Biuret, purple/lilac. Lipid: ethanol, cloudy white (or Sudan III, red layer). <b>1 mark per row</b>, chemical and colour both needed.</li><li><b>2.</b> Amylase: any two of salivary glands, pancreas, small intestine; starch; sugars (maltose/glucose). Protease: any two of stomach, pancreas, small intestine; protein; amino acids. Lipase: pancreas, small intestine; lipids; fatty acids <b>and</b> glycerol. <b>1 mark per row.</b></li><li><b>3. Levels (marked like an AQA 6-marker).</b> Level 3 (5–6): at least three features, each clearly linked to how it speeds up diffusion. Level 2 (3–4): features given, some linked. Level 1 (1–2): features listed with no links. <i>Points:</i> millions of alveoli → large surface area → more diffusion at once; walls one cell thick (and thin capillary walls) → short diffusion distance → faster diffusion; network of capillaries / good blood supply → oxygen carried away → steep concentration gradient kept; ventilation brings fresh air → keeps gradient steep; moist → gases dissolve. Oxygen into the blood, carbon dioxide out.</li><li><b>4.</b> (a) the force on the spring (or weight / mass of the masses) <b>(1)</b>. (b) e.g. the same spring; the same starting length measured the same way <b>(1)</b>.</li></ul>"
+   }
+  ],
+  "footer": "Written for Ember in AQA style. On screen: AQA Biology 8461/1H June 2022 Q02.5, November 2021 Q05.2–Q05.3, November 2020 Q04.1, June 2024 Q02.4; AQA Physics 8463/2H June 2025 Q02.1. © AQA, used for private practice."
+ }
+}

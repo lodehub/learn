@@ -460,6 +460,16 @@
       "week": 6
     },
     {
+      "title": "Science: filling the test gaps (food tests, enzymes, alveoli)",
+      "path": "science/test-gaps/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "week": 6,
+      "print": "science/test-gaps/test-gaps-written.pdf",
+      "printTitle": "Test gaps: written paper"
+    },
+    {
       "title": "Rome: the 14-day revision road",
       "path": "history/rome.html",
       "type": "html",
