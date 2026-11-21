@@ -1,0 +1,220 @@
+{
+ "kicker": "Ember · English · Week 6",
+ "title": "Belle and the golden idol: Quote, effect, So What (A Christmas Carol)",
+ "sub": "Last week your multiple-choice analysis was nearly perfect (7 of 8). This week: the next scene in Chapter 2, where Belle leaves young Scrooge because he loves money more than her. Two things to practise: read the quote carefully before you analyse it, and make every So What about <b>Scrooge</b> or Dickens’ ideas. About 15 minutes on screen, then two paragraphs on paper.",
+ "skill": "Quote, effect, So What.",
+ "target": "AQA Literature Level 3 needs “explained comments on the writer’s methods” and Level 4 “clear explanation”. Each paragraph: a short quote, the effect of a word or method in it, then So What: what it shows about greed and what it does to Scrooge.",
+ "print": "week6-belle-written.pdf",
+ "sections": [
+  {
+   "h": "1. Warm-up",
+   "time": "4 min",
+   "sub": "Last week: the lonely school. From memory.",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "w1",
+     "h": "Read it closely",
+     "q": "‘Not a latent echo in the house, … not a sigh among the leafless boughs of one despondent poplar’. What does “not a sigh” tell us?",
+     "o": [
+      "The tree sighs because it is sad.",
+      "There is no sound at all, not even a sigh: the place is completely silent.",
+      "The wind is blowing hard."
+     ],
+     "c": 1,
+     "why": "“<b>Not</b> a sigh” means there is no sigh. Dickens lists all the tiny sounds that are <i>missing</i> to show how silent and empty the school is. Always read the whole phrase, including small words like “not”, before you analyse."
+    },
+    {
+     "type": "mc",
+     "id": "w2",
+     "h": "So What about whom?",
+     "q": "Which is the strongest So What for ‘a lonely boy was reading near a feeble fire’?",
+     "o": [
+      "This suggests the fire is going out.",
+      "This suggests the room was cold.",
+      "This suggests Scrooge was left without warmth or care as a child, which helps explain the cold man he becomes."
+     ],
+     "c": 2,
+     "why": "A So What goes back to the <b>character</b> or Dickens’ ideas, not just the setting. The fire matters because of what it shows about <b>Scrooge</b>."
+    }
+   ]
+  },
+  {
+   "h": "2. Read the extract",
+   "time": "4 min",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<p class=\"pr-note\">AQA English Literature 8702/1, June 2023, extract for Q08 (Charles Dickens, A Christmas Carol, Chapter 2)</p><p><i>In this extract, the Ghost of Christmas Past shows Scrooge his last meeting with Belle.</i></p><p>This was not addressed to Scrooge, or to any one whom he could see, but it produced an immediate effect. For again Scrooge saw himself. He was older now; a man in the prime of life. His face had not the harsh and rigid lines of later years; but it had begun to wear the signs of care and avarice. There was an eager, greedy, restless motion in the eye, which showed the passion that had taken root, and where the shadow of the growing tree would fall.</p><p>He was not alone, but sat by the side of a fair young girl in a mourning-dress: in whose eyes there were tears, which sparkled in the light that shone out of the Ghost of Christmas Past.</p><p>“It matters little,” she said, softly. “To you, very little. Another idol has displaced me; and if it can cheer and comfort you in time to come, as I would have tried to do, I have no just cause to grieve.”</p><p>“What Idol has displaced you?” he rejoined.</p><p>“A golden one.”</p><p>“This is the even-handed dealing of the world!” he said. “There is nothing on which it is so hard as poverty; and there is nothing it professes to condemn with such severity as the pursuit of wealth!”</p><p>“You fear the world too much,” she answered, gently. “All your other hopes have merged into the hope of being beyond the chance of its sordid reproach. I have seen your nobler aspirations fall off one by one, until the master-passion, Gain, engrosses you. Have I not?”</p><p>“What then?” he retorted. “Even if I have grown so much wiser, what then? I am not changed towards you.”</p><p>She shook her head.</p><p>“Am I?”</p><p>“Our contract is an old one. It was made when we were both poor and content to be so, until, in good season, we could improve our worldly fortune by our patient industry. You are changed. When it was made, you were another man.”</p><p>“I was a boy,” he said impatiently.</p><p>“Your own feeling tells you that you were not what you are,” she returned. “I am. That which promised happiness when we were one in heart, is fraught with misery now that we are two. How often and how keenly I have thought of this, I will not say. It is enough that I have thought of it, and can release you.”</p><p class=\"pr-note\">Words: <b>avarice</b> greed for money; <b>idol</b> a statue people worship as a god; <b>displaced</b> pushed out of its place; <b>rejoined</b> replied; <b>sordid reproach</b> shameful blame (here: being looked down on for being poor); <b>aspirations</b> hopes, ambitions; <b>engrosses</b> takes up all your attention; <b>fraught with</b> full of; <b>release you</b> set you free (from your promise to marry her).</p>"
+    }
+   ]
+  },
+  {
+   "h": "3. Quote, effect, So What",
+   "time": "10 min",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "c1",
+     "h": "A metaphor",
+     "q": "‘Another idol has displaced me … A golden one.’ What is the main effect of calling money an “idol”?",
+     "o": [
+      "It tells us Scrooge has a gold statue.",
+      "An idol is something people worship: Belle shows that Scrooge now treats money like a god, putting it above the person who loves him.",
+      "It is a metaphor."
+     ],
+     "c": 1,
+     "why": "“It is a metaphor” names the method but says nothing about the effect (AQA Level 2: identification). The effect is what the comparison makes us see: money has taken the place of love in his life."
+    },
+    {
+     "type": "mc",
+     "id": "c2",
+     "h": "A list of three",
+     "q": "‘an eager, greedy, restless motion in the eye’. How does this work?",
+     "o": [
+      "Three adjectives build up: “eager” could be good, but “greedy” and “restless” turn it sour. Greed has made him hungry and never satisfied.",
+      "It describes his eyes.",
+      "It uses commas."
+     ],
+     "c": 0,
+     "why": "Say what the list <b>does</b>: it builds, and it changes direction. That is explaining the method, which moves you from Level 2 to Level 3."
+    },
+    {
+     "type": "mc",
+     "id": "c3",
+     "h": "So What",
+     "q": "‘the passion that had taken root, and where the shadow of the growing tree would fall.’ Which is the strongest So What?",
+     "o": [
+      "This shows there is a tree.",
+      "This suggests greed is like a plant that grows: it is small now, but Dickens warns it will grow until its shadow darkens Scrooge’s whole life, making him the cold, lonely man of Chapter 1.",
+      "This shows Scrooge likes money."
+     ],
+     "c": 1,
+     "why": "The So What connects the image to the big idea: greed grows and takes over a person. “Scrooge likes money” is true but stops at the surface."
+    },
+    {
+     "type": "mc",
+     "id": "c4",
+     "h": "Small words, big contrast",
+     "q": "Belle speaks “softly” and “gently”; Scrooge “retorted” and spoke “impatiently”. What does the contrast suggest?",
+     "o": [
+      "Belle is quieter than Scrooge.",
+      "Belle is still caring even while she leaves him, but greed has already made Scrooge sharp and defensive: Dickens shows greed hardening him.",
+      "They are having an argument."
+     ],
+     "c": 1,
+     "why": "AQA’s mark scheme lists these adverbs. Naming them is a start; the marks come from what the contrast shows about the two characters and their values."
+    },
+    {
+     "type": "order",
+     "id": "ladder",
+     "h": "Climb the levels",
+     "q": "Four comments on ‘the master-passion, Gain, engrosses you’. Tap them from weakest to strongest.",
+     "items": [
+      "Belle tells Scrooge he only cares about money.",
+      "Dickens uses a capital letter for “Gain”.",
+      "The capital “G” makes Gain sound like a person or a master, and “engrosses” means it takes up all his attention.",
+      "Making Gain a “master” suggests Scrooge is no longer free: greed now rules him, which explains why he loses Belle and ends up alone."
+     ],
+     "labels": ["Retells", "Names a method", "Explains the effect", "Effect + So What"],
+     "done": "The top comment does all three: quote, effect, So What about Scrooge."
+    },
+    {
+     "type": "write",
+     "id": "own",
+     "marks": 3,
+     "rows": 5,
+     "h": "Your paragraph",
+     "q": "Choose one short quote from what <b>Belle</b> says. Write: the quote, the effect of a word or method in it, and So What: what it shows greed is doing to Scrooge.",
+     "starters": ["Dickens has Belle say “…”.", "The word “…” suggests…", "This suggests that greed…"],
+     "minWords": 40,
+     "mark": {
+      "points": [
+       {"t": "a short, exact quote from Belle’s words, read correctly (check every small word)", "m": 1},
+       {"t": "the effect of a word or method (e.g. “idol” suggests money is worshipped like a god)", "m": 1},
+       {"t": "a So What about <b>Scrooge</b> or Dickens’ ideas: what greed does to him (not about the setting)", "m": 1}
+      ],
+      "note": "Before each tick, point to the words in your answer that earn it. Last week you ticked a So What that was about the tree, not Scrooge, and left a real effect unticked."
+     }
+    }
+   ]
+  },
+  {
+   "h": "4. Written paper",
+   "time": "25 min",
+   "blocks": [
+    {
+     "type": "info",
+     "tone": "big",
+     "html": "Print the written paper. It is the real GCSE question. For now, write about the <b>extract only</b>: two or three Quote, effect, So What paragraphs, by hand, in 25 minutes. Then mark it against AQA’s levels on the last page."
+    }
+   ]
+  },
+  {
+   "h": "5. Check yourself",
+   "time": "3 min",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "I read each quote word by word before analysing it.",
+      "Every quote is short (a few words) and exact.",
+      "After each quote, I explained the effect of one word or method.",
+      "Every So What is about Scrooge or Dickens’ ideas about greed.",
+      "I pointed to the words in my answer before each tick."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“What does Belle mean by ‘a golden idol’, and so what does it show about Scrooge?”",
+     "note": "For the parent: listen for money being worshipped like a god, then a So What, e.g. “greed has replaced love, so he loses her and ends up alone”. If she only explains the meaning, ask “and what does that tell us about what greed does to him?”"
+    }
+   ]
+  }
+ ],
+ "paper": {
+  "title": "English Week 6: Belle and the golden idol (written)",
+  "sub": "Ember · Real GCSE question, extract only · about 25 minutes",
+  "intro": "<b>Skill: Quote, effect, So What.</b> Each paragraph: a short quote, the effect of a word or method, then what it shows greed does to Scrooge. Read each quote word by word first.",
+  "blocks": [
+   {
+    "type": "info",
+    "h": "The extract (Chapter 2), shortened",
+    "html": "<p style=\"font-size:0.9em\">… He was older now; a man in the prime of life. His face had not the harsh and rigid lines of later years; but it had begun to wear the signs of care and avarice. There was an eager, greedy, restless motion in the eye, which showed the passion that had taken root, and where the shadow of the growing tree would fall. … “It matters little,” she said, softly. “To you, very little. Another idol has displaced me; and if it can cheer and comfort you in time to come, as I would have tried to do, I have no just cause to grieve.” “What Idol has displaced you?” he rejoined. “A golden one.” … “You fear the world too much,” she answered, gently. “All your other hopes have merged into the hope of being beyond the chance of its sordid reproach. I have seen your nobler aspirations fall off one by one, until the master-passion, Gain, engrosses you. Have I not?” “What then?” he retorted. … “Our contract is an old one. It was made when we were both poor and content to be so … You are changed. When it was made, you were another man.” “I was a boy,” he said impatiently. … “That which promised happiness when we were one in heart, is fraught with misery now that we are two.”</p>"
+   },
+   {
+    "type": "plan",
+    "h": "Plan (5 min): one row per paragraph",
+    "cols": ["Quote", "Effect (word or method)", "So What (what greed does to Scrooge)"]
+   },
+   {
+    "marks": 30,
+    "source": "AQA English Literature 8702/1, June 2023, Q08",
+    "stem": "Your version this week: write about the extract only, two or three paragraphs. (The full GCSE answer also covers the novel as a whole.)",
+    "q": "Starting with this extract, explore how Dickens presents the effects of greed in <i>A Christmas Carol</i>.<br><br>Write about:<br>• how Dickens presents the effects of greed in this extract<br>• how Dickens presents the effects of greed in the novel as a whole.",
+    "lines": 22,
+    "pageBreak": true
+   }
+  ],
+  "selfcheck": [
+   "Each paragraph has a short, exact quote, read correctly.",
+   "Each paragraph explains the effect of one word or method.",
+   "Each paragraph ends with So What: what greed does to Scrooge.",
+   "I used at least one method name (metaphor, list, adverb, contrast) <b>and</b> said what it does.",
+   "Reflection: which So What was hardest to write? Where would you put yourself on the levels below?"
+  ],
+  "marking": [
+   {
+    "h": "AQA’s levels (8702/1 mark scheme, AO2: the writer’s methods)",
+    "html": "<ul><li><b>Level 2</b> (supported, relevant comments): “Identification of writers’ methods. Some reference to subject terminology.”</li><li><b>Level 3</b> (explained, structured comments): “Explained/relevant comments on writer’s methods with some relevant use of subject terminology. Identification of effects of writer’s methods to create meanings.”</li><li><b>Level 4</b> (clear understanding): “Clear explanation of writer’s methods with appropriate use of relevant subject terminology. Understanding of effects of writer’s methods to create meanings.”</li></ul>Naming “metaphor” with no effect = Level 2. Quote + effect = Level 3. Quote + effect + So What, every time = heading for Level 4."
+   },
+   {
+    "h": "AQA’s indicative content for the extract (things answers might include)",
+    "html": "<ul><li>Belle’s accusations of greed and selfishness in conversation</li><li>metaphor of the ‘growing tree’</li><li>imagery of eyes, and contrast between them</li><li>metaphor of the ‘golden’ ‘idol’</li><li>contrast between Scrooge and Belle and their respective values</li><li>use of adverbs to reflect character ‘softly’, ‘gently’, ‘impatiently’</li><li>effects of greed on individual: cold, bitter character</li></ul>"
+   }
+  ],
+  "footer": "Extract from Charles Dickens, A Christmas Carol (1843, public domain), as set in AQA English Literature 8702/1 June 2023 Q08. Question and mark scheme wording © AQA, used for private practice."
+ }
+}

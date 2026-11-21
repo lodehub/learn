@@ -1,0 +1,247 @@
+{
+ "kicker": "Ember · History · Week 6",
+ "title": "After the Black Death: the Peasants’ Revolt, 1381. So What?",
+ "sub": "Last week you picked every grounded So What (5 of 5), and you wrote your first So What about what lords feared. This week the story goes on: thirty years after the wage laws, the peasants rose up. Same habit: after each Evidence sentence, what did people <b>want</b>, <b>fear</b> or <b>believe</b>? About 15 minutes on screen, then one paragraph on paper.",
+ "skill": "So What? (one habit: after every Evidence sentence, one more sentence on what people wanted, feared or believed).",
+ "target": "AQA Level 3 needs developed explanation: the evidence, then what it shows. A grounded So What names a group, says what they wanted, feared or believed, and points back at the exact words of the evidence.",
+ "print": "week6-peasants-revolt-written.pdf",
+ "sections": [
+  {
+   "h": "1. Warm-up",
+   "time": "4 min",
+   "sub": "Last week: So What? for money and work, from memory.",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "w1",
+     "h": "What did lords fear?",
+     "q": "Evidence: “In 1349 and 1351 laws said wages must stay at the level they were before the plague.” Which So What is grounded?",
+     "o": [
+      "This suggests the plague was terrible.",
+      "This suggests lords feared that paying higher wages would cost them their wealth and their power over the peasants.",
+      "This suggests the laws were unfair."
+     ],
+     "c": 1,
+     "why": "It names who (lords), what they feared, and points back at “wages must stay”. “Unfair” is our judgement, not theirs."
+    },
+    {
+     "type": "mc",
+     "id": "w2",
+     "h": "Finish your own sentence",
+     "q": "Last week you wrote: “This suggests that the lords wanted the wages to stay the same…” Why is this not yet a So What?",
+     "o": [
+      "It is too long.",
+      "It only repeats the evidence (wages stay the same). It needs <b>why</b> lords wanted that: what they feared would happen if wages rose.",
+      "It should use the word “shows”."
+     ],
+     "c": 1,
+     "why": "“Lords wanted wages to stay the same” is what the law <i>says</i>. The So What is the reason underneath: with so few workers, lords feared paying more would make them poorer and peasants harder to control."
+    }
+   ]
+  },
+  {
+   "h": "2. The facts you need",
+   "time": "3 min",
+   "sub": "From the Peasants’ Revolt article on your Reading shelf (World History Encyclopedia).",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<ul class=\"pr-facts\"><li><b>R1</b> <i>(1349 and 1351, still in force in 1381)</i> The wage laws still limited what workers could earn. Some landlords tried to turn free labourers back into serfs, to save paying wages.</li><li><b>R2</b> <i>(November 1380)</i> Parliament passed a <b>poll tax</b>: three groats (about two days’ pay) from everyone over 15, rich or poor alike. It was the third poll tax since 1377 and three times higher than the earlier ones. The money paid for the war with France.</li><li><b>R3</b> <i>(May–June 1381, the south-east)</i> When tax collectors came, people fought back. Rebels burned manors and destroyed the <b>manor records</b> (the written lists of who owed their lord work and rent), for example at Maidstone, Rochester and Canterbury.</li><li><b>R4</b> <i>(1381)</i> Many leaders were better-off small farmers, village constables and priests: not the very poorest, but people with something to lose.</li><li><b>R5</b> <i>(1381)</i> The priest John Ball preached that all people should be equal. A rhyme spread: “When Adam delved, and Eve span, who was then the gentleman?” (delved = dug; span = spun wool)</li><li><b>R6</b> <i>(June 1381, London)</i> The rebels demanded the end of serfdom and of the wage laws. King Richard II, aged 14, promised to meet their demands. At Smithfield on 15 June the rebel leader Wat Tyler was killed. Richard then broke his promises, and leaders were executed. He told the peasants: “villeins ye are, and villeins ye shall remain”.</li><li><b>R7</b> <i>(after 1381)</i> There was no new poll tax, the wage limits were not strictly enforced, and serfs carried on buying their freedom.</li></ul>"
+    }
+   ]
+  },
+  {
+   "h": "3. So What? Wanted, feared, believed",
+   "time": "10 min",
+   "sub": "Pick the grounded So What, then write your own.",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "e1",
+     "h": "Burning the records",
+     "q": "Evidence (R3): “In 1381 rebels burned the manor records that listed who owed their lord work and rent.” Which So What is grounded?",
+     "o": [
+      "This shows the rebels were violent.",
+      "This suggests the rebels wanted to wipe out the written proof that tied them to their lord: they wanted to be free of the old duties, not just to cause damage.",
+      "This suggests they could not read.",
+      "This led to Wat Tyler being killed."
+     ],
+     "c": 1,
+     "why": "Ask: why burn <i>records</i>, not just houses? It points back at “records … who owed their lord work and rent” and says what the rebels <b>wanted</b>. The last option is a new event, not a So What."
+    },
+    {
+     "type": "mc",
+     "id": "e2",
+     "h": "The rhyme",
+     "q": "Evidence (R5): “A rhyme spread in 1381: ‘When Adam delved, and Eve span, who was then the gentleman?’” What does it reveal?",
+     "o": [
+      "Peasants liked rhymes.",
+      "Some peasants now believed that God made everyone equal at the start, with no lords, so being a lord or a serf was not natural or fixed.",
+      "Adam and Eve were farmers."
+     ],
+     "c": 1,
+     "why": "Adam and Eve were the first people in the Bible, and they worked with their hands. The question “who was the gentleman then?” means: nobody. That is a So What about <b>belief</b>, your strongest kind."
+    },
+    {
+     "type": "mc",
+     "id": "e3",
+     "h": "Who led it?",
+     "q": "Evidence (R4): “Many leaders in 1381 were better-off small farmers, village constables and priests.” Which So What is grounded?",
+     "o": [
+      "This suggests that people who had gained a little since the Black Death feared losing it, to the poll tax and to lords trying to make them serfs again.",
+      "This shows everyone hated the king.",
+      "This suggests the poor did nothing."
+     ],
+     "c": 0,
+     "why": "It points back at “better-off” and says what they <b>feared</b>. “Everyone hated the king” is a sweeping claim the evidence doesn’t support: the rebels trusted Richard and met him."
+    },
+    {
+     "type": "write",
+     "id": "e4",
+     "marks": 2,
+     "rows": 3,
+     "h": "Your So What: the poll tax",
+     "q": "Evidence (R2): “In November 1380 Parliament passed a poll tax of three groats from everyone over 15, rich or poor alike.” Write <b>one</b> So What: what did this make peasants feel, fear or want?",
+     "starters": ["This suggests that peasants…", "Because rich and poor paid the same, …"],
+     "minWords": 15,
+     "mark": {
+      "points": [
+       {"t": "it points back at the evidence: the same amount from “rich or poor alike”, or the size of the tax", "m": 1},
+       {"t": "it says what peasants felt, feared or wanted (e.g. that it was unjust for the poor to pay as much as the rich, or they feared losing what they had gained), with no new fact", "m": 1}
+      ],
+      "note": "Point-back test: can you put your finger on the words in R2 that your So What explains?"
+     }
+    },
+    {
+     "type": "write",
+     "id": "e5",
+     "marks": 3,
+     "rows": 4,
+     "h": "The king’s words",
+     "q": "Write R6’s last sentence in your own words, <b>with its date</b>. Then add a So What: what did Richard and the lords believe about how society should be?",
+     "starters": ["After the rebels’ leader was killed in June 1381, …", "This suggests that the king believed…"],
+     "minWords": 25,
+     "mark": {
+      "points": [
+       {"t": "the evidence has the date (1381) and what Richard said or did", "m": 1},
+       {"t": "it is in your own words, not copied from the fact bank", "m": 1},
+       {"t": "the So What says what the king or lords believed (e.g. that people are born into their place and should stay there), and points back at “villeins ye shall remain”", "m": 1}
+      ],
+      "note": "Tick honestly both ways: last week you gave yourself 0 for a sentence that had its dates and was in your own words. Those points were earned."
+     }
+    }
+   ]
+  },
+  {
+   "h": "4. Claim check",
+   "time": "3 min",
+   "sub": "Three claims people often make. Check each against the facts.",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "k1",
+     "h": "The poorest?",
+     "q": "Claim: “The Peasants’ Revolt was led by the poorest people.” What does R4 support?",
+     "o": ["Supported", "Not supported: many leaders were better-off farmers, constables and priests", "Source needed"],
+     "c": 1,
+     "why": "R4 says the opposite. Check who, not just what."
+    },
+    {
+     "type": "mc",
+     "id": "k2",
+     "h": "Serfdom ended at once?",
+     "q": "Claim: “The revolt ended serfdom straight away.” What do R6 and R7 support?",
+     "o": ["Supported", "Not supported: Richard broke his promises; serfs carried on buying their freedom slowly, after 1381", "Source needed"],
+     "c": 1,
+     "why": "Change came slowly, not in one go. Say exactly as much as the evidence shows."
+    },
+    {
+     "type": "mc",
+     "id": "k3",
+     "h": "Against the king?",
+     "q": "Claim: “The rebels wanted to get rid of the king.” What does R6 suggest?",
+     "o": ["Supported", "Not supported: they took their demands to Richard and trusted his promises", "Source needed"],
+     "c": 1,
+     "why": "They met the king and believed his promises, which suggests they blamed his advisers and the lords, not Richard himself."
+    }
+   ]
+  },
+  {
+   "h": "5. Written paper",
+   "time": "20 min",
+   "blocks": [
+    {
+     "type": "info",
+     "tone": "big",
+     "html": "Print the written paper. Write one paragraph explaining why the peasants rebelled in 1381: two Evidence sentences, each with a date and a So What. Then do the claim check table."
+    }
+   ]
+  },
+  {
+   "h": "6. Check yourself",
+   "time": "3 min",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "Every Evidence sentence has a date or a place.",
+      "Every Evidence sentence has a So What after it.",
+      "Each So What names a group and what they wanted, feared or believed.",
+      "I can point at the words each So What explains.",
+      "No sweeping claims: I said as much as the evidence shows, and no more."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“Why would rebels burn the manor records, not just the houses?”",
+     "note": "For the parent: listen for “the records were the proof of what peasants owed their lord, so burning them showed they wanted to be free of those duties”. If she says “because they were angry”, ask “angry about what? what was written in those records?” Ask without her answer in front of her (graduation rule)."
+    }
+   ]
+  }
+ ],
+ "paper": {
+  "title": "History Week 6: the Peasants’ Revolt, So What? (written)",
+  "sub": "Ember · One paragraph · about 20 minutes",
+  "intro": "<b>Skill: So What?</b> After every Evidence sentence, one more sentence: what did this show people <b>wanted</b>, <b>feared</b> or <b>believed</b>? Point back at the evidence. Use the facts R1–R7 (on screen) or your class notes.",
+  "blocks": [
+   {
+    "type": "table",
+    "h": "Plan (5 min)",
+    "cols": ["", "Evidence, with a date (fact number)", "So what? What did they want, fear or believe?"],
+    "rows": [["Evidence 1", "", ""], ["Evidence 2", "", ""]]
+   },
+   {
+    "marks": 6,
+    "q": "Explain why the peasants rebelled in 1381.<br><br>Write one paragraph: a Point (one clear reason), two Evidence sentences with dates, a So What after each, and a last sentence back to the question.",
+    "lines": 16
+   },
+   {
+    "type": "table",
+    "h": "Claim check: is each claim in the facts?",
+    "cols": ["Claim", "Fact number, or “source needed”", "Supported / check / source needed"],
+    "rows": [
+     ["“The poll tax was the only cause of the revolt.”", "", ""],
+     ["“Everyone in England joined the revolt.”", "", ""],
+     ["“After 1381 peasants never paid a poll tax again.”", "", ""]
+    ]
+   }
+  ],
+  "selfcheck": [
+   "Point: one clear reason, in one sentence.",
+   "Evidence 1 and Evidence 2 each have a date.",
+   "Each So What says what a group wanted, feared or believed, and points back.",
+   "The last sentence goes back to the question.",
+   "Capital letters for England, Richard, the Black Death and the Peasants’ Revolt.",
+   "Reflection: which So What was easiest to add? Which claim was hardest to check?"
+  ],
+  "marking": [
+   {
+    "h": "What a strong paragraph does (AQA Level 3: developed explanation)",
+    "html": "<ul><li><b>Point:</b> e.g. “One reason the peasants rebelled in 1381 was that they felt the poll tax was unjust.”</li><li><b>Evidence 1 + So What:</b> R2 with “November 1380”, three groats from everyone over 15; then what peasants <i>felt or feared</i> (unjust that the poor paid as much as the rich; afraid of losing what they had gained since the Black Death).</li><li><b>Evidence 2 + So What:</b> R1 (wage laws, landlords trying to make them serfs again) or R3 (burning the manor records in 1381); then what they <i>wanted</i> (to be paid what their work was worth; to be free of the old duties).</li><li><b>Link:</b> back to the question: why 1381.</li></ul><b>Claim check answers:</b> “only cause”: not supported (R1 wage laws and serfdom, R5 ideas about equality also mattered). “Everyone joined”: source needed / not supported (R3, R4: it began in the south-east, led by particular groups). “Never paid a poll tax again”: check: R7 says there was no new poll tax after 1381; “never again” goes further than the facts here."
+   }
+  ],
+  "footer": "Written for Ember. Facts paraphrased from Mark Cartwright, “Peasants’ Revolt”, World History Encyclopedia (2020), on the History reading shelf. Format: a paragraph for AQA-style “explain” questions."
+ }
+}

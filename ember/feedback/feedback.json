@@ -427,6 +427,290 @@
         }
       ],
       "next": "Before Wednesday's test: for any pressure question, write the chain in this order: <b>volume → particles → walls → pressure → air moves</b>. Every chain ends with the thing the question asks about."
+    },
+    {
+      "id": "2026-11-17-science-test-equations",
+      "date": "2026-11-17",
+      "subject": "Science",
+      "tool": "science/test-equations/",
+      "title": "Force and hydraulics equations",
+      "mark": "11 / 17",
+      "summary": "Your equations are solid: weight, pressure, force from a pressure and the spring all right first time, and you <b>divided</b> for pressure (the mock mistake is fixed). Three things to tidy before tomorrow: the unit of a moment, the cm trap and the word <i>pressure</i> in hydraulics.",
+      "items": [
+        {
+          "block": "w3",
+          "q": "Unit of a moment",
+          "mark": "0 / 1",
+          "good": "Weight, pressure and N/kg units all right.",
+          "fix": "N/m² is pressure. A moment is force × distance, so its unit is N × m = <b>N m</b>.",
+          "model": "Moment = force × distance, so the unit is the newton metre (N m)."
+        },
+        {
+          "block": "c3",
+          "q": "Door handle, 80 cm",
+          "mark": "0 / 1",
+          "good": "You got 24 N m on the second try.",
+          "fix": "First try was 2400: the cm trap. Change cm to m <b>before</b> you multiply: 80 cm = 0.8 m.",
+          "model": "Moment = 30 × 0.8 = 24 N m."
+        },
+        {
+          "block": "h1",
+          "q": "Car jack, step by step",
+          "mark": "1 / 3",
+          "good": "Force on the big piston = 2500 N, right first time.",
+          "fix": "Step 1 asks for the <b>pressure</b> first: 50 ÷ 2 = 25 N/cm². Step 3: the force is 50 times bigger because the area is 50 times bigger (100 ÷ 2), not 100.",
+          "model": "Pressure = 50 ÷ 2 = 25 N/cm². Force = 25 × 100 = 2500 N, which is 50 times my push."
+        },
+        {
+          "block": "h2",
+          "q": "Which piston moves further?",
+          "mark": "0 / 1",
+          "good": "",
+          "fix": "The <b>small</b> piston moves further. The liquid it pushes out of a thin tube spreads into a wide one, so the big piston only rises a little. Bigger force, but less distance.",
+          "model": "The small piston moves much further than the big one."
+        },
+        {
+          "block": "h3",
+          "q": "Explain how a hydraulic jack works",
+          "mark": "2 / 3",
+          "good": "“Liquid cannot be compressed” and “bigger area so it has a bigger force” are both right. Your self-mark (2/3) was exactly right.",
+          "fix": "The word missing from your whole answer is <b>pressure</b>. The small force makes a pressure; the liquid passes the <b>pressure</b> on; pressure × big area = big force.",
+          "model": "The small force on the small piston makes a pressure in the liquid. The liquid cannot be compressed, so the same pressure acts on the big piston. The big piston has a bigger area, so the force on it is bigger."
+        }
+      ],
+      "next": "Tonight: say the six equations and their units out loud once, then sleep. In the test, write the equation before any numbers."
+    },
+    {
+      "id": "2026-11-17-science-week5-onscreen",
+      "date": "2026-11-17",
+      "subject": "Science",
+      "tool": "science/week5-volume-pressure/",
+      "title": "Week 5: volume, pressure and the chain to the end (on screen)",
+      "mark": "14 / 14",
+      "summary": "Full marks on screen. All six choices right, and both written chains earn 3/3. The crisp bag is the big one: last week you said the pressure <i>inside</i> goes up; this time you started with the pressure <b>outside</b> going down. Your self-marks were exactly right.",
+      "items": [
+        {
+          "block": "e1",
+          "q": "Breathing out",
+          "mark": "3 / 3",
+          "good": "Diaphragm relaxes and moves up, ribs in and down, volume lower, pressure up, higher than outside, air out. Every link is there.",
+          "fix": "Tiny tidy-up: put the ribs next to the diaphragm, then volume, then pressure, then air. Same words, cleaner chain.",
+          "model": "The diaphragm relaxes and moves up and the ribs move down and in, so the volume decreases, so the pressure inside increases above the pressure outside, so air is pushed out."
+        },
+        {
+          "block": "e2",
+          "q": "Crisp bag up a mountain",
+          "mark": "3 / 3",
+          "good": "“The pressure outside the bag is lower than the pressure inside so the air inside… presses on the walls of the bag and it puffs up.” Exactly right.",
+          "fix": "For an extra-strong answer, say <b>why</b> the outside pressure is lower: there is less air above you.",
+          "model": "Higher up there is less air above, so the pressure outside is lower than inside, so the air inside pushes the bag outwards."
+        }
+      ],
+      "next": "You know this now. In the test, end every chain with the thing the question asks about."
+    },
+    {
+      "id": "2026-11-17-english-week5",
+      "date": "2026-11-17",
+      "subject": "English",
+      "tool": "english/week5-lonely-school/",
+      "title": "Week 5: the lonely school (A Christmas Carol)",
+      "mark": "7 / 8",
+      "summary": "5/5 on the analysis choices and the level ladder done. In your own paragraph, “leafless boughs… waiting for spring… it remains cold” is a good reading of the words. The marks to chase: read “Not a sigh” carefully, and bring it back to Scrooge.",
+      "items": [
+        {
+          "block": "own",
+          "q": "Your paragraph",
+          "mark": "2 / 3",
+          "good": "An exact quote, and a real effect: “leafless” and “despondent” make the tree feel hopeless and cold. You did earn the effect mark you didn't tick.",
+          "fix": "Dickens says “<b>Not</b> a sigh”: the tree doesn't sigh at all. Count the “not”s: the house is completely silent. And the So What has to be about <b>Scrooge</b> or loneliness, not the tree. You ticked the So What, but it isn't there yet.",
+          "model": "Dickens repeats “not a…” again and again, so the old school is completely silent. This silence shows how alone the boy was, and it softens Scrooge's heart: Dickens suggests the cold man was made by loneliness, so he can still change."
+        }
+      ],
+      "next": "Next paragraph: before you tick the So What, find the word <b>Scrooge</b> (or loneliness) in that sentence."
+    },
+    {
+      "id": "2026-11-17-maths-week5",
+      "date": "2026-11-17",
+      "subject": "Maths",
+      "tool": "maths/week5-straight-lines/",
+      "title": "Week 5: coordinates and straight lines",
+      "mark": "7 / 9 (6 questions still to do)",
+      "summary": "Warm-up dividing fractions 3/3, all right first time: “how many quarters fit into 3?” has clicked. Lines: y = −2, y = 5 horizontal, where x = −1 and y = 3 cross, and the y-axis is x = 0, all right. Questions b2 to b6 are not done yet.",
+      "items": [
+        {
+          "block": "a2",
+          "q": "Line through (4, 1), (4, 7), (4, −3)",
+          "mark": "0 / 1",
+          "good": "",
+          "fix": "Look at what stays the same: every point has <b>x = 4</b>. So the line is x = 4 (a vertical line). In your daily note you wrote “x = 3 means it's parallel to the y-axis”: same idea!",
+          "model": "All the x-coordinates are 4, so the equation is x = 4."
+        },
+        {
+          "block": "b1",
+          "q": "y-intercept of y = 3x − 6",
+          "mark": "0 / 1",
+          "good": "",
+          "fix": "The y-intercept is where the line crosses the y-axis, where x = 0. Put x = 0 in: y = 3 × 0 − 6 = −6. The number on its own (−6) is the intercept; the 3 in front of x is the slope.",
+          "model": "When x = 0, y = −6, so the y-intercept is (0, −6)."
+        }
+      ],
+      "next": "Finish b2 to b6. For any line, ask: <b>which coordinate stays the same?</b>"
+    },
+    {
+      "id": "2026-11-17-history-week3plus",
+      "date": "2026-11-17",
+      "subject": "History",
+      "tool": "history/week3plus-black-death/",
+      "title": "Medieval medicine: climbing the AQA levels",
+      "mark": "7 / 10",
+      "summary": "All the choosing questions right (7/7): you can spot a So What, see what lifts Level 2 to Level 3, and you know “everyone” is too strong. In “Your turn” you pasted your 1 November paragraph without changing it, so two of the three So Whats still have the same problems.",
+      "items": [
+        {
+          "block": "pairs",
+          "q": "Your turn: three So Whats",
+          "mark": "1 / 3",
+          "good": "Pair 1 works: “show god they were sorry” follows from the whipping and tells us what people believed.",
+          "fix": "You ticked all three, but only pair 1 earns it. Pair 2: “if the old way didn't work” and “how horrible the plague was” don't follow from the herbs. What did herbs show people <b>believed</b> about bad air? Pair 3: “actually better” is hindsight (we know about germs; they didn't), and “not everyone was dirty” is a new claim. Ask: why did <i>they</i> think cleaning would help?",
+          "model": "People burned sweet-smelling herbs because they believed the plague spread through bad air, so they thought a good smell could fight it."
+        }
+      ],
+      "next": "Your Week 5 History (money and work) is the current one: do that next and rewrite your So Whats there, don't paste."
+    },
+    {
+      "id": "2026-11-21-history-week5",
+      "date": "2026-11-21",
+      "subject": "History",
+      "tool": "history/week5-black-death-money/",
+      "title": "The Black Death: So What? for money and work",
+      "mark": "10 / 12",
+      "summary": "Every choosing question right (7/7): you can now spot a grounded So What about <b>money</b>, not just beliefs, and you fixed both claims (serfdom is a system; “hundreds of deserted villages”, not “much of England”). Your own sentences earned more than you gave yourself: you ticked 0 on both, but they score 3 out of 5.",
+      "items": [
+        {
+          "block": "e4",
+          "q": "Your sentence, plus a So What",
+          "mark": "1 / 2",
+          "good": "“the lords feared that all their workers would die out and they would have no one left to do all the labour”: this is your first So What about what lords <b>feared</b>. That is the hard kind. You gave yourself 0; it earns 1.",
+          "fix": "Point it back at your own evidence: you wrote that lords were “forced to pay more”. Why would that worry them? Link the fear to the <b>money</b>.",
+          "model": "This suggests lords feared that, with so few workers left, they would have to keep paying more, and lose the wealth and control they had before the plague."
+        },
+        {
+          "block": "e5",
+          "q": "S4 is yours",
+          "mark": "2 / 3",
+          "good": "You put both dates in (1349 and 1351) and wrote it in your own words. Those two ticks were earned: tick them next time.",
+          "fix": "Your So What stops halfway (“the lords wanted the wages to stay the same as it was a law but…”). That repeats the law. Finish it with <b>why</b> lords wanted that.",
+          "model": "In 1349 and 1351 the government passed laws to keep wages at the level they were before the plague. This suggests that lords feared paying higher wages would make them poorer and give peasants too much power."
+        }
+      ],
+      "next": "Week 6: the Peasants’ Revolt. Same habit, and finish every So What with <b>why</b>. Tick honestly both ways: point to the words, then tick."
+    },
+    {
+      "id": "2026-11-21-maths-week5",
+      "date": "2026-11-21",
+      "subject": "Maths",
+      "tool": "maths/week5-straight-lines/",
+      "title": "Coordinates and straight lines",
+      "mark": "8 / 13",
+      "summary": "Dividing fractions is fixed (3/3, “how many fit?” right every time), and y = −2, y = 5, where lines cross and the y-axis were all right. The AQA questions caught you on three small things, and every one of them is about reading carefully. The written explain (b6) wasn’t done.",
+      "items": [
+        {
+          "block": "a2",
+          "q": "Name the line",
+          "mark": "0 / 1",
+          "good": "You know y = 5 is horizontal.",
+          "fix": "(4, 1), (4, 7), (4, −3): the number that stays the same is the <b>x</b>. So the line is x = 4.",
+          "model": "Every point has x-coordinate 4, so the line is x = 4, a vertical line."
+        },
+        {
+          "block": "b1",
+          "q": "y-intercept of y = 3x − 6",
+          "mark": "0 / 1",
+          "good": "You chose a point on the y-axis (x = 0): right idea.",
+          "fix": "The y-intercept is the number on its own: −6. The 3 is the gradient. Put x = 0: y = 3 × 0 − 6 = −6.",
+          "model": "When x = 0, y = −6, so the y-intercept is (0, −6)."
+        },
+        {
+          "block": "b2",
+          "q": "Where 3x + 2y = 24 crosses the x-axis",
+          "mark": "0 / 1",
+          "good": "You looked for a point with 0 in it.",
+          "fix": "(12, 0) comes from 24 ÷ 2, the y number. On the x-axis <b>y = 0</b>, so only 3x is left: 3x = 24, x = 8.",
+          "model": "On the x-axis y = 0, so 3x = 24 and x = 8: the point (8, 0)."
+        },
+        {
+          "block": "b3",
+          "q": "Midpoint of (4, 9) and (−2, 1)",
+          "mark": "0 / 1",
+          "good": "Your y was right: (9 + 1) ÷ 2 = 5.",
+          "fix": "For x you used 2 instead of −2. Keep the sign: (4 + −2) ÷ 2 = 1.",
+          "model": "x: (4 + (−2)) ÷ 2 = 1; y: (9 + 1) ÷ 2 = 5. Midpoint (1, 5)."
+        },
+        {
+          "block": "b4",
+          "q": "Check a point",
+          "mark": "0 / 1",
+          "good": "You got 7 on the second try and then said “above” correctly.",
+          "fix": "First try you typed 9, the point’s y. Work out the <b>line’s</b> y first: 2 × 2 + 3.",
+          "model": "On the line, when x = 2, y = 2 × 2 + 3 = 7. The point has y = 9, which is more, so it is above."
+        }
+      ],
+      "next": "Week 6 is gradient and y = mx + c (what you met in class). Before each answer, ask: which letter is 0 here, and did I keep the minus signs?"
+    },
+    {
+      "id": "2026-11-21-french-week5",
+      "date": "2026-11-21",
+      "subject": "French",
+      "tool": "french/week5-films/",
+      "title": "Les films",
+      "mark": "11 / 15",
+      "summary": "Genres and describing words are strong: 10 of 12 right, including a full comparison sentence (plus passionnants que). Both slips were about agreement, the thing to fix next.",
+      "items": [
+        {
+          "block": "g4",
+          "q": "a comedy",
+          "mark": "0 / 1",
+          "good": "Right word.",
+          "fix": "comédie is feminine: <b>une</b> comédie.",
+          "model": "C’est une comédie."
+        },
+        {
+          "block": "d3",
+          "q": "Les films d’horreur sont…",
+          "mark": "0 / 1",
+          "good": "Right adjective.",
+          "fix": "films is plural, so add -s: effrayant<b>s</b>.",
+          "model": "Les films d’horreur sont effrayants."
+        },
+        {
+          "block": "own",
+          "q": "Your sentences",
+          "mark": "1 / 3",
+          "good": "“J’adore les comédies parce que…” and “je n’aime pas les westerns”: opinions, genres and a reason. Nice use of mais.",
+          "fix": "You ticked agreement, but “ils sont très intéressant” needs two fixes: comédies are feminine (<b>elles</b>) and plural (intéressant<b>es</b>). “ils sont ennuyeuse” should be ennuyeux (westerns, masculine plural). And add the comparison (plus … que).",
+          "model": "J’adore les comédies parce qu’elles sont très intéressantes, mais je n’aime pas les westerns: ils sont plus ennuyeux que les films d’action."
+        }
+      ],
+      "next": "Every adjective: is the noun feminine (add -e)? Plural (add -s)? Check before you tick."
+    },
+    {
+      "id": "2026-11-21-geography-week5",
+      "date": "2026-11-21",
+      "subject": "Geography",
+      "tool": "geography/week5-curitiba/",
+      "title": "Curitiba: case-study evidence and a judgement",
+      "mark": "10 / 11",
+      "summary": "Every choosing question right, and you put the answers in order of quality. Your own point earned 2 of 3, but you ticked 0: give yourself the marks you earn.",
+      "items": [
+        {
+          "block": "w",
+          "q": "Your developed point",
+          "mark": "2 / 3",
+          "good": "“the green exchange ensures that poorer people have food while also cleaning up the streets”: a specific scheme, and it helps people <b>and</b> the environment. Those two ticks were earned.",
+          "fix": "Your judgement needs a comparison or a limit, not just “important because”. Also check “they live illegally… instead of being driven out”: that isn’t in the case-study facts.",
+          "model": "This makes the Green Exchange very important, because it helps the poorest families and the environment at the same time, although it is smaller than the bus system, which affects the whole city."
+        }
+      ],
+      "next": "Geography stays the same for now. When you do the written paper, end with “more/less important than … because …”."
     }
   ]
 }

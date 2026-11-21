@@ -1,0 +1,271 @@
+{
+ "kicker": "Ember · Maths · Week 6",
+ "title": "Gradient and y = mx + c",
+ "sub": "You wrote this week: “y = mx … gradients … if the gradient is pointing to the left it is negative.” Nearly! This week: what a gradient really measures, how to work it out from two points, and what m and c tell you. About 20 minutes on screen, then the written paper.",
+ "skill": "Written method and checking.",
+ "target": "AQA gives marks for working. For a gradient, write the change in y and the change in x as a fraction before you simplify, then check the sign against a sketch: uphill is positive, downhill is negative.",
+ "print": "week6-gradient-written.pdf",
+ "sections": [
+  {
+   "h": "1. Warm-up",
+   "time": "4 min",
+   "sub": "Last week: straight lines and coordinates. From memory.",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "w1",
+     "h": "Name the line",
+     "q": "A line passes through (6, 2), (6, −1) and (6, 9). What is its equation?",
+     "o": ["y = 6", "x = 6", "y = 6x"],
+     "c": 1,
+     "why": "Look at what the points share: the <b>x</b>-coordinate is always 6. So the rule is x = 6 (a vertical line). Last week this one caught you out: always ask “which number stays the same?”"
+    },
+    {
+     "type": "num",
+     "id": "w2",
+     "h": "Midpoint with a negative",
+     "q": "A is (5, 2) and B is (−3, 8). What is the x-coordinate of the midpoint of AB?",
+     "answer": "1",
+     "traps": [{"value": "4", "msg": "You used 3 instead of −3. Add them with the sign: 5 + (−3) = 2, then halve."}],
+     "why": "(5 + −3) ÷ 2 = 2 ÷ 2 = 1. Check: 5 to 1 is 4 back, 1 to −3 is 4 back ✓. (The midpoint is (1, 5).)"
+    },
+    {
+     "type": "mc",
+     "id": "w3",
+     "h": "Crossing the x-axis",
+     "q": "Where does the line 2x + 5y = 20 cross the <b>x</b>-axis?",
+     "o": ["(0, 4)", "(10, 0)", "(4, 0)"],
+     "c": 1,
+     "why": "On the x-axis, <b>y = 0</b>. So 2x + 0 = 20 and x = 10: the point (10, 0). Check: 2 × 10 + 5 × 0 = 20 ✓. (0, 4) is where it crosses the y-axis."
+    }
+   ]
+  },
+  {
+   "h": "2. Gradient: how steep, and which way",
+   "time": "8 min",
+   "sub": "Read the line from left to right, like a sentence.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<b>Gradient</b> = how far the line goes <b>up</b> for every <b>1 across</b>.<br><br>From two points: <b>gradient = change in y ÷ change in x</b>. Take the points in the same order on the top and the bottom.<br><br>Example: (1, 2) and (3, 8). Change in y = 8 − 2 = 6. Change in x = 3 − 1 = 2. Gradient = [[6/2]] = 3.<br><br><b>The sign:</b> read the line from <b>left to right</b>. Going <b>uphill</b>, the gradient is <b>positive</b>. Going <b>downhill</b>, it is <b>negative</b>. (Your note said “pointing to the left”: every line points both ways, so always read it left to right.)"
+    },
+    {
+     "type": "mc",
+     "id": "g1",
+     "h": "Up for every 1 across",
+     "q": "A line goes through (0, 0) and (2, 6). What is its gradient?",
+     "o": ["[[1/3]]", "3", "6"],
+     "c": 1,
+     "why": "Up 6 for 2 across, so up 3 for every 1 across. [[6/2]] = 3. [[1/3]] is across ÷ up: upside down."
+    },
+    {
+     "type": "num",
+     "id": "g2",
+     "h": "Two points",
+     "q": "Work out the gradient of the line through (1, 2) and (4, 14).",
+     "answer": "4",
+     "traps": [{"value": "1/4", "msg": "Upside down: it is change in <b>y</b> on top. (14 − 2) ÷ (4 − 1)."}],
+     "why": "Change in y = 14 − 2 = 12. Change in x = 4 − 1 = 3. Gradient = [[12/3]] = 4. Check: uphill, so positive ✓."
+    },
+    {
+     "type": "mc",
+     "id": "g3",
+     "h": "Which sign?",
+     "q": "Reading from left to right, a line goes <b>down</b>. Its gradient is…",
+     "o": ["positive", "negative", "zero"],
+     "c": 1,
+     "why": "Downhill from left to right = negative. A flat line (like y = 3) has gradient 0."
+    },
+    {
+     "type": "num",
+     "id": "g4",
+     "h": "A downhill line",
+     "q": "Work out the gradient of the line through (2, 9) and (6, 1).",
+     "answer": "-2",
+     "traps": [
+      {"value": "2", "msg": "Check the sign. y goes <b>down</b> from 9 to 1 as x goes up: change in y = 1 − 9 = −8."},
+      {"value": "-1/2", "msg": "Upside down: change in y on top, change in x underneath."}
+     ],
+     "why": "Change in y = 1 − 9 = −8. Change in x = 6 − 2 = 4. Gradient = −8 ÷ 4 = −2. Check: from (2, 9) down to (6, 1) is downhill, so negative ✓."
+    }
+   ]
+  },
+  {
+   "h": "3. y = mx + c, and real AQA questions",
+   "time": "8 min",
+   "sub": "Two numbers tell you everything about a straight line.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "In <b>y = mx + c</b>:<br>• <b>m</b> (the number in front of x) is the <b>gradient</b>.<br>• <b>c</b> is where the line crosses the <b>y-axis</b>: the point (0, c). (Last week: put x = 0 and only c is left.)<br><br><b>y = mx</b> (no c) goes through (0, 0). That is a <b>proportional</b> graph: double x and y doubles too. That is why your class met it with proportional graphs.<br><br><b>Careful:</b> the equation must start “y = …”. If it starts “2y = …”, divide everything by 2 first."
+    },
+    {
+     "type": "mc",
+     "id": "m1",
+     "h": "Read m and c",
+     "q": "The line y = 4x − 7 has…",
+     "o": ["gradient −7, crossing the y-axis at (0, 4)", "gradient 4, crossing the y-axis at (0, −7)", "gradient 4, crossing the y-axis at (−7, 0)"],
+     "c": 1,
+     "why": "m = 4 (in front of x), c = −7, so it crosses the y-axis at (0, −7): x first, and x is 0 on the y-axis."
+    },
+    {
+     "type": "mc",
+     "id": "m2",
+     "h": "Proportional?",
+     "q": "Which line shows y <b>directly proportional</b> to x?",
+     "o": ["y = 3x + 1", "y = 3x", "y = 3"],
+     "c": 1,
+     "why": "Proportional means a straight line through (0, 0): no “+ c”. y = 3x + 1 is straight but starts at (0, 1), so doubling x does not double y. y = 3 is a flat line."
+    },
+    {
+     "type": "mc",
+     "id": "m3",
+     "h": "Gradient and a point",
+     "source": "AQA Maths 8300/3H, June 2025, Q11(b)",
+     "marks": 1,
+     "q": "A straight line<br>• has gradient 5<br>• passes through the point (3, 7)<br><br>Circle the equation of the line.",
+     "o": ["y = 3x – 2", "y = 3x + 7", "y = 5x", "y = 5x – 8"],
+     "c": 3,
+     "why": "Gradient 5, so m = 5: only y = 5x and y = 5x – 8 are possible. Check the point: when x = 3, y = 5x gives 15 ✗; y = 5x – 8 gives 15 – 8 = 7 ✓.",
+     "ms": "y = 5x – 8 <b>B1</b>"
+    },
+    {
+     "type": "mc",
+     "id": "m4",
+     "h": "Not starting with y",
+     "source": "AQA Maths 8300/3H, November 2019, Q2",
+     "marks": 1,
+     "q": "The equation of a straight line is 2y = 3x + 5<br><br>Circle the gradient of the line.",
+     "o": ["[[2/3]]", "[[3/2]]", "3", "5"],
+     "c": 1,
+     "why": "Make it start “y = ”: divide everything by 2. y = [[3/2]]x + [[5/2]]. The number in front of x is [[3/2]]. (3 is the trap: that is before dividing.)",
+     "ms": "[[3/2]] <b>B1</b> (worked answer: the official mark scheme for this paper is not in our archive)"
+    },
+    {
+     "type": "num",
+     "id": "m5",
+     "h": "No coordinates at all",
+     "source": "AQA Maths 8300/3H, November 2022, Q9",
+     "marks": 2,
+     "q": "P and Q are points.<br>The x-coordinate of Q is 4 more than the x-coordinate of P.<br>The y-coordinate of Q is 5 less than the y-coordinate of P.<br><br>Work out the gradient of the straight line through P and Q.",
+     "answer": "-5/4",
+     "traps": [
+      {"value": "5/4", "msg": "Check the sign: y goes <b>down</b> 5 while x goes up 4, so the line is downhill."},
+      {"value": "-4/5", "msg": "Upside down: change in y on top."}
+     ],
+     "why": "Change in y = −5, change in x = +4. Gradient = −5 ÷ 4 = −[[5/4]] (or −1.25). A sketch helps: across 4, down 5.",
+     "ms": "Change in y ÷ change in x, e.g. −5 ÷ 4 <b>M1</b>; −[[5/4]] or −1.25 <b>A1</b> (worked marking: the official mark scheme for this paper is not in our archive)"
+    },
+    {
+     "type": "write",
+     "id": "m6",
+     "marks": 2,
+     "rows": 3,
+     "h": "Explain it",
+     "q": "Explain what the 3 in y = 3x + 2 tells you about the line, and why the line is <b>not</b> a proportional graph.",
+     "starters": ["The 3 is the gradient, so…", "It is not proportional because…"],
+     "minWords": 15,
+     "mark": {
+      "points": [
+       {"t": "the 3 is the gradient: the line goes up 3 for every 1 across", "m": 1},
+       {"t": "not proportional because it does not go through (0, 0): it crosses the y-axis at (0, 2), so doubling x does not double y", "m": 1}
+      ],
+      "note": "Point to the words before you tick. “It goes up 3” earns the first mark only if it says <b>for every 1 across</b>."
+     }
+    }
+   ]
+  },
+  {
+   "h": "4. Written paper",
+   "time": "20 min",
+   "blocks": [
+    {
+     "type": "info",
+     "tone": "big",
+     "html": "Print the written paper and do it by hand. For every gradient, write the fraction (change in y over change in x) before you simplify, and check the sign. Answers on the last page: mark it yourself, then tell Papa your score."
+    }
+   ]
+  },
+  {
+   "h": "5. Check yourself",
+   "time": "4 min",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "I wrote change in y over change in x, with the points in the same order on top and bottom.",
+      "I checked the sign: uphill left to right is positive, downhill is negative.",
+      "I made the equation start “y = ” before reading m and c.",
+      "I wrote the y-intercept as (0, c).",
+      "I checked one answer by putting a point back into the equation."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“The line y = 2x − 1: what does the 2 tell you, and where does it cross the y-axis?”",
+     "note": "For the parent: listen for “it goes up 2 for every 1 across” and “at (0, −1)”. If she says “(−1, 0)” or “(0, 2)”, ask “on the y-axis, what is x?”. Then ask “a line goes downhill from left to right: what sign is its gradient?”"
+    }
+   ]
+  }
+ ],
+ "paper": {
+  "title": "Maths Week 6: gradient and y = mx + c (written)",
+  "sub": "Ember · Calculator allowed · about 20 minutes · 16 marks",
+  "intro": "<b>Skill: written method and checking.</b> For every gradient, write change in y ÷ change in x as a fraction first. Then check the sign against a quick sketch.",
+  "blocks": [
+   {
+    "marks": 4,
+    "q": "1. Work out the gradient of the straight line through<br>(a) (1, 3) and (5, 11)<br>(b) (−1, 4) and (3, −8)",
+    "workBox": 40
+   },
+   {
+    "marks": 2,
+    "source": "AQA Maths 8300/2H, November 2020, Q12",
+    "q": "2. Work out the gradient of the straight line through (–2, 3) and (1, 9)",
+    "workBox": 30,
+    "answerLine": "____________"
+   },
+   {
+    "marks": 2,
+    "source": "AQA Maths 8300/1H, June 2017, Q17(a)",
+    "stem": "3. <i>A</i> is the point (2, –5)<br><i>B</i> is the point (4, –9)",
+    "q": "Show that the gradient of the straight line passing through <i>A</i> and <i>B</i> is –2",
+    "workBox": 30
+   },
+   {
+    "marks": 3,
+    "q": "4. Write down the gradient and the coordinates of the y-intercept of each line.<br>(a) y = 5x + 2 &nbsp;&nbsp;&nbsp; (b) y = 7 − 2x &nbsp;&nbsp;&nbsp; (c) y = x",
+    "lines": 4,
+    "pageBreak": true
+   },
+   {
+    "marks": 3,
+    "source": "AQA Maths 8300/3H, June 2019, Q12",
+    "q": "5. (Challenge) A straight line has gradient 4 and passes through the point (5, 23)<br><br>Work out the equation of the line.<br>Give your answer in the form <i>y</i> = <i>mx</i> + <i>c</i>",
+    "workBox": 35,
+    "answerLine": "____________________"
+   },
+   {
+    "marks": 2,
+    "q": "6. Sam says, “y = 2x + 1 is a proportional graph, because it is a straight line.”<br>Is Sam right? Explain your answer.",
+    "lines": 4
+   }
+  ],
+  "selfcheck": [
+   "Q1–Q3: I wrote the fraction (change in y over change in x) before simplifying.",
+   "Q1(b): I checked the sign with a sketch: downhill, so negative.",
+   "Q4(b): I spotted that the gradient is the number in front of x, wherever it is written.",
+   "Q5: I put x = 5 and y = 23 into y = 4x + c to find c.",
+   "Reflection: which question did a sketch help with most?"
+  ],
+  "marking": [
+   {
+    "h": "Answers and marks",
+    "html": "<ul><li><b>1.</b> (a) (11 − 3) ÷ (5 − 1) = 8 ÷ 4 = <b>2</b> (M1 A1). (b) (−8 − 4) ÷ (3 − (−1)) = −12 ÷ 4 = <b>−3</b> (M1 A1). A positive answer to (b) loses the A mark: the line goes downhill.</li><li><b>2. (AQA Nov 2020 2H Q12)</b> (9 − 3) ÷ (1 − (−2)) = 6 ÷ 3 <b>(M1)</b>; = <b>2 (A1)</b>. (Worked marking: the official mark scheme for this paper is not in our archive.)</li><li><b>3. (AQA June 2017 1H Q17(a)), official mark scheme B2:</b> (−9 − (−5)) ÷ (4 − 2) = −4 ÷ 2 = −2, or “change in y ÷ change in x” with −4 and 2, or a triangle drawn with points A and B and side lengths 4 and (−)2 identified. You must show the working: “−2” on its own is already given in the question.</li><li><b>4.</b> (a) gradient 5, (0, 2). (b) gradient −2, (0, 7). (c) gradient 1, (0, 0). <b>(1 each part, both answers needed.)</b></li><li><b>5. (AQA June 2019 3H Q12), official mark scheme:</b> 4 × 5 + c = 23 <b>M1</b>; c = 3 <b>A1</b>; y = 4x + 3 <b>A1</b>. (SC1 for y = 4x + c with the wrong c.)</li><li><b>6.</b> No <b>(1, with a reason)</b>: a proportional graph must go through (0, 0), but y = 2x + 1 crosses the y-axis at (0, 1); for example x = 1 gives y = 3 but x = 2 gives y = 5, not double <b>(1)</b>.</li></ul>Score: ____ / 16"
+   }
+  ],
+  "footer": "Written for Ember in AQA style. Includes AQA Mathematics 8300/2H November 2020 Q12, 8300/1H June 2017 Q17(a), 8300/3H June 2019 Q12; on screen 8300/3H June 2025 Q11(b), 8300/3H November 2019 Q2, 8300/3H November 2022 Q9. © AQA, used for private practice."
+ }
+}

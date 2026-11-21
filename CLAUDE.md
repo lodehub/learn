@@ -51,7 +51,7 @@ Owner account: lodehub (anonymous by design).
 - Mobile-first, big tap targets, works on iPad Safari. Add a web manifest and service worker per child folder so each can be installed as a PWA (scoped to that folder).
 - Before pushing: open each page locally, check for broken links, then commit with a clear message.
 
-# Part 2: What exists (state as of 14 Nov 2026)
+# Part 2: What exists (state as of 21 Nov 2026)
 
 ## What it is
 
@@ -78,7 +78,7 @@ Privacy: slugs and labels only, never real names, schools or personal data. Comm
 - **Subject pages** show up to three sections: **Explore** (first-principles journeys, `"strand": "explore"`), **Practise** (HTML tools) and **Print** (PDFs and worksheets attached to a tool via `"print"`).
 - **All printables** shelf on each child's page, grouped by subject.
 - **Archive** toggle: `"status": "archived"` hides finished work without moving files (URLs and saved progress keep working). Grouped by year, then `topic`. Older items were archived to keep the latest two per subject for ember, ninja and bingo.
-- **This week** box: manifest top-level `"currentWeek": N`; items tagged `"week": N` show at the top with a tick each. Optional `"checkin"` path adds the half-term check-in link. Currently only ember uses it (`currentWeek: 5`).
+- **This week** box: manifest top-level `"currentWeek": N`; items tagged `"week": N` show at the top with a tick each. Optional `"checkin"` path adds the half-term check-in link. Currently only ember uses it (`currentWeek: 6`).
 - **Back button** on every tool via `back.js` (needed when installed as an app).
 - **Offline and slow wifi** (`<slug>/sw.js`, one identical copy per child, cache `learn-v2`): pages and data wait at most 3 s for the network, then use the saved copy. After install, every current tool in the manifest (page, scripts, styles and the JSON its engine loads) is saved in the background, so it opens offline without being visited first. When changing it, edit one copy and copy it to the other three; bump `CACHE` only if old caches must be thrown away.
 - **Fonts are self-hosted** in `assets/fonts/` (latin + latin-ext woff2 and one CSS per font set). Never link fonts.googleapis.com: it slows the first paint, fails offline and leaks visits to Google. To add a font, download it the same way and link `assets/fonts/<name>.css`.
@@ -86,16 +86,18 @@ Privacy: slugs and labels only, never real names, schools or personal data. Comm
 
 ## Content by learner
 
-### Ember (secondary, weekly homework rhythm, currently Week 5)
-Current (Week 5, all on the Practice engine with a `?print` written paper):
-- English Week 5: the lonely school, Quote, effect, So What (AQA 8702/1N June 2022 Q02 *A Christmas Carol* extract; extract-only version) (`english/week5-lonely-school/`)
-- Maths Week 5: coordinates and straight lines (x = a, y = b, intercepts, midpoint, point above/below a line; AQA 8300/2H Nov 2022 Q3, 3H June 2018 Q19 and Q8(b), 2H Nov 2018 Q2, 1H Nov 2019 Q5(a), 1H June 2018 Q7) (`maths/week5-straight-lines/`)
-- Science Week 5 (Tuesday before the test): one rule, three places: volume and pressure in the chest, bike pump and crisp bag, chain to the end; original questions (`science/week5-volume-pressure/`)
-- History Week 5: the Black Death, So What? for money and work (her own paragraph reworked, claim check) (`history/week5-black-death-money/`)
-- Geography Week 5: Curitiba, case-study evidence and a judgement (AQA 8035/2 June 2020 paper Q01.8) (`geography/week5-curitiba/`)
-- French Week 5: les films, genres, adjective agreement and comparing (original) (`french/week5-films/`)
-- **Science autumn assessment revision** (test Wed 18 Nov; topic "Autumn assessment"): `science/test-pressure/`, `test-digestion/`, `test-contact-forces/`, `test-breathing/` stay current (week 4 tag, so outside the This-week box); `test-mock/` (Days 6–7, mock PDF `test-mock.pdf`, Tuesday fix-your-mistakes) is tagged week 5; `test-equations/` (every force and hydraulics equation with units, a drill on each, a hydraulic jack worked step by step, `test-equations.pdf` memory test with key) is tagged week 5. All questions original. Archive these after the test.
+### Ember (secondary, weekly homework rhythm, currently Week 6)
+Current (Week 6, all on the Practice engine with a `?print` written paper):
+- English Week 6: Belle and the golden idol, Quote, effect, So What (AQA 8702/1 June 2023 Q08 *A Christmas Carol* extract, effects of greed; extract-only version) (`english/week6-belle/`)
+- Maths Week 6: gradient and y = mx + c (gradient from two points, sign, m and c, proportional graphs; AQA 8300/3H June 2025 Q11(b), 3H Nov 2019 Q2, 3H Nov 2022 Q9 on screen; 2H Nov 2020 Q12, 1H June 2017 Q17(a), 3H June 2019 Q12 on paper) (`maths/week6-gradient/`)
+- Science Week 6: pressure in liquids and hydraulics, the Because Chain (AQA 8463/2H June 2025 Q08.1, June 2018 Q04.1–Q04.2, June 2024 Q04.1, figures in `fig/`) (`science/week6-liquid-pressure/`)
+- History Week 6: the Peasants' Revolt 1381, So What? (fact bank R1–R7 paraphrased from the World History Encyclopedia article on the Reading shelf; claim check) (`history/week6-peasants-revolt/`)
+- Geography Week 5 (`geography/week5-curitiba/`) and French Week 5 (`french/week5-films/`) stay current (week 5 tag, outside the This-week box) until a new topic arrives.
 - **History reading shelf** (`history/reading/`, always current, also a "Read" row in her home links): Reading shelf engine. Peasants' Revolt (World History Encyclopedia, full text, CC BY-NC-SA, credited) plus reading guides with links for three History Today Black Death articles (Ziegler Parts I and II, Benedictow).
+
+Archived at the start of Week 6 (Autumn):
+- English Week 5: the lonely school; Maths Week 5: straight lines; Science Week 5: volume and pressure; History Week 5: Black Death money and work (all + PDFs)
+- Science autumn assessment revision (test was Wed 18 Nov): `science/test-pressure/`, `test-digestion/`, `test-contact-forces/`, `test-breathing/`, `test-mock/` (+ mock PDF), `test-equations/` (+ PDF)
 
 Archived at the start of Week 5 (Autumn):
 - English Week 4: the empty town; Maths Week 4: dividing fractions; Science Week 4: moments and the lever chain; History Week 4: the Black Death and History "Black Death: what changed?" (all + PDFs)

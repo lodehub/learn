@@ -1,5 +1,5 @@
 {
-  "currentWeek": 5,
+  "currentWeek": 6,
   "checkin": "weekly/check-in/",
   "daily": {
     "path": "weekly/today/",
@@ -116,11 +116,23 @@
       "path": "english/week5-lonely-school/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Language analysis",
       "print": "english/week5-lonely-school/week5-lonely-school-written.pdf",
       "printTitle": "Week 5 written: real GCSE question, extract only",
-      "week": 5
+      "week": 5,
+      "term": "Autumn"
+    },
+    {
+      "title": "English Week 6: Belle and the golden idol, Quote, effect, So What (A Christmas Carol)",
+      "path": "english/week6-belle/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "english/week6-belle/week6-belle-written.pdf",
+      "printTitle": "Week 6 written: real GCSE question, extract only",
+      "week": 6,
+      "topic": "Language analysis"
     },
     {
       "title": "Algebra Quest",
@@ -231,11 +243,23 @@
       "path": "maths/week5-straight-lines/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Straight line graphs",
       "print": "maths/week5-straight-lines/week5-straight-lines-written.pdf",
       "printTitle": "Week 5 written: with three AQA questions",
-      "week": 5
+      "week": 5,
+      "term": "Autumn"
+    },
+    {
+      "title": "Maths Week 6: gradient and y = mx + c",
+      "path": "maths/week6-gradient/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "topic": "Straight line graphs",
+      "print": "maths/week6-gradient/week6-gradient-written.pdf",
+      "printTitle": "Week 6 written: with three AQA questions",
+      "week": 6
     },
     {
       "title": "Lungs and gas exchange",
@@ -354,69 +378,86 @@
       "path": "science/test-pressure/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Autumn assessment",
-      "week": 4
+      "week": 4,
+      "term": "Autumn"
     },
     {
       "title": "Science test · Day 3: The digestive system",
       "path": "science/test-digestion/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Autumn assessment",
-      "week": 4
+      "week": 4,
+      "term": "Autumn"
     },
     {
       "title": "Science test · Day 4: Contact forces",
       "path": "science/test-contact-forces/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Autumn assessment",
-      "week": 4
+      "week": 4,
+      "term": "Autumn"
     },
     {
       "title": "Science test · Day 5: Breathing",
       "path": "science/test-breathing/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Autumn assessment",
-      "week": 4
+      "week": 4,
+      "term": "Autumn"
     },
     {
       "title": "Science test · Days 6–7: Mock test and final review",
       "path": "science/test-mock/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Autumn assessment",
       "week": 5,
       "print": "science/test-mock/test-mock.pdf",
-      "printTitle": "Science mock test (30 min, 33 marks)"
+      "printTitle": "Science mock test (30 min, 33 marks)",
+      "term": "Autumn"
     },
     {
       "title": "Science Week 5 (Tuesday): one rule, three places, volume and pressure",
       "path": "science/week5-volume-pressure/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Autumn assessment",
       "print": "science/week5-volume-pressure/week5-volume-pressure-written.pdf",
       "printTitle": "Week 5 written: two chains (optional, 10 min)",
-      "week": 5
+      "week": 5,
+      "term": "Autumn"
     },
     {
       "title": "Science test: force and hydraulics equations",
       "path": "science/test-equations/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "topic": "Autumn assessment",
       "print": "science/test-equations/test-equations.pdf",
       "printTitle": "Equations from memory (10 min, night before)",
-      "week": 5
+      "week": 5,
+      "term": "Autumn"
+    },
+    {
+      "title": "Science Week 6: pressure in liquids and hydraulics, the Because Chain",
+      "path": "science/week6-liquid-pressure/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "science/week6-liquid-pressure/week6-liquid-pressure-written.pdf",
+      "printTitle": "Week 6 written: with two AQA questions",
+      "week": 6
     },
     {
       "title": "Rome: the 14-day revision road",
@@ -522,10 +563,21 @@
       "path": "history/week5-black-death-money/",
       "type": "html",
       "year": 2026,
-      "status": "current",
+      "status": "archived",
       "print": "history/week5-black-death-money/week5-black-death-money-written.pdf",
       "printTitle": "Week 5 written: rework your paragraph + claim check",
-      "week": 5
+      "week": 5,
+      "term": "Autumn"
+    },
+    {
+      "title": "History Week 6: the Peasants’ Revolt, 1381, So What?",
+      "path": "history/week6-peasants-revolt/",
+      "type": "html",
+      "year": 2026,
+      "status": "current",
+      "print": "history/week6-peasants-revolt/week6-peasants-revolt-written.pdf",
+      "printTitle": "Week 6 written: one paragraph and a claim check",
+      "week": 6
     },
     {
       "title": "Geography Week 1: megacities and case-study evidence",

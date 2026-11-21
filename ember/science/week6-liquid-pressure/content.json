@@ -1,0 +1,270 @@
+{
+ "kicker": "Ember · Science · Week 6",
+ "title": "Pressure in liquids: deeper, heavier, more pressure",
+ "sub": "Test done: well done for all the work you put in. Your class has moved on to pressure in liquids and hydraulics, so this week the Because Chain goes under water. About 15 minutes on screen, then the written paper.",
+ "skill": "The Because Chain (cause → effect → consequence, ending with the thing the question asks about).",
+ "target": "AQA “explain” marks come from links. For liquids the chain is: deeper → more water above → more weight pushing down → more pressure. For hydraulics: force → pressure in the liquid → same pressure on the big piston → bigger force. Say the word <b>pressure</b> in every link that needs it.",
+ "print": "week6-liquid-pressure-written.pdf",
+ "sections": [
+  {
+   "h": "1. Warm-up",
+   "time": "4 min",
+   "sub": "Last week: volume, pressure and the chain to the end. From memory.",
+   "blocks": [
+    {
+     "type": "mc",
+     "id": "w1",
+     "h": "Breathing in",
+     "q": "When you breathe in, the volume of your chest increases. What happens next?",
+     "o": [
+      "The pressure inside increases, so air is pushed out.",
+      "The pressure inside decreases below the air pressure outside, so air is pushed in.",
+      "Air rushes in, so the pressure decreases."
+     ],
+     "c": 1,
+     "why": "Bigger volume → particles hit the walls less often → <b>lower</b> pressure inside → air is pushed in from the higher pressure outside. The third option has the right ideas in the wrong order: the air moving is the <b>end</b> of the chain, not the start."
+    },
+    {
+     "type": "order",
+     "id": "w2",
+     "h": "Chain to the end",
+     "q": "A bike pump: you push the handle in. Tap the links in order.",
+     "items": [
+      "The volume of the air in the pump decreases.",
+      "The particles hit the walls more often.",
+      "The pressure of the air in the pump increases.",
+      "Air is pushed out into the tyre."
+     ],
+     "labels": ["Cause", "Link", "Effect", "Consequence"],
+     "done": "Every chain ends with what the question asks about."
+    }
+   ]
+  },
+  {
+   "h": "2. Pressure in a liquid",
+   "time": "4 min",
+   "sub": "Three facts from your lesson.",
+   "blocks": [
+    {
+     "type": "info",
+     "html": "<ul class=\"pr-facts\"><li><b>Pressure = force ÷ area</b> (force <b>per</b> unit area: divide, never multiply). Unit: N/m² or pascals (Pa).</li><li>Pressure in a liquid acts in <b>all directions</b>, at <b>right angles</b> (perpendicular, “normal”) to any surface.</li><li>Pressure in a liquid <b>increases with depth</b>, because there is <b>more weight of water above</b> pressing down.</li></ul>"
+    },
+    {
+     "type": "mc",
+     "id": "l1",
+     "h": "Which way?",
+     "source": "AQA Physics 8463/2H, June 2025, Q08.1",
+     "marks": 1,
+     "stem": "Figure 9 shows a jar containing some liquid.",
+     "fig": {"src": "fig/jun25-q08-fig9.png", "alt": "A jar with a lid, about two-thirds full of liquid.", "label": "AQA 8463/2H June 2025, Q08, Figure 9"},
+     "q": "The pressure in the liquid causes a force on the inside walls of the jar.<br><br>What direction is the force acting on the inside walls of the jar?",
+     "o": ["Straight down, towards the base", "At right angles to the walls", "Along the walls, upwards", "There is no force on the walls, only on the base"],
+     "c": 1,
+     "why": "Pressure in a liquid acts in all directions, and the force it makes is always at right angles (normal) to the surface. So it pushes straight <b>outwards</b> on the walls.",
+     "ms": "at right angles (to surfaces) <b>or</b> normal (to surfaces) <b>(1)</b>"
+    },
+    {
+     "type": "mc",
+     "id": "l2",
+     "h": "The bottle with three holes",
+     "q": "A bottle of water has three holes, one above the other. Which jet of water squirts out furthest?",
+     "o": ["The top one", "The middle one", "The bottom one", "All the same"],
+     "c": 2,
+     "why": "The bottom hole is deepest. More water above it means more weight pressing down, so more pressure, so the water is pushed out hardest."
+    },
+    {
+     "type": "mc",
+     "id": "l3",
+     "h": "Why deeper means more",
+     "q": "Why does the pressure in a liquid increase with depth?",
+     "o": [
+      "Liquids are heavy, so there is a lot of force in all directions.",
+      "There is more weight of water above pushing down.",
+      "The water is colder at the bottom.",
+      "The particles move faster at the bottom."
+     ],
+     "c": 1,
+     "why": "Deeper = a taller column of water above you = more weight pressing on each square metre = more pressure."
+    }
+   ]
+  },
+  {
+   "h": "3. The Because Chain under water",
+   "time": "10 min",
+   "sub": "Build the chain, then write it with every link.",
+   "blocks": [
+    {
+     "type": "order",
+     "id": "c1",
+     "h": "The diver chain",
+     "q": "A diver swims deeper. Tap the links in order.",
+     "items": [
+      "The diver goes deeper.",
+      "There is a taller column of water above the diver.",
+      "The weight of the water pushing down on the diver is greater.",
+      "So the pressure on the diver is greater."
+     ],
+     "labels": ["Cause", "Link", "Link", "Consequence"],
+     "done": "Notice the last link names the thing asked about: the <b>pressure</b>."
+    },
+    {
+     "type": "write",
+     "id": "c2",
+     "source": "AQA Physics 8463/2H, June 2018, Q04.2",
+     "marks": 2,
+     "rows": 3,
+     "h": "Real AQA question",
+     "q": "The further a swimmer dives below the surface of the sea, the greater the pressure on the swimmer.<br><br>Explain why.",
+     "starters": ["As the swimmer goes deeper, …", "so the weight of …"],
+     "minWords": 15,
+     "mark": {
+      "points": [
+       {"t": "increasing depth increases the height / mass / volume (of the water column) above the swimmer (allow more water above the swimmer; “more water” on its own is not enough)", "m": 1},
+       {"t": "increasing the weight / force (of water) acting on the swimmer", "m": 1}
+      ],
+      "note": "Official AQA mark scheme. Point to the words before you tick: does your answer say water <b>above</b> the swimmer, and <b>weight</b> or <b>force</b>?"
+     }
+    },
+    {
+     "type": "info",
+     "html": "<b>Hydraulics</b> (your lesson): a liquid can’t be squashed, so pressure put on it at one end is passed on <b>through the whole liquid</b>. Push a small piston: the pressure is the same on the big piston, but the big piston has more area, so the force on it is bigger.<br><br><b>The quick way (from class):</b> how many times bigger is the area? Multiply the force by that number.<br>Example: 10 cm² and 50 cm², force 3 N. 50 ÷ 10 = 5 times bigger, so 3 N × 5 = 15 N."
+    },
+    {
+     "type": "num",
+     "id": "h1",
+     "h": "Hydraulics calculation",
+     "q": "The small piston has an area of 5 cm². The big piston has an area of 40 cm². You push the small piston with 10 N. What is the force on the big piston, in N?",
+     "answer": "80",
+     "unit": "N",
+     "traps": [
+      {"value": "8", "msg": "That is how many times bigger the area is (40 ÷ 5). Now multiply the force by it."},
+      {"value": "1.25", "msg": "You divided the force. The big piston has the bigger area, so the force must be <b>bigger</b>."},
+      {"value": "2", "msg": "That is the pressure in N/cm² (10 ÷ 5). Now use it on the big piston: 2 × 40."}
+     ],
+     "why": "40 ÷ 5 = 8 times the area, so 10 N × 8 = 80 N. The long way gives the same: pressure = 10 ÷ 5 = 2 N/cm², force = 2 × 40 = 80 N."
+    },
+    {
+     "type": "order",
+     "id": "h2",
+     "h": "The hydraulic jack chain",
+     "q": "Why does a small push on a hydraulic jack lift a car? Tap the links in order.",
+     "items": [
+      "A small force pushes on the small piston.",
+      "This puts a pressure on the liquid (pressure = force ÷ area).",
+      "The liquid can’t be squashed, so the same pressure acts everywhere in it, including on the big piston.",
+      "The big piston has a bigger area, so the force on it is bigger (force = pressure × area): big enough to lift the car."
+     ],
+     "labels": ["Cause", "Link", "Link", "Consequence"],
+     "done": "Three of the four links need the word <b>pressure</b>. Last time your jack answer never used it."
+    },
+    {
+     "type": "write",
+     "id": "h3",
+     "marks": 3,
+     "rows": 4,
+     "h": "Your turn: the jack",
+     "q": "Explain why a small force on the small piston of a hydraulic jack makes a large force on the big piston.",
+     "starters": ["The small force makes a pressure in the liquid…", "This pressure is…", "so the force on the big piston…"],
+     "minWords": 25,
+     "mark": {
+      "points": [
+       {"t": "the force on the small piston makes a pressure in the liquid", "m": 1},
+       {"t": "the same pressure is passed through the liquid to the big piston (liquids can’t be squashed)", "m": 1},
+       {"t": "the big piston has a bigger area, so the force on it is bigger (force = pressure × area)", "m": 1}
+      ],
+      "note": "Find the word <b>pressure</b> in your answer before you tick the first two points. No “pressure”, no mark."
+     }
+    }
+   ]
+  },
+  {
+   "h": "4. Written paper",
+   "time": "20 min",
+   "blocks": [
+    {
+     "type": "info",
+     "tone": "big",
+     "html": "Print the written paper and do it by hand. Write each equation before you put numbers in. For each “explain”, write the chain link by link and end with the thing the question asks about. Mark it with the answers on the last page."
+    }
+   ]
+  },
+  {
+   "h": "5. Check yourself",
+   "time": "3 min",
+   "blocks": [
+    {
+     "type": "checklist",
+     "id": "sc",
+     "h": "Self-check",
+     "items": [
+      "I wrote pressure = force ÷ area before every calculation (divide, never multiply).",
+      "My depth chains say “more water <b>above</b>” and “more <b>weight</b>”, then “more pressure”.",
+      "My hydraulics chains use the word <b>pressure</b> and say it is the same on both pistons.",
+      "Every chain ends with the thing the question asked about.",
+      "I pointed to the words in my answer before each tick."
+     ]
+    },
+    {
+     "type": "oral",
+     "q": "“Why is a dam built much thicker at the bottom than at the top?”",
+     "note": "For the parent: listen for the full chain: deeper water → more water above → more weight → more pressure at the bottom → bigger force on the bottom of the wall, so it must be stronger there. If she stops at “because the pressure is bigger”, ask “why is it bigger down there?” and then “so what does that do to the wall?”"
+    }
+   ]
+  }
+ ],
+ "paper": {
+  "title": "Science Week 6: pressure in liquids (written)",
+  "sub": "Ember · Calculator allowed · about 20 minutes · 13 marks",
+  "intro": "<b>Skill: the Because Chain.</b> Every “explain” answer goes cause → link → link → the thing asked about. Write each equation before you use it.",
+  "blocks": [
+   {
+    "marks": 2,
+    "source": "AQA Physics 8463/2H, June 2024, Q04.1",
+    "stem": "1. The Mariana Trench is the deepest part of the Pacific Ocean.<br>Figure 8 shows a submarine going to the bottom of the Mariana Trench.",
+    "fig": {"src": "fig/jun24-q04-fig8.png", "alt": "Cross-section of the sea with a deep trench. A submarine is inside the trench; an arrow from the surface of the sea to the submarine is labelled depth of submarine. Not to scale.", "label": "AQA 8463/2H June 2024, Q04, Figure 8"},
+    "q": "The depth of the submarine increases.<br><br>Explain what happens to the pressure on the submarine.",
+    "lines": 5
+   },
+   {
+    "marks": 1,
+    "source": "AQA Physics 8463/2H, June 2018, Q04.1",
+    "stem": "2. Figure 6 shows an unusually shaped container.<br>The container has four vertical tubes of different shape and size.",
+    "fig": {"src": "fig/jun18-q04-fig6.png", "alt": "A container joined at the bottom with four tubes: 1 straight, 2 slanted, 3 wavy, 4 widening upwards. Water fills the base and tube 1 up to a level; tubes 2, 3 and 4 are empty.", "label": "AQA 8463/2H June 2018, Q04, Figure 6"},
+    "q": "Water is poured into the container up to the level shown in tube 1.<br><br>Complete Figure 6 to show the height of the water in tubes 2, 3 and 4.",
+    "lines": 1,
+    "pageBreak": false
+   },
+   {
+    "marks": 3,
+    "q": "3. A hydraulic lift has a small piston of area 4 cm² and a big piston of area 60 cm². A force of 20 N pushes on the small piston.<br>(a) Write down the equation that links pressure, force and area. <b>(1)</b><br>(b) Work out the force on the big piston. <b>(2)</b>",
+    "workBox": 35,
+    "answerLine": "Force = ____________ N",
+    "pageBreak": true
+   },
+   {
+    "marks": 3,
+    "q": "4. Explain why a hydraulic jack lets a small force lift a heavy car. Use the word <b>pressure</b> in your answer.",
+    "lines": 6
+   },
+   {
+    "marks": 4,
+    "q": "5. A dam holds back a deep lake. The wall of the dam is much thicker at the bottom than at the top.<br>Explain why the wall needs to be thicker at the bottom.",
+    "lines": 7
+   }
+  ],
+  "selfcheck": [
+   "Q1 and Q5: my chain says water <b>above</b>, <b>weight</b> or force, then <b>pressure</b>.",
+   "Q3: I wrote the equation, then found how many times bigger the area is.",
+   "Q4: I used the word pressure at least twice.",
+   "Q5: my last sentence is about the <b>wall</b>, the thing the question asks about.",
+   "Reflection: which link did you nearly leave out?"
+  ],
+  "marking": [
+   {
+    "h": "Answers and marks",
+    "html": "<ul><li><b>1. (AQA June 2024 2H Q04.1), official mark scheme:</b> the height of the (column of) water above the submarine increases (allow volume / mass for height) <b>(1)</b>; which increases the force / weight (of the water) acting on the submarine so pressure increases <b>(1)</b>. “The pressure increases” on its own scores 0: the marks are for <i>why</i>.</li><li><b>2. (AQA June 2018 2H Q04.1), official mark scheme:</b> all heights drawn the same as tube 1, judged by eye <b>(1)</b>. Pressure depends on depth only, not on the shape of the tube.</li><li><b>3.</b> (a) pressure = force ÷ area (or force = pressure × area) <b>(1)</b>. (b) 60 ÷ 4 = 15 times the area <b>(1)</b>, so 20 × 15 = <b>300 N (1)</b>. (Or pressure = 20 ÷ 4 = 5 N/cm², force = 5 × 60 = 300 N.)</li><li><b>4.</b> The small force on the small piston makes a pressure in the liquid <b>(1)</b>; the liquid can’t be squashed, so the same pressure acts on the big piston <b>(1)</b>; the big piston has a bigger area, so the force on it is bigger (force = pressure × area) <b>(1)</b>.</li><li><b>5.</b> At the bottom the water is deeper <b>(1)</b>, so there is more water above / a taller column of water <b>(1)</b>, so more weight pushing down, so the pressure is greater at the bottom <b>(1)</b>, so the force on the bottom of the wall is bigger, and the wall must be stronger (thicker) there <b>(1)</b>.</li></ul>Score: ____ / 13"
+   }
+  ],
+  "footer": "Written for Ember in AQA style. Includes AQA Physics 8463/2H June 2024 Q04.1 (Figure 8) and June 2018 Q04.1 (Figure 6); on screen 8463/2H June 2025 Q08.1 (Figure 9) and June 2018 Q04.2. © AQA, used for private practice."
+ }
+}
